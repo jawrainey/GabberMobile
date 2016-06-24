@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp">
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_height="72dp"
+            android:layout_width="72dp"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/me" />
+        <TextView
+            android:id="@+id/instructions"
+            android:gravity="bottom|center"
+            android:textSize="8dip"
+            android:layout_gravity="center_horizontal"
+            android:text="Click to take photo"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content" />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Full name" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Email address" />
+        </android.support.design.widget.TextInputLayout>
+        <TextView
+            android:id="@+id/signup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Do they consent to:"
+            android:gravity="left"
+            android:layout_marginBottom="8dp"
+            android:textSize="16dip" />
+        <CheckBox
+            android:id="@+id/public_story"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="Make story publically accessible?" />
+        <CheckBox
+            android:id="@+id/public_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="Associate this photo to their story?" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/record_story"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:padding="16dp"
+            android:text="Record their story" />
+    </LinearLayout>
+</LinearLayout>

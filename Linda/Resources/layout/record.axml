@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp">
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_height="72dp"
+            android:layout_width="72dp"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/me" />
+        <TextView
+            android:id="@+id/name"
+            android:gravity="bottom|center"
+            android:textSize="12dip"
+            android:layout_gravity="center_horizontal"
+            android:text="Jay Rainey"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/instructions"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Discussion points:"
+            android:gravity="left"
+            android:layout_marginTop="24dp"
+            android:textSize="18dip" />
+        <TextView
+            android:id="@+id/prompts"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="12dp"
+            android:text="What do you enjoy about volunteering?\nHow did you get involved in it?"
+            android:gravity="left"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:textSize="14dip" />
+        <GridLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="6"
+            android:columnOrderPreserved="false"
+            android:rowCount="1"
+            android:orientation="horizontal">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/start"
+                android:layout_columnSpan="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start" />
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/stop"
+                android:layout_columnSpan="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stop" />
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/submit"
+                android:layout_columnSpan="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit" />
+        </GridLayout>
+    </LinearLayout>
+</LinearLayout>

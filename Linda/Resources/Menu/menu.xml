@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	<item android:id="@+id/home" android:title="Home"/>
+  	<item android:id="@+id/their_story" android:title="Record"/>
+  	<!-- <item android:id="@+id/all_stories" android:title="All stories"/> -->
+  	<item android:id="@+id/about" android:title="About"/>
+  	<item android:id="@+id/logout" android:title="Logout"/>
+</menu>
