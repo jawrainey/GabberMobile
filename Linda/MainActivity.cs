@@ -113,7 +113,7 @@ namespace Linda
 				while (mplayer.IsPlaying)
 				{
 					cbar.Progress += 1;
-					await Task.Delay(500);
+					await Task.Delay(1000);
 				}
 
 				// The maximum for each audio may be different.
