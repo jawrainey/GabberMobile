@@ -1,10 +1,14 @@
 ﻿using Android.App;
+using Android.Media;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
+using Android.Views;
+using Android.Widget;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
-using Android.Media;
 using System.IO;
+using System.Threading.Tasks;
+using System;
 
 namespace Linda
 {
@@ -14,6 +18,8 @@ namespace Linda
 		MediaRecorder _recorder;
 		// Gosh: https://code.google.com/p/android/issues/detail?id=800
 		bool _isrecording;
+		// The path to the experience recorded.
+		string _path;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -21,48 +27,105 @@ namespace Linda
 			SetContentView(Resource.Layout.record);
 
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+
 			// Enable a user to modify the interviewees details if they wish
-			// TODO: this should only be enabled once a recording has been made.
+			// TODO: needs implemented; parent for this activity must be set.
 			SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 			SupportActionBar.SetHomeButtonEnabled(true);
 
-			FindViewById<AppCompatButton>(Resource.Id.start).Click += delegate
+			var record = FindViewById<ImageButton>(Resource.Id.start);
+			var cancel = FindViewById<ImageButton>(Resource.Id.cancel);
+
+			// Required to increase timer per second.
+			var timer = FindViewById<TextView>(Resource.Id.timer);
+
+			// TODO: ideally, a submit should exist after the audio has been recorded.
+			// e.g. if stop pressed, change icon to save, 
+			var submit = FindViewById<AppCompatButton>(Resource.Id.submit);
+
+			// Note: record has two states: start and stop record.
+			record.Click += delegate
 			{
-				_recorder = new MediaRecorder();
-				_isrecording = true;
+				// Change icon between record to stop.
+				record.Selected = !record.Selected;
+				// Show/Hide the cancel/timer on click!
+				cancel.Visibility = cancel.Visibility == ViewStates.Invisible ? ViewStates.Visible : ViewStates.Invisible;
+				timer.Visibility = timer.Visibility == ViewStates.Invisible ? ViewStates.Visible : ViewStates.Invisible;
 
-				// Set how we want the audio formatting to be.
-				_recorder.SetAudioSource(AudioSource.Mic);
-				_recorder.SetOutputFormat(OutputFormat.ThreeGpp);
-				_recorder.SetAudioEncoder(AudioEncoder.AmrNb);
-
-				// TODO: save path to database for the last use
-				var path = Path.Combine(
-					System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),
-					System.Diagnostics.Stopwatch.GetTimestamp() + ".3gpp");
-
-				_recorder.SetOutputFile(path);
-				_recorder.Prepare();
-				_recorder.Start();
-			};
-
-			FindViewById<AppCompatButton>(Resource.Id.stop).Click += delegate
-			{
-				if (_isrecording)
+				if (record.Selected)
 				{
-					_recorder.Stop();
-					_recorder.Reset();	
+					_recorder = new MediaRecorder();
+					_isrecording = true;
+
+					// Set how we want the audio formatting to be.
+					_recorder.SetAudioSource(AudioSource.Mic);
+					_recorder.SetOutputFormat(OutputFormat.ThreeGpp);
+					_recorder.SetAudioEncoder(AudioEncoder.AmrNb);
+
+					// Override path for re-use as user may record many audios. Store only once.
+					if (string.IsNullOrWhiteSpace(_path))
+					{
+						Console.WriteLine("We should only set the path once...");
+						_path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),
+						                     System.Diagnostics.Stopwatch.GetTimestamp() + ".3gpp");	
+					}
+
+					_recorder.SetOutputFile(_path);
+					_recorder.Prepare();
+					_recorder.Start();
+
+					// TODO: do we want users to record for as long as they desire?
+					RunOnUiThread(async () =>
+					{
+						int seconds = 0;
+
+						while (_isrecording)
+						{
+							timer.Text = TimeSpan.FromSeconds(seconds++).ToString((@"mm\:ss"));
+							await Task.Delay(1000);
+						}
+					});
+				}
+				else
+				{
+					// TODO: update preview of the audio recorded.
+					StopRecording();
 				}
 			};
 
-			FindViewById<AppCompatButton>(Resource.Id.submit).Click += delegate
+			cancel.Click += delegate
 			{
+				cancel.Visibility = ViewStates.Invisible;
+				timer.Visibility = ViewStates.Invisible;
+				// Revert back to the "record" icon.
+				record.Selected = false;
+				// Stops the current audio from playing.
+				StopRecording();
+			};
+
+			// TODO: temporary button to faciliate implementation.
+			submit.Click += delegate
+			{
+				// TODO: save previous activity data + audio path to database
 				// TODO: an audio must have been created! Enable once recording made?
-				// We do not want the user to return to this page
-				// Once a story is created, then it is created.
+				StopRecording();
+
+				// We do not want the user to return to this page once experience captured.
 				Finish();
 				StartActivity(typeof(MainActivity));
 			};
+
+			// TODO: click functionality for preview of audio playback
+		}
+
+		void StopRecording()
+		{
+			if (_isrecording)
+			{
+				_isrecording = false;
+				_recorder.Stop();
+				_recorder.Reset();
+			}
 		}
 	}
 }

@@ -8,32 +8,16 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="center_vertical|center_horizontal"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp">
-        <ImageView
-            android:id="@+id/photo"
-            android:layout_height="72dp"
-            android:layout_width="72dp"
-            android:layout_marginTop="24dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/me" />
-        <TextView
-            android:id="@+id/name"
-            android:gravity="bottom|center"
-            android:textSize="12dip"
-            android:layout_gravity="center_horizontal"
-            android:text="Jay Rainey"
-            android:layout_width="72dp"
-            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/instructions"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Discussion points:"
+            android:text="Discussion prompts:"
             android:gravity="left"
             android:layout_marginTop="24dp"
             android:textSize="18dip" />
@@ -42,36 +26,78 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="12dp"
-            android:text="What do you enjoy about volunteering?\nHow did you get involved in it?"
+            android:text="Where do you volunteer?\nHow did you start volunteering?"
             android:gravity="left"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
             android:textSize="14dip" />
-        <GridLayout
+        <TextView
+            android:id="@+id/preview_text"
+            android:textSize="14dp"
+            android:text="Are you happy with the audio recorded?"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:visibility="invisible" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/preview"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:visibility="invisible">
+        <ImageButton
+            android:id="@+id/story"
+            android:src="@drawable/playselector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:columnCount="6"
-            android:columnOrderPreserved="false"
-            android:rowCount="1"
-            android:orientation="horizontal">
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/start"
-                android:layout_columnSpan="2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Start" />
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/stop"
-                android:layout_columnSpan="2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Stop" />
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/submit"
-                android:layout_columnSpan="2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Submit" />
-        </GridLayout>
+            android:background="#FFFFFF"
+            android:layout_gravity="center_vertical" />
+        <SeekBar
+            android:id="@+id/position"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" />
     </LinearLayout>
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp">
+        <ImageButton
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cancel"
+            android:layout_alignParentLeft="true"
+            android:visibility="invisible" />
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/start"
+            android:layout_toRightOf="@+id/cancel"
+            android:text="00:00"
+            android:textSize="20dip"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
+        <ImageButton
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/recordselector"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/submit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:text="Create their experience" />
 </LinearLayout>
