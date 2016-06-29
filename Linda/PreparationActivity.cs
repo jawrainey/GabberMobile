@@ -6,6 +6,7 @@ using Android.Provider;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Widget;
+using Android.Support.Design.Widget;
 using System.Diagnostics;
 using System.IO;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
@@ -24,27 +25,33 @@ namespace Linda
 			FindViewById<ImageView>(Resource.Id.photo).Click += delegate
 			{
 				// TODO: could not store intent data to private directory -- infuriating.
-				// Perhaps this is a permissions issue? Another (external) activity
-				// may require permissions to 
+				// NOTE: it is not possible to save ImageCapture to private directory.
 				StartActivityForResult(new Intent(MediaStore.ActionImageCapture), 0);
 			};
 
 			FindViewById<AppCompatButton>(Resource.Id.record_story).Click += delegate 
 			{
-				// TODO: VALIDATE INPUT (is everything completed?)
-				// TODO: capture all data to be either (1) saved locally or (2) sent next
-				// TODO: this is the place we capture location data
+				// TODO: validate input
+				var name = FindViewById<TextInputEditText>(Resource.Id.name);
+				var email = FindViewById<TextInputEditText>(Resource.Id.email);
 
-				// TODO: if we want to enable the user to come back to this activity
-				// then we must pull in the last inserted row into the database,
-				// to which they can modify information.
-				// This is fine, and assumes that they will not go back again to main
-				// Can we only populate it with data fro
+				// TODO: there's probably a tidier way to get checkbox information
+				string consent = "";
+				if (FindViewById<CheckBox>(Resource.Id.public_story).Checked) consent += "P";
+				if (FindViewById<CheckBox>(Resource.Id.public_photo).Checked) consent += "F";
 
-				// TODO: WHAT IF THEY GO BACK FROM HERE TO THE MAIN SCREEN?
-				// DO WE ASSUME THAT THEY WANTED TO QUIT, AND NOT CACHE ANY DATA?
-				// WE CAN ASSUME THAT FOR NOW, FOR SIMPLICITY, NO?
-				StartActivity(typeof(RecordStoryActivity));
+				// Pass the preparation form data to the record activity.
+				var intent = new Intent(this, typeof(RecordStoryActivity));
+
+				intent.PutExtra("photo", "path_to_photo");
+			  	intent.PutExtra("name", name.Text);
+				intent.PutExtra("email", email.Text);
+				intent.PutExtra("consent", consent);
+				intent.PutExtra("location", "10,99"); // TODO: capture and store location data.
+
+				// Users should return to main screen if they go back. Start over.
+				Finish();
+				StartActivity(intent);
 			};
 		}
 

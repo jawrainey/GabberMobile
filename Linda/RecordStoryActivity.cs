@@ -106,6 +106,12 @@ namespace Linda
 			// TODO: temporary button to faciliate implementation.
 			submit.Click += delegate
 			{
+				string photo = Intent.GetStringExtra("photo");
+				string name = Intent.GetStringExtra("name");
+				string email = Intent.GetStringExtra("email");
+				string consent = Intent.GetStringExtra("consent");
+				string location = Intent.GetStringExtra("location");
+
 				// TODO: save previous activity data + audio path to database
 				// TODO: an audio must have been created! Enable once recording made?
 				StopRecording();
