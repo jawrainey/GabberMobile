@@ -16,7 +16,7 @@ namespace Linda
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.login);
 
-			FindViewById<AppCompatButton>(Resource.Id.login).Click += delegate
+			FindViewById<AppCompatButton>(Resource.Id.submit).Click += delegate
 			{
 				var email = FindViewById<AppCompatEditText>(Resource.Id.email);
 				var passw = FindViewById<AppCompatEditText>(Resource.Id.password);
