@@ -52,7 +52,6 @@
                 android:hint="Email address" />
         </android.support.design.widget.TextInputLayout>
         <TextView
-            android:id="@+id/signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Do they consent to:"
