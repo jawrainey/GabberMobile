@@ -99,5 +99,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:padding="16dp"
-        android:text="Create their experience" />
+        android:text="Create their experience"
+        android:visibility="invisible" />
 </LinearLayout>

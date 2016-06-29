@@ -87,6 +87,7 @@ namespace Linda
 				}
 				else
 				{
+					submit.Visibility = ViewStates.Visible;
 					// TODO: update preview of the audio recorded.
 					StopRecording();
 				}
