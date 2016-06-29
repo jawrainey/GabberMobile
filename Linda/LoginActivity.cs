@@ -27,6 +27,10 @@ namespace Linda
 				{
 					Snackbar.Make(email, "A username and password are required.", Snackbar.LengthLong).Show();
 				}
+				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
+				{
+					Snackbar.Make(email, "That email address is invalid.", Snackbar.LengthLong).Show();
+				}
 				else
 				{
 					// TODO: check username and password exist on the server:
