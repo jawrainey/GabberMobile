@@ -16,9 +16,12 @@ namespace Linda
 
 			FindViewById<AppCompatButton>(Resource.Id.login).Click += delegate
 			{
-				// Redirect as this is not the main activity.
-				MainActivity.STATE = FindViewById<AppCompatEditText>(Resource.Id.email).Text;
-				if (string.IsNullOrEmpty(MainActivity.STATE)) return;
+				var email = FindViewById<AppCompatEditText>(Resource.Id.email);
+
+				// Use preferences to only show recordings for each specific user.
+				// This simplifies database modelling; its unnecessary to store uname/pass.
+				var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+				prefs.Edit().PutString("username", email.Text).Commit(); 
 
 				// TODO: authentication & form validation.
 				StartActivity(typeof(MainActivity));

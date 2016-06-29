@@ -105,11 +105,14 @@ namespace Linda
 			// TODO: temporary button to faciliate implementation.
 			submit.Click += delegate
 			{
+				// Link this interview to interviewer (the logged in user).
+				var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+
 				// TODO: assumes ALL fields are validated!
 				var story = new Story {
 					AudioPath = _path,
 					PhotoPath = Intent.GetStringExtra("photo"),
-					InterviewerEmail = "jawrainey",
+					InterviewerEmail = prefs.GetString("username", ""),
 					IntervieweeEmail = Intent.GetStringExtra("email"),
 					IntervieweeName = Intent.GetStringExtra("name"),
 					Ethics = Intent.GetStringExtra("consent"),

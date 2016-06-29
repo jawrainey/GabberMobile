@@ -8,14 +8,12 @@ using Android.Widget;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.IO;
 
 namespace Linda
 {
 	[Activity(Label = "Your stories", MainLauncher = true)]
 	public class MainActivity : AppCompatActivity
 	{
-		public static string STATE = "";
 		// Used to obtain items from the RecyclerView
 		RecyclerView mView;
 		// Each story the user recorded has an associated image and audio.
@@ -25,8 +23,12 @@ namespace Linda
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			// TODO: use shared preferences to keep check if a user is logged in.
-			if (string.IsNullOrWhiteSpace(STATE))
+			// Link this interview to interviewer (the logged in user).
+			// Also used to redirect unauthenticated users
+			var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+			var currentUser = prefs.GetString("username", "");
+
+			if (string.IsNullOrWhiteSpace(currentUser))
 			{
 				StartActivity(typeof(LoginActivity));
 				Finish();
@@ -35,16 +37,15 @@ namespace Linda
 			// One MediaPlayer to rule the view.
 			mplayer = new MediaPlayer();
 
-			// TODO: acquire these from a local database
 			// The stories (experiences) the user has gathered from other people.
 			_stories = new List<Tuple<string, string>>();
 
-			// Datafiles are stored in personal folder for simplicity.
-			var personal = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-
-			// TODO: populate this from database contents
-			foreach (var file in Directory.GetFiles(personal, "*.3gpp"))
-				_stories.Add(new Tuple<string, string>("hello", file));
+			// Only show stories for the current logged in user
+			// NOTE: returns all data for a story, as meta-data may be used later.
+			foreach (var story in new Model().GetStories(currentUser))
+			{
+				_stories.Add(new Tuple<string, string>(story.PhotoPath, story.AudioPath));	
+			}
 
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.main);
