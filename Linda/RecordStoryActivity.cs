@@ -65,7 +65,6 @@ namespace Linda
 					// Override path for re-use as user may record many audios. Store only once.
 					if (string.IsNullOrWhiteSpace(_path))
 					{
-						Console.WriteLine("We should only set the path once...");
 						_path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),
 						                     System.Diagnostics.Stopwatch.GetTimestamp() + ".3gpp");	
 					}
@@ -106,13 +105,20 @@ namespace Linda
 			// TODO: temporary button to faciliate implementation.
 			submit.Click += delegate
 			{
-				string photo = Intent.GetStringExtra("photo");
-				string name = Intent.GetStringExtra("name");
-				string email = Intent.GetStringExtra("email");
-				string consent = Intent.GetStringExtra("consent");
-				string location = Intent.GetStringExtra("location");
+				// TODO: assumes ALL fields are validated!
+				var story = new Story {
+					AudioPath = _path,
+					PhotoPath = Intent.GetStringExtra("photo"),
+					InterviewerEmail = "jawrainey",
+					IntervieweeEmail = Intent.GetStringExtra("email"),
+					IntervieweeName = Intent.GetStringExtra("name"),
+					Ethics = Intent.GetStringExtra("consent"),
+					Location = Intent.GetStringExtra("location"),
+					Uploaded = false
+				};
 
-				// TODO: save previous activity data + audio path to database
+				new Model().InsertStory(story);
+
 				// TODO: an audio must have been created! Enable once recording made?
 				StopRecording();
 
