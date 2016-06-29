@@ -34,27 +34,38 @@ namespace Linda
 
 			FindViewById<AppCompatButton>(Resource.Id.record_story).Click += delegate 
 			{
-				// TODO: validate input
 				var name = FindViewById<TextInputEditText>(Resource.Id.name);
 				var email = FindViewById<TextInputEditText>(Resource.Id.email);
 
-				// TODO: there's probably a tidier way to get checkbox information
-				string consent = "";
-				if (FindViewById<CheckBox>(Resource.Id.public_story).Checked) consent += "P";
-				if (FindViewById<CheckBox>(Resource.Id.public_photo).Checked) consent += "F";
+				// We only care about their email to "pass-it-on".
+				if (string.IsNullOrWhiteSpace(email.Text))
+				{
+					Snackbar.Make(email, "Your friends email is required.", Snackbar.LengthLong).Show();
+				}
+				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
+				{
+					Snackbar.Make(email, "That email address is invalid.", Snackbar.LengthLong).Show();
+				}
+				else
+				{
+					// TODO: there's probably a tidier way to get checkbox information
+					string consent = "";
+					if (FindViewById<CheckBox>(Resource.Id.public_story).Checked) consent += "P";
+					if (FindViewById<CheckBox>(Resource.Id.public_photo).Checked) consent += "F";
 
-				// Pass the preparation form data to the record activity.
-				var intent = new Intent(this, typeof(RecordStoryActivity));
+					// Pass the preparation form data to the record activity.
+					var intent = new Intent(this, typeof(RecordStoryActivity));
 
-				intent.PutExtra("photo", _photo);
-			  	intent.PutExtra("name", name.Text);
-				intent.PutExtra("email", email.Text);
-				intent.PutExtra("consent", consent);
-				intent.PutExtra("location", "10,99"); // TODO: capture and store location data.
+					intent.PutExtra("photo", _photo);
+					intent.PutExtra("name", name.Text);
+					intent.PutExtra("email", email.Text);
+					intent.PutExtra("consent", consent);
+					intent.PutExtra("location", "10,99"); // TODO: capture and store location data.
 
-				// Users should return to main screen if they go back. Start over.
-				Finish();
-				StartActivity(intent);
+					// Users should return to main screen if they go back. Start over.
+					Finish();
+					StartActivity(intent);
+				}
 			};
 		}
 
