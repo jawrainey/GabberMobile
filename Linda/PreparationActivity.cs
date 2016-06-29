@@ -16,6 +16,9 @@ namespace Linda
 	[Activity(Label = "Story preparation")]
 	public class PreparationActivity : AppCompatActivity
 	{
+		// The photo take by the camera activity to be stored & displayed in main.
+		string _photo;
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -43,7 +46,7 @@ namespace Linda
 				// Pass the preparation form data to the record activity.
 				var intent = new Intent(this, typeof(RecordStoryActivity));
 
-				intent.PutExtra("photo", "path_to_photo");
+				intent.PutExtra("photo", _photo);
 			  	intent.PutExtra("name", name.Text);
 				intent.PutExtra("email", email.Text);
 				intent.PutExtra("consent", consent);
@@ -57,14 +60,15 @@ namespace Linda
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
+			// TODO: image is currently stored as a thumbnail.
 			base.OnActivityResult(requestCode, resultCode, data);
 			// Conver all the data to bitmap, which is unfortunately a thumbnail.
 			var author = (Bitmap) data.Extras.Get("data");
 			// Store locally as we do not want
 			var personal = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+			_photo = System.IO.Path.Combine(personal, Stopwatch.GetTimestamp() + ".jpg");
 			// Compressed and saves all at once!
-			author.Compress(Bitmap.CompressFormat.Jpeg, 100, new FileStream(
-				System.IO.Path.Combine(personal, Stopwatch.GetTimestamp() + ".jpg"), FileMode.CreateNew));
+			author.Compress(Bitmap.CompressFormat.Jpeg, 100, new FileStream(_photo, FileMode.CreateNew));
 			// Update the default image with the one the user just took.
 			FindViewById<ImageView>(Resource.Id.photo).SetImageBitmap(author);
 		}

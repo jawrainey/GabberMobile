@@ -3,6 +3,7 @@ using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
+using Android.Graphics.Drawables;
 
 namespace Linda
 {
@@ -24,9 +25,12 @@ namespace Linda
 		
 		public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
 		{
-			// var Myholder = holder as StoryViewHolder;
-			// TODO: should be the associated audio-image
-			// Myholder.mauthor.SetImageDrawable(Drawable.CreateFromPath("/"));
+			var Myholder = holder as StoryViewHolder;
+
+			var authors_face = _stories[position].Item1;
+			// Note: a default silhouette is used if no image was taken.
+			if (!string.IsNullOrWhiteSpace(authors_face))
+				Myholder.mauthor.SetImageDrawable(Drawable.CreateFromPath(authors_face));
 		}
 
 		public override int ItemCount
