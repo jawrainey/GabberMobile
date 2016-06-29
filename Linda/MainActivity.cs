@@ -8,9 +8,6 @@ using Android.Widget;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Android.Views;
-using Android.Graphics.Drawables;
-using Android.Content;
 
 namespace Linda
 {
@@ -128,37 +125,6 @@ namespace Linda
 					cstory.Selected = false;
 				}
 			});
-
-		}
-	}
-
-	class DividerItemDecoration : RecyclerView.ItemDecoration
-	{
-		readonly Drawable divider;
-
-		public DividerItemDecoration(Context context)
-		{
-			// Obtains the default divider for this theme.
-			var theme = context.ObtainStyledAttributes(new int[] { Android.Resource.Attribute.ListDivider });
-			divider = theme.GetDrawable(0);
-			theme.Recycle();
-		}
-
-		public override void OnDraw(Android.Graphics.Canvas cValue, RecyclerView parent, RecyclerView.State state)
-		{
-			base.OnDraw(cValue, parent, state);
-			// Calculate bounds of divider and draw it onto RecyclerView.
-			for (int i = 0; i < parent.ChildCount; i++)
-			{
-				View child = parent.GetChildAt(i);
-				var parameters = (RecyclerView.LayoutParams)child.LayoutParameters;
-
-				int top = child.Bottom + parameters.BottomMargin;
-				int bottom = top + divider.IntrinsicHeight;
-				// NOTE: right does not account for padding as we went to fill to right.
-				divider.SetBounds(parent.PaddingLeft, top, parent.Width, bottom);
-				divider.Draw(cValue);
-			}
 		}
 	}
 }
