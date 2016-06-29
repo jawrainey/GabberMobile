@@ -1,5 +1,7 @@
 using Android.App;
 using Android.OS;
+using Android.Preferences;
+using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Widget;
@@ -17,11 +19,23 @@ namespace Linda
 			FindViewById<AppCompatButton>(Resource.Id.login).Click += delegate
 			{
 				var email = FindViewById<AppCompatEditText>(Resource.Id.email);
+				var passw = FindViewById<AppCompatEditText>(Resource.Id.password);
+
+				// TODO: snackbars are used for simplicity. Ideally, specific error messages
+				// would be output for each unique error instead of a generic (informative) message.
+				if (string.IsNullOrWhiteSpace(email.Text) || string.IsNullOrWhiteSpace(passw.Text))
+				{
+					Snackbar.Make(email, "A username and password are required.", Snackbar.LengthLong).Show();
+					return;
+				}
+
+				// TODO: check username and password exist on the server:
+				// If invalid, output snackbar, else, invoke code below.
 
 				// Use preferences to only show recordings for each specific user.
 				// This simplifies database modelling; its unnecessary to store uname/pass.
-				var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
-				prefs.Edit().PutString("username", email.Text).Commit(); 
+				var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+				prefs.Edit().PutString("username", email.Text).Commit();
 
 				// TODO: authentication & form validation.
 				StartActivity(typeof(MainActivity));
