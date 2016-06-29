@@ -26,21 +26,22 @@ namespace Linda
 				if (string.IsNullOrWhiteSpace(email.Text) || string.IsNullOrWhiteSpace(passw.Text))
 				{
 					Snackbar.Make(email, "A username and password are required.", Snackbar.LengthLong).Show();
-					return;
 				}
+				else
+				{
+					// TODO: check username and password exist on the server:
+					// If invalid, output snackbar, else, invoke code below.
 
-				// TODO: check username and password exist on the server:
-				// If invalid, output snackbar, else, invoke code below.
+					// Use preferences to only show recordings for each specific user.
+					// This simplifies database modelling; its unnecessary to store uname/pass.
+					var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+					prefs.Edit().PutString("username", email.Text).Commit();
 
-				// Use preferences to only show recordings for each specific user.
-				// This simplifies database modelling; its unnecessary to store uname/pass.
-				var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
-				prefs.Edit().PutString("username", email.Text).Commit();
-
-				// TODO: authentication & form validation.
-				StartActivity(typeof(MainActivity));
-				// Prevent returning to login once authenticated.
-				Finish();
+					// TODO: authentication & form validation.
+					StartActivity(typeof(MainActivity));
+					// Prevent returning to login once authenticated.
+					Finish();	
+				}
 			};
 
 			FindViewById<TextView>(Resource.Id.signup).Click += delegate
