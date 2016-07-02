@@ -87,7 +87,7 @@ namespace Linda
 				int top = child.Bottom + parameters.BottomMargin;
 				int bottom = top + divider.IntrinsicHeight;
 				// NOTE: right does not account for padding as we went to fill to right.
-				divider.SetBounds(parent.PaddingLeft, top, parent.Width, bottom);
+				divider.SetBounds(child.PaddingLeft, top, parent.Width, bottom);
 				divider.Draw(cValue);
 			}
 		}
