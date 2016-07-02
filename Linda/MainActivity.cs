@@ -54,6 +54,7 @@ namespace Linda
 			SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
 
 			mView = FindViewById<RecyclerView>(Resource.Id.stories);
+			mView.HasFixedSize = true;
 			mView.SetLayoutManager(new LinearLayoutManager(this));
 			mView.AddItemDecoration(new DividerItemDecoration(this));
 
