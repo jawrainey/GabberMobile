@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical|center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
+    <android.support.v7.widget.CardView
+        android:layout_width="fill_parent"
+        android:layout_height="245dp"
+        android:layout_gravity="center_horizontal"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="6dp">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="205dp"
+                android:id="@+id/imagePrompt"
+                android:background="#6DCBCA"
+                android:scaleType="centerCrop" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="#333333"
+                android:text="A future prompt"
+                android:id="@+id/prompt"
+                android:gravity="center" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="24dp"
+        android:weightSum="4">
+        <ImageButton
+            android:id="@+id/previous"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/previous"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter" />
+        <ImageButton
+            android:id="@+id/select"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/select"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter" />
+        <ImageButton
+            android:id="@+id/next"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/next"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
+</LinearLayout>

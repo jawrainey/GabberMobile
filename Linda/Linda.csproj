@@ -79,6 +79,9 @@
     <Reference Include="Refractored.Controls.CircleImageView">
       <HintPath>..\packages\Refractored.Controls.CircleImageView.1.0.1\lib\MonoAndroid10\Refractored.Controls.CircleImageView.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.CardView">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.CardView.23.4.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.CardView.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -91,6 +94,9 @@
     <Compile Include="RecordStoryActivity.cs" />
     <Compile Include="ForgotPasswordActivity.cs" />
     <Compile Include="Model.cs" />
+    <Compile Include="HomeActivity.cs" />
+    <Compile Include="CompletionActivity.cs" />
+    <Compile Include="PromptSelectionActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -119,6 +125,12 @@
     <AndroidResource Include="Resources\drawable\cancel.png" />
     <AndroidResource Include="Resources\drawable\send.png" />
     <AndroidResource Include="Resources\drawable\logo.png" />
+    <AndroidResource Include="Resources\layout\promptselection.axml" />
+    <AndroidResource Include="Resources\layout\completion.axml" />
+    <AndroidResource Include="Resources\layout\home.axml" />
+    <AndroidResource Include="Resources\drawable\next.png" />
+    <AndroidResource Include="Resources\drawable\previous.png" />
+    <AndroidResource Include="Resources\drawable\select.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />

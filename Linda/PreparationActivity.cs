@@ -13,7 +13,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace Linda
 {
-	[Activity(Label = "Story preparation")]
+	[Activity(Label = "S2: who are they?")]
 	public class PreparationActivity : AppCompatActivity
 	{
 		// The photo take by the camera activity to be stored & displayed in main.
