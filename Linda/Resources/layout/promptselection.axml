@@ -7,32 +7,10 @@
     android:orientation="vertical"
     android:paddingLeft="24dp"
     android:paddingRight="24dp">
-    <android.support.v7.widget.CardView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/prompts"
         android:layout_width="fill_parent"
-        android:layout_height="245dp"
-        android:layout_gravity="center_horizontal"
-        app:cardPreventCornerOverlap="false"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="6dp">
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="205dp"
-                android:id="@+id/imagePrompt"
-                android:background="#6DCBCA"
-                android:scaleType="centerCrop" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:textColor="#333333"
-                android:text="A future prompt"
-                android:id="@+id/prompt"
-                android:gravity="center" />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+        android:layout_height="245dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
