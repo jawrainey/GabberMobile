@@ -48,18 +48,12 @@ namespace Linda
 				}
 				else
 				{
-					// TODO: there's probably a tidier way to get checkbox information
-					string consent = "";
-					if (FindViewById<CheckBox>(Resource.Id.public_story).Checked) consent += "P";
-					if (FindViewById<CheckBox>(Resource.Id.public_photo).Checked) consent += "F";
-
 					// Pass the preparation form data to the record activity.
 					var intent = new Intent(this, typeof(PromptSelectionActivity));
 
 					intent.PutExtra("photo", _photo);
 					intent.PutExtra("name", name.Text);
 					intent.PutExtra("email", email.Text);
-					intent.PutExtra("consent", consent);
 					intent.PutExtra("location", "10,99"); // TODO: capture and store location data.
 
 					// Users should return to main screen if they go back. Start over.

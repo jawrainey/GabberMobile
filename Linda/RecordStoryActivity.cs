@@ -118,7 +118,6 @@ namespace Linda
 					InterviewerEmail = prefs.GetString("username", ""),
 					IntervieweeEmail = Intent.GetStringExtra("email"),
 					IntervieweeName = Intent.GetStringExtra("name"),
-					Ethics = Intent.GetStringExtra("consent"),
 					Location = Intent.GetStringExtra("location"),
 					Uploaded = false
 				};

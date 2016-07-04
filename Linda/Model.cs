@@ -16,10 +16,6 @@ namespace Linda
 		public string InterviewerEmail { get; set; }
 		public string IntervieweeEmail { get; set; }
 		public string IntervieweeName { get; set; }
-		// ""   => Do not publish
-		// "P"  => Publish
-		// "PF" => Publish with Photo 
-		public string Ethics { get; set; }
 		// The Latitude & longitude stored as: "LAT, LONG"
 		public string Location { get; set; }
 		// Whether or not this story has been uploaded to the web.
