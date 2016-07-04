@@ -4,13 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_vertical|center_horizontal"
-    android:orientation="vertical"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp">
+    android:orientation="vertical">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/prompts"
         android:layout_width="fill_parent"
-        android:layout_height="245dp" />
+        android:layout_height="293dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

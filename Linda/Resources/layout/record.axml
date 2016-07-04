@@ -7,40 +7,9 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp">
-        <TextView
-            android:id="@+id/instructions"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Discussion prompts:"
-            android:gravity="left"
-            android:layout_marginTop="24dp"
-            android:textSize="18dip" />
-        <TextView
-            android:id="@+id/prompts"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="12dp"
-            android:text="Where do you volunteer?\nHow did you start volunteering?"
-            android:gravity="left"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="16dp"
-            android:textSize="14dip" />
-        <TextView
-            android:id="@+id/preview_text"
-            android:textSize="14dp"
-            android:text="Are you happy with the audio recorded?"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="16dp"
-            android:visibility="invisible" />
-    </LinearLayout>
+    <include
+        android:id="@+id/promptCard"
+        layout="@layout/prompt" />
     <LinearLayout
         android:id="@+id/preview"
         android:orientation="horizontal"
@@ -48,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:visibility="invisible">
+        android:visibility="gone">
         <ImageButton
             android:id="@+id/story"
             android:src="@drawable/playselector"
