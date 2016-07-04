@@ -22,6 +22,7 @@ namespace Linda
 			int position = viewHolder.AdapterPosition;
 			// Adapter is zero indexed whilst layout manager is not.
 			int itemCount = _promptLayout.GetLayoutManager().ItemCount - 1;
+			// TODO: change opacity of moved item as it moves?
 			// Change the position based on direction accounting for start/end positions to reset loop.
 			if (direction == ItemTouchHelper.Left) position = (position == itemCount) ? 0 : position + 1;
 			else position = (position == 0) ? itemCount : position - 1;

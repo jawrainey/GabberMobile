@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Linda
 {
-	[Activity(Label = "Your stories", MainLauncher = true)]
+	[Activity(Label = "Your stories")]
 	public class MainActivity : AppCompatActivity
 	{
 		// Used to obtain items from the RecyclerView
@@ -23,16 +23,9 @@ namespace Linda
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
-			// Link this interview to interviewer (the logged in user).
-			// Also used to redirect unauthenticated users
+			// Used to display interviews that the logged in user has recorded
+			// This ensures if many log into the device, then they will see theirs.
 			var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
-			var currentUser = prefs.GetString("username", "");
-
-			if (string.IsNullOrWhiteSpace(currentUser))
-			{
-				StartActivity(typeof(LoginActivity));
-				Finish();
-			}
 
 			// One MediaPlayer to rule the view.
 			mplayer = new MediaPlayer();
@@ -42,7 +35,7 @@ namespace Linda
 
 			// Only show stories for the current logged in user
 			// NOTE: returns all data for a story, as meta-data may be used later.
-			foreach (var story in new Model().GetStories(currentUser))
+			foreach (var story in new Model().GetStories(prefs.GetString("username", "")))
 			{
 				_stories.Add(new Tuple<string, string>(story.PhotoPath, story.AudioPath));	
 			}

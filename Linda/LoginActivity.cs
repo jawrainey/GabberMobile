@@ -42,7 +42,7 @@ namespace Linda
 					prefs.Edit().PutString("username", email.Text).Commit();
 
 					// TODO: authentication & form validation.
-					StartActivity(typeof(MainActivity));
+					StartActivity(typeof(HomeActivity));
 					// Prevent returning to login once authenticated.
 					Finish();	
 				}

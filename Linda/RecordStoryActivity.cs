@@ -33,6 +33,7 @@ namespace Linda
 			SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 			SupportActionBar.SetHomeButtonEnabled(true);
 
+			// TODO: add selected prompt to UI
 			var record = FindViewById<ImageButton>(Resource.Id.start);
 			var cancel = FindViewById<ImageButton>(Resource.Id.cancel);
 
@@ -110,6 +111,7 @@ namespace Linda
 				var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
 
 				// TODO: assumes ALL fields are validated!
+				// TODO: add the selected prompt to database
 				var story = new Story {
 					AudioPath = _path,
 					PhotoPath = Intent.GetStringExtra("photo"),
@@ -128,7 +130,7 @@ namespace Linda
 
 				// We do not want the user to return to this page once experience captured.
 				Finish();
-				StartActivity(typeof(MainActivity));
+				StartActivity(typeof(CompletionActivity));
 			};
 
 			// TODO: click functionality for preview of audio playback

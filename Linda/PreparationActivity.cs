@@ -54,7 +54,7 @@ namespace Linda
 					if (FindViewById<CheckBox>(Resource.Id.public_photo).Checked) consent += "F";
 
 					// Pass the preparation form data to the record activity.
-					var intent = new Intent(this, typeof(RecordStoryActivity));
+					var intent = new Intent(this, typeof(PromptSelectionActivity));
 
 					intent.PutExtra("photo", _photo);
 					intent.PutExtra("name", name.Text);

@@ -5,6 +5,7 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using System.Collections.Generic;
+using Android.Widget;
 
 namespace Linda
 {
@@ -26,6 +27,17 @@ namespace Linda
 			var callback = new PromptSelectorCallback(0, ItemTouchHelper.Left | ItemTouchHelper.Right, recyclerView);
 			var touchHelper = new ItemTouchHelper(callback);
 			touchHelper.AttachToRecyclerView(recyclerView);
+
+			FindViewById<ImageButton>(Resource.Id.select).Click += delegate
+			{
+				// TODO: validate selection and highlight the chosen one
+				// TODO: change button icon to send, and only forward when pressed?
+				var intent = new Intent(this, typeof(RecordStoryActivity));
+				intent.PutExtra("prompt", "SelectedPrompt");
+				// Pass the previous form data (photo/email/pass)
+				intent.PutExtras(Intent.Extras);
+				StartActivity(intent);
+			};
 		}
 	}
 
