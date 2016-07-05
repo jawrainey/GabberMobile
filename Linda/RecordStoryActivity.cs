@@ -25,13 +25,7 @@ namespace Linda
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.record);
-
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
-
-			// Enable a user to modify the interviewees details if they wish
-			// TODO: needs implemented; parent for this activity must be set.
-			SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-			SupportActionBar.SetHomeButtonEnabled(true);
 
 			var selectedPrompt = FindViewById(Resource.Id.promptCard);
 			selectedPrompt.FindViewById<ImageView>(
@@ -41,12 +35,7 @@ namespace Linda
 			
 			var record = FindViewById<ImageButton>(Resource.Id.start);
 			var cancel = FindViewById<ImageButton>(Resource.Id.cancel);
-
-			// Required to increase timer per second.
 			var timer = FindViewById<TextView>(Resource.Id.timer);
-
-			// TODO: ideally, a submit should exist after the audio has been recorded.
-			// e.g. if stop pressed, change icon to save, 
 			var submit = FindViewById<AppCompatButton>(Resource.Id.submit);
 
 			// Note: record has two states: start and stop record.
@@ -60,24 +49,16 @@ namespace Linda
 
 				if (record.Selected)
 				{
-					_recorder = new MediaRecorder();
-					_isrecording = true;
-
-					// Set how we want the audio formatting to be.
-					_recorder.SetAudioSource(AudioSource.Mic);
-					_recorder.SetOutputFormat(OutputFormat.ThreeGpp);
-					_recorder.SetAudioEncoder(AudioEncoder.AmrNb);
+					submit.Visibility = ViewStates.Invisible;
 
 					// Override path for re-use as user may record many audios. Store only once.
 					if (string.IsNullOrWhiteSpace(_path))
 					{
-						_path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),
-						                     System.Diagnostics.Stopwatch.GetTimestamp() + ".3gpp");	
+						var personal = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+						_path = Path.Combine(personal, System.Diagnostics.Stopwatch.GetTimestamp() + ".3gpp");	
 					}
 
-					_recorder.SetOutputFile(_path);
-					_recorder.Prepare();
-					_recorder.Start();
+					StartRecording();
 
 					// TODO: do we want users to record for as long as they desire?
 					RunOnUiThread(async () =>
@@ -93,8 +74,7 @@ namespace Linda
 				}
 				else
 				{
-					submit.Visibility = ViewStates.Visible;
-					// TODO: update preview of the audio recorded.
+					submit.Visibility = submit.Visibility == ViewStates.Invisible ? ViewStates.Visible : ViewStates.Invisible;
 					StopRecording();
 				}
 			};
@@ -103,19 +83,19 @@ namespace Linda
 			{
 				cancel.Visibility = ViewStates.Invisible;
 				timer.Visibility = ViewStates.Invisible;
+				submit.Visibility = ViewStates.Invisible;
 				// Revert back to the "record" icon.
 				record.Selected = false;
 				// Stops the current audio from playing.
 				StopRecording();
 			};
 
-			// TODO: temporary button to faciliate implementation.
 			submit.Click += delegate
 			{
 				// Link this interview to interviewer (the logged in user).
 				var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
 
-				// TODO: assumes ALL fields are validated!
+				// TODO: get the current location!
 				// TODO: add the selected prompt to database
 				var story = new Story {
 					AudioPath = _path,
@@ -129,15 +109,24 @@ namespace Linda
 
 				new Model().InsertStory(story);
 
-				// TODO: an audio must have been created! Enable once recording made?
-				StopRecording();
-
 				// We do not want the user to return to this page once experience captured.
 				Finish();
 				StartActivity(typeof(CompletionActivity));
 			};
+		}
 
-			// TODO: click functionality for preview of audio playback
+		void StartRecording()
+		{
+			_recorder = new MediaRecorder();
+			_isrecording = true;
+			// Set how we want the audio formatting to be.
+			_recorder.SetAudioSource(AudioSource.Mic);
+			_recorder.SetOutputFormat(OutputFormat.ThreeGpp);
+			_recorder.SetAudioEncoder(AudioEncoder.AmrNb);
+
+			_recorder.SetOutputFile(_path);
+			_recorder.Prepare();
+			_recorder.Start();
 		}
 
 		void StopRecording()
