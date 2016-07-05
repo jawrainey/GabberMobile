@@ -33,7 +33,12 @@ namespace Linda
 			SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 			SupportActionBar.SetHomeButtonEnabled(true);
 
-			// TODO: add selected prompt to UI
+			var selectedPrompt = FindViewById(Resource.Id.promptCard);
+			selectedPrompt.FindViewById<ImageView>(
+				Resource.Id.imagePrompt).SetBackgroundResource(Intent.GetIntExtra("promptImage", -1));
+			selectedPrompt.FindViewById<TextView>(
+				Resource.Id.caption).Text = Intent.GetStringExtra("promptText");
+			
 			var record = FindViewById<ImageButton>(Resource.Id.start);
 			var cancel = FindViewById<ImageButton>(Resource.Id.cancel);
 
