@@ -6,7 +6,7 @@ using Android.Support.V7.Widget;
 
 namespace Linda
 {
-	[Activity(Label = "S1: process and outcomes", MainLauncher = true)]
+	[Activity(MainLauncher = true)]
 	public class HomeActivity : AppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
