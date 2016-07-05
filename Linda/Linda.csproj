@@ -135,6 +135,9 @@
     <AndroidResource Include="Resources\drawable\select.png" />
     <AndroidResource Include="Resources\layout\prompt.axml" />
     <AndroidResource Include="Resources\drawable\promptselector.xml" />
+    <AndroidResource Include="Resources\drawable\prompt_one.jpg" />
+    <AndroidResource Include="Resources\drawable\prompt_three.jpg" />
+    <AndroidResource Include="Resources\drawable\prompt_two.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
