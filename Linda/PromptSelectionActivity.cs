@@ -7,6 +7,7 @@ using Android.Support.V7.Widget.Helper;
 using System.Collections.Generic;
 using Android.Widget;
 using Android.Graphics;
+using System;
 
 namespace Linda
 {
@@ -17,8 +18,14 @@ namespace Linda
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.promptselection);
+			// TODO: create prompt based on thematic analysis of volunteer workshop
+			var prompts = new List<Tuple<string, int>>
+			{
+				new Tuple<string, int>("Prompt One", Resource.Drawable.prompt_one),
+				new Tuple<string, int>("Prompt Two", Resource.Drawable.prompt_two),
+				new Tuple<string, int>("Prompt Three", Resource.Drawable.prompt_three)
+			};
 
-			var prompts = new List<string> { "CARD1", "CARD2", "CARD3", "CARD4" };
 			var recyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
 			recyclerView.SetAdapter(new RVPromptAdapter(prompts));
 			// Custom layout required to disable vertical scrolling.
@@ -34,8 +41,15 @@ namespace Linda
 				// When the "next" button is pressed (after it has been switched below)
 				if (selectPrompt.Selected)
 				{
+					// Given the selected item is the first item in the view
+					var selectedPrompt = recyclerView.FindViewById(Resource.Id.promptCard);
+					var promptImage = selectedPrompt.FindViewById<ImageView>(Resource.Id.imagePrompt);
+					var promptText = selectedPrompt.FindViewById<TextView>(Resource.Id.caption).Text;
+					// All the previous form data and selected prompt.
 					var intent = new Intent(this, typeof(RecordStoryActivity));
-					intent.PutExtra("prompt", "SelectedPrompt");
+					// The tag is the drawable resource ID, which is a Java object, hence conversion and cast.
+					intent.PutExtra("promptImage", int.Parse(promptImage.Tag.ToString()));
+					intent.PutExtra("promptText", promptText);
 					// Pass the previous form data (photo/name/email)
 					intent.PutExtras(Intent.Extras);
 					StartActivity(intent);

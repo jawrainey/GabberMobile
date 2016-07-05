@@ -2,15 +2,16 @@
 using Android.Views;
 using Android.Widget;
 using System.Collections.Generic;
+using System;
 
 namespace Linda
 {
 	public class RVPromptAdapter : RecyclerView.Adapter
 	{
 		// Each story the user recorded has an associated image and audio.
-		readonly List<string> _prompts;
+		readonly List<Tuple<string, int>> _prompts;
 
-		public RVPromptAdapter(List<string> prompts)
+		public RVPromptAdapter(List<Tuple<string, int>> prompts)
 		{
 			_prompts = prompts;
 		}
@@ -24,7 +25,10 @@ namespace Linda
 		public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
 		{
 			var vh = holder as PhotoViewHolder;
-			vh.Caption.Text = _prompts[position];
+			vh.Caption.Text = _prompts[position].Item1;
+			vh.Image.SetImageResource(_prompts[position].Item2);
+			// Required to lookup the drawable resource (image prompt) by ID.
+			vh.Image.Tag = _prompts[position].Item2;
 		}
 
 		public override int ItemCount
