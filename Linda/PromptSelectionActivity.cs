@@ -11,13 +11,15 @@ using System;
 
 namespace Linda
 {
-	[Activity(Label = "S3: what do they want to discuss?")]
+	[Activity(Label = "S3: what will you discuss?")]
 	public class PromptSelectionActivity : AppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.promptselection);
+			SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
+
 			// TODO: create prompt based on thematic analysis of volunteer workshop
 			var prompts = new List<Tuple<string, int>>
 			{
