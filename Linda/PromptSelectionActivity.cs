@@ -6,6 +6,7 @@ using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using System.Collections.Generic;
 using Android.Widget;
+using Android.Graphics;
 
 namespace Linda
 {
@@ -22,21 +23,28 @@ namespace Linda
 			recyclerView.SetAdapter(new RVPromptAdapter(prompts));
 			// Custom layout required to disable vertical scrolling.
 			recyclerView.SetLayoutManager(new CustomLinearLayoutManager(this));
-
 			// Handles the "swipe to dismiss" ability that is incorporated as prompt-cards.
-			var callback = new PromptSelectorCallback(0, ItemTouchHelper.Left | ItemTouchHelper.Right, recyclerView);
+			var callback = new PromptSelectorCallback(0, ItemTouchHelper.Left | ItemTouchHelper.Right);
 			var touchHelper = new ItemTouchHelper(callback);
 			touchHelper.AttachToRecyclerView(recyclerView);
 
-			FindViewById<ImageButton>(Resource.Id.select).Click += delegate
+			var selectPrompt = FindViewById<ImageButton>(Resource.Id.select);
+			selectPrompt.Click += delegate
 			{
-				// TODO: validate selection and highlight the chosen one
-				// TODO: change button icon to send, and only forward when pressed?
-				var intent = new Intent(this, typeof(RecordStoryActivity));
-				intent.PutExtra("prompt", "SelectedPrompt");
-				// Pass the previous form data (photo/email/pass)
-				intent.PutExtras(Intent.Extras);
-				StartActivity(intent);
+				// When the "next" button is pressed (after it has been switched below)
+				if (selectPrompt.Selected)
+				{
+					var intent = new Intent(this, typeof(RecordStoryActivity));
+					intent.PutExtra("prompt", "SelectedPrompt");
+					// Pass the previous form data (photo/name/email)
+					intent.PutExtras(Intent.Extras);
+					StartActivity(intent);
+					// Prevents the re-draw of the icon below.
+					return;
+				}
+				FindViewById<CardView>(Resource.Id.promptCard).SetBackgroundColor(Color.ParseColor("#FF4081"));
+				// Switch icon only after action
+				selectPrompt.Selected = !selectPrompt.Selected;
 			};
 		}
 	}
