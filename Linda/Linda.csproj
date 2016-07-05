@@ -138,6 +138,7 @@
     <AndroidResource Include="Resources\drawable\prompt_one.jpg" />
     <AndroidResource Include="Resources\drawable\prompt_three.jpg" />
     <AndroidResource Include="Resources\drawable\prompt_two.jpg" />
+    <AndroidResource Include="Resources\drawable\mic.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />

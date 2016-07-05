@@ -43,6 +43,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/cancel"
             android:layout_alignParentLeft="true"
+            android:background="@android:color/transparent"
             android:visibility="invisible" />
         <TextView
             android:id="@+id/timer"
@@ -51,7 +52,7 @@
             android:layout_toLeftOf="@+id/start"
             android:layout_toRightOf="@+id/cancel"
             android:text="00:00"
-            android:textSize="20dip"
+            android:textSize="24dip"
             android:gravity="center"
             android:layout_centerInParent="true"
             android:visibility="invisible" />
@@ -60,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/recordselector"
+            android:background="@android:color/transparent"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
     <android.support.v7.widget.AppCompatButton
