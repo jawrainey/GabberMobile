@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Android.Graphics.Drawables;
 using Android.Content;
+using Android.Support.V4.Content;
 
 namespace Linda
 {
@@ -31,7 +32,14 @@ namespace Linda
 			var authors_face = _stories[position].Item1;
 			// Note: a default silhouette is used if no image was taken.
 			if (!string.IsNullOrWhiteSpace(authors_face))
+			{
 				Myholder.mauthor.SetImageDrawable(Drawable.CreateFromPath(authors_face));
+			}
+			else 
+			{
+				var silhouette = ContextCompat.GetDrawable(Myholder.mauthor.Context, Resource.Drawable.me);
+				Myholder.mauthor.SetImageDrawable(silhouette);
+			}
 		}
 
 		public override int ItemCount
