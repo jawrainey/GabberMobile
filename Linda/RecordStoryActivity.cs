@@ -104,6 +104,7 @@ namespace Linda
 					IntervieweeEmail = Intent.GetStringExtra("email"),
 					IntervieweeName = Intent.GetStringExtra("name"),
 					Location = Intent.GetStringExtra("location"),
+					promptText = Intent.GetStringExtra("promptText"),
 					Uploaded = false
 				};
 

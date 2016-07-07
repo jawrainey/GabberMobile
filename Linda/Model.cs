@@ -18,6 +18,7 @@ namespace Linda
 		public string IntervieweeName { get; set; }
 		// The Latitude & longitude stored as: "LAT, LONG"
 		public string Location { get; set; }
+		public string promptText { get; set; }
 		// Whether or not this story has been uploaded to the web.
 		public bool Uploaded { get; set; }
 	}
