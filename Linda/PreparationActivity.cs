@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Graphics;
+using Android.Media;
 using Android.OS;
 using Android.Provider;
 using Android.Support.V7.App;
@@ -17,7 +18,7 @@ namespace Linda
 	public class PreparationActivity : AppCompatActivity
 	{
 		// The photo take by the camera activity to be stored & displayed in main.
-		string _photo;
+		Java.IO.File _photo;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -27,9 +28,17 @@ namespace Linda
 
 			FindViewById<ImageView>(Resource.Id.photo).Click += delegate
 			{
-				// TODO: could not store intent data to private directory -- infuriating.
-				// NOTE: it is not possible to save ImageCapture to private directory.
-				StartActivityForResult(new Intent(MediaStore.ActionImageCapture), 0);
+				// Creates a public directory to write images/audios if it does not exist
+				var gabberPublicDir = System.IO.Path.Combine(Android.OS.Environment.GetExternalStoragePublicDirectory(
+					Android.OS.Environment.DirectoryPictures).Path, "Gabber");
+				// Creates the directory if it does not exist.
+				Directory.CreateDirectory(gabberPublicDir);
+				// Save as a timestamp in the same way as creating an audiofile.
+				_photo = new Java.IO.File(System.IO.Path.Combine(gabberPublicDir, Stopwatch.GetTimestamp() + ".jpg"));
+				// Cannot read/write from internal storage as external activity is used to write the file.
+				var intent = new Intent(MediaStore.ActionImageCapture);
+				intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(_photo));
+				StartActivityForResult(intent, 0);
 			};
 
 			FindViewById<AppCompatButton>(Resource.Id.record_story).Click += delegate 
@@ -51,7 +60,7 @@ namespace Linda
 					// Pass the preparation form data to the record activity.
 					var intent = new Intent(this, typeof(PromptSelectionActivity));
 
-					intent.PutExtra("photo", _photo);
+					intent.PutExtra("photo", _photo.AbsolutePath);
 					intent.PutExtra("name", name.Text);
 					intent.PutExtra("email", email.Text);
 					intent.PutExtra("location", "10,99"); // TODO: capture and store location data.
@@ -65,17 +74,11 @@ namespace Linda
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
-			// TODO: image is currently stored as a thumbnail.
 			base.OnActivityResult(requestCode, resultCode, data);
-			// Conver all the data to bitmap, which is unfortunately a thumbnail.
-			var author = (Bitmap) data.Extras.Get("data");
-			// Store locally as we do not want
-			var personal = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-			_photo = System.IO.Path.Combine(personal, Stopwatch.GetTimestamp() + ".jpg");
-			// Compressed and saves all at once!
-			author.Compress(Bitmap.CompressFormat.Jpeg, 100, new FileStream(_photo, FileMode.CreateNew));
-			// Update the default image with the one the user just took.
-			FindViewById<ImageView>(Resource.Id.photo).SetImageBitmap(author);
+			var photo = FindViewById<ImageView>(Resource.Id.photo);
+			var thumbnail = ThumbnailUtils.ExtractThumbnail(BitmapFactory.DecodeFile(_photo.Path), 
+			                                                photo.Width, photo.Height);
+			photo.SetImageBitmap(thumbnail);
 		}
 	}
 }
