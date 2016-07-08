@@ -33,18 +33,8 @@ namespace Linda
 				}
 				else
 				{
-					// TODO: check username and password exist on the server:
-					// If invalid, output snackbar, else, invoke code below.
-
-					// Use preferences to only show recordings for each specific user.
-					// This simplifies database modelling; its unnecessary to store uname/pass.
-					var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
-					prefs.Edit().PutString("username", email.Text).Commit();
-
-					// TODO: authentication & form validation.
-					StartActivity(typeof(HomeActivity));
-					// Prevent returning to login once authenticated.
-					Finish();	
+					// If the user details are correct: take user to their dashboard, otherwise snackbar error.
+					new RestAPI().Authenticate(email.Text, passw.Text, AuthCallback);
 				}
 			};
 
@@ -58,5 +48,22 @@ namespace Linda
 				StartActivity(typeof(ForgotPasswordActivity));
 			};
 		}
+
+		void AuthCallback(System.Tuple<bool, string> response)
+		{
+			var username = FindViewById<AppCompatEditText>(Resource.Id.email);
+			// The user details have been validatd and are correct!
+			if (response.Item1)
+			{
+				// Use preferences to only show recordings for each specific user.
+				PreferenceManager.GetDefaultSharedPreferences(
+					ApplicationContext).Edit().PutString("username", username.Text).Commit();
+				StartActivity(typeof(HomeActivity));
+				// Prevent returning to login once authenticated.
+				Finish();
+			}
+			else Snackbar.Make(username, response.Item2, 0).Show();
+		}
+
 	}
 }
