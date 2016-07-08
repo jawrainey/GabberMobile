@@ -42,9 +42,9 @@ namespace Linda
 			                Path.GetFileName(story.AudioPath), "application/octet-stream");
 
 			// Taking a photo of the interviewee is optional.
-			if (string.IsNullOrWhiteSpace(story.AudioPath))
+			if (!string.IsNullOrWhiteSpace(story.PhotoPath))
 			{
-				request.AddFile("authorImage", File.ReadAllBytes(story.AudioPath), 
+				request.AddFile("authorImage", File.ReadAllBytes(story.PhotoPath), 
 				                Path.GetFileName(story.PhotoPath), "application/octet-stream");
 			}
 
