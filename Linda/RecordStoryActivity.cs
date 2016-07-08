@@ -107,9 +107,11 @@ namespace Linda
 					promptText = Intent.GetStringExtra("promptText"),
 					Uploaded = false
 				};
-
+				// Store locally so we know what users recorded what experiences.
 				new Model().InsertStory(story);
-
+				// For now, we will not notify the user that the data is uploading or has been uploaded.
+				// TODO: this information should be represented visually on the dashboard.
+				new RestAPI().Upload(story);
 				// We do not want the user to return to this page once experience captured.
 				Finish();
 				StartActivity(typeof(CompletionActivity));

@@ -36,6 +36,11 @@ namespace Linda
 			database.CreateTable<Story>();
 		}
 
+		public void UpdateStory(Story story)
+		{
+			database.Update(story);
+		}
+
 		public void InsertStory(Story story)
 		{
 			database.Insert(story);
