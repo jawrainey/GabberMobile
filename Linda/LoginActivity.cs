@@ -4,6 +4,7 @@ using Android.Preferences;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
+using Android.Views;
 using Android.Widget;
 
 namespace Linda
@@ -33,6 +34,8 @@ namespace Linda
 				}
 				else
 				{
+					FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Visible;
+					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 					// If the user details are correct: take user to their dashboard, otherwise snackbar error.
 					new RestAPI().Authenticate(email.Text, passw.Text, AuthCallback);
 				}
@@ -62,7 +65,16 @@ namespace Linda
 				// Prevent returning to login once authenticated.
 				Finish();
 			}
-			else Snackbar.Make(username, response.Item2, 0).Show();
+			else
+			{
+				RunOnUiThread(() =>
+				{
+					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = true;
+					FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
+				});
+
+				Snackbar.Make(username, response.Item2, 0).Show();
+			}
 		}
 
 	}
