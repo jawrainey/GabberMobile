@@ -96,7 +96,6 @@ namespace Linda
 				var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
 
 				// TODO: get the current location!
-				// TODO: add the selected prompt to database
 				var story = new Story {
 					AudioPath = _path,
 					PhotoPath = Intent.GetStringExtra("photo"),
