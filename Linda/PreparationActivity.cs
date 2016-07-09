@@ -29,8 +29,8 @@ namespace Linda
 			FindViewById<ImageView>(Resource.Id.photo).Click += delegate
 			{
 				// Creates a public directory to write images/audios if it does not exist
-				var gabberPublicDir = System.IO.Path.Combine(Android.OS.Environment.GetExternalStoragePublicDirectory(
-					Android.OS.Environment.DirectoryPictures).Path, "Gabber");
+				var gabberPublicDir = System.IO.Path.Combine(Environment.GetExternalStoragePublicDirectory(
+					Environment.DirectoryPictures).Path, "Gabber");
 				// Creates the directory if it does not exist.
 				Directory.CreateDirectory(gabberPublicDir);
 				// Save as a timestamp in the same way as creating an audiofile.
