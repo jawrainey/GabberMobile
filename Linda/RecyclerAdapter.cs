@@ -88,7 +88,7 @@ namespace Linda
 			theme.Recycle();
 		}
 
-		public override void OnDraw(Android.Graphics.Canvas cValue, RecyclerView parent, RecyclerView.State state)
+		public override void OnDraw(Canvas cValue, RecyclerView parent, RecyclerView.State state)
 		{
 			base.OnDraw(cValue, parent, state);
 			// Calculate bounds of divider and draw it onto RecyclerView.
