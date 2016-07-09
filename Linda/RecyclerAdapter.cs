@@ -34,6 +34,9 @@ namespace Linda
 
 			if (!string.IsNullOrWhiteSpace(path_to_interview_photo))
 			{
+				// Rotates the image such that it is in a horizitional position regardless of how it was taken.
+				Myholder.mauthor.Rotation = ImageRotationAngle(path_to_interview_photo);
+
 				// Note: do not know the width/height of theview as
 				Myholder.mauthor.SetImageBitmap(ThumbnailUtils.ExtractThumbnail(
 					BitmapFactory.DecodeFile(path_to_interview_photo, 
@@ -45,6 +48,20 @@ namespace Linda
 				var silhouette = ContextCompat.GetDrawable(Myholder.mauthor.Context, Resource.Drawable.me);
 				Myholder.mauthor.SetImageDrawable(silhouette);
 			}
+		}
+
+		// TODO: this same method exists in PreparationActivity 
+		int ImageRotationAngle(string imagePath)
+		{
+			var exif = new ExifInterface(imagePath);
+			var orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
+
+			int rotationAngle = 0;
+			if (orientation == (int)Android.Media.Orientation.Rotate90) rotationAngle = 90;
+			if (orientation == (int)Android.Media.Orientation.Rotate180) rotationAngle = 180;
+			if (orientation == (int)Android.Media.Orientation.Rotate270) rotationAngle = 270;
+
+			return rotationAngle;
 		}
 
 		public override int ItemCount

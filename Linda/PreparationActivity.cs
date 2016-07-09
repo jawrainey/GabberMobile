@@ -86,11 +86,27 @@ namespace Linda
 			if (resultCode == Result.Ok)
 			{
 				var photo = FindViewById<CircleImageView>(Resource.Id.photo);
+				// Rotates the image to a horiziontal position regardless of how it was taken.
+				photo.Rotation = ImageRotationAngle(_photo.Path);
 				// Subsample image to return smaller image to memory.
+				// TODO: fix magic sample size number.
 				photo.SetImageBitmap(ThumbnailUtils.ExtractThumbnail(
 					BitmapFactory.DecodeFile(_photo.Path, new BitmapFactory.Options { InSampleSize = 8 }),
 					photo.Width, photo.Height));
 			}
+		}
+
+		int ImageRotationAngle(string imagePath)
+		{
+			var exif = new ExifInterface(imagePath);
+			var orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
+
+			int rotationAngle = 0;
+			if (orientation == (int)Android.Media.Orientation.Rotate90) rotationAngle = 90;
+			if (orientation == (int)Android.Media.Orientation.Rotate180) rotationAngle = 180;
+			if (orientation == (int)Android.Media.Orientation.Rotate270) rotationAngle = 270;
+
+			return rotationAngle;
 		}
 	}
 }
