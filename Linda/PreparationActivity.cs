@@ -6,11 +6,11 @@ using Android.OS;
 using Android.Provider;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
-using Android.Widget;
 using Android.Support.Design.Widget;
 using System.Diagnostics;
 using System.IO;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using Refractored.Controls;
 
 namespace Linda
 {
@@ -26,7 +26,7 @@ namespace Linda
 			SetContentView(Resource.Layout.preparation);
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
 
-			FindViewById<ImageView>(Resource.Id.photo).Click += delegate
+			FindViewById<CircleImageView>(Resource.Id.photo).Click += delegate
 			{
 				// Creates a public directory to write images/audios if it does not exist
 				var gabberPublicDir = System.IO.Path.Combine(Environment.GetExternalStoragePublicDirectory(
@@ -85,7 +85,7 @@ namespace Linda
 			// Only perform operation if an image was taken
 			if (resultCode == Result.Ok)
 			{
-				var photo = FindViewById<ImageView>(Resource.Id.photo);
+				var photo = FindViewById<CircleImageView>(Resource.Id.photo);
 				// Subsample image to return smaller image to memory.
 				photo.SetImageBitmap(ThumbnailUtils.ExtractThumbnail(
 					BitmapFactory.DecodeFile(_photo.Path, new BitmapFactory.Options { InSampleSize = 8 }),
