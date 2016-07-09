@@ -67,7 +67,7 @@ namespace Linda
 					var intent = new Intent(this, typeof(PromptSelectionActivity));
 					// Photos are optional: this check ensures that empty files are not sent.
 					// e.g. if a user takes a photo, then cancels (on the first time).
-					intent.PutExtra("photo", (_photo.Length() > 0) ? _photo.AbsolutePath : "");
+					intent.PutExtra("photo", (_photo != null && _photo.Length() > 0) ? _photo.AbsolutePath : "");
 					intent.PutExtra("name", name.Text);
 					intent.PutExtra("email", email.Text);
 					intent.PutExtra("location", "10,99"); // TODO: capture and store location data.
