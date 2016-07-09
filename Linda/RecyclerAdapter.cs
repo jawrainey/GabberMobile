@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using Android.Graphics.Drawables;
 using Android.Content;
 using Android.Support.V4.Content;
+using Android.Media;
+using Android.Graphics;
 
 namespace Linda
 {
@@ -28,15 +30,18 @@ namespace Linda
 		public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
 		{
 			var Myholder = holder as StoryViewHolder;
+			var path_to_interview_photo = _stories[position].Item1;
 
-			var authors_face = _stories[position].Item1;
-			// Note: a default silhouette is used if no image was taken.
-			if (!string.IsNullOrWhiteSpace(authors_face))
+			if (!string.IsNullOrWhiteSpace(path_to_interview_photo))
 			{
-				Myholder.mauthor.SetImageDrawable(Drawable.CreateFromPath(authors_face));
+				// Note: do not know the width/height of theview as
+				Myholder.mauthor.SetImageBitmap(ThumbnailUtils.ExtractThumbnail(
+					BitmapFactory.DecodeFile(path_to_interview_photo, 
+					                         new BitmapFactory.Options { InSampleSize = 4 }), 120, 120));
 			}
 			else 
 			{
+				// A default silhouette is used if no image was taken.
 				var silhouette = ContextCompat.GetDrawable(Myholder.mauthor.Context, Resource.Drawable.me);
 				Myholder.mauthor.SetImageDrawable(silhouette);
 			}
