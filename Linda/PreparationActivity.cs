@@ -33,8 +33,14 @@ namespace Linda
 					Environment.DirectoryPictures).Path, "Gabber");
 				// Creates the directory if it does not exist.
 				Directory.CreateDirectory(gabberPublicDir);
-				// Save as a timestamp in the same way as creating an audiofile.
-				_photo = new Java.IO.File(System.IO.Path.Combine(gabberPublicDir, Stopwatch.GetTimestamp() + ".jpg"));
+
+				// If the user opens an activity takes a photo, then wants to re-take a photo, then write to same file.
+				if (_photo == null)
+				{
+					// Save as a timestamp in the same way as creating an audiofile.
+					_photo = new Java.IO.File(System.IO.Path.Combine(gabberPublicDir, Stopwatch.GetTimestamp() + ".jpg"));	
+				}
+
 				// Cannot read/write from internal storage as external activity is used to write the file.
 				var intent = new Intent(MediaStore.ActionImageCapture);
 				intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(_photo));
@@ -59,8 +65,9 @@ namespace Linda
 				{
 					// Pass the preparation form data to the record activity.
 					var intent = new Intent(this, typeof(PromptSelectionActivity));
-
-					intent.PutExtra("photo", _photo.AbsolutePath);
+					// Photos are optional: this check ensures that empty files are not sent.
+					// e.g. if a user takes a photo, then cancels (on the first time).
+					intent.PutExtra("photo", (_photo.Length() > 0) ? _photo.AbsolutePath : "");
 					intent.PutExtra("name", name.Text);
 					intent.PutExtra("email", email.Text);
 					intent.PutExtra("location", "10,99"); // TODO: capture and store location data.
@@ -75,10 +82,15 @@ namespace Linda
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
-			var photo = FindViewById<ImageView>(Resource.Id.photo);
-			var thumbnail = ThumbnailUtils.ExtractThumbnail(BitmapFactory.DecodeFile(_photo.Path), 
-			                                                photo.Width, photo.Height);
-			photo.SetImageBitmap(thumbnail);
+			// Only perform operation if an image was taken
+			if (resultCode == Result.Ok)
+			{
+				var photo = FindViewById<ImageView>(Resource.Id.photo);
+				// Subsample image to return smaller image to memory.
+				photo.SetImageBitmap(ThumbnailUtils.ExtractThumbnail(
+					BitmapFactory.DecodeFile(_photo.Path, new BitmapFactory.Options { InSampleSize = 8 }),
+					photo.Width, photo.Height));
+			}
 		}
 	}
 }
