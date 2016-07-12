@@ -14,22 +14,27 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp">
-        <refractored.controls.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/photo"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginTop="24dp"
+        <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/me" />
-        <TextView
-            android:id="@+id/instructions"
-            android:gravity="bottom|center"
-            android:textSize="8dip"
-            android:layout_gravity="center_horizontal"
-            android:text="Click to take photo"
-            android:layout_width="72dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp" />
+            android:layout_width="148dp"
+            android:layout_height="148dp">
+            <refractored.controls.CircleImageView
+                android:id="@+id/photo"
+                android:layout_width="148dp"
+                android:layout_height="148dp"
+                android:src="@drawable/me" />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/cameraFAB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/photo"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                app:layout_anchor="@id/photo"
+                app:fabSize="mini"
+                app:backgroundTint="@android:color/white" />
+        </RelativeLayout>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
