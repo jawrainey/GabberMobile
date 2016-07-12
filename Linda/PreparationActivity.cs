@@ -102,9 +102,9 @@ namespace Linda
 			var orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
 
 			int rotationAngle = 0;
-			if (orientation == (int)Android.Media.Orientation.Rotate90) rotationAngle = 90;
-			if (orientation == (int)Android.Media.Orientation.Rotate180) rotationAngle = 180;
-			if (orientation == (int)Android.Media.Orientation.Rotate270) rotationAngle = 270;
+			if (orientation == (int)Orientation.Rotate90) rotationAngle = 90;
+			if (orientation == (int)Orientation.Rotate180) rotationAngle = 180;
+			if (orientation == (int)Orientation.Rotate270) rotationAngle = 270;
 
 			return rotationAngle;
 		}
