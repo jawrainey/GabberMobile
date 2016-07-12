@@ -22,7 +22,8 @@
                 android:id="@+id/photo"
                 android:layout_width="148dp"
                 android:layout_height="148dp"
-                android:src="@drawable/me" />
+                android:src="@drawable/me"
+                android:layout_margin="16dp" />
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/cameraFAB"
                 android:layout_width="wrap_content"
