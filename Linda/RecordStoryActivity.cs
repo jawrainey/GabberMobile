@@ -55,7 +55,7 @@ namespace Linda
 					if (string.IsNullOrWhiteSpace(_path))
 					{
 						var personal = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-						_path = Path.Combine(personal, System.Diagnostics.Stopwatch.GetTimestamp() + ".3gpp");	
+						_path = Path.Combine(personal, System.Diagnostics.Stopwatch.GetTimestamp() + ".mp3");	
 					}
 
 					StartRecording();
@@ -123,8 +123,8 @@ namespace Linda
 			_isrecording = true;
 			// Set how we want the audio formatting to be.
 			_recorder.SetAudioSource(AudioSource.Mic);
-			_recorder.SetOutputFormat(OutputFormat.ThreeGpp);
-			_recorder.SetAudioEncoder(AudioEncoder.AmrNb);
+			_recorder.SetOutputFormat(OutputFormat.Mpeg4);
+			_recorder.SetAudioEncoder(AudioEncoder.Aac);
 
 			_recorder.SetOutputFile(_path);
 			_recorder.Prepare();
