@@ -144,6 +144,8 @@
     <AndroidResource Include="Resources\drawable\mic.png" />
     <AndroidResource Include="Resources\drawable\photo.png" />
     <AndroidResource Include="Resources\drawable\recordselector.xml" />
+    <AndroidResource Include="Resources\drawable\borderbutton.xml" />
+    <AndroidResource Include="Resources\drawable\textcolorbutton.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
