@@ -5,7 +5,7 @@ using Android.Support.V7.Widget;
 
 namespace Linda
 {
-	[Activity(Label = "S5: thanks for participating!")]
+	[Activity(Label = "What happens next?")]
 	public class CompletionActivity : AppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
