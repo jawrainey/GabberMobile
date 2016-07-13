@@ -12,7 +12,7 @@ using System;
 
 namespace Linda
 {
-	[Activity(Label = "S4: Record their story")]
+	[Activity(Label = "Record their perspective")]
 	public class RecordStoryActivity : AppCompatActivity
 	{
 		MediaRecorder _recorder;

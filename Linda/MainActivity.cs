@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Linda
 {
-	[Activity(Label = "Your stories")]
+	[Activity(Label = "Your gathered perspectives")]
 	public class MainActivity : AppCompatActivity
 	{
 		// Used to obtain items from the RecyclerView

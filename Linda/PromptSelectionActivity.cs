@@ -11,7 +11,7 @@ using System;
 
 namespace Linda
 {
-	[Activity(Label = "S3: what will you discuss?")]
+	[Activity(Label = "Discussion topic selection")]
 	public class PromptSelectionActivity : AppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
