@@ -10,27 +10,6 @@
     <include
         android:id="@+id/promptCard"
         layout="@layout/prompt" />
-    <LinearLayout
-        android:id="@+id/preview"
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:visibility="gone">
-        <ImageButton
-            android:id="@+id/story"
-            android:src="@drawable/playselector"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:layout_gravity="center_vertical" />
-        <SeekBar
-            android:id="@+id/position"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical" />
-    </LinearLayout>
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
