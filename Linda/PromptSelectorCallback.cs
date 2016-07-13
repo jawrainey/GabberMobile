@@ -26,7 +26,7 @@ namespace Linda
 			else position = (position == 0) ? itemCount : position - 1;
 			// UI change: resets the selection when swipe completed
 			rv.FindViewById(Resource.Id.promptCard).SetBackgroundColor(Color.ParseColor("#EEEEEE"));
-			((LinearLayout)rv.Parent).FindViewById(Resource.Id.select).Selected = false;
+			((LinearLayout)rv.Parent).FindViewById(Resource.Id.selectFAB).Selected = false;
 			// Moves to the position of the element in charge
 			rv.ScrollToPosition(position);
 		}

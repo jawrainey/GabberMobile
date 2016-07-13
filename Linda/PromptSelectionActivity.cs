@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Android.Widget;
 using Android.Graphics;
 using System;
+using Android.Support.Design.Widget;
 
 namespace Linda
 {
@@ -37,11 +38,14 @@ namespace Linda
 			var touchHelper = new ItemTouchHelper(callback);
 			touchHelper.AttachToRecyclerView(recyclerView);
 
-			var selectPrompt = FindViewById<ImageButton>(Resource.Id.select);
-			selectPrompt.Click += delegate
+			// Make it obvious how to select a discussion prompt.
+			Snackbar.Make(recyclerView, "Swipe to select/unselect a discussion topic.", Snackbar.LengthLong).Show();
+
+			var selectFAB = FindViewById<ImageButton>(Resource.Id.selectFAB);
+			selectFAB.Click += delegate
 			{
 				// When the "next" button is pressed (after it has been switched below)
-				if (selectPrompt.Selected)
+				if (selectFAB.Selected)
 				{
 					// Given the selected item is the first item in the view
 					var selectedPrompt = recyclerView.FindViewById(Resource.Id.promptCard);
@@ -60,7 +64,7 @@ namespace Linda
 				}
 				FindViewById<CardView>(Resource.Id.promptCard).SetBackgroundColor(Color.ParseColor("#FF4081"));
 				// Switch icon only after action
-				selectPrompt.Selected = !selectPrompt.Selected;
+				selectFAB.Selected = !selectFAB.Selected;
 			};
 		}
 	}

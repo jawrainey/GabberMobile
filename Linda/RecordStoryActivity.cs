@@ -9,6 +9,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 using System.IO;
 using System.Threading.Tasks;
 using System;
+using Android.Support.Design.Widget;
 
 namespace Linda
 {
@@ -33,8 +34,8 @@ namespace Linda
 			selectedPrompt.FindViewById<TextView>(
 				Resource.Id.caption).Text = Intent.GetStringExtra("promptText");
 			
-			var record = FindViewById<ImageButton>(Resource.Id.start);
-			var cancel = FindViewById<ImageButton>(Resource.Id.cancel);
+			var record = FindViewById<FloatingActionButton>(Resource.Id.start);
+			var cancel = FindViewById<FloatingActionButton>(Resource.Id.cancel);
 			var timer = FindViewById<TextView>(Resource.Id.timer);
 			var submit = FindViewById<AppCompatButton>(Resource.Id.submit);
 
