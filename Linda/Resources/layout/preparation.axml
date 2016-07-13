@@ -65,6 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:textColor="@drawable/textcolorbutton"
+            android:background="@drawable/borderbutton"
             android:text="Topic selection" />
     </LinearLayout>
 </RelativeLayout>

@@ -19,13 +19,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:padding="16dp"
+        android:textColor="@drawable/textcolorbutton"
+        android:background="@drawable/borderbutton"
         android:text="Dashboard" />
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/capture"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:padding="16dp"
+        android:textColor="@drawable/textcolorbutton"
+        android:background="@drawable/borderbutton"
         android:text="Record again" />
 </LinearLayout>

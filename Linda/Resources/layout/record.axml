@@ -47,8 +47,10 @@
         android:id="@+id/submit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:padding="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textColor="@drawable/textcolorbutton"
+        android:background="@drawable/borderbutton"
         android:text="Create their experience"
         android:visibility="invisible" />
 </LinearLayout>
