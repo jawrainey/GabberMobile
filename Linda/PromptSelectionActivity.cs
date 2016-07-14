@@ -62,7 +62,7 @@ namespace Linda
 					// Prevents the re-draw of the icon below.
 					return;
 				}
-				FindViewById<CardView>(Resource.Id.promptCard).SetBackgroundColor(Color.ParseColor("#FF4081"));
+				FindViewById<CardView>(Resource.Id.promptCard).SetBackgroundColor(Color.ParseColor("#26A69A"));
 				// Switch icon only after action
 				selectFAB.Selected = !selectFAB.Selected;
 			};

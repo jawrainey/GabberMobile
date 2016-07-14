@@ -4,9 +4,9 @@
   <style name="MyTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
     <item name="windowNoTitle">true</item>
     <item name="windowActionBar">false</item>
-    <item name="colorPrimary">#2196F3</item>
+    <item name="colorPrimary">#26A69A</item>
     <item name="colorPrimaryDark">#1976D2</item>
-    <item name="colorAccent">#FF4081</item>
-    <item name="colorControlHighlight">#2196F3</item>
+    <item name="colorAccent">#26A69A</item>
+    <item name="colorControlHighlight">#009688</item>
   </style>
 </resources>
