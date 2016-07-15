@@ -73,7 +73,6 @@ namespace Linda
 					intent.PutExtra("location", "10,99"); // TODO: capture and store location data.
 
 					// Users should return to main screen if they go back. Start over.
-					Finish();
 					StartActivity(intent);
 				}
 			};
