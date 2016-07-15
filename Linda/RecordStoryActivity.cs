@@ -13,7 +13,7 @@ using Android.Support.Design.Widget;
 
 namespace Linda
 {
-	[Activity(Label = "Record their perspective")]
+	[Activity(Label = "Record & share your conversation")]
 	public class RecordStoryActivity : AppCompatActivity
 	{
 		MediaRecorder _recorder;

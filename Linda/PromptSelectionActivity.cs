@@ -12,7 +12,7 @@ using Android.Support.Design.Widget;
 
 namespace Linda
 {
-	[Activity(Label = "Discussion topic selection")]
+	[Activity(Label = "Chat topic selection")]
 	public class PromptSelectionActivity : AppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
