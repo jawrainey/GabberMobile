@@ -25,6 +25,10 @@ namespace Linda
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.preparation);
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+			// Need to pass an existing view to the snackbar.
+			var topicSelection = FindViewById<AppCompatButton>(Resource.Id.topicSelection);
+			// Make it more obvious that the silhouette is clickable.
+			Snackbar.Make(topicSelection, "Why not take a photo of your friend?", Snackbar.LengthLong).Show();
 
 			FindViewById<CircleImageView>(Resource.Id.photo).Click += delegate
 			{
@@ -47,7 +51,7 @@ namespace Linda
 				StartActivityForResult(intent, 0);
 			};
 
-			FindViewById<AppCompatButton>(Resource.Id.record_story).Click += delegate 
+			topicSelection.Click += delegate 
 			{
 				var name = FindViewById<TextInputEditText>(Resource.Id.name);
 				var email = FindViewById<TextInputEditText>(Resource.Id.email);

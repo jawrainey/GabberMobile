@@ -60,7 +60,7 @@
                 android:hint="Email address" />
         </android.support.design.widget.TextInputLayout>
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/record_story"
+            android:id="@+id/topicSelection"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
