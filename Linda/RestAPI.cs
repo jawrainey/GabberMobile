@@ -33,6 +33,26 @@ namespace Linda
 			});
 		}
 
+		// TODO: this method is too similar to Authenticate above; abstract logic to a shared method?
+		public void Create(string fullname, string email, string password, Action<Tuple<bool, string>> callback)
+		{
+			var request = new RestRequest("api/register", Method.POST);
+
+			request.AddParameter("fullname", fullname);
+			request.AddParameter("email", email);
+			request.AddParameter("password", password);
+
+			_client.ExecuteAsync(request, response =>
+			{
+				if (response.StatusCode == HttpStatusCode.OK)
+					callback(new Tuple<bool, string>(true, response.Content));
+				else if (response.StatusCode == 0)
+					callback(new Tuple<bool, string>(false, "Cannot connect to the internet"));
+				else
+					callback(new Tuple<bool, string>(false, new JSONObject(response.Content).GetString("error")));
+			});
+		}
+
 		public void Upload(Story story)
 		{
 			var request = new RestRequest("api/upload", Method.POST);

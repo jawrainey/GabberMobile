@@ -60,6 +60,9 @@ namespace Linda
 			{
 				StartActivity(typeof(PreparationActivity));
 			};
+
+
+			if (_stories.Count == 0) Snackbar.Make(mView, "Whose perspective do you want to share?", 0).Show();
 		}
 
 		void OnAudioClick(object sender, int position)

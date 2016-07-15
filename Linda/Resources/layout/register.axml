@@ -52,11 +52,19 @@
             android:hint="Password" />
     </android.support.design.widget.TextInputLayout>
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/login"
+        android:id="@+id/submit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textColor="@drawable/textcolorbutton"
         android:background="@drawable/borderbutton"
         android:text="Sign up" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        style="@android:style/Widget.ProgressBar.Small" />
 </LinearLayout>
