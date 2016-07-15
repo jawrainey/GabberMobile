@@ -128,7 +128,6 @@
     <AndroidResource Include="Resources\drawable\record.png" />
     <AndroidResource Include="Resources\drawable\stop.png" />
     <AndroidResource Include="Resources\drawable\cancel.png" />
-    <AndroidResource Include="Resources\drawable\send.png" />
     <AndroidResource Include="Resources\drawable\logo.png" />
     <AndroidResource Include="Resources\layout\promptselection.axml" />
     <AndroidResource Include="Resources\layout\completion.axml" />
@@ -137,7 +136,6 @@
     <AndroidResource Include="Resources\drawable\previous.png" />
     <AndroidResource Include="Resources\drawable\select.png" />
     <AndroidResource Include="Resources\layout\prompt.axml" />
-    <AndroidResource Include="Resources\drawable\promptselector.xml" />
     <AndroidResource Include="Resources\drawable\prompt_one.jpg" />
     <AndroidResource Include="Resources\drawable\prompt_three.jpg" />
     <AndroidResource Include="Resources\drawable\prompt_two.jpg" />

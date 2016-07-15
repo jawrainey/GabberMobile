@@ -19,7 +19,7 @@
             android:id="@+id/selectFAB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/promptselector"
+            android:src="@drawable/select"
             android:layout_gravity="center_horizontal"
             app:backgroundTint="@android:color/white" />
     </LinearLayout>

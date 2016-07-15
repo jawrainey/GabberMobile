@@ -24,9 +24,6 @@ namespace Linda
 			// Change the position based on direction accounting for start/end positions to reset loop.
 			if (direction == ItemTouchHelper.Left) position = (position == itemCount) ? 0 : position + 1;
 			else position = (position == 0) ? itemCount : position - 1;
-			// UI change: resets the selection when swipe completed
-			rv.FindViewById(Resource.Id.promptCard).SetBackgroundColor(Color.ParseColor("#EEEEEE"));
-			((LinearLayout)rv.Parent).FindViewById(Resource.Id.selectFAB).Selected = false;
 			// Moves to the position of the element in charge
 			rv.ScrollToPosition(position);
 		}

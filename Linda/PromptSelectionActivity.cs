@@ -41,30 +41,20 @@ namespace Linda
 			// Make it obvious how to select a discussion prompt.
 			Snackbar.Make(recyclerView, "Swipe to select/unselect a discussion topic.", Snackbar.LengthLong).Show();
 
-			var selectFAB = FindViewById<ImageButton>(Resource.Id.selectFAB);
-			selectFAB.Click += delegate
+			FindViewById<ImageButton>(Resource.Id.selectFAB).Click += delegate
 			{
-				// When the "next" button is pressed (after it has been switched below)
-				if (selectFAB.Selected)
-				{
-					// Given the selected item is the first item in the view
-					var selectedPrompt = recyclerView.FindViewById(Resource.Id.promptCard);
-					var promptImage = selectedPrompt.FindViewById<ImageView>(Resource.Id.imagePrompt);
-					var promptText = selectedPrompt.FindViewById<TextView>(Resource.Id.caption).Text;
-					// All the previous form data and selected prompt.
-					var intent = new Intent(this, typeof(RecordStoryActivity));
-					// The tag is the drawable resource ID, which is a Java object, hence conversion and cast.
-					intent.PutExtra("promptImage", int.Parse(promptImage.Tag.ToString()));
-					intent.PutExtra("promptText", promptText);
-					// Pass the previous form data (photo/name/email)
-					intent.PutExtras(Intent.Extras);
-					StartActivity(intent);
-					// Prevents the re-draw of the icon below.
-					return;
-				}
-				FindViewById<CardView>(Resource.Id.promptCard).SetBackgroundColor(Color.ParseColor("#26A69A"));
-				// Switch icon only after action
-				selectFAB.Selected = !selectFAB.Selected;
+				// Given the selected item is the first item in the view
+				var selectedPrompt = recyclerView.FindViewById(Resource.Id.promptCard);
+				var promptImage = selectedPrompt.FindViewById<ImageView>(Resource.Id.imagePrompt);
+				var promptText = selectedPrompt.FindViewById<TextView>(Resource.Id.caption).Text;
+				// All the previous form data and selected prompt.
+				var intent = new Intent(this, typeof(RecordStoryActivity));
+				// The tag is the drawable resource ID, which is a Java object, hence conversion and cast.
+				intent.PutExtra("promptImage", int.Parse(promptImage.Tag.ToString()));
+				intent.PutExtra("promptText", promptText);
+				// Pass the previous form data (photo/name/email)
+				intent.PutExtras(Intent.Extras);
+				StartActivity(intent);
 			};
 		}
 	}
