@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Linda
 {
-	[Activity(Label = "Your conversations")]
+	[Activity(Label = "Your recorded chats")]
 	public class MainActivity : AppCompatActivity
 	{
 		// Used to obtain items from the RecyclerView
