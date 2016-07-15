@@ -56,13 +56,6 @@
         android:gravity="center"
         android:layout_marginBottom="8dp"
         android:textSize="14dip" />
-    <TextView
-        android:id="@+id/forgot_password"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Forgot your password?"
-        android:gravity="center"
-        android:textSize="14dip" />
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_marginTop="16dp"

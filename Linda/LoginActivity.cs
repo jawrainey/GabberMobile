@@ -45,11 +45,6 @@ namespace Linda
 			{
 				StartActivity(typeof(SignUpActivity));
 			};
-
-			FindViewById<TextView>(Resource.Id.forgot_password).Click += delegate
-			{
-				StartActivity(typeof(ForgotPasswordActivity));
-			};
 		}
 
 		void AuthCallback(System.Tuple<bool, string> response)

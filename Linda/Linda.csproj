@@ -95,7 +95,6 @@
     <Compile Include="RecyclerAdapter.cs" />
     <Compile Include="PreparationActivity.cs" />
     <Compile Include="RecordStoryActivity.cs" />
-    <Compile Include="ForgotPasswordActivity.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="CompletionActivity.cs" />
     <Compile Include="PromptSelectionActivity.cs" />
@@ -121,7 +120,6 @@
     <AndroidResource Include="Resources\layout\register.axml" />
     <AndroidResource Include="Resources\drawable\pause.png" />
     <AndroidResource Include="Resources\drawable\prepare.png" />
-    <AndroidResource Include="Resources\layout\forgotpassword.axml" />
     <AndroidResource Include="Resources\drawable\playselector.xml" />
     <AndroidResource Include="Resources\drawable\me.png" />
     <AndroidResource Include="Resources\drawable\record.png" />
