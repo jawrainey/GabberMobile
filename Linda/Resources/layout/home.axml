@@ -8,9 +8,9 @@
     android:paddingLeft="24dp"
     android:paddingRight="24dp">
     <ImageView
-        android:src="@drawable/logo"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:layout_gravity="center_horizontal" />
     <android.support.v7.widget.AppCompatButton

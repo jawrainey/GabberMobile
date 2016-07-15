@@ -128,7 +128,6 @@
     <AndroidResource Include="Resources\drawable\record.png" />
     <AndroidResource Include="Resources\drawable\stop.png" />
     <AndroidResource Include="Resources\drawable\cancel.png" />
-    <AndroidResource Include="Resources\drawable\logo.png" />
     <AndroidResource Include="Resources\layout\promptselection.axml" />
     <AndroidResource Include="Resources\layout\completion.axml" />
     <AndroidResource Include="Resources\layout\home.axml" />
