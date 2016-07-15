@@ -97,7 +97,6 @@
     <Compile Include="RecordStoryActivity.cs" />
     <Compile Include="ForgotPasswordActivity.cs" />
     <Compile Include="Model.cs" />
-    <Compile Include="HomeActivity.cs" />
     <Compile Include="CompletionActivity.cs" />
     <Compile Include="PromptSelectionActivity.cs" />
     <Compile Include="PromptSelectorCallback.cs" />

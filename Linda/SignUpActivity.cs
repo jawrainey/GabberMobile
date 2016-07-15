@@ -55,7 +55,7 @@ namespace Linda
 				// Use preferences to only show recordings for each specific user.
 				PreferenceManager.GetDefaultSharedPreferences(
 					ApplicationContext).Edit().PutString("username", username.Text).Commit();
-				StartActivity(typeof(HomeActivity));
+				StartActivity(typeof(MainActivity));
 				// Prevent returning to login once authenticated.
 				Finish();
 			}

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Linda
 {
-	[Activity(Label = "Your recorded chats")]
+	[Activity(MainLauncher=true)]
 	public class MainActivity : AppCompatActivity
 	{
 		// Used to obtain items from the RecyclerView
@@ -27,6 +27,15 @@ namespace Linda
 			// This ensures if many log into the device, then they will see theirs.
 			var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
 
+			var username = prefs.GetString("username", "");
+			                    
+			// Used to redirect unauthenticated users
+			if (string.IsNullOrWhiteSpace(username))
+			{
+				StartActivity(typeof(LoginActivity));
+				Finish();
+			}
+
 			// One MediaPlayer to rule the view.
 			mplayer = new MediaPlayer();
 
@@ -35,7 +44,7 @@ namespace Linda
 
 			// Only show stories for the current logged in user
 			// NOTE: returns all data for a story, as meta-data may be used later.
-			foreach (var story in new Model().GetStories(prefs.GetString("username", "")))
+			foreach (var story in new Model().GetStories(username))
 			{
 				_stories.Add(new Tuple<string, string>(story.PhotoPath, story.AudioPath));	
 			}
@@ -44,7 +53,9 @@ namespace Linda
 			SetContentView(Resource.Layout.main);
 
 			// Toolbar will now take on default actionbar characteristics
-			SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
+			var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+			toolbar.Title = "Your recorded chats";
+			SetSupportActionBar(toolbar);
 
 			mView = FindViewById<RecyclerView>(Resource.Id.stories);
 			mView.HasFixedSize = true;
