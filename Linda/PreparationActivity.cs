@@ -61,6 +61,10 @@ namespace Linda
 				{
 					Snackbar.Make(email, "Your friends email is required.", Snackbar.LengthLong).Show();
 				}
+				else if (string.IsNullOrWhiteSpace(name.Text))
+				{
+					Snackbar.Make(email, "Your friends name is required.", Snackbar.LengthLong).Show();
+				}
 				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
 				{
 					Snackbar.Make(email, "That email address is invalid.", Snackbar.LengthLong).Show();
