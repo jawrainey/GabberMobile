@@ -59,7 +59,7 @@ namespace Linda
 
 			// Toolbar will now take on default actionbar characteristics
 			var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-			toolbar.Title = "Your chats";
+			toolbar.Title = "Your gabberings";
 			SetSupportActionBar(toolbar);
 
 			mView = FindViewById<RecyclerView>(Resource.Id.stories);
@@ -78,7 +78,7 @@ namespace Linda
 			};
 
 
-			if (_stories.Count == 0) Snackbar.Make(mView, "Whose perspective do you want to share?", 0).Show();
+			if (_stories.Count == 0) Snackbar.Make(mView, "You have not started gabbering yet!", 0).Show();
 		}
 
 		void OnAudioClick(object sender, int position)

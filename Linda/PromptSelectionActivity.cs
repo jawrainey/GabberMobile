@@ -6,13 +6,12 @@ using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using System.Collections.Generic;
 using Android.Widget;
-using Android.Graphics;
 using System;
 using Android.Support.Design.Widget;
 
 namespace Linda
 {
-	[Activity(Label = "Select what will you chat about")]
+	[Activity(Label = "Gabber about...")]
 	public class PromptSelectionActivity : AppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -39,7 +38,7 @@ namespace Linda
 			touchHelper.AttachToRecyclerView(recyclerView);
 
 			// Make it obvious how to select a discussion prompt.
-			Snackbar.Make(recyclerView, "Swipe to select/unselect a discussion topic.", Snackbar.LengthLong).Show();
+			Snackbar.Make(recyclerView, "Swipe to select/unselect a topic to gabber about.", Snackbar.LengthLong).Show();
 
 			FindViewById<ImageButton>(Resource.Id.selectFAB).Click += delegate
 			{

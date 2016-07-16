@@ -21,7 +21,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
     <TextView
-        android:text="Your friend will receive an email to review and provide consent for your chat to be made public. If shared, the whole world can listen, learn and be inspired from what you have said."
+        android:text="The person you gabbered with will receive an email allowing them to listen to the recording of your gabbering and asking them for consent to make the chat public."
         android:textSize="16sp"
         android:lineSpacingExtra="6sp"
         android:layout_marginBottom="24dp"
@@ -30,8 +30,6 @@
     <TextView
         android:text="Have another chat about a different topic?"
         android:textSize="16sp"
-        android:textStyle="italic"
-        android:gravity="center"
         android:layout_marginBottom="24dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
