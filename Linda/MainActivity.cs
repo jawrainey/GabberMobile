@@ -54,7 +54,7 @@ namespace Linda
 
 			// Toolbar will now take on default actionbar characteristics
 			var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-			toolbar.Title = "Your recorded chats";
+			toolbar.Title = "Your chats";
 			SetSupportActionBar(toolbar);
 
 			mView = FindViewById<RecyclerView>(Resource.Id.stories);
