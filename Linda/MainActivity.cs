@@ -42,10 +42,15 @@ namespace Linda
 			// The stories (experiences) the user has gathered from other people.
 			_stories = new List<Tuple<string, string>>();
 
+			// Create this once so the async call are run queued properly.
+			var rpi = new RestAPI();
+
+
 			// Only show stories for the current logged in user
 			// NOTE: returns all data for a story, as meta-data may be used later.
 			foreach (var story in new Model().GetStories(username))
 			{
+				if (!story.Uploaded) rpi.Upload(story);
 				_stories.Add(new Tuple<string, string>(story.PhotoPath, story.AudioPath));	
 			}
 
