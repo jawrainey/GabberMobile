@@ -54,6 +54,7 @@
         android:layout_height="wrap_content"
         android:text="No account yet? Create one"
         android:gravity="center"
+        android:textColor="@android:color/holo_blue_light"
         android:layout_marginBottom="8dp"
         android:textSize="14dip" />
     <ProgressBar
