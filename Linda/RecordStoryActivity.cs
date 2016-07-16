@@ -39,6 +39,8 @@ namespace Linda
 			var timer = FindViewById<TextView>(Resource.Id.timer);
 			var submit = FindViewById<AppCompatButton>(Resource.Id.submit);
 
+			Snackbar.Make(record, "Note: only one conversation is saved.", Snackbar.LengthLong).Show();
+
 			// Note: record has two states: start and stop record.
 			record.Click += delegate
 			{
