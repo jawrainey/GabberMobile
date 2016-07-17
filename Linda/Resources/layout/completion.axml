@@ -21,42 +21,26 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
     <TextView
-        android:text="The person you gabbered with will receive an email allowing them to listen to the recording of your gabbering and asking them for consent to make the chat public."
+        android:text="Your friend will receive an email to this gabbering to provide consent to make it publically available for all to listen to."
         android:textSize="16sp"
         android:lineSpacingExtra="6sp"
         android:layout_marginBottom="24dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
-    <TextView
-        android:text="Have another chat about a different topic?"
-        android:textSize="16sp"
-        android:layout_marginBottom="24dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/capture"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="24dp">
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/dashboard"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.45"
-            android:layout_marginRight="12dp"
-            android:layout_alignParentLeft="true"
-            android:textColor="@drawable/textcolorbutton"
-            android:background="@drawable/borderbutton"
-            android:text="Dashboard" />
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/capture"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.45"
-            android:layout_alignParentRight="true"
-            android:textColor="@drawable/textcolorbutton"
-            android:background="@drawable/borderbutton"
-            android:text="Chat again" />
-    </LinearLayout>
+        android:textColor="@drawable/textcolorbutton"
+        android:background="@drawable/borderbutton"
+        android:layout_marginBottom="24dp"
+        android:text="Gabber again" />
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/textcolorbutton"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/borderbutton"
+        android:text="Your gabberings" />
 </LinearLayout>
