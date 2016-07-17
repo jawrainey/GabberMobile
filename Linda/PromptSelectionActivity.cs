@@ -11,7 +11,7 @@ using Android.Support.Design.Widget;
 
 namespace Linda
 {
-	[Activity(Label = "Gabber about...")]
+	[Activity(Label = "Select a topic to gabber about")]
 	public class PromptSelectionActivity : AppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -23,16 +23,16 @@ namespace Linda
 			// TODO: create prompt based on thematic analysis of volunteer workshop
 			var prompts = new List<Tuple<string, int>>
 			{
-				new Tuple<string, int>("Life in a CDT?", Resource.Drawable.prompt_1),
+				new Tuple<string, int>("What inspires your research?", Resource.Drawable.prompt_6),
+				new Tuple<string, int>("What's essential for a DEN student?", Resource.Drawable.prompt_9),
+				new Tuple<string, int>("What do your family think of your research?", Resource.Drawable.prompt_5),
+				new Tuple<string, int>("Best part of the summer school?", Resource.Drawable.prompt_7),
+				new Tuple<string, int>("A highlight of your CDT experience", Resource.Drawable.prompt_4),
 				new Tuple<string, int>("Why a digital economy PhD?", Resource.Drawable.prompt_2),
 				new Tuple<string, int>("CDT vs “normal” PhDs?", Resource.Drawable.prompt_3),
-				new Tuple<string, int>("A highlight of your CDT experience", Resource.Drawable.prompt_4),
-				new Tuple<string, int>("What do your family think about what you do?", Resource.Drawable.prompt_5),
-				new Tuple<string, int>("What inspires your research?", Resource.Drawable.prompt_6),
-				new Tuple<string, int>("The best part of the summer school?", Resource.Drawable.prompt_7),
-				new Tuple<string, int>("What advice would you give to new researchers?", Resource.Drawable.prompt_8),
-				new Tuple<string, int>("What's essential for a DEN student?", Resource.Drawable.prompt_9),
-				new Tuple<string, int>("What's a challenging research experience you've had?", Resource.Drawable.prompt_10) 
+				new Tuple<string, int>("How is life in a CDT?", Resource.Drawable.prompt_1),
+				new Tuple<string, int>("What advice would you give new CDTs?", Resource.Drawable.prompt_8),
+				new Tuple<string, int>("Challenging research experience you've had?", Resource.Drawable.prompt_10) 
 			};
 
 			var recyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
@@ -45,7 +45,7 @@ namespace Linda
 			touchHelper.AttachToRecyclerView(recyclerView);
 
 			// Make it obvious how to select a discussion prompt.
-			Snackbar.Make(recyclerView, "Swipe to select/unselect a topic to gabber about.", Snackbar.LengthLong).Show();
+			Snackbar.Make(recyclerView, "Swipe to select a topic to gabber about.", Snackbar.LengthLong).Show();
 
 			FindViewById<ImageButton>(Resource.Id.selectFAB).Click += delegate
 			{
