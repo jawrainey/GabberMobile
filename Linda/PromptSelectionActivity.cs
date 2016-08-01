@@ -23,16 +23,9 @@ namespace Linda
 			// TODO: create prompt based on thematic analysis of volunteer workshop
 			var prompts = new List<Tuple<string, int>>
 			{
-				new Tuple<string, int>("What inspires your research?", Resource.Drawable.prompt_6),
-				new Tuple<string, int>("What's essential for a DEN student?", Resource.Drawable.prompt_9),
-				new Tuple<string, int>("What do your family think of your research?", Resource.Drawable.prompt_5),
-				new Tuple<string, int>("Best part of the summer school?", Resource.Drawable.prompt_7),
-				new Tuple<string, int>("A highlight of your CDT experience", Resource.Drawable.prompt_4),
-				new Tuple<string, int>("Why a digital economy PhD?", Resource.Drawable.prompt_2),
-				new Tuple<string, int>("CDT vs “normal” PhDs?", Resource.Drawable.prompt_3),
 				new Tuple<string, int>("How is life in a CDT?", Resource.Drawable.prompt_1),
-				new Tuple<string, int>("What advice would you give new CDTs?", Resource.Drawable.prompt_8),
-				new Tuple<string, int>("Challenging research experience you've had?", Resource.Drawable.prompt_10) 
+				new Tuple<string, int>("Why a digital economy PhD?", Resource.Drawable.prompt_2),
+				new Tuple<string, int>("CDT vs “normal” PhDs?", Resource.Drawable.prompt_3)
 			};
 
 			var recyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
