@@ -77,8 +77,11 @@ namespace Linda
 				StartActivity(typeof(PreparationActivity));
 			};
 
-
-			if (_stories.Count == 0) Snackbar.Make(mView, "You have not started gabbering yet!", 0).Show();
+			if (_stories.Count == 0)
+			{
+				FindViewById<TextView>(Resource.Id.firstTimeText).Visibility = Android.Views.ViewStates.Visible;
+				Snackbar.Make(mView, "You have not started gabbering yet!", 0).Show();
+			}
 		}
 
 		void OnAudioClick(object sender, int position)
