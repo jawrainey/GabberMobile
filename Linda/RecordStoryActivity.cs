@@ -10,6 +10,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System;
 using Android.Support.Design.Widget;
+using Android.Content;
 
 namespace Linda
 {
@@ -114,9 +115,12 @@ namespace Linda
 				// For now, we will not notify the user that the data is uploading or has been uploaded.
 				// TODO: this information should be represented visually on the dashboard.
 				new RestAPI().Upload(story);
-				// We do not want the user to return to this page once experience captured.
+
+				// We do not want the user to return to ANY gabber recording pages once captured.
+				var intent = new Intent(this, typeof(CompletionActivity));
+				intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
+				StartActivity(intent);
 				Finish();
-				StartActivity(typeof(CompletionActivity));
 			};
 		}
 
