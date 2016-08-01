@@ -51,6 +51,6 @@
         android:layout_marginRight="24dp"
         android:textColor="@drawable/textcolorbutton"
         android:background="@drawable/borderbutton"
-        android:text="Create their experience"
+        android:text="Create your gabber"
         android:visibility="invisible" />
 </LinearLayout>

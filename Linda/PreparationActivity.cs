@@ -14,7 +14,7 @@ using Refractored.Controls;
 
 namespace Linda
 {
-	[Activity(Label = "Who are you chatting with?")]
+	[Activity(Label = "Who are you gabbering with?")]
 	public class PreparationActivity : AppCompatActivity
 	{
 		// The photo take by the camera activity to be stored & displayed in main.
