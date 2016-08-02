@@ -113,7 +113,6 @@
     <AndroidResource Include="Resources\layout\main.axml" />
     <AndroidResource Include="Resources\layout\login.axml" />
     <AndroidResource Include="Resources\layout\row.axml" />
-    <AndroidResource Include="Resources\Menu\menu.xml" />
     <AndroidResource Include="Resources\layout\preparation.axml" />
     <AndroidResource Include="Resources\layout\record.axml" />
     <AndroidResource Include="Resources\drawable\play.png" />
@@ -155,7 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
-    <Folder Include="Resources\Menu\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
