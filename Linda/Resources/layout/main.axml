@@ -14,8 +14,7 @@
         android:paddingTop="?attr/actionBarSize" />
     <TextView
         android:id="@+id/firstTimeText"
-        android:visibility="gone"
-        android:text="Gabber allows you to share experiences of volunteering through short audio conversations with your friends.\n\nYou will earn £1 to a maximum of £10 per day in Amazon vouchers for each gabber recorded until the 19th August or our funds are depleted. Gabbers created must be from unique friends and last at least a few minutes.\n\n"
+        android:text="Gabber allows you to share experiences of volunteering through short audio conversations with your friends.\n\nYou will earn £1 to a maximum of £10 per day in Amazon vouchers for each gabber recorded until the 19th August or our funds are depleted. Gabbers created must be from unique friends and last at least a few minutes.\n\nBy taking part, you agree for the researcher of this project to use the gabbers created."
         android:textSize="16sp"
         android:padding="24dp"
         android:layout_marginTop="?attr/actionBarSize"
