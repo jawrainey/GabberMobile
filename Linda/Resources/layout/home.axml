@@ -2,31 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_vertical|center_horizontal"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp">
-    <ImageView
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_gravity="center_horizontal" />
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/dashboard"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+    android:paddingTop="24dp">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Dashboard"
-        android:textColor="@drawable/textcolorbutton"
-        android:background="@drawable/borderbutton" />
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/capture"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:padding="16dp"
-        android:text="Record their experience" />
+        android:background="@drawable/border_top">
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/login"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="24dp"
+            android:text="Login"
+            android:textColor="@drawable/textcolorbutton"
+            android:background="@drawable/borderbutton" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/register"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="24dp"
+            android:text="Register"
+            android:textColor="@drawable/textcolorbutton"
+            android:background="@drawable/borderbutton" />
+    </LinearLayout>
 </LinearLayout>
