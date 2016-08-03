@@ -5,6 +5,7 @@ using Android.Support.V4.View;
 using System;
 using System.Collections.Generic;
 using Android.Views;
+using Android.Support.V7.Widget;
 
 namespace Linda
 {
@@ -15,15 +16,25 @@ namespace Linda
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.home);
-			// ??
+
 			var adaptor = new FragmentAdapter(SupportFragmentManager);
-			// ??
+
 			adaptor.AddFragmentView((i, v, _) => { return i.Inflate(Resource.Layout.frag_home, v, false); });
 			adaptor.AddFragmentView((i, v, _) => { return i.Inflate(Resource.Layout.frag_collect, v, false); });
 			adaptor.AddFragmentView((i, v, _) => { return i.Inflate(Resource.Layout.frag_topic, v, false); });
 			adaptor.AddFragmentView((i, v, _) => { return i.Inflate(Resource.Layout.frag_record, v, false); });
-			// ??
+
 			FindViewById<ViewPager>(Resource.Id.pager).Adapter = adaptor;
+
+			FindViewById<AppCompatButton>(Resource.Id.login).Click += delegate
+			{
+				StartActivity(typeof(LoginActivity));
+			};
+
+			FindViewById<AppCompatButton>(Resource.Id.register).Click += delegate
+			{
+				StartActivity(typeof(SignUpActivity));
+			};
 		}
 	}
 

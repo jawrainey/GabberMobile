@@ -1,4 +1,5 @@
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Preferences;
 using Android.Support.Design.Widget;
@@ -40,11 +41,6 @@ namespace Linda
 					new RestAPI().Authenticate(email.Text, passw.Text, AuthCallback);
 				}
 			};
-
-			FindViewById<TextView>(Resource.Id.signup).Click += delegate
-			{
-				StartActivity(typeof(SignUpActivity));
-			};
 		}
 
 		void AuthCallback(System.Tuple<bool, string> response)
@@ -56,7 +52,10 @@ namespace Linda
 				// Use preferences to only show recordings for each specific user.
 				PreferenceManager.GetDefaultSharedPreferences(
 					ApplicationContext).Edit().PutString("username", username.Text).Commit();
-				StartActivity(typeof(MainActivity));
+				// We do not want the user to return to ANY gabber recording pages once captured.
+				var intent = new Intent(this, typeof(MainActivity));
+				intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
+				StartActivity(intent);
 				// Prevent returning to login once authenticated.
 				Finish();
 			}

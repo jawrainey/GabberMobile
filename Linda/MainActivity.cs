@@ -32,7 +32,7 @@ namespace Linda
 			// Used to redirect unauthenticated users
 			if (string.IsNullOrWhiteSpace(username))
 			{
-				StartActivity(typeof(LoginActivity));
+				StartActivity(typeof(HomeActivity));
 				Finish();
 			}
 

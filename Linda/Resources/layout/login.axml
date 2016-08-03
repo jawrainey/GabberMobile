@@ -49,15 +49,6 @@
         android:textColor="@drawable/textcolorbutton"
         android:background="@drawable/borderbutton"
         android:text="Login" />
-    <TextView
-        android:id="@+id/signup"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="No account yet? Create one"
-        android:gravity="center"
-        android:textColor="@android:color/holo_blue_light"
-        android:layout_marginBottom="8dp"
-        android:textSize="14dip" />
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_marginTop="16dp"
