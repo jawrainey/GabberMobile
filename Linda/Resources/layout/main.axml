@@ -15,6 +15,7 @@
         android:paddingTop="?attr/actionBarSize" />
     <TextView
         android:id="@+id/firstTimeText"
+        android:visibility="gone"
         android:text="By participanting in this Volunteering study you consent for your data to be used for research. We will provide reimbursements for your time as Amazon vouchers in three ways:\n\n 1. £1 for each gabber you record\n 2. 50p for each gabber your friend records\n 3. 25p for each gabber your friends friend records\n\nWe will get in touch using your Gabber email for payment on the 19th August or to let you know if our funding is depleted earlier than †his deadline.\n\nNote: consent by both participants must be provided to receive reimbursement, and gabbers created must be from unique friends and last at least a few minutes.\n\n"
         android:textSize="14sp"
         android:padding="24dp"
