@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using Android.Views;
 using Android.Support.V7.Widget;
+using Android.Support.Design.Widget;
+using Java.Lang;
 
 namespace Linda
 {
@@ -24,7 +26,11 @@ namespace Linda
 			adaptor.AddFragmentView((i, v, _) => { return i.Inflate(Resource.Layout.frag_topic, v, false); });
 			adaptor.AddFragmentView((i, v, _) => { return i.Inflate(Resource.Layout.frag_record, v, false); });
 
-			FindViewById<ViewPager>(Resource.Id.pager).Adapter = adaptor;
+			var pager = FindViewById<ViewPager>(Resource.Id.pager);
+			pager.Adapter = adaptor;
+
+			var tabs = FindViewById<TabLayout>(Resource.Id.tabs);
+			tabs.SetupWithViewPager(pager);
 
 			FindViewById<AppCompatButton>(Resource.Id.login).Click += delegate
 			{
@@ -41,10 +47,11 @@ namespace Linda
 	public class FragmentAdapter : FragmentPagerAdapter
 	{
 		readonly List<Android.Support.V4.App.Fragment> _fragments = new List<Android.Support.V4.App.Fragment>();
+		readonly List<string> _fragmentTitle = new List<string> { "Stages:", "1", "2", "3" };
 
 		public FragmentAdapter(Android.Support.V4.App.FragmentManager fm) : base(fm) { }
 
-		public override int Count 
+		public override int Count
 		{
 			get { return _fragments.Count; }
 		}
@@ -57,6 +64,11 @@ namespace Linda
 		public void AddFragmentView(Func<LayoutInflater, ViewGroup, Bundle, View> view)
 		{
 			_fragments.Add(new GenericViewPagerFragment(view));
+		}
+
+		public override ICharSequence GetPageTitleFormatted(int position)
+		{
+			return new Java.Lang.String(_fragmentTitle[position]);
 		}
 	}
 
