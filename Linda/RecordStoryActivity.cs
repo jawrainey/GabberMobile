@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System;
 using Android.Support.Design.Widget;
 using Android.Content;
+using Android.Locations;
 
 namespace Linda
 {
@@ -99,17 +100,26 @@ namespace Linda
 				// Link this interview to interviewer (the logged in user).
 				var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
 
-				// TODO: get the current location!
+				// TODO: have a guess what needs re-written...
+				string currentlocation = "N/A";
+
+				try {
+					var locMan = (LocationManager)GetSystemService(LocationService);
+					Location location = locMan.GetLastKnownLocation(locMan.GetBestProvider(new Criteria(), true));
+					currentlocation = location.Latitude + " / " + location.Longitude;
+				} catch {}
+
 				var story = new Story {
 					AudioPath = _path,
 					PhotoPath = Intent.GetStringExtra("photo"),
 					InterviewerEmail = prefs.GetString("username", ""),
 					IntervieweeEmail = Intent.GetStringExtra("email"),
 					IntervieweeName = Intent.GetStringExtra("name"),
-					Location = Intent.GetStringExtra("location"),
+					Location = currentlocation,
 					promptText = Intent.GetStringExtra("promptText"),
 					Uploaded = false
 				};
+
 				// Store locally so we know what users recorded what experiences.
 				new Model().InsertStory(story);
 				// For now, we will not notify the user that the data is uploading or has been uploaded.

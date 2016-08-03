@@ -78,7 +78,6 @@ namespace Linda
 					intent.PutExtra("photo", (_photo != null && _photo.Length() > 0) ? _photo.AbsolutePath : "");
 					intent.PutExtra("name", name.Text);
 					intent.PutExtra("email", email.Text);
-					intent.PutExtra("location", "10,99"); // TODO: capture and store location data.
 
 					// Users should return to main screen if they go back. Start over.
 					StartActivity(intent);
