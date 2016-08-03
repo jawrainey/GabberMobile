@@ -14,11 +14,11 @@
         android:paddingTop="?attr/actionBarSize" />
     <TextView
         android:id="@+id/firstTimeText"
-        android:text="Gabber allows you to share experiences of volunteering through short audio conversations with your friends.\n\nYou will earn £1 to a maximum of £10 per day in Amazon vouchers for each gabber recorded until the 19th August or our funds are depleted. Gabbers created must be from unique friends and last at least a few minutes.\n\nBy taking part, you agree for the researcher of this project to use the gabbers created."
-        android:textSize="16sp"
+        android:text="By participanting in this study you can earn Amazon vouchers in three ways:\n\n 1. £1 for each gabber you record \n 2. 50p for each gabber your friend records (once they register)\n 3. 25p for each gabber your friends friend records\n\nWe will get in touch using your Gabber email to setup payment on the 19th August and to let you know if our funding is depleted earlier than that date.\n\nNote: consent by both participants must be provided to receive reimbursement, and gabbers created must be from unique friends and last at least a few minutes.\n\n"
+        android:textSize="14sp"
         android:padding="24dp"
         android:layout_marginTop="?attr/actionBarSize"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="3sp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
     <android.support.design.widget.FloatingActionButton
