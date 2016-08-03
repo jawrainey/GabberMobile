@@ -6,7 +6,8 @@
     android:orientation="vertical"
     android:layout_gravity="center_vertical|center_horizontal"
     android:paddingLeft="24dp"
-    android:paddingRight="24dp">
+    android:paddingRight="24dp"
+    android:keepScreenOn="true">
     <ImageView
         android:src="@mipmap/ic_launcher"
         android:layout_width="match_parent"

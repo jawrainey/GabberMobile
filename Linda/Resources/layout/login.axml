@@ -8,7 +8,8 @@
     android:layout_weight="0.7"
     android:paddingLeft="24dp"
     android:paddingRight="24dp"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:keepScreenOn="true">
     <ImageView
         android:src="@mipmap/ic_launcher"
         android:layout_width="match_parent"
