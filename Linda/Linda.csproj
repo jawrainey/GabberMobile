@@ -142,8 +142,6 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
-    <AndroidResource Include="Resources\drawable\prompt_1.jpg" />
-    <AndroidResource Include="Resources\drawable\prompt_2.jpg" />
     <AndroidResource Include="Resources\drawable\prompt_3.jpg" />
     <AndroidResource Include="Resources\drawable\border_top.xml" />
     <AndroidResource Include="Resources\layout\frag_topic.axml" />
@@ -170,6 +168,12 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\chat_bubble.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\group.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\mic.png" />
+    <AndroidResource Include="Resources\drawable\prompt_2.png" />
+    <AndroidResource Include="Resources\drawable\prompt_4.jpg" />
+    <AndroidResource Include="Resources\drawable\prompt_5.jpg" />
+    <AndroidResource Include="Resources\drawable\prompt_6.png" />
+    <AndroidResource Include="Resources\drawable\prompt_7.jpg" />
+    <AndroidResource Include="Resources\drawable\prompt_1.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
