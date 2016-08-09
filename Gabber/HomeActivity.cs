@@ -9,7 +9,7 @@ using Android.Support.V7.Widget;
 using Android.Support.Design.Widget;
 using Java.Lang;
 
-namespace Linda
+namespace Gabber
 {
 	[Activity]
 	public class HomeActivity : FragmentActivity

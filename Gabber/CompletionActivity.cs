@@ -4,7 +4,7 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 
-namespace Linda
+namespace Gabber
 {
 	[Activity(Label = "What happens next?")]
 	public class CompletionActivity : AppCompatActivity

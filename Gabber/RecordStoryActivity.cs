@@ -13,7 +13,7 @@ using Android.Support.Design.Widget;
 using Android.Content;
 using Android.Locations;
 
-namespace Linda
+namespace Gabber
 {
 	[Activity(Label = "Record your gabberings")]
 	public class RecordStoryActivity : AppCompatActivity

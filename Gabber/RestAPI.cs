@@ -4,7 +4,7 @@ using System.Net;
 using Org.Json;
 using RestSharp;
 
-namespace Linda
+namespace Gabber
 {
 	public class RestAPI
 	{

@@ -5,7 +5,7 @@ using Android.App;
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("Linda")]
+[assembly: AssemblyTitle("Gabber")]
 [assembly: AssemblyDescription("Peer-based interviewing to rapidly acquire and share personal experiences.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Open Lab")]

@@ -9,7 +9,7 @@ using Android.Support.V4.Content;
 using Android.Media;
 using Android.Graphics;
 
-namespace Linda
+namespace Gabber
 {
 	public class RecyclerAdapter : RecyclerView.Adapter
 	{

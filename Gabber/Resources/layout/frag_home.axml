@@ -12,7 +12,7 @@
         android:paddingBottom="16dp"
         android:layout_centerHorizontal="true" />
     <TextView
-        android:text="Gabber allows you to collect and share experiences of volunteering through short audio conversations.\n\nSwipe right for an explanation of the three stages to record a gabber."
+        android:text="Gabber allows you to collect and share your experiences through short audio conversations.\n\nThis Gabber is about your experiences of volunteering.\n\nSwipe right for an explanation of the three stages to record a Gabber."
         android:textSize="16sp"
         android:lineSpacingExtra="6sp"
         android:layout_width="wrap_content"

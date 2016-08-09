@@ -3,7 +3,7 @@ using Android.Support.V7.Widget.Helper;
 using Android.Graphics;
 using Android.Widget;
 
-namespace Linda
+namespace Gabber
 {
 	public class PromptSelectorCallback : ItemTouchHelper.SimpleCallback
 	{

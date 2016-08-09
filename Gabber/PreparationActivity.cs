@@ -12,7 +12,7 @@ using System.IO;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using Refractored.Controls;
 
-namespace Linda
+namespace Gabber
 {
 	[Activity(Label = "Who are you gabbering with?")]
 	public class PreparationActivity : AppCompatActivity

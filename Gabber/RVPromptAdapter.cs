@@ -4,7 +4,7 @@ using Android.Widget;
 using System.Collections.Generic;
 using System;
 
-namespace Linda
+namespace Gabber
 {
 	public class RVPromptAdapter : RecyclerView.Adapter
 	{

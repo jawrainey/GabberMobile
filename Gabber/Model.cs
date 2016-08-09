@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Linda
+namespace Gabber
 {
 	// A user table is not required as we can perform a lookup where the logged in email is equal
 	// to InterviewerEmail to acquire all the audios (in this device) that have been recorded.

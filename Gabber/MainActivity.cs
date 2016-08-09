@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Linda
+namespace Gabber
 {
 	[Activity(MainLauncher=true)]
 	public class MainActivity : AppCompatActivity
@@ -59,7 +59,7 @@ namespace Linda
 
 			// Toolbar will now take on default actionbar characteristics
 			var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-			toolbar.Title = "Your gabberings";
+			toolbar.Title = "The gabbers you have recorded";
 			SetSupportActionBar(toolbar);
 
 			mView = FindViewById<RecyclerView>(Resource.Id.stories);
