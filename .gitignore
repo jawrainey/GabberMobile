@@ -1,5 +1,6 @@
 Gabber.userprefs
 packages/*
+*.DS_Store
 Gabber/bin/*
 Gabber/obj/*
 Gabber/Resources/Resource.designer.cs
