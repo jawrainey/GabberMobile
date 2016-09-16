@@ -26,7 +26,7 @@ namespace Gabber
 			SetContentView(Resource.Layout.preparation);
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
 			// Need to pass an existing view to the snackbar.
-			var topicSelection = FindViewById<AppCompatButton>(Resource.Id.topicSelection);
+			var topicSelection = FindViewById<FloatingActionButton>(Resource.Id.topicSelectionFAB);
 			// Make it more obvious that the silhouette is clickable.
 			Snackbar.Make(topicSelection, "Why not take a photo of your friend?", Snackbar.LengthLong).Show();
 

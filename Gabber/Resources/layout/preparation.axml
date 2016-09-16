@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +16,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp">
-        <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        <RelativeLayout
             android:layout_gravity="center_horizontal"
             android:layout_width="148dp"
             android:layout_height="148dp">
@@ -60,14 +61,12 @@
                 android:inputType="textEmailAddress"
                 android:hint="Email address" />
         </android.support.design.widget.TextInputLayout>
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/topicSelection"
-            android:layout_width="fill_parent"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/topicSelectionFAB"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:textColor="@drawable/textcolorbutton"
-            android:background="@drawable/borderbutton"
-            android:text="Topic selection" />
+            android:src="@drawable/select"
+            android:layout_gravity="center_horizontal"
+            app:backgroundTint="@android:color/white" />
     </LinearLayout>
 </RelativeLayout>
