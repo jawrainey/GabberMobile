@@ -22,9 +22,9 @@ namespace Gabber
 			SetContentView(Resource.Layout.promptselection);
 			SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
 
-			// TODO: move this to MainActivity.
+			// TODO: move this to MainActivity and make async (not pmact GUI).
 			// Only make a new request if something has changed?
-			var projectResponse = GetProjects().Result;
+			var projectResponse = new RestAPI().GetProjects().Result;
 
 			// TODO: we should never be on this page without having projects. However, this may happen if a user
 			// downloads the application and wants to contribute. We could show all the public projects, then,
@@ -67,15 +67,6 @@ namespace Gabber
 				StartActivity(intent);
 			};
 		}
-
-		// Obtains all the projects at the moment.
-		// Can't use in OnCreate as it's async.
-		// TODO: obtain all projects _for that specific user_
-		public async Task<RootObject> GetProjects()
-		{
-			return await new RestAPI().GetProjects();
-		}
-
 	}
 
 	public class CustomLinearLayoutManager : LinearLayoutManager
