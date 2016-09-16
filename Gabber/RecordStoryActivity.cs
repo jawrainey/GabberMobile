@@ -12,6 +12,8 @@ using System;
 using Android.Support.Design.Widget;
 using Android.Content;
 using Android.Locations;
+using FFImageLoading.Views;
+using FFImageLoading;
 
 namespace Gabber
 {
@@ -31,8 +33,10 @@ namespace Gabber
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
 
 			var selectedPrompt = FindViewById(Resource.Id.promptCard);
-			selectedPrompt.FindViewById<ImageView>(
-				Resource.Id.imagePrompt).SetBackgroundResource(Intent.GetIntExtra("promptImage", -1));
+			var imageView = selectedPrompt.FindViewById<ImageViewAsync>(Resource.Id.imagePrompt);
+			// Download or retrieve from cache, the image the user has _previously_ selected.
+			ImageService.Instance.LoadUrl(Intent.GetStringExtra("promptImage")).Into(imageView);
+
 			selectedPrompt.FindViewById<TextView>(
 				Resource.Id.caption).Text = Intent.GetStringExtra("promptText");
 			

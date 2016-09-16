@@ -2,16 +2,17 @@
 using Android.Views;
 using Android.Widget;
 using System.Collections.Generic;
-using System;
+using FFImageLoading;
+using FFImageLoading.Views;
 
 namespace Gabber
 {
 	public class RVPromptAdapter : RecyclerView.Adapter
 	{
 		// Each story the user recorded has an associated image and audio.
-		readonly List<Tuple<string, int>> _prompts;
+		readonly List<Prompt> _prompts;
 
-		public RVPromptAdapter(List<Tuple<string, int>> prompts)
+		public RVPromptAdapter(List<Prompt> prompts)
 		{
 			_prompts = prompts;
 		}
@@ -25,10 +26,11 @@ namespace Gabber
 		public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
 		{
 			var vh = holder as PhotoViewHolder;
-			vh.Caption.Text = _prompts[position].Item1;
-			vh.Image.SetImageResource(_prompts[position].Item2);
+			vh.Caption.Text = _prompts[position].prompt;
+			// Load the image from the web into the prompt imageView.
+			ImageService.Instance.LoadUrl(_prompts[position].imageName).Into(vh.Image);
 			// Required to lookup the drawable resource (image prompt) by ID.
-			vh.Image.Tag = _prompts[position].Item2;
+			vh.Image.Tag = _prompts[position].imageName;
 		}
 
 		public override int ItemCount
@@ -38,12 +40,12 @@ namespace Gabber
 
 		public class PhotoViewHolder : RecyclerView.ViewHolder
 		{
-			public ImageView Image { get; set; }
+			public ImageViewAsync Image { get; set; }
 			public TextView Caption { get; set; }
 
 			public PhotoViewHolder(View itemView) : base(itemView)
 			{
-				Image = itemView.FindViewById<ImageView>(Resource.Id.imagePrompt);
+				Image = itemView.FindViewById<ImageViewAsync>(Resource.Id.imagePrompt);
 				Caption = itemView.FindViewById<TextView>(Resource.Id.caption);
 			}
 		}

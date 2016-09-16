@@ -6,8 +6,10 @@ using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
 using System.Collections.Generic;
 using Android.Widget;
-using System;
 using Android.Support.Design.Widget;
+using System.Threading.Tasks;
+using FFImageLoading.Views;
+using System.Linq;
 
 namespace Gabber
 {
@@ -20,20 +22,25 @@ namespace Gabber
 			SetContentView(Resource.Layout.promptselection);
 			SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
 
-			// TODO: create prompt based on thematic analysis of volunteer workshop
-			var prompts = new List<Tuple<string, int>>
-			{
-				new Tuple<string, int>("Getting involved in volunteering", Resource.Drawable.prompt_1),
-				new Tuple<string, int>("Benefits of volunteering", Resource.Drawable.prompt_2),
-				new Tuple<string, int>("Bad things about volunteering", Resource.Drawable.prompt_3),
-				new Tuple<string, int>("Are volunteers appreciated enough?", Resource.Drawable.prompt_4),
-				new Tuple<string, int>("Do volunteers have much freedom and flexibility?", Resource.Drawable.prompt_5),
-				new Tuple<string, int>("Is it always clear what is expected of volunteers?", Resource.Drawable.prompt_6),
-				new Tuple<string, int>("Do volunteers have much say in what they do?", Resource.Drawable.prompt_7)
-			};
+			// TODO: move this to MainActivity.
+			// Only make a new request if something has changed?
+			var projectResponse = GetProjects().Result;
+
+			// TODO: we should never be on this page without having projects. However, this may happen if a user
+			// downloads the application and wants to contribute. We could show all the public projects, then,
+			// if they want to contribute, then they can "join the campaign".
+			if (projectResponse.projects.Count <= 0) return;
 
 			var recyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
-			recyclerView.SetAdapter(new RVPromptAdapter(prompts));
+
+			// TODO: this should be configured based on what _theme_ the user selects on the main/home page.
+			// The projectResponse logic (to find all associated information) will be moved there and _must_ be stored
+			// within a local database. Everytime a user enters the app, a request is made to check if
+			// TODO: remove hard-coded element (and LINQ use) as we should lookup by theme.
+			// TODO: cache and images. When the user opens the app, all images/text are downloaded/cached.
+			// That way, they can use it offline. However, this is not currently possible (see above return).
+			recyclerView.SetAdapter(new RVPromptAdapter(projectResponse.projects.ElementAt(0).prompts));
+
 			// Custom layout required to disable vertical scrolling.
 			recyclerView.SetLayoutManager(new CustomLinearLayoutManager(this));
 			// Handles the "swipe to dismiss" ability that is incorporated as prompt-cards.
@@ -48,18 +55,27 @@ namespace Gabber
 			{
 				// Given the selected item is the first item in the view
 				var selectedPrompt = recyclerView.FindViewById(Resource.Id.promptCard);
-				var promptImage = selectedPrompt.FindViewById<ImageView>(Resource.Id.imagePrompt);
+				var promptImage = selectedPrompt.FindViewById<ImageViewAsync>(Resource.Id.imagePrompt);
 				var promptText = selectedPrompt.FindViewById<TextView>(Resource.Id.caption).Text;
 				// All the previous form data and selected prompt.
 				var intent = new Intent(this, typeof(RecordStoryActivity));
 				// The tag is the drawable resource ID, which is a Java object, hence conversion and cast.
-				intent.PutExtra("promptImage", int.Parse(promptImage.Tag.ToString()));
+				intent.PutExtra("promptImage", promptImage.Tag.ToString());
 				intent.PutExtra("promptText", promptText);
 				// Pass the previous form data (photo/name/email)
 				intent.PutExtras(Intent.Extras);
 				StartActivity(intent);
 			};
 		}
+
+		// Obtains all the projects at the moment.
+		// Can't use in OnCreate as it's async.
+		// TODO: obtain all projects _for that specific user_
+		public async Task<RootObject> GetProjects()
+		{
+			return await new RestAPI().GetProjects();
+		}
+
 	}
 
 	public class CustomLinearLayoutManager : LinearLayoutManager
@@ -67,5 +83,24 @@ namespace Gabber
 		public CustomLinearLayoutManager(Context c) : base(c) { }
 		// Disable scrolling within the layout container that shows a swipable item.
 		public override bool CanScrollVertically() { return false; }
+	}
+
+	// These classes are used JSON deserialization.
+
+	public class RootObject
+	{
+		public List<Project> projects { get; set; }
+	}
+
+	public class Project
+	{
+		public string theme { get; set; }
+		public List<Prompt> prompts { get; set; }
+	}
+
+	public class Prompt
+	{
+		public string prompt { get; set; }
+		public string imageName { get; set; }
 	}
 }
