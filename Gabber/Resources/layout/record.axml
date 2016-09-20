@@ -44,14 +44,4 @@
             android:layout_alignParentRight="true"
             app:backgroundTint="@android:color/white" />
     </RelativeLayout>
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/submit"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:textColor="@drawable/textcolorbutton"
-        android:background="@drawable/borderbutton"
-        android:text="Create your gabber"
-        android:visibility="invisible" />
 </LinearLayout>

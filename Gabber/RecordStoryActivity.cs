@@ -20,6 +20,7 @@ namespace Gabber
 	[Activity(Label = "Record your gabberings")]
 	public class RecordStoryActivity : AppCompatActivity
 	{
+		// TODO: move all recording logic to a seperate class, which is useful when creating a PCL
 		MediaRecorder _recorder;
 		// Gosh: https://code.google.com/p/android/issues/detail?id=800
 		bool _isrecording;
@@ -43,7 +44,6 @@ namespace Gabber
 			var record = FindViewById<FloatingActionButton>(Resource.Id.start);
 			var cancel = FindViewById<FloatingActionButton>(Resource.Id.cancel);
 			var timer = FindViewById<TextView>(Resource.Id.timer);
-			var submit = FindViewById<AppCompatButton>(Resource.Id.submit);
 
 			Snackbar.Make(record, "Why not introduce your friend?", Snackbar.LengthLong).Show();
 
@@ -58,8 +58,6 @@ namespace Gabber
 
 				if (record.Selected)
 				{
-					submit.Visibility = ViewStates.Invisible;
-
 					// Override path for re-use as user may record many audios. Store only once.
 					if (string.IsNullOrWhiteSpace(_path))
 					{
@@ -83,8 +81,9 @@ namespace Gabber
 				}
 				else
 				{
-					submit.Visibility = submit.Visibility == ViewStates.Invisible ? ViewStates.Visible : ViewStates.Invisible;
 					StopRecording();
+					// Saves the recording and sends to next screen for play-back
+					SaveRecording();
 				}
 			};
 
@@ -92,50 +91,52 @@ namespace Gabber
 			{
 				cancel.Visibility = ViewStates.Invisible;
 				timer.Visibility = ViewStates.Invisible;
-				submit.Visibility = ViewStates.Invisible;
 				// Revert back to the "record" icon.
 				record.Selected = false;
 				// Stops the current audio from playing.
 				StopRecording();
 			};
+		}
 
-			submit.Click += delegate
+		void SaveRecording()
+		{
+			// Link this interview to interviewer (the logged in user).
+			var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+
+			// TODO: have a guess what needs re-written...
+			string currentlocation = "N/A";
+
+			try
 			{
-				// Link this interview to interviewer (the logged in user).
-				var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+				var locMan = (LocationManager)GetSystemService(LocationService);
+				Location location = locMan.GetLastKnownLocation(locMan.GetBestProvider(new Criteria(), true));
+				currentlocation = location.Latitude + " / " + location.Longitude;
+			}
+			catch { }
 
-				// TODO: have a guess what needs re-written...
-				string currentlocation = "N/A";
-
-				try {
-					var locMan = (LocationManager)GetSystemService(LocationService);
-					Location location = locMan.GetLastKnownLocation(locMan.GetBestProvider(new Criteria(), true));
-					currentlocation = location.Latitude + " / " + location.Longitude;
-				} catch {}
-
-				var story = new Story {
-					AudioPath = _path,
-					PhotoPath = Intent.GetStringExtra("photo"),
-					InterviewerEmail = prefs.GetString("username", ""),
-					IntervieweeEmail = Intent.GetStringExtra("email"),
-					IntervieweeName = Intent.GetStringExtra("name"),
-					Location = currentlocation,
-					promptText = Intent.GetStringExtra("promptText"),
-					Uploaded = false
-				};
-
-				// Store locally so we know what users recorded what experiences.
-				new Model().InsertStory(story);
-				// For now, we will not notify the user that the data is uploading or has been uploaded.
-				// TODO: this information should be represented visually on the dashboard.
-				new RestAPI().Upload(story);
-
-				// We do not want the user to return to ANY gabber recording pages once captured.
-				var intent = new Intent(this, typeof(CompletionActivity));
-				intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
-				StartActivity(intent);
-				Finish();
+			var story = new Story
+			{
+				AudioPath = _path,
+				PhotoPath = Intent.GetStringExtra("photo"),
+				InterviewerEmail = prefs.GetString("username", ""),
+				IntervieweeEmail = Intent.GetStringExtra("email"),
+				IntervieweeName = Intent.GetStringExtra("name"),
+				Location = currentlocation,
+				promptText = Intent.GetStringExtra("promptText"),
+				Uploaded = false
 			};
+
+			// Store locally so we know what users recorded what experiences.
+			new Model().InsertStory(story);
+			// For now, we will not notify the user that the data is uploading or has been uploaded.
+			// TODO: this information should be represented visually on the dashboard.
+			new RestAPI().Upload(story);
+
+			// We do not want the user to return to ANY gabber recording pages once captured.
+			var intent = new Intent(this, typeof(CompletionActivity));
+			intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
+			StartActivity(intent);
+			Finish();	
 		}
 
 		void StartRecording()
