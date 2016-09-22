@@ -172,6 +172,7 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\chat_bubble.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\group.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\mic.png" />
+    <AndroidResource Include="Resources\layout\project.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />

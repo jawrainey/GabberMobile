@@ -3,122 +3,53 @@ using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
-using Android.Graphics.Drawables;
-using Android.Content;
-using Android.Support.V4.Content;
-using Android.Media;
-using Android.Graphics;
 
 namespace Gabber
 {
 	public class RecyclerAdapter : RecyclerView.Adapter
 	{
-		// Each story the user recorded has an associated image and audio.
-		List<Tuple<string, string>> _stories;
+		List<Project> _projects;
 
-		public RecyclerAdapter(List<Tuple<string, string>> stories)
+		public RecyclerAdapter(List<Project> projects)
 		{
-			_stories = stories;
+			_projects = projects;
 		}
 
 		public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
 		{
-			View row = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.row, parent, false);
-			return new StoryViewHolder(row, OnClick);
+			View project = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.project, parent, false);
+			return new ProjectViewHolder(project, OnProjectClick);
 		}
 		
 		public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
 		{
-			var Myholder = holder as StoryViewHolder;
-			var path_to_interview_photo = _stories[position].Item1;
-
-			if (!string.IsNullOrWhiteSpace(path_to_interview_photo))
-			{
-				// Rotates the image such that it is in a horizitional position regardless of how it was taken.
-				Myholder.mauthor.Rotation = ImageRotationAngle(path_to_interview_photo);
-
-				// Note: do not know the width/height of theview as
-				Myholder.mauthor.SetImageBitmap(ThumbnailUtils.ExtractThumbnail(
-					BitmapFactory.DecodeFile(path_to_interview_photo, 
-					                         new BitmapFactory.Options { InSampleSize = 4 }), 120, 120));
-			}
-			else 
-			{
-				// A default silhouette is used if no image was taken.
-				var silhouette = ContextCompat.GetDrawable(Myholder.mauthor.Context, Resource.Drawable.me);
-				Myholder.mauthor.SetImageDrawable(silhouette);
-			}
-		}
-
-		// TODO: this same method exists in PreparationActivity 
-		int ImageRotationAngle(string imagePath)
-		{
-			var exif = new ExifInterface(imagePath);
-			var orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
-
-			int rotationAngle = 0;
-			if (orientation == (int)Android.Media.Orientation.Rotate90) rotationAngle = 90;
-			if (orientation == (int)Android.Media.Orientation.Rotate180) rotationAngle = 180;
-			if (orientation == (int)Android.Media.Orientation.Rotate270) rotationAngle = 270;
-
-			return rotationAngle;
+			var mholder = holder as ProjectViewHolder;
+			mholder.mprojectText.Text = _projects[position].theme;
 		}
 
 		public override int ItemCount
 		{
-			get { return _stories.Count; }
+			get { return _projects.Count; }
 		}
 
-		public event EventHandler<int> AudioClicked;
+		public event EventHandler<int> ProjectClicked;
 
-		void OnClick(int position)
+		void OnProjectClick(int position)
 		{
-			if (AudioClicked != null) AudioClicked(this, position);
+			if (ProjectClicked != null) ProjectClicked(this, position);
 		}
 
-		public class StoryViewHolder : RecyclerView.ViewHolder
+		public class ProjectViewHolder : RecyclerView.ViewHolder
 		{
-			public ImageView mauthor { get; set; }
-			public ImageButton mstory { get; set; }
-			public SeekBar mposition { get; set; }
+			public ImageView mprojectCard { get; set; }
+			public TextView mprojectText { get; set; }
 
-			public StoryViewHolder(View view, Action<int> listener) : base(view)
+			public ProjectViewHolder(View view, Action<int> listener) : base(view)
 			{
-				mauthor = view.FindViewById<ImageView>(Resource.Id.author);
-				mstory = view.FindViewById<ImageButton>(Resource.Id.story);
-				mposition = view.FindViewById<SeekBar>(Resource.Id.position);
-				// Binds an event to play/pause button click
-				mstory.Click += (sender, e) => listener(LayoutPosition);
-			}
-		}
-	}
-
-	class DividerItemDecoration : RecyclerView.ItemDecoration
-	{
-		readonly Drawable divider;
-
-		public DividerItemDecoration(Context context)
-		{
-			// Obtains the default divider for this theme.
-			var theme = context.ObtainStyledAttributes(new int[] { Android.Resource.Attribute.ListDivider });
-			divider = theme.GetDrawable(0);
-			theme.Recycle();
-		}
-
-		public override void OnDraw(Canvas cValue, RecyclerView parent, RecyclerView.State state)
-		{
-			base.OnDraw(cValue, parent, state);
-			// Calculate bounds of divider and draw it onto RecyclerView.
-			for (int i = 0; i < parent.ChildCount; i++)
-			{
-				View child = parent.GetChildAt(i);
-				var parameters = (RecyclerView.LayoutParams)child.LayoutParameters;
-
-				int top = child.Bottom + parameters.BottomMargin;
-				int bottom = top + divider.IntrinsicHeight;
-				// NOTE: right does not account for padding as we went to fill to right.
-				divider.SetBounds(child.PaddingLeft, top, parent.Width, bottom);
-				divider.Draw(cValue);
+				mprojectCard = view.FindViewById<ImageView>(Resource.Id.imagePrompt);
+				mprojectText = view.FindViewById<TextView>(Resource.Id.imageText);
+				// Binds event to each card within the UI
+				mprojectCard.Click += (sender, e) => listener(LayoutPosition);
 			}
 		}
 	}

@@ -8,28 +8,9 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/stories"
+        android:id="@+id/projects"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
         android:paddingTop="?attr/actionBarSize" />
-    <TextView
-        android:id="@+id/firstTimeText"
-        android:visibility="gone"
-        android:text="By participating in this Volunteering study you consent for your data to be used for research. Reimbursements (Amazon vouchers) will be provided for your time in three ways:\n\n 1. £1 for each gabber you record\n 2. 50p for each gabber your friend records\n 3. 25p for each gabber your friends friend records\n\nA maximum of £10 per day will be reimbursed. We will get in touch using your Gabber email for payment once the study is complete or our funding limit has been met.\n\nNote: consent by both participants of a Gabber must be provided to receive reimbursement, and gabbers created must be from unique friends and last at least a few minutes.\n\n"
-        android:textSize="14sp"
-        android:padding="24dp"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:lineSpacingExtra="3sp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp"
-        android:src="@drawable/prepare"
-        app:layout_anchor="@id/stories" />
 </RelativeLayout>
