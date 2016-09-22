@@ -1,11 +1,8 @@
 ﻿using SQLite;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Gabber
 {
-	// A user table is not required as we can perform a lookup where the logged in email is equal
-	// to InterviewerEmail to acquire all the audios (in this device) that have been recorded.
 	public class Story
 	{
 		[PrimaryKey]
@@ -19,7 +16,7 @@ namespace Gabber
 		// The Latitude & longitude stored as: "LAT, LONG"
 		public string Location { get; set; }
 		public string promptText { get; set; }
-		// Whether or not this story has been uploaded to the web.
+		// Has the story been uploaded?
 		public bool Uploaded { get; set; }
 	}
 
@@ -44,11 +41,6 @@ namespace Gabber
 		public void InsertStory(Story story)
 		{
 			database.Insert(story);
-		}
-
-		public List<Story> GetStories(string interviewer)
-		{
-			return database.Table<Story>().Where(row => row.InterviewerEmail == interviewer).ToList();
 		}
 	}
 
