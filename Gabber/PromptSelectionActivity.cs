@@ -75,23 +75,4 @@ namespace Gabber
 		// Disable scrolling within the layout container that shows a swipable item.
 		public override bool CanScrollVertically() { return false; }
 	}
-
-	// These classes are used JSON deserialization.
-
-	public class RootObject
-	{
-		public List<Project> projects { get; set; }
-	}
-
-	public class Project
-	{
-		public string theme { get; set; }
-		public List<Prompt> prompts { get; set; }
-	}
-
-	public class Prompt
-	{
-		public string prompt { get; set; }
-		public string imageName { get; set; }
-	}
 }

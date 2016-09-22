@@ -51,4 +51,23 @@ namespace Gabber
 			return database.Table<Story>().Where(row => row.InterviewerEmail == interviewer).ToList();
 		}
 	}
+
+	// These classes are used JSON deserialization.
+
+	public class RootObject
+	{
+		public List<Project> projects { get; set; }
+	}
+
+	public class Project
+	{
+		public string theme { get; set; }
+		public List<Prompt> prompts { get; set; }
+	}
+
+	public class Prompt
+	{
+		public string prompt { get; set; }
+		public string imageName { get; set; }
+	}
 }
