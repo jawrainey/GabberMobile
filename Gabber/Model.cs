@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Gabber
 {
@@ -20,6 +21,14 @@ namespace Gabber
 		public bool Uploaded { get; set; }
 	}
 
+	// As a request is made each time, simplify by storing as JSON.
+	public class ProjectsAsJSON
+	{
+		[PrimaryKey]
+		public int Id { get; set; }
+		public string Json { get; set; }
+	}
+
 	public class Model
 	{
 		public SQLiteConnection database;
@@ -31,6 +40,24 @@ namespace Gabber
 				"database.db3");
 			database = new SQLiteConnection(path);
 			database.CreateTable<Story>();
+			database.CreateTable<ProjectsAsJSON>();
+		}
+
+		public void SaveRequest(string json)
+		{
+			// Has a request been made and stored?
+			var jsonExists = database.Table<ProjectsAsJSON>().Where(row => row.Id == 1).ToString();
+			var oneRowToRuleThemAll = new ProjectsAsJSON { Json = json, Id = 1 };
+			// Do not create a new row when a request comes in
+			if (!string.IsNullOrEmpty(jsonExists)) database.Insert(oneRowToRuleThemAll);
+			else database.Update(oneRowToRuleThemAll);
+		}
+
+		public List<Project> GetProjects()
+		{
+			// TODO: what if after _inital_ login no request can be made?
+			var query = database.Table<ProjectsAsJSON>().First().Json;
+			return JsonConvert.DeserializeObject<RootObject>(query).projects;
 		}
 
 		public void UpdateStory(Story story)
