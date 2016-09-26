@@ -9,7 +9,6 @@ using Android.Widget;
 using Android.Support.Design.Widget;
 using System.Threading.Tasks;
 using FFImageLoading.Views;
-using System.Linq;
 
 namespace Gabber
 {
@@ -21,25 +20,13 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.promptselection);
 			SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
-
-			// TODO: move this to MainActivity and make async (not pmact GUI).
-			// Only make a new request if something has changed?
-			var projectResponse = new RestAPI().GetProjects().Result;
-
-			// TODO: we should never be on this page without having projects. However, this may happen if a user
-			// downloads the application and wants to contribute. We could show all the public projects, then,
-			// if they want to contribute, then they can "join the campaign".
-			if (projectResponse.projects.Count <= 0) return;
-
+			// As data is stored entirely in JSON, we retrieve all projects to filter manually.
+			var allProjects = new Model().GetProjects();
+			// Filter the list based on the previously selected theme
+			var selectedProject = allProjects.Find((Project pj) => pj.theme == Intent.GetStringExtra("theme"));
+			// Set appropriate prompts for the selected project
 			var recyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
-
-			// TODO: this should be configured based on what _theme_ the user selects on the main/home page.
-			// The projectResponse logic (to find all associated information) will be moved there and _must_ be stored
-			// within a local database. Everytime a user enters the app, a request is made to check if
-			// TODO: remove hard-coded element (and LINQ use) as we should lookup by theme.
-			// TODO: cache and images. When the user opens the app, all images/text are downloaded/cached.
-			// That way, they can use it offline. However, this is not currently possible (see above return).
-			recyclerView.SetAdapter(new RVPromptAdapter(projectResponse.projects.ElementAt(0).prompts));
+			recyclerView.SetAdapter(new RVPromptAdapter(selectedProject.prompts));
 
 			// Custom layout required to disable vertical scrolling.
 			recyclerView.SetLayoutManager(new CustomLinearLayoutManager(this));

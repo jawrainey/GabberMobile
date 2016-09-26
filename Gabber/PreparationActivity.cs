@@ -78,7 +78,8 @@ namespace Gabber
 					intent.PutExtra("photo", (_photo != null && _photo.Length() > 0) ? _photo.AbsolutePath : "");
 					intent.PutExtra("name", name.Text);
 					intent.PutExtra("email", email.Text);
-
+					// Pass the previous form data (selected theme)
+					intent.PutExtras(Intent.Extras);
 					// Users should return to main screen if they go back. Start over.
 					StartActivity(intent);
 				}
