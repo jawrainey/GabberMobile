@@ -49,7 +49,7 @@ namespace Gabber
 			var jsonExists = database.Table<ProjectsAsJSON>().Where(row => row.Id == 1).ToString();
 			var oneRowToRuleThemAll = new ProjectsAsJSON { Json = json, Id = 1 };
 			// Do not create a new row when a request comes in
-			if (!string.IsNullOrEmpty(jsonExists)) database.Insert(oneRowToRuleThemAll);
+			if (string.IsNullOrEmpty(jsonExists)) database.Insert(oneRowToRuleThemAll);
 			else database.Update(oneRowToRuleThemAll);
 		}
 
