@@ -51,17 +51,10 @@ namespace Gabber
 			var response = new RestAPI().GetProjects().Result;
 			_projects = response.projects;
 			var model = new Model();
-
 			// If there are no results [e.g. no Internet], then use cached version.
-			if (_projects.Count == 0)
-			{
-				_projects = model.GetProjects();
-			}
-			else
-			{
-				// Otherwise update our data. Since we will get all in a request, just update.
-				model.SaveRequest(JsonConvert.SerializeObject(response));
-			}
+			// Otherwise update our data. Since we will get all in a request, just update.
+			if (_projects.Count == 0) _projects = model.GetProjects();
+			else model.SaveRequest(JsonConvert.SerializeObject(response));
 		}
 
 		void OnProjectClick(object sender, int position)
