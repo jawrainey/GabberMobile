@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gabber", "Gabber\Gabber.csproj", "{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GabberDroid", "Gabber\GabberDroid.csproj", "{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
