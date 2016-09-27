@@ -5,7 +5,6 @@ using Android.Media;
 using Android.OS;
 using Android.Provider;
 using Android.Support.V7.App;
-using Android.Support.V7.Widget;
 using Android.Support.Design.Widget;
 using System.Diagnostics;
 using System.IO;

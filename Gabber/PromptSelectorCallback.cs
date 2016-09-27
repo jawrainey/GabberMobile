@@ -1,7 +1,5 @@
 using Android.Support.V7.Widget;
 using Android.Support.V7.Widget.Helper;
-using Android.Graphics;
-using Android.Widget;
 
 namespace Gabber
 {
