@@ -18,7 +18,7 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.login);
 
-			FindViewById<AppCompatButton>(Resource.Id.submit).Click += delegate
+			FindViewById<AppCompatButton>(Resource.Id.submit).Click += async delegate
 			{
 				var email = FindViewById<AppCompatEditText>(Resource.Id.email);
 				var passw = FindViewById<AppCompatEditText>(Resource.Id.password);
@@ -38,38 +38,30 @@ namespace Gabber
 					FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Visible;
 					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 					// If the user details are correct: take user to their dashboard, otherwise snackbar error.
-					new RestAPI().Authenticate(email.Text, passw.Text, AuthCallback);
+					if (await (new RestAPI().Authenticate(email.Text, passw.Text)))
+					{
+						// Use preferences to only show recordings for each specific user.
+						PreferenceManager.GetDefaultSharedPreferences(
+							ApplicationContext).Edit().PutString("username", email.Text).Commit();
+						// We do not want the user to return to ANY gabber recording pages once captured.
+						var intent = new Intent(this, typeof(MainActivity));
+						intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
+						StartActivity(intent);
+						// Prevent returning to login once authenticated.
+						Finish();
+					}
+					else
+					{
+						RunOnUiThread(() =>
+						{
+							FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = true;
+							FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
+						});
+
+						Snackbar.Make(email, "Oh no, something went wrong.", 0).Show();
+					}
 				}
 			};
 		}
-
-		void AuthCallback(System.Tuple<bool, string> response)
-		{
-			var username = FindViewById<AppCompatEditText>(Resource.Id.email);
-			// The user details have been validatd and are correct!
-			if (response.Item1)
-			{
-				// Use preferences to only show recordings for each specific user.
-				PreferenceManager.GetDefaultSharedPreferences(
-					ApplicationContext).Edit().PutString("username", username.Text).Commit();
-				// We do not want the user to return to ANY gabber recording pages once captured.
-				var intent = new Intent(this, typeof(MainActivity));
-				intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
-				StartActivity(intent);
-				// Prevent returning to login once authenticated.
-				Finish();
-			}
-			else
-			{
-				RunOnUiThread(() =>
-				{
-					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = true;
-					FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
-				});
-
-				Snackbar.Make(username, response.Item2, 0).Show();
-			}
-		}
-
 	}
 }

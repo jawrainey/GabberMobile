@@ -18,22 +18,14 @@ namespace Gabber
 			_client = new RestClient("https://openlab.ncl.ac.uk/dokku/gabber/");
 		}
 
-		public void Authenticate(string username, string password, Action<Tuple<bool, string>> callback)
+		public async Task<bool> Authenticate(string username, string password)
 		{
 			var request = new RestRequest("api/auth", Method.POST);
-
 			request.AddParameter("username", username);
 			request.AddParameter("password", password);
 
-			_client.ExecuteAsync(request, response =>
-			{
-				if (response.StatusCode == HttpStatusCode.OK)
-					callback(new Tuple<bool, string>(true, response.Content));
-				else if (response.StatusCode == 0)
-					callback(new Tuple<bool, string>(false, "Cannot connect to the internet"));
-				else
-					callback(new Tuple<bool, string>(false, new JSONObject(response.Content).GetString("error")));
-			});
+			var response = await _client.ExecuteTaskAsync(request);
+			return response.StatusCode == HttpStatusCode.OK;
 		}
 
 		// TODO: this method is too similar to Authenticate above; abstract logic to a shared method?
