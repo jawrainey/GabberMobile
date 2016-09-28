@@ -20,7 +20,7 @@ namespace Gabber
 			SetContentView(Resource.Layout.promptselection);
 			SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
 
-			var model = new Model(Environment.ExternalStorageDirectory.AbsolutePath);
+			var model = new Model(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 			// As data is stored entirely in JSON, we retrieve all projects to filter manually.
 			var allProjects = model.GetProjects();
 			// Filter the list based on the previously selected theme
