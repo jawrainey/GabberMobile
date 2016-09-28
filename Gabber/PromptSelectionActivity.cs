@@ -7,6 +7,7 @@ using Android.Support.V7.Widget.Helper;
 using Android.Widget;
 using Android.Support.Design.Widget;
 using FFImageLoading.Views;
+using GabberPCL;
 
 namespace Gabber
 {
@@ -18,8 +19,10 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.promptselection);
 			SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
+
+			var model = new Model(Environment.ExternalStorageDirectory.AbsolutePath);
 			// As data is stored entirely in JSON, we retrieve all projects to filter manually.
-			var allProjects = new Model().GetProjects();
+			var allProjects = model.GetProjects();
 			// Filter the list based on the previously selected theme
 			var selectedProject = allProjects.Find((Project pj) => pj.theme == Intent.GetStringExtra("theme"));
 			// Set appropriate prompts for the selected project

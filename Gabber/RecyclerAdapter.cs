@@ -8,9 +8,9 @@ namespace Gabber
 {
 	public class RecyclerAdapter : RecyclerView.Adapter
 	{
-		List<Project> _projects;
+		List<GabberPCL.Project> _projects;
 
-		public RecyclerAdapter(List<Project> projects)
+		public RecyclerAdapter(List<GabberPCL.Project> projects)
 		{
 			_projects = projects;
 		}

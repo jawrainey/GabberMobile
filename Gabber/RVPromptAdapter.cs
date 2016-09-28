@@ -10,9 +10,9 @@ namespace Gabber
 	public class RVPromptAdapter : RecyclerView.Adapter
 	{
 		// Each story the user recorded has an associated image and audio.
-		readonly List<Prompt> _prompts;
+		readonly List<GabberPCL.Prompt> _prompts;
 
-		public RVPromptAdapter(List<Prompt> prompts)
+		public RVPromptAdapter(List<GabberPCL.Prompt> prompts)
 		{
 			_prompts = prompts;
 		}

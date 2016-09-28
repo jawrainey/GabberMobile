@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GabberDroid", "Gabber\GabberDroid.csproj", "{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GabberPCL", "GabberPCL\GabberPCL.csproj", "{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Gabber\Gabber.csproj

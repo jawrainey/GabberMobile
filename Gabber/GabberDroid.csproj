@@ -105,7 +105,6 @@
     <Compile Include="RecyclerAdapter.cs" />
     <Compile Include="PreparationActivity.cs" />
     <Compile Include="RecordStoryActivity.cs" />
-    <Compile Include="Model.cs" />
     <Compile Include="CompletionActivity.cs" />
     <Compile Include="PromptSelectionActivity.cs" />
     <Compile Include="PromptSelectorCallback.cs" />
@@ -176,6 +175,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">
+      <Project>{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}</Project>
+      <Name>GabberPCL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

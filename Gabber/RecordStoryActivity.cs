@@ -13,6 +13,7 @@ using Android.Content;
 using Android.Locations;
 using FFImageLoading.Views;
 using FFImageLoading;
+using GabberPCL;
 
 namespace Gabber
 {
@@ -126,7 +127,7 @@ namespace Gabber
 			};
 
 			// Store locally so we know what users recorded what experiences.
-			new Model().InsertStory(story);
+			new Model(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal)).InsertStory(story);
 			// For now, we will not notify the user that the data is uploading or has been uploaded.
 			// TODO: this information should be represented visually on the dashboard.
 			new RestAPI().Upload(story);

@@ -4,3 +4,6 @@ packages/*
 Gabber/bin/*
 Gabber/obj/*
 Gabber/Resources/Resource.designer.cs
+GabberPCL/bin/*
+GabberPCL/obj/*
+GabberPCL/Resources/Resource.designer.cs

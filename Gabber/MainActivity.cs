@@ -5,6 +5,8 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using GabberPCL;
+using Android.Icu.Text;
 
 namespace Gabber
 {
@@ -26,8 +28,10 @@ namespace Gabber
 				StartActivity(typeof(HomeActivity));
 				Finish();
 			}
-
-			SetupProjects();
+			else 
+			{
+				SetupProjects();
+			}
 
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.main);
@@ -50,9 +54,11 @@ namespace Gabber
 			// The entire request, which will be stored in the database
 			var response = new RestAPI().GetProjects().Result;
 			_projects = response.projects;
-			var model = new Model();
+
+			var model = new Model(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 			// If there are no results [e.g. no Internet], then use cached version.
 			// Otherwise update our data. Since we will get all in a request, just update.
+			// TODO: what if there is no cached version?
 			if (_projects.Count == 0) _projects = model.GetProjects();
 			else model.SaveRequest(JsonConvert.SerializeObject(response));
 		}

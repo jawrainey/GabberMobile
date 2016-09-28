@@ -23,7 +23,6 @@ namespace Gabber
 			var request = new RestRequest("api/auth", Method.POST);
 			request.AddParameter("username", username);
 			request.AddParameter("password", password);
-
 			var response = await _client.ExecuteTaskAsync(request);
 			return response.StatusCode == HttpStatusCode.OK;
 		}
@@ -48,7 +47,7 @@ namespace Gabber
 			});
 		}
 
-		public void Upload(Story story)
+		public void Upload(GabberPCL.Story story)
 		{
 			var request = new RestRequest("api/upload", Method.POST);
 
@@ -75,13 +74,13 @@ namespace Gabber
 				if (response.StatusCode == HttpStatusCode.OK)
 				{
 					story.Uploaded = true;
-					new Model().UpdateStory(story);
+					new GabberPCL.Model(Environment.GetFolderPath(Environment.SpecialFolder.Personal)).UpdateStory(story);
 				}
 			});
 		}
 
 		// Obtains all projects that went through a commissioning process.
-		public Task<RootObject> GetProjects()
+		public Task<GabberPCL.RootObject> GetProjects()
 		{
 			// TODO: save all this information to a database for cache diff later.
 			var request = new RestRequest("api/projects", Method.GET);
@@ -90,14 +89,14 @@ namespace Gabber
 			// Only return data if all was well.
 			if (response.StatusCode == HttpStatusCode.OK)
 			{
-				return Task.FromResult(JsonConvert.DeserializeObject<RootObject>(response.Content));
+				return Task.FromResult(JsonConvert.DeserializeObject<GabberPCL.RootObject>(response.Content));
 			}
 
 			// If there are NO projects associated with that user, then the above would return an empty projects.
 			// However, if there's no Internet, let's handle that edge-case. The logic in the view would stay the same
 			// since we would check if any projects exist for a given user. Hence, we must return an empty list.
 			// TODO: I am sure there is a tidier way to do this, especially the asnc/await aspects...
-			return Task.FromResult(new RootObject { projects = new List<Project>() });
+			return Task.FromResult(new GabberPCL.RootObject { projects = new List<GabberPCL.Project>() });
 		}
 
 	}

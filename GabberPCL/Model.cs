@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Gabber
+namespace GabberPCL
 {
 	public class Story
 	{
@@ -14,10 +14,8 @@ namespace Gabber
 		public string InterviewerEmail { get; set; }
 		public string IntervieweeEmail { get; set; }
 		public string IntervieweeName { get; set; }
-		// The Latitude & longitude stored as: "LAT, LONG"
 		public string Location { get; set; }
 		public string promptText { get; set; }
-		// Has the story been uploaded?
 		public bool Uploaded { get; set; }
 	}
 
@@ -33,11 +31,9 @@ namespace Gabber
 	{
 		public SQLiteConnection database;
 
-		public Model()
+		public Model(string folder)
 		{
-			string path = System.IO.Path.Combine(
-				System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),
-				"database.db3");
+			string path = System.IO.Path.Combine(folder, "database.db3");
 			database = new SQLiteConnection(path);
 			database.CreateTable<Story>();
 			database.CreateTable<ProjectsAsJSON>();
@@ -45,19 +41,17 @@ namespace Gabber
 
 		public void SaveRequest(string json)
 		{
-			// Has a request been made and stored?
-			var jsonExists = database.Table<ProjectsAsJSON>().Where(row => row.Id == 1).ToString();
 			var oneRowToRuleThemAll = new ProjectsAsJSON { Json = json, Id = 1 };
 			// Do not create a new row when a request comes in
-			if (string.IsNullOrEmpty(jsonExists)) database.Insert(oneRowToRuleThemAll);
+			if (database.Table<ProjectsAsJSON>().Count() <= 0) database.Insert(oneRowToRuleThemAll);
 			else database.Update(oneRowToRuleThemAll);
 		}
 
 		public List<Project> GetProjects()
 		{
-			// TODO: what if after _inital_ login no request can be made?
-			var query = database.Table<ProjectsAsJSON>().First().Json;
-			return JsonConvert.DeserializeObject<RootObject>(query).projects;
+			var queryResult = database.Table<ProjectsAsJSON>().Where(row => row.Id == 1).First().Json;
+			// What if after login there is no network? Need to prevent nullable response from first.
+			return JsonConvert.DeserializeObject<RootObject>(queryResult).projects;
 		}
 
 		public void UpdateStory(Story story)
