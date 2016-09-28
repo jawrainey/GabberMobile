@@ -4,7 +4,6 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Org.Json;
 using RestSharp;
 
 namespace Gabber
@@ -43,7 +42,7 @@ namespace Gabber
 				else if (response.StatusCode == 0)
 					callback(new Tuple<bool, string>(false, "Cannot connect to the internet"));
 				else
-					callback(new Tuple<bool, string>(false, new JSONObject(response.Content).GetString("error")));
+					callback(new Tuple<bool, string>(false, response.ErrorMessage));
 			});
 		}
 
