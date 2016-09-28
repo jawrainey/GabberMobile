@@ -22,9 +22,8 @@ namespace Gabber
 
 			var model = new Model(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 			// As data is stored entirely in JSON, we retrieve all projects to filter manually.
-			var allProjects = model.GetProjects();
 			// Filter the list based on the previously selected theme
-			var selectedProject = allProjects.Find((Project pj) => pj.theme == Intent.GetStringExtra("theme"));
+			var selectedProject = model.GetProjects().Find((Project pj) => pj.theme == Intent.GetStringExtra("theme"));
 			// Set appropriate prompts for the selected project
 			var recyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
 			recyclerView.SetAdapter(new RVPromptAdapter(selectedProject.prompts));

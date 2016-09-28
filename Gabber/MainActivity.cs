@@ -6,7 +6,6 @@ using Android.Support.V7.Widget;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using GabberPCL;
-using Android.Icu.Text;
 
 namespace Gabber
 {
@@ -53,7 +52,7 @@ namespace Gabber
 
 			// The entire request, which will be stored in the database
 			var response = new RestAPI().GetProjects().Result;
-			_projects = response.projects;
+			_projects = response;
 
 			var model = new Model(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 			// If there are no results [e.g. no Internet], then use cached version.

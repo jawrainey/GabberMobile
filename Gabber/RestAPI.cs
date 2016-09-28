@@ -80,7 +80,7 @@ namespace Gabber
 		}
 
 		// Obtains all projects that went through a commissioning process.
-		public Task<GabberPCL.RootObject> GetProjects()
+		public Task<List<GabberPCL.Project>> GetProjects()
 		{
 			// TODO: save all this information to a database for cache diff later.
 			var request = new RestRequest("api/projects", Method.GET);
@@ -89,14 +89,14 @@ namespace Gabber
 			// Only return data if all was well.
 			if (response.StatusCode == HttpStatusCode.OK)
 			{
-				return Task.FromResult(JsonConvert.DeserializeObject<GabberPCL.RootObject>(response.Content));
+				return Task.FromResult(JsonConvert.DeserializeObject<List<GabberPCL.Project>>(response.Content));
 			}
 
 			// If there are NO projects associated with that user, then the above would return an empty projects.
 			// However, if there's no Internet, let's handle that edge-case. The logic in the view would stay the same
 			// since we would check if any projects exist for a given user. Hence, we must return an empty list.
 			// TODO: I am sure there is a tidier way to do this, especially the asnc/await aspects...
-			return Task.FromResult(new GabberPCL.RootObject { projects = new List<GabberPCL.Project>() });
+			return Task.FromResult(new List<GabberPCL.Project>());
 		}
 
 	}
