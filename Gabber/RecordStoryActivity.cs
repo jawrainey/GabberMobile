@@ -136,7 +136,7 @@ namespace Gabber
 			StartActivity(intent);
 			Finish();	
 
-			if (await new RestAPI().Upload(story))
+			if (await new RestClient().Upload(story))
 			{
 				story.Uploaded = true;
 				model.UpdateStory(story);

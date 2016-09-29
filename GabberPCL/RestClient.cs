@@ -7,14 +7,14 @@ using System.IO;
 
 namespace GabberPCL
 {
-	public class RestAPI
+	public class RestClient
 	{
 		// Used to access platform specific implementations
 		public static Interfaces.IDiskIO GlobalIO;
 
 		readonly HttpClient _client;
 
-		public RestAPI()
+		public RestClient()
 		{
 			_client = new HttpClient();
 			_client.BaseAddress = new Uri("https://openlab.ncl.ac.uk/dokku/gabber/");

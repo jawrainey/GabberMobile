@@ -29,7 +29,7 @@ namespace Gabber
 			}
 
 			// Register the implementation to the global interface within the PCL.
-			RestAPI.GlobalIO = new DiskIO();
+			RestClient.GlobalIO = new DiskIO();
 
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.main);
@@ -52,7 +52,7 @@ namespace Gabber
 			// TODO: refresh when they go off-line and come back online.
 
 			// The entire request, which will be stored in the database
-			var response = new RestAPI().GetProjects();
+			var response = new RestClient().GetProjects();
 			_projects = response;
 
 			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));

@@ -43,7 +43,7 @@ namespace Gabber
 					FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Visible;
 					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 
-					if (await new RestAPI().Authenticate(email.Text, passw.Text))
+					if (await new RestClient().Authenticate(email.Text, passw.Text))
 					{
 						PreferenceManager.GetDefaultSharedPreferences(
 							ApplicationContext).Edit().PutString("username", email.Text).Commit();
