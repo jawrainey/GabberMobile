@@ -103,20 +103,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LoginActivity.cs" />
-    <Compile Include="RegisterActivity.cs" />
-    <Compile Include="RecyclerAdapter.cs" />
-    <Compile Include="PreparationActivity.cs" />
-    <Compile Include="RecordStoryActivity.cs" />
-    <Compile Include="CompletionActivity.cs" />
-    <Compile Include="PromptSelectionActivity.cs" />
-    <Compile Include="PromptSelectorCallback.cs" />
-    <Compile Include="RVPromptAdapter.cs" />
-    <Compile Include="HomeActivity.cs" />
-    <Compile Include="DiskIO.cs" />
+    <Compile Include="Adapters\RecyclerAdapter.cs" />
+    <Compile Include="Adapters\RVPromptAdapter.cs" />
+    <Compile Include="Activities\CompletionActivity.cs" />
+    <Compile Include="Activities\HomeActivity.cs" />
+    <Compile Include="Activities\LoginActivity.cs" />
+    <Compile Include="Activities\PreparationActivity.cs" />
+    <Compile Include="Activities\PromptSelectionActivity.cs" />
+    <Compile Include="Activities\PromptSelectorCallback.cs" />
+    <Compile Include="Activities\RecordStoryActivity.cs" />
+    <Compile Include="Activities\RegisterActivity.cs" />
+    <Compile Include="Helpers\DiskIO.cs" />
+    <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Adapters\FragmentAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -181,6 +182,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
+    <Folder Include="Activities\" />
+    <Folder Include="Adapters\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">
