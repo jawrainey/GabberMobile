@@ -39,7 +39,7 @@ namespace Gabber
 
 			FindViewById<AppCompatButton>(Resource.Id.register).Click += delegate
 			{
-				StartActivity(typeof(SignUpActivity));
+				StartActivity(typeof(RegisterActivity));
 			};
 		}
 	}

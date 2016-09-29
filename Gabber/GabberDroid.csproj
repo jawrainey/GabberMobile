@@ -107,7 +107,7 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LoginActivity.cs" />
-    <Compile Include="SignUpActivity.cs" />
+    <Compile Include="RegisterActivity.cs" />
     <Compile Include="RecyclerAdapter.cs" />
     <Compile Include="PreparationActivity.cs" />
     <Compile Include="RecordStoryActivity.cs" />

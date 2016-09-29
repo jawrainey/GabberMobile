@@ -12,7 +12,7 @@ using GabberPCL;
 namespace Gabber
 {
 	[Activity(Label = "Register")]
-	public class SignUpActivity : AppCompatActivity
+	public class RegisterActivity : AppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
