@@ -98,7 +98,7 @@ namespace Gabber
 			};
 		}
 
-		void SaveRecording()
+		async void SaveRecording()
 		{
 			// Link this interview to interviewer (the logged in user).
 			var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
@@ -129,19 +129,18 @@ namespace Gabber
 			// Store locally so we know what users recorded what experiences.
 			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 			model.InsertStory(story);
-			// For now, we will not notify the user that the data is uploading or has been uploaded.
-			// TODO: this information should be represented visually on the dashboard.
-			if (new RestAPI().Upload(story))
-			{
-				story.Uploaded = true;
-				model.UpdateStory(story);
-			}
 
 			// We do not want the user to return to ANY gabber recording pages once captured.
 			var intent = new Intent(this, typeof(CompletionActivity));
 			intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
 			StartActivity(intent);
 			Finish();	
+
+			if (await new RestAPI().Upload(story))
+			{
+				story.Uploaded = true;
+				model.UpdateStory(story);
+			}
 		}
 
 		void StartRecording()

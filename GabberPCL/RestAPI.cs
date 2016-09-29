@@ -45,8 +45,7 @@ namespace GabberPCL
 
 		// As this deals with reading files from platform specific paths, 
 		// then we must implement this on each specific platform.
-		// TODO: make this async.
-		public bool Upload(Story story)
+		public async Task<bool> Upload(Story story)
 		{
 			using (var formData = new MultipartFormDataContent())
 			{
@@ -65,7 +64,7 @@ namespace GabberPCL
 					formData.Add(new ByteArrayContent(GlobalIO.Load(story.PhotoPath)),
 					             "authorImage", Path.GetFileName(story.PhotoPath));
 				}
-				var response = _client.PostAsync("api/upload", formData).Result;
+				var response = await _client.PostAsync("api/upload", formData);
 				return response.IsSuccessStatusCode;
 			}
 		}
