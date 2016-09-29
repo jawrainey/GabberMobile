@@ -127,10 +127,15 @@ namespace Gabber
 			};
 
 			// Store locally so we know what users recorded what experiences.
-			new Model(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal)).InsertStory(story);
+			var model = new Model(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
+			model.InsertStory(story);
 			// For now, we will not notify the user that the data is uploading or has been uploaded.
 			// TODO: this information should be represented visually on the dashboard.
-			new RestAPI().Upload(story);
+			if (new RestAPI().Upload(story))
+			{
+				story.Uploaded = true;
+				model.UpdateStory(story);
+			}
 
 			// We do not want the user to return to ANY gabber recording pages once captured.
 			var intent = new Intent(this, typeof(CompletionActivity));

@@ -95,6 +95,12 @@
     <Reference Include="FFImageLoading.Platform">
       <HintPath>..\packages\Xamarin.FFImageLoading.2.1.7\lib\MonoAndroid10\FFImageLoading.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="PCLStorage.Abstractions">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage">
+      <HintPath>..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -109,8 +115,8 @@
     <Compile Include="PromptSelectionActivity.cs" />
     <Compile Include="PromptSelectorCallback.cs" />
     <Compile Include="RVPromptAdapter.cs" />
-    <Compile Include="RestAPI.cs" />
     <Compile Include="HomeActivity.cs" />
+    <Compile Include="DiskIO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

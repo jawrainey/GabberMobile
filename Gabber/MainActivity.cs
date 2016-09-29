@@ -27,16 +27,17 @@ namespace Gabber
 				StartActivity(typeof(HomeActivity));
 				Finish();
 			}
-			else 
-			{
-				SetupProjects();
-			}
+
+			// Register the implementation to the global interface within the PCL.
+			RestAPI.GlobalIO = new DiskIO();
 
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.main);
 
 			RecyclerView mView = FindViewById<RecyclerView>(Resource.Id.projects);
 			mView.SetLayoutManager(new LinearLayoutManager(this));
+
+			SetupProjects();
 
 			var mAdapter = new RecyclerAdapter(_projects);
 			mAdapter.ProjectClicked += OnProjectClick;
@@ -51,7 +52,7 @@ namespace Gabber
 			// TODO: refresh when they go off-line and come back online.
 
 			// The entire request, which will be stored in the database
-			var response = new RestAPI().GetProjects().Result;
+			var response = new RestAPI().GetProjects();
 			_projects = response;
 
 			var model = new Model(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));

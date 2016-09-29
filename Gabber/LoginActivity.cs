@@ -38,7 +38,7 @@ namespace Gabber
 					FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Visible;
 					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 					// If the user details are correct: take user to their dashboard, otherwise snackbar error.
-					if (await (new RestAPI().Authenticate(email.Text, passw.Text)))
+					if (await (new GabberPCL.RestAPI().Authenticate(email.Text, passw.Text)))
 					{
 						// Use preferences to only show recordings for each specific user.
 						PreferenceManager.GetDefaultSharedPreferences(
