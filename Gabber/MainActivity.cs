@@ -55,7 +55,7 @@ namespace Gabber
 			var response = new RestAPI().GetProjects();
 			_projects = response;
 
-			var model = new Model(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
+			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 			// If there are no results [e.g. no Internet], then use cached version.
 			// Otherwise update our data. Since we will get all in a request, just update.
 			// TODO: what if there is no cached version?

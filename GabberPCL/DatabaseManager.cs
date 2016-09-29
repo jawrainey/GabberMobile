@@ -4,11 +4,11 @@ using Newtonsoft.Json;
 
 namespace GabberPCL
 {
-	public class Model
+	public class DatabaseManager
 	{
 		public SQLiteConnection database;
 
-		public Model(string folder)
+		public DatabaseManager(string folder)
 		{
 			string path = System.IO.Path.Combine(folder, "database.db3");
 			database = new SQLiteConnection(path);

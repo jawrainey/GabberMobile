@@ -127,7 +127,7 @@ namespace Gabber
 			};
 
 			// Store locally so we know what users recorded what experiences.
-			var model = new Model(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
+			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 			model.InsertStory(story);
 			// For now, we will not notify the user that the data is uploading or has been uploaded.
 			// TODO: this information should be represented visually on the dashboard.
