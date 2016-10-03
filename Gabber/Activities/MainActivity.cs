@@ -9,7 +9,7 @@ using GabberPCL;
 
 namespace Gabber
 {
-	[Activity(MainLauncher=true)]
+	[Activity(MainLauncher=true, Label="Select a cause to support")]
 	public class MainActivity : AppCompatActivity
 	{
 		// A project commissioned through the web-service.
@@ -33,6 +33,7 @@ namespace Gabber
 
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.main);
+			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
 
 			RecyclerView mView = FindViewById<RecyclerView>(Resource.Id.projects);
 			mView.SetLayoutManager(new LinearLayoutManager(this));
