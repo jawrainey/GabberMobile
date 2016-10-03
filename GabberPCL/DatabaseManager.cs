@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace GabberPCL
 {
@@ -39,6 +40,11 @@ namespace GabberPCL
 		public void InsertStory(Story story)
 		{
 			database.Insert(story);
+		}
+
+		public List<Story> GetStories(string interviewer)
+		{
+			return database.Table<Story>().Where(row => row.InterviewerEmail == interviewer).ToList();
 		}
 	}
 }

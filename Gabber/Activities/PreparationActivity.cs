@@ -10,6 +10,10 @@ using System.Diagnostics;
 using System.IO;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using Refractored.Controls;
+using Android.Widget;
+using System.Collections.Generic;
+using GabberPCL;
+using System.Linq;
 
 namespace Gabber
 {
@@ -18,6 +22,8 @@ namespace Gabber
 	{
 		// The photo take by the camera activity to be stored & displayed in main.
 		Java.IO.File _photo;
+		// Provide access for the spinner methods.
+		List<Story> _stories;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -28,6 +34,20 @@ namespace Gabber
 			var topicSelection = FindViewById<FloatingActionButton>(Resource.Id.topicSelectionFAB);
 			// Make it more obvious that the silhouette is clickable.
 			Snackbar.Make(topicSelection, "Why not take a photo of your friend?", Snackbar.LengthLong).Show();
+
+			// Required to access existing gabbers for a given user
+			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
+			var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+			_stories = model.GetStories(prefs.GetString("username", ""));
+
+			var spinner = FindViewById<Spinner>(Resource.Id.previousFriends);
+			spinner.ItemSelected += PreviousIntervieweeSelected;
+
+			var friends = PreviousFriends();
+			friends.Insert(0, "Previous friends...");
+			var spinnerAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, friends);
+			spinnerAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			spinner.Adapter = spinnerAdapter;
 
 			FindViewById<CircleImageView>(Resource.Id.photo).Click += delegate
 			{
@@ -85,6 +105,27 @@ namespace Gabber
 			};
 		}
 
+		List<string> PreviousFriends()
+		{
+			// Using hash to prevent duplicate names if a person was interviewed multiple times.
+			var hash = new HashSet<string>();
+			foreach (var str in _stories.ConvertAll((Story s) => s.IntervieweeName)) hash.Add(str);
+			return hash.ToList();
+		}
+
+		void PreviousIntervieweeSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			// The first element are the instructions
+			if (e.Position <= 0) return;
+			// The selected name and related email to populate the form with
+			var intervieweeName = ((Spinner)sender).GetItemAtPosition(e.Position).ToString();
+			var intervieweeEmail = _stories.Find((s) => s.IntervieweeName == intervieweeName).InterviewerEmail;
+			FindViewById<TextInputEditText>(Resource.Id.name).Text = intervieweeName;
+			FindViewById<TextInputEditText>(Resource.Id.email).Text = intervieweeEmail;
+			// Make obvious that reselecting will change content of form.
+			((Spinner)sender).SetSelection(0);
+		}
+
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
@@ -108,9 +149,9 @@ namespace Gabber
 			var orientation = exif.GetAttributeInt(ExifInterface.TagOrientation, 1);
 
 			int rotationAngle = 0;
-			if (orientation == (int)Orientation.Rotate90) rotationAngle = 90;
-			if (orientation == (int)Orientation.Rotate180) rotationAngle = 180;
-			if (orientation == (int)Orientation.Rotate270) rotationAngle = 270;
+			if (orientation == (int)Android.Media.Orientation.Rotate90) rotationAngle = 90;
+			if (orientation == (int)Android.Media.Orientation.Rotate180) rotationAngle = 180;
+			if (orientation == (int)Android.Media.Orientation.Rotate270) rotationAngle = 270;
 
 			return rotationAngle;
 		}
