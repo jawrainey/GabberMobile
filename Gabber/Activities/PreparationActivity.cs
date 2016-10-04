@@ -14,6 +14,7 @@ using Android.Widget;
 using System.Collections.Generic;
 using GabberPCL;
 using System.Linq;
+using Android.Support.V4.Content;
 
 namespace Gabber
 {
@@ -58,11 +59,8 @@ namespace Gabber
 				Directory.CreateDirectory(gabberPublicDir);
 
 				// If the user opens an activity takes a photo, then wants to re-take a photo, then write to same file.
-				if (_photo == null)
-				{
-					// Save as a timestamp in the same way as creating an audiofile.
-					_photo = new Java.IO.File(System.IO.Path.Combine(gabberPublicDir, Stopwatch.GetTimestamp() + ".jpg"));	
-				}
+				// Save as a timestamp in the same way as creating an audiofile.
+				_photo = new Java.IO.File(System.IO.Path.Combine(gabberPublicDir, Stopwatch.GetTimestamp() + ".jpg"));
 
 				// Cannot read/write from internal storage as external activity is used to write the file.
 				var intent = new Intent(MediaStore.ActionImageCapture);
@@ -119,9 +117,24 @@ namespace Gabber
 			if (e.Position <= 0) return;
 			// The selected name and related email to populate the form with
 			var intervieweeName = ((Spinner)sender).GetItemAtPosition(e.Position).ToString();
-			var intervieweeEmail = _stories.Find((s) => s.IntervieweeName == intervieweeName).InterviewerEmail;
+			var match = _stories.Find((s) => s.IntervieweeName == intervieweeName);
+			var intervieweeEmail = match.InterviewerEmail;
 			FindViewById<TextInputEditText>(Resource.Id.name).Text = intervieweeName;
 			FindViewById<TextInputEditText>(Resource.Id.email).Text = intervieweeEmail;
+			var photo = FindViewById<CircleImageView>(Resource.Id.photo);
+			// Use previously taken photo
+			if (!string.IsNullOrEmpty(match.PhotoPath))
+			{
+				var previousPhoto = new Java.IO.File(match.PhotoPath);
+				_photo = previousPhoto;
+				photo.SetImageURI(Android.Net.Uri.FromFile(_photo));
+				photo.Rotation = ImageRotationAngle(match.PhotoPath);
+			}
+			else
+			{
+				photo.SetImageDrawable(ContextCompat.GetDrawable(this, Resource.Drawable.me));
+			}
+
 			// Make obvious that reselecting will change content of form.
 			((Spinner)sender).SetSelection(0);
 		}
