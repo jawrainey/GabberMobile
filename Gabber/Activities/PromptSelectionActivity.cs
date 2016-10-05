@@ -11,7 +11,7 @@ using GabberPCL;
 
 namespace Gabber
 {
-	[Activity(Label = "Swipe to select a topic to gabber about")]
+	[Activity(Label = "Discussion topics")]
 	public class PromptSelectionActivity : AppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -36,7 +36,7 @@ namespace Gabber
 			touchHelper.AttachToRecyclerView(recyclerView);
 
 			// Make it obvious how to select a discussion prompt.
-			Snackbar.Make(recyclerView, "Click button above when you are happy with your selection.", Snackbar.LengthLong).Show();
+			Snackbar.Make(recyclerView, "Select a topic you'll enjoy discussing", Snackbar.LengthLong).Show();
 
 			FindViewById<ImageButton>(Resource.Id.selectFAB).Click += delegate
 			{
