@@ -118,7 +118,7 @@ namespace Gabber
 			// The selected name and related email to populate the form with
 			var intervieweeName = ((Spinner)sender).GetItemAtPosition(e.Position).ToString();
 			var match = _stories.Find((s) => s.IntervieweeName == intervieweeName);
-			var intervieweeEmail = match.InterviewerEmail;
+			var intervieweeEmail = match.IntervieweeEmail;
 			FindViewById<TextInputEditText>(Resource.Id.name).Text = intervieweeName;
 			FindViewById<TextInputEditText>(Resource.Id.email).Text = intervieweeEmail;
 			var photo = FindViewById<CircleImageView>(Resource.Id.photo);
