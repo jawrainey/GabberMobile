@@ -29,7 +29,17 @@ namespace Gabber
 			}
 			else
 			{
-				SetupProjects();
+				var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
+
+				SetupProjects(model);
+
+				foreach (var gabber in model.GetStories(prefs.GetString("username", "")))
+				{
+					if (!gabber.Uploaded)
+					{
+						model.UpdateStory(gabber);
+					}
+				}
 			}
 
 			// Register the implementation to the global interface within the PCL.
@@ -48,7 +58,7 @@ namespace Gabber
 			mView.SetAdapter(mAdapter);
 		}
 
-		void SetupProjects()
+		void SetupProjects(DatabaseManager model)
 		{
 			// Create this once so the async call are run queued properly
 			// TODO: filter to show user-associated projects first.
@@ -59,7 +69,6 @@ namespace Gabber
 			var response = new RestClient().GetProjects();
 			_projects = response;
 
-			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 			// If there are no results [e.g. no Internet], then use cached version.
 			// Otherwise update our data. Since we will get all in a request, just update.
 			// TODO: what if there is no cached version?
