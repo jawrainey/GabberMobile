@@ -27,8 +27,7 @@ namespace GabberPCL
 				new KeyValuePair<string, string>("username", username),
 				new KeyValuePair<string, string>("password", password)
 			};
-			var response = await _client.PostAsync("api/auth", new FormUrlEncodedContent(pairs));
-			return response.IsSuccessStatusCode;
+			return await GottaCatchThemAll("api/auth", new FormUrlEncodedContent(pairs));
 		}
 
 		public async Task<bool> Register(string fullname, string email, string password)
@@ -39,8 +38,7 @@ namespace GabberPCL
 				new KeyValuePair<string, string>("email", email),
 				new KeyValuePair<string, string>("password", password)
 			};
-			var response = await _client.PostAsync("api/register", new FormUrlEncodedContent(pairs));
-			return response.IsSuccessStatusCode;
+			return await GottaCatchThemAll("api/register", new FormUrlEncodedContent(pairs));
 		}
 
 		// As this deals with reading files from platform specific paths, 
@@ -64,6 +62,7 @@ namespace GabberPCL
 					formData.Add(new ByteArrayContent(GlobalIO.Load(story.PhotoPath)),
 					             "authorImage", Path.GetFileName(story.PhotoPath));
 				}
+
 				var response = await _client.PostAsync("api/upload", formData);
 				return response.IsSuccessStatusCode;
 			}
@@ -76,6 +75,22 @@ namespace GabberPCL
 			var response = _client.GetAsync("api/projects").Result;
 			var contents = response.Content.ReadAsStringAsync().Result;
 			return JsonConvert.DeserializeObject<List<Project>>(contents);
+		}
+
+		// PostAsync has potential for errrors to be thrown, which do not translate well to HTTP Error codes. 
+		// We do not care about error handling given we don't present those errors to the user.
+		// TODO: we should present users with better error messages based on HTTP codes.
+		async Task<bool> GottaCatchThemAll(string path, FormUrlEncodedContent content)
+		{
+			try
+			{
+				var response = await _client.PostAsync(path, content);
+				return response.IsSuccessStatusCode;
+			}
+			catch
+			{
+				return false;
+			}
 		}
 	}
 }
