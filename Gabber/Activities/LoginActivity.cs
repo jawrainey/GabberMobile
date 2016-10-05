@@ -18,6 +18,11 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.login);
 
+			FindViewById<TextView>(Resource.Id.register).Click += delegate
+			{
+				StartActivity(typeof(RegisterActivity));
+			};
+
 			FindViewById<AppCompatButton>(Resource.Id.submit).Click += async delegate
 			{
 				var email = FindViewById<AppCompatEditText>(Resource.Id.email);

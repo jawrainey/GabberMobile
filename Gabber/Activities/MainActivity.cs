@@ -24,8 +24,12 @@ namespace Gabber
 			// Used to redirect unauthenticated users
 			if (string.IsNullOrWhiteSpace(prefs.GetString("username", "")))
 			{
-				StartActivity(typeof(HomeActivity));
+				StartActivity(typeof(LoginActivity));
 				Finish();
+			}
+			else
+			{
+				SetupProjects();
 			}
 
 			// Register the implementation to the global interface within the PCL.
@@ -38,8 +42,6 @@ namespace Gabber
 
 			RecyclerView mView = FindViewById<RecyclerView>(Resource.Id.projects);
 			mView.SetLayoutManager(new LinearLayoutManager(this));
-
-			SetupProjects();
 
 			var mAdapter = new RecyclerAdapter(_projects);
 			mAdapter.ProjectClicked += OnProjectClick;
