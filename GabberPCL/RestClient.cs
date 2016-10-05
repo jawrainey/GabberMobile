@@ -63,8 +63,15 @@ namespace GabberPCL
 					             "authorImage", Path.GetFileName(story.PhotoPath));
 				}
 
-				var response = await _client.PostAsync("api/upload", formData);
-				return response.IsSuccessStatusCode;
+				try
+				{
+					var response = await _client.PostAsync("api/upload", formData);
+					return response.IsSuccessStatusCode;
+				}
+				catch
+				{
+					return false;
+				}
 			}
 		}
 
@@ -72,9 +79,16 @@ namespace GabberPCL
 		// TODO: make this async
 		public List<Project> GetProjects()
 		{
-			var response = _client.GetAsync("api/projects").Result;
-			var contents = response.Content.ReadAsStringAsync().Result;
-			return JsonConvert.DeserializeObject<List<Project>>(contents);
+			try
+			{
+				var response = _client.GetAsync("api/projects").Result;
+				var contents = response.Content.ReadAsStringAsync().Result;
+				return JsonConvert.DeserializeObject<List<Project>>(contents);
+			}
+			catch
+			{
+				return new List<Project>();
+			}
 		}
 
 		// PostAsync has potential for errrors to be thrown, which do not translate well to HTTP Error codes. 
