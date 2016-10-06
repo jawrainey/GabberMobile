@@ -129,7 +129,6 @@
     <AndroidResource Include="Resources\layout\toolbar.axml" />
     <AndroidResource Include="Resources\layout\main.axml" />
     <AndroidResource Include="Resources\layout\login.axml" />
-    <AndroidResource Include="Resources\layout\row.axml" />
     <AndroidResource Include="Resources\layout\preparation.axml" />
     <AndroidResource Include="Resources\layout\record.axml" />
     <AndroidResource Include="Resources\drawable\play.png" />
