@@ -41,15 +41,13 @@ namespace Gabber
 
 		public class ProjectViewHolder : RecyclerView.ViewHolder
 		{
-			public ImageView mprojectCard { get; set; }
 			public TextView mprojectText { get; set; }
 
 			public ProjectViewHolder(View view, Action<int> listener) : base(view)
 			{
-				mprojectCard = view.FindViewById<ImageView>(Resource.Id.imagePrompt);
 				mprojectText = view.FindViewById<TextView>(Resource.Id.imageText);
 				// Binds event to each card within the UI
-				mprojectCard.Click += (sender, e) => listener(LayoutPosition);
+				mprojectText.Click += (sender, e) => listener(LayoutPosition);
 			}
 		}
 	}
