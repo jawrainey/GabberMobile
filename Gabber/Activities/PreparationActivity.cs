@@ -43,6 +43,11 @@ namespace Gabber
 
 			var spinner = FindViewById<Spinner>(Resource.Id.previousFriends);
 			spinner.ItemSelected += PreviousIntervieweeSelected;
+			if (_stories.Count <= 0)
+			{
+				spinner.Enabled = false;
+				spinner.Clickable = false;
+			}
 
 			var friends = PreviousFriends();
 			friends.Insert(0, "Previous friends...");
