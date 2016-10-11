@@ -48,7 +48,7 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.main);
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
-			SupportActionBar.Title = "Select a cause to support";
+			SupportActionBar.Title = "Select a project to support";
 
 			RecyclerView mView = FindViewById<RecyclerView>(Resource.Id.projects);
 			mView.SetLayoutManager(new LinearLayoutManager(this));

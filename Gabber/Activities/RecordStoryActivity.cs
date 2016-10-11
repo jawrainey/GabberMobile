@@ -17,7 +17,7 @@ using GabberPCL;
 
 namespace Gabber
 {
-	[Activity(Label = "Record your gabberings")]
+	[Activity(Label = "Capture and share the Gabber")]
 	public class RecordStoryActivity : AppCompatActivity
 	{
 		// TODO: move all recording logic to a seperate class, which is useful when creating a PCL

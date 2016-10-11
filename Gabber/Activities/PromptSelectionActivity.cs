@@ -11,7 +11,7 @@ using GabberPCL;
 
 namespace Gabber
 {
-	[Activity(Label = "Discussion topics")]
+	[Activity(Label = "Topics to discuss")]
 	public class PromptSelectionActivity : AppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
