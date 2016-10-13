@@ -26,6 +26,7 @@ namespace Gabber
 			FindViewById<AppCompatButton>(Resource.Id.capture).Click += delegate
 			{
 				StartActivity(typeof(PreparationActivity));
+				Finish();
 			};
 		}
 	}

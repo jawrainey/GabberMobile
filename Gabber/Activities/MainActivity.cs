@@ -14,15 +14,17 @@ namespace Gabber
 	{
 		// A project commissioned through the web-service.
 		List<Project> _projects;
+		// To faciliate access in OnProjectClick
+		ISharedPreferences _prefs;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			// Used to display interviews that the logged in user has recorded
 			// This ensures if many log into the device, then they will see theirs.
-			var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+			_prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
 
 			// Used to redirect unauthenticated users
-			if (string.IsNullOrWhiteSpace(prefs.GetString("username", "")))
+			if (string.IsNullOrWhiteSpace(_prefs.GetString("username", "")))
 			{
 				StartActivity(typeof(LoginActivity));
 				Finish();
@@ -33,7 +35,7 @@ namespace Gabber
 
 				SetupProjects(model);
 
-				foreach (var gabber in model.GetStories(prefs.GetString("username", "")))
+				foreach (var gabber in model.GetStories(_prefs.GetString("username", "")))
 				{
 					if (!gabber.Uploaded)
 					{
@@ -80,7 +82,8 @@ namespace Gabber
 		{
 			var intent = new Intent(this, typeof(PreparationActivity));
 			// The unique ID used to lookup associated prompts (URLs and text).
-			intent.PutExtra("theme", _projects[position].theme);
+			// Storing as pref as access is required 
+			_prefs.Edit().PutString("theme", _projects[position].theme).Commit();
 			StartActivity(intent);
 		}
 	}

@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using GabberPCL;
 using System.Linq;
 using Android.Support.V4.Content;
+using Android.Preferences;
 
 namespace Gabber
 {
@@ -101,7 +102,8 @@ namespace Gabber
 					intent.PutExtra("name", name.Text);
 					intent.PutExtra("email", email.Text);
 					// Pass the previous form data (selected theme)
-					intent.PutExtras(Intent.Extras);
+					intent.PutExtra("theme", PreferenceManager.GetDefaultSharedPreferences(
+						ApplicationContext).GetString("theme", ""));
 					// Users should return to main screen if they go back. Start over.
 					StartActivity(intent);
 				}
