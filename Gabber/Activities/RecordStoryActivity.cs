@@ -62,7 +62,7 @@ namespace Gabber
 					if (string.IsNullOrWhiteSpace(_path))
 					{
 						var personal = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-						_path = Path.Combine(personal, System.Diagnostics.Stopwatch.GetTimestamp() + ".mp3");	
+						_path = Path.Combine(personal, DateTimeOffset.Now.ToUnixTimeSeconds() + ".mp3");	
 					}
 
 					StartRecording();
