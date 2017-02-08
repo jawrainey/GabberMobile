@@ -14,6 +14,7 @@ using Android.Locations;
 using FFImageLoading.Views;
 using FFImageLoading;
 using GabberPCL;
+using Android.Preferences;
 
 namespace Gabber
 {
@@ -130,11 +131,25 @@ namespace Gabber
 			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 			model.InsertStory(story);
 
-			// We do not want the user to return to ANY gabber recording pages once captured.
-			var intent = new Intent(this, typeof(CompletionActivity));
-			intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
-			StartActivity(intent);
-			Finish();	
+			var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
+			alert.SetTitle("Interview saved, but what next?");
+			alert.SetMessage("You can record another interview with the same project and participant, " + 
+			                 "or select another project or participant to interview.");
+
+			alert. SetPositiveButton("Record again", (senderAlert, args) =>
+			{
+				Finish();
+			});
+
+			alert.SetNegativeButton("Finish", (senderAlert, args) =>
+			{
+				var intent = new Intent(this, typeof(MainActivity));
+				intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
+				StartActivity(intent);
+				Finish();
+			});
+
+			alert.Create().Show();
 
 			if (await new RestClient().Upload(story))
 			{

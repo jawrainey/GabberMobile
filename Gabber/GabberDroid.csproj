@@ -108,7 +108,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Adapters\RecyclerAdapter.cs" />
     <Compile Include="Adapters\RVPromptAdapter.cs" />
-    <Compile Include="Activities\CompletionActivity.cs" />
     <Compile Include="Activities\HomeActivity.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\PreparationActivity.cs" />
@@ -142,7 +141,6 @@
     <AndroidResource Include="Resources\drawable\stop.png" />
     <AndroidResource Include="Resources\drawable\cancel.png" />
     <AndroidResource Include="Resources\layout\promptselection.axml" />
-    <AndroidResource Include="Resources\layout\completion.axml" />
     <AndroidResource Include="Resources\layout\home.axml" />
     <AndroidResource Include="Resources\drawable\next.png" />
     <AndroidResource Include="Resources\drawable\previous.png" />
