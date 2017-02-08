@@ -18,7 +18,7 @@ using Android.Preferences;
 
 namespace Gabber
 {
-	[Activity(Label = "Capture and share the Gabber")]
+	[Activity(Label = "Recording your Gabber")]
 	public class RecordStoryActivity : AppCompatActivity
 	{
 		// TODO: move all recording logic to a seperate class, which is useful when creating a PCL
@@ -45,8 +45,6 @@ namespace Gabber
 			var record = FindViewById<FloatingActionButton>(Resource.Id.start);
 			var cancel = FindViewById<FloatingActionButton>(Resource.Id.cancel);
 			var timer = FindViewById<TextView>(Resource.Id.timer);
-
-			Snackbar.Make(record, "Why not introduce your friend?", Snackbar.LengthLong).Show();
 
 			// Note: record has two states: start and stop record.
 			record.Click += delegate

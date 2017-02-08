@@ -35,7 +35,7 @@ namespace Gabber
 			// Need to pass an existing view to the snackbar.
 			var topicSelection = FindViewById<FloatingActionButton>(Resource.Id.topicSelectionFAB);
 			// Make it more obvious that the silhouette is clickable.
-			Snackbar.Make(topicSelection, "Why not take a photo of your friend?", Snackbar.LengthLong).Show();
+			Snackbar.Make(topicSelection, "Who is participating in the interview?", Snackbar.LengthLong).Show();
 
 			// Required to access existing gabbers for a given user
 			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
@@ -51,7 +51,7 @@ namespace Gabber
 			}
 
 			var friends = PreviousFriends();
-			friends.Insert(0, "Previous friends...");
+			friends.Insert(0, "Previous participants...");
 			var spinnerAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, friends);
 			spinnerAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			spinner.Adapter = spinnerAdapter;

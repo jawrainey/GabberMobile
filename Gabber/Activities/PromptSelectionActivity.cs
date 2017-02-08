@@ -36,7 +36,7 @@ namespace Gabber
 			touchHelper.AttachToRecyclerView(recyclerView);
 
 			// Make it obvious how to select a discussion prompt.
-			Snackbar.Make(recyclerView, "Select a topic you'll enjoy discussing", Snackbar.LengthLong).Show();
+			Snackbar.Make(recyclerView, "Select a topic to guide the interview", Snackbar.LengthLong).Show();
 
 			FindViewById<ImageButton>(Resource.Id.selectFAB).Click += delegate
 			{
