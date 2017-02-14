@@ -116,7 +116,6 @@
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Helpers\DiskIO.cs" />
     <Compile Include="Activities\MainActivity.cs" />
-    <Compile Include="Adapters\FragmentAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
