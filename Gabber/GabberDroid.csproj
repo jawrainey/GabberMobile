@@ -108,7 +108,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Adapters\RecyclerAdapter.cs" />
     <Compile Include="Adapters\RVPromptAdapter.cs" />
-    <Compile Include="Activities\HomeActivity.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\PreparationActivity.cs" />
     <Compile Include="Activities\PromptSelectionActivity.cs" />
@@ -126,7 +125,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values-v21\styles.xml" />
-    <AndroidResource Include="Resources\layout\toolbar.axml" />
     <AndroidResource Include="Resources\layout\main.axml" />
     <AndroidResource Include="Resources\layout\login.axml" />
     <AndroidResource Include="Resources\layout\preparation.axml" />
@@ -157,26 +155,8 @@
     <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable\border_top.xml" />
-    <AndroidResource Include="Resources\layout\frag_topic.axml" />
-    <AndroidResource Include="Resources\layout\frag_collect.axml" />
-    <AndroidResource Include="Resources\layout\frag_record.axml" />
-    <AndroidResource Include="Resources\layout\frag_home.axml" />
-    <AndroidResource Include="Resources\drawable-hdpi\chat_bubble.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\group.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\mic.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\chat_bubble.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\group.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\mic.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\chat_bubble.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\group.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\mic.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\chat_bubble.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\group.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\mic.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\chat_bubble.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\group.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\mic.png" />
     <AndroidResource Include="Resources\layout\project.axml" />
+    <AndroidResource Include="Resources\layout\toolbar.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
