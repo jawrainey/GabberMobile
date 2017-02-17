@@ -130,14 +130,10 @@ namespace Gabber
 			model.InsertStory(story);
 
 			var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
-			alert.SetTitle("Interview saved, but what next?");
-			alert.SetMessage("You can record another interview with the same project and participant, " + 
-			                 "or select another project or participant to interview.");
+			alert.SetTitle("Record again?");
+			alert.SetMessage("Would you like to record another interview with the same participant or finish?");
 
-			alert. SetPositiveButton("Record again", (senderAlert, args) =>
-			{
-				Finish();
-			});
+			alert.SetPositiveButton("Record again", (s,a) => { Finish(); });
 
 			alert.SetNegativeButton("Finish", (senderAlert, args) =>
 			{
