@@ -2,26 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:keepScreenOn="true">
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
-    <LinearLayout
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"
-        android:orientation="vertical">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/prompts"
-            android:layout_width="fill_parent"
-            android:layout_height="293dp" />
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/selectFAB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/select"
-            android:layout_gravity="center_horizontal"
-            app:backgroundTint="@android:color/white" />
-    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/prompts"
+        android:layout_weight="0.7"
+        android:layout_width="match_parent"
+        android:layout_height="293dp" />
 </LinearLayout>
