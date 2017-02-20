@@ -122,6 +122,9 @@ namespace Gabber
 				IntervieweeName = Intent.GetStringExtra("name"),
 				Location = currentlocation,
 				promptText = Intent.GetStringExtra("promptText"),
+				IntervieweeGender = Intent.GetStringExtra("gender"),
+				IntervieweeAge = Intent.GetStringExtra("age"),
+				ComplexNeedsAsJSON = Intent.GetStringExtra("needs"),
 				Uploaded = false
 			};
 

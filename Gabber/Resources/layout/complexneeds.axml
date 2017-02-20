@@ -15,7 +15,7 @@
         android:layout_marginBottom="24dp"
         android:layout_marginRight="24dp">
         <TextView
-            android:text="When?"
+            android:text="When? (Current is &lt;1 month)"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
@@ -33,7 +33,7 @@
                 android:id="@+id/current"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current (&lt;1 month)" />
+                android:text="Current" />
             <RadioButton
                 android:id="@+id/previous"
                 android:layout_width="wrap_content"

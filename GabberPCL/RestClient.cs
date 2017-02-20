@@ -52,6 +52,10 @@ namespace GabberPCL
 				formData.Add(new StringContent(story.IntervieweeName), "intervieweeName");
 				formData.Add(new StringContent(story.Location), "location");
 				formData.Add(new StringContent(story.promptText), "promptText");
+				formData.Add(new StringContent(story.IntervieweeGender), "intervieweeGender");
+				formData.Add(new StringContent(story.IntervieweeAge), "intervieweeAge");
+				formData.Add(new StringContent(story.ComplexNeedsAsJSON), "ComplexNeedsAsJSON");
+
 				// Access the OS specific implementation to load data from a file.
 				formData.Add(new ByteArrayContent(GlobalIO.Load(story.AudioPath)),
 				             "experience", Path.GetFileName(story.AudioPath));

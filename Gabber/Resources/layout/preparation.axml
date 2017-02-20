@@ -70,29 +70,35 @@
                 android:imeOptions="actionNext"
                 android:hint="Email (optional)" />
         </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp">
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/age"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:imeOptions="actionDone"
-                android:hint="Age" />
-        </android.support.design.widget.TextInputLayout>
-        <Spinner
-            android:id="@+id/gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp" />
-        <View
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#000000" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_marginBottom="8dp">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:imeOptions="actionDone"
+                    android:hint="Age" />
+            </android.support.design.widget.TextInputLayout>
+            <Spinner
+                android:id="@+id/gender"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:layout_marginBottom="16dp" />
+        </LinearLayout>
         <TextView
             android:text="Which of these complex needs have you had difficulties of?"
             android:textSize="16sp"
@@ -104,8 +110,7 @@
             android:layout_height="match_parent"
             android:rowCount="2"
             android:columnCount="2"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp">
+            android:layout_marginBottom="8dp">
             <CheckBox
                 android:id="@+id/substance"
                 android:layout_width="wrap_content"
@@ -127,13 +132,13 @@
                 android:layout_height="wrap_content"
                 android:text="Problems with police" />
         </GridLayout>
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/topicSelectionFAB"
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/submit"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/select"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="center_horizontal"
-            app:backgroundTint="@android:color/white" />
+            android:layout_marginBottom="16dp"
+            android:textColor="@drawable/textcolorbutton"
+            android:background="@drawable/borderbutton"
+            android:text="Select prompt" />
     </LinearLayout>
 </RelativeLayout>

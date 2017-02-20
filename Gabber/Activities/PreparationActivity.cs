@@ -37,7 +37,7 @@ namespace Gabber
 			SetContentView(Resource.Layout.preparation);
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
 			// Need to pass an existing view to the snackbar.
-			var topicSelection = FindViewById<FloatingActionButton>(Resource.Id.topicSelectionFAB);
+			var topicSelection = FindViewById<AppCompatButton>(Resource.Id.submit);
 			// Make it more obvious that the silhouette is clickable.
 			Snackbar.Make(topicSelection, "Who is participating in the interview?", Snackbar.LengthLong).Show();
 
@@ -228,8 +228,13 @@ namespace Gabber
 			var intervieweeEmail = match.IntervieweeEmail;
 			FindViewById<TextInputEditText>(Resource.Id.name).Text = intervieweeName;
 			FindViewById<TextInputEditText>(Resource.Id.email).Text = intervieweeEmail;
+			FindViewById<TextInputEditText>(Resource.Id.age).Text = match.IntervieweeAge;
+			var genders = new List<string> { "Gender", "Female", "Male", "Other" };
+			FindViewById<Spinner>(Resource.Id.gender).SetSelection(genders.FindIndex(x => x == match.IntervieweeGender));
 
 			var photo = FindViewById<CircleImageView>(Resource.Id.photo);
+			Snackbar.Make(photo, "Complex needs must be re-entered for each interview", Snackbar.LengthLong).Show();
+
 			// Use previously taken photo
 			if (!string.IsNullOrEmpty(match.PhotoPath))
 			{
