@@ -191,6 +191,7 @@
     <AndroidResource Include="Resources\drawable\border_top.xml" />
     <AndroidResource Include="Resources\layout\project.axml" />
     <AndroidResource Include="Resources\layout\toolbar.axml" />
+    <AndroidResource Include="Resources\layout\complexneeds.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />

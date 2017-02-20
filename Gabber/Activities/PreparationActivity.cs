@@ -16,6 +16,8 @@ using GabberPCL;
 using System.Linq;
 using Android.Support.V4.Content;
 using Android.Preferences;
+using Android.Support.V7.Widget;
+using Android.Views;
 
 namespace Gabber
 {
@@ -26,6 +28,8 @@ namespace Gabber
 		Java.IO.File _photo;
 		// Provide access for the spinner methods.
 		List<Story> _stories;
+		// String is type of need to override.
+		Dictionary<string, ComplexNeeds> _complex_needs;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -56,6 +60,43 @@ namespace Gabber
 			spinnerAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			spinner.Adapter = spinnerAdapter;
 
+			var genders = new List<string> { "Gender", "Female", "Male", "Other" };
+			var genderAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, genders);
+			genderAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			var gender = FindViewById<Spinner>(Resource.Id.gender);
+			gender.Adapter = genderAdapter;
+
+			// Stored the selected needs to pass between activities
+			_complex_needs = new Dictionary<string, ComplexNeeds>();
+
+			var substance = FindViewById<CheckBox>(Resource.Id.substance);
+			substance.Click += (o, e) =>
+			{
+				if (substance.Checked) ComplexNeedsDialog("substance");
+				else _complex_needs.Remove("substance");
+			};
+
+			var housing = FindViewById<CheckBox>(Resource.Id.housing);
+			housing.Click += (o, e) =>
+			{
+				if (housing.Checked) ComplexNeedsDialog("housing");
+				else _complex_needs.Remove("housing");
+			};
+
+			var mental = FindViewById<CheckBox>(Resource.Id.mental);
+			mental.Click += (o, e) =>
+			{
+				if (mental.Checked) ComplexNeedsDialog("mental");
+				else _complex_needs.Remove("mental");
+			};
+
+			var police = FindViewById<CheckBox>(Resource.Id.police);
+			police.Click += (o, e) =>
+			{
+				if (police.Checked) ComplexNeedsDialog("police");
+				else _complex_needs.Remove("police");
+			};
+
 			FindViewById<CircleImageView>(Resource.Id.photo).Click += delegate
 			{
 				// Creates a public directory to write images/audios if it does not exist
@@ -78,29 +119,37 @@ namespace Gabber
 			{
 				var name = FindViewById<TextInputEditText>(Resource.Id.name);
 				var email = FindViewById<TextInputEditText>(Resource.Id.email);
+				var age = FindViewById<TextInputEditText>(Resource.Id.age);
 
-				// We only care about their email to "pass-it-on".
-				if (string.IsNullOrWhiteSpace(email.Text))
+				if (string.IsNullOrWhiteSpace(name.Text))
 				{
-					Snackbar.Make(email, "Your friends email is required.", Snackbar.LengthLong).Show();
+					Snackbar.Make(email, "A name is required.", Snackbar.LengthLong).Show();
 				}
-				else if (string.IsNullOrWhiteSpace(name.Text))
+				else if (email.Text.Length > 4 && !Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
 				{
-					Snackbar.Make(email, "Your friends name is required.", Snackbar.LengthLong).Show();
+					Snackbar.Make(email, "The email address entered is invalid.", Snackbar.LengthLong).Show();
 				}
-				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
+				else if (string.IsNullOrEmpty(age.Text) || int.Parse(age.Text) <= 0 || int.Parse(age.Text) >= 100)
 				{
-					Snackbar.Make(email, "That email address is invalid.", Snackbar.LengthLong).Show();
+					Snackbar.Make(email, "An age is required", Snackbar.LengthLong).Show();
+				}
+				else if (gender.SelectedItemPosition == 0)
+				{
+					Snackbar.Make(email, "A gender is required.", Snackbar.LengthLong).Show();
 				}
 				else
 				{
 					// Pass the preparation form data to the record activity.
 					var intent = new Intent(this, typeof(PromptSelectionActivity));
+
 					// Photos are optional: this check ensures that empty files are not sent.
 					// e.g. if a user takes a photo, then cancels (on the first time).
 					intent.PutExtra("photo", (_photo != null && _photo.Length() > 0) ? _photo.AbsolutePath : "");
 					intent.PutExtra("name", name.Text);
 					intent.PutExtra("email", email.Text);
+					intent.PutExtra("age", age.Text);
+					intent.PutExtra("gender", gender.SelectedItem.ToString());
+					intent.PutExtra("needs", Newtonsoft.Json.JsonConvert.SerializeObject(_complex_needs));
 					// Pass the previous form data (selected theme)
 					intent.PutExtra("theme", PreferenceManager.GetDefaultSharedPreferences(
 						ApplicationContext).GetString("theme", ""));
@@ -108,6 +157,56 @@ namespace Gabber
 					StartActivity(intent);
 				}
 			};
+		}
+
+		void ComplexNeedsDialog(string type)
+		{
+			var builder = new Android.Support.V7.App.AlertDialog.Builder(this);
+			var dialogView = LayoutInflater.Inflate(Resource.Layout.complexneeds, null);
+			builder.SetView(dialogView);
+			builder.SetTitle("Details of your experience");
+
+			var lt = dialogView.FindViewById<TextView>(Resource.Id.longagotext);
+			var lg = dialogView.FindViewById<GridLayout>(Resource.Id.longagogrid);
+			var previous = dialogView.FindViewById<RadioButton>(Resource.Id.previous);
+
+			// Only show the year/month when previous is selected 
+			previous.CheckedChange += delegate
+			{
+				lt.Visibility = lt.Visibility == ViewStates.Gone ? ViewStates.Visible : ViewStates.Gone;
+				lg.Visibility = lg.Visibility == ViewStates.Gone ? ViewStates.Visible : ViewStates.Gone;
+			};
+
+
+			var rbg = dialogView.FindViewById<RadioGroup>(Resource.Id.rbgroup);
+			var year = dialogView.FindViewById<TextInputEditText>(Resource.Id.yearinput);
+			var month = dialogView.FindViewById<TextInputEditText>(Resource.Id.monthinput);
+
+			// Previously stored information for this particular complex need
+			if (_complex_needs.ContainsKey(type))
+			{
+				year.Text = _complex_needs[type].year;
+				month.Text = _complex_needs[type].month;
+				var tl = _complex_needs[type].timeline;
+
+				if (tl.Contains("current")) rbg.Check(Resource.Id.current);
+				else rbg.Check(Resource.Id.previous);
+			}
+
+			builder.SetPositiveButton(Android.Resource.String.Ok, (sender, e) => 
+			{
+				var cn = new ComplexNeeds();
+				cn.type = type;
+				cn.timeline = dialogView.FindViewById<RadioButton>(rbg.CheckedRadioButtonId).Text.ToLower();
+				// If "current" is chosen, then no month/year is shown.
+				cn.month = string.IsNullOrEmpty(month.Text) ? "0" : month.Text;
+				cn.year = string.IsNullOrEmpty(year.Text) ? "0" : year.Text;
+				// Override existing need if it is re-selected
+				if (_complex_needs.ContainsKey(type)) _complex_needs["type"] = cn;
+				else _complex_needs.Add(type, cn);
+			});
+
+			builder.Create().Show();
 		}
 
 		List<string> PreviousFriends()
@@ -125,9 +224,11 @@ namespace Gabber
 			// The selected name and related email to populate the form with
 			var intervieweeName = ((Spinner)sender).GetItemAtPosition(e.Position).ToString();
 			var match = _stories.Find((s) => s.IntervieweeName == intervieweeName);
+
 			var intervieweeEmail = match.IntervieweeEmail;
 			FindViewById<TextInputEditText>(Resource.Id.name).Text = intervieweeName;
 			FindViewById<TextInputEditText>(Resource.Id.email).Text = intervieweeEmail;
+
 			var photo = FindViewById<CircleImageView>(Resource.Id.photo);
 			// Use previously taken photo
 			if (!string.IsNullOrEmpty(match.PhotoPath))
