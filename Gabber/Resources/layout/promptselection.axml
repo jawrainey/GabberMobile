@@ -10,7 +10,6 @@
         layout="@layout/toolbar" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/prompts"
-        android:layout_weight="0.7"
         android:layout_width="match_parent"
         android:layout_height="293dp" />
 </LinearLayout>
