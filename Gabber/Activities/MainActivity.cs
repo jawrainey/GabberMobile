@@ -16,6 +16,8 @@ namespace Gabber
 		List<Project> _projects;
 		// To faciliate access in OnProjectClick
 		ISharedPreferences _prefs;
+		// Access local Gabber details on project click
+		DatabaseManager _model;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -31,17 +33,9 @@ namespace Gabber
 			}
 			else
 			{
-				var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
+				_model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 
-				SetupProjects(model);
-
-				foreach (var gabber in model.GetStories(_prefs.GetString("username", "")))
-				{
-					if (!gabber.Uploaded)
-					{
-						model.UpdateStory(gabber);
-					}
-				}
+				SetupProjects(_model);
 			}
 
 			// Register the implementation to the global interface within the PCL.
@@ -80,6 +74,21 @@ namespace Gabber
 
 		void OnProjectClick(object sender, int position)
 		{
+			foreach (var gabber in _model.GetStories(_prefs.GetString("username", "")))
+			{
+				if (!gabber.Uploaded)
+				{
+					RunOnUiThread(async () =>
+					{
+						if (await new RestClient().Upload(gabber))
+						{
+							gabber.Uploaded = true;
+							_model.UpdateStory(gabber);
+						}
+					});
+				}
+			}
+
 			var intent = new Intent(this, typeof(PreparationActivity));
 			// The unique ID used to lookup associated prompts (URLs and text).
 			// Storing as pref as access is required 
