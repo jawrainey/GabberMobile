@@ -6,7 +6,6 @@ using Android.Support.V7.Widget;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using GabberPCL;
-using Android;
 
 namespace Gabber
 {

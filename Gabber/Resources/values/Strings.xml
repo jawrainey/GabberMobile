@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <resources>
     <string name="app_name">Gabber</string>
-<!-- LoginActivity	-->
+
 	<string name="oh_no">Oh no, something went wrong.</string>
 	<string name="oh_my">An error... oh my</string>
 	<string name="error_all_details">All details are required.</string>

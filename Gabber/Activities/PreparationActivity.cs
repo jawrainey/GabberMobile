@@ -19,8 +19,7 @@ using Android.Preferences;
 
 namespace Gabber
 {
-	//Resources.GetText(Resource.String.hint_who_gabbering_with
-	[Activity(Label = "Who are you gabbering with?")]
+	[Activity]
 	public class PreparationActivity : AppCompatActivity
 	{
 		// The photo take by the camera activity to be stored & displayed in main.
@@ -33,6 +32,8 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.preparation);
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+			SupportActionBar.Title = Resources.GetText(Resource.String.hint_who_gabbering_with);
+
 			// Need to pass an existing view to the snackbar.
 			var topicSelection = FindViewById<FloatingActionButton>(Resource.Id.topicSelectionFAB);
 			// Make it more obvious that the silhouette is clickable.

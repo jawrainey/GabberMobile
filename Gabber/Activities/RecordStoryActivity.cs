@@ -18,8 +18,7 @@ using Android.Preferences;
 
 namespace Gabber
 {
-	//Resources.GetText(Resource.String.recording_your_gabber)
-	[Activity(Label = "Recording your Gabber")]
+	[Activity]
 	public class RecordStoryActivity : AppCompatActivity
 	{
 		// TODO: move all recording logic to a seperate class, which is useful when creating a PCL
@@ -34,6 +33,7 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.record);
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+			SupportActionBar.Title = Resources.GetText(Resource.String.recording_your_gabber);
 
 			var selectedPrompt = FindViewById(Resource.Id.promptCard);
 			var imageView = selectedPrompt.FindViewById<ImageViewAsync>(Resource.Id.imagePrompt);

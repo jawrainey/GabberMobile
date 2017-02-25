@@ -11,7 +11,7 @@ using GabberPCL;
 
 namespace Gabber
 {
-	[Activity(Label = "Register")]
+	[Activity]
 	public class RegisterActivity : AppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)

@@ -10,8 +10,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace Gabber
 {
-	//Resources.GetText(Resource.String.topics_to_discuss)
-	[Activity(Label = "Topics to discuss")]
+	[Activity]
 	public class PromptSelectionActivity : AppCompatActivity
 	{
 		RecyclerView promptRecyclerView;
@@ -21,6 +20,7 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.promptselection);
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+			SupportActionBar.Title = Resources.GetText(Resource.String.topics_to_discuss);
 
 			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 			var selectedProject = model.GetProjects().Find((Project pj) => pj.theme == Intent.GetStringExtra("theme"));
