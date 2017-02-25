@@ -10,6 +10,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace Gabber
 {
+	//Resources.GetText(Resource.String.topics_to_discuss)
 	[Activity(Label = "Topics to discuss")]
 	public class PromptSelectionActivity : AppCompatActivity
 	{

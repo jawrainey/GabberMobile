@@ -18,6 +18,7 @@ using Android.Preferences;
 
 namespace Gabber
 {
+	//Resources.GetText(Resource.String.recording_your_gabber)
 	[Activity(Label = "Recording your Gabber")]
 	public class RecordStoryActivity : AppCompatActivity
 	{
@@ -130,12 +131,12 @@ namespace Gabber
 			model.InsertStory(story);
 
 			var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
-			alert.SetTitle("Record again?");
-			alert.SetMessage("Would you like to record another interview with the same participant or finish?");
+			alert.SetTitle(Resources.GetText(Resource.String.popup_record_again));
+			alert.SetMessage(Resources.GetText(Resource.String.popup_record_question));
 
-			alert.SetPositiveButton("Record again", (s,a) => { Finish(); });
+			alert.SetPositiveButton(Resources.GetText(Resource.String.popup_record_button), (s,a) => { Finish(); });
 
-			alert.SetNegativeButton("Finish", (senderAlert, args) =>
+			alert.SetNegativeButton(Resources.GetText(Resource.String.popup_finish), (senderAlert, args) =>
 			{
 				var intent = new Intent(this, typeof(MainActivity));
 				intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);

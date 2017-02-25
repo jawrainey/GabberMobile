@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:imeOptions="actionNext"
-                android:hint="Name" />
+                android:hint="@string/name" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:imeOptions="actionDone"
-                android:hint="Email address" />
+                android:hint="@string/login_prompt_email" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/topicSelectionFAB"

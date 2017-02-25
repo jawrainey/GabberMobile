@@ -32,11 +32,11 @@ namespace Gabber
 				// would be output for each unique error instead of a generic (informative) message.
 				if (string.IsNullOrWhiteSpace(email.Text) || string.IsNullOrWhiteSpace(passw.Text))
 				{
-					Snackbar.Make(email, "A username and password are required.", Snackbar.LengthLong).Show();
+					Snackbar.Make(email, Resources.GetText(Resource.String.error_usern_pass_req), Snackbar.LengthLong).Show();
 				}
 				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
 				{
-					Snackbar.Make(email, "That email address is invalid.", Snackbar.LengthLong).Show();
+					Snackbar.Make(email, Resources.GetText(Resource.String.error_invalid_email), Snackbar.LengthLong).Show();
 				}
 				else
 				{
@@ -63,7 +63,7 @@ namespace Gabber
 							FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
 						});
 
-						Snackbar.Make(email, "Oh no, something went wrong.", 0).Show();
+						Snackbar.Make(email, Resources.GetText(Resource.String.oh_no), 0).Show();
 					}
 				}
 			};

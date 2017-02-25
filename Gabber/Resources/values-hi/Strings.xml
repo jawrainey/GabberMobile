@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="app_name">गब्बेर</string>
+	
+	<string name="oh_no">कुछ गलत हो गया</string>
+	<string name="oh_my">एक त्रुटि पाई गई</string>
+	<string name="error_all_details">सभी विवरण आवश्यक हैं</string>
+	<string name="error_usern_pass_req">एक यूज़रनेम और पासवर्ड की आवश्यकता है।</string>
+    <string name="select_project">प्रोजेक्ट सलेक्ट कीजिए</string>
+
+	<string name="name">नाम</string>
+	<string name="full_name">पूरा नाम</string>
+	<string name="login_prompt_email">ईमेल</string>
+	<string name="login_prompt_password">पासवर्ड</string>
+	<string name="login_button">लोगिन</string>
+	<string name="login_register">एक खाता चाहिए ?</string>
+	<string name="btn_register">रेजिस्टर करो</string>
+
+	<string name="hint_who_interview"> कौन साक्षात्कार में भाग ले रहा है?</string>
+	<string name="hint_who_gabbering_with">किनके साथ साक्षात्कार कर रहे हो?</string>
+	<string name="previous_participants">पिछले प्रतिभागियों</string>
+	<string name="error_friends_email">ईमेल की जरूरत है</string>
+	<string name="error_friends_name">नाम आवश्यक है</string>
+	<string name="error_invalid_email">ईमेल पता अवैध है</string>
+	<string name="topics_to_discuss">विषयों पर चर्चा करने के लिए</string>
+	<string name="recording_your_gabber">साक्षात्कार दर्ज किया जा रहा है</string>
+	<string name="popup_record_again">फिर से रिकॉर्ड?</string>
+	<string name="popup_record_question">इस भागीदार के साथ, आप एक अन्य साक्षात्कार रिकॉर्ड करना चाहते हैं या आप खत्म करने के लिए चाहते हैं?</string>
+	<string name="popup_record_button">एक अन्य साक्षात्कार रिकॉर्ड</string>
+	<string name="popup_finish">समाप्त साक्षात्कार</string>
+</resources>

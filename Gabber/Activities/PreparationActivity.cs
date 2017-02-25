@@ -19,6 +19,7 @@ using Android.Preferences;
 
 namespace Gabber
 {
+	//Resources.GetText(Resource.String.hint_who_gabbering_with
 	[Activity(Label = "Who are you gabbering with?")]
 	public class PreparationActivity : AppCompatActivity
 	{
@@ -35,7 +36,7 @@ namespace Gabber
 			// Need to pass an existing view to the snackbar.
 			var topicSelection = FindViewById<FloatingActionButton>(Resource.Id.topicSelectionFAB);
 			// Make it more obvious that the silhouette is clickable.
-			Snackbar.Make(topicSelection, "Who is participating in the interview?", Snackbar.LengthLong).Show();
+			Snackbar.Make(topicSelection, Resources.GetText(Resource.String.hint_who_interview), Snackbar.LengthLong).Show();
 
 			// Required to access existing gabbers for a given user
 			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
@@ -51,7 +52,7 @@ namespace Gabber
 			}
 
 			var friends = PreviousFriends();
-			friends.Insert(0, "Previous participants...");
+			friends.Insert(0, Resources.GetText(Resource.String.previous_participants));
 			var spinnerAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, friends);
 			spinnerAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			spinner.Adapter = spinnerAdapter;
@@ -82,15 +83,15 @@ namespace Gabber
 				// We only care about their email to "pass-it-on".
 				if (string.IsNullOrWhiteSpace(email.Text))
 				{
-					Snackbar.Make(email, "Your friends email is required.", Snackbar.LengthLong).Show();
+					Snackbar.Make(email, Resources.GetText(Resource.String.error_friends_email), Snackbar.LengthLong).Show();
 				}
 				else if (string.IsNullOrWhiteSpace(name.Text))
 				{
-					Snackbar.Make(email, "Your friends name is required.", Snackbar.LengthLong).Show();
+					Snackbar.Make(email, Resources.GetText(Resource.String.error_friends_name), Snackbar.LengthLong).Show();
 				}
 				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
 				{
-					Snackbar.Make(email, "That email address is invalid.", Snackbar.LengthLong).Show();
+					Snackbar.Make(email, Resources.GetText(Resource.String.error_invalid_email), Snackbar.LengthLong).Show();
 				}
 				else
 				{

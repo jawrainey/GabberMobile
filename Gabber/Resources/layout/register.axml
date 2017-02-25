@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapWords"
-            android:hint="Full name" />
+            android:hint="@string/full_name" />
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="Email address" />
+            android:hint="@string/login_prompt_email" />
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint="Password" />
+            android:hint="@string/login_prompt_password" />
     </android.support.design.widget.TextInputLayout>
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/submit"
@@ -59,7 +59,7 @@
         android:layout_marginTop="16dp"
         android:textColor="@drawable/textcolorbutton"
         android:background="@drawable/borderbutton"
-        android:text="Sign up" />
+        android:text="@string/btn_register" />
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_marginTop="16dp"
