@@ -17,7 +17,6 @@
 	<string name="btn_register">रेजिस्टर करो</string>
 
 	<string name="select_participant">का चयन करें या साक्षात्कार के लिए एक नए भागीदार बनाने</string>
-	<string name="hint_who_interview"> कौन साक्षात्कार में भाग ले रहा है?</string>
 	<string name="hint_who_gabbering_with">किनके साथ साक्षात्कार कर रहे हो?</string>
 	<string name="previous_participants">पिछले प्रतिभागियों</string>
 	<string name="error_friends_email">ईमेल की जरूरत है</string>
