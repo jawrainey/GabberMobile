@@ -113,7 +113,7 @@ namespace Gabber
 
 			if (_participants.Count >= 1 && string.IsNullOrEmpty(name.Text))
 			{
-				Snackbar.Make(name, "Select or create a new participant to interview", Snackbar.LengthLong).Show();
+				Snackbar.Make(name, Resources.GetText(Resource.String.select_participant), Snackbar.LengthLong).Show();
 				return false;
 			}
 			if (string.IsNullOrWhiteSpace(name.Text))
