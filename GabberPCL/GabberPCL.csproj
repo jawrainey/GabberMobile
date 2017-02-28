@@ -38,6 +38,7 @@
     <Compile Include="Models\Project.cs" />
     <Compile Include="RestClient.cs" />
     <Compile Include="Interfaces\IDiskIO.cs" />
+    <Compile Include="Models\Participant.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

@@ -15,6 +15,8 @@ using FFImageLoading.Views;
 using FFImageLoading;
 using GabberPCL;
 using Android.Preferences;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Gabber
 {
@@ -114,13 +116,15 @@ namespace Gabber
 			}
 			catch { }
 
+			var participants = JsonConvert.DeserializeObject<List<Participant>>(Intent.GetStringExtra("participants"));
+
 			var story = new Story
 			{
 				AudioPath = _path,
-				PhotoPath = Intent.GetStringExtra("photo"),
+				PhotoPath = participants[0].Photo,
 				InterviewerEmail = prefs.GetString("username", ""),
-				IntervieweeEmail = Intent.GetStringExtra("email"),
-				IntervieweeName = Intent.GetStringExtra("name"),
+				IntervieweeEmail = participants[0].Email,
+				IntervieweeName = participants[0].Name,
 				Location = currentlocation,
 				promptText = Intent.GetStringExtra("promptText"),
 				Uploaded = false

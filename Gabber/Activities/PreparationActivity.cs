@@ -6,16 +6,17 @@ using Android.OS;
 using Android.Provider;
 using Android.Support.V7.App;
 using Android.Support.Design.Widget;
-using System.Diagnostics;
 using System.IO;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using Refractored.Controls;
 using Android.Widget;
 using System.Collections.Generic;
 using GabberPCL;
-using System.Linq;
 using Android.Support.V4.Content;
 using Android.Preferences;
+using Android.Support.V7.Widget;
+using Newtonsoft.Json;
+using Android.Util;
 
 namespace Gabber
 {
@@ -24,8 +25,8 @@ namespace Gabber
 	{
 		// The photo take by the camera activity to be stored & displayed in main.
 		Java.IO.File _photo;
-		// Provide access for the spinner methods.
-		List<Story> _stories;
+		List<Participant> _participants;
+		List<Participant> _selectedParticipants;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -34,118 +35,122 @@ namespace Gabber
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
 			SupportActionBar.Title = Resources.GetText(Resource.String.hint_who_gabbering_with);
 
-			// Need to pass an existing view to the snackbar.
-			var topicSelection = FindViewById<FloatingActionButton>(Resource.Id.topicSelectionFAB);
-			// Make it more obvious that the silhouette is clickable.
-			Snackbar.Make(topicSelection, Resources.GetText(Resource.String.hint_who_interview), Snackbar.LengthLong).Show();
-
 			// Required to access existing gabbers for a given user
-			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
-			var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
-			_stories = model.GetStories(prefs.GetString("username", ""));
+			var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
 
-			var spinner = FindViewById<Spinner>(Resource.Id.previousFriends);
-			spinner.ItemSelected += PreviousIntervieweeSelected;
-			if (_stories.Count <= 0)
+			// There are no participants selected by default
+			_selectedParticipants = new List<Participant>();
+			// Store these in shared prefs for simplicity of access.
+			if (string.IsNullOrEmpty(prefs.GetString("participants", ""))) _participants = new List<Participant>();
+			else _participants = JsonConvert.DeserializeObject<List<Participant>>(prefs.GetString("participants", ""));
+
+			var participantsView = FindViewById<RecyclerView>(Resource.Id.participants);
+			participantsView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false));
+
+			var adapter = new ParticipantAdapter(_participants);
+			adapter.ParticipantClicked += ParticipantSelected;
+			participantsView.SetAdapter(adapter);
+			participantsView.AddItemDecoration(new DividerItemDecoration(participantsView.Context, 1));
+			new LinearSnapHelper().AttachToRecyclerView(participantsView);
+
+			var name = FindViewById<TextInputEditText>(Resource.Id.participantName);
+			var email = FindViewById<TextInputEditText>(Resource.Id.participantEmail);
+			var photo = FindViewById<CircleImageView>(Resource.Id.prepPhoto);
+
+			photo.Click += delegate
 			{
-				spinner.Enabled = false;
-				spinner.Clickable = false;
-			}
-
-			var friends = PreviousFriends();
-			friends.Insert(0, Resources.GetText(Resource.String.previous_participants));
-			var spinnerAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, friends);
-			spinnerAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-			spinner.Adapter = spinnerAdapter;
-
-			FindViewById<CircleImageView>(Resource.Id.photo).Click += delegate
-			{
-				// Creates a public directory to write images/audios if it does not exist
+				// Creates a public directory to write images/audios if it does not exist as we
+				// cannot read/write from internal storage as external activity is used to write the file.
 				var gabberPublicDir = System.IO.Path.Combine(Environment.GetExternalStoragePublicDirectory(
 					Environment.DirectoryPictures).Path, "Gabber");
 				// Creates the directory if it does not exist.
 				Directory.CreateDirectory(gabberPublicDir);
 
-				// If the user opens an activity takes a photo, then wants to re-take a photo, then write to same file.
-				// Save as a timestamp in the same way as creating an audiofile.
-				_photo = new Java.IO.File(System.IO.Path.Combine(gabberPublicDir, Stopwatch.GetTimestamp() + ".jpg"));
+				_photo = new Java.IO.File(
+					System.IO.Path.Combine(gabberPublicDir, System.DateTimeOffset.Now.ToUnixTimeSeconds() + ".jpg"));
 
-				// Cannot read/write from internal storage as external activity is used to write the file.
 				var intent = new Intent(MediaStore.ActionImageCapture);
 				intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(_photo));
 				StartActivityForResult(intent, 0);
 			};
 
-			topicSelection.Click += delegate 
+			FindViewById<Button>(Resource.Id.addParticipant).Click += delegate 
 			{
-				var name = FindViewById<TextInputEditText>(Resource.Id.name);
-				var email = FindViewById<TextInputEditText>(Resource.Id.email);
+				if (FormValid())
+				{
+					var participant = new Participant { Name=name.Text, Email=email.Text };
+					participant.Photo = (_photo != null && _photo.Length() > 0) ? _photo.AbsolutePath : "";
+					_participants.Add(participant);
+					_selectedParticipants.Add(participant);
+					adapter.NotifyDataSetChanged();
+					// TODO: set border to green
+					prefs.Edit().PutString("participants", JsonConvert.SerializeObject(_participants)).Commit();
+					// Reset form content once participant is successfully added
+					photo.SetImageDrawable(ContextCompat.GetDrawable(this, Resource.Drawable.me));
+					name.Text = "";
+					email.Text = "";
+				}
+			};
 
-				// We only care about their email to "pass-it-on".
-				if (string.IsNullOrWhiteSpace(email.Text))
+			FindViewById<Button>(Resource.Id.selectPrompt).Click += delegate 
+			{
+				if (_selectedParticipants.Count >= 1 || FormValid())
 				{
-					Snackbar.Make(email, Resources.GetText(Resource.String.error_friends_email), Snackbar.LengthLong).Show();
-				}
-				else if (string.IsNullOrWhiteSpace(name.Text))
-				{
-					Snackbar.Make(email, Resources.GetText(Resource.String.error_friends_name), Snackbar.LengthLong).Show();
-				}
-				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
-				{
-					Snackbar.Make(email, Resources.GetText(Resource.String.error_invalid_email), Snackbar.LengthLong).Show();
-				}
-				else
-				{
-					// Pass the preparation form data to the record activity.
+					prefs.Edit().PutString("participants", JsonConvert.SerializeObject(_participants)).Commit();
+					// Pass the preparation form and previously form data (theme) to the record activity.
 					var intent = new Intent(this, typeof(PromptSelectionActivity));
-					// Photos are optional: this check ensures that empty files are not sent.
-					// e.g. if a user takes a photo, then cancels (on the first time).
-					intent.PutExtra("photo", (_photo != null && _photo.Length() > 0) ? _photo.AbsolutePath : "");
-					intent.PutExtra("name", name.Text);
-					intent.PutExtra("email", email.Text);
-					// Pass the previous form data (selected theme)
-					intent.PutExtra("theme", PreferenceManager.GetDefaultSharedPreferences(
-						ApplicationContext).GetString("theme", ""));
-					// Users should return to main screen if they go back. Start over.
+					intent.PutExtra("participants", JsonConvert.SerializeObject(_selectedParticipants));
+					intent.PutExtra("theme", prefs.GetString("theme", ""));
 					StartActivity(intent);
 				}
 			};
 		}
 
-		List<string> PreviousFriends()
+		bool FormValid()
 		{
-			// Using hash to prevent duplicate names if a person was interviewed multiple times.
-			var hash = new HashSet<string>();
-			foreach (var str in _stories.ConvertAll((Story s) => s.IntervieweeName)) hash.Add(str);
-			return hash.ToList();
+			var name = FindViewById<TextInputEditText>(Resource.Id.participantName);
+			var email = FindViewById<TextInputEditText>(Resource.Id.participantEmail);
+
+			if (_participants.Count >= 1 && string.IsNullOrEmpty(name.Text))
+			{
+				Snackbar.Make(name, "Select or create a new participant to interview", Snackbar.LengthLong).Show();
+				return false;
+			}
+			if (string.IsNullOrWhiteSpace(name.Text))
+			{
+				Snackbar.Make(name, Resources.GetText(Resource.String.error_friends_name), Snackbar.LengthLong).Show();
+				return false;
+			}
+			if (!string.IsNullOrWhiteSpace(email.Text) && !Patterns.EmailAddress.Matcher(email.Text).Matches())
+			{
+				Snackbar.Make(email, Resources.GetText(Resource.String.error_invalid_email), Snackbar.LengthLong).Show();
+				return false;
+			}
+			return true;
 		}
 
-		void PreviousIntervieweeSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+		void ParticipantSelected(object sender, int position)
 		{
-			// The first element are the instructions
-			if (e.Position <= 0) return;
-			// The selected name and related email to populate the form with
-			var intervieweeName = ((Spinner)sender).GetItemAtPosition(e.Position).ToString();
-			var match = _stories.Find((s) => s.IntervieweeName == intervieweeName);
-			var intervieweeEmail = match.IntervieweeEmail;
-			FindViewById<TextInputEditText>(Resource.Id.name).Text = intervieweeName;
-			FindViewById<TextInputEditText>(Resource.Id.email).Text = intervieweeEmail;
-			var photo = FindViewById<CircleImageView>(Resource.Id.photo);
-			// Use previously taken photo
-			if (!string.IsNullOrEmpty(match.PhotoPath))
-			{
-				var previousPhoto = new Java.IO.File(match.PhotoPath);
-				_photo = previousPhoto;
-				photo.SetImageURI(Android.Net.Uri.FromFile(_photo));
-				photo.Rotation = ImageRotationAngle(match.PhotoPath);
-			}
-			else
-			{
-				photo.SetImageDrawable(ContextCompat.GetDrawable(this, Resource.Drawable.me));
-			}
+			var participant = _participants[position];
 
-			// Make obvious that reselecting will change content of form.
-			((Spinner)sender).SetSelection(0);
+			if (!_selectedParticipants.Contains(participant)) 
+			{
+				_selectedParticipants.Add(participant);
+				ParticipantBorderColor(position, Color.Green);
+			}	
+			else 
+			{
+				_selectedParticipants.Remove(participant);
+				ParticipantBorderColor(position, Color.Red);
+			}
+		}
+
+		void ParticipantBorderColor(int itemPosition, Color color)
+		{
+			var participantRV = FindViewById<RecyclerView>(Resource.Id.participants);
+			var viewItem = participantRV.GetLayoutManager().FindViewByPosition(itemPosition);
+			var participantPhoto = viewItem.FindViewById<CircleImageView>(Resource.Id.photo);
+			participantPhoto.BorderColor = color;
 		}
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -154,7 +159,7 @@ namespace Gabber
 			// Only perform operation if an image was taken
 			if (resultCode == Result.Ok)
 			{
-				var photo = FindViewById<CircleImageView>(Resource.Id.photo);
+				var photo = FindViewById<CircleImageView>(Resource.Id.prepPhoto);
 				// Rotates the image to a horiziontal position regardless of how it was taken.
 				photo.Rotation = ImageRotationAngle(_photo.Path);
 				// Subsample image to return smaller image to memory.
