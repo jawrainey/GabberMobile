@@ -47,21 +47,13 @@ namespace GabberPCL
 		{
 			using (var formData = new MultipartFormDataContent())
 			{
-				formData.Add(new StringContent(story.InterviewerEmail), "interviewerEmail");
-				formData.Add(new StringContent(story.IntervieweeEmail), "intervieweeEmail");
-				formData.Add(new StringContent(story.IntervieweeName), "intervieweeName");
+				// TODO: also send photos to the server for each participant
+				formData.Add(new StringContent(story.ParticipantsAsJSON), "participants");
 				formData.Add(new StringContent(story.Location), "location");
 				formData.Add(new StringContent(story.promptText), "promptText");
 				// Access the OS specific implementation to load data from a file.
 				formData.Add(new ByteArrayContent(GlobalIO.Load(story.AudioPath)),
 				             "experience", Path.GetFileName(story.AudioPath));
-				
-				// Taking a photo is optional
-				if (!string.IsNullOrWhiteSpace(story.PhotoPath))
-				{
-					formData.Add(new ByteArrayContent(GlobalIO.Load(story.PhotoPath)),
-					             "authorImage", Path.GetFileName(story.PhotoPath));
-				}
 
 				try
 				{

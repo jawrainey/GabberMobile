@@ -116,16 +116,12 @@ namespace Gabber
 			}
 			catch { }
 
-			var participants = JsonConvert.DeserializeObject<List<Participant>>(Intent.GetStringExtra("participants"));
-
 			var story = new Story
 			{
 				AudioPath = _path,
-				PhotoPath = participants[0].Photo,
-				InterviewerEmail = prefs.GetString("username", ""),
-				IntervieweeEmail = participants[0].Email,
-				IntervieweeName = participants[0].Name,
 				Location = currentlocation,
+				InterviewerEmail = prefs.GetString("username", ""),
+				ParticipantsAsJSON = Intent.GetStringExtra("participants"),
 				promptText = Intent.GetStringExtra("promptText"),
 				Uploaded = false
 			};
