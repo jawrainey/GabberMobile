@@ -162,7 +162,7 @@ namespace Gabber
 			_recorder.SetOutputFormat(OutputFormat.Mpeg4);
 			_recorder.SetAudioEncoder(AudioEncoder.Aac);
 			_recorder.SetAudioSamplingRate(44100);
-			_recorder.SetAudioEncodingBitRate(96000);
+			_recorder.SetAudioEncodingBitRate(512000);
 
 			_recorder.SetOutputFile(_path);
 			_recorder.Prepare();
