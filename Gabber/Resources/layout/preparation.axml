@@ -100,7 +100,7 @@
                 android:layout_marginBottom="16dp" />
         </LinearLayout>
         <TextView
-            android:text="Which of these complex needs have you had difficulties of?"
+            android:text="Which of these areas have you had difficulties with?"
             android:textSize="16sp"
             android:layout_marginBottom="8dp"
             android:layout_width="fill_parent"
