@@ -94,7 +94,11 @@ namespace Gabber
 
 			FindViewById<Button>(Resource.Id.selectPrompt).Click += delegate 
 			{
-				if (_selectedParticipants.Count >= 1 || FormValid())
+				if (_selectedParticipants.Count == 0)
+				{
+					Snackbar.Make(name, Resources.GetText(Resource.String.select_participant), Snackbar.LengthLong).Show();
+				}
+				else
 				{
 					prefs.Edit().PutString("participants", JsonConvert.SerializeObject(_participants)).Commit();
 					// Pass the preparation form and previously form data (theme) to the record activity.
@@ -111,11 +115,6 @@ namespace Gabber
 			var name = FindViewById<TextInputEditText>(Resource.Id.participantName);
 			var email = FindViewById<TextInputEditText>(Resource.Id.participantEmail);
 
-			if (_participants.Count >= 1 && string.IsNullOrEmpty(name.Text))
-			{
-				Snackbar.Make(name, Resources.GetText(Resource.String.select_participant), Snackbar.LengthLong).Show();
-				return false;
-			}
 			if (string.IsNullOrWhiteSpace(name.Text))
 			{
 				Snackbar.Make(name, Resources.GetText(Resource.String.error_friends_name), Snackbar.LengthLong).Show();
@@ -160,10 +159,8 @@ namespace Gabber
 			if (resultCode == Result.Ok)
 			{
 				var photo = FindViewById<CircleImageView>(Resource.Id.prepPhoto);
-				// Rotates the image to a horiziontal position regardless of how it was taken.
 				photo.Rotation = ImageRotationAngle(_photo.Path);
 				// Subsample image to return smaller image to memory.
-				// TODO: fix magic sample size number.
 				photo.SetImageBitmap(ThumbnailUtils.ExtractThumbnail(
 					BitmapFactory.DecodeFile(_photo.Path, new BitmapFactory.Options { InSampleSize = 8 }),
 					photo.Width, photo.Height));
