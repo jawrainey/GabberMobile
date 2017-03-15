@@ -20,11 +20,11 @@ namespace Gabber
 
 		public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
 		{
-			View row = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.prompt, parent, false);
-			// Modify prompt size (60% of screen); required as the view is inflated inside another layout, 
+			var row = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.prompt, parent, false);
+			// Modify prompt size (75% of screen); required as the view is inflated inside another layout, 
 			// so it is not possible (?) to modify the size of the prompt layout otherwise.
 			var parms = row.LayoutParameters;
-			parms.Width = (int)(parent.Width * 0.6);
+			parms.Width = (int)(parent.Width * 0.75);
 			row.LayoutParameters = parms;
 			return new PhotoViewHolder(row, OnProjectClick);
 		}
