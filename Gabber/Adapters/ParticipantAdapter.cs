@@ -21,8 +21,8 @@ namespace Gabber
 
 		public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
 		{
-			var project = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.participant, parent, false);
-			return new ParticipantViewHolder(project, OnParticipantClicked);
+			var participant = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.participant, parent, false);
+			return new ParticipantViewHolder(participant, OnParticipantClicked);
 		}
 
 		public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
