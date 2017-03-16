@@ -123,11 +123,12 @@ namespace Gabber
 			{
 				if (FormValid())
 				{
-					var participant = new Participant { 
-						Name=name.Text, 
-						Email=email.Text, 
-						Gender=gender.SelectedItem.ToString(), 
-						Age=age.Text,
+					var participant = new Participant
+					{
+						Name = name.Text,
+						Email = email.Text,
+						Gender = gender.SelectedItem.ToString(),
+						Age = age.Text,
 						Needs = JsonConvert.SerializeObject(_complex_needs)
 					};
 
@@ -152,9 +153,14 @@ namespace Gabber
 				}
 				else
 				{
+				  // Store created participants as these are displayed to the user on the UI.
 					prefs.Edit().PutString("participants", JsonConvert.SerializeObject(_participants)).Commit();
 					// Pass the preparation form and previously form data (theme) to the record activity.
 					var intent = new Intent(this, typeof(PromptSelectionActivity));
+
+					// Add the interviewer as a participant in this interview.
+					_selectedParticipants.Insert(0, new Participant { Email = prefs.GetString("username", "") });
+
 					intent.PutExtra("participants", JsonConvert.SerializeObject(_selectedParticipants));
 					intent.PutExtra("theme", prefs.GetString("theme", ""));
 					StartActivity(intent);
@@ -162,7 +168,7 @@ namespace Gabber
 			};
 		}
 
-		void ComplexNeedsDialog(string type)
+		void ComplexNeedsDialog (string type)
 		{
 			var builder = new Android.Support.V7.App.AlertDialog.Builder(this);
 			var dialogView = LayoutInflater.Inflate(Resource.Layout.complexneeds, null);
