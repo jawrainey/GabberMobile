@@ -100,9 +100,14 @@ namespace Gabber
 				}
 				else
 				{
+					// Store created participants as these are displayed to the user on the UI.
 					prefs.Edit().PutString("participants", JsonConvert.SerializeObject(_participants)).Commit();
 					// Pass the preparation form and previously form data (theme) to the record activity.
 					var intent = new Intent(this, typeof(PromptSelectionActivity));
+
+					// Add the interviewer as a participant in this interview.
+					_selectedParticipants.Insert(0, new Participant { Email = prefs.GetString("username", "") });
+
 					intent.PutExtra("participants", JsonConvert.SerializeObject(_selectedParticipants));
 					intent.PutExtra("theme", prefs.GetString("theme", ""));
 					StartActivity(intent);
