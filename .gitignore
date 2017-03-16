@@ -1,5 +1,6 @@
 Gabber.userprefs
 packages/*
+Gabber/packages/*
 *.DS_Store
 Gabber/bin/*
 Gabber/obj/*
@@ -7,3 +8,7 @@ Gabber/Resources/Resource.designer.cs
 GabberPCL/bin/*
 GabberPCL/obj/*
 GabberPCL/Resources/Resource.designer.cs
+Gabber/*.sln
+Gabber/*.csproj
+Gabber/*.userprefs
+*.swp

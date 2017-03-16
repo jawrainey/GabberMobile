@@ -44,9 +44,9 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.main);
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
-			SupportActionBar.Title = "Select project";
+			SupportActionBar.Title = Resources.GetText(Resource.String.select_project);
 
-			RecyclerView mView = FindViewById<RecyclerView>(Resource.Id.projects);
+			var mView = FindViewById<RecyclerView>(Resource.Id.projects);
 			mView.SetLayoutManager(new LinearLayoutManager(this));
 
 			var mAdapter = new RecyclerAdapter(_projects);

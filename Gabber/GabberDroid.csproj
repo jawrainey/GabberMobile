@@ -20,6 +20,7 @@
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidTlsProvider></AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -142,6 +143,7 @@
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Helpers\DiskIO.cs" />
     <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Adapters\ParticipantAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -183,12 +185,17 @@
     <AndroidResource Include="Resources\layout\project.axml" />
     <AndroidResource Include="Resources\layout\toolbar.axml" />
     <AndroidResource Include="Resources\layout\complexneeds.axml" />
+    <AndroidResource Include="Resources\layout\participant.xml" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\values-hi\Strings.xml" />
+    <AndroidResource Include="Resources\values-hi\styles.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
     <Folder Include="Activities\" />
     <Folder Include="Adapters\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Resources\values-hi\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">

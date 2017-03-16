@@ -9,6 +9,11 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/participants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,11 +28,11 @@
             android:layout_height="148dp"
             android:visibility="gone">
             <refractored.controls.CircleImageView
-                android:id="@+id/photo"
-                android:layout_width="148dp"
-                android:layout_height="148dp"
+                android:id="@+id/prepPhoto"
+                android:layout_width="111dp"
+                android:layout_height="111dp"
                 android:src="@drawable/me"
-                android:layout_margin="16dp" />
+                android:layout_margin="8dp" />
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/cameraFAB"
                 android:layout_width="wrap_content"
@@ -36,34 +41,29 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                app:layout_anchor="@id/photo"
+                app:layout_anchor="@id/prepPhoto"
                 app:fabSize="mini"
                 app:backgroundTint="@android:color/white" />
         </RelativeLayout>
-        <Spinner
-            android:id="@+id/previousFriends"
-            android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/name"
+                android:id="@+id/participantName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:imeOptions="actionNext"
-                android:hint="Name" />
+                android:hint="@string/name" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp">
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/email"
+                android:id="@+id/participantEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -132,13 +132,27 @@
                 android:layout_height="wrap_content"
                 android:text="Problems with police" />
         </GridLayout>
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/submit"
-            android:layout_width="fill_parent"
+        <LinearLayout
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:textColor="@drawable/textcolorbutton"
-            android:background="@drawable/borderbutton"
-            android:text="Select prompt" />
+            android:layout_width="fill_parent"
+            android:layout_alignParentBottom="true">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/addParticipant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="12dp"
+                android:textColor="@drawable/textcolorbutton"
+                android:background="@drawable/borderbutton"
+                android:text="Add participant" />
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/selectPrompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@drawable/textcolorbutton"
+                android:background="@drawable/borderbutton"
+                android:text="Select prompt" />
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

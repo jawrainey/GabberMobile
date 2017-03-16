@@ -30,7 +30,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="24dp"
-            android:text="Login"
+            android:text="@string/login_button"
             android:textColor="@drawable/textcolorbutton"
             android:background="@drawable/borderbutton" />
         <android.support.v7.widget.AppCompatButton
@@ -41,7 +41,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:layout_marginRight="24dp"
-            android:text="Register"
+            android:text="@string/btn_register"
             android:textColor="@drawable/textcolorbutton"
             android:background="@drawable/borderbutton" />
     </LinearLayout>

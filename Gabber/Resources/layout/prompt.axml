@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/promptCard"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="16dp">
-    <LinearLayout
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/promptCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <FFImageLoading.Views.ImageViewAsync
-            android:id="@+id/imagePrompt"
-            android:background="#6DCBCA"
-            android:scaleType="fitXY"
-            android:layout_width="match_parent"
-            android:layout_height="175dp" />
-        <TextView
-            style="@style/TextAppearance.AppCompat.Body2"
+        android:layout_margin="16dp">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/caption"
-            android:padding="6dp"
-            android:gravity="center" />
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+            android:orientation="vertical">
+            <FFImageLoading.Views.ImageViewAsync
+                android:id="@+id/imagePrompt"
+                android:background="#6DCBCA"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+            <TextView
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="2sp"
+                android:id="@+id/caption" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout>

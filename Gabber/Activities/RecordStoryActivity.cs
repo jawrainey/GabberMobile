@@ -15,10 +15,12 @@ using FFImageLoading.Views;
 using FFImageLoading;
 using GabberPCL;
 using Android.Preferences;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Gabber
 {
-	[Activity(Label = "Recording your Gabber")]
+	[Activity]
 	public class RecordStoryActivity : AppCompatActivity
 	{
 		// TODO: move all recording logic to a seperate class, which is useful when creating a PCL
@@ -33,6 +35,7 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.record);
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+			SupportActionBar.Title = Resources.GetText(Resource.String.recording_your_gabber);
 
 			var selectedPrompt = FindViewById(Resource.Id.promptCard);
 			var imageView = selectedPrompt.FindViewById<ImageViewAsync>(Resource.Id.imagePrompt);
@@ -116,15 +119,10 @@ namespace Gabber
 			var story = new Story
 			{
 				AudioPath = _path,
-				PhotoPath = Intent.GetStringExtra("photo"),
-				InterviewerEmail = prefs.GetString("username", ""),
-				IntervieweeEmail = Intent.GetStringExtra("email"),
-				IntervieweeName = Intent.GetStringExtra("name"),
 				Location = currentlocation,
+				InterviewerEmail = prefs.GetString("username", ""),
+				ParticipantsAsJSON = Intent.GetStringExtra("participants"),
 				promptText = Intent.GetStringExtra("promptText"),
-				IntervieweeGender = Intent.GetStringExtra("gender"),
-				IntervieweeAge = Intent.GetStringExtra("age"),
-				ComplexNeedsAsJSON = Intent.GetStringExtra("needs"),
 				Uploaded = false
 			};
 
@@ -133,12 +131,12 @@ namespace Gabber
 			model.InsertStory(story);
 
 			var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
-			alert.SetTitle("Record again?");
-			alert.SetMessage("Would you like to record another interview with the same participant or finish?");
+			alert.SetTitle(Resources.GetText(Resource.String.popup_record_again));
+			alert.SetMessage(Resources.GetText(Resource.String.popup_record_question));
 
-			alert.SetPositiveButton("Record again", (s,a) => { Finish(); });
+			alert.SetPositiveButton(Resources.GetText(Resource.String.popup_record_button), (s,a) => { Finish(); });
 
-			alert.SetNegativeButton("Finish", (senderAlert, args) =>
+			alert.SetNegativeButton(Resources.GetText(Resource.String.popup_finish), (senderAlert, args) =>
 			{
 				var intent = new Intent(this, typeof(MainActivity));
 				intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
@@ -164,7 +162,7 @@ namespace Gabber
 			_recorder.SetOutputFormat(OutputFormat.Mpeg4);
 			_recorder.SetAudioEncoder(AudioEncoder.Aac);
 			_recorder.SetAudioSamplingRate(44100);
-			_recorder.SetAudioEncodingBitRate(96000);
+			_recorder.SetAudioEncodingBitRate(512000);
 
 			_recorder.SetOutputFile(_path);
 			_recorder.Prepare();

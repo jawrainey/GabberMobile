@@ -11,7 +11,7 @@ using GabberPCL;
 
 namespace Gabber
 {
-	[Activity(Label = "Register")]
+	[Activity]
 	public class RegisterActivity : AppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -32,11 +32,11 @@ namespace Gabber
 					string.IsNullOrWhiteSpace(email.Text) ||
 					string.IsNullOrWhiteSpace(passw.Text))
 				{
-					Snackbar.Make(email, "All details are required.", Snackbar.LengthLong).Show();
+					Snackbar.Make(email, Resources.GetText(Resource.String.error_all_details), Snackbar.LengthLong).Show();
 				}
 				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
 				{
-					Snackbar.Make(email, "That email address is invalid.", Snackbar.LengthLong).Show();
+					Snackbar.Make(email, Resources.GetText(Resource.String.error_invalid_email), Snackbar.LengthLong).Show();
 				}
 				else
 				{
@@ -61,7 +61,7 @@ namespace Gabber
 							FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
 						});
 
-						Snackbar.Make(email, "An error... oh my", 0).Show();
+						Snackbar.Make(email, Resources.GetText(Resource.String.oh_my), 0).Show();
 					}
 				}
 			};
