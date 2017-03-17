@@ -70,6 +70,17 @@ namespace Gabber
 			var gender = FindViewById<Spinner>(Resource.Id.gender);
 			gender.Adapter = genderAdapter;
 
+			if (!string.Equals(prefs.GetString("theme", ""), "ladder4life"))
+			{
+				var complexNeedsInstructions = FindViewById<TextView>(Resource.Id.complexneedsinstructions);
+				var complexNeedsGrid = FindViewById<GridLayout>(Resource.Id.complexneedsgrid);
+
+				complexNeedsInstructions.Visibility = ViewStates.Gone;
+				complexNeedsGrid.Visibility = ViewStates.Gone;
+				age.Visibility = ViewStates.Gone;
+				gender.Visibility = ViewStates.Gone;
+			}
+
 			// Stored the selected needs to pass between activities
 			_complex_needs = new Dictionary<string, ComplexNeeds>();
 

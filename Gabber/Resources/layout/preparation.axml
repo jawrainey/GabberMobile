@@ -104,13 +104,15 @@
             android:textSize="16sp"
             android:layout_marginBottom="8dp"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:id="@+id/complexneedsinstructions" />
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:rowCount="2"
             android:columnCount="2"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            android:id="@+id/complexneedsgrid">
             <CheckBox
                 android:id="@+id/substance"
                 android:layout_width="wrap_content"
