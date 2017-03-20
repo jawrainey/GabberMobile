@@ -110,6 +110,8 @@ namespace Gabber
 
 					intent.PutExtra("participants", JsonConvert.SerializeObject(_selectedParticipants));
 					intent.PutExtra("theme", prefs.GetString("theme", ""));
+					intent.PutExtra("session", System.Guid.NewGuid().ToString());
+
 					StartActivity(intent);
 				}
 			};

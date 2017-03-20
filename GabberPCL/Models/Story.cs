@@ -14,5 +14,6 @@ namespace GabberPCL
 		// Simplifies data access, e.g. no need for relationships, etc
 		public string ParticipantsAsJSON { get; set; }
 		public bool Uploaded { get; set; }
+		public string SessionID { get; set; }
 	}
 }

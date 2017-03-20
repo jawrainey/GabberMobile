@@ -120,6 +120,7 @@ namespace Gabber
 			{
 				AudioPath = _path,
 				Location = currentlocation,
+				SessionID = Intent.GetStringExtra("session"),
 				InterviewerEmail = prefs.GetString("username", ""),
 				ParticipantsAsJSON = Intent.GetStringExtra("participants"),
 				promptText = Intent.GetStringExtra("promptText"),
