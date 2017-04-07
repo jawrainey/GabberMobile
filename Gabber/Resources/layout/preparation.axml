@@ -20,11 +20,13 @@
         android:orientation="vertical"
         android:layout_centerVertical="true"
         android:layout_marginLeft="24dp"
+        android:layout_marginBottom="24dp"
         android:layout_marginRight="24dp">
         <RelativeLayout
             android:layout_gravity="center_horizontal"
-            android:layout_width="111dp"
-            android:layout_height="100dp">
+            android:layout_width="148dp"
+            android:layout_height="148dp"
+            android:visibility="gone">
             <refractored.controls.CircleImageView
                 android:id="@+id/prepPhoto"
                 android:layout_width="111dp"
@@ -65,9 +67,73 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:imeOptions="actionDone"
-                android:hint="@string/login_prompt_email" />
+                android:imeOptions="actionNext"
+                android:hint="Email (optional)" />
         </android.support.design.widget.TextInputLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_marginBottom="8dp">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:imeOptions="actionDone"
+                    android:hint="Age" />
+            </android.support.design.widget.TextInputLayout>
+            <Spinner
+                android:id="@+id/gender"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_weight="0.5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:layout_marginBottom="16dp" />
+        </LinearLayout>
+        <TextView
+            android:text="Which of these areas have you had difficulties with?"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/complexneedsinstructions" />
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:rowCount="2"
+            android:columnCount="2"
+            android:layout_marginBottom="8dp"
+            android:id="@+id/complexneedsgrid">
+            <CheckBox
+                android:id="@+id/substance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alcohol and drugs" />
+            <CheckBox
+                android:id="@+id/housing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Housing or homelessness" />
+            <CheckBox
+                android:id="@+id/mental"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mental health" />
+            <CheckBox
+                android:id="@+id/police"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Problems with police" />
+        </GridLayout>
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"

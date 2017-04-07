@@ -44,7 +44,7 @@ namespace Gabber
 
 			selectedPrompt.FindViewById<TextView>(
 				Resource.Id.caption).Text = Intent.GetStringExtra("promptText");
-			
+
 			var record = FindViewById<FloatingActionButton>(Resource.Id.start);
 			var cancel = FindViewById<FloatingActionButton>(Resource.Id.cancel);
 			var timer = FindViewById<TextView>(Resource.Id.timer);
@@ -64,7 +64,7 @@ namespace Gabber
 					if (string.IsNullOrWhiteSpace(_path))
 					{
 						var personal = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-						_path = Path.Combine(personal, DateTimeOffset.Now.ToUnixTimeSeconds() + ".mp3");	
+						_path = Path.Combine(personal, DateTimeOffset.Now.ToUnixTimeSeconds() + ".mp3");
 					}
 
 					StartRecording();

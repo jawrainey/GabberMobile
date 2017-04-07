@@ -52,6 +52,7 @@ namespace GabberPCL
 				formData.Add(new StringContent(story.Location), "location");
 				formData.Add(new StringContent(story.SessionID), "sessionID");
 				formData.Add(new StringContent(story.promptText), "promptText");
+
 				// Access the OS specific implementation to load data from a file.
 				formData.Add(new ByteArrayContent(GlobalIO.Load(story.AudioPath)),
 				             "experience", Path.GetFileName(story.AudioPath));

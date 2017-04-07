@@ -8,5 +8,6 @@
 		public string Age { get; set; }
 		public string Gender { get; set; }
 		public string Photo { get; set; }
+		public string Needs { get; set; }
 	}
 }
