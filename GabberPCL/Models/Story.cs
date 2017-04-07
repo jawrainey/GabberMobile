@@ -15,5 +15,6 @@ namespace GabberPCL
 		public string ParticipantsAsJSON { get; set; }
 		public string ComplexNeedsAsJSON { get; set; }
 		public bool Uploaded { get; set; }
+		public string SessionID { get; set; }
 	}
 }

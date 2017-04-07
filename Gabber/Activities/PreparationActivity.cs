@@ -164,7 +164,7 @@ namespace Gabber
 				}
 				else
 				{
-				  // Store created participants as these are displayed to the user on the UI.
+					// Store created participants as these are displayed to the user on the UI.
 					prefs.Edit().PutString("participants", JsonConvert.SerializeObject(_participants)).Commit();
 					// Pass the preparation form and previously form data (theme) to the record activity.
 					var intent = new Intent(this, typeof(PromptSelectionActivity));
@@ -174,6 +174,7 @@ namespace Gabber
 
 					intent.PutExtra("participants", JsonConvert.SerializeObject(_selectedParticipants));
 					intent.PutExtra("theme", prefs.GetString("theme", ""));
+					intent.PutExtra("session", System.Guid.NewGuid().ToString());
 					StartActivity(intent);
 				}
 			};
