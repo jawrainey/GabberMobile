@@ -17,7 +17,7 @@ namespace GabberPCL
 		public RestClient()
 		{
 			_client = new HttpClient();
-			_client.BaseAddress = new Uri("https://openlab.ncl.ac.uk/dokku/gabber/");
+			_client.BaseAddress = new Uri("https://gabber.audio/");
 		}
 
 		public async Task<bool> Authenticate(string username, string password)
