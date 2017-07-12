@@ -1,10 +1,9 @@
-﻿using Android.App;
+﻿using System.Collections.Generic;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
-using Android.Widget;
-using FFImageLoading.Views;
 using GabberPCL;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
@@ -13,6 +12,13 @@ namespace Gabber
 	[Activity]
 	public class PromptSelectionActivity : AppCompatActivity
 	{
+		// Used to uniquely identify this activity across requests; particularly on result.
+		static int uniqueRequestCode = 10125;
+		// The view container for prompts in this project
+		RecyclerView promptRecyclerView;
+		// Holds the prompts for this project
+		List<Prompt> prompts;
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
@@ -23,10 +29,11 @@ namespace Gabber
 			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 			var selectedProject = model.GetProjects().Find((Project pj) => pj.theme == Intent.GetStringExtra("theme"));
 
-			var promptRecyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
+			promptRecyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
 			promptRecyclerView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false));
 
-			var adapter = new RVPromptAdapter(selectedProject.prompts);
+			prompts = selectedProject.prompts;
+			var adapter = new RVPromptAdapter(prompts);
 			adapter.ProjectClicked += ProjectSelected;
 			promptRecyclerView.SetAdapter(adapter);
 			// This allows us to use recyclerview similar to a ViewPager
@@ -35,15 +42,26 @@ namespace Gabber
 
 		void ProjectSelected(object sender, int position)
 		{
-			var promptsRV = FindViewById<RecyclerView>(Resource.Id.prompts).GetLayoutManager();
-			var prompt = promptsRV.FindViewByPosition(position).FindViewById(Resource.Id.promptCard);
 			// All the previous form data and selected prompt.
 			var intent = new Intent(this, typeof(RecordStoryActivity));
-			intent.PutExtra("promptImage", prompt.FindViewById<ImageViewAsync>(Resource.Id.imagePrompt).Tag.ToString());
-			intent.PutExtra("promptText", prompt.FindViewById<TextView>(Resource.Id.caption).Text);
-			// Pass the previous form data
+			intent.PutExtra("promptImage", prompts[position].imageName);
+			intent.PutExtra("promptText", prompts[position].prompt);
+			intent.PutExtra("PROMPT_SELECTION_POSITION", position);
+			// Pass the newly added and previous form data to the next intent
 			intent.PutExtras(Intent.Extras);
-			StartActivity(intent);
+			// When the next intent finishes, we expect a result returned, e.g. the prompt position.
+			StartActivityForResult(intent, uniqueRequestCode);
 		}
+
+		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			base.OnActivityResult(requestCode, resultCode, data);
+
+			if (requestCode == uniqueRequestCode && resultCode == Result.Ok)
+			{
+				promptRecyclerView.SmoothScrollToPosition(data.GetIntExtra("PROMPT_SELECTION_POSITION", 0) + 1);
+			}
+		}
+
 	}
 }

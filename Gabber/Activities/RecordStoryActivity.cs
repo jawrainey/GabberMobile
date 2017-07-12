@@ -135,7 +135,13 @@ namespace Gabber
 			alert.SetTitle(Resources.GetText(Resource.String.popup_record_again));
 			alert.SetMessage(Resources.GetText(Resource.String.popup_record_question));
 
-			alert.SetPositiveButton(Resources.GetText(Resource.String.popup_record_button), (s,a) => { Finish(); });
+			alert.SetPositiveButton(Resources.GetText(Resource.String.popup_record_button), (s,a) => 
+			{
+				var intent = new Intent(this, typeof(PromptSelectionActivity));
+				intent.PutExtra("PROMPT_SELECTION_POSITION", Intent.GetIntExtra("PROMPT_SELECTION_POSITION", 0));
+				SetResult(Result.Ok, intent);
+				Finish(); 
+			});
 
 			alert.SetNegativeButton(Resources.GetText(Resource.String.popup_finish), (senderAlert, args) =>
 			{
