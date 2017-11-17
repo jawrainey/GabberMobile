@@ -24,7 +24,7 @@
 	<string name="error_invalid_email">That email address is invalid</string>
 	<string name="topics_to_discuss">Topics to discuss</string>
 	<string name="recording_your_gabber">Recording your Gabber</string>
-	<string name="popup_record_again">Record again?</string>
+	<string name="popup_record_again">Choose next prompt?</string>
 	<string name="popup_record_question">Would you like to record another interview with the same participant or finish?</string>
 	<string name="popup_record_button">Record again</string>
 	<string name="popup_finish">Finish</string>
