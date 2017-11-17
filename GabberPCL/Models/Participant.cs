@@ -9,5 +9,7 @@
 		public string Gender { get; set; }
 		public string Photo { get; set; }
 		public string Needs { get; set; }
+        // This is the view model and not data model
+        public bool Selected { get; set; }
 	}
 }

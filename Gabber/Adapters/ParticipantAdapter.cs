@@ -7,6 +7,7 @@ using Android.Widget;
 using Refractored.Controls;
 using Android.Media;
 using Android.Graphics;
+using System.Linq;
 
 namespace Gabber
 {
@@ -30,6 +31,14 @@ namespace Gabber
 			var mholder = holder as ParticipantViewHolder;
 			mholder.Name.Text = _participants[position].Name;
 
+            if (_participants[position].Selected)
+            {
+                mholder.Photo.BorderColor = Color.Green;
+            }
+            else {
+                mholder.Photo.BorderColor = Color.Red;
+            }
+
 			var photoPath = _participants[position].Photo;
 			if (!string.IsNullOrEmpty(photoPath))
 			{
@@ -38,10 +47,23 @@ namespace Gabber
 			}
 		}
 
+        public void ParticipantSeleted(int index) {
+            _participants[index].Selected = !_participants[index].Selected;
+            this.NotifyItemChanged(index);
+        }
+
+        public Participant GetByIndex(int index) {
+            return (_participants != null && _participants.Count >= index ? _participants[index] : null);
+        }
+
 		public override int ItemCount
 		{
 			get { return (_participants != null ? _participants.Count : 0); }
 		}
+
+        public List<Participant> selectedParticipants() {
+            return _participants.Where((participant) => participant.Selected).ToList();
+        } 
 
 		public event EventHandler<int> ParticipantClicked;
 

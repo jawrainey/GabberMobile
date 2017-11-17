@@ -27,9 +27,10 @@ namespace Gabber
 		// The photo take by the camera activity to be stored & displayed in main.
 		Java.IO.File _photo;
 		List<Participant> _participants;
-		List<Participant> _selectedParticipants;
 		// String is type of need to override.
 		Dictionary<string, ComplexNeeds> _complex_needs;
+        // Expose for on-click event to update participants view
+        ParticipantAdapter adapter;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -41,8 +42,6 @@ namespace Gabber
 			// Required to access existing gabbers for a given user
 			var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
 
-			// There are no participants selected by default
-			_selectedParticipants = new List<Participant>();
 			// Store these in shared prefs for simplicity of access.
 			if (string.IsNullOrEmpty(prefs.GetString("participants", ""))) _participants = new List<Participant>();
 			else _participants = JsonConvert.DeserializeObject<List<Participant>>(prefs.GetString("participants", ""));
@@ -50,7 +49,7 @@ namespace Gabber
 			var participantsView = FindViewById<RecyclerView>(Resource.Id.participants);
 			participantsView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false));
 
-			var adapter = new ParticipantAdapter(_participants);
+			adapter = new ParticipantAdapter(_participants);
 			adapter.ParticipantClicked += ParticipantSelected;
 			participantsView.SetAdapter(adapter);
 			participantsView.AddItemDecoration(new DividerItemDecoration(participantsView.Context, 1));
@@ -140,14 +139,14 @@ namespace Gabber
 						Email = email.Text,
 						Gender = gender.SelectedItem.ToString(),
 						Age = age.Text,
-						Needs = JsonConvert.SerializeObject(_complex_needs)
+						Needs = JsonConvert.SerializeObject(_complex_needs),
+                        Selected = true
 					};
 
 					participant.Photo = (_photo != null && _photo.Length() > 0) ? _photo.AbsolutePath : "";
 					_participants.Add(participant);
-					_selectedParticipants.Add(participant);
 					adapter.NotifyDataSetChanged();
-					// TODO: set border to green
+
 					prefs.Edit().PutString("participants", JsonConvert.SerializeObject(_participants)).Commit();
 					// Reset form content once participant is successfully added
 					photo.SetImageDrawable(ContextCompat.GetDrawable(this, Resource.Drawable.me));
@@ -158,7 +157,9 @@ namespace Gabber
 
 			FindViewById<Button>(Resource.Id.selectPrompt).Click += delegate
 			{
-				if (_selectedParticipants.Count == 0)
+                var selectedParticipants = adapter.selectedParticipants();
+
+                if (selectedParticipants.Count == 0)
 				{
 					Snackbar.Make(name, Resources.GetText(Resource.String.select_participant), Snackbar.LengthLong).Show();
 				}
@@ -170,9 +171,10 @@ namespace Gabber
 					var intent = new Intent(this, typeof(PromptSelectionActivity));
 
 					// Add the interviewer as a participant in this interview.
-					_selectedParticipants.Insert(0, new Participant { Email = prefs.GetString("username", "") });
+					selectedParticipants.Insert(0, new Participant { Email = prefs.GetString("username", "") });
 
-					intent.PutExtra("participants", JsonConvert.SerializeObject(_selectedParticipants));
+
+					intent.PutExtra("participants", JsonConvert.SerializeObject(selectedParticipants));
 					intent.PutExtra("theme", prefs.GetString("theme", ""));
 					intent.PutExtra("session", System.Guid.NewGuid().ToString());
 					StartActivity(intent);
@@ -250,18 +252,7 @@ namespace Gabber
 
 		void ParticipantSelected(object sender, int position)
 		{
-			var participant = _participants[position];
-
-			if (!_selectedParticipants.Contains(participant))
-			{
-				_selectedParticipants.Add(participant);
-				ParticipantBorderColor(position, Color.Green);
-			}
-			else
-			{
-				_selectedParticipants.Remove(participant);
-				ParticipantBorderColor(position, Color.Red);
-			}
+            adapter.ParticipantSeleted(position);
 		}
 
 		void ParticipantBorderColor(int itemPosition, Color color)
