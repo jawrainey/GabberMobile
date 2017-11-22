@@ -17,6 +17,7 @@ using GabberPCL;
 using Android.Preferences;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Android.Text;
 
 namespace Gabber
 {
@@ -87,6 +88,7 @@ namespace Gabber
 					// Saves the recording and sends to next screen for play-back
 					SaveRecording();
 				}
+                SupportActionBar.TitleFormatted = Html.FromHtml("<font color=\"#3D0C11\">Recording</font> your Gabber");
 			};
 
 			cancel.Click += delegate
@@ -97,6 +99,7 @@ namespace Gabber
 				record.Selected = false;
 				// Stops the current audio from playing.
 				StopRecording();
+				SupportActionBar.Title = Resources.GetText(Resource.String.recording_your_gabber);
 			};
 		}
 
@@ -134,6 +137,7 @@ namespace Gabber
 			var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
 			alert.SetTitle(Resources.GetText(Resource.String.popup_record_again));
 			alert.SetMessage(Resources.GetText(Resource.String.popup_record_question));
+			SupportActionBar.Title = Resources.GetText(Resource.String.recording_your_gabber);
 
 			alert.SetPositiveButton(Resources.GetText(Resource.String.popup_record_button), (s,a) => 
 			{
