@@ -46,6 +46,13 @@ namespace Gabber
 			if (string.IsNullOrEmpty(prefs.GetString("participants", ""))) _participants = new List<Participant>();
 			else _participants = JsonConvert.DeserializeObject<List<Participant>>(prefs.GetString("participants", ""));
 
+            // Hide the existing participant title
+            if (_participants.Count <= 0) {
+                FindViewById<TextView>(Resource.Id.selectExistingParticipant).Visibility = ViewStates.Gone;
+                FindViewById<LinearLayout>(Resource.Id.ParticipantContentWidget).Visibility = ViewStates.Visible;
+                FindViewById<AppCompatButton>(Resource.Id.selectPrompt).Enabled = false;
+            }
+
 			var participantsView = FindViewById<RecyclerView>(Resource.Id.participants);
 			participantsView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false));
 
@@ -143,6 +150,14 @@ namespace Gabber
                         Selected = true
 					};
 
+                    // It is the first time a participant was added so we will enable the button
+                    if (_participants.Count <= 0)
+                    {
+                        FindViewById<AppCompatButton>(Resource.Id.selectPrompt).Enabled = true;
+                    }
+                    // Hide the form everytime a participant is added.
+                    FindViewById<LinearLayout>(Resource.Id.ParticipantContentWidget).Visibility = ViewStates.Gone;
+
 					participant.Photo = (_photo != null && _photo.Length() > 0) ? _photo.AbsolutePath : "";
 					_participants.Add(participant);
 					adapter.NotifyDataSetChanged();
@@ -154,6 +169,21 @@ namespace Gabber
 					email.Text = "";
 				}
 			};
+
+            FindViewById<TextView>(Resource.Id.createNewParticipant).Click += delegate
+            {
+                var widget = FindViewById<LinearLayout>(Resource.Id.ParticipantContentWidget);
+                if (widget.Visibility == ViewStates.Gone) {
+                    widget.Visibility = ViewStates.Visible;
+                    FindViewById<TextView>(Resource.Id.createNewParticipant).Text = "Add a new participant (Hide)";
+                } 
+                else {
+
+					widget.Visibility = ViewStates.Gone;
+                    FindViewById<TextView>(Resource.Id.createNewParticipant).Text = "Add a new participant (Show)";
+                }
+
+            };
 
 			FindViewById<Button>(Resource.Id.selectPrompt).Click += delegate
 			{

@@ -1,167 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/footer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="24dp"
+    android:gravity="center">
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:focusableInTouchMode="true"
-        android:keepScreenOn="true">
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/participants"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp" />
+        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentBottom="true"
             android:layout_marginBottom="24dp"
-            android:layout_marginRight="24dp">
-            <RelativeLayout
-                android:layout_gravity="center_horizontal"
-                android:layout_width="148dp"
-                android:layout_height="148dp"
-                android:visibility="gone">
-                <refractored.controls.CircleImageView
-                    android:id="@+id/prepPhoto"
-                    android:layout_width="111dp"
-                    android:layout_height="111dp"
-                    android:src="@drawable/me"
-                    android:layout_margin="8dp" />
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/cameraFAB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/photo"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    app:layout_anchor="@id/prepPhoto"
-                    app:fabSize="mini"
-                    app:backgroundTint="@android:color/white" />
-            </RelativeLayout>
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/participantName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:imeOptions="actionNext"
-                    android:hint="@string/name" />
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp">
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/participantEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:imeOptions="actionNext"
-                    android:hint="Email (optional)" />
-            </android.support.design.widget.TextInputLayout>
-            <LinearLayout
+            android:gravity="center">
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+            <TextView
+                android:id="@+id/selectExistingParticipant"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:text="Select existing participant"
+                android:gravity="left"
+                android:textSize="16sp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="12dp" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/participants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="12dp" />
+            <TextView
+                android:id="@+id/createNewParticipant"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:text="Add a new participant (Show)" />
+            <LinearLayout
+                android:id="@+id/ParticipantContentWidget"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+                <RelativeLayout
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="148dp"
+                    android:layout_height="148dp"
+                    android:visibility="gone">
+                    <refractored.controls.CircleImageView
+                        android:id="@+id/prepPhoto"
+                        android:layout_width="111dp"
+                        android:layout_height="111dp"
+                        android:src="@drawable/me"
+                        android:layout_margin="8dp" />
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/cameraFAB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/photo"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        app:layout_anchor="@id/prepPhoto"
+                        app:fabSize="mini"
+                        app:backgroundTint="@android:color/white" />
+                </RelativeLayout>
                 <android.support.design.widget.TextInputLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp">
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/age"
+                        android:id="@+id/participantName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:imeOptions="actionDone"
-                        android:hint="Age" />
+                        android:inputType="text"
+                        android:imeOptions="actionNext"
+                        android:hint="@string/name" />
                 </android.support.design.widget.TextInputLayout>
-                <Spinner
-                    android:id="@+id/gender"
-                    style="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_weight="0.5"
-                    android:layout_width="0dp"
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/participantEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:imeOptions="actionNext"
+                        android:hint="Email (optional)" />
+                </android.support.design.widget.TextInputLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:ellipsize="marquee"
-                    android:gravity="center_vertical"
-                    android:singleLine="true"
-                    android:layout_marginBottom="16dp" />
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:layout_marginBottom="8dp">
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/age"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:imeOptions="actionDone"
+                            android:hint="Age" />
+                    </android.support.design.widget.TextInputLayout>
+                    <Spinner
+                        android:id="@+id/gender"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_weight="0.5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="marquee"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:layout_marginBottom="16dp" />
+                </LinearLayout>
+                <TextView
+                    android:text="Which of these areas have you had difficulties with?"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/complexneedsinstructions" />
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:rowCount="2"
+                    android:columnCount="2"
+                    android:layout_marginBottom="8dp"
+                    android:id="@+id/complexneedsgrid">
+                    <CheckBox
+                        android:id="@+id/substance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alcohol and drugs" />
+                    <CheckBox
+                        android:id="@+id/housing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Housing or homelessness" />
+                    <CheckBox
+                        android:id="@+id/mental"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mental health" />
+                    <CheckBox
+                        android:id="@+id/police"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Problems with police" />
+                </GridLayout>
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="1.0">
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/addParticipant"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_weight=".5"
+                        android:layout_width="0dip"
+                        android:textColor="@drawable/textcolorbutton"
+                        android:background="@drawable/borderbutton"
+                        android:text="Add" />
+                </LinearLayout>
             </LinearLayout>
-            <TextView
-                android:text="Which of these areas have you had difficulties with?"
-                android:textSize="16sp"
-                android:layout_marginBottom="8dp"
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/selectPrompt"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/complexneedsinstructions" />
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:rowCount="2"
-                android:columnCount="2"
-                android:layout_marginBottom="8dp"
-                android:id="@+id/complexneedsgrid">
-                <CheckBox
-                    android:id="@+id/substance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alcohol and drugs" />
-                <CheckBox
-                    android:id="@+id/housing"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Housing or homelessness" />
-                <CheckBox
-                    android:id="@+id/mental"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mental health" />
-                <CheckBox
-                    android:id="@+id/police"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Problems with police" />
-            </GridLayout>
-            <LinearLayout
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                android:layout_alignParentBottom="true">
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/addParticipant"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginRight="12dp"
-                    android:textColor="@drawable/textcolorbutton"
-                    android:background="@drawable/borderbutton"
-                    android:text="Add participant" />
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/selectPrompt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@drawable/textcolorbutton"
-                    android:background="@drawable/borderbutton"
-                    android:text="Select topic" />
-            </LinearLayout>
+                android:layout_weight="1"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="24dp"
+                android:textColor="@drawable/textcolorbutton"
+                android:background="@drawable/borderbutton"
+                android:text="Start your Gabber" />
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</RelativeLayout>
