@@ -189,7 +189,6 @@
     <AndroidResource Include="Resources\drawable\border_top.xml" />
     <AndroidResource Include="Resources\layout\project.axml" />
     <AndroidResource Include="Resources\layout\toolbar.axml" />
-    <AndroidResource Include="Resources\layout\complexneeds.axml" />
     <AndroidResource Include="Resources\layout\participant.xml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\values-hi\Strings.xml" />
