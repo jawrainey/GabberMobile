@@ -32,12 +32,11 @@ namespace Gabber
 			// Required to access existing gabbers for a given user
 			var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
 
-			// Store these in shared prefs for simplicity of access.
-			if (string.IsNullOrEmpty(prefs.GetString("participants", ""))) _participants = new List<Participant>();
-			else _participants = JsonConvert.DeserializeObject<List<Participant>>(prefs.GetString("participants", ""));
+            // This is pre-populated with the current user once they register and therefore SHOULD exist
+            _participants = JsonConvert.DeserializeObject<List<Participant>>(prefs.GetString("participants", ""));
 
             // Hide the existing participant title
-            if (_participants.Count <= 0) {
+            if (_participants.Count <= 1) {
                 FindViewById<TextView>(Resource.Id.selectExistingParticipant).Visibility = ViewStates.Gone;
                 FindViewById<LinearLayout>(Resource.Id.ParticipantContentWidget).Visibility = ViewStates.Visible;
                 FindViewById<AppCompatButton>(Resource.Id.selectPrompt).Enabled = false;
@@ -67,7 +66,7 @@ namespace Gabber
 					};
 
                     // It is the first time a participant was added so we will enable the button
-                    if (_participants.Count <= 0)
+                    if (_participants.Count <= 1)
                     {
                         FindViewById<AppCompatButton>(Resource.Id.selectPrompt).Enabled = true;
                     }
@@ -113,11 +112,8 @@ namespace Gabber
 					prefs.Edit().PutString("participants", JsonConvert.SerializeObject(_participants)).Commit();
 					// Pass the preparation form and previously form data (theme) to the record activity.
 					var intent = new Intent(this, typeof(PromptSelectionActivity));
-
-					// Add the interviewer as a participant in this interview.
-					selectedParticipants.Insert(0, new Participant { Email = prefs.GetString("username", "") });
-
-
+                    // We do not want to store "you" as set in the register page, but instead the full name
+                    selectedParticipants[0].Name = prefs.GetString("username", selectedParticipants[0].Name);
 					intent.PutExtra("participants", JsonConvert.SerializeObject(selectedParticipants));
 					intent.PutExtra("theme", prefs.GetString("theme", ""));
 					intent.PutExtra("session", System.Guid.NewGuid().ToString());
