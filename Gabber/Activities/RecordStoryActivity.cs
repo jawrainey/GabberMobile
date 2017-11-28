@@ -4,20 +4,16 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using Toolbar = Android.Support.V7.Widget.Toolbar;
 using System.IO;
 using System.Threading.Tasks;
 using System;
 using Android.Support.Design.Widget;
 using Android.Content;
 using Android.Locations;
-using FFImageLoading.Views;
-using FFImageLoading;
 using GabberPCL;
-using Android.Preferences;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using Android.Text;
+using Android.Support.V7.Widget;
 
 namespace Gabber
 {
@@ -30,21 +26,28 @@ namespace Gabber
 		bool _isrecording;
 		// The path to the experience recorded.
 		string _path;
+        // Holds the prompts for this project
+        List<Prompt> themes;
+        // This will be reset on cancel and updated in several methods
+        string SelectedAnnotationsAsJSON;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.record);
-			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
-			SupportActionBar.Title = Resources.GetText(Resource.String.recording_your_gabber);
+            // There are no annotations by default
+            SelectedAnnotationsAsJSON = "";
 
-			var selectedPrompt = FindViewById(Resource.Id.promptCard);
-			var imageView = selectedPrompt.FindViewById<ImageViewAsync>(Resource.Id.imagePrompt);
-			// Download or retrieve from cache, the image the user has _previously_ selected.
-			ImageService.Instance.LoadUrl(Intent.GetStringExtra("promptImage")).Into(imageView);
+            var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
+            var selectedProject = model.GetProjects().Find((Project pj) => pj.theme == Intent.GetStringExtra("theme"));
 
-			selectedPrompt.FindViewById<TextView>(
-				Resource.Id.caption).Text = Intent.GetStringExtra("promptText");
+            var promptRecyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
+            promptRecyclerView.SetLayoutManager(new GridLayoutManager(this, 2));
+
+            themes = selectedProject.prompts;
+            var adapter = new RVPromptAdapter(themes);
+            adapter.ProjectClicked += ProjectSelected;
+            promptRecyclerView.SetAdapter(adapter);
 
 			var record = FindViewById<FloatingActionButton>(Resource.Id.start);
 			var cancel = FindViewById<FloatingActionButton>(Resource.Id.cancel);
@@ -88,7 +91,6 @@ namespace Gabber
 					// Saves the recording and sends to next screen for play-back
 					SaveRecording();
 				}
-                SupportActionBar.TitleFormatted = Html.FromHtml("<font color=\"#3D0C11\">Recording</font> your Gabber");
 			};
 
 			cancel.Click += delegate
@@ -99,11 +101,29 @@ namespace Gabber
 				record.Selected = false;
 				// Stops the current audio from playing.
 				StopRecording();
-				SupportActionBar.Title = Resources.GetText(Resource.String.recording_your_gabber);
+                // TODO: for now, we are only interested in the annotations made for the recording that's POSTED
+                SelectedAnnotationsAsJSON = "";
 			};
 		}
 
-		async void SaveRecording()
+        void ProjectSelected(object sender, int position)
+        {
+            if (_isrecording) 
+            {
+                var annotation = JsonConvert.SerializeObject(new {
+                    theme = themes[position].prompt, 
+                    time = FindViewById<TextView>(Resource.Id.timer).Text
+                });
+
+                SelectedAnnotationsAsJSON += annotation;
+                // TODO: change the background color of the selected item 
+                // or increase a counter at the bottom so we know when in the
+                // audio that the item was selected
+            }
+            
+        }
+
+        async void SaveRecording()
 		{
 			// Link this interview to interviewer (the logged in user).
 			var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
@@ -126,8 +146,9 @@ namespace Gabber
 				SessionID = Intent.GetStringExtra("session"),
 				InterviewerEmail = prefs.GetString("username", ""),
 				ParticipantsAsJSON = Intent.GetStringExtra("participants"),
-				promptText = Intent.GetStringExtra("promptText"),
-				Uploaded = false
+				Uploaded = false,
+                AnnotationsAsJSON = JsonConvert.SerializeObject(SelectedAnnotationsAsJSON),
+                Type = "interview"
 			};
 
 			// Store locally so we know what users recorded what experiences.
@@ -137,13 +158,11 @@ namespace Gabber
 			var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
 			alert.SetTitle(Resources.GetText(Resource.String.popup_record_again));
 			alert.SetMessage(Resources.GetText(Resource.String.popup_record_question));
-			SupportActionBar.Title = Resources.GetText(Resource.String.recording_your_gabber);
 
 			alert.SetPositiveButton(Resources.GetText(Resource.String.popup_record_button), (s,a) => 
 			{
-				var intent = new Intent(this, typeof(PromptSelectionActivity));
-				intent.PutExtra("PROMPT_SELECTION_POSITION", Intent.GetIntExtra("PROMPT_SELECTION_POSITION", 0));
-				SetResult(Result.Ok, intent);
+                var intent = new Intent(this, typeof(PreparationActivity));
+                SetResult(Result.Ok, intent);
 				Finish(); 
 			});
 

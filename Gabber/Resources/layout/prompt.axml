@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="24dp"
+    android:layout_marginRight="24dp">
+    <android.support.v7.widget.CardView
         android:id="@+id/promptCard"
+        card_view:cardElevation="2dp"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardPreventCornerOverlap="false"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:background="#26A69A"
+            android:layout_width="4dp"
+            android:layout_height="match_parent" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,14 +26,16 @@
                 android:background="#6DCBCA"
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/caption"
                 style="@style/TextAppearance.AppCompat.Body2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:ellipsize="end"
                 android:gravity="center"
-                android:padding="8sp"
-                android:id="@+id/caption" />
+                android:padding="12sp" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </FrameLayout>

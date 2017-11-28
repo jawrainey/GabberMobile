@@ -120,7 +120,7 @@ namespace Gabber
 					// Store created participants as these are displayed to the user on the UI.
 					prefs.Edit().PutString("participants", JsonConvert.SerializeObject(_participants)).Commit();
 					// Pass the preparation form and previously form data (theme) to the record activity.
-					var intent = new Intent(this, typeof(PromptSelectionActivity));
+                    var intent = new Intent(this, typeof(RecordStoryActivity));
                     // We do not want to store "you" as set in the register page, but instead the full name
                     selectedParticipants[0].Name = prefs.GetString("username", selectedParticipants[0].Name);
 					intent.PutExtra("participants", JsonConvert.SerializeObject(selectedParticipants));

@@ -49,9 +49,16 @@ namespace GabberPCL
 			{
 				// TODO: also send photos to the server for each participant
 				formData.Add(new StringContent(story.ParticipantsAsJSON), "participants");
+                formData.Add(new StringContent(story.Type), "type");
 				formData.Add(new StringContent(story.Location), "location");
 				formData.Add(new StringContent(story.SessionID), "sessionID");
-				formData.Add(new StringContent(story.promptText), "promptText");
+
+                if (story.Type == "interview") {
+                    formData.Add(new StringContent(story.AnnotationsAsJSON), "annotations");
+                }
+                else {
+                    formData.Add(new StringContent(story.promptText), "promptText");    
+                }
 
 				// Access the OS specific implementation to load data from a file.
 				formData.Add(new ByteArrayContent(GlobalIO.Load(story.AudioPath)),
