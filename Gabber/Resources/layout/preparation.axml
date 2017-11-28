@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    android:layout_marginBottom="24dp"
+    android:layout_marginBottom="12dp"
     android:gravity="center">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="52dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -68,41 +69,48 @@
                 </android.support.design.widget.TextInputLayout>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp">
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/participantEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
-                        android:imeOptions="actionNext"
+                        android:imeOptions="actionDone"
                         android:hint="Email (optional)" />
                 </android.support.design.widget.TextInputLayout>
                 <LinearLayout
                     android:layout_height="wrap_content"
                     android:layout_width="fill_parent"
                     android:orientation="horizontal"
+                    android:layout_marginRight="6dp"
                     android:weightSum="1.0">
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/addParticipant"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|center_vertical"
-                        android:layout_weight=".5"
-                        android:layout_width="0dip"
                         android:textColor="@drawable/textcolorbutton"
                         android:background="@drawable/borderbutton"
                         android:text="Add" />
                 </LinearLayout>
             </LinearLayout>
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/selectPrompt"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="24dp"
-                android:textColor="@drawable/textcolorbutton"
-                android:background="@drawable/borderbutton"
-                android:text="Start your Gabber" />
         </LinearLayout>
     </ScrollView>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/selectPrompt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp"
+        android:textColor="@drawable/textcolorbutton"
+        android:background="@drawable/borderbutton"
+        android:text="Start your Gabber" />
 </RelativeLayout>
