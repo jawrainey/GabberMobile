@@ -18,7 +18,7 @@
     <AssemblyName>Gabber</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidTlsProvider>btls</AndroidTlsProvider>
     <AndroidLinkMode>None</AndroidLinkMode>
@@ -35,7 +35,6 @@
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AndroidHttpClientHandlerType>System.Net.Http.HttpClientHandler</AndroidHttpClientHandlerType>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -46,7 +45,7 @@
     <ConsolePause>false</ConsolePause>
     <AndroidHttpClientHandlerType>System.Net.Http.HttpClientHandler</AndroidHttpClientHandlerType>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
-    <EnableProguard>true</EnableProguard>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -193,6 +192,8 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\values-hi\Strings.xml" />
     <AndroidResource Include="Resources\values-hi\styles.xml" />
+    <AndroidResource Include="Resources\drawable\BottomInterviewThemes.xml" />
+    <AndroidResource Include="Resources\drawable\promptBorder.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />

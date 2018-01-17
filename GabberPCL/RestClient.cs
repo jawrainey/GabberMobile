@@ -55,6 +55,7 @@ namespace GabberPCL
 
                 if (story.Type == "interview") {
                     formData.Add(new StringContent(story.AnnotationsAsJSON), "annotations");
+                    formData.Add(new StringContent(story.Theme), "theme");
                 }
                 else {
                     formData.Add(new StringContent(story.promptText), "promptText");    

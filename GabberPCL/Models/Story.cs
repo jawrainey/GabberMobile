@@ -8,6 +8,7 @@ namespace GabberPCL
 		public string AudioPath { get; set; }
 		public string Location { get; set; }
 		public string promptText { get; set; }
+        public string Theme { get; set; }
 		// Note: this is only ever used locally to differentiate between users as it's based on login details
 		public string InterviewerEmail { get; set; }
 		// lazy hack: required to know which participants were part of this interview.

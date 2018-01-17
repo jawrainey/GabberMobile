@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    android:layout_marginBottom="12dp"
+    android:layout_marginBottom="24dp"
     android:gravity="center">
     <ScrollView
         android:layout_width="match_parent"
@@ -37,18 +37,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="24dp"
-                android:paddingRight="24dp"
-                android:paddingBottom="12dp" />
+                android:paddingRight="24dp" />
             <TextView
                 android:id="@+id/createNewParticipant"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="right"
-                android:text="Add a new participant (Show)" />
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:text="Add a new participant"
+                android:gravity="left"
+                android:textSize="16sp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
             <LinearLayout
                 android:id="@+id/ParticipantContentWidget"
-                android:visibility="gone"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_centerVertical="true"

@@ -17,6 +17,14 @@ using Android.Support.V7.Widget;
 
 namespace Gabber
 {
+    // Created here & not PCL as it is not used elsewhere for now ...
+    public class Annotation 
+    {
+        public string Prompt { get; set; }
+        public int Start { get; set; }
+        public int End { get; set; }
+    }
+
 	[Activity]
 	public class RecordStoryActivity : AppCompatActivity
 	{
@@ -29,23 +37,29 @@ namespace Gabber
         // Holds the prompts for this project
         List<Prompt> themes;
         // This will be reset on cancel and updated in several methods
-        string SelectedAnnotationsAsJSON;
+        List<Annotation> SelectedAnnotationsAsJSON;
+        // Exposed as used to identify when a prompt was selected
+        RVPromptAdapter adapter;
+        // This must be held outside ProjectSelected or it would be overridden
+        bool FirstPromptSelected;
+        // Exposed as we want to get this once a prompt is selected
+        int _seconds;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.record);
             // There are no annotations by default
-            SelectedAnnotationsAsJSON = "";
+            SelectedAnnotationsAsJSON = new List<Annotation>();
 
             var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
             var selectedProject = model.GetProjects().Find((Project pj) => pj.theme == Intent.GetStringExtra("theme"));
 
             var promptRecyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
-            promptRecyclerView.SetLayoutManager(new GridLayoutManager(this, 2));
+            promptRecyclerView.SetLayoutManager(new GridLayoutManager(this, 1));
 
             themes = selectedProject.prompts;
-            var adapter = new RVPromptAdapter(themes);
+            adapter = new RVPromptAdapter(themes);
             adapter.ProjectClicked += ProjectSelected;
             promptRecyclerView.SetAdapter(adapter);
 
@@ -57,14 +71,13 @@ namespace Gabber
 			record.Click += delegate
 			{
 				// Change icon between record to stop.
-				record.Selected = !record.Selected;
-				// Show/Hide the cancel/timer on click!
-				cancel.Visibility = cancel.Visibility == ViewStates.Invisible ? ViewStates.Visible : ViewStates.Invisible;
-				timer.Visibility = timer.Visibility == ViewStates.Invisible ? ViewStates.Visible : ViewStates.Invisible;
+                record.Selected = !record.Selected;
 
 				if (record.Selected)
 				{
-					// Override path for re-use as user may record many audios. Store only once.
+                    timer.Visibility = timer.Visibility == ViewStates.Invisible ? ViewStates.Visible : ViewStates.Invisible;
+
+                    // Override path for re-use as user may record many audios. Store only once.
 					if (string.IsNullOrWhiteSpace(_path))
 					{
 						var personal = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
@@ -76,51 +89,101 @@ namespace Gabber
 					// TODO: do we want users to record for as long as they desire?
 					RunOnUiThread(async () =>
 					{
-						int seconds = 0;
+						_seconds = 0;
 
 						while (_isrecording)
 						{
-							timer.Text = TimeSpan.FromSeconds(seconds++).ToString((@"mm\:ss"));
+							timer.Text = TimeSpan.FromSeconds(_seconds++).ToString((@"mm\:ss"));
 							await Task.Delay(1000);
 						}
 					});
 				}
 				else
 				{
-					StopRecording();
-					// Saves the recording and sends to next screen for play-back
-					SaveRecording();
+                    ModalToVerifyRecordingEnd();
+                    // This ensures that the state of the Play/Stop icon does not change
+                    record.Selected = true;
 				}
-			};
-
-			cancel.Click += delegate
-			{
-				cancel.Visibility = ViewStates.Invisible;
-				timer.Visibility = ViewStates.Invisible;
-				// Revert back to the "record" icon.
-				record.Selected = false;
-				// Stops the current audio from playing.
-				StopRecording();
-                // TODO: for now, we are only interested in the annotations made for the recording that's POSTED
-                SelectedAnnotationsAsJSON = "";
 			};
 		}
 
-        void ProjectSelected(object sender, int position)
+        public override void OnBackPressed()
         {
-            if (_isrecording) 
-            {
-                var annotation = JsonConvert.SerializeObject(new {
-                    theme = themes[position].prompt, 
-                    time = FindViewById<TextView>(Resource.Id.timer).Text
+            if (_isrecording) {
+
+                var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
+                alert.SetTitle("You are currently recording");
+                alert.SetMessage("Are you sure you want to go back?");
+                alert.SetIcon(Android.Resource.Drawable.IcDialogAlert);
+
+                alert.SetPositiveButton(Resources.GetText(Resource.String.popup_record_button), (dialog, id) =>
+                {
+                    StopRecording();
+                    base.OnBackPressed();
                 });
 
-                SelectedAnnotationsAsJSON += annotation;
-                // TODO: change the background color of the selected item 
-                // or increase a counter at the bottom so we know when in the
-                // audio that the item was selected
+                alert.SetNegativeButton(Resources.GetText(Resource.String.popup_finish), (dialog, id) =>
+                {
+                    ((Android.Support.V7.App.AlertDialog)dialog).Dismiss();
+                });
+
+                alert.Create().Show();
+            }
+            else {
+                base.OnBackPressed();
+            }
+        }
+
+        void ProjectSelected(object sender, int position)
+        {
+            var recordButton = FindViewById<FloatingActionButton>(Resource.Id.start);
+
+            if (!FirstPromptSelected) {
+                FirstPromptSelected = true;
+                FindViewById<TextView>(Resource.Id.recordInstructions).Visibility = ViewStates.Invisible;
+                recordButton.Visibility = ViewStates.Visible;
+                recordButton.PerformClick();
+            }
+
+            if (_isrecording) 
+            {
+                SelectedAnnotationsAsJSON.Add(new Annotation
+                {
+                    Prompt = themes[position].prompt,
+                    Start = _seconds,
+                    // Because we want to have the end being where the next annotation was clicked
+                    // we must CALCULATE this before saving the interview
+                    End = 0
+                });
+
+                adapter.PromptSeleted(position);
             }
             
+        }
+
+        void ModalToVerifyRecordingEnd()
+        {
+            var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
+            alert.SetMessage(Resources.GetText(Resource.String.popup_record_question));
+
+            alert.SetPositiveButton(Resources.GetText(Resource.String.popup_record_button), (dialog, id) =>
+            {
+                StopRecording();
+                SaveRecording();
+
+                var intent = new Intent(this, typeof(MainActivity));
+                intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
+                intent.PutExtra("RECORDED_GABBER", "ta");
+                StartActivity(intent);
+                Finish();
+            });
+
+            alert.SetNegativeButton(Resources.GetText(Resource.String.popup_finish), (dialog, id) =>
+            {
+                ((Android.Support.V7.App.AlertDialog)dialog).Dismiss();
+            });
+
+            alert.Create().Show();
         }
 
         async void SaveRecording()
@@ -139,11 +202,40 @@ namespace Gabber
 			}
 			catch { }
 
+            // Only one annotation was chosen for the entire recording
+            if (SelectedAnnotationsAsJSON.Count == 1) 
+            {
+                SelectedAnnotationsAsJSON[0].End = _seconds;
+            }
+            // This ensures if two (or more) annotations are made then the first and last will be updated correctly
+            if (SelectedAnnotationsAsJSON.Count > 1) 
+            {
+                // By default, the end time for the first annotation 
+                SelectedAnnotationsAsJSON[0].End = SelectedAnnotationsAsJSON[1].Start;
+                // The last annotation continues until the end of the audio
+                SelectedAnnotationsAsJSON[SelectedAnnotationsAsJSON.Count - 1].End = _seconds;
+            }
+
+            // ensures the end time between the first and last annotations are correct
+            if (SelectedAnnotationsAsJSON.Count > 2)
+            {
+                // Start at the second and go to the second from last
+                // Skip the last element as it is equal to seconds ...
+                for (int i = 1; i < SelectedAnnotationsAsJSON.Count - 1; i++) 
+                {
+                    SelectedAnnotationsAsJSON[i].End = SelectedAnnotationsAsJSON[i + 1].Start;
+                }
+
+            }
+
 			var story = new Story
 			{
 				AudioPath = _path,
 				Location = currentlocation,
 				SessionID = Intent.GetStringExtra("session"),
+                // No PromptText here as the user is not responding to a particular prompt, 
+                // but rather to a set of prompts related to a project ...
+                Theme = Intent.GetStringExtra("theme"),
 				InterviewerEmail = prefs.GetString("username", ""),
 				ParticipantsAsJSON = Intent.GetStringExtra("participants"),
 				Uploaded = false,
@@ -154,27 +246,6 @@ namespace Gabber
 			// Store locally so we know what users recorded what experiences.
 			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
 			model.InsertStory(story);
-
-			var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
-			alert.SetTitle(Resources.GetText(Resource.String.popup_record_again));
-			alert.SetMessage(Resources.GetText(Resource.String.popup_record_question));
-
-			alert.SetPositiveButton(Resources.GetText(Resource.String.popup_record_button), (s,a) => 
-			{
-                var intent = new Intent(this, typeof(PreparationActivity));
-                SetResult(Result.Ok, intent);
-				Finish(); 
-			});
-
-			alert.SetNegativeButton(Resources.GetText(Resource.String.popup_finish), (senderAlert, args) =>
-			{
-				var intent = new Intent(this, typeof(MainActivity));
-				intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
-				StartActivity(intent);
-				Finish();
-			});
-
-			alert.Create().Show();
 
 			if (await new RestClient().Upload(story))
 			{

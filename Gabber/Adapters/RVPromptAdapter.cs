@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using FFImageLoading;
 using FFImageLoading.Views;
 using System;
+using Android.Graphics;
 
 namespace Gabber
 {
@@ -12,6 +13,7 @@ namespace Gabber
 	{
 		// Each story the user recorded has an associated image and audio.
 		readonly List<GabberPCL.Prompt> _prompts;
+        int lastSelectedPosition = int.MinValue;
 
 		public RVPromptAdapter(List<GabberPCL.Prompt> prompts)
 		{
@@ -28,11 +30,41 @@ namespace Gabber
 		{
 			var vh = holder as PhotoViewHolder;
 			vh.Caption.Text = _prompts[position].prompt;
-			// Load the image from the web into the prompt imageView.
-			ImageService.Instance.LoadUrl(_prompts[position].imageName).Into(vh.Image);
+
+            // Load the image from the web into the prompt imageView.
+            ImageService.Instance.LoadUrl(_prompts[position].imageName).Into(vh.Image);
+
 			// Required to lookup the drawable resource (image prompt) by ID.
 			vh.Image.Tag = _prompts[position].imageName;
+
+            if (position == lastSelectedPosition)
+            {
+                // CURRENT SELECTED STATE [item that was just selected]
+                vh.Caption.SetBackgroundColor(Color.ParseColor("#26A69A"));
+                vh.Caption.SetTextColor(Color.White);
+            }
+            else if (_prompts[position].Selected)
+            {
+                // PREVIOUS SELECTED STATE [item was selected before]
+                vh.Caption.SetBackgroundColor(Color.LightGray);
+                vh.Caption.SetTextColor(Color.Black);
+            }
+            else {
+                // DEFAULT STATE [the item has never been selected]
+                vh.Caption.SetBackgroundResource(Resource.Drawable.promptBorder);
+                vh.Caption.SetTextColor(Color.Black);
+            }
 		}
+
+        public void PromptSeleted(int position)
+        {
+            _prompts[position].Selected = true;
+            int temp = lastSelectedPosition;
+            lastSelectedPosition = position;
+            if(temp != int.MinValue)
+                NotifyItemChanged(temp);
+            NotifyItemChanged(position);
+        }
 
 		public override int ItemCount
 		{

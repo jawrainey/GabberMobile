@@ -4,6 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="24dp"
+    android:layout_marginLeft="24dp"
     android:layout_marginRight="24dp">
     <android.support.v7.widget.CardView
         android:id="@+id/promptCard"
@@ -14,7 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <FrameLayout
+            android:id="@+id/frameBorder"
             android:background="#26A69A"
+            android:elevation="4dp"
             android:layout_width="4dp"
             android:layout_height="match_parent" />
         <LinearLayout
@@ -25,11 +28,13 @@
                 android:id="@+id/imagePrompt"
                 android:background="#6DCBCA"
                 android:scaleType="fitXY"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/caption"
                 style="@style/TextAppearance.AppCompat.Body2"
+                android:background="@drawable/promptBorder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="3"

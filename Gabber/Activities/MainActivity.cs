@@ -6,6 +6,9 @@ using Android.Support.V7.Widget;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using GabberPCL;
+using System.Linq;
+using Android.Widget;
+using Android.Support.Design.Widget;
 
 namespace Gabber
 {
@@ -25,6 +28,14 @@ namespace Gabber
 			// This ensures if many log into the device, then they will see theirs.
 			_prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
 
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.main);
+            SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
+            SupportActionBar.Title = Resources.GetText(Resource.String.select_project);
+
+            var mView = FindViewById<RecyclerView>(Resource.Id.projects);
+            mView.SetLayoutManager(new LinearLayoutManager(this));
+
 			// Used to redirect unauthenticated users
 			if (string.IsNullOrWhiteSpace(_prefs.GetString("username", "")))
 			{
@@ -34,20 +45,20 @@ namespace Gabber
 			else
 			{
 				_model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
-
 				SetupProjects(_model);
-			}
 
+                if (!string.IsNullOrWhiteSpace(Intent.GetStringExtra("RECORDED_GABBER")))
+                {
+                    var stories = _model.GetStories(_prefs.GetString("username", ""));
+                    int numToUpload = stories.Count - stories.Count((story) => story.Uploaded);
+                    var snackText = "You have " + numToUpload.ToString() + " Gabbers to upload";
+                    Snackbar.Make(mView, snackText, Snackbar.LengthIndefinite)
+                            .SetAction("Upload", (view) => UploadGabbers())
+                            .Show();
+                }
+			}
 			// Register the implementation to the global interface within the PCL.
 			RestClient.GlobalIO = new DiskIO();
-
-			base.OnCreate(savedInstanceState);
-			SetContentView(Resource.Layout.main);
-			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
-			SupportActionBar.Title = Resources.GetText(Resource.String.select_project);
-
-			var mView = FindViewById<RecyclerView>(Resource.Id.projects);
-			mView.SetLayoutManager(new LinearLayoutManager(this));
 
 			var mAdapter = new RecyclerAdapter(_projects);
 			mAdapter.ProjectClicked += OnProjectClick;
@@ -72,23 +83,28 @@ namespace Gabber
 			else model.SaveRequest(JsonConvert.SerializeObject(response));
 		}
 
+        void UploadGabbers()
+        {
+            foreach (var gabber in _model.GetStories(_prefs.GetString("username", "")))
+            {
+                if (!gabber.Uploaded)
+                {
+                    RunOnUiThread(async () =>
+                    {
+                        if (await new RestClient().Upload(gabber))
+                        {
+                            gabber.Uploaded = true;
+                            _model.UpdateStory(gabber);
+                            Snackbar.Make(FindViewById<RecyclerView>(Resource.Id.projects), "Gabber uploaded successfully", 0).Show();
+                        }
+                    });
+                }
+            }
+        }
+
 		void OnProjectClick(object sender, int position)
 		{
-			foreach (var gabber in _model.GetStories(_prefs.GetString("username", "")))
-			{
-				if (!gabber.Uploaded)
-				{
-					RunOnUiThread(async () =>
-					{
-						if (await new RestClient().Upload(gabber))
-						{
-							gabber.Uploaded = true;
-							_model.UpdateStory(gabber);
-						}
-					});
-				}
-			}
-
+            UploadGabbers();
 			var intent = new Intent(this, typeof(PreparationActivity));
 			// The unique ID used to lookup associated prompts (URLs and text).
 			// Storing as pref as access is required 

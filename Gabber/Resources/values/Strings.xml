@@ -17,15 +17,15 @@
 	<string name="btn_register">Register</string>
 	
 	<string name="select_participant">Select or create a new participant to interview</string>
-	<string name="hint_who_gabbering_with">Who will be involved in your Gabber?</string>
+	<string name="hint_who_gabbering_with">Who will you be talking with?</string>
 	<string name="previous_participants">Previous participants?</string>
 	<string name="error_friends_email">Your friends email is required</string>
 	<string name="error_friends_name">Your friends name is required</string>
 	<string name="error_invalid_email">That email address is invalid</string>
 	<string name="topics_to_discuss">Topics for this project</string>
 	<string name="recording_your_gabber">Record your Gabber</string>
-	<string name="popup_record_again">Your Gabber was saved</string>
-	<string name="popup_record_question">Would you like to Gabber again or finish?</string>
-	<string name="popup_record_button">Record again</string>
-	<string name="popup_finish">Finish</string>
+    <string name="popup_record_again">Would you like to save your recording?</string>
+	<string name="popup_record_question">Are you sure you want to stop this recording?</string>
+	<string name="popup_record_button">Yes</string>
+	<string name="popup_finish">No</string>
 </resources>
