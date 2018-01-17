@@ -45,9 +45,21 @@ namespace Gabber
 
 					if (await new RestClient().Register(fname.Text, email.Text, passw.Text))
 					{
-						PreferenceManager.GetDefaultSharedPreferences(
-							ApplicationContext).Edit().PutString("username", email.Text).Commit();
-						
+                        var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+
+                        prefs.Edit().PutString("name", fname.Text).Commit();
+                        prefs.Edit().PutString("username", email.Text).Commit();
+                        // This allows the current user (who registered) to be displayed in the participants view
+                        var user = new Participant
+                        {
+                            Name = "(You)",
+                            Email = email.Text,
+                            Selected = true
+                        };
+                        var _participants = new System.Collections.Generic.List<Participant> { user };
+                        var _parts_as_json = Newtonsoft.Json.JsonConvert.SerializeObject(_participants);
+                        prefs.Edit().PutString("participants", _parts_as_json).Commit();
+
 						var intent = new Intent(this, typeof(MainActivity));
 						intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
 						StartActivity(intent);
