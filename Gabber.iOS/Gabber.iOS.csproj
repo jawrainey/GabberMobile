@@ -94,6 +94,8 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Cells\" />
+    <Folder Include="ViewSources\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -109,6 +111,15 @@
     <Compile Include="Controllers\LoginViewController.cs" />
     <Compile Include="Controllers\LoginViewController.designer.cs">
       <DependentUpon>LoginViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ProjectsViewController.cs" />
+    <Compile Include="Controllers\ProjectsViewController.designer.cs">
+      <DependentUpon>ProjectsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSources\ProjectsCollectionViewSource.cs" />
+    <Compile Include="Cells\ProjectsCollectionViewCell.cs" />
+    <Compile Include="Cells\ProjectsCollectionViewCell.designer.cs">
+      <DependentUpon>ProjectsCollectionViewCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
