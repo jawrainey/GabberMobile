@@ -5,20 +5,54 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GabberDroid", "Gabber\Gabbe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GabberPCL", "GabberPCL\GabberPCL.csproj", "{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gabber.iOS", "Gabber.iOS\Gabber.iOS.csproj", "{6ECC0572-B015-4ECA-A040-3CB553FF44F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Release|iPhone.Build.0 = Release|Any CPU
+		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{1F4C27FC-B078-41B1-B0AA-D0841D2414EE}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Release|iPhone.Build.0 = Release|Any CPU
+		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{6ECC0572-B015-4ECA-A040-3CB553FF44F8}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{6ECC0572-B015-4ECA-A040-3CB553FF44F8}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{6ECC0572-B015-4ECA-A040-3CB553FF44F8}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{6ECC0572-B015-4ECA-A040-3CB553FF44F8}.Release|Any CPU.Build.0 = Release|iPhone
+		{6ECC0572-B015-4ECA-A040-3CB553FF44F8}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{6ECC0572-B015-4ECA-A040-3CB553FF44F8}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{6ECC0572-B015-4ECA-A040-3CB553FF44F8}.Release|iPhone.ActiveCfg = Release|iPhone
+		{6ECC0572-B015-4ECA-A040-3CB553FF44F8}.Release|iPhone.Build.0 = Release|iPhone
+		{6ECC0572-B015-4ECA-A040-3CB553FF44F8}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{6ECC0572-B015-4ECA-A040-3CB553FF44F8}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{6ECC0572-B015-4ECA-A040-3CB553FF44F8}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{6ECC0572-B015-4ECA-A040-3CB553FF44F8}.Debug|iPhone.Build.0 = Debug|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Gabber\Gabber.csproj
