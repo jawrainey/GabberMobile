@@ -129,10 +129,11 @@
     <Compile Include="Controllers\RecordViewController.designer.cs">
       <DependentUpon>RecordViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\SelectParticipantsViewController.cs" />
-    <Compile Include="Controllers\SelectParticipantsViewController.designer.cs">
-      <DependentUpon>SelectParticipantsViewController.cs</DependentUpon>
+    <Compile Include="Cells\ParticipantsCollectionViewCell.cs" />
+    <Compile Include="Cells\ParticipantsCollectionViewCell.designer.cs">
+      <DependentUpon>ParticipantsCollectionViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewSources\ParticipantsCollectionViewSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

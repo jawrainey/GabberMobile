@@ -1,7 +1,6 @@
 using Foundation;
 using System;
 using UIKit;
-using CoreGraphics;
 
 namespace Gabber.iOS
 {
