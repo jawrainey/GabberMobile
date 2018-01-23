@@ -7,7 +7,7 @@ namespace Gabber.iOS.ViewSources
 {
     public class ProjectsCollectionViewSource : UICollectionViewSource
     {
-        // TODO: if this were an object it would be different
+        // TODO: this should be a Project from the PCL
         public List<string> Rows { get; set; }
 
         public ProjectsCollectionViewSource(List<string> _rows)
@@ -25,13 +25,16 @@ namespace Gabber.iOS.ViewSources
             return Rows.Count;
         }
 
+        public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
+        {
+            NSUserDefaults.StandardUserDefaults.SetString(Rows[indexPath.Row], "selectedProject");
+        }
+
         public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            System.Console.WriteLine(ProjectsCollectionViewCell.CellID);
             var cell = (ProjectsCollectionViewCell)collectionView.DequeueReusableCell(ProjectsCollectionViewCell.CellID, indexPath);
             cell.UpdateContent(Rows[indexPath.Row]);
             return cell;
         }
-
     }
 }
