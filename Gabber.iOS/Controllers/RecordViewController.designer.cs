@@ -14,5 +14,16 @@ namespace Gabber.iOS
     [Register ("RecordViewController")]
     partial class RecordViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UICollectionView TopicsCollectionView { get; set; }
+
+        void ReleaseDesignerOutlets ()
+        {
+            if (TopicsCollectionView != null) {
+                TopicsCollectionView.Dispose ();
+                TopicsCollectionView = null;
+            }
+        }
     }
 }

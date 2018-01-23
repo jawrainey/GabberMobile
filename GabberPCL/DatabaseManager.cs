@@ -32,7 +32,12 @@ namespace GabberPCL
 			return JsonConvert.DeserializeObject<List<Project>>(queryResult);
 		}
 
-		public void UpdateStory(Story story)
+        public Project ProjectByName(string theme)
+        {
+            return GetProjects().Find((p) => p.theme == theme);
+        }
+
+        public void UpdateStory(Story story)
 		{
 			database.Update(story);
 		}
