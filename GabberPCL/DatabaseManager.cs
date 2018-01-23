@@ -32,6 +32,7 @@ namespace GabberPCL
 			return JsonConvert.DeserializeObject<List<Project>>(queryResult);
 		}
 
+        // TODO: this is not great as theme is not necessarily unique.
         public Project ProjectByName(string theme)
         {
             return GetProjects().Find((p) => p.theme == theme);

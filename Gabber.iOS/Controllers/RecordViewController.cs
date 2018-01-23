@@ -3,6 +3,7 @@ using System;
 using UIKit;
 using GabberPCL;
 using Newtonsoft.Json;
+using Gabber.iOS.ViewSources;
 
 namespace Gabber.iOS
 {
@@ -15,7 +16,7 @@ namespace Gabber.iOS
             var model = new DatabaseManager(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
             var selectedProject = model.ProjectByName(NSUserDefaults.StandardUserDefaults.StringForKey("selectedProject"));
             var topics = selectedProject.prompts;
-            Console.WriteLine(JsonConvert.SerializeObject(selectedProject.prompts));
+            TopicsCollectionView.Source = new TopicsCollectionViewSource(topics);
         }
     }
 }

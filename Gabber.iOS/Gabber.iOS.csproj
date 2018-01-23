@@ -157,6 +157,12 @@
       <DependentUpon>ParticipantsCollectionViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewSources\ParticipantsCollectionViewSource.cs" />
+    <Compile Include="Cells\TopicsCollectionViewCell.cs" />
+    <Compile Include="Cells\TopicsCollectionViewCell.designer.cs">
+      <DependentUpon>TopicsCollectionViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSources\TopicsCollectionViewSource.cs" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">
       <Project>{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}</Project>

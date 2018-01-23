@@ -2,15 +2,16 @@
 using Foundation;
 using UIKit;
 using System.Collections.Generic;
+using GabberPCL;
 
 namespace Gabber.iOS.ViewSources
 {
-    public class ParticipantsCollectionViewSource : UICollectionViewSource
+    public class TopicsCollectionViewSource : UICollectionViewSource
     {
-        // TODO: this should be a Participant object from PCL
-        public List<string> Rows { get; set; }
+        // TODO: this should be a Project from the PCL
+        public List<Prompt> Rows { get; set; }
 
-        public ParticipantsCollectionViewSource(List<string> _rows)
+        public TopicsCollectionViewSource(List<Prompt> _rows)
         {
             Rows = _rows;
         }
@@ -27,13 +28,14 @@ namespace Gabber.iOS.ViewSources
 
         public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            // TODO: update model Selected, but how do we know who the participant was?
+            // TODO: once a TOPIC is clicked, save to local SelectedAnnotations
+            // Not sure if a delegate is best suited for this?
         }
 
         public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            var cell = (ParticipantsCollectionViewCell)collectionView.DequeueReusableCell(ParticipantsCollectionViewCell.CellID, indexPath);
-            cell.UpdateContent(Rows[indexPath.Row]);
+            var cell = (TopicsCollectionViewCell)collectionView.DequeueReusableCell(TopicsCollectionViewCell.CellID, indexPath);
+            cell.UpdateContent(Rows[indexPath.Row].prompt);
             return cell;
         }
     }
