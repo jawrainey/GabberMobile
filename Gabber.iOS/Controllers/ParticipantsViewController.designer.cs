@@ -14,8 +14,16 @@ namespace Gabber.iOS
     [Register ("ParticipantsViewController")]
     partial class ParticipantsViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UICollectionView ParticipantsCollectionView { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (ParticipantsCollectionView != null) {
+                ParticipantsCollectionView.Dispose ();
+                ParticipantsCollectionView = null;
+            }
         }
     }
 }

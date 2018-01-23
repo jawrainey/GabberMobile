@@ -2,6 +2,7 @@ using System;
 using UIKit;
 using System.Collections.Generic;
 using Gabber.iOS.ViewSources;
+using Foundation;
 
 namespace Gabber.iOS
 {
@@ -21,5 +22,8 @@ namespace Gabber.iOS
             // TODO: populate list with data from API
             ProjectsCollectionView.Source = new ProjectsCollectionViewSource(projects);
         }
+
+        [Action("UnwindToProjectsViewController:")]
+        public void UnwindToProjectsViewController(UIStoryboardSegue segue) {}
     }
 }
