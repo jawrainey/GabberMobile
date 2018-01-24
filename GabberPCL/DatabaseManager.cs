@@ -11,7 +11,7 @@ namespace GabberPCL
 
 		public DatabaseManager(string folder)
 		{
-			string path = System.IO.Path.Combine(folder, "database.db3");
+            string path = System.IO.Path.Combine(folder, "gabber.db3");
 			database = new SQLiteConnection(path);
 			database.CreateTable<Story>();
 			database.CreateTable<ProjectsAsJSON>();

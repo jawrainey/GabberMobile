@@ -118,6 +118,7 @@
     <Folder Include="Controllers\" />
     <Folder Include="Cells\" />
     <Folder Include="ViewSources\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -162,6 +163,7 @@
       <DependentUpon>TopicsCollectionViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewSources\TopicsCollectionViewSource.cs" />
+    <Compile Include="Helpers\PrivatePath.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">

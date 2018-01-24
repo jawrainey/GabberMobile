@@ -40,6 +40,8 @@
     <Compile Include="Interfaces\IDiskIO.cs" />
     <Compile Include="Models\ComplexNeeds.cs" />
     <Compile Include="Models\Participant.cs" />
+    <Compile Include="Session.cs" />
+    <Compile Include="Interfaces\IPrivatePath.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

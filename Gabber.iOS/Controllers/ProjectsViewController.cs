@@ -5,6 +5,8 @@ using Gabber.iOS.ViewSources;
 using Foundation;
 using GabberPCL;
 using Newtonsoft.Json;
+using Gabber.iOS.Helpers;
+using System.Linq;
 
 namespace Gabber.iOS
 {
@@ -15,6 +17,8 @@ namespace Gabber.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            // Register the implementation to the global interface within the PCL.
+            Session.PrivatePath = new PrivatePath();
 
             // TODO: IF the user IS NOT authenticated THEN show the login workflow
 

@@ -3,7 +3,6 @@ using Foundation;
 using UIKit;
 using System.Collections.Generic;
 using GabberPCL;
-using Newtonsoft.Json;
 
 namespace Gabber.iOS.ViewSources
 {
@@ -52,8 +51,7 @@ namespace Gabber.iOS.ViewSources
         void SetSelected(UICollectionView collectionView, NSIndexPath indexPath, bool isSelected)
         {
             Rows[indexPath.Row].Selected = isSelected;
-            // TODO: database and not local prefs
-            NSUserDefaults.StandardUserDefaults.SetString(JsonConvert.SerializeObject(Rows), "participants");
+            Session.Connection.Update(Rows[indexPath.Row]);
             var cell = collectionView.CellForItem(indexPath).ContentView;
             cell.BackgroundColor = isSelected ? UIColor.Green : UIColor.Red;
         }
