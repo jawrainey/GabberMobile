@@ -1,6 +1,7 @@
 using Foundation;
 using System;
 using UIKit;
+using GabberPCL;
 
 namespace Gabber.iOS
 {
@@ -10,12 +11,11 @@ namespace Gabber.iOS
 
         public ParticipantsCollectionViewCell (IntPtr handle) : base (handle) {}
 
-        public void UpdateContent(string _participantObject)
+        public void UpdateContent(Participant participant)
         {
-            ParticipantName.Text = _participantObject;
-            // TODO: 
-            // 1) Find participant from local database
-            // 2) Update participant with new object details
+            ParticipantName.Text = participant.Name;
+            BackgroundColor = participant.Selected ? UIColor.Green : UIColor.Red;
         }
+
     }
 }
