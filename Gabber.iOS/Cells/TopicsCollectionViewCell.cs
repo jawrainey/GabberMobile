@@ -1,6 +1,7 @@
 using Foundation;
 using System;
 using UIKit;
+using GabberPCL;
 
 namespace Gabber.iOS
 {
@@ -10,9 +11,22 @@ namespace Gabber.iOS
 
         public TopicsCollectionViewCell (IntPtr handle) : base (handle) {}
 
-        public void UpdateContent(string topic)
+        public void UpdateContent(Prompt topic)
         {
-            ProjectTopic.Text = topic;
+            ProjectTopic.Text = topic.prompt;
+
+            if (topic.SelectionState == Prompt.SelectedState.current)
+            {
+                BackgroundColor = UIColor.Green;
+            }
+            else if (topic.SelectionState == Prompt.SelectedState.previous) 
+            {
+                BackgroundColor = UIColor.Yellow;
+            }
+            else {
+                BackgroundColor = UIColor.Red;                
+            }
+
         }
     }
 }
