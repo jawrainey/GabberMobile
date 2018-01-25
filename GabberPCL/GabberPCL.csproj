@@ -42,6 +42,7 @@
     <Compile Include="Models\Participant.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Interfaces\IPrivatePath.cs" />
+    <Compile Include="Queries.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
