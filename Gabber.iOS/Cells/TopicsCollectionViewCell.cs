@@ -26,7 +26,6 @@ namespace Gabber.iOS
             else {
                 BackgroundColor = UIColor.Red;                
             }
-
         }
     }
 }

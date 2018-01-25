@@ -16,6 +16,5 @@ namespace Gabber.iOS
             ParticipantName.Text = participant.Name;
             BackgroundColor = participant.Selected ? UIColor.Green : UIColor.Red;
         }
-
     }
 }

@@ -32,12 +32,12 @@ namespace Gabber.iOS.ViewSources
 
         public override void ItemDeselected(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            SetSelected(collectionView, indexPath, false);
+            ToggleSelected(collectionView, indexPath);
         }
 
         public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            SetSelected(collectionView, indexPath, true);
+            ToggleSelected(collectionView, indexPath);
         }
 
         public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
@@ -48,12 +48,11 @@ namespace Gabber.iOS.ViewSources
         }
 
         // Helper method to simplify shared logic between
-        void SetSelected(UICollectionView collectionView, NSIndexPath indexPath, bool isSelected)
+        void ToggleSelected(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            Rows[indexPath.Row].Selected = isSelected;
+            Rows[indexPath.Row].Selected = !Rows[indexPath.Row].Selected;
             Session.Connection.Update(Rows[indexPath.Row]);
-            var cell = collectionView.CellForItem(indexPath).ContentView;
-            cell.BackgroundColor = isSelected ? UIColor.Green : UIColor.Red;
+            collectionView.ReloadData();
         }
     }
 }
