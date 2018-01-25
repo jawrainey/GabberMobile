@@ -225,7 +225,7 @@
         <!--Add New Participant-->
         <scene sceneID="18960">
             <objects>
-                <viewController title="Add New Participant" id="18961" customClass="SelectParticipantsViewController" sceneMemberID="viewController">
+                <viewController title="Add New Participant" id="18961" customClass="AddParticipantViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="18958"/>
                         <viewControllerLayoutGuide type="bottom" id="18959"/>
@@ -234,9 +234,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="22281" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Name">
+                                <rect key="frame" x="28" y="152" width="311" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="22282" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Email (optional)">
+                                <rect key="frame" x="28" y="204" width="311" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="22283" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="41" y="617" width="293" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add participant"/>
+                                <connections>
+                                    <segue id="23278" destination="22249" kind="unwind" unwindAction="UnwindToParticipantsViewController:"/>
+                                    <action selector="AddParticipant:" destination="18961" id="23796" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                        </subviews>
                     </view>
+                    <connections>
+                        <outlet property="ParticipantName" destination="22281" id="name-outlet-22281"/>
+                        <outlet property="ParticipantEmail" destination="22282" id="name-outlet-22282"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="18963" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="22249" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2319" y="852"/>
         </scene>

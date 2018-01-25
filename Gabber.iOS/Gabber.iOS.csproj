@@ -164,6 +164,10 @@
     </Compile>
     <Compile Include="ViewSources\TopicsCollectionViewSource.cs" />
     <Compile Include="Helpers\PrivatePath.cs" />
+    <Compile Include="Controllers\AddParticipantViewController.cs" />
+    <Compile Include="Controllers\AddParticipantViewController.designer.cs">
+      <DependentUpon>AddParticipantViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">

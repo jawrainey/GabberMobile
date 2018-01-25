@@ -10,13 +10,16 @@ namespace Gabber.iOS
 {
     public partial class ParticipantsViewController : UIViewController
     {
-        List<Participant> participants;
+        public ParticipantsViewController (IntPtr handle) : base (handle) {}
 
-        public ParticipantsViewController (IntPtr handle) : base (handle) 
+        public override void ViewDidLoad()
         {
-            participants = Session.Connection.Table<Participant>().ToList();
+            base.ViewDidLoad();
 
-            if (participants.Count <= 0) {
+            var participants = GetParticipants();
+
+            if (participants.Count <= 0)
+            {
                 Session.Connection.Insert(new Participant
                 {
                     Name = "You",
@@ -24,11 +27,22 @@ namespace Gabber.iOS
                     Selected = true
                 });
             }
+            PopulateCollectionView();
         }
 
-        public override void ViewDidLoad()
+        // Revisited this page, i.e. after adding a participant
+        [Action("UnwindToParticipantsViewController:")]
+        public void UnwindToParticipantsViewController(UIStoryboardSegue segue) => PopulateCollectionView();
+
+        // Simplified accessor 
+        List<Participant> GetParticipants() => Session.Connection.Table<Participant>().ToList();
+
+        // Due to the required hack below, the ViewSource must be updated. 
+        // TODO: using an observer collection could remove the need to reassign participants.
+        void PopulateCollectionView()
         {
-            base.ViewDidLoad();
+            var participants = GetParticipants();
+            // TODO: this is used here as we need to update the ViewSource once the page is re-visited (i.e. ViewWillAppear)
             ParticipantsCollectionView.Source = new ParticipantsCollectionViewSource(participants);
             // The selection state is mirror the participants on form load, then we can
             // update the UI state in ViewSource and not worry about the row model.
