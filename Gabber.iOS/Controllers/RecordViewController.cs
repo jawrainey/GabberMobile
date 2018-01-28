@@ -76,6 +76,7 @@ namespace Gabber.iOS
             );
 
             finishRecordingAlertController.AddAction(UIAlertAction.Create("Yes", UIAlertActionStyle.Default, delegate {
+                GabberPCL.Models.Annotation.ComputeEndForAllAnnotationsInSession(AudioRecorder.CurrentTime());
                 var recordingFilePath = AudioRecorder.FinishRecording();
                 // TODO: prepare recording for uploading via PCL Rest API
                 PerformSegue("UnWindToProjectsVC", this);

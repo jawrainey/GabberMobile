@@ -18,5 +18,14 @@ namespace GabberPCL
                 End = 0
             });
         }
+
+        public static List<Annotation> AnnotationsForLastSession()
+        {
+            var AnnotationTable = Session.Connection.Table<Annotation>();
+            var LastAnnotationInserted = AnnotationTable.Last().SessionID;
+            return AnnotationTable.Where((a) => a.SessionID == LastAnnotationInserted).ToList();
+        }
+
+        public static void UpdateAnnotation(Annotation annotation) => Session.Connection.Update(annotation);
     }
 }
