@@ -16,10 +16,41 @@ namespace Gabber.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel InterviewTimer { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton RecordButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel RecordInstructions { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UICollectionView TopicsCollectionView { get; set; }
+
+        [Action ("RecordingCompleteDialog:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void RecordingCompleteDialog (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
+            if (InterviewTimer != null) {
+                InterviewTimer.Dispose ();
+                InterviewTimer = null;
+            }
+
+            if (RecordButton != null) {
+                RecordButton.Dispose ();
+                RecordButton = null;
+            }
+
+            if (RecordInstructions != null) {
+                RecordInstructions.Dispose ();
+                RecordInstructions = null;
+            }
+
             if (TopicsCollectionView != null) {
                 TopicsCollectionView.Dispose ();
                 TopicsCollectionView = null;

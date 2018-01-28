@@ -3,19 +3,13 @@ using Foundation;
 using UIKit;
 using System.Collections.Generic;
 using GabberPCL;
-using System.Linq;
 
 namespace Gabber.iOS.ViewSources
 {
     public class TopicsCollectionViewSource : UICollectionViewSource
     {
-        // TODO: this should be a Project from the PCL
+        public Action AddAnnotation;
         public List<Prompt> Rows { get; set; }
-
-        public TopicsCollectionViewSource(List<Prompt> _rows)
-        {
-            Rows = _rows;
-        }
 
         public override nint NumberOfSections(UICollectionView collectionView) 
         {
@@ -43,6 +37,8 @@ namespace Gabber.iOS.ViewSources
             Rows[indexPath.Row].SelectionState = Prompt.SelectedState.current;
             // Reloads (i.e. draws) the specific items, including those outside of the scrollview.
             collectionView.ReloadItems(selectedItems.ToArray());
+            // Invoked after as this requires knowing if the Current/Previous was selected, particularly the first time.
+            AddAnnotation?.Invoke();
         }
 
         public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)

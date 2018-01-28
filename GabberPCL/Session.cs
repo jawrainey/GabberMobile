@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using GabberPCL.Models;
 using SQLite;
 
 namespace GabberPCL
@@ -21,6 +22,7 @@ namespace GabberPCL
                     _connection = new SQLiteConnection(Path.Combine(PrivatePath.PrivatePath(), "gabber.db3"));
                     // ??
                     _connection.CreateTable<Participant>();
+                    _connection.CreateTable<Annotation>();
                     return _connection;
                 }
                 return _connection;

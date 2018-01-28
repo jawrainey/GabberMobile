@@ -112,13 +112,17 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Resources\StopButton.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Resources\StopButton.png" />
+    <ImageAsset Include="Assets.xcassets\StopButton.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\StopButton.imageset\StopButton.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
     <Folder Include="Controllers\" />
     <Folder Include="Cells\" />
     <Folder Include="ViewSources\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Assets.xcassets\StopButton.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -162,12 +166,13 @@
     <Compile Include="Cells\TopicsCollectionViewCell.designer.cs">
       <DependentUpon>TopicsCollectionViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewSources\TopicsCollectionViewSource.cs" />
     <Compile Include="Helpers\PrivatePath.cs" />
     <Compile Include="Controllers\AddParticipantViewController.cs" />
     <Compile Include="Controllers\AddParticipantViewController.designer.cs">
       <DependentUpon>AddParticipantViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewSources\TopicsCollectionViewSource.cs" />
+    <Compile Include="Helpers\AudioRecorder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">

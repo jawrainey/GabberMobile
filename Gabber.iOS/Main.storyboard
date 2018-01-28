@@ -282,13 +282,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20164">
-                                <rect key="frame" x="16" y="617" width="343" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20164" buttonType="roundedRect" hidden="YES" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO">
+                                <rect key="frame" x="158" y="598" width="59" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Record button"/>
                                 <connections>
-                                    <segue destination="20388" kind="unwind" unwindAction="UnwindToProjectsViewController:" id="20390"/>
+                                    <action selector="RecordingCompleteDialog:" destination="19688" id="28112" eventType="touchUpInside"/>
                                 </connections>
+                                <state key="normal" backgroundImage="StopButton"/>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="21989">
                                 <rect key="frame" x="23" y="87" width="325" height="496"/>
@@ -329,11 +329,29 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a topic above to begin recording" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="26145" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="16" y="616" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label key="backgroundView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="28382" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="242" y="610" width="77" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17" weight="semibold"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="TopicsCollectionView" destination="21989" id="name-outlet-21989"/>
+                        <outlet property="RecordButton" destination="20164" id="name-outlet-20164"/>
+                        <outlet property="RecordInstructions" destination="26145" id="name-outlet-26145"/>
+                        <segue id="28115" destination="20388" kind="unwind" unwindAction="UnwindToProjectsViewController:" identifier="UnWindToProjectsVC"/>
+                        <outlet property="InterviewTimer" destination="28382" id="name-outlet-28382"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19690" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -342,4 +360,7 @@
             <point key="canvasLocation" x="2967.2" y="18.44078"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="StopButton" width="256" height="256"/>
+    </resources>
 </document>
