@@ -1,12 +1,9 @@
 using System;
 using UIKit;
-using System.Collections.Generic;
 using Gabber.iOS.ViewSources;
 using Foundation;
 using GabberPCL;
-using Newtonsoft.Json;
 using Gabber.iOS.Helpers;
-using System.Linq;
 
 namespace Gabber.iOS
 {
@@ -17,23 +14,35 @@ namespace Gabber.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            // Register the implementation to the global interface within the PCL.
+            // Used by the PCL for database interactions so must be defined early.
             Session.PrivatePath = new PrivatePath();
+            // Register the implementation to the global interface within the PCL.
+            RestClient.GlobalIO = new DiskIO();
 
-            // TODO: IF the user IS NOT authenticated THEN show the login workflow
+            // TODO: redirect to Login workflow
+            if (!Session.ActiveUser.IsActive) 
+            {
+                // TODO: REDIRECT!
+                // TODO: this should be handled on the login page!!
+                if (Queries.AllParticipants().Count <= 0) 
+                {
+                    Queries.AddUser(Session.ActiveUser);   
+                }
+            }
 
-            var model = new DatabaseManager(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
             var projects = new RestClient().GetProjects();
 
-			// TODO: There is no Internet access as projects is empty iff an error occurs;
-            if (projects.Count == 0)
+            if (projects.Count > 0)
             {
-                // TODO: update instructions with error message
+                Queries.AddProjects(projects);
+                ProjectsCollectionView.Source = new ProjectsCollectionViewSource(projects);
             }
             else 
             {
-                model.SaveRequest(JsonConvert.SerializeObject(projects));
-                ProjectsCollectionView.Source = new ProjectsCollectionViewSource(projects);
+                // Use projects from database, and if there are none there, then error msg
+                // TODO: There is no Internet access as projects is empty iff an error occurs;
+                // TODO: update instructions with error message
+                Console.WriteLine("There is no Internet connection");
             }
         }
 

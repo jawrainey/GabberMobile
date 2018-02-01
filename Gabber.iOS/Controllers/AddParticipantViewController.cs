@@ -1,5 +1,6 @@
 using System;
 using GabberPCL;
+using GabberPCL.Models;
 using UIKit;
 
 namespace Gabber.iOS
@@ -11,7 +12,7 @@ namespace Gabber.iOS
         partial void AddParticipant(UIButton sender)
         {
             // TODO: input validation
-            Session.Connection.Insert(new Participant {
+            Session.Connection.Insert(new User {
                 Name = ParticipantName.Text,
                 Email = ParticipantEmail.Text,
                 Selected = true

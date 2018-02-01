@@ -2,7 +2,7 @@
 using Foundation;
 using UIKit;
 using System.Collections.Generic;
-using GabberPCL;
+using GabberPCL.Models;
 
 namespace Gabber.iOS.ViewSources
 {

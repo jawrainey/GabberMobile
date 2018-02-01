@@ -1,10 +1,8 @@
 using System;
 using UIKit;
-using System.Collections.Generic;
 using Gabber.iOS.ViewSources;
 using GabberPCL;
 using Foundation;
-using System.Linq;
 
 namespace Gabber.iOS
 {
@@ -17,20 +15,7 @@ namespace Gabber.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-            var _participants = Queries.AllParticipants();
-
-            if (_participants.Count <= 0)
-            {
-                Session.Connection.Insert(new Participant
-                {
-                    Name = "You",
-                    Email = "TODO_AFTER_LOGIN",
-                    Selected = true
-                });
-            }
-
-            participantsViewSource = new ParticipantsCollectionViewSource(_participants);
+            participantsViewSource = new ParticipantsCollectionViewSource(Queries.AllParticipants());
             ParticipantsCollectionView.Source = participantsViewSource;
         }
 

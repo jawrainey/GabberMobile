@@ -1,7 +1,7 @@
 using Foundation;
 using System;
 using UIKit;
-using GabberPCL;
+using GabberPCL.Models;
 
 namespace Gabber.iOS
 {
@@ -13,7 +13,7 @@ namespace Gabber.iOS
 
         public void UpdateContent(Prompt topic)
         {
-            ProjectTopic.Text = topic.prompt;
+            ProjectTopic.Text = topic.Text;
 
             if (topic.SelectionState == Prompt.SelectedState.current)
             {

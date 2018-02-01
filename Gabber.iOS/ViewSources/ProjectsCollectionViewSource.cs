@@ -2,13 +2,12 @@
 using Foundation;
 using UIKit;
 using System.Collections.Generic;
-using GabberPCL;
+using GabberPCL.Models;
 
 namespace Gabber.iOS.ViewSources
 {
     public class ProjectsCollectionViewSource : UICollectionViewSource
     {
-        // TODO: this should be a Project from the PCL
         public List<Project> Rows { get; set; }
 
         public ProjectsCollectionViewSource(List<Project> _rows)
@@ -28,13 +27,13 @@ namespace Gabber.iOS.ViewSources
 
         public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            NSUserDefaults.StandardUserDefaults.SetString(Rows[indexPath.Row].theme, "selectedProject");
+            NSUserDefaults.StandardUserDefaults.SetInt(Rows[indexPath.Row].ID, "SelectedProjectID");
         }
 
         public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
             var cell = (ProjectsCollectionViewCell)collectionView.DequeueReusableCell(ProjectsCollectionViewCell.CellID, indexPath);
-            cell.UpdateContent(Rows[indexPath.Row].theme);
+            cell.UpdateContent(Rows[indexPath.Row].Title);
             return cell;
         }
     }

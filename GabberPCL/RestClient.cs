@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.IO;
+using GabberPCL.Models;
 
 namespace GabberPCL
 {
@@ -43,31 +44,21 @@ namespace GabberPCL
 
 		// As this deals with reading files from platform specific paths, 
 		// then we must implement this on each specific platform.
-		public async Task<bool> Upload(Story story)
+        public async Task<bool> Upload(InterviewSession interviewSession)
 		{
 			using (var formData = new MultipartFormDataContent())
 			{
-				// TODO: also send photos to the server for each participant
-				formData.Add(new StringContent(story.ParticipantsAsJSON), "participants");
-                formData.Add(new StringContent(story.Type), "type");
-				formData.Add(new StringContent(story.Location), "location");
-				formData.Add(new StringContent(story.SessionID), "sessionID");
-
-                if (story.Type == "interview") {
-                    formData.Add(new StringContent(story.AnnotationsAsJSON), "annotations");
-                    formData.Add(new StringContent(story.Theme), "theme");
-                }
-                else {
-                    formData.Add(new StringContent(story.promptText), "promptText");    
-                }
-
+                formData.Add(new StringContent(interviewSession.ProjectID.ToString()), "projectID");
+                formData.Add(new StringContent(interviewSession.CreatorID.ToString()), "creatorID");
+                formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Participants)), "participants");
+                formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Prompts)), "prompts");
 				// Access the OS specific implementation to load data from a file.
-				formData.Add(new ByteArrayContent(GlobalIO.Load(story.AudioPath)),
-				             "experience", Path.GetFileName(story.AudioPath));
+                formData.Add(new ByteArrayContent(GlobalIO.Load(interviewSession.RecordingURL)), "recording", 
+                             Path.GetFileName(interviewSession.RecordingURL));
 
 				try
 				{
-					var response = await _client.PostAsync("api/upload", formData);
+                    var response = await _client.PostAsync("api/interview/", formData);
 					return response.IsSuccessStatusCode;
 				}
 				catch

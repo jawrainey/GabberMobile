@@ -1,19 +1,22 @@
 ﻿using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace GabberPCL.Models
 {
-    public class Annotation
+    public class InterviewPrompt
     {
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-        public string SessionID { get; set; }
-        // TODO: this should really be the TopicID
-        public string Topic { get; set; }
+        public int ID { get; set; }
         public int Start { get; set; }
         public int End { get; set; }
+
+        [ForeignKey(typeof(Prompt))]
+        public int PromptID { get; set; }
+        [ForeignKey(typeof(InterviewSession))]
+        public string InterviewID { get; set; }
+
         // Computing End must exist as we cannot update it once inserted as we do not know iff
         // one topic will be selected or how long the interview will last
-        // TODO: is this best suited inside the model or the Queries class?
         public static void ComputeEndForAllAnnotationsInSession(int _LengthOfInterviewInSeconds)
         {
             var AnnotationsForLastSession = Queries.AnnotationsForLastSession();

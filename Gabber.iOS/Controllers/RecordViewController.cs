@@ -6,6 +6,7 @@ using Gabber.iOS.ViewSources;
 using System.Collections.Generic;
 using Gabber.iOS.Helpers;
 using System.Threading.Tasks;
+using GabberPCL.Models;
 
 namespace Gabber.iOS
 {
@@ -14,9 +15,10 @@ namespace Gabber.iOS
         AudioRecorder AudioRecorder;
         // The topics associated with the selected project 
         List<Prompt> Topics;
-        // Each interview recorded has a unique SID for uniqueness between interviews,
-        // and is required to associate annotations with a particular session.
+        // Each interview recorded has a unique SID (GUID) to associate annotations with a session.
         string InterviewSessionID;
+        // Which project are we recording an interview for?
+        int SelectedProjectID;
 
         public RecordViewController(IntPtr handle) : base(handle) {}
 
@@ -24,19 +26,18 @@ namespace Gabber.iOS
         {
             AudioRecorder = new AudioRecorder();
             InterviewSessionID = Guid.NewGuid().ToString();
-            // TODO: this should use the new singleton and Queries class.
-            var model = new DatabaseManager(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
-            var selectedProject = model.ProjectByName(NSUserDefaults.StandardUserDefaults.StringForKey("selectedProject"));
+
+            SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
+            var SelectedProject = Queries.ProjectById(SelectedProjectID);
+
             // Shared as we can use this to determine when a row is first clicked
-            Topics = selectedProject.prompts;
+            Topics = SelectedProject.Prompts;
             TopicsCollectionView.Source = new TopicsCollectionViewSource { 
                 Rows = Topics,
                 AddAnnotation = AddAnnotation
             };
         }
 
-        // TODO: move the SelectionCount and CreateAnnotation logic to the query Class 
-        // once Topics are stored in the database correctly (currently they're JSONed) there.
         void AddAnnotation()
         {
             RecordInstructions.Hidden = true;
@@ -52,7 +53,7 @@ namespace Gabber.iOS
                 UpdateTimeLabelAsync();
             }
             var current = Topics.Find((p) => p.SelectionState == Prompt.SelectedState.current);
-            Queries.CreateAnnotation(InterviewSessionID, AudioRecorder.CurrentTime(), current.prompt);
+            Queries.CreateAnnotation(AudioRecorder.CurrentTime(), InterviewSessionID, current.ID);
         }
 
         async void UpdateTimeLabelAsync()
@@ -75,15 +76,38 @@ namespace Gabber.iOS
                 UIAlertControllerStyle.Alert
             );
 
-            finishRecordingAlertController.AddAction(UIAlertAction.Create("Yes", UIAlertActionStyle.Default, delegate {
-                GabberPCL.Models.Annotation.ComputeEndForAllAnnotationsInSession(AudioRecorder.CurrentTime());
-                var recordingFilePath = AudioRecorder.FinishRecording();
-                // TODO: prepare recording for uploading via PCL Rest API
-                PerformSegue("UnWindToProjectsVC", this);
-            }));
-            finishRecordingAlertController.AddAction(UIAlertAction.Create("No", UIAlertActionStyle.Cancel, delegate {}));
+            finishRecordingAlertController.AddAction(UIAlertAction.Create("Yes", UIAlertActionStyle.Default, FinishRecording));
+            finishRecordingAlertController.AddAction(UIAlertAction.Create("No", UIAlertActionStyle.Cancel, (_) => {}));
 
             PresentViewController(finishRecordingAlertController, true, null);
+        }
+
+        void FinishRecording(UIAlertAction _)
+        {
+            // Only once a recording is complete can End for each annotation be computed
+            InterviewPrompt.ComputeEndForAllAnnotationsInSession(AudioRecorder.CurrentTime());
+
+            // Added before to simplify accessing the participants involved next.
+            Queries.AddSelectedParticipantsToInterviewSession(InterviewSessionID);
+
+            var InterviewSession = new InterviewSession
+            {
+                SessionID = InterviewSessionID,
+                RecordingURL = AudioRecorder.FinishRecording(),
+
+                CreatorID = Session.ActiveUser.Id,
+                ProjectID = SelectedProjectID,
+
+                Prompts = Queries.AnnotationsForLastSession(),
+                Participants = Queries.ParticipantsForSession(InterviewSessionID),
+
+                IsUploaded = false
+            };
+
+            Queries.AddInterviewSession(InterviewSession);
+
+            // The ProjectsController manages uploading sessions
+            PerformSegue("UnWindToProjectsVC", this);
         }
     }
 }

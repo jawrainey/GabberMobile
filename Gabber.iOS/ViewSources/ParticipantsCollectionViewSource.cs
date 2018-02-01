@@ -3,24 +3,22 @@ using Foundation;
 using UIKit;
 using System.Collections.Generic;
 using GabberPCL;
+using GabberPCL.Models;
 
 namespace Gabber.iOS.ViewSources
 {
     public class ParticipantsCollectionViewSource : UICollectionViewSource
     {
-        public List<Participant> Rows { get; set; }
+        public List<User> Rows { get; set; }
 
-        public ParticipantsCollectionViewSource(List<Participant> _rows)
+        public ParticipantsCollectionViewSource(List<User> _rows)
         {
             Rows = _rows;
         }
 
         public override nint NumberOfSections(UICollectionView collectionView) 
         {
-            // HACK: there does not seem to be a way to enable this within storyboard
-            // and the CollectionView is not used directly. This is required such that
-            // users can select more than one participant at a time...
-            // This is here as this method will be invoked before the others below
+            // There does not seem to be a way to enable this within storyboard.
             collectionView.AllowsMultipleSelection = true;
             return 1;
         }

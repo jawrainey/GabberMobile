@@ -1,31 +1,76 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using GabberPCL.Models;
+using SQLiteNetExtensions.Extensions;
 
 namespace GabberPCL
 {
     public static class Queries
     {
-        public static List<Participant> AllParticipants() => Session.Connection.Table<Participant>().ToList();
-        public static List<Participant> SelectedParticipants() => AllParticipants().FindAll((p) => p.Selected);
-        // TODO: topicID should be an int once Topic model is introduced
-        public static void CreateAnnotation(string sessionID, int start, string topicID)
+        public static void AddProjects(List<Project> _projects)
         {
-            Session.Connection.Insert(new Annotation {
-                SessionID = sessionID,
+            foreach (var p in _projects)
+            {
+                Session.Connection.InsertOrReplace(p);
+                Session.Connection.InsertOrReplaceAllWithChildren(p.Prompts);
+            }
+        }
+
+        public static Project ProjectById(int projectID) => Session.Connection.GetWithChildren<Project>(projectID);
+
+        public static void AddUser(User user) => Session.Connection.Insert(user);
+
+        public static List<InterviewSession> AllInterviewSessions()
+        {
+            return Session.Connection.GetAllWithChildren<InterviewSession>((i) => !i.IsUploaded);
+        }
+
+        public static void AddInterviewSession(InterviewSession InterviewSession) => Session.Connection.Insert(InterviewSession);
+
+        public static List<User> AllParticipants() => Session.Connection.Table<User>().ToList();
+        public static List<User> SelectedParticipants() => AllParticipants().FindAll((p) => p.Selected);
+
+        public static void CreateAnnotation(int start, string interviewID, int promptID)
+        {
+            Session.Connection.Insert(new InterviewPrompt {
                 Start = start,
-                Topic = topicID,
-                End = 0
+                End = 0,
+                InterviewID = interviewID,
+                PromptID = promptID
             });
         }
 
-        public static List<Annotation> AnnotationsForLastSession()
+        public static void AddSelectedParticipantsToInterviewSession(string InterviewSessionID)
         {
-            var AnnotationTable = Session.Connection.Table<Annotation>();
-            var LastAnnotationInserted = AnnotationTable.Last().SessionID;
-            return AnnotationTable.Where((a) => a.SessionID == LastAnnotationInserted).ToList();
+            foreach (var participant in SelectedParticipants())
+            {
+                // TODO: we store the Email/UserID here to simplify logic on the server, which is bad
+                // as this is duplicated information between InterviewParticipant, etc
+                // We represent a participant as a User, but in doing so do not send the Email/Name
+                // when creating a session object (as they are abstracted away), which imho is not ideal.
+                Session.Connection.Insert(new InterviewParticipant { 
+                    InterviewID = InterviewSessionID,
+                    // True if participant was the intervieweer
+                    Role = Session.ActiveUser.Id == participant.Id,
+                    Name = participant.Name,
+                    Email = participant.Email,
+                    UserID = participant.Id
+                });
+            }
         }
 
-        public static void UpdateAnnotation(Annotation annotation) => Session.Connection.Update(annotation);
+        public static List<InterviewParticipant> ParticipantsForSession(string InterviewSessionID)
+        {
+            return Session.Connection.Table<InterviewParticipant>().Where((ip) => ip.InterviewID == InterviewSessionID).ToList();
+        }
+
+        public static List<InterviewPrompt> AnnotationsForLastSession()
+        {
+            var AnnotationTable = Session.Connection.Table<InterviewPrompt>();
+            var LastAnnotationInserted = AnnotationTable.Last().InterviewID;
+            return AnnotationTable.Where((a) => a.InterviewID == LastAnnotationInserted).ToList();
+        }
+
+        public static void UpdateAnnotation(InterviewPrompt annotation) => Session.Connection.Update(annotation);
     }
 }
