@@ -12,8 +12,8 @@ namespace GabberPCL.Models
         public string Slug { get; set; }
         public string Description { get; set; }
         public int CreatorID { get; set; }
-        public int IsPublic { get; set; }
-        public int HasConsent { get; set; }
+        public bool IsPublic { get; set; }
+        public bool HasConsent { get; set; }
 
         [OneToMany]
         public List<Prompt> Prompts { get; set; }
