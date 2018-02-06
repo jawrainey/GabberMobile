@@ -21,15 +21,23 @@ namespace GabberPCL
 			_client.BaseAddress = new Uri("https://gabber.audio/");
 		}
 
-		public async Task<bool> Authenticate(string username, string password)
+        public async Task<JWToken> Login(string email, string password)
 		{
 			var pairs = new List<KeyValuePair<string, string>>
 			{
-				new KeyValuePair<string, string>("username", username),
+				new KeyValuePair<string, string>("email", email),
 				new KeyValuePair<string, string>("password", password)
 			};
-			return await GottaCatchThemAll("api/auth", new FormUrlEncodedContent(pairs));
-		}
+            // TODO: propagate exception/error message upwards?
+            var response = await _client.PostAsync("api/auth/login/", new FormUrlEncodedContent(pairs));
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<JWToken>(content);
+            }
+            return new JWToken();
+        }
 
 		public async Task<bool> Register(string fullname, string email, string password)
 		{

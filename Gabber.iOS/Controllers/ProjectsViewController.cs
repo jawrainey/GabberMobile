@@ -19,17 +19,6 @@ namespace Gabber.iOS
             // Register the implementation to the global interface within the PCL.
             RestClient.GlobalIO = new DiskIO();
 
-            // TODO: redirect to Login workflow
-            if (!Session.ActiveUser.IsActive) 
-            {
-                // TODO: REDIRECT!
-                // TODO: this should be handled on the login page!!
-                if (Queries.AllParticipants().Count <= 0) 
-                {
-                    Queries.AddUser(Session.ActiveUser);   
-                }
-            }
-
             var projects = new RestClient().GetProjects();
 
             if (projects.Count > 0)

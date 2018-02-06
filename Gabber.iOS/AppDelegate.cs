@@ -18,9 +18,12 @@ namespace Gabber.iOS
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
-            // Override point for customization after application launch.
-            // If not required for your application you can safely delete this method
-
+            // If the user is not logged in (hence has not created an account), then show the login view.
+            // The Main view (i.e. ProjectsViewController) is shown and set once the user login or registers.
+            if (!GabberPCL.Session.ActiveUser.IsActive)
+            {
+                Window.RootViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("LoginViewController");
+            }
             return true;
         }
 

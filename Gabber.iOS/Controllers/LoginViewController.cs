@@ -1,27 +1,24 @@
-using Foundation;
 using System;
 using UIKit;
+using GabberPCL;
 
 namespace Gabber.iOS
 {
     public partial class LoginViewController : UIViewController
     {
-        public LoginViewController (IntPtr handle) : base (handle)
-        {
-            
-        }
+        public LoginViewController (IntPtr handle) : base (handle) {}
 
-        public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
+        async partial void Authenticate(UIButton _)
         {
-            return base.ShouldPerformSegue(segueIdentifier, sender);
-            if (EmailTextField.Text == "hello" && PasswordTextField.Text == "password") {
-                return base.ShouldPerformSegue(segueIdentifier, sender);
-            } 
-            else 
-            {
-                LoginErrorLabel.Text = "Something went wrong...";
-                return false;    
-            }
+            // TODO: validate user input
+            var client = new RestClient();
+            var result = await client.Login(EmailTextField.Text, PasswordTextField.Text);
+            // TODO: get active user from db based on email
+            Session.ActiveUser.IsActive = true;
+            Session.Token = result;
+            // TODO: this is obviously buggy ... works for now ...
+            UIApplication.SharedApplication.Windows[0].RootViewController = 
+                UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
         }
     }
 }

@@ -30,6 +30,10 @@ namespace Gabber.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField PasswordTextField { get; set; }
 
+        [Action ("Authenticate:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void Authenticate (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (EmailTextField != null) {

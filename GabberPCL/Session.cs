@@ -8,17 +8,11 @@ namespace GabberPCL
     // opening/closing operations on the database file
     public static class Session
     {
-        // TODO: this should be set from LoginViewController
-        public static User ActiveUser = new User
-        {
-            Id = 1,
-            Name = "You",
-            Email = "TODO_AFTER_LOGIN",
-            JWToken = "blahblah",
-            Selected = true,
-            IsActive = false
-        };
-
+        // ??
+        public static JWToken Token;
+        // ??
+        public static User ActiveUser;
+        // ??
         static SQLiteConnection _connection;
         // Used to access platform specific implementations
         public static Interfaces.IPrivatePath PrivatePath;
