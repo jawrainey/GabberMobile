@@ -77,19 +77,14 @@ namespace GabberPCL
 		}
 
 		// Obtains all projects that went through a commissioning process.
-		// TODO: make this async
+        // TODO: make this async
+        // TODO: all projects are sent over, whether public or private, as one list
 		public List<Project> GetProjects()
 		{
-			try
-			{
-				var response = _client.GetAsync("api/projects").Result;
-				var contents = response.Content.ReadAsStringAsync().Result;
-				return JsonConvert.DeserializeObject<List<Project>>(contents);
-			}
-			catch
-			{
-				return new List<Project>();
-			}
+            _client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token.Access);                   
+            var response = _client.GetAsync("api/projects/").Result;
+            var contents = response.Content.ReadAsStringAsync().Result;
+			return JsonConvert.DeserializeObject<List<Project>>(contents);
 		}
 
 		// PostAsync has potential for errrors to be thrown, which do not translate well to HTTP Error codes. 

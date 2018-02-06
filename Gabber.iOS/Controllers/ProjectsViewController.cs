@@ -3,7 +3,8 @@ using UIKit;
 using Gabber.iOS.ViewSources;
 using Foundation;
 using GabberPCL;
-using Gabber.iOS.Helpers;
+using Newtonsoft.Json;
+using GabberPCL.Models;
 
 namespace Gabber.iOS
 {
@@ -14,10 +15,9 @@ namespace Gabber.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            // Used by the PCL for database interactions so must be defined early.
-            Session.PrivatePath = new PrivatePath();
-            // Register the implementation to the global interface within the PCL.
-            RestClient.GlobalIO = new DiskIO();
+            // TODO: Of course not the best solution as the refresh token is stored here too
+            var tokens = NSUserDefaults.StandardUserDefaults.StringForKey("ActiveUserTokens");
+            Session.Token = JsonConvert.DeserializeObject<JWToken>(tokens);
 
             var projects = new RestClient().GetProjects();
 

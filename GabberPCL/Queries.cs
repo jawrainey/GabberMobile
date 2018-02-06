@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GabberPCL.Models;
 using SQLiteNetExtensions.Extensions;
@@ -17,6 +18,24 @@ namespace GabberPCL
         }
 
         public static Project ProjectById(int projectID) => Session.Connection.GetWithChildren<Project>(projectID);
+
+        public static User FindOrInsertUser(string email)
+        {
+            var usr = Session.Connection.Table<User>().Where(u => u.Email == email).FirstOrDefault();
+
+            if (usr == null)
+            {
+                usr = new User
+                {
+                    Name = "You", 
+                    Email = email,
+                    IsActive = true,
+                    Selected = true
+                };
+                AddUser(usr);
+            }
+            return usr;
+        }
 
         public static void AddUser(User user) => Session.Connection.Insert(user);
 

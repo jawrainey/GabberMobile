@@ -1,4 +1,6 @@
 ﻿using Foundation;
+using Gabber.iOS.Helpers;
+using GabberPCL;
 using UIKit;
 
 namespace Gabber.iOS
@@ -20,10 +22,14 @@ namespace Gabber.iOS
         {
             // If the user is not logged in (hence has not created an account), then show the login view.
             // The Main view (i.e. ProjectsViewController) is shown and set once the user login or registers.
-            if (!GabberPCL.Session.ActiveUser.IsActive)
+            if (string.IsNullOrEmpty(NSUserDefaults.StandardUserDefaults.StringForKey("ActiveUserTokens")))
             {
                 Window.RootViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("LoginViewController");
             }
+            // Used by the PCL for database interactions so must be defined early.
+            Session.PrivatePath = new PrivatePath();
+            // Register the implementation to the global interface within the PCL.
+            RestClient.GlobalIO = new DiskIO();
             return true;
         }
 
