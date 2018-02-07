@@ -9,15 +9,15 @@ namespace Gabber.iOS.Helpers
     {
         AVAudioRecorder recorder;
         // The recorder manages state of file to reduce logic in controllers
-        string path;
+        string filename;
 		// Setup on construction to reduce load time when recording
         public AudioRecorder() => SetupRecorder();
 
         void SetupRecorder()
         {
             // An extension is required otherwise the file does not save to a format that browsers support (mp4)
-            var filename = DateTimeOffset.Now.ToUnixTimeSeconds().ToString() + ".m4a";
-            path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), filename);
+            // Note: output the file rather than the path as the path is calculated via PrivatePath interface in the PCL
+            filename = DateTimeOffset.Now.ToUnixTimeSeconds().ToString() + ".m4a";
 
             var audioSession = AVAudioSession.SharedInstance();
             var err = audioSession.SetCategory(AVAudioSessionCategory.PlayAndRecord);
@@ -44,7 +44,7 @@ namespace Gabber.iOS.Helpers
             };
 
             recorder = AVAudioRecorder.Create(
-                NSUrl.FromFilename(path), 
+                NSUrl.FromFilename(filename), 
                 new AudioSettings(NSDictionary.FromObjectsAndKeys(values, keys)), 
                 out var error
             );
@@ -58,7 +58,7 @@ namespace Gabber.iOS.Helpers
         {
             recorder.Stop();
             recorder.Dispose();
-            return path;
+            return filename;
         }
     }
 }

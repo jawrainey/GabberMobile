@@ -39,7 +39,22 @@ namespace GabberPCL
 
         public static void AddUser(User user) => Session.Connection.Insert(user);
 
-        public static List<InterviewSession> AllInterviewSessions()
+        public static async void UploadInterviewSessionsAsync()
+        {
+            var api = new RestClient();
+
+            foreach (var s in AllInterviewSessionsNotUploaded())
+            {
+                var didUpload = await api.Upload(s);
+                if (didUpload)
+                {
+                    s.IsUploaded = didUpload;
+                    Session.Connection.Update(s);
+                }
+            }
+        }
+
+        public static List<InterviewSession> AllInterviewSessionsNotUploaded()
         {
             return Session.Connection.GetAllWithChildren<InterviewSession>((i) => !i.IsUploaded);
         }

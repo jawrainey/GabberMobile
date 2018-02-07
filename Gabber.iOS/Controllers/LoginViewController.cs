@@ -25,6 +25,7 @@ namespace Gabber.iOS
             // This is used to simplify REST API access in PCL
             NSUserDefaults.StandardUserDefaults.SetString(JsonConvert.SerializeObject(result), "ActiveUserTokens");
             Session.Token = result;
+            NSUserDefaults.StandardUserDefaults.SetString(email, "Username");
 
             // TODO: this is obviously not ideal, but works for now ...
             UIApplication.SharedApplication.Windows[0].RootViewController = 

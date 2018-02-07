@@ -66,6 +66,7 @@ namespace GabberPCL
 
 				try
 				{
+                    _client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token.Access);
                     var response = await _client.PostAsync("api/interview/", formData);
 					return response.IsSuccessStatusCode;
 				}
