@@ -9,22 +9,13 @@ using System.Threading.Tasks;
 using System;
 using Android.Support.Design.Widget;
 using Android.Content;
-using Android.Locations;
 using GabberPCL;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using Android.Support.V7.Widget;
+using GabberPCL.Models;
 
 namespace Gabber
 {
-    // Created here & not PCL as it is not used elsewhere for now ...
-    public class Annotation 
-    {
-        public string Prompt { get; set; }
-        public int Start { get; set; }
-        public int End { get; set; }
-    }
-
 	[Activity]
 	public class RecordStoryActivity : AppCompatActivity
 	{
@@ -36,29 +27,31 @@ namespace Gabber
 		string _path;
         // Holds the prompts for this project
         List<Prompt> themes;
-        // This will be reset on cancel and updated in several methods
-        List<Annotation> SelectedAnnotationsAsJSON;
         // Exposed as used to identify when a prompt was selected
         RVPromptAdapter adapter;
         // This must be held outside ProjectSelected or it would be overridden
         bool FirstPromptSelected;
         // Exposed as we want to get this once a prompt is selected
         int _seconds;
+        // Each interview recorded has a unique SID (GUID) to associate annotations with a session.
+        string InterviewSessionID;
+        // Which project are we recording an interview for?
+        int SelectedProjectID;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.record);
-            // There are no annotations by default
-            SelectedAnnotationsAsJSON = new List<Annotation>();
+            InterviewSessionID = Guid.NewGuid().ToString();
 
-            var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
-            var selectedProject = model.GetProjects().Find((Project pj) => pj.theme == Intent.GetStringExtra("theme"));
+            var _prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+            SelectedProjectID = _prefs.GetInt("SelectedProjectID", 0);
+            var selectedProject = Queries.ProjectById(SelectedProjectID);
 
             var promptRecyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
             promptRecyclerView.SetLayoutManager(new GridLayoutManager(this, 1));
 
-            themes = selectedProject.prompts;
+            themes = selectedProject.Prompts;
             adapter = new RVPromptAdapter(themes);
             adapter.ProjectClicked += ProjectSelected;
             promptRecyclerView.SetAdapter(adapter);
@@ -136,9 +129,10 @@ namespace Gabber
 
         void ProjectSelected(object sender, int position)
         {
+            ItemSelected(position);
             var recordButton = FindViewById<FloatingActionButton>(Resource.Id.start);
-
-            if (!FirstPromptSelected) {
+            // Has the first topic been selected, i.e. one of the states has changed
+            if (themes.FindAll((p) => p.SelectionState != Prompt.SelectedState.never).Count == 1) {
                 FirstPromptSelected = true;
                 FindViewById<TextView>(Resource.Id.recordInstructions).Visibility = ViewStates.Invisible;
                 recordButton.Visibility = ViewStates.Visible;
@@ -147,18 +141,25 @@ namespace Gabber
 
             if (_isrecording) 
             {
-                SelectedAnnotationsAsJSON.Add(new Annotation
-                {
-                    Prompt = themes[position].prompt,
-                    Start = _seconds,
-                    // Because we want to have the end being where the next annotation was clicked
-                    // we must CALCULATE this before saving the interview
-                    End = 0
-                });
-
+                var current = themes.Find((p) => p.SelectionState == Prompt.SelectedState.current);
+                Queries.CreateAnnotation(_seconds, InterviewSessionID, current.ID);
                 adapter.PromptSeleted(position);
             }
             
+        }
+
+        void ItemSelected(int currentSelected)
+        {
+            int previousSelected = themes.FindIndex((Prompt p) => p.SelectionState == Prompt.SelectedState.current);
+            var selectedItems = new List<int> { currentSelected };
+            if (previousSelected != -1)
+            {
+                // The item selected was the same as the last (nothing changed) so do nothing.
+                if (themes[previousSelected].Equals(themes[currentSelected])) return;
+                themes[previousSelected].SelectionState = Prompt.SelectedState.previous;
+                selectedItems.Add(previousSelected);
+            }
+            themes[currentSelected].SelectionState = Prompt.SelectedState.current;
         }
 
         void ModalToVerifyRecordingEnd()
@@ -186,72 +187,29 @@ namespace Gabber
             alert.Create().Show();
         }
 
-        async void SaveRecording()
+        void SaveRecording()
 		{
-			// Link this interview to interviewer (the logged in user).
-			var prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+            // Only once a recording is complete can End for each annotation be computed
+            InterviewPrompt.ComputeEndForAllAnnotationsInSession(_seconds);
 
-			// TODO: have a guess what needs re-written...
-			string currentlocation = "N/A";
+            // Added before to simplify accessing the participants involved next.
+            Queries.AddSelectedParticipantsToInterviewSession(InterviewSessionID);
 
-			try
-			{
-				var locMan = (LocationManager)GetSystemService(LocationService);
-				Location location = locMan.GetLastKnownLocation(locMan.GetBestProvider(new Criteria(), true));
-				currentlocation = location.Latitude + " / " + location.Longitude;
-			}
-			catch { }
-
-            // Only one annotation was chosen for the entire recording
-            if (SelectedAnnotationsAsJSON.Count == 1) 
+            var InterviewSession = new InterviewSession
             {
-                SelectedAnnotationsAsJSON[0].End = _seconds;
-            }
-            // This ensures if two (or more) annotations are made then the first and last will be updated correctly
-            if (SelectedAnnotationsAsJSON.Count > 1) 
-            {
-                // By default, the end time for the first annotation 
-                SelectedAnnotationsAsJSON[0].End = SelectedAnnotationsAsJSON[1].Start;
-                // The last annotation continues until the end of the audio
-                SelectedAnnotationsAsJSON[SelectedAnnotationsAsJSON.Count - 1].End = _seconds;
-            }
+                SessionID = InterviewSessionID,
+                RecordingURL = _path,
 
-            // ensures the end time between the first and last annotations are correct
-            if (SelectedAnnotationsAsJSON.Count > 2)
-            {
-                // Start at the second and go to the second from last
-                // Skip the last element as it is equal to seconds ...
-                for (int i = 1; i < SelectedAnnotationsAsJSON.Count - 1; i++) 
-                {
-                    SelectedAnnotationsAsJSON[i].End = SelectedAnnotationsAsJSON[i + 1].Start;
-                }
+                CreatorID = Session.ActiveUser.Id,
+                ProjectID = SelectedProjectID,
 
-            }
+                Prompts = Queries.AnnotationsForLastSession(),
+                Participants = Queries.ParticipantsForSession(InterviewSessionID),
 
-			var story = new Story
-			{
-				AudioPath = _path,
-				Location = currentlocation,
-				SessionID = Intent.GetStringExtra("session"),
-                // No PromptText here as the user is not responding to a particular prompt, 
-                // but rather to a set of prompts related to a project ...
-                Theme = Intent.GetStringExtra("theme"),
-				InterviewerEmail = prefs.GetString("username", ""),
-				ParticipantsAsJSON = Intent.GetStringExtra("participants"),
-				Uploaded = false,
-                AnnotationsAsJSON = JsonConvert.SerializeObject(SelectedAnnotationsAsJSON),
-                Type = "interview"
-			};
+                IsUploaded = false
+            };
 
-			// Store locally so we know what users recorded what experiences.
-			var model = new DatabaseManager(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
-			model.InsertStory(story);
-
-			if (await new RestClient().Upload(story))
-			{
-				story.Uploaded = true;
-				model.UpdateStory(story);
-			}
+            Queries.AddInterviewSession(InterviewSession);
 		}
 
 		void StartRecording()

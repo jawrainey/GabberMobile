@@ -142,12 +142,12 @@
     <Compile Include="Adapters\RVPromptAdapter.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\PreparationActivity.cs" />
-    <Compile Include="Activities\PromptSelectionActivity.cs" />
     <Compile Include="Activities\RecordStoryActivity.cs" />
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Helpers\DiskIO.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Adapters\ParticipantAdapter.cs" />
+    <Compile Include="Helpers\PrivatePath.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

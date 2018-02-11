@@ -24,12 +24,15 @@ namespace GabberPCL.Models
             // Only one annotation was chosen for the entire recording
             if (AnnotationsForLastSession.Count == 1)
             {
+                // Although start is recorded, the first can be off by a few seconds due to threads, etc.
+                AnnotationsForLastSession[0].Start = 0;
                 AnnotationsForLastSession[0].End = _LengthOfInterviewInSeconds;
                 Queries.UpdateAnnotation(AnnotationsForLastSession[0]);
             }
             // This ensures if two (or more) annotations are made then the first and last will be updated correctly
             if (AnnotationsForLastSession.Count > 1)
             {
+                AnnotationsForLastSession[0].Start = 0;
                 // By default, the end time for the first annotation 
                 AnnotationsForLastSession[0].End = AnnotationsForLastSession[1].Start;
                 Queries.UpdateAnnotation(AnnotationsForLastSession[0]);

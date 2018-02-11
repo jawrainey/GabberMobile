@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using Android.Views;
-using GabberPCL;
 using Android.Widget;
 using Refractored.Controls;
-using Android.Media;
 using Android.Graphics;
-using System.Linq;
+using GabberPCL.Models;
 
 namespace Gabber
 {
 	public class ParticipantAdapter : RecyclerView.Adapter
 	{
-		List<Participant> _participants;
+        List<User> _participants;
 
-		public ParticipantAdapter(List<Participant> participants)
+        public ParticipantAdapter(List<User> participants)
 		{
 			_participants = participants;
 		}
@@ -35,42 +33,28 @@ namespace Gabber
             {
                 mholder.Photo.BorderColor = Color.Green;
             }
-            else {
+            else
+            {
                 mholder.Photo.BorderColor = Color.Red;
             }
-
-			var photoPath = _participants[position].Photo;
-			if (!string.IsNullOrEmpty(photoPath))
-			{
-				mholder.Photo.SetImageBitmap(ThumbnailUtils.ExtractThumbnail(
-					BitmapFactory.DecodeFile(photoPath, new BitmapFactory.Options { InSampleSize = 8 }), 74, 74));
-			}
 		}
 
-        public void ParticipantSeleted(int index) {
+        public void ParticipantSeleted(int index) 
+        {
             _participants[index].Selected = !_participants[index].Selected;
-            this.NotifyItemChanged(index);
+            GabberPCL.Session.Connection.Update(_participants[index]);
+            NotifyItemChanged(index);
         }
 
-        public Participant GetByIndex(int index) {
+        public User GetByIndex(int index) {
             return (_participants != null && _participants.Count >= index ? _participants[index] : null);
         }
 
-		public override int ItemCount
-		{
-			get { return (_participants != null ? _participants.Count : 0); }
-		}
-
-        public List<Participant> selectedParticipants() {
-            return _participants.Where((participant) => participant.Selected).ToList();
-        } 
+        public override int ItemCount => (_participants != null ? _participants.Count : 0);
 
 		public event EventHandler<int> ParticipantClicked;
 
-		void OnParticipantClicked(int position)
-		{
-			if (ParticipantClicked != null) ParticipantClicked(this, position);
-		}
+        void OnParticipantClicked(int position) => ParticipantClicked?.Invoke(this, position);
 
 		public class ParticipantViewHolder : RecyclerView.ViewHolder
 		{

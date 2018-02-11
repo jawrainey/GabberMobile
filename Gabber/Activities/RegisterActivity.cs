@@ -8,6 +8,8 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using GabberPCL;
+using GabberPCL.Models;
+using Newtonsoft.Json;
 
 namespace Gabber
 {
@@ -45,21 +47,25 @@ namespace Gabber
 
 					if (await new RestClient().Register(fname.Text, email.Text, passw.Text))
 					{
-                        var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+                        // This is used to show ProjectsVC when opening app
+                        Session.ActiveUser = GabberPCL.Queries.FindOrInsertUser(email.Text);
+                        // It's unclear why I have went down this IsActive route rather than lookup via prefs ...
+                        Session.ActiveUser.IsActive = true;
+                        // TODO: tokens should be generated/saved when registrting
+                        Session.Token = new JWToken();
 
-                        prefs.Edit().PutString("name", fname.Text).Commit();
+                        var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
                         prefs.Edit().PutString("username", email.Text).Commit();
+                        prefs.Edit().PutString("tokens", JsonConvert.SerializeObject(Session.Token)).Commit();
                         // This allows the current user (who registered) to be displayed in the participants view
-                        var user = new Participant
+                        var user = new User
                         {
                             Name = "(You)",
                             Email = email.Text,
                             Selected = true
                         };
-                        var _participants = new System.Collections.Generic.List<Participant> { user };
-                        var _parts_as_json = Newtonsoft.Json.JsonConvert.SerializeObject(_participants);
-                        prefs.Edit().PutString("participants", _parts_as_json).Commit();
 
+                        Session.Connection.Insert(user);
 						var intent = new Intent(this, typeof(MainActivity));
 						intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
 						StartActivity(intent);

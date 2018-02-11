@@ -6,16 +6,17 @@ using FFImageLoading;
 using FFImageLoading.Views;
 using System;
 using Android.Graphics;
+using GabberPCL.Models;
 
 namespace Gabber
 {
 	public class RVPromptAdapter : RecyclerView.Adapter
 	{
 		// Each story the user recorded has an associated image and audio.
-		readonly List<GabberPCL.Prompt> _prompts;
+		readonly List<Prompt> _prompts;
         int lastSelectedPosition = int.MinValue;
 
-		public RVPromptAdapter(List<GabberPCL.Prompt> prompts)
+		public RVPromptAdapter(List<Prompt> prompts)
 		{
 			_prompts = prompts;
 		}
@@ -29,27 +30,30 @@ namespace Gabber
 		public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
 		{
 			var vh = holder as PhotoViewHolder;
-			vh.Caption.Text = _prompts[position].prompt;
+            vh.Caption.Text = _prompts[position].Text;
 
             // Load the image from the web into the prompt imageView.
-            ImageService.Instance.LoadUrl(_prompts[position].imageName).Into(vh.Image);
+            ImageService.Instance.LoadUrl(_prompts[position].ImageURL).Into(vh.Image);
 
 			// Required to lookup the drawable resource (image prompt) by ID.
-			vh.Image.Tag = _prompts[position].imageName;
+            vh.Image.Tag = _prompts[position].ImageURL;
 
             if (position == lastSelectedPosition)
             {
+                _prompts[position].SelectionState = Prompt.SelectedState.current;
                 // CURRENT SELECTED STATE [item that was just selected]
                 vh.Caption.SetBackgroundColor(Color.ParseColor("#26A69A"));
                 vh.Caption.SetTextColor(Color.White);
             }
             else if (_prompts[position].Selected)
             {
+                _prompts[position].SelectionState = Prompt.SelectedState.previous;
                 // PREVIOUS SELECTED STATE [item was selected before]
                 vh.Caption.SetBackgroundColor(Color.LightGray);
                 vh.Caption.SetTextColor(Color.Black);
             }
             else {
+                _prompts[position].SelectionState = Prompt.SelectedState.never;
                 // DEFAULT STATE [the item has never been selected]
                 vh.Caption.SetBackgroundResource(Resource.Drawable.promptBorder);
                 vh.Caption.SetTextColor(Color.Black);
@@ -59,10 +63,11 @@ namespace Gabber
         public void PromptSeleted(int position)
         {
             _prompts[position].Selected = true;
-            int temp = lastSelectedPosition;
+            _prompts[position].SelectionState = Prompt.SelectedState.current;
+            int previous = lastSelectedPosition;
             lastSelectedPosition = position;
-            if(temp != int.MinValue)
-                NotifyItemChanged(temp);
+            if(previous != int.MinValue)
+                NotifyItemChanged(previous);
             NotifyItemChanged(position);
         }
 

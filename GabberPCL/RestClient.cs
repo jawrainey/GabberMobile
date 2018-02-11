@@ -17,9 +17,11 @@ namespace GabberPCL
 
 		public RestClient()
 		{
-			_client = new HttpClient();
-			_client.BaseAddress = new Uri("https://gabber.audio/");
-		}
+            _client = new HttpClient
+            {
+                BaseAddress = new Uri("https://e292675c.ngrok.io")
+            };
+        }
 
         public async Task<JWToken> Login(string email, string password)
 		{

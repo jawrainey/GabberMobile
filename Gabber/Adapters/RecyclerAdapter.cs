@@ -3,14 +3,15 @@ using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
+using GabberPCL.Models;
 
 namespace Gabber
 {
 	public class RecyclerAdapter : RecyclerView.Adapter
 	{
-		List<GabberPCL.Project> _projects;
+		List<Project> _projects;
 
-		public RecyclerAdapter(List<GabberPCL.Project> projects)
+		public RecyclerAdapter(List<Project> projects)
 		{
 			_projects = projects;
 		}
@@ -24,20 +25,14 @@ namespace Gabber
 		public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
 		{
 			var mholder = holder as ProjectViewHolder;
-			mholder.mprojectText.Text = _projects[position].theme;
+            mholder.mprojectText.Text = _projects[position].Title;
 		}
 
-		public override int ItemCount
-		{
-			get { return _projects.Count; }
-		}
+        public override int ItemCount => _projects.Count;
 
 		public event EventHandler<int> ProjectClicked;
 
-		void OnProjectClick(int position)
-		{
-			if (ProjectClicked != null) ProjectClicked(this, position);
-		}
+        void OnProjectClick(int position) => ProjectClicked?.Invoke(this, position);
 
 		public class ProjectViewHolder : RecyclerView.ViewHolder
 		{

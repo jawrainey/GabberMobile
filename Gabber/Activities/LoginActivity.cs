@@ -7,6 +7,7 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
 
 namespace Gabber
 {
@@ -42,12 +43,24 @@ namespace Gabber
 				{
 					FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Visible;
 					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
-					// If the user details are correct: take user to their dashboard, otherwise snackbar error.
-					if (await (new GabberPCL.RestClient().Authenticate(email.Text, passw.Text)))
+
+                    var api = new GabberPCL.RestClient();
+                    var tokens = await api.Login(email.Text, passw.Text);
+
+					// If the user details are correct: then a token was generated
+                    if (!string.IsNullOrEmpty(tokens.Access))
 					{
+                        // This is used to show ProjectsVC when opening app
+                        GabberPCL.Session.ActiveUser = GabberPCL.Queries.FindOrInsertUser(email.Text);
+                        // It's unclear why I have went down this IsActive route rather than lookup via prefs ...
+                        GabberPCL.Session.ActiveUser.IsActive = true;
+                        GabberPCL.Session.Token = tokens;
+
 						// Use preferences to only show recordings for each specific user.
 						PreferenceManager.GetDefaultSharedPreferences(
 							ApplicationContext).Edit().PutString("username", email.Text).Commit();
+                        PreferenceManager.GetDefaultSharedPreferences(
+                            ApplicationContext).Edit().PutString("tokens", JsonConvert.SerializeObject(tokens)).Commit();
 						// We do not want the user to return to ANY gabber recording pages once captured.
 						var intent = new Intent(this, typeof(MainActivity));
 						intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);

@@ -17,6 +17,13 @@ namespace GabberPCL
             }
         }
 
+        public static List<Project> AllProjects() => Session.Connection.GetAllWithChildren<Project>();
+
+        public static List<InterviewSession> AllInterviewSessionsForActiveUser()
+        {
+            return Session.Connection.GetAllWithChildren<InterviewSession>((i) => i.CreatorID == Session.ActiveUser.Id);
+        }
+
         public static Project ProjectById(int projectID) => Session.Connection.GetWithChildren<Project>(projectID);
 
         public static User FindOrInsertUser(string email)
@@ -66,7 +73,8 @@ namespace GabberPCL
 
         public static void CreateAnnotation(int start, string interviewID, int promptID)
         {
-            Session.Connection.Insert(new InterviewPrompt {
+            Session.Connection.Insert(new InterviewPrompt
+            {
                 Start = start,
                 End = 0,
                 InterviewID = interviewID,
@@ -82,7 +90,8 @@ namespace GabberPCL
                 // as this is duplicated information between InterviewParticipant, etc
                 // We represent a participant as a User, but in doing so do not send the Email/Name
                 // when creating a session object (as they are abstracted away), which imho is not ideal.
-                Session.Connection.Insert(new InterviewParticipant { 
+                Session.Connection.Insert(new InterviewParticipant
+                {
                     InterviewID = InterviewSessionID,
                     // True if participant was the intervieweer
                     Role = Session.ActiveUser.Id == participant.Id,

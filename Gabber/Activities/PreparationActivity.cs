@@ -5,20 +5,18 @@ using Android.Support.V7.App;
 using Android.Support.Design.Widget;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Widget;
-using System.Collections.Generic;
-using GabberPCL;
+using GabberPCL.Models;
 using Android.Preferences;
 using Android.Support.V7.Widget;
-using Android.Views;
-using Newtonsoft.Json;
 using Android.Util;
+using GabberPCL;
+using System.Collections.Generic;
 
 namespace Gabber
 {
 	[Activity]
 	public class PreparationActivity : AppCompatActivity
 	{
-		List<Participant> _participants;
         // Expose for on-click event to update participants view
         ParticipantAdapter adapter;
 
@@ -31,23 +29,23 @@ namespace Gabber
 
 			// Required to access existing gabbers for a given user
 			var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+            var participants = Queries.AllParticipants();
 
-            if (string.IsNullOrEmpty(prefs.GetString("participants", ""))) 
+            if (participants.Count <= 0)
             {
-                var user = new Participant { Name = "(You)", Email = prefs.GetString("username", ""), Selected = true };
-                var __participants = new List<Participant> { user };
-                prefs.Edit().PutString("participants", JsonConvert.SerializeObject(__participants)).Commit();
-                _participants = __participants;
-            } 
-            else 
-            {
-                _participants = JsonConvert.DeserializeObject<List<Participant>>(prefs.GetString("participants", ""));   
+                Session.Connection.Insert(new User
+                {
+                    Name = "(You)",
+                    Email = prefs.GetString("username", ""),
+                    Selected = true
+                });
+                participants = Queries.AllParticipants();
             }
 
 			var participantsView = FindViewById<RecyclerView>(Resource.Id.participants);
 			participantsView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false));
 
-			adapter = new ParticipantAdapter(_participants);
+            adapter = new ParticipantAdapter(participants);
 			adapter.ParticipantClicked += ParticipantSelected;
 			participantsView.SetAdapter(adapter);
 			participantsView.AddItemDecoration(new DividerItemDecoration(participantsView.Context, 1));
@@ -60,17 +58,16 @@ namespace Gabber
 			{
 				if (FormValid())
 				{
-					var participant = new Participant
+					var participant = new User
 					{
 						Name = name.Text,
 						Email = email.Text,
                         Selected = true
 					};
 
-					_participants.Add(participant);
-					adapter.NotifyDataSetChanged();
-
-					prefs.Edit().PutString("participants", JsonConvert.SerializeObject(_participants)).Commit();
+                    Session.Connection.Insert(participant);
+                    participants.Add(participant);
+                    adapter.NotifyItemInserted(participants.Count);
 					// Reset form content once participant is successfully added
 					name.Text = "";
 					email.Text = "";
@@ -79,7 +76,7 @@ namespace Gabber
 
 			FindViewById<Button>(Resource.Id.selectPrompt).Click += delegate
 			{
-                var selectedParticipants = adapter.selectedParticipants();
+                var selectedParticipants = Queries.SelectedParticipants();
 
                 if (selectedParticipants.Count == 0)
 				{
@@ -87,16 +84,7 @@ namespace Gabber
 				}
 				else
 				{
-					// Store created participants as these are displayed to the user on the UI.
-					prefs.Edit().PutString("participants", JsonConvert.SerializeObject(_participants)).Commit();
-					// Pass the preparation form and previously form data (theme) to the record activity.
-                    var intent = new Intent(this, typeof(RecordStoryActivity));
-                    // We do not want to store "you" as set in the register page, but instead the full name
-                    selectedParticipants[0].Name = prefs.GetString("username", selectedParticipants[0].Name);
-					intent.PutExtra("participants", JsonConvert.SerializeObject(selectedParticipants));
-					intent.PutExtra("theme", prefs.GetString("theme", ""));
-					intent.PutExtra("session", System.Guid.NewGuid().ToString());
-					StartActivity(intent);
+                    StartActivity(new Intent(this, typeof(RecordStoryActivity)));
 				}
 			};
 		}
@@ -119,9 +107,6 @@ namespace Gabber
 			return true;
 		}
 
-		void ParticipantSelected(object sender, int position)
-		{
-            adapter.ParticipantSeleted(position);
-		}
-	}
+        void ParticipantSelected(object sender, int position) => adapter.ParticipantSeleted(position);
+    }
 }
