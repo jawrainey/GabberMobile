@@ -5,7 +5,6 @@ using Foundation;
 using GabberPCL;
 using Newtonsoft.Json;
 using GabberPCL.Models;
-using Gabber.iOS.Helpers;
 
 namespace Gabber.iOS
 {
@@ -13,7 +12,7 @@ namespace Gabber.iOS
     {
         public ProjectsViewController (IntPtr handle) : base (handle) {}
 
-        public override void ViewDidLoad()
+        public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
             // TODO: although we have Session.ActiveUser, it's overkill at the moment
@@ -24,7 +23,7 @@ namespace Gabber.iOS
             var tokens = NSUserDefaults.StandardUserDefaults.StringForKey("ActiveUserTokens");
             Session.Token = JsonConvert.DeserializeObject<JWToken>(tokens);
 
-            var projects = new RestClient().GetProjects();
+            var projects = await (new RestClient()).GetProjects();
 
             if (projects.Count > 0)
             {

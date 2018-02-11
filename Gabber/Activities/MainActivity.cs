@@ -20,7 +20,7 @@ namespace Gabber
 		// To faciliate access in OnProjectClick
 		ISharedPreferences _prefs;
 
-		protected override void OnCreate(Bundle savedInstanceState)
+		protected async override void OnCreate(Bundle savedInstanceState)
 		{
 			// Used to display interviews that the logged in user has recorded
 			// This ensures if many log into the device, then they will see theirs.
@@ -47,7 +47,16 @@ namespace Gabber
 			}
 			else
 			{
-                SetupProjects();
+                var api = new RestClient();
+                var response = await api.GetProjects();
+                _projects = response;
+
+                // If there are no results [e.g. no Internet], then use cached version.
+                // Otherwise update our data. Since we will get all in a request, just update.
+                // TODO: what if there is no cached version?
+                if (_projects.Count == 0) _projects = Queries.AllProjects();
+                else Queries.AddProjects(response);
+
                 // An interview session was just completed, so we want to create a message
                 // to inform the user that the session will now be uploaded.
                 if (!string.IsNullOrWhiteSpace(Intent.GetStringExtra("RECORDED_GABBER")))
@@ -67,24 +76,6 @@ namespace Gabber
 			var mAdapter = new RecyclerAdapter(_projects);
 			mAdapter.ProjectClicked += OnProjectClick;
 			mView.SetAdapter(mAdapter);
-		}
-
-		void SetupProjects()
-		{
-            // Create this once so the async call are run queued properly
-            // TODO: filter to show user-associated projects first.
-            // TODO: have a spinning animation whilst we wait for it to load?
-            // TODO: refresh when they go off-line and come back online.
-
-            // The entire request, which will be stored in the database
-            var response = new RestClient().GetProjects();
-            _projects = response;
-
-            // If there are no results [e.g. no Internet], then use cached version.
-            // Otherwise update our data. Since we will get all in a request, just update.
-            // TODO: what if there is no cached version?
-            if (_projects.Count == 0) _projects = Queries.AllProjects();
-            else Queries.AddProjects(response);
 		}
 
         void UploadGabbers()
