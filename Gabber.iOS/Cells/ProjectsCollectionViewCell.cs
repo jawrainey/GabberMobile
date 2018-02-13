@@ -10,9 +10,6 @@ namespace Gabber.iOS
 
         public ProjectsCollectionViewCell (IntPtr handle) : base (handle) {}
 
-        public void UpdateContent(string _title)
-        {
-            ProjectDetails.Text = _title;
-        }
+        public void UpdateContent(string _title) => ProjectDetails.Text = _title;
     }
 }

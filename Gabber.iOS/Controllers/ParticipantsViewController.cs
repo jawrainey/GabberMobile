@@ -26,6 +26,14 @@ namespace Gabber.iOS
             ParticipantsCollectionView.ReloadData();
         }
 
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            base.PrepareForSegue(segue, sender);
+            // This removes the default title ("Participants") that appears next 
+            // to the text on the back button. Only show button without text.
+            NavigationItem.BackBarButtonItem = new UIBarButtonItem { Title = "" };
+        }
+
         // Revisited this page, i.e. after adding a participant
         [Action("UnwindToParticipantsViewController:")]
         public void UnwindToParticipantsViewController(UIStoryboardSegue segue) {}
