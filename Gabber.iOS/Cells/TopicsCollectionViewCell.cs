@@ -14,17 +14,21 @@ namespace Gabber.iOS
         public void UpdateContent(Prompt topic)
         {
             ProjectTopic.Text = topic.Text;
+            ProjectTopic.TextColor = UIColor.Black;
+            Layer.BorderColor = UIColor.Black.CGColor;
 
             if (topic.SelectionState == Prompt.SelectedState.current)
             {
-                BackgroundColor = UIColor.Green;
+                ProjectTopic.TextColor = UIColor.White;
+                BackgroundColor = UIColor.FromRGB(.43f, .80f, .79f);
+                Layer.BorderColor = UIColor.LightGray.CGColor;
             }
             else if (topic.SelectionState == Prompt.SelectedState.previous) 
             {
-                BackgroundColor = UIColor.Yellow;
+                BackgroundColor = UIColor.LightGray;
             }
             else {
-                BackgroundColor = UIColor.Red;                
+                BackgroundColor = UIColor.White;                
             }
         }
     }

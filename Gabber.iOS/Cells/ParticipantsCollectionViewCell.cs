@@ -15,7 +15,7 @@ namespace Gabber.iOS
         public void UpdateContent(User participant)
         {
             ParticipantName.Text = participant.Name;
-            BackgroundColor = participant.Selected ? UIColor.Green : UIColor.Red;
+            BackgroundColor = participant.Selected ? UIColor.FromRGB(.43f, .80f, .79f) : UIColor.White;
         }
     }
 }

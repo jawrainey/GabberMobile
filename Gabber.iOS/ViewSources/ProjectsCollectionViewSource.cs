@@ -33,6 +33,8 @@ namespace Gabber.iOS.ViewSources
         public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
             var cell = (ProjectsCollectionViewCell)collectionView.DequeueReusableCell(ProjectsCollectionViewCell.CellID, indexPath);
+            cell.Layer.BorderWidth = 1.0f;
+            cell.Layer.BorderColor = UIColor.Black.CGColor;
             cell.UpdateContent(Rows[indexPath.Row].Title);
             return cell;
         }
