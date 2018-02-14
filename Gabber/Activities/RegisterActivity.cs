@@ -45,27 +45,26 @@ namespace Gabber
 					FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Visible;
 					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 
-					if (await new RestClient().Register(fname.Text, email.Text, passw.Text))
-					{
-                        // This is used to show ProjectsVC when opening app
-                        Session.ActiveUser = GabberPCL.Queries.FindOrInsertUser(email.Text);
-                        // It's unclear why I have went down this IsActive route rather than lookup via prefs ...
-                        Session.ActiveUser.IsActive = true;
-                        // TODO: tokens should be generated/saved when registrting
-                        Session.Token = new JWToken();
+                    var api = new RestClient();
+                    var tokens = await api.Register(fname.Text, email.Text, passw.Text);
 
+                    if (!string.IsNullOrEmpty(tokens.Access))
+					{
                         var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
                         prefs.Edit().PutString("username", email.Text).Commit();
                         prefs.Edit().PutString("tokens", JsonConvert.SerializeObject(Session.Token)).Commit();
-                        // This allows the current user (who registered) to be displayed in the participants view
-                        var user = new User
+                        // Given the user is registering, they are new to the app.
+                        Session.Connection.Insert(new User
                         {
-                            Name = "(You)",
+                            Name = fname.Text + " (You)",
                             Email = email.Text,
                             Selected = true
-                        };
+                        });
 
-                        Session.Connection.Insert(user);
+                        Session.ActiveUser = Queries.FindOrInsertUser(email.Text);
+                        Session.ActiveUser.IsActive = true;
+                        Session.Token = tokens;
+
 						var intent = new Intent(this, typeof(MainActivity));
 						intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
 						StartActivity(intent);

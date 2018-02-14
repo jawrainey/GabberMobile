@@ -41,7 +41,7 @@ namespace GabberPCL
             return new JWToken();
         }
 
-		public async Task<bool> Register(string fullname, string email, string password)
+        public async Task<JWToken> Register(string fullname, string email, string password)
 		{
 			var pairs = new List<KeyValuePair<string, string>>
 			{
@@ -49,7 +49,15 @@ namespace GabberPCL
 				new KeyValuePair<string, string>("email", email),
 				new KeyValuePair<string, string>("password", password)
 			};
-			return await GottaCatchThemAll("api/register", new FormUrlEncodedContent(pairs));
+
+            var response = await _client.PostAsync("api/auth/register/", new FormUrlEncodedContent(pairs));
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<JWToken>(content);
+            }
+            return new JWToken();
 		}
 
 		// As this deals with reading files from platform specific paths, 
