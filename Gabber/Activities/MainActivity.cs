@@ -9,6 +9,7 @@ using System.Linq;
 using Android.Support.Design.Widget;
 using GabberPCL.Models;
 using Gabber.Helpers;
+using Newtonsoft.Json;
 
 namespace Gabber
 {
@@ -47,6 +48,14 @@ namespace Gabber
 			}
 			else
 			{
+                if (Session.ActiveUser == null)
+                {
+                    // Although this is set on Login/Register, it is forgotten when the app is closed.
+                    Session.ActiveUser = Queries.FindOrInsertUser(_prefs.GetString("username", ""));
+                    Session.ActiveUser.IsActive = true;
+                    Session.Token = JsonConvert.DeserializeObject<JWToken>(_prefs.GetString("tokens", ""));
+                }
+
                 var api = new RestClient();
                 var response = await api.GetProjects();
                 _projects = response;
@@ -70,9 +79,6 @@ namespace Gabber
                             .Show();
                 }
 			}
-			// Register the implementation to the global interface within the PCL.
-			RestClient.GlobalIO = new DiskIO();
-
 			var mAdapter = new RecyclerAdapter(_projects);
 			mAdapter.ProjectClicked += OnProjectClick;
 			mView.SetAdapter(mAdapter);

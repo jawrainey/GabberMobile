@@ -50,18 +50,11 @@ namespace Gabber
 					// If the user details are correct: then a token was generated
                     if (!string.IsNullOrEmpty(tokens.Access))
 					{
-                        // This is used to show ProjectsVC when opening app
-                        GabberPCL.Session.ActiveUser = GabberPCL.Queries.FindOrInsertUser(email.Text);
-                        // It's unclear why I have went down this IsActive route rather than lookup via prefs ...
-                        GabberPCL.Session.ActiveUser.IsActive = true;
-                        GabberPCL.Session.Token = tokens;
-
-						// Use preferences to only show recordings for each specific user.
-						PreferenceManager.GetDefaultSharedPreferences(
-							ApplicationContext).Edit().PutString("username", email.Text).Commit();
-                        PreferenceManager.GetDefaultSharedPreferences(
-                            ApplicationContext).Edit().PutString("tokens", JsonConvert.SerializeObject(tokens)).Commit();
-						// We do not want the user to return to ANY gabber recording pages once captured.
+                        var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+                        prefs.Edit().PutString("username", email.Text).Commit();
+                        prefs.Edit().PutString("tokens", JsonConvert.SerializeObject(tokens)).Commit();
+						
+                        // We do not want the user to return to ANY gabber recording pages once captured.
 						var intent = new Intent(this, typeof(MainActivity));
 						intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
 						StartActivity(intent);

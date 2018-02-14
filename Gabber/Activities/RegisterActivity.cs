@@ -52,7 +52,8 @@ namespace Gabber
 					{
                         var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
                         prefs.Edit().PutString("username", email.Text).Commit();
-                        prefs.Edit().PutString("tokens", JsonConvert.SerializeObject(Session.Token)).Commit();
+                        prefs.Edit().PutString("tokens", JsonConvert.SerializeObject(tokens)).Commit();
+
                         // Given the user is registering, they are new to the app.
                         Session.Connection.Insert(new User
                         {
@@ -60,10 +61,6 @@ namespace Gabber
                             Email = email.Text,
                             Selected = true
                         });
-
-                        Session.ActiveUser = Queries.FindOrInsertUser(email.Text);
-                        Session.ActiveUser.IsActive = true;
-                        Session.Token = tokens;
 
 						var intent = new Intent(this, typeof(MainActivity));
 						intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
