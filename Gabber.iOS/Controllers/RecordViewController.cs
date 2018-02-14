@@ -41,6 +41,7 @@ namespace Gabber.iOS
         void AddAnnotation()
         {
             RecordInstructions.Hidden = true;
+            RecordNote.Hidden = true;
             RecordButton.Hidden = false;
             AudioRecorder.Record();
 

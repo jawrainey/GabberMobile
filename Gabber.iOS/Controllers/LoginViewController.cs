@@ -10,6 +10,13 @@ namespace Gabber.iOS
     {
         public LoginViewController (IntPtr handle) : base (handle) {}
 
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            LoginUIButton.Layer.BorderWidth = .5f;
+            LoginUIButton.Layer.BorderColor = UIColor.Black.CGColor;
+        }
+
         async partial void Authenticate(UIButton _)
         {
             var email = EmailTextField.Text;

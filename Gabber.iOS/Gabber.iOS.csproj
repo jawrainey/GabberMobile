@@ -119,6 +119,8 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Resources\StopButton.png" />
     <ImageAsset Include="Assets.xcassets\StopButton.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\StopButton.imageset\StopButton.png" />
+    <ImageAsset Include="Assets.xcassets\Logo.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Logo.imageset\icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -126,6 +128,7 @@
     <Folder Include="ViewSources\" />
     <Folder Include="Helpers\" />
     <Folder Include="Assets.xcassets\StopButton.imageset\" />
+    <Folder Include="Assets.xcassets\Logo.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
