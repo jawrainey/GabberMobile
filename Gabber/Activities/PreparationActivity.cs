@@ -99,6 +99,13 @@ namespace Gabber
 				Snackbar.Make(name, Resources.GetText(Resource.String.error_friends_name), Snackbar.LengthLong).Show();
 				return false;
 			}
+
+            if (string.IsNullOrWhiteSpace(email.Text))
+            {
+                Snackbar.Make(name, "Their email address is required and will be used to obtain their consent for the recording.", Snackbar.LengthLong).Show();
+                return false;                
+            }
+
 			if (!string.IsNullOrWhiteSpace(email.Text) && !Patterns.EmailAddress.Matcher(email.Text).Matches())
 			{
 				Snackbar.Make(email, Resources.GetText(Resource.String.error_invalid_email), Snackbar.LengthLong).Show();

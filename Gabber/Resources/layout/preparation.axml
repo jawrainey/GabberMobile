@@ -81,7 +81,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
                         android:imeOptions="actionDone"
-                        android:hint="Email (optional)" />
+                        android:hint="Email" />
                 </android.support.design.widget.TextInputLayout>
                 <LinearLayout
                     android:layout_height="wrap_content"
