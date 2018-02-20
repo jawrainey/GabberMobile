@@ -180,6 +180,7 @@
     <Compile Include="ViewSources\TopicsCollectionViewSource.cs" />
     <Compile Include="Helpers\AudioRecorder.cs" />
     <Compile Include="Helpers\DiskIO.cs" />
+    <Compile Include="Helpers\MessageDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">

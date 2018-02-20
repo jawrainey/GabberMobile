@@ -5,9 +5,17 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.IO;
 using GabberPCL.Models;
+using Plugin.Connectivity;
+using System.Net;
 
 namespace GabberPCL
 {
+    class Error
+    {
+        [JsonProperty("message")]
+        public string Message { get; set; }
+    }
+
 	public class RestClient
 	{
 		// Used to access platform specific implementations
@@ -23,20 +31,32 @@ namespace GabberPCL
             };
         }
 
-        public async Task<JWToken> Login(string email, string password)
+        public async Task<JWToken> Login(string email, string password, Action<string> errorCallback)
 		{
 			var pairs = new List<KeyValuePair<string, string>>
 			{
 				new KeyValuePair<string, string>("email", email),
 				new KeyValuePair<string, string>("password", password)
 			};
-            // TODO: propagate exception/error message upwards?
-            var response = await _client.PostAsync("api/auth/login/", new FormUrlEncodedContent(pairs));
-            var content = await response.Content.ReadAsStringAsync();
 
-            if (response.IsSuccessStatusCode)
+            try
             {
-                return JsonConvert.DeserializeObject<JWToken>(content);
+                var response = await _client.PostAsync("api/auth/login/", new FormUrlEncodedContent(pairs));
+                var content = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<JWToken>(content);
+                }
+                errorCallback(JsonConvert.DeserializeObject<Error>(content).Message);
+            }
+            catch (HttpRequestException)
+            {
+                errorCallback("You are not connected to the Internet");
+            }
+            catch (Exception e)
+            {
+                errorCallback("An unknown error occurred:" + e.Message); 
             }
             return new JWToken();
         }
@@ -95,20 +115,5 @@ namespace GabberPCL
             return JsonConvert.DeserializeObject<List<Project>>(response);
 		}
 
-		// PostAsync has potential for errrors to be thrown, which do not translate well to HTTP Error codes. 
-		// We do not care about error handling given we don't present those errors to the user.
-		// TODO: we should present users with better error messages based on HTTP codes.
-		async Task<bool> GottaCatchThemAll(string path, FormUrlEncodedContent content)
-		{
-			try
-			{
-				var response = await _client.PostAsync(path, content);
-				return response.IsSuccessStatusCode;
-			}
-			catch
-			{
-				return false;
-			}
-		}
 	}
 }
