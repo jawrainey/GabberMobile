@@ -36,19 +36,11 @@ namespace Gabber.iOS
                 var client = new RestClient();
                 var tokens = await client.Login(email, passw, (message) => ErrorMessageDialog(message));
 
-                // If the user details are correct: then a token was generated
                 if (!string.IsNullOrEmpty(tokens.Access))
                 {
-                    // This is used to show ProjectsVC when opening app
-                    Session.ActiveUser = Queries.FindOrInsertUser(email);
-                    // It's unclear why I have went down this IsActive route rather than lookup via prefs ...
-                    Session.ActiveUser.IsActive = true;
-                    // This is used to simplify REST API access in PCL
                     NSUserDefaults.StandardUserDefaults.SetString(JsonConvert.SerializeObject(tokens), "ActiveUserTokens");
-                    Session.Token = tokens;
                     NSUserDefaults.StandardUserDefaults.SetString(email, "Username");
 
-                    // TODO: this is obviously not ideal, but works for now ...
                     UIApplication.SharedApplication.Windows[0].RootViewController =
                         UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
                 }
@@ -58,7 +50,7 @@ namespace Gabber.iOS
         void ErrorMessageDialog(string message)
         {
             var dialog = new Helpers.MessageDialog();
-            var errorDialog = dialog.BuildErrorMessageDialog(message);
+            var errorDialog = dialog.BuildErrorMessageDialog("Unable to log in", message);
             PresentViewController(errorDialog, true, null);
         }
     }

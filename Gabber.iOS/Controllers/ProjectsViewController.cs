@@ -15,13 +15,17 @@ namespace Gabber.iOS
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            // TODO: although we have Session.ActiveUser, it's overkill at the moment
-            var email = NSUserDefaults.StandardUserDefaults.StringForKey("Username");
-            Session.ActiveUser = Queries.FindOrInsertUser(email);
 
-            // TODO: should only store refresh token and keep access token in memory
-            var tokens = NSUserDefaults.StandardUserDefaults.StringForKey("ActiveUserTokens");
-            Session.Token = JsonConvert.DeserializeObject<JWToken>(tokens);
+            if (Session.ActiveUser == null)
+            {
+                // TODO: although we have Session.ActiveUser, it's overkill at the moment
+                var email = NSUserDefaults.StandardUserDefaults.StringForKey("Username");
+                Session.ActiveUser = Queries.FindOrInsertUser(email);
+                Session.ActiveUser.IsActive = true;
+                // TODO: should only store refresh token and keep access token in memory
+                var tokens = NSUserDefaults.StandardUserDefaults.StringForKey("ActiveUserTokens");
+                Session.Token = JsonConvert.DeserializeObject<JWToken>(tokens);
+            }
 
             var projects = await (new RestClient()).GetProjects();
 

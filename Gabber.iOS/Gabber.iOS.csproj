@@ -181,6 +181,10 @@
     <Compile Include="Helpers\AudioRecorder.cs" />
     <Compile Include="Helpers\DiskIO.cs" />
     <Compile Include="Helpers\MessageDialog.cs" />
+    <Compile Include="Controllers\RegisterViewController.cs" />
+    <Compile Include="Controllers\RegisterViewController.designer.cs">
+      <DependentUpon>RegisterViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">

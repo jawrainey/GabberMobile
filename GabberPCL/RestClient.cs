@@ -5,8 +5,6 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.IO;
 using GabberPCL.Models;
-using Plugin.Connectivity;
-using System.Net;
 
 namespace GabberPCL
 {
@@ -61,7 +59,7 @@ namespace GabberPCL
             return new JWToken();
         }
 
-        public async Task<JWToken> Register(string fullname, string email, string password)
+        public async Task<JWToken> Register(string fullname, string email, string password, Action<string> errorCallback)
 		{
 			var pairs = new List<KeyValuePair<string, string>>
 			{
@@ -70,12 +68,24 @@ namespace GabberPCL
 				new KeyValuePair<string, string>("password", password)
 			};
 
-            var response = await _client.PostAsync("api/auth/register/", new FormUrlEncodedContent(pairs));
-            var content = await response.Content.ReadAsStringAsync();
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                return JsonConvert.DeserializeObject<JWToken>(content);
+                var response = await _client.PostAsync("api/auth/register/", new FormUrlEncodedContent(pairs));
+                var content = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<JWToken>(content);
+                }
+                errorCallback(JsonConvert.DeserializeObject<Error>(content).Message);
+            }
+            catch (HttpRequestException)
+            {
+                errorCallback("You are not connected to the Internet");
+            }
+            catch (Exception e)
+            {
+                errorCallback("An unknown error occurred:" + e.Message);
             }
             return new JWToken();
 		}
