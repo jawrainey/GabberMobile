@@ -24,19 +24,16 @@ namespace Gabber.iOS.ViewSources
         public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
         {
             int previousSelected = Rows.FindIndex((Prompt p) => p.SelectionState == Prompt.SelectedState.current);
-            // Current & previous items
-            var selectedItems = new List<NSIndexPath> { indexPath };
             // At least two items must be selected before a previous exists
             if (previousSelected != -1)
             {
                 // The item selected was the same as the last (nothing changed) so do nothing.
                 if (Rows[previousSelected].Equals(Rows[indexPath.Row])) return;
                 Rows[previousSelected].SelectionState = Prompt.SelectedState.previous;
-                selectedItems.Add(NSIndexPath.FromRowSection(previousSelected, 0));
             }
             Rows[indexPath.Row].SelectionState = Prompt.SelectedState.current;
             // Reloads (i.e. draws) the specific items, including those outside of the scrollview.
-            collectionView.ReloadItems(selectedItems.ToArray());
+            collectionView.ReloadData();
             // Invoked after as this requires knowing if the Current/Previous was selected, particularly the first time.
             AddAnnotation?.Invoke();
         }

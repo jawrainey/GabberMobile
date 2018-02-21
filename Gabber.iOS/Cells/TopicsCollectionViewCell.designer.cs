@@ -16,7 +16,7 @@ namespace Gabber.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel ProjectTopic { get; set; }
+        UIKit.UITextView ProjectTopic { get; set; }
 
         void ReleaseDesignerOutlets ()
         {

@@ -2,6 +2,7 @@ using Foundation;
 using System;
 using UIKit;
 using GabberPCL.Models;
+using System.Drawing;
 
 namespace Gabber.iOS
 {
@@ -20,16 +21,27 @@ namespace Gabber.iOS
             if (topic.SelectionState == Prompt.SelectedState.current)
             {
                 ProjectTopic.TextColor = UIColor.White;
-                BackgroundColor = UIColor.FromRGB(.43f, .80f, .79f);
+                ProjectTopic.BackgroundColor = UIColor.FromRGB(.43f, .80f, .79f);
                 Layer.BorderColor = UIColor.LightGray.CGColor;
             }
             else if (topic.SelectionState == Prompt.SelectedState.previous) 
             {
-                BackgroundColor = UIColor.LightGray;
+                ProjectTopic.BackgroundColor = UIColor.LightGray;
             }
-            else {
-                BackgroundColor = UIColor.White;                
+            else 
+            {
+                ProjectTopic.BackgroundColor = UIColor.White;
             }
+        }
+
+        public override UICollectionViewLayoutAttributes PreferredLayoutAttributesFittingAttributes(UICollectionViewLayoutAttributes layoutAttributes)
+        {
+            var autoLayoutAttributes = base.PreferredLayoutAttributesFittingAttributes(layoutAttributes);
+            var targetSize = new CoreGraphics.CGSize(layoutAttributes.Frame.Width, 0);
+            var autoLayoutSize = ContentView.SystemLayoutSizeFittingSize(targetSize, 1000, 250);
+            var autoLayoutFrame = new CoreGraphics.CGRect(autoLayoutAttributes.Frame.Location, autoLayoutSize);
+            autoLayoutAttributes.Frame = autoLayoutFrame;
+            return autoLayoutAttributes;
         }
     }
 }
