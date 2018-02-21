@@ -16,6 +16,9 @@ namespace Gabber.iOS
         {
             base.ViewDidLoad();
 
+            var es = new CoreGraphics.CGSize(UIScreen.MainScreen.Bounds.Width - 36, 70);
+            (ProjectsCollectionView.CollectionViewLayout as UICollectionViewFlowLayout).EstimatedItemSize = es;
+
             if (Session.ActiveUser == null)
             {
                 // TODO: although we have Session.ActiveUser, it's overkill at the moment
