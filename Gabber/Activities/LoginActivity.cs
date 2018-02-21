@@ -45,7 +45,11 @@ namespace Gabber
 					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 
                     var api = new GabberPCL.RestClient();
-                    var tokens = await api.Login(email.Text, passw.Text);
+                    var tokens = await api.Login(
+                        email.Text, 
+                        passw.Text, 
+                        (errorMessage) => Snackbar.Make(email, errorMessage, 0).Show()
+                    );
 
 					// If the user details are correct: then a token was generated
                     if (!string.IsNullOrEmpty(tokens.Access))
@@ -68,8 +72,6 @@ namespace Gabber
 							FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = true;
 							FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
 						});
-
-						Snackbar.Make(email, Resources.GetText(Resource.String.oh_no), 0).Show();
 					}
 				}
 			};

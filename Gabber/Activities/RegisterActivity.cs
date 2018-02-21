@@ -21,7 +21,6 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.register);
 
-
 			FindViewById<AppCompatButton>(Resource.Id.submit).Click += async delegate
 			{
 				var fname = FindViewById<AppCompatEditText>(Resource.Id.name);
@@ -46,7 +45,12 @@ namespace Gabber
 					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 
                     var api = new RestClient();
-                    var tokens = await api.Register(fname.Text, email.Text, passw.Text);
+                    var tokens = await api.Register(
+                        fname.Text, 
+                        email.Text, 
+                        passw.Text, 
+                        (errorMessage) => Snackbar.Make(email, errorMessage, 0).Show()
+                    );
 
                     if (!string.IsNullOrEmpty(tokens.Access))
 					{
@@ -74,11 +78,9 @@ namespace Gabber
 							FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = true;
 							FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
 						});
-
-						Snackbar.Make(email, Resources.GetText(Resource.String.oh_my), 0).Show();
 					}
 				}
 			};
 		}
-	}
+    }
 }
