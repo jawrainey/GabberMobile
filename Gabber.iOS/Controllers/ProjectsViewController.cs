@@ -30,20 +30,17 @@ namespace Gabber.iOS
                 Session.Token = JsonConvert.DeserializeObject<JWToken>(tokens);
             }
 
-            var projects = await (new RestClient()).GetProjects();
+            var projects = await (new RestClient()).GetProjects(ErrorMessageDialog);
 
             if (projects.Count > 0)
             {
                 Queries.AddProjects(projects);
-                ProjectsCollectionView.Source = new ProjectsCollectionViewSource(projects);
             }
             else 
             {
-                // Use projects from database, and if there are none there, then error msg
-                // TODO: There is no Internet access as projects is empty iff an error occurs;
-                // TODO: update instructions with error message
-                Console.WriteLine("There is no Internet connection");
+                projects = Queries.AllProjects();
             }
+            ProjectsCollectionView.Source = new ProjectsCollectionViewSource(projects);
         }
 
         public override void ViewWillAppear(bool animated)
@@ -56,5 +53,13 @@ namespace Gabber.iOS
 
         [Action("UnwindToProjectsViewController:")]
         public void UnwindToProjectsViewController(UIStoryboardSegue segue) {}
+
+        // TODO: given this is in all controllers, should make a super class to reduce duplication
+        void ErrorMessageDialog(string message)
+        {
+            var dialog = new Helpers.MessageDialog();
+            var errorDialog = dialog.BuildErrorMessageDialog("ERROR", message);
+            PresentViewController(errorDialog, true, null);
+        }
     }
 }

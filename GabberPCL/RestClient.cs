@@ -118,11 +118,31 @@ namespace GabberPCL
 		}
 
         // TODO: all projects are sent over, whether public or private, as one list
-		public async Task<List<Project>> GetProjects()
+        public async Task<List<Project>> GetProjects(Action<string> errorCallback)
 		{
-            _client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token.Access);                   
-            var response = await _client.GetStringAsync("api/projects/");
-            return JsonConvert.DeserializeObject<List<Project>>(response);
+            _client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token.Access);   
+
+            try
+            {
+                var response = await _client.GetAsync("api/projects/");
+                var content = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<List<Project>>(content);
+                }
+                errorCallback(JsonConvert.DeserializeObject<Error>(content).Message);
+            }
+            catch (HttpRequestException)
+            {
+                errorCallback("You are not connected to the Internet");
+            }
+            catch (Exception e)
+            {
+                errorCallback("An unknown error occurred:" + e.Message);
+            }
+
+            return new List<Project>();
 		}
 
 	}
