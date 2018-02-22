@@ -30,7 +30,7 @@ namespace Gabber.iOS
         {
             base.PrepareForSegue(segue, sender);
 
-            if (Queries.SelectedParticipants().Count == 0)
+            if (segue.Identifier == "SegueToRecordGabber" && Queries.SelectedParticipants().Count == 0)
             {
                 PresentViewController(
                     new Helpers.MessageDialog().BuildErrorMessageDialog(

@@ -282,7 +282,7 @@
                                 <rect key="frame" x="200" y="430" width="104" height="30"/>
                                 <state key="normal" title="Record Gabber"/>
                                 <connections>
-                                    <segue destination="19688" kind="show" id="20162"/>
+                                    <segue destination="19688" kind="show" id="20162" identifier="SegueToRecordGabber"/>
                                 </connections>
                             </button>
                         </subviews>
