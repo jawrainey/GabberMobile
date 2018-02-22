@@ -16,10 +16,19 @@ namespace Gabber.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIActivityIndicatorView ProjectsActivityIndicator { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UICollectionView ProjectsCollectionView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
+            if (ProjectsActivityIndicator != null) {
+                ProjectsActivityIndicator.Dispose ();
+                ProjectsActivityIndicator = null;
+            }
+
             if (ProjectsCollectionView != null) {
                 ProjectsCollectionView.Dispose ();
                 ProjectsCollectionView = null;

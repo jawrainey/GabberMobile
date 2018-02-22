@@ -34,7 +34,9 @@ namespace Gabber.iOS
             else 
             {
                 var client = new RestClient();
+                LoginActivityIndicator.StartAnimating();
                 var tokens = await client.Login(email, passw, (message) => ErrorMessageDialog(message));
+                LoginActivityIndicator.StopAnimating();
 
                 if (!string.IsNullOrEmpty(tokens.Access))
                 {

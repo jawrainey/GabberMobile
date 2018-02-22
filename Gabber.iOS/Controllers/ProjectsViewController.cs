@@ -30,7 +30,9 @@ namespace Gabber.iOS
                 Session.Token = JsonConvert.DeserializeObject<JWToken>(tokens);
             }
 
+            ProjectsActivityIndicator.StartAnimating();
             var projects = await (new RestClient()).GetProjects(ErrorMessageDialog);
+            ProjectsActivityIndicator.StopAnimating();
 
             if (projects.Count > 0)
             {

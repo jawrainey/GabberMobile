@@ -20,6 +20,10 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIActivityIndicatorView LoginActivityIndicator { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel LoginErrorLabel { get; set; }
 
         [Outlet]
@@ -47,6 +51,11 @@ namespace Gabber.iOS
             if (EmailTextField != null) {
                 EmailTextField.Dispose ();
                 EmailTextField = null;
+            }
+
+            if (LoginActivityIndicator != null) {
+                LoginActivityIndicator.Dispose ();
+                LoginActivityIndicator = null;
             }
 
             if (LoginErrorLabel != null) {

@@ -28,6 +28,10 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIActivityIndicatorView RegisterActivityIndicator { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView RegisterLogo { get; set; }
 
         [Outlet]
@@ -53,6 +57,11 @@ namespace Gabber.iOS
             if (PasswordRegisterTextField != null) {
                 PasswordRegisterTextField.Dispose ();
                 PasswordRegisterTextField = null;
+            }
+
+            if (RegisterActivityIndicator != null) {
+                RegisterActivityIndicator.Dispose ();
+                RegisterActivityIndicator = null;
             }
 
             if (RegisterLogo != null) {
