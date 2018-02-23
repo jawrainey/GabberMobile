@@ -11,7 +11,7 @@ namespace GabberPCL.Models
         public string RecordingURL { get; set; }
 
         [ForeignKey(typeof(User))]
-        public int CreatorID { get; set; }
+        public string CreatorID { get; set; }
         [ForeignKey(typeof(Project))]
         public int ProjectID { get; set; }
 

@@ -200,7 +200,7 @@ namespace Gabber
                 SessionID = InterviewSessionID,
                 RecordingURL = _path,
 
-                CreatorID = Session.ActiveUser.Id,
+                CreatorID = Session.ActiveUser.Email,
                 ProjectID = SelectedProjectID,
 
                 Prompts = Queries.AnnotationsForLastSession(),
