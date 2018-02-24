@@ -57,7 +57,7 @@ namespace Gabber
                 }
 
                 var api = new RestClient();
-                var response = await api.GetProjects();
+                var response = await api.GetProjects((errorMessage) => Snackbar.Make(mView, errorMessage, 0).Show());
                 _projects = response;
 
                 // If there are no results [e.g. no Internet], then use cached version.
