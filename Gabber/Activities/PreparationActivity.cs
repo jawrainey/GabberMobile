@@ -8,9 +8,9 @@ using Android.Widget;
 using GabberPCL.Models;
 using Android.Preferences;
 using Android.Support.V7.Widget;
-using Android.Util;
 using GabberPCL;
-using System.Collections.Generic;
+using Android.Util;
+using System;
 
 namespace Gabber
 {
@@ -43,44 +43,61 @@ namespace Gabber
             }
 
 			var participantsView = FindViewById<RecyclerView>(Resource.Id.participants);
-			participantsView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Horizontal, false));
+            participantsView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Vertical, false));
 
             adapter = new ParticipantAdapter(participants);
 			adapter.ParticipantClicked += ParticipantSelected;
 			participantsView.SetAdapter(adapter);
-			participantsView.AddItemDecoration(new DividerItemDecoration(participantsView.Context, 1));
-			new LinearSnapHelper().AttachToRecyclerView(participantsView);
-
-			var name = FindViewById<TextInputEditText>(Resource.Id.participantName);
-			var email = FindViewById<TextInputEditText>(Resource.Id.participantEmail);
+            new LinearSnapHelper().AttachToRecyclerView(participantsView);
 
 			FindViewById<Button>(Resource.Id.addParticipant).Click += delegate
 			{
-				if (FormValid())
-				{
-					var participant = new User
-					{
-						Name = name.Text,
-						Email = email.Text,
-                        Selected = true
-					};
+                var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
+                alert.SetTitle("Add a new participant");
+                alert.SetView(Resource.Layout.participantdialog);
+                // Set this to null now to enable override of click button later
+                alert.SetPositiveButton("Add", (EventHandler<DialogClickEventArgs>)null);
 
-                    Session.Connection.Insert(participant);
-                    participants.Add(participant);
-                    adapter.NotifyItemInserted(participants.Count);
-					// Reset form content once participant is successfully added
-					name.Text = "";
-					email.Text = "";
-				}
+                alert.SetNegativeButton("Cancel", (dialog, id) => 
+                {
+                    ((Android.Support.V7.App.AlertDialog)dialog).Dismiss(); 
+                });
+
+                var AddParticipantDialog = alert.Create();
+                AddParticipantDialog.Show();
+                // Override the on click such that we can dismiss the dialog from here, otherwise
+                // it dismisses every time the button is clicked and we cannot do validation.
+                AddParticipantDialog.GetButton((int)DialogButtonType.Positive).Click += delegate
+                {
+                    var name = AddParticipantDialog.FindViewById<TextInputEditText>(Resource.Id.participantName);
+                    var email = AddParticipantDialog.FindViewById<TextInputEditText>(Resource.Id.participantEmail);
+
+                    if (FormValid(name, email))
+                    {
+                        var participant = new User
+                        {
+                            Name = name.Text,
+                            Email = email.Text,
+                            Selected = true
+                        };
+
+                        Session.Connection.Insert(participant);
+                        participants.Add(participant);
+                        adapter.NotifyItemInserted(participants.Count);
+
+                        // Reset form content once participant is successfully added
+                        name.Text = "";
+                        email.Text = "";
+                        AddParticipantDialog.Dismiss();
+                    }
+                };
 			};
 
 			FindViewById<Button>(Resource.Id.selectPrompt).Click += delegate
 			{
-                var selectedParticipants = Queries.SelectedParticipants();
-
-                if (selectedParticipants.Count == 0)
+                if (Queries.SelectedParticipants().Count == 0)
 				{
-					Snackbar.Make(name, Resources.GetText(Resource.String.select_participant), Snackbar.LengthLong).Show();
+                    Snackbar.Make(participantsView, Resources.GetText(Resource.String.select_participant), Snackbar.LengthLong).Show();
 				}
 				else
 				{
@@ -89,30 +106,27 @@ namespace Gabber
 			};
 		}
 
-		bool FormValid()
-		{
-			var name = FindViewById<TextInputEditText>(Resource.Id.participantName);
-			var email = FindViewById<TextInputEditText>(Resource.Id.participantEmail);
-
-			if (string.IsNullOrWhiteSpace(name.Text))
-			{
-				Snackbar.Make(name, Resources.GetText(Resource.String.error_friends_name), Snackbar.LengthLong).Show();
-				return false;
-			}
+        bool FormValid(TextInputEditText name, TextInputEditText email)
+        {
+            if (string.IsNullOrWhiteSpace(name.Text))
+            {
+                name.Error = Resources.GetText(Resource.String.error_empty_name);
+                return false;
+            }
 
             if (string.IsNullOrWhiteSpace(email.Text))
             {
-                Snackbar.Make(name, "Their email address is required and will be used to obtain their consent for the recording.", Snackbar.LengthLong).Show();
-                return false;                
+                email.Error = Resources.GetText(Resource.String.error_empty_email);
+                return false;
             }
 
-			if (!string.IsNullOrWhiteSpace(email.Text) && !Patterns.EmailAddress.Matcher(email.Text).Matches())
-			{
-				Snackbar.Make(email, Resources.GetText(Resource.String.error_invalid_email), Snackbar.LengthLong).Show();
-				return false;
-			}
-			return true;
-		}
+            if (!string.IsNullOrWhiteSpace(email.Text) && !Patterns.EmailAddress.Matcher(email.Text).Matches())
+            {
+                email.Error = Resources.GetText(Resource.String.error_invalid_email);
+                return false;
+            }
+            return true;
+        }
 
         void ParticipantSelected(object sender, int position) => adapter.ParticipantSeleted(position);
     }

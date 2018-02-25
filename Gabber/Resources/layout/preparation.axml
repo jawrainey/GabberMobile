@@ -7,9 +7,13 @@
     android:layout_alignParentBottom="true"
     android:layout_marginBottom="24dp"
     android:gravity="center">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="72dp"
         android:layout_marginBottom="52dp">
         <LinearLayout
             android:orientation="vertical"
@@ -18,102 +22,35 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="24dp"
             android:gravity="center">
-            <include
-                android:id="@+id/toolbar"
-                layout="@layout/toolbar" />
-            <TextView
-                android:id="@+id/selectExistingParticipant"
-                style="@style/TextAppearance.AppCompat.Body2"
-                android:text="Select existing participant"
-                android:gravity="left"
-                android:textSize="16sp"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginBottom="12dp" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/participants"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp" />
-            <TextView
-                android:id="@+id/createNewParticipant"
-                style="@style/TextAppearance.AppCompat.Body2"
-                android:text="Add a new participant"
-                android:gravity="left"
-                android:textSize="16sp"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginBottom="12dp"
-                android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
-            <LinearLayout
-                android:id="@+id/ParticipantContentWidget"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp">
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp">
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/participantName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:imeOptions="actionNext"
-                        android:hint="@string/name" />
-                </android.support.design.widget.TextInputLayout>
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp">
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/participantEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:imeOptions="actionDone"
-                        android:hint="Email" />
-                </android.support.design.widget.TextInputLayout>
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="fill_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="6dp"
-                    android:weightSum="1.0">
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/addParticipant"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right|center_vertical"
-                        android:textColor="@drawable/textcolorbutton"
-                        android:background="@drawable/borderbutton"
-                        android:text="Add" />
-                </LinearLayout>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/selectPrompt"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="24dp"
-        android:layout_marginLeft="24dp"
-        android:textColor="@drawable/textcolorbutton"
-        android:background="@drawable/borderbutton"
-        android:text="Start your Gabber" />
+        android:layout_width="fill_parent"
+        android:layout_alignParentBottom="true">
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/addParticipant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
+            android:textColor="@drawable/textcolorbutton"
+            android:background="@drawable/borderbutton"
+            android:text="Add" />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/selectPrompt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="24dp"
+            android:textColor="@drawable/textcolorbutton"
+            android:background="@drawable/borderbutton"
+            android:text="Start your Gabber" />
+    </LinearLayout>
 </RelativeLayout>

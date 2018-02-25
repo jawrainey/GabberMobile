@@ -19,9 +19,9 @@
 	<string name="select_participant">का चयन करें या साक्षात्कार के लिए एक नए भागीदार बनाने</string>
 	<string name="hint_who_gabbering_with">किनके साथ साक्षात्कार कर रहे हो?</string>
 	<string name="previous_participants">पिछले प्रतिभागियों</string>
-	<string name="error_friends_email">ईमेल की जरूरत है</string>
-	<string name="error_friends_name">नाम आवश्यक है</string>
-	<string name="error_invalid_email">ईमेल पता अवैध है</string>
+	<string name="error_invalid_email">ईमेल की जरूरत है</string>
+	<string name="error_empty_name">नाम आवश्यक है</string>
+	<string name="error_empty_email">ईमेल पता अवैध है</string>
 	<string name="topics_to_discuss">विषयों पर चर्चा करने के लिए</string>
 	<string name="recording_your_gabber">साक्षात्कार दर्ज किया जा रहा है</string>
 	<string name="popup_record_again">फिर से रिकॉर्ड?</string>

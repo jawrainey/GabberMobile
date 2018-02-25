@@ -194,6 +194,7 @@
     <AndroidResource Include="Resources\values-hi\styles.xml" />
     <AndroidResource Include="Resources\drawable\BottomInterviewThemes.xml" />
     <AndroidResource Include="Resources\drawable\promptBorder.xml" />
+    <AndroidResource Include="Resources\layout\participantdialog.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />

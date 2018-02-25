@@ -31,11 +31,13 @@ namespace Gabber
 
             if (_participants[position].Selected)
             {
-                mholder.Photo.BorderColor = Color.Green;
+                mholder.Name.SetBackgroundColor(Color.ParseColor("#26A69A"));
+                mholder.Name.SetTextColor(Color.White);
             }
             else
             {
-                mholder.Photo.BorderColor = Color.Red;
+                mholder.Name.SetBackgroundResource(Resource.Drawable.promptBorder);
+                mholder.Name.SetTextColor(Color.Black);
             }
 		}
 
@@ -59,13 +61,11 @@ namespace Gabber
 		public class ParticipantViewHolder : RecyclerView.ViewHolder
 		{
 			public TextView Name { get; set; }
-			public CircleImageView Photo { get; set; }
 
 			public ParticipantViewHolder(View item, Action<int> listener) : base(item)
 			{
 				item.Click += (sender, e) => listener(LayoutPosition);
 				Name = item.FindViewById<TextView>(Resource.Id.name);
-				Photo = item.FindViewById<CircleImageView>(Resource.Id.photo);
 			}
 		}
 	}

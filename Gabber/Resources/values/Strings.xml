@@ -17,11 +17,11 @@
 	<string name="btn_register">Register</string>
 	
 	<string name="select_participant">Select or create a new participant to interview</string>
-	<string name="hint_who_gabbering_with">Who will you be talking with?</string>
+	<string name="hint_who_gabbering_with">Who will participant in the interview?</string>
 	<string name="previous_participants">Previous participants?</string>
-	<string name="error_friends_email">Your friends email is required</string>
-	<string name="error_friends_name">Your friends name is required</string>
-	<string name="error_invalid_email">That email address is invalid</string>
+	<string name="error_invalid_email">The participants email provided is invalid</string>
+	<string name="error_empty_name">The participants full name is required</string>
+	<string name="error_empty_email">The email address is required and will be used to obtain their consent for the recording</string>
 	<string name="topics_to_discuss">Topics for this project</string>
 	<string name="recording_your_gabber">Record your Gabber</string>
     <string name="popup_record_again">Would you like to save your recording?</string>
