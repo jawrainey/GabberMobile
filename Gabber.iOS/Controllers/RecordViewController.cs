@@ -100,7 +100,7 @@ namespace Gabber.iOS
                 RecordingURL = AudioRecorder.FinishRecording(),
                 // This uniquely identifies who created the interview; the account created locally 
                 // will have a different ID than the one on the server as they are not in sync
-                CreatorID = Session.ActiveUser.Email,
+                CreatorEmail = Session.ActiveUser.Email,
                 ProjectID = SelectedProjectID,
 
                 Prompts = Queries.AnnotationsForLastSession(),

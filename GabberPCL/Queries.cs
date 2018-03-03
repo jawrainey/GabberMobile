@@ -21,7 +21,7 @@ namespace GabberPCL
 
         public static List<InterviewSession> AllInterviewSessionsForActiveUser()
         {
-            return Session.Connection.GetAllWithChildren<InterviewSession>((i) => i.CreatorID == Session.ActiveUser.Email);
+            return Session.Connection.GetAllWithChildren<InterviewSession>((i) => i.CreatorEmail == Session.ActiveUser.Email);
         }
 
         public static Project ProjectById(int projectID) => Session.Connection.GetWithChildren<Project>(projectID);

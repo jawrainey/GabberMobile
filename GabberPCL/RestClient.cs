@@ -96,18 +96,17 @@ namespace GabberPCL
 		{
 			using (var formData = new MultipartFormDataContent())
 			{
-                formData.Add(new StringContent(interviewSession.ProjectID.ToString()), "projectID");
-                formData.Add(new StringContent(interviewSession.CreatorID.ToString()), "creatorID");
+                formData.Add(new StringContent(interviewSession.CreatorEmail), "creatorEmail");
                 formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Participants)), "participants");
                 formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Prompts)), "prompts");
 				// Access the OS specific implementation to load data from a file.
                 formData.Add(new ByteArrayContent(GlobalIO.Load(interviewSession.RecordingURL)), "recording", 
                              Path.GetFileName(interviewSession.RecordingURL));
-
 				try
 				{
+                    var endpoint = "api/projects/" + interviewSession.ProjectID.ToString() + "/sessions/";
                     _client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token.Access);
-                    var response = await _client.PostAsync("api/interview/", formData);
+                    var response = await _client.PostAsync(endpoint, formData);
 					return response.IsSuccessStatusCode;
 				}
 				catch
@@ -117,7 +116,6 @@ namespace GabberPCL
 			}
 		}
 
-        // TODO: all projects are sent over, whether public or private, as one list
         public async Task<List<Project>> GetProjects(Action<string> errorCallback)
 		{
             _client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token.Access);   
@@ -129,7 +127,14 @@ namespace GabberPCL
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return JsonConvert.DeserializeObject<List<Project>>(content);
+                
+                    // Projects are sent as a dictionary of 'private' projects and 'public where
+                    // private means if they are a member; public projects do not contain duplicates from private. 
+                    var res = JsonConvert.DeserializeObject<Dictionary<string, List<Project>>>(content);
+                    var projects = new List<Project>();
+                    projects.AddRange(res["personal"]);
+                    projects.AddRange(res["public"]);
+                    return projects;
                 }
                 errorCallback(JsonConvert.DeserializeObject<Error>(content).Message);
             }

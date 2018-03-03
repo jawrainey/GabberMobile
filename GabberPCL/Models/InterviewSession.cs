@@ -9,9 +9,7 @@ namespace GabberPCL.Models
         [PrimaryKey]
         public string SessionID { get; set; }
         public string RecordingURL { get; set; }
-
-        [ForeignKey(typeof(User))]
-        public string CreatorID { get; set; }
+        public string CreatorEmail { get; set; }
         [ForeignKey(typeof(Project))]
         public int ProjectID { get; set; }
 
