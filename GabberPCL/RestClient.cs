@@ -8,10 +8,43 @@ using GabberPCL.Models;
 
 namespace GabberPCL
 {
+    // The Upload method does not return a custom response.
     class Error
     {
         [JsonProperty("message")]
         public string Message { get; set; }
+    }
+    // The Data attribute of a response can be of any topic
+    class Entity<T>
+    {
+        [JsonProperty("data")]
+        public T Data { get; set; }
+    }
+
+    class CustomAuthResponse : Entity<JWToken>
+    {
+        [JsonProperty("meta")]
+        public Meta Meta { get; set; }
+    }
+
+    class CustomProjectsResponse : Entity<Dictionary<string, List<Project>>>
+    {
+        [JsonProperty("meta")]
+        public Meta Meta { get; set; }
+    }
+
+    class CustomErrorResponse : Entity<List<string>>
+    {
+        [JsonProperty("meta")]
+        public Meta Meta { get; set; }
+    }
+
+    class Meta
+    {
+        [JsonProperty("success")]
+        public bool Success { get; set; }
+        [JsonProperty("errors")]
+        public List<string> Errors { get; set; }
     }
 
 	public class RestClient
@@ -25,28 +58,25 @@ namespace GabberPCL
 		{
             _client = new HttpClient
             {
-                BaseAddress = new Uri("https://gabber.audio")
+                BaseAddress = new Uri("https://81dbce0c.ngrok.io")
             };
         }
 
         public async Task<JWToken> Login(string email, string password, Action<string> errorCallback)
 		{
-			var pairs = new List<KeyValuePair<string, string>>
-			{
-				new KeyValuePair<string, string>("email", email),
-				new KeyValuePair<string, string>("password", password)
-			};
-
             try
             {
-                var response = await _client.PostAsync("api/auth/login/", new FormUrlEncodedContent(pairs));
+                var payload = new { email, password };
+                var _content = new StringContent(JsonConvert.SerializeObject(payload), System.Text.Encoding.UTF8, "application/json");
+                var response = await _client.PostAsync("api/auth/login/", _content);
                 var content = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return JsonConvert.DeserializeObject<JWToken>(content);
+                    return JsonConvert.DeserializeObject<CustomAuthResponse>(content).Data;
                 }
-                errorCallback(JsonConvert.DeserializeObject<Error>(content).Message);
+                // TODO: use error code to lookup string that has the associated error message.
+                errorCallback(JsonConvert.DeserializeObject<CustomAuthResponse>(content).Meta.Errors[0]);
             }
             catch (HttpRequestException)
             {
@@ -61,23 +91,19 @@ namespace GabberPCL
 
         public async Task<JWToken> Register(string fullname, string email, string password, Action<string> errorCallback)
 		{
-			var pairs = new List<KeyValuePair<string, string>>
-			{
-				new KeyValuePair<string, string>("fullname", fullname),
-				new KeyValuePair<string, string>("email", email),
-				new KeyValuePair<string, string>("password", password)
-			};
-
             try
             {
-                var response = await _client.PostAsync("api/auth/register/", new FormUrlEncodedContent(pairs));
+                var payload = JsonConvert.SerializeObject(new { fullname, email, password });
+                var _content = new StringContent(payload, System.Text.Encoding.UTF8, "application/json");
+
+                var response = await _client.PostAsync("api/auth/register/", _content);
                 var content = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return JsonConvert.DeserializeObject<JWToken>(content);
+                    return JsonConvert.DeserializeObject<CustomAuthResponse>(content).Data;
                 }
-                errorCallback(JsonConvert.DeserializeObject<Error>(content).Message);
+                errorCallback(JsonConvert.DeserializeObject<CustomErrorResponse>(content).Meta.Errors[0]);
             }
             catch (HttpRequestException)
             {
@@ -130,7 +156,7 @@ namespace GabberPCL
                 
                     // Projects are sent as a dictionary of 'private' projects and 'public where
                     // private means if they are a member; public projects do not contain duplicates from private. 
-                    var res = JsonConvert.DeserializeObject<Dictionary<string, List<Project>>>(content);
+                    var res = JsonConvert.DeserializeObject<CustomProjectsResponse>(content).Data;
                     var projects = new List<Project>();
                     projects.AddRange(res["personal"]);
                     projects.AddRange(res["public"]);
