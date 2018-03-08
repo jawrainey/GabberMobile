@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
@@ -16,6 +17,7 @@ namespace GabberPCL.Models
         public bool HasConsent { get; set; }
 
         [OneToMany]
+        [JsonProperty("topics")]
         public List<Prompt> Prompts { get; set; }
     }
 }

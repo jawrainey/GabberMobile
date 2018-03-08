@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 using SQLiteNetExtensions.Attributes;
 
 namespace GabberPCL.Models
@@ -7,12 +8,15 @@ namespace GabberPCL.Models
     {
         [PrimaryKey]
         public int ID { get; set; }
+        [JsonProperty("text")]
         public string Text { get; set; }
         public string ImageURL { get; set; }
 
         [ForeignKey(typeof(User))]
+        [JsonProperty("creator_id")]
         public int CreatorID { get; set; }
         [ForeignKey(typeof(Project))]
+        [JsonProperty("project_id")]
         public int ProjectID { get; set; }
 
         // UI attributes
