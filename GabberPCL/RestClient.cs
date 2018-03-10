@@ -76,7 +76,7 @@ namespace GabberPCL
                     return JsonConvert.DeserializeObject<CustomAuthResponse>(content).Data;
                 }
                 // TODO: use error code to lookup string that has the associated error message.
-                errorCallback(JsonConvert.DeserializeObject<CustomAuthResponse>(content).Meta.Errors[0]);
+                errorCallback(JsonConvert.DeserializeObject<CustomErrorResponse>(content).Meta.Errors[0]);
             }
             catch (HttpRequestException)
             {
