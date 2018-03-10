@@ -7,7 +7,7 @@ namespace Gabber.iOS.Helpers
     {
         string IPrivatePath.PrivatePath()
         {
-            return Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
     }
 }

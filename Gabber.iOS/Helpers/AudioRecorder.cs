@@ -17,7 +17,8 @@ namespace Gabber.iOS.Helpers
         {
             // An extension is required otherwise the file does not save to a format that browsers support (mp4)
             // Note: output the file rather than the path as the path is calculated via PrivatePath interface in the PCL
-            filename = DateTimeOffset.Now.ToUnixTimeSeconds().ToString() + ".m4a";
+            var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            filename = Path.Combine(documents, DateTimeOffset.Now.ToUnixTimeSeconds().ToString() + ".m4a");
 
             var audioSession = AVAudioSession.SharedInstance();
             var err = audioSession.SetCategory(AVAudioSessionCategory.PlayAndRecord);
