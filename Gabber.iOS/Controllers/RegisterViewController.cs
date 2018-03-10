@@ -17,6 +17,28 @@ namespace Gabber.iOS
             base.ViewDidLoad();
             RegisterUIButton.Layer.BorderWidth = .5f;
             RegisterUIButton.Layer.BorderColor = UIColor.Black.CGColor;
+
+            FullNameRegisterTextField.ShouldReturn += NavigateNext;
+            EmailRegisterTextField.ShouldReturn += NavigateNext;
+            PasswordRegisterTextField.ShouldReturn += NavigateNext;
+        }
+
+        bool NavigateNext(UITextField _field)
+        {
+            if (_field.Tag == 0)
+            {
+                View.ViewWithTag(1).BecomeFirstResponder();
+            }
+            else if (_field.Tag == 1) 
+            {
+                View.ViewWithTag(2).BecomeFirstResponder();
+            }
+            else
+            {
+                _field.ResignFirstResponder();
+                Register(RegisterUIButton);
+            }
+            return false;
         }
 
         async partial void Register(UIButton sender)

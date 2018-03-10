@@ -16,6 +16,26 @@ namespace Gabber.iOS
             base.ViewDidLoad();
             LoginUIButton.Layer.BorderWidth = .5f;
             LoginUIButton.Layer.BorderColor = UIColor.Black.CGColor;
+
+            EmailTextField.ShouldReturn += NavigateNext;
+            PasswordTextField.ShouldReturn += NavigateNext;
+        }
+
+        bool NavigateNext(UITextField _field)
+        {
+            // If 'Next' on the email field is pressed, then
+            // make the password field the focus, otherwise 
+            // the 'Go' button was pressed, so authenticate.
+            if (_field.Tag == 0)
+            {
+                View.ViewWithTag(1).BecomeFirstResponder();
+            }
+            else
+            {
+                _field.ResignFirstResponder();
+                Authenticate(RegisterUIButton);
+            }
+            return false;
         }
 
         async partial void Authenticate(UIButton _)
