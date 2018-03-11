@@ -14,3 +14,4 @@ Gabber/*.userprefs
 *.swp
 */bin/*
 */obj/*
+.vs/*

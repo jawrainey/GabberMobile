@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Gabber.iOS.Helpers;
 using System.Threading.Tasks;
 using GabberPCL.Models;
+using AVFoundation;
 
 namespace Gabber.iOS
 {
@@ -22,11 +23,48 @@ namespace Gabber.iOS
 
         public RecordViewController(IntPtr handle) : base(handle) {}
 
+        static string GetTextStatus(bool granted)
+        {
+            // Text is required as there's three states, since there's no permissions < ios 8.
+            return string.Format("Access {0}", granted ? "allowed" : "denied");
+        }
+
+        public string CheckAccess()
+        {
+            string micAccessText = "Not determined";
+
+            if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            {
+                var permission = AVAudioSession.SharedInstance().RecordPermission;
+                if (permission == AVAudioSessionRecordPermission.Undetermined)
+                    return micAccessText;
+
+                micAccessText = GetTextStatus(permission == AVAudioSessionRecordPermission.Granted);
+            }
+            return micAccessText;
+        }
+
+        public void RequestAudioRecordPermission()
+        {
+            AVAudioSession.SharedInstance().RequestRecordPermission(granted => {
+                GetTextStatus(granted);
+                new TaskCompletionSource<object>().SetResult(null);
+            });
+        }
+
         public override void ViewDidLoad()
         {
             var es = new CoreGraphics.CGSize(UIScreen.MainScreen.Bounds.Width - 36, 70);
             (TopicsCollectionView.CollectionViewLayout as UICollectionViewFlowLayout).EstimatedItemSize = es;
 
+            RequestAudioRecordPermission();                  
+            if (CheckAccess().Contains("denied"))
+            {
+                ConfigureMicrophoneAccessDialog();
+                return;
+            }
+
+            // As we can record, enable it all.
             AudioRecorder = new AudioRecorder();
             InterviewSessionID = Guid.NewGuid().ToString();
 
@@ -43,16 +81,19 @@ namespace Gabber.iOS
 
         void AddAnnotation()
         {
-            RecordInstructions.Hidden = true;
-            RecordNote.Hidden = true;
-            RecordButton.Hidden = false;
-            AudioRecorder.Record();
+            if (CheckAccess().Contains("denied"))
+            {
+                ConfigureMicrophoneAccessDialog();
+                return;
+            }
 
             // Has the first topic been selected, i.e. one of the states has changed
             if (Topics.FindAll((p) => p.SelectionState != Prompt.SelectedState.never).Count == 1)
             {
                 RecordInstructions.Hidden = true;
+                RecordNote.Hidden = true;
                 RecordButton.Hidden = false;
+                InterviewTimer.Hidden = false;
                 AudioRecorder.Record();
                 UpdateTimeLabelAsync();
             }
@@ -70,6 +111,19 @@ namespace Gabber.iOS
                 });
                 await Task.Delay(15);
             }
+        }
+
+        protected void ConfigureMicrophoneAccessDialog()
+        {
+            var finishRecordingAlertController = UIAlertController.Create(
+                "Permission required", 
+                "Microphone access is required to record a Gabber", UIAlertControllerStyle.Alert);
+
+            finishRecordingAlertController.AddAction(UIAlertAction.Create("No", UIAlertActionStyle.Cancel, (_) => { }));
+            finishRecordingAlertController.AddAction(UIAlertAction.Create("Configure", UIAlertActionStyle.Default, (_) => {
+                UIApplication.SharedApplication.OpenUrl(new NSUrl("app-settings:"));
+            }));
+            PresentViewController(finishRecordingAlertController, true, null);
         }
 
         partial void RecordingCompleteDialog(UIButton sender)

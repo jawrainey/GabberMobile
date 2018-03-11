@@ -33,5 +33,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Microphone access is required to record a Gabber</string>
 </dict>
 </plist>
