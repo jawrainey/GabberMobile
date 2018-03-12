@@ -55,10 +55,12 @@ namespace Gabber.iOS
             }
             else 
             {
+                LoginUIButton.Enabled = false;
                 var client = new RestClient();
                 LoginActivityIndicator.StartAnimating();
                 var tokens = await client.Login(email, passw, (message) => ErrorMessageDialog(message));
                 LoginActivityIndicator.StopAnimating();
+                LoginUIButton.Enabled = true;
 
                 if (!string.IsNullOrEmpty(tokens.Access))
                 {
