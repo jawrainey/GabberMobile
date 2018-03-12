@@ -36,6 +36,10 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView RegisterMasterView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton RegisterUIButton { get; set; }
 
         [Action ("Register:")]
@@ -67,6 +71,11 @@ namespace Gabber.iOS
             if (RegisterLogo != null) {
                 RegisterLogo.Dispose ();
                 RegisterLogo = null;
+            }
+
+            if (RegisterMasterView != null) {
+                RegisterMasterView.Dispose ();
+                RegisterMasterView = null;
             }
 
             if (RegisterUIButton != null) {

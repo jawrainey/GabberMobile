@@ -108,6 +108,7 @@
                         <outlet property="LoginUIButton" destination="1010" id="name-outlet-1010"/>
                         <outlet property="PasswordTextField" destination="590" id="name-outlet-590"/>
                         <outlet property="RegisterUIButton" destination="8YB-0r-seL" id="name-outlet-8YB-0r-seL"/>
+                        <outlet property="LoginMasterView" destination="8bC-Xf-vdC" id="name-outlet-8bC-Xf-vdC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -649,6 +650,7 @@
                         <outlet property="RegisterActivityIndicator" destination="Atn-nk-LUc" id="name-outlet-Atn-nk-LUc"/>
                         <outlet property="RegisterLogo" destination="31309" id="name-outlet-31309"/>
                         <outlet property="RegisterUIButton" destination="31314" id="name-outlet-31314"/>
+                        <outlet property="RegisterMasterView" destination="30932" id="name-outlet-30932"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="30933" userLabel="First Responder" sceneMemberID="firstResponder"/>

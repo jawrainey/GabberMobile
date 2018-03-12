@@ -12,6 +12,30 @@ namespace Gabber.iOS
     {
         public RegisterViewController (IntPtr handle) : base (handle) {}
 
+        public static void SetUpViewKeyboardAnimation(UIView view, CoreGraphics.CGRect defaultUI)
+        {
+            view.AddGestureRecognizer(
+                new UITapGestureRecognizer(() => view.EndEditing(true)) { CancelsTouchesInView = false }
+            );
+
+            var notification = UIKeyboard.Notifications.ObserveDidShow((sender, args) =>
+            {
+                var kbSize = ((NSValue)args.Notification.UserInfo[UIKeyboard.FrameBeginUserInfoKey]).RectangleFValue.Size;
+                var z = defaultUI;
+
+                UIView.Animate(.4, () => {
+                    z.Height += (kbSize.Height);
+                    view.Bounds = z;
+                    view.LayoutIfNeeded();
+
+                });
+            });
+
+            var _notification = UIKeyboard.Notifications.ObserveWillHide((sender, args) => {
+                view.Bounds = defaultUI;
+            });
+        }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -21,6 +45,8 @@ namespace Gabber.iOS
             FullNameRegisterTextField.ShouldReturn += NavigateNext;
             EmailRegisterTextField.ShouldReturn += NavigateNext;
             PasswordRegisterTextField.ShouldReturn += NavigateNext;
+
+            SetUpViewKeyboardAnimation(RegisterMasterView, RegisterMasterView.Bounds);
         }
 
         bool NavigateNext(UITextField _field)

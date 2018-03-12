@@ -16,6 +16,10 @@ namespace Gabber.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton AddNewParticipant { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField ParticipantEmail { get; set; }
 
         [Outlet]
@@ -28,6 +32,11 @@ namespace Gabber.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (AddNewParticipant != null) {
+                AddNewParticipant.Dispose ();
+                AddNewParticipant = null;
+            }
+
             if (ParticipantEmail != null) {
                 ParticipantEmail.Dispose ();
                 ParticipantEmail = null;

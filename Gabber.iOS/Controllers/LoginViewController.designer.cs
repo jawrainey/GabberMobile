@@ -32,6 +32,10 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView LoginMasterView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton LoginUIButton { get; set; }
 
         [Outlet]
@@ -66,6 +70,11 @@ namespace Gabber.iOS
             if (LoginLogo != null) {
                 LoginLogo.Dispose ();
                 LoginLogo = null;
+            }
+
+            if (LoginMasterView != null) {
+                LoginMasterView.Dispose ();
+                LoginMasterView = null;
             }
 
             if (LoginUIButton != null) {

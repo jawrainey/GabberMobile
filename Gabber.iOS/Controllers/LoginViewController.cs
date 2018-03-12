@@ -19,6 +19,8 @@ namespace Gabber.iOS
 
             EmailTextField.ShouldReturn += NavigateNext;
             PasswordTextField.ShouldReturn += NavigateNext;
+            // Move container when keyboard is shown/hidden
+            RegisterViewController.SetUpViewKeyboardAnimation(LoginMasterView, LoginMasterView.Bounds);
         }
 
         bool NavigateNext(UITextField _field)
