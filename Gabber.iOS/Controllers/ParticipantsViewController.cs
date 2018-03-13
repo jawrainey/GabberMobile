@@ -8,6 +8,8 @@ namespace Gabber.iOS
 {
     public partial class ParticipantsViewController : UIViewController
     {
+        bool ConfirmOneParticipant;
+
         ParticipantsCollectionViewSource participantsViewSource;
 
         public ParticipantsViewController (IntPtr handle) : base (handle) {}
@@ -38,6 +40,22 @@ namespace Gabber.iOS
                     "At least one participant must be selected"
                 ), true, null);
                 return;
+            }
+
+            if (segue.Identifier == "SegueToRecordGabber" && Queries.SelectedParticipants().Count == 1 && !ConfirmOneParticipant)
+            {
+                var finishRecordingAlertController = UIAlertController.Create(
+                    "One participant selected", 
+                    "Are you sure that you only want to select one participant?", 
+                    UIAlertControllerStyle.Alert);
+                
+                finishRecordingAlertController.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, X => { }));
+                finishRecordingAlertController.AddAction(UIAlertAction.Create("Continue", UIAlertActionStyle.Default, (_) => {
+                    ConfirmOneParticipant = true;
+                    PerformSegue("SegueToRecordGabber", this);
+                }));
+
+                PresentViewController(finishRecordingAlertController, true, null);
             }
 
             // This removes the default title ("Participants") that appears next 
