@@ -12,7 +12,7 @@
         layout="@layout/toolbar" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/prompts"
-        android:background="@drawable/BottomInterviewThemes"
+        android:background="@drawable/record_topic_border_bottom"
         android:elevation="80000dp"
         android:scrollbars="vertical"
         android:layout_weight="9"
@@ -39,7 +39,7 @@
             android:id="@+id/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/stop"
+            android:src="@drawable/record_topic_stop"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/startFrame"
             android:visibility="invisible"
@@ -58,7 +58,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:clickable="true"
-                android:src="@drawable/recordselector"
+                android:src="@drawable/record_topic_selector"
                 app:backgroundTint="@android:color/white" />
         </FrameLayout>
         <TextView

@@ -55,7 +55,7 @@ namespace Gabber
             else {
                 _prompts[position].SelectionState = Prompt.SelectedState.never;
                 // DEFAULT STATE [the item has never been selected]
-                vh.Caption.SetBackgroundResource(Resource.Drawable.promptBorder);
+                vh.Caption.SetBackgroundResource(Resource.Drawable.record_topic_border);
                 vh.Caption.SetTextColor(Color.Black);
             }
 		}

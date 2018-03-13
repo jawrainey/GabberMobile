@@ -36,7 +36,7 @@ namespace Gabber
             }
             else
             {
-                mholder.Name.SetBackgroundResource(Resource.Drawable.promptBorder);
+                mholder.Name.SetBackgroundResource(Resource.Drawable.record_topic_border);
                 mholder.Name.SetTextColor(Color.Black);
             }
 		}
