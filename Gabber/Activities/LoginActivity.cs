@@ -28,11 +28,6 @@ namespace Gabber
                 }
             };
 
-			FindViewById<TextView>(Resource.Id.register).Click += delegate
-			{
-				StartActivity(typeof(RegisterActivity));
-			};
-
 			FindViewById<AppCompatButton>(Resource.Id.submit).Click += async delegate
 			{
                 var imm = (Android.Views.InputMethods.InputMethodManager)GetSystemService(InputMethodService);

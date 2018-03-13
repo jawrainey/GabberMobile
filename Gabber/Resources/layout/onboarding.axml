@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
+    android:background="#FFFFFF"
     android:keepScreenOn="true">
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
@@ -15,6 +16,8 @@
         android:layout_weight="1" />
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
+        app:tabGravity="center"
+        app:tabBackground="@drawable/onboarding_tab_selector"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <LinearLayout
@@ -22,7 +25,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border_top">
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/login"
+            android:id="@+id/register"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -30,18 +33,18 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="24dp"
-            android:text="@string/login_button"
+            android:text="@string/btn_register"
             android:textColor="@drawable/textcolorbutton"
             android:background="@drawable/borderbutton" />
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/register"
+            android:id="@+id/login"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:layout_marginRight="24dp"
-            android:text="@string/btn_register"
+            android:text="@string/login_button"
             android:textColor="@drawable/textcolorbutton"
             android:background="@drawable/borderbutton" />
     </LinearLayout>

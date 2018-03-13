@@ -18,7 +18,7 @@
     <AssemblyName>Gabber</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidTlsProvider>btls</AndroidTlsProvider>
     <AndroidLinkMode>None</AndroidLinkMode>
@@ -148,6 +148,7 @@
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Adapters\ParticipantAdapter.cs" />
     <Compile Include="Helpers\PrivatePath.cs" />
+    <Compile Include="Activities\Onboarding.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -170,7 +171,7 @@
     <AndroidResource Include="Resources\drawable\stop.png" />
     <AndroidResource Include="Resources\drawable\cancel.png" />
     <AndroidResource Include="Resources\layout\promptselection.axml" />
-    <AndroidResource Include="Resources\layout\home.axml" />
+    <AndroidResource Include="Resources\layout\onboarding.axml" />
     <AndroidResource Include="Resources\drawable\next.png" />
     <AndroidResource Include="Resources\drawable\previous.png" />
     <AndroidResource Include="Resources\drawable\select.png" />
@@ -195,6 +196,12 @@
     <AndroidResource Include="Resources\drawable\BottomInterviewThemes.xml" />
     <AndroidResource Include="Resources\drawable\promptBorder.xml" />
     <AndroidResource Include="Resources\layout\participantdialog.xml" />
+    <AndroidResource Include="Resources\drawable\onboarding_default_dot.xml" />
+    <AndroidResource Include="Resources\drawable\onboarding_selected_dot.xml" />
+    <AndroidResource Include="Resources\drawable\onboarding_tab_selector.xml" />
+    <AndroidResource Include="Resources\drawable\onboarding_first.png" />
+    <AndroidResource Include="Resources\drawable\onboarding_second.png" />
+    <AndroidResource Include="Resources\drawable\onboarding_third.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />

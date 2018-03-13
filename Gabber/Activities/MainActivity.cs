@@ -45,7 +45,7 @@ namespace Gabber
 			// Used to redirect unauthenticated users
 			if (string.IsNullOrWhiteSpace(_prefs.GetString("username", "")))
 			{
-				StartActivity(typeof(LoginActivity));
+                StartActivity(typeof(Activities.Onboarding));
 				Finish();
 			}
 			else
