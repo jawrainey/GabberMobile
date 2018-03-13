@@ -10,6 +10,8 @@ using Android.Support.Design.Widget;
 using GabberPCL.Models;
 using Gabber.Helpers;
 using Newtonsoft.Json;
+using Android.Views;
+using Android.Widget;
 
 namespace Gabber
 {
@@ -56,9 +58,11 @@ namespace Gabber
                     Session.Token = JsonConvert.DeserializeObject<JWToken>(_prefs.GetString("tokens", ""));
                 }
 
+                FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Visible;
                 var api = new RestClient();
                 var response = await api.GetProjects((errorMessage) => Snackbar.Make(mView, errorMessage, 0).Show());
                 _projects = response;
+                FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
 
                 // If there are no results [e.g. no Internet], then use cached version.
                 // Otherwise update our data. Since we will get all in a request, just update.

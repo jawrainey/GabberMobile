@@ -26,6 +26,14 @@
         android:layout_marginRight="24dp"
         android:layout_marginBottom="24dp"
         android:background="#CCCCCC" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        style="@android:style/Widget.ProgressBar.Small" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/projects"
         android:layout_weight="8"
