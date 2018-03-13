@@ -19,6 +19,15 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.login);
 
+            FindViewById<TextInputEditText>(Resource.Id.password).EditorAction += (_, e) => {
+                e.Handled = false;
+                if (e.ActionId == Android.Views.InputMethods.ImeAction.Done)
+                {
+                    FindViewById<AppCompatButton>(Resource.Id.submit).PerformClick();
+                    e.Handled = true;
+                }
+            };
+
 			FindViewById<TextView>(Resource.Id.register).Click += delegate
 			{
 				StartActivity(typeof(RegisterActivity));
@@ -26,6 +35,9 @@ namespace Gabber
 
 			FindViewById<AppCompatButton>(Resource.Id.submit).Click += async delegate
 			{
+                var imm = (Android.Views.InputMethods.InputMethodManager)GetSystemService(InputMethodService);
+                imm.HideSoftInputFromWindow(FindViewById<TextInputEditText>(Resource.Id.password).WindowToken, 0);
+
 				var email = FindViewById<AppCompatEditText>(Resource.Id.email);
 				var passw = FindViewById<AppCompatEditText>(Resource.Id.password);
 
