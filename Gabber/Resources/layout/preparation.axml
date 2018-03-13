@@ -35,19 +35,21 @@
         android:layout_alignParentBottom="true">
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/addParticipant"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_marginRight="24dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginLeft="24dp"
             android:textColor="@drawable/textcolorbutton"
             android:background="@drawable/borderbutton"
             android:text="Add Participant" />
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/selectPrompt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="24dp"
             android:textColor="@drawable/textcolorbutton"
             android:background="@drawable/borderbutton"
