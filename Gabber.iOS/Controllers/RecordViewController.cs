@@ -64,6 +64,24 @@ namespace Gabber.iOS
                 return;
             }
 
+            NavigationItem.LeftBarButtonItem = new UIBarButtonItem(UIImage.FromBundle("BackButton"), UIBarButtonItemStyle.Plain, (sender, args) => 
+            {
+                if (AudioRecorder.IsRecording())
+                {
+                    var doDeleteRecording = UIAlertController.Create(
+                        "You are currently recording",
+                        "Are you sure you want to go back? If you do, the recording will not be saved.", 
+                        UIAlertControllerStyle.Alert);
+
+                    doDeleteRecording.AddAction(UIAlertAction.Create("No", UIAlertActionStyle.Cancel, (_) => { }));
+                    doDeleteRecording.AddAction(UIAlertAction.Create("Yes", UIAlertActionStyle.Default, (_) => {
+                        NavigationController.PopViewController(false);
+                    }));
+                    PresentViewController(doDeleteRecording, true, null);   
+                }
+                NavigationController.PopViewController(false);
+            });
+
             // As we can record, enable it all.
             AudioRecorder = new AudioRecorder();
             InterviewSessionID = Guid.NewGuid().ToString();

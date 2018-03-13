@@ -127,6 +127,10 @@
     <ImageAsset Include="Assets.xcassets\StopButton.imageset\StopButton.png" />
     <ImageAsset Include="Assets.xcassets\Logo.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Logo.imageset\icon.png" />
+    <ImageAsset Include="Assets.xcassets\BackButton.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\BackButton.imageset\1x.png" />
+    <ImageAsset Include="Assets.xcassets\BackButton.imageset\2x.png" />
+    <ImageAsset Include="Assets.xcassets\BackButton.imageset\3x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -135,6 +139,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Assets.xcassets\StopButton.imageset\" />
     <Folder Include="Assets.xcassets\Logo.imageset\" />
+    <Folder Include="Assets.xcassets\BackButton.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
