@@ -28,10 +28,6 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel RecordNote { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UICollectionView TopicsCollectionView { get; set; }
 
         [Action ("RecordingCompleteDialog:")]
@@ -53,11 +49,6 @@ namespace Gabber.iOS
             if (RecordInstructions != null) {
                 RecordInstructions.Dispose ();
                 RecordInstructions = null;
-            }
-
-            if (RecordNote != null) {
-                RecordNote.Dispose ();
-                RecordNote = null;
             }
 
             if (TopicsCollectionView != null) {

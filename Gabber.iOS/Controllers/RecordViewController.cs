@@ -91,7 +91,6 @@ namespace Gabber.iOS
             if (Topics.FindAll((p) => p.SelectionState != Prompt.SelectedState.never).Count == 1)
             {
                 RecordInstructions.Hidden = true;
-                RecordNote.Hidden = true;
                 RecordButton.Hidden = false;
                 InterviewTimer.Hidden = false;
                 AudioRecorder.Record();

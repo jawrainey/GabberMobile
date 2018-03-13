@@ -12,7 +12,7 @@
     <TextView
         android:id="@+id/register"
         style="@style/TextAppearance.AppCompat.Body2"
-        android:text="Each project has a set of discussion topics to guide and inform the Gabber conversation. You can add one or more participants to the Gabber session and choose topics that interest you."
+        android:text="Each project contains discussion topics to structure a Gabber recording. You can add one or more participants to the session and choose topics that interest you."
         android:layout_width="fill_parent"
         android:layout_margin="24dp"
         android:layout_weight="2"

@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System;
 using Android.Support.Design.Widget;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Content;
 using GabberPCL;
 using System.Collections.Generic;
@@ -29,8 +30,6 @@ namespace Gabber
         List<Prompt> themes;
         // Exposed as used to identify when a prompt was selected
         RVPromptAdapter adapter;
-        // This must be held outside ProjectSelected or it would be overridden
-        bool FirstPromptSelected;
         // Exposed as we want to get this once a prompt is selected
         int _seconds;
         // Each interview recorded has a unique SID (GUID) to associate annotations with a session.
@@ -42,6 +41,9 @@ namespace Gabber
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.record);
+            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+            SupportActionBar.Title = "Record Gabber";
+
             InterviewSessionID = Guid.NewGuid().ToString();
 
             var _prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
@@ -86,6 +88,7 @@ namespace Gabber
 
 						while (_isrecording)
 						{
+                            SupportActionBar.Title = "Recording Gabber";
 							timer.Text = TimeSpan.FromSeconds(_seconds++).ToString((@"mm\:ss"));
 							await Task.Delay(1000);
 						}
@@ -106,7 +109,7 @@ namespace Gabber
 
                 var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
                 alert.SetTitle("You are currently recording");
-                alert.SetMessage("Are you sure you want to go back?");
+                alert.SetMessage("Are you sure you want to go back? If you do, the recording will not be saved.");
                 alert.SetIcon(Android.Resource.Drawable.IcDialogAlert);
 
                 alert.SetPositiveButton(Resources.GetText(Resource.String.popup_record_button), (dialog, id) =>
@@ -133,7 +136,6 @@ namespace Gabber
             var recordButton = FindViewById<FloatingActionButton>(Resource.Id.start);
             // Has the first topic been selected, i.e. one of the states has changed
             if (themes.FindAll((p) => p.SelectionState != Prompt.SelectedState.never).Count == 1) {
-                FirstPromptSelected = true;
                 FindViewById<TextView>(Resource.Id.recordInstructions).Visibility = ViewStates.Invisible;
                 recordButton.Visibility = ViewStates.Visible;
                 recordButton.PerformClick();

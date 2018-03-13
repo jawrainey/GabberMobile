@@ -42,7 +42,7 @@
             android:layout_marginLeft="24dp"
             android:textColor="@drawable/textcolorbutton"
             android:background="@drawable/borderbutton"
-            android:text="Add" />
+            android:text="Add Participant" />
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/selectPrompt"
             android:layout_width="match_parent"
@@ -51,6 +51,6 @@
             android:layout_marginRight="24dp"
             android:textColor="@drawable/textcolorbutton"
             android:background="@drawable/borderbutton"
-            android:text="Start your Gabber" />
+            android:text="Record Gabber" />
     </LinearLayout>
 </RelativeLayout>

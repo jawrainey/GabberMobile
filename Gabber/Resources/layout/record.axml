@@ -7,6 +7,9 @@
     android:background="#26A69A"
     android:weightSum="10"
     android:keepScreenOn="true">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/prompts"
         android:background="@drawable/BottomInterviewThemes"
@@ -23,7 +26,7 @@
         <TextView
             android:id="@+id/recordInstructions"
             style="@style/TextAppearance.AppCompat.Body2"
-            android:text="Select a topic from above to begin recording your Gabber"
+            android:text="Select a topic to begin recording"
             android:layout_width="fill_parent"
             android:textColor="@android:color/white"
             android:layout_height="wrap_content"
