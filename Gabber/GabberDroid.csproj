@@ -162,7 +162,6 @@
     <AndroidResource Include="Resources\layout\preparation.axml" />
     <AndroidResource Include="Resources\layout\record.axml" />
     <AndroidResource Include="Resources\layout\register.axml" />
-    <AndroidResource Include="Resources\drawable\record_stop_start.png" />
     <AndroidResource Include="Resources\drawable\record_topic_stop.png" />
     <AndroidResource Include="Resources\layout\onboarding.axml" />
     <AndroidResource Include="Resources\layout\prompt.axml" />
