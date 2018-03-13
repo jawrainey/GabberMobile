@@ -214,10 +214,10 @@
             </objects>
             <point key="canvasLocation" x="1376.25" y="-11.25"/>
         </scene>
-        <!--Select Participants-->
+        <!--Participants-->
         <scene sceneID="9462">
             <objects>
-                <viewController title="Select Participants" id="9463" customClass="ParticipantsViewController" sceneMemberID="viewController">
+                <viewController title="Participants" id="9463" customClass="ParticipantsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TJA-pE-key"/>
                         <viewControllerLayoutGuide type="bottom" id="NDq-uv-YdL"/>
@@ -412,9 +412,7 @@
                             <constraint firstItem="l70-ZZ-NES" firstAttribute="trailing" secondItem="18962" secondAttribute="trailingMargin" id="zrl-DY-pRC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add New Participant" id="2hJ-0W-nKb">
-                        <barButtonItem key="backBarButtonItem" title="HELLO" id="OYz-3N-9vD"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Add a new Participant" id="2hJ-0W-nKb"/>
                     <connections>
                         <outlet property="AddNewParticipant" destination="22283" id="name-outlet-22283"/>
                         <outlet property="ParticipantEmail" destination="22282" id="name-outlet-22282"/>
