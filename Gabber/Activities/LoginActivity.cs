@@ -41,15 +41,20 @@ namespace Gabber
 				var email = FindViewById<AppCompatEditText>(Resource.Id.email);
 				var passw = FindViewById<AppCompatEditText>(Resource.Id.password);
 
-				// TODO: snackbars are used for simplicity. Ideally, specific error messages
-				// would be output for each unique error instead of a generic (informative) message.
-				if (string.IsNullOrWhiteSpace(email.Text) || string.IsNullOrWhiteSpace(passw.Text))
+				if (string.IsNullOrWhiteSpace(email.Text))
 				{
-					Snackbar.Make(email, Resources.GetText(Resource.String.error_usern_pass_req), Snackbar.LengthLong).Show();
+                    email.RequestFocus();
+					Snackbar.Make(email, "An email address is required", Snackbar.LengthLong).Show();
 				}
+                else if (string.IsNullOrWhiteSpace(passw.Text))
+                {
+                    passw.RequestFocus();
+                    Snackbar.Make(passw, "A password is required", Snackbar.LengthLong).Show();
+                }
 				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
 				{
-					Snackbar.Make(email, Resources.GetText(Resource.String.error_invalid_email), Snackbar.LengthLong).Show();
+                    email.RequestFocus();
+					Snackbar.Make(email, "The email provided is invalid", Snackbar.LengthLong).Show();
 				}
 				else
 				{
@@ -83,6 +88,7 @@ namespace Gabber
 						{
 							FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = true;
 							FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
+                            email.RequestFocus();
 						});
 					}
 				}
