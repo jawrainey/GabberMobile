@@ -21,23 +21,43 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.register);
 
+            FindViewById<TextInputEditText>(Resource.Id.password).EditorAction += (_, e) => {
+                e.Handled = false;
+                if (e.ActionId == Android.Views.InputMethods.ImeAction.Done)
+                {
+                    FindViewById<AppCompatButton>(Resource.Id.submit).PerformClick();
+                    e.Handled = true;
+                }
+            };
+
 			FindViewById<AppCompatButton>(Resource.Id.submit).Click += async delegate
 			{
+                var imm = (Android.Views.InputMethods.InputMethodManager)GetSystemService(InputMethodService);
+                imm.HideSoftInputFromWindow(FindViewById<TextInputEditText>(Resource.Id.password).WindowToken, 0);
+
 				var fname = FindViewById<AppCompatEditText>(Resource.Id.name);
 				var email = FindViewById<AppCompatEditText>(Resource.Id.email);
 				var passw = FindViewById<AppCompatEditText>(Resource.Id.password);
 
-				// TODO: snackbars are used for simplicity. Ideally, specific error messages
-				// would be output for each unique error instead of a generic (informative) message.
-				if (string.IsNullOrWhiteSpace(fname.Text) ||
-					string.IsNullOrWhiteSpace(email.Text) ||
-					string.IsNullOrWhiteSpace(passw.Text))
+                if (string.IsNullOrWhiteSpace(fname.Text))
 				{
-					Snackbar.Make(email, Resources.GetText(Resource.String.error_all_details), Snackbar.LengthLong).Show();
+                    fname.RequestFocus();
+					Snackbar.Make(email, "Your Full Name is empty", Snackbar.LengthLong).Show();
 				}
+                else if (string.IsNullOrWhiteSpace(email.Text))
+                {
+                    email.RequestFocus();
+                    Snackbar.Make(email, "An Email Address is empty", Snackbar.LengthLong).Show();
+                }
+                else if (string.IsNullOrWhiteSpace(passw.Text))
+                {
+                    passw.RequestFocus();
+                    Snackbar.Make(email, "A password for your account is required", Snackbar.LengthLong).Show();
+                }
 				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
 				{
-					Snackbar.Make(email, Resources.GetText(Resource.String.error_invalid_email), Snackbar.LengthLong).Show();
+                    email.RequestFocus();
+                    Snackbar.Make(email, "The email provided is invalid", Snackbar.LengthLong).Show();
 				}
 				else
 				{
@@ -77,6 +97,7 @@ namespace Gabber
 						{
 							FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = true;
 							FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
+                            fname.RequestFocus();
 						});
 					}
 				}
