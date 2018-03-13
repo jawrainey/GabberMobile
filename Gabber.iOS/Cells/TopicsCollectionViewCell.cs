@@ -2,7 +2,6 @@ using Foundation;
 using System;
 using UIKit;
 using GabberPCL.Models;
-using System.Drawing;
 
 namespace Gabber.iOS
 {
@@ -14,19 +13,20 @@ namespace Gabber.iOS
 
         public void UpdateContent(Prompt topic)
         {
+            var themeColor = UIColor.FromRGB(.43f, .80f, .79f);
             ProjectTopic.Text = topic.Text;
             ProjectTopic.TextColor = UIColor.Black;
-            Layer.BorderColor = UIColor.Black.CGColor;
+            Layer.BorderColor = themeColor.CGColor;
 
             if (topic.SelectionState == Prompt.SelectedState.current)
             {
                 ProjectTopic.TextColor = UIColor.White;
-                ProjectTopic.BackgroundColor = UIColor.FromRGB(.43f, .80f, .79f);
-                Layer.BorderColor = UIColor.LightGray.CGColor;
+                ProjectTopic.BackgroundColor = themeColor;
+                Layer.BorderColor = themeColor.CGColor;
             }
             else if (topic.SelectionState == Prompt.SelectedState.previous) 
             {
-                ProjectTopic.BackgroundColor = UIColor.LightGray;
+                ProjectTopic.BackgroundColor = UIColor.FromRGB(211, 211, 211);
             }
             else 
             {

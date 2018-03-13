@@ -16,13 +16,31 @@ namespace Gabber.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton AddParticipantButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UICollectionView ParticipantsCollectionView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton RecordGabberButton { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
+            if (AddParticipantButton != null) {
+                AddParticipantButton.Dispose ();
+                AddParticipantButton = null;
+            }
+
             if (ParticipantsCollectionView != null) {
                 ParticipantsCollectionView.Dispose ();
                 ParticipantsCollectionView = null;
+            }
+
+            if (RecordGabberButton != null) {
+                RecordGabberButton.Dispose ();
+                RecordGabberButton = null;
             }
         }
     }

@@ -20,6 +20,13 @@ namespace Gabber.iOS
 
             var es = new CoreGraphics.CGSize(UIScreen.MainScreen.Bounds.Width - 36, 70);
             (ParticipantsCollectionView.CollectionViewLayout as UICollectionViewFlowLayout).EstimatedItemSize = es;
+            // TODO: can define these in storyboard
+            AddParticipantButton.Layer.BorderWidth = .75f;
+            AddParticipantButton.Layer.BorderColor = UIColor.Black.CGColor;
+
+            RecordGabberButton.Layer.BorderWidth = .75f;
+            RecordGabberButton.Layer.BorderColor = UIColor.Black.CGColor;
+
             participantsViewSource = new ParticipantsCollectionViewSource(Queries.AllParticipants());
             ParticipantsCollectionView.Source = participantsViewSource;
         }

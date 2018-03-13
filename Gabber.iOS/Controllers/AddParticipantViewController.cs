@@ -14,6 +14,8 @@ namespace Gabber.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            AddNewParticipant.Layer.BorderWidth = .5f;
+            AddNewParticipant.Layer.BorderColor = UIColor.Black.CGColor;
 
             ParticipantName.ShouldReturn += NavigateNext;
             ParticipantEmail.ShouldReturn += NavigateNext;
