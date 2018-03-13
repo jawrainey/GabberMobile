@@ -17,6 +17,9 @@ namespace Gabber.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            var es = new CoreGraphics.CGSize(UIScreen.MainScreen.Bounds.Width - 36, 70);
+            (ParticipantsCollectionView.CollectionViewLayout as UICollectionViewFlowLayout).EstimatedItemSize = es;
             participantsViewSource = new ParticipantsCollectionViewSource(Queries.AllParticipants());
             ParticipantsCollectionView.Source = participantsViewSource;
         }
