@@ -99,6 +99,25 @@ namespace Gabber
 				{
                     Snackbar.Make(participantsView, Resources.GetText(Resource.String.select_participant), Snackbar.LengthLong).Show();
 				}
+                else if (Queries.SelectedParticipants().Count == 1)
+                {
+                    var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
+                    alert.SetTitle("One participant selected");
+                    alert.SetMessage("Are you sure that you only want to select one participant?");
+                    alert.SetIcon(Android.Resource.Drawable.IcDialogAlert);
+
+                    alert.SetPositiveButton("Continue", (dialog, id) =>
+                    {
+                        StartActivity(new Intent(this, typeof(RecordStoryActivity)));
+                    });
+
+                    alert.SetNegativeButton("Cancel", (dialog, id) =>
+                    {
+                        ((Android.Support.V7.App.AlertDialog)dialog).Dismiss();
+                    });
+
+                    alert.Create().Show();
+                }
 				else
 				{
                     StartActivity(new Intent(this, typeof(RecordStoryActivity)));
