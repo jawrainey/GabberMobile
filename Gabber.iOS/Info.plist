@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>Gabber-iOS</string>
+	<string>Gabber</string>
 	<key>CFBundleIdentifier</key>
 	<string>uk.ac.ncl.openlab.gabber</string>
 	<key>CFBundleShortVersionString</key>
