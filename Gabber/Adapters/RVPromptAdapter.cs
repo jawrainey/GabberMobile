@@ -2,8 +2,6 @@
 using Android.Views;
 using Android.Widget;
 using System.Collections.Generic;
-using FFImageLoading;
-using FFImageLoading.Views;
 using System;
 using Android.Graphics;
 using GabberPCL.Models;
@@ -31,12 +29,6 @@ namespace Gabber
 		{
 			var vh = holder as PhotoViewHolder;
             vh.Caption.Text = _prompts[position].Text;
-
-            // Load the image from the web into the prompt imageView.
-            ImageService.Instance.LoadUrl(_prompts[position].ImageURL).Into(vh.Image);
-
-			// Required to lookup the drawable resource (image prompt) by ID.
-            vh.Image.Tag = _prompts[position].ImageURL;
 
             if (position == lastSelectedPosition)
             {
@@ -82,13 +74,11 @@ namespace Gabber
 
         public class PhotoViewHolder : RecyclerView.ViewHolder
 		{
-			public ImageViewAsync Image { get; set; }
 			public TextView Caption { get; set; }
 
 			public PhotoViewHolder(View itemView, Action<int> listener) : base(itemView)
 			{
 				itemView.Click += (sender, e) => listener(LayoutPosition);
-				Image = itemView.FindViewById<ImageViewAsync>(Resource.Id.imagePrompt);
 				Caption = itemView.FindViewById<TextView>(Resource.Id.caption);
 			}
 		}

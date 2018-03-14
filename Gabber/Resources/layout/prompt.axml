@@ -24,13 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <FFImageLoading.Views.ImageViewAsync
-                android:id="@+id/imagePrompt"
-                android:background="#6DCBCA"
-                android:scaleType="fitXY"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/caption"
                 style="@style/TextAppearance.AppCompat.Body2"
