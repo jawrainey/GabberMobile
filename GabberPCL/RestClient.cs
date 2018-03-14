@@ -21,7 +21,15 @@ namespace GabberPCL
         public T Data { get; set; }
     }
 
-    class CustomAuthResponse : Entity<JWToken>
+    class DataUserTokens
+    {
+        [JsonProperty("user")]
+        public User User { get; set; }
+        [JsonProperty("tokens")]
+        public JWToken Tokens { get; set; }
+    }
+
+    class CustomAuthResponse : Entity<DataUserTokens>
     {
         [JsonProperty("meta")]
         public Meta Meta { get; set; }
@@ -43,8 +51,8 @@ namespace GabberPCL
     {
         [JsonProperty("success")]
         public bool Success { get; set; }
-        [JsonProperty("errors")]
-        public List<string> Errors { get; set; }
+        [JsonProperty("messages")]
+        public List<string> Messages { get; set; }
     }
 
 	public class RestClient
@@ -73,10 +81,10 @@ namespace GabberPCL
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return JsonConvert.DeserializeObject<CustomAuthResponse>(content).Data;
+                    return JsonConvert.DeserializeObject<CustomAuthResponse>(content).Data.Tokens;
                 }
                 // TODO: use error code to lookup string that has the associated error message.
-                errorCallback(JsonConvert.DeserializeObject<CustomErrorResponse>(content).Meta.Errors[0]);
+                errorCallback(JsonConvert.DeserializeObject<CustomErrorResponse>(content).Meta.Messages[0]);
             }
             catch (HttpRequestException)
             {
@@ -101,9 +109,9 @@ namespace GabberPCL
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return JsonConvert.DeserializeObject<CustomAuthResponse>(content).Data;
+                    return JsonConvert.DeserializeObject<CustomAuthResponse>(content).Data.Tokens;
                 }
-                errorCallback(JsonConvert.DeserializeObject<CustomErrorResponse>(content).Meta.Errors[0]);
+                errorCallback(JsonConvert.DeserializeObject<CustomErrorResponse>(content).Meta.Messages[0]);
             }
             catch (HttpRequestException)
             {

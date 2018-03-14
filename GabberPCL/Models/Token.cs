@@ -4,9 +4,9 @@ namespace GabberPCL.Models
 {
     public class JWToken
     {
-        [JsonProperty("access_token")]
+        [JsonProperty("access")]
         public string Access { get; set; }
-        [JsonProperty("refresh_token")]
+        [JsonProperty("refresh")]
         public string Refresh { get; set; }
     }
 }
