@@ -66,7 +66,7 @@ namespace GabberPCL
 		{
             _client = new HttpClient
             {
-                BaseAddress = new Uri("https://81dbce0c.ngrok.io")
+                BaseAddress = new Uri("https://gabber.audio")
             };
         }
 
