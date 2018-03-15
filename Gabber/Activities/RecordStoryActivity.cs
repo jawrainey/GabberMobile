@@ -174,7 +174,7 @@ namespace Gabber
                 StopRecording();
                 SaveRecording();
 
-                var intent = new Intent(this, typeof(MainActivity));
+                var intent = new Intent(this, typeof(Activities.GabberCompleted));
                 intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
                 intent.PutExtra("RECORDED_GABBER", "ta");
                 StartActivity(intent);

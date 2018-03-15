@@ -21,7 +21,13 @@ namespace Gabber.Activities
             SetContentView(Resource.Layout.onboarding);
 
             var pager = FindViewById<ViewPager>(Resource.Id.pager);
-            pager.Adapter = new OnboardingAdapter(this);
+
+            var pages = new int[] {
+                Resource.Drawable.onboarding_first,
+                Resource.Drawable.onboarding_second,
+                Resource.Drawable.onboarding_third
+            };
+            pager.Adapter = new SharedPagerAdapter(this, pages);
 
             var tabs = FindViewById<TabLayout>(Resource.Id.tabs);
             tabs.SetupWithViewPager(pager, true);
@@ -36,21 +42,23 @@ namespace Gabber.Activities
         }
     }
 
-    class OnboardingAdapter : PagerAdapter
+    class SharedPagerAdapter : PagerAdapter
     {
         Context context;
-        static int[] IMAGES = { 
-            Resource.Drawable.onboarding_first, 
-            Resource.Drawable.onboarding_second, 
-            Resource.Drawable.onboarding_third 
-        };
-        public OnboardingAdapter(Context context) => this.context = context;
-        public override int Count => IMAGES.Length;
+        int[] images;
+        // TODO: images should be a list of <image, text> as the text in images would not be translated.
+        public SharedPagerAdapter(Context _context, int[] _images)
+        {
+            context = _context;
+            images = _images;
+        }
+
+        public override int Count => images.Length;
 
         public override Object InstantiateItem(View container, int position)
         {
             var imageView = new ImageView(context);
-            imageView.SetImageResource(IMAGES[position]);
+            imageView.SetImageResource(images[position]);
             container.JavaCast<ViewPager>().AddView(imageView);
             return imageView;
         }

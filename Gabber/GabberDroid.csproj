@@ -143,6 +143,7 @@
     <Compile Include="Adapters\ParticipantAdapter.cs" />
     <Compile Include="Helpers\PrivatePath.cs" />
     <Compile Include="Activities\Onboarding.cs" />
+    <Compile Include="Activities\GabberCompleted.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -183,6 +184,7 @@
     <AndroidResource Include="Resources\drawable\onboarding_first.png" />
     <AndroidResource Include="Resources\drawable\onboarding_second.png" />
     <AndroidResource Include="Resources\drawable\onboarding_third.png" />
+    <AndroidResource Include="Resources\layout\next_steps.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
