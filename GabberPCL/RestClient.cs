@@ -35,7 +35,7 @@ namespace GabberPCL
         public Meta Meta { get; set; }
     }
 
-    class CustomProjectsResponse : Entity<Dictionary<string, List<Project>>>
+    class CustomProjectsResponse : Entity<List<Project>>
     {
         [JsonProperty("meta")]
         public Meta Meta { get; set; }
@@ -161,14 +161,7 @@ namespace GabberPCL
 
                 if (response.IsSuccessStatusCode)
                 {
-                
-                    // Projects are sent as a dictionary of 'private' projects and 'public where
-                    // private means if they are a member; public projects do not contain duplicates from private. 
-                    var res = JsonConvert.DeserializeObject<CustomProjectsResponse>(content).Data;
-                    var projects = new List<Project>();
-                    projects.AddRange(res["personal"]);
-                    projects.AddRange(res["public"]);
-                    return projects;
+                    return JsonConvert.DeserializeObject<CustomProjectsResponse>(content).Data;
                 }
                 errorCallback(JsonConvert.DeserializeObject<Error>(content).Message);
             }
