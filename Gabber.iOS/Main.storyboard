@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a5d-Is-gGQ">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
@@ -29,24 +29,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1582">
-                                <rect key="frame" x="31" y="261" width="338" height="0.0"/>
+                                <rect key="frame" x="31" y="279" width="338" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="197">
-                                <rect key="frame" x="20" y="277" width="374" height="30"/>
+                                <rect key="frame" x="20" y="295" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="590">
-                                <rect key="frame" x="20" y="323" width="374" height="30"/>
+                                <rect key="frame" x="20" y="341" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1010">
-                                <rect key="frame" x="20" y="369" width="374" height="30"/>
+                                <rect key="frame" x="20" y="387" width="374" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="LOGIN"/>
@@ -54,15 +54,15 @@
                                     <action selector="Authenticate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="29640"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="30469">
-                                <rect key="frame" x="168" y="165" width="78" height="62"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="30469" image="Logo">
+                                <rect key="frame" x="167" y="165" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="78" id="TOs-1h-emB"/>
-                                    <constraint firstAttribute="height" constant="62" id="YnL-ZC-Gmp"/>
+                                    <constraint firstAttribute="width" constant="80" id="TOs-1h-emB"/>
+                                    <constraint firstAttribute="height" constant="80" id="YnL-ZC-Gmp"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8YB-0r-seL">
-                                <rect key="frame" x="143" y="415" width="128" height="30"/>
+                                <rect key="frame" x="142" y="433" width="128" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <state key="normal" title="Sign up for Gabber">
                                     <color key="titleColor" red="0.14434102177619934" green="0.64509212970733643" blue="0.59746801853179932" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -72,7 +72,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="39762">
-                                <rect key="frame" x="197" y="453" width="20" height="20"/>
+                                <rect key="frame" x="196" y="471" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -128,21 +128,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwv-P0-2rl">
-                                <rect key="frame" x="20" y="80" width="374" height="50.333333333333343"/>
+                                <rect key="frame" x="20" y="80" width="374" height="50.5"/>
                                 <string key="text">Each project contains discussion topics to structure a Gabber recording. You can add one or more participants to the session and choose topics that interest you.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4f9-v9-M4a">
-                                <rect key="frame" x="20" y="146.33333333333334" width="374" height="3"/>
+                                <rect key="frame" x="20" y="146.5" width="374" height="3"/>
                                 <color key="backgroundColor" red="0.68877509715025909" green="0.68877509715025909" blue="0.68877509715025909" alpha="0.57149537852112675" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="3" id="pnB-m6-dtJ"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oEh-EI-jpb">
-                                <rect key="frame" x="20" y="149.33333333333331" width="374" height="570.66666666666674"/>
+                                <rect key="frame" x="20" y="149.5" width="374" height="570.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EGW-Qy-yyf">
                                     <size key="itemSize" width="333" height="50"/>
@@ -325,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9465" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2198.5507246376815" y="-11.413043478260871"/>
+            <point key="canvasLocation" x="2198.551" y="-11.41304"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Fko-OT-xQe">
@@ -371,7 +371,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l70-ZZ-NES">
-                                <rect key="frame" x="20" y="184" width="374" height="89.666666666666686"/>
+                                <rect key="frame" x="20" y="184" width="374" height="89.5"/>
                                 <string key="text">The participant will receive an email to listen back to the recording in private and provide consent for how they want the recording to be shared once the interview is complete.
 </string>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
@@ -544,10 +544,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="31309">
-                                <rect key="frame" x="168.66666666666666" y="131" width="78" height="62"/>
+                                <rect key="frame" x="167" y="113" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="Jat-OF-H88"/>
-                                    <constraint firstAttribute="width" constant="78" id="TgZ-Tq-DhQ"/>
+                                    <constraint firstAttribute="height" constant="80" id="Jat-OF-H88"/>
+                                    <constraint firstAttribute="width" constant="80" id="TgZ-Tq-DhQ"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your full name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31312">
@@ -600,7 +600,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                             </textField>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Atn-nk-LUc">
-                                <rect key="frame" x="197.66666666666666" y="459" width="20" height="20"/>
+                                <rect key="frame" x="197.5" y="459" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -649,12 +649,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="30933" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2199.1999999999998" y="-735.22170000000006"/>
+            <point key="canvasLocation" x="2199.2" y="-735.2217"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="192" height="192"/>
         <image name="StopButton" width="256" height="256"/>
+        <image name="BackButton" width="13" height="21"/>
+        <image name="Logo" width="192" height="192"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="31173"/>

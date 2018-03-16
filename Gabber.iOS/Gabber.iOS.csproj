@@ -126,11 +126,19 @@
     <ImageAsset Include="Assets.xcassets\StopButton.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\StopButton.imageset\StopButton.png" />
     <ImageAsset Include="Assets.xcassets\Logo.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Logo.imageset\icon.png" />
     <ImageAsset Include="Assets.xcassets\BackButton.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\BackButton.imageset\1x.png" />
     <ImageAsset Include="Assets.xcassets\BackButton.imageset\2x.png" />
     <ImageAsset Include="Assets.xcassets\BackButton.imageset\3x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-60.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-1024.png" />
+    <ImageAsset Include="Assets.xcassets\Logo.imageset\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

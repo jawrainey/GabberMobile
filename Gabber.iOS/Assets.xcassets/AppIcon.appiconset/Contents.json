@@ -1,41 +1,49 @@
 {
   "images": [
     {
+      "filename": "Gabber-40.png",
       "size": "20x20",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "Gabber-60.png",
       "size": "20x20",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
+      "filename": "Gabber-58.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "Gabber-87.png",
       "size": "29x29",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
+      "filename": "Gabber-80.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "Gabber-120.png",
       "size": "40x40",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
+      "filename": "Gabber-120.png",
       "size": "60x60",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "Gabber-180.png",
       "size": "60x60",
       "scale": "3x",
       "idiom": "iphone"
@@ -86,6 +94,7 @@
       "idiom": "ipad"
     },
     {
+      "filename": "Gabber-1024.png",
       "size": "1024x1024",
       "scale": "1x",
       "idiom": "ios-marketing"
