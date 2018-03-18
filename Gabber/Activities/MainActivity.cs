@@ -91,6 +91,7 @@ namespace Gabber
 			var mAdapter = new RecyclerAdapter(_projects);
 			mAdapter.ProjectClicked += OnProjectClick;
 			mView.SetAdapter(mAdapter);
+            UploadGabbers();
 		}
 
         void UploadGabbers()
