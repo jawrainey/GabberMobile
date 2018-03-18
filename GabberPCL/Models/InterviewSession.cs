@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
@@ -12,6 +13,7 @@ namespace GabberPCL.Models
         public string CreatorEmail { get; set; }
         [ForeignKey(typeof(Project))]
         public int ProjectID { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         [OneToMany]
         public List<InterviewPrompt> Prompts { get; set; }
@@ -19,5 +21,6 @@ namespace GabberPCL.Models
         public List<InterviewParticipant> Participants { get; set; }
         // Used for UI
         public bool IsUploaded { get; set; }
+        public bool IsUploading { get; set; }
     }
 }

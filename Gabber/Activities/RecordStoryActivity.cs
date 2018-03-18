@@ -201,6 +201,7 @@ namespace Gabber
             {
                 SessionID = InterviewSessionID,
                 RecordingURL = _path,
+                CreatedAt = DateTime.Now,
 
                 CreatorEmail = Session.ActiveUser.Email,
                 ProjectID = SelectedProjectID,
