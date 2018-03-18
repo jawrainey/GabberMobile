@@ -35,9 +35,8 @@ namespace Gabber.Activities
                 Finish();
             };
 
-            // NOT IMPLEMENTED
             FindViewById<AppCompatButton>(Resource.Id.sessions).Click += delegate {
-                StartActivity(typeof(RegisterActivity));
+                StartActivity(typeof(Sessions));
                 Finish();
             };
         }

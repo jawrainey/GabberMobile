@@ -10,43 +10,37 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
     <TextView
-        android:id="@+id/register"
         style="@style/TextAppearance.AppCompat.Body2"
-        android:text="Each project contains discussion topics to structure a Gabber recording. You can add one or more participants to the session and choose topics that interest you."
+        android:text="To listen, annotate and share your Gabbers, please visit the Gabber website: https://gabber.audio"
+        android:autoLink="web"
         android:layout_width="fill_parent"
         android:layout_margin="24dp"
-        android:layout_weight="2.25"
+        android:layout_weight="1"
         android:layout_height="0dp"
-        android:layout_marginBottom="0.0dp"
         android:lineSpacingExtra="6dp" />
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1dp"
+        android:layout_height="1.5dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
         android:background="#CCCCCC" />
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_marginTop="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="invisible"
-        style="@android:style/Widget.ProgressBar.Small" />
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/projects"
-        android:layout_weight="6.5"
+        android:id="@+id/sessions"
+        android:layout_weight="8"
         android:layout_height="0dp"
         android:layout_width="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="24dp"
         android:scrollbars="vertical" />
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/sessions_temp"
-        android:layout_width="fill_parent"
+        android:id="@+id/upload_sessions"
         android:layout_weight="1"
         android:layout_height="0dp"
+        android:layout_width="match_parent"
         android:layout_margin="16dp"
         android:textColor="@drawable/textcolorbutton"
         android:background="@drawable/borderbutton"
-        android:text="VIEW SESSIONS" />
+        android:text="UPLOAD SESSIONS" />
 </LinearLayout>

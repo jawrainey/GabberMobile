@@ -42,6 +42,12 @@ namespace Gabber
             // Register the implementation to the global interface within the PCL.
             RestClient.GlobalIO = new DiskIO();
 
+            var sessionsButton = FindViewById<AppCompatButton>(Resource.Id.sessions_temp);
+
+            if (Queries.AllInterviewSessionsForActiveUser().Count <= 0) sessionsButton.Enabled = false;
+
+            sessionsButton.Click += delegate { StartActivity(typeof(Activities.Sessions)); };
+
 			// Used to redirect unauthenticated users
 			if (string.IsNullOrWhiteSpace(_prefs.GetString("username", "")))
 			{
@@ -66,7 +72,6 @@ namespace Gabber
 
                 // If there are no results [e.g. no Internet], then use cached version.
                 // Otherwise update our data. Since we will get all in a request, just update.
-                // TODO: what if there is no cached version?
                 if (_projects.Count == 0) _projects = Queries.AllProjects();
                 else Queries.AddProjects(response);
 

@@ -33,6 +33,8 @@ namespace GabberPCL
             return project;
         }
 
+        public static User UserById(int userID) => Session.Connection.Get<User>(userID);
+
         public static User FindOrInsertUser(string email)
         {
             var usr = Session.Connection.Table<User>().Where(u => u.Email == email).FirstOrDefault();
