@@ -12,10 +12,10 @@
     <TextView
         android:id="@+id/register"
         style="@style/TextAppearance.AppCompat.Body2"
-        android:text="Each project contains discussion topics to structure a Gabber recording. You can add one or more participants to the session and choose topics that interest you."
+        android:text="Each project contains discussion topics to structure a Gabber. You can add one or more participants to the recording session, which you can view and annotate on the website."
         android:layout_width="fill_parent"
         android:layout_margin="24dp"
-        android:layout_weight="2.25"
+        android:layout_weight="2"
         android:layout_height="0dp"
         android:layout_marginBottom="0.0dp"
         android:lineSpacingExtra="6dp" />
@@ -27,17 +27,17 @@
         android:background="#CCCCCC" />
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="invisible"
+        android:visibility="gone"
         style="@android:style/Widget.ProgressBar.Small" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/projects"
         android:layout_weight="6.5"
         android:layout_height="0dp"
         android:layout_width="match_parent"
+        android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
         android:scrollbars="vertical" />
     <android.support.v7.widget.AppCompatButton
