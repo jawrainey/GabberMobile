@@ -36,6 +36,7 @@ namespace Gabber.Activities
             };
 
             FindViewById<AppCompatButton>(Resource.Id.sessions).Click += delegate {
+                StartActivity(typeof(MainActivity));
                 StartActivity(typeof(Sessions));
                 Finish();
             };
