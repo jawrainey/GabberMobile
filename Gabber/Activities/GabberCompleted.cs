@@ -1,10 +1,11 @@
-﻿using Android.App;
-using Android.Content;
+﻿using System.Collections.Generic;
+using Android.App;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
+using GabberPCL.Models;
 
 namespace Gabber.Activities
 {
@@ -20,11 +21,19 @@ namespace Gabber.Activities
 
             var pager = FindViewById<ViewPager>(Resource.Id.next_steps_pager);
 
-            var pages = new int[] { 
-                Resource.Drawable.onboarding_first,
-                Resource.Drawable.onboarding_second
+            var pages = new List<OnboardingPageContent> {
+                new OnboardingPageContent {
+                    Image=Resource.Drawable.onboarding_second,
+                    Title="Your Consent",
+                    Content="All participants will receive an email to review and consent the Gabber recording"
+                },
+                new OnboardingPageContent {
+                    Image=Resource.Drawable.onboarding_third,
+                    Title="Annotate Gabbers",
+                    Content="Your Gabber then becomes accessible for other project members to listen and annotate"
+                }
             };
-            pager.Adapter = new SharedPagerAdapter(this, pages);
+            pager.Adapter = new Adapters.SharedPager(this, pages);
 
             var tabs = FindViewById<TabLayout>(Resource.Id.next_steps_tabs);
             tabs.SetupWithViewPager(pager, true);

@@ -1,14 +1,11 @@
-﻿using Android.App;
-using Android.Content;
+﻿using System.Collections.Generic;
+using Android.App;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
-using Android.Views;
-using Android.Widget;
-using Java.Lang;
+using GabberPCL.Models;
 
 namespace Gabber.Activities
 {
@@ -22,12 +19,24 @@ namespace Gabber.Activities
 
             var pager = FindViewById<ViewPager>(Resource.Id.pager);
 
-            var pages = new int[] {
-                Resource.Drawable.onboarding_first,
-                Resource.Drawable.onboarding_second,
-                Resource.Drawable.onboarding_third
+            var pages = new List<OnboardingPageContent> {
+                new OnboardingPageContent {
+                    Image=Resource.Drawable.onboarding_first,
+                    Title="What's Gabber?",
+                    Content="A digital tool for structuring and capturing audio conversations"
+                },
+                new OnboardingPageContent {
+                    Image=Resource.Drawable.onboarding_second,
+                    Title="Gabber projects",
+                    Content="Each project contains a set of topics to guide your Gabber"
+                },
+                new OnboardingPageContent {
+                    Image=Resource.Drawable.onboarding_third,
+                    Title="Gabber recordings",
+                    Content="Once recorded, you can listen and have extend the conversation online"
+                }
             };
-            pager.Adapter = new SharedPagerAdapter(this, pages);
+            pager.Adapter = new Adapters.SharedPager(this, pages);
 
             var tabs = FindViewById<TabLayout>(Resource.Id.tabs);
             tabs.SetupWithViewPager(pager, true);
@@ -40,34 +49,5 @@ namespace Gabber.Activities
                 StartActivity(typeof(RegisterActivity));
             };
         }
-    }
-
-    class SharedPagerAdapter : PagerAdapter
-    {
-        Context context;
-        int[] images;
-        // TODO: images should be a list of <image, text> as the text in images would not be translated.
-        public SharedPagerAdapter(Context _context, int[] _images)
-        {
-            context = _context;
-            images = _images;
-        }
-
-        public override int Count => images.Length;
-
-        public override Object InstantiateItem(View container, int position)
-        {
-            var imageView = new ImageView(context);
-            imageView.SetImageResource(images[position]);
-            container.JavaCast<ViewPager>().AddView(imageView);
-            return imageView;
-        }
-
-        public override void DestroyItem(View container, int position, Object @object)
-        {
-            container.JavaCast<ViewPager>().RemoveView(@object as View);
-        }
-
-        public override bool IsViewFromObject(View view, Object @object) => view == @object;
     }
 }

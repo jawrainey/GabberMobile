@@ -43,6 +43,7 @@
     <Compile Include="Models\Prompt.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Token.cs" />
+    <Compile Include="Models\OnboardingPageContent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

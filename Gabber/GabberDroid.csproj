@@ -143,6 +143,7 @@
     <Compile Include="Activities\GabberCompleted.cs" />
     <Compile Include="Activities\Sessions.cs" />
     <Compile Include="Adapters\SessionsAdapter.cs" />
+    <Compile Include="Adapters\SharedPager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -188,6 +189,7 @@
     <AndroidResource Include="Resources\layout\sessions_rv.xml" />
     <AndroidResource Include="Resources\drawable\cloud_upload.png" />
     <AndroidResource Include="Resources\drawable\cloud_done.png" />
+    <AndroidResource Include="Resources\layout\onboarding_page.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
