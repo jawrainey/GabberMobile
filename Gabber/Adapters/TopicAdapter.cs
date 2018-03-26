@@ -6,15 +6,15 @@ using System;
 using Android.Graphics;
 using GabberPCL.Models;
 
-namespace Gabber
+namespace Gabber.Adapters
 {
-	public class RVPromptAdapter : RecyclerView.Adapter
+	public class TopicAdapter : RecyclerView.Adapter
 	{
 		// Each story the user recorded has an associated image and audio.
 		readonly List<Prompt> _prompts;
         int lastSelectedPosition = int.MinValue;
 
-		public RVPromptAdapter(List<Prompt> prompts)
+        public TopicAdapter(List<Prompt> prompts)
 		{
 			_prompts = prompts;
 		}

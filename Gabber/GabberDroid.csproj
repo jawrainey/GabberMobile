@@ -129,8 +129,8 @@
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Adapters\RecyclerAdapter.cs" />
-    <Compile Include="Adapters\RVPromptAdapter.cs" />
+    <Compile Include="Adapters\ProjectsAdapter.cs" />
+    <Compile Include="Adapters\TopicAdapter.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\PreparationActivity.cs" />
     <Compile Include="Activities\RecordStoryActivity.cs" />
@@ -141,9 +141,10 @@
     <Compile Include="Helpers\PrivatePath.cs" />
     <Compile Include="Activities\Onboarding.cs" />
     <Compile Include="Activities\GabberCompleted.cs" />
-    <Compile Include="Activities\Sessions.cs" />
     <Compile Include="Adapters\SessionsAdapter.cs" />
     <Compile Include="Adapters\SharedPager.cs" />
+    <Compile Include="Fragments\Projects.cs" />
+    <Compile Include="Fragments\Sessions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -190,6 +191,12 @@
     <AndroidResource Include="Resources\drawable\cloud_upload.png" />
     <AndroidResource Include="Resources\drawable\cloud_done.png" />
     <AndroidResource Include="Resources\layout\onboarding_page.xml" />
+    <AndroidResource Include="Resources\menu\bottom_nav.xml" />
+    <AndroidResource Include="Resources\layout\projects_frag.axml" />
+    <AndroidResource Include="Resources\layout\sessions_frag.axml" />
+    <AndroidResource Include="Resources\drawable\menu_about.png" />
+    <AndroidResource Include="Resources\drawable\menu_gabbers.png" />
+    <AndroidResource Include="Resources\drawable\menu_projects.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
@@ -197,6 +204,8 @@
     <Folder Include="Adapters\" />
     <Folder Include="Helpers\" />
     <Folder Include="Resources\values-hi\" />
+    <Folder Include="Resources\menu\" />
+    <Folder Include="Fragments\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">

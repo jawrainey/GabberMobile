@@ -6,7 +6,7 @@ using Android.Widget;
 using GabberPCL;
 using GabberPCL.Models;
 
-namespace Gabber
+namespace Gabber.Adapters
 {
     public class SessionAdapter : RecyclerView.Adapter
     {

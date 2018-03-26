@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using GabberPCL.Models;
 using SQLiteNetExtensions.Extensions;
@@ -10,6 +9,10 @@ namespace GabberPCL
     {
         public static void AddProjects(List<Project> _projects)
         {
+            // Resync database when data pulled from the server.
+            // Projects that the user may have had access to could change, and if they
+            // are not removed, then sessions could be created for them.
+            Session.Connection.DeleteAll<Project>();
             foreach (var p in _projects)
             {
                 Session.Connection.InsertOrReplace(p);

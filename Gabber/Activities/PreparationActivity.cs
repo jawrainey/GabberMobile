@@ -11,6 +11,7 @@ using Android.Support.V7.Widget;
 using GabberPCL;
 using Android.Util;
 using System;
+using Android.Views;
 
 namespace Gabber
 {
@@ -26,6 +27,7 @@ namespace Gabber
 			SetContentView(Resource.Layout.preparation);
 			SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
 			SupportActionBar.Title = Resources.GetText(Resource.String.hint_who_gabbering_with);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
 			// Required to access existing gabbers for a given user
 			var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
@@ -124,6 +126,12 @@ namespace Gabber
 				}
 			};
 		}
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            OnBackPressed();
+            return true;
+        }
 
         bool FormValid(TextInputEditText name, TextInputEditText email)
         {

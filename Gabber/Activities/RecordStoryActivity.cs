@@ -14,6 +14,7 @@ using GabberPCL;
 using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using GabberPCL.Models;
+using Gabber.Adapters;
 
 namespace Gabber
 {
@@ -29,7 +30,7 @@ namespace Gabber
         // Holds the prompts for this project
         List<Prompt> themes;
         // Exposed as used to identify when a prompt was selected
-        RVPromptAdapter adapter;
+        TopicAdapter adapter;
         // Exposed as we want to get this once a prompt is selected
         int _seconds;
         // Each interview recorded has a unique SID (GUID) to associate annotations with a session.
@@ -43,6 +44,7 @@ namespace Gabber
 			SetContentView(Resource.Layout.record);
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.Title = "Record Gabber";
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             InterviewSessionID = Guid.NewGuid().ToString();
 
@@ -54,7 +56,7 @@ namespace Gabber
             promptRecyclerView.SetLayoutManager(new GridLayoutManager(this, 1));
 
             themes = selectedProject.Prompts;
-            adapter = new RVPromptAdapter(themes);
+            adapter = new TopicAdapter(themes);
             adapter.ProjectClicked += ProjectSelected;
             promptRecyclerView.SetAdapter(adapter);
 
@@ -130,6 +132,12 @@ namespace Gabber
             }
         }
 
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            OnBackPressed();
+            return true;
+        }
+
         void ProjectSelected(object sender, int position)
         {
             ItemSelected(position);
@@ -176,7 +184,6 @@ namespace Gabber
 
                 var intent = new Intent(this, typeof(Activities.GabberCompleted));
                 intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
-                intent.PutExtra("RECORDED_GABBER", "ta");
                 StartActivity(intent);
                 Finish();
             });

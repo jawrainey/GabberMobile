@@ -47,10 +47,6 @@ namespace Gabber
             NotifyItemChanged(index);
         }
 
-        public User GetByIndex(int index) {
-            return (_participants != null && _participants.Count >= index ? _participants[index] : null);
-        }
-
         public override int ItemCount => (_participants != null ? _participants.Count : 0);
 
 		public event EventHandler<int> ParticipantClicked;

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Android.App;
+using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
@@ -39,16 +41,16 @@ namespace Gabber.Activities
             tabs.SetupWithViewPager(pager, true);
             tabs.SetSelectedTabIndicatorHeight(0);
 
-            FindViewById<AppCompatButton>(Resource.Id.projects).Click += delegate {
-                StartActivity(typeof(MainActivity));
-                Finish();
-            };
+            FindViewById<AppCompatButton>(Resource.Id.projects).Click += (s, e) => NavigateTo("projects");
+            FindViewById<AppCompatButton>(Resource.Id.sessions).Click += (s, e) => NavigateTo("gabbers");
+        }
 
-            FindViewById<AppCompatButton>(Resource.Id.sessions).Click += delegate {
-                StartActivity(typeof(MainActivity));
-                StartActivity(typeof(Sessions));
-                Finish();
-            };
+        void NavigateTo(string fragmentName)
+        {
+            var intent = new Intent(this, typeof(MainActivity));
+            intent.PutExtra("FRAGMENT_TO_SHOW", fragmentName);
+            Finish();
+            StartActivity(intent);
         }
     }
 }

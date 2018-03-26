@@ -5,16 +5,22 @@ using System;
 using System.Collections.Generic;
 using GabberPCL.Models;
 
-namespace Gabber
+namespace Gabber.Adapters
 {
-	public class RecyclerAdapter : RecyclerView.Adapter
+	public class ProjectsAdapter : RecyclerView.Adapter
 	{
 		List<Project> _projects;
 
-		public RecyclerAdapter(List<Project> projects)
+        public ProjectsAdapter(List<Project> projects)
 		{
 			_projects = projects;
 		}
+
+        public void UpdateProjects(List<Project> projects)
+        {
+            _projects = projects;
+            NotifyDataSetChanged();
+        }
 
 		public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
 		{
@@ -25,7 +31,7 @@ namespace Gabber
 		public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
 		{
 			var mholder = holder as ProjectViewHolder;
-            mholder.mprojectText.Text = _projects[position].Title;
+            mholder.ProjectTitle.Text = _projects[position].Title;
 		}
 
         public override int ItemCount => _projects.Count;
@@ -36,13 +42,12 @@ namespace Gabber
 
 		public class ProjectViewHolder : RecyclerView.ViewHolder
 		{
-			public TextView mprojectText { get; set; }
+            public TextView ProjectTitle { get; set; }
 
 			public ProjectViewHolder(View view, Action<int> listener) : base(view)
 			{
-				mprojectText = view.FindViewById<TextView>(Resource.Id.imageText);
-				// Binds event to each card within the UI
-				mprojectText.Click += (sender, e) => listener(LayoutPosition);
+				ProjectTitle = view.FindViewById<TextView>(Resource.Id.imageText);
+				ProjectTitle.Click += (sender, e) => listener(LayoutPosition);
 			}
 		}
 	}
