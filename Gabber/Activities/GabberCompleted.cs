@@ -27,12 +27,12 @@ namespace Gabber.Activities
                 new OnboardingPageContent {
                     Image=Resource.Drawable.onboarding_second,
                     Title="Your Consent",
-                    Content="All participants will receive an email to review and consent the Gabber recording"
+                    Content="All participants will receive an email to review and provide consent for the Gabber recording"
                 },
                 new OnboardingPageContent {
                     Image=Resource.Drawable.onboarding_third,
                     Title="Annotate Gabbers",
-                    Content="Your Gabber then becomes accessible for other project members to listen and annotate"
+                    Content="If all participants consent, your Gabber becomes available for project members to listen and annotate"
                 }
             };
             pager.Adapter = new Adapters.SharedPager(this, pages);

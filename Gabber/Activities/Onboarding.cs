@@ -27,12 +27,12 @@ namespace Gabber.Activities
                 },
                 new OnboardingPageContent {
                     Image=Resource.Drawable.onboarding_second,
-                    Title="Gabber projects",
+                    Title="Projects",
                     Content="Each project contains a set of topics to guide your Gabber"
                 },
                 new OnboardingPageContent {
                     Image=Resource.Drawable.onboarding_third,
-                    Title="Gabber recordings",
+                    Title="Recordings",
                     Content="Once recorded, you can listen and have extend the conversation online"
                 }
             };

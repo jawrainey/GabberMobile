@@ -21,10 +21,9 @@
         android:lineSpacingExtra="6dp" />
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1.5dp"
+        android:layout_height="1dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:layout_marginBottom="24dp"
         android:background="#CCCCCC" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sessions"
@@ -33,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="24dp"
         android:scrollbars="vertical" />
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/upload_sessions"

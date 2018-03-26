@@ -22,8 +22,11 @@
                 style="@style/TextAppearance.AppCompat.Body2"
                 android:text="Each project contains discussion topics to structure a Gabber. You can add one or more participants to the recording session, which you can view and annotate on the website."
                 android:layout_width="fill_parent"
-                android:layout_margin="24dp"
-                android:layout_weight="2"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="24dp"
+                android:paddingBottom="24dp"
+                android:layout_weight="2.5"
                 android:layout_height="0dp"
                 android:lineSpacingExtra="6dp" />
             <View
@@ -41,7 +44,7 @@
                 style="@android:style/Widget.ProgressBar.Small" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/projects"
-                android:layout_weight="6.5"
+                android:layout_weight="7.5"
                 android:layout_height="0dp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="24dp"
