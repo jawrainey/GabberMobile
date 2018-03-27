@@ -20,7 +20,10 @@ namespace GabberPCL
             }
         }
 
-        public static List<Project> AllProjects() => Session.Connection.GetAllWithChildren<Project>();
+        public static List<Project> AllProjects()
+        {
+            return Session.Connection.GetAllWithChildren<Project>().OrderByDescending(p => p.ID).ToList();
+        }
 
         public static List<InterviewSession> AllInterviewSessionsForActiveUser()
         {
