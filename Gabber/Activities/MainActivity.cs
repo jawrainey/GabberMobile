@@ -80,6 +80,10 @@ namespace Gabber
                 case Resource.Id.menu_gabbers:
                     fragment = Fragments.Sessions.NewInstance();
                     break;
+
+                case Resource.Id.menu_about:
+                    fragment = Fragments.About.NewInstance();
+                    break;
             }
 
             if (fragment == null) return;

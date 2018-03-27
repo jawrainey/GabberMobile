@@ -145,6 +145,7 @@
     <Compile Include="Adapters\SharedPager.cs" />
     <Compile Include="Fragments\Projects.cs" />
     <Compile Include="Fragments\Sessions.cs" />
+    <Compile Include="Fragments\About.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -197,6 +198,7 @@
     <AndroidResource Include="Resources\drawable\menu_about.png" />
     <AndroidResource Include="Resources\drawable\menu_gabbers.png" />
     <AndroidResource Include="Resources\drawable\menu_projects.png" />
+    <AndroidResource Include="Resources\layout\about_frag.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
