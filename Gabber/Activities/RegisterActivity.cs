@@ -1,15 +1,12 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Preferences;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using GabberPCL;
-using GabberPCL.Models;
-using Newtonsoft.Json;
 
 namespace Gabber
 {
@@ -65,28 +62,16 @@ namespace Gabber
 					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 
                     var api = new RestClient();
-                    var tokens = await api.Register(
+                    var isRegisterSuccess = await api.Register(
                         fname.Text, 
                         email.Text.ToLower(), 
                         passw.Text, 
                         (errorMessage) => Snackbar.Make(email, errorMessage, 0).Show()
                     );
 
-                    if (!string.IsNullOrEmpty(tokens.Access))
+                    if (isRegisterSuccess)
 					{
-                        var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
-                        prefs.Edit().PutString("username", email.Text).Commit();
-                        prefs.Edit().PutString("tokens", JsonConvert.SerializeObject(tokens)).Commit();
-
-                        // Given the user is registering, they are new to the app.
-                        Session.Connection.Insert(new User
-                        {
-                            Name = fname.Text + " (You)",
-                            Email = email.Text,
-                            Selected = true
-                        });
-
-						var intent = new Intent(this, typeof(MainActivity));
+                        var intent = new Intent(this, typeof(Activities.RegisterVerification));
 						intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
 						StartActivity(intent);
 						Finish();

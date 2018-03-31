@@ -35,10 +35,9 @@ namespace Gabber
                 // Create the user once as they can come here after Register/Login
                 if (Session.ActiveUser == null)
                 {
-                    Session.ActiveUser = Queries.FindOrInsertUser(UserEmail);
-                    Session.ActiveUser.IsActive = true;
-                    // Provide access to the tokens in the PCL for REST requests.
-                    Session.Token = JsonConvert.DeserializeObject<JWToken>(preferences.GetString("tokens", ""));
+                    var user = Queries.UserByEmail(UserEmail);
+                    var tokens = JsonConvert.DeserializeObject<JWToken>(preferences.GetString("tokens", ""));
+                    Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
                 }
 
                 var nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);

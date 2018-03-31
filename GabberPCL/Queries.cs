@@ -41,25 +41,34 @@ namespace GabberPCL
 
         public static User UserById(int userID) => Session.Connection.Get<User>(userID);
 
-        public static User FindOrInsertUser(string email)
+        public static User UserByEmail(string email)
+        {
+            return Session.Connection.Table<User>().Where(u => u.Email == email).FirstOrDefault();
+        }
+
+        public static User FindOrInsertUser(User user, string email)
         {
             var usr = Session.Connection.Table<User>().Where(u => u.Email == email).FirstOrDefault();
 
             if (usr == null)
             {
-                usr = new User
-                {
-                    Name = "You", 
-                    Email = email,
-                    IsActive = true,
-                    Selected = true
-                };
-                AddUser(usr);
+                AddUser(user);
+                return user;
             }
             return usr;
         }
 
         public static void AddUser(User user) => Session.Connection.Insert(user);
+
+        public static void SetActiveUser(DataUserTokens response)
+        {
+            var user = FindOrInsertUser(response.User, response.User.Email);
+            user.Selected = true;
+            user.IsActive = true;
+            Session.ActiveUser = user;
+            Session.ActiveUser.Name += " (You)";
+            Session.Token = response.Tokens;
+        }
 
         public static async void UploadInterviewSessionsAsync()
         {

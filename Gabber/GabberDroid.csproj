@@ -146,6 +146,8 @@
     <Compile Include="Fragments\Projects.cs" />
     <Compile Include="Fragments\Sessions.cs" />
     <Compile Include="Fragments\About.cs" />
+    <Compile Include="Activities\RegisterVerification.cs" />
+    <Compile Include="Activities\VerifyEmail.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -199,6 +201,8 @@
     <AndroidResource Include="Resources\drawable\menu_gabbers.png" />
     <AndroidResource Include="Resources\drawable\menu_projects.png" />
     <AndroidResource Include="Resources\layout\about_frag.axml" />
+    <AndroidResource Include="Resources\layout\register_verification.axml" />
+    <AndroidResource Include="Resources\layout\register_verification_res.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />

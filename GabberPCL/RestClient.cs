@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.IO;
 using GabberPCL.Models;
+using System.Text;
 
 namespace GabberPCL
 {
@@ -15,13 +16,13 @@ namespace GabberPCL
         public string Message { get; set; }
     }
     // The Data attribute of a response can be of any topic
-    class Entity<T>
+    public class Entity<T>
     {
         [JsonProperty("data")]
         public T Data { get; set; }
     }
 
-    class DataUserTokens
+    public class DataUserTokens
     {
         [JsonProperty("user")]
         public User User { get; set; }
@@ -29,25 +30,41 @@ namespace GabberPCL
         public JWToken Tokens { get; set; }
     }
 
-    class CustomAuthResponse : Entity<DataUserTokens>
+    public class CustomAuthResponse : Entity<DataUserTokens>
     {
         [JsonProperty("meta")]
         public Meta Meta { get; set; }
     }
 
-    class CustomProjectsResponse : Entity<List<Project>>
+    public class RegisterAuthResponse
+    {
+        [JsonProperty("data")]
+        public bool? Data;
+        [JsonProperty("meta")]
+        public Meta Meta { get; set; }
+    }
+
+    public class RegisterVerifyAuthResponse<T>
+    {
+        [JsonProperty("data")]
+        public T Data;
+        [JsonProperty("meta")]
+        public Meta Meta { get; set; }
+    }
+
+    public class CustomProjectsResponse : Entity<List<Project>>
     {
         [JsonProperty("meta")]
         public Meta Meta { get; set; }
     }
 
-    class CustomErrorResponse : Entity<List<string>>
+    public class CustomErrorResponse : Entity<List<string>>
     {
         [JsonProperty("meta")]
         public Meta Meta { get; set; }
     }
 
-    class Meta
+    public class Meta
     {
         [JsonProperty("success")]
         public bool Success { get; set; }
@@ -70,48 +87,53 @@ namespace GabberPCL
             };
         }
 
-        public async Task<JWToken> Login(string email, string password, Action<string> errorCallback)
+        public async Task<CustomAuthResponse> Login(string email, string password)
 		{
+            var _response = new CustomAuthResponse
+            {
+                Data = null,
+                Meta = new Meta { Messages = new List<string>(), Success = false }
+            };
+
             try
             {
                 var payload = new { email, password };
-                var _content = new StringContent(JsonConvert.SerializeObject(payload), System.Text.Encoding.UTF8, "application/json");
+                var _content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
                 var response = await _client.PostAsync("api/auth/login/", _content);
                 var content = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return JsonConvert.DeserializeObject<CustomAuthResponse>(content).Data.Tokens;
+                    return JsonConvert.DeserializeObject<CustomAuthResponse>(content);
                 }
-                // TODO: use error code to lookup string that has the associated error message.
-                errorCallback(JsonConvert.DeserializeObject<CustomErrorResponse>(content).Meta.Messages[0]);
+                _response.Meta = JsonConvert.DeserializeObject<CustomErrorResponse>(content).Meta;
             }
             catch (HttpRequestException)
             {
-                errorCallback("You are not connected to the Internet");
+                _response.Meta.Messages.Add("NO_INTERNET");
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                errorCallback("An unknown error occurred:" + e.Message); 
+                _response.Meta.Messages.Add("GENERAL");
             }
-            return new JWToken();
+            return _response;
         }
 
-        public async Task<JWToken> Register(string fullname, string email, string password, Action<string> errorCallback)
+        public async Task<bool> Register(string fullname, string email, string password, Action<string> errorCallback)
 		{
             try
             {
                 var payload = JsonConvert.SerializeObject(new { fullname, email, password });
-                var _content = new StringContent(payload, System.Text.Encoding.UTF8, "application/json");
+                var _content = new StringContent(payload, Encoding.UTF8, "application/json");
 
                 var response = await _client.PostAsync("api/auth/register/", _content);
                 var content = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return JsonConvert.DeserializeObject<CustomAuthResponse>(content).Data.Tokens;
+                    return JsonConvert.DeserializeObject<RegisterAuthResponse>(content).Meta.Success;
                 }
-                errorCallback(JsonConvert.DeserializeObject<CustomErrorResponse>(content).Meta.Messages[0]);
+                errorCallback(JsonConvert.DeserializeObject<RegisterAuthResponse>(content).Meta.Messages[0]);
             }
             catch (HttpRequestException)
             {
@@ -119,10 +141,43 @@ namespace GabberPCL
             }
             catch (Exception e)
             {
-                errorCallback("An unknown error occurred:" + e.Message);
+                errorCallback("An unknown error occurred");
             }
-            return new JWToken();
+            return false;
 		}
+
+        public async Task<RegisterVerifyAuthResponse<DataUserTokens>> RegisterVerify(string token)
+        {
+            var _response = new RegisterVerifyAuthResponse<DataUserTokens>
+            {
+                Data = null,
+                Meta = new Meta { Messages = new List<string>(), Success = false }
+            };
+
+            try
+            {
+                var _content = new StringContent("", Encoding.UTF8, "application/json");
+                var response = await _client.PostAsync($"api/auth/verify/{token}/", _content);
+                var content = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<RegisterVerifyAuthResponse<DataUserTokens>>(content);
+                }
+
+                // If the request cannot be made, this will try to be serialzied and throw an error too.
+                _response.Meta = JsonConvert.DeserializeObject<CustomErrorResponse>(content).Meta;
+            }
+            catch (HttpRequestException)
+            {
+                _response.Meta.Messages.Add("NO_INTERNET");
+            }
+            catch (Exception)
+            {
+                _response.Meta.Messages.Add("GENERAL");
+            }
+            return _response;
+        }
 
 		// As this deals with reading files from platform specific paths, 
 		// then we must implement this on each specific platform.
@@ -130,15 +185,17 @@ namespace GabberPCL
 		{
 			using (var formData = new MultipartFormDataContent())
 			{
-                formData.Add(new StringContent(interviewSession.CreatorEmail), "creatorEmail");
                 formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Participants)), "participants");
                 formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Prompts)), "prompts");
+
+                // var recording = new ByteArrayContent(GlobalIO.Load(interviewSession.RecordingURL));
+                // recording.Headers.ContentType = MediaTypeHeaderValue.Parse("audio/mp3");
 				// Access the OS specific implementation to load data from a file.
-                formData.Add(new ByteArrayContent(GlobalIO.Load(interviewSession.RecordingURL)), "recording", 
+                formData.Add(new ByteArrayContent(GlobalIO.Load(interviewSession.RecordingURL)), "recording",
                              Path.GetFileName(interviewSession.RecordingURL));
 				try
 				{
-                    var endpoint = "api/projects/" + interviewSession.ProjectID.ToString() + "/sessions/";
+                    var endpoint = $"api/projects/{interviewSession.ProjectID.ToString()}/sessions/";
                     _client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token.Access);
                     var response = await _client.PostAsync(endpoint, formData);
 					return response.IsSuccessStatusCode;

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical|center_horizontal"
+    android:padding="24dp"
+    android:orientation="vertical">
+    <ImageView
+        android:src="@drawable/onboarding_first"
+        android:layout_width="match_parent"
+        android:layout_weight="7"
+        android:layout_height="0dp" />
+    <TextView
+        android:text="Verifying Email"
+        android:textSize="38dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:lineSpacingExtra="6dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+    <TextView
+        android:id="@+id/registerVerifyBody"
+        android:text="Now verifying your account."
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+    <ProgressBar
+        android:id="@+id/registerVerifyProgressBar"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        style="@android:style/Widget.ProgressBar.Small" />
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/registerVerifyLogin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:visibility="invisible"
+        android:textColor="@drawable/textcolorbutton"
+        android:background="@drawable/borderbutton"
+        android:text="Login" />
+</LinearLayout>

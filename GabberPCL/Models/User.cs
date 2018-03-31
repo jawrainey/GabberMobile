@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 
 namespace GabberPCL.Models
 {
@@ -7,6 +8,7 @@ namespace GabberPCL.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        [JsonProperty("fullname")]
         public string Name { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }

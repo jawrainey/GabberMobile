@@ -7,6 +7,7 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using GabberPCL;
 using Newtonsoft.Json;
 
 namespace Gabber
@@ -56,35 +57,37 @@ namespace Gabber
 					FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Visible;
 					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 
-                    var api = new GabberPCL.RestClient();
-                    var tokens = await api.Login(
-                        email.Text.ToLower(), 
-                        passw.Text, 
-                        (errorMessage) => Snackbar.Make(email, errorMessage, 0).Show()
-                    );
+                    var response = await new RestClient().Login(email.Text.ToLower(), passw.Text);
 
-					// If the user details are correct: then a token was generated
-                    if (!string.IsNullOrEmpty(tokens.Access))
+                    if (response.Meta.Messages.Count > 0)
+                    {
+                        RunOnUiThread(() =>
+                        {
+                            response.Meta.Messages.ForEach((err) => Snackbar.Make(email, err, Snackbar.LengthLong).Show());
+                            FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = true;
+                            FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
+                        });
+                    }
+					// If there are no errors, then tokens exist as the request was a great success.
+                    else if (!string.IsNullOrEmpty(response.Data?.Tokens.Access))
 					{
+                        // When the application is closed, the ActiveUser is reset. The username and tokens
+                        // are used to build a new active user.
                         var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+                        // Used in MainActivity to determine if a user has logged in.
                         prefs.Edit().PutString("username", email.Text).Commit();
-                        prefs.Edit().PutString("tokens", JsonConvert.SerializeObject(tokens)).Commit();
-						
+                        prefs.Edit().PutString("tokens", JsonConvert.SerializeObject(response.Data.Tokens)).Commit();
+
+                        // Set active user on login/register as the user object is in the response.
+                        // This prevents us from storing a user object in local storage.
+                        Queries.SetActiveUser(response.Data);
+
                         // We do not want the user to return to ANY gabber recording pages once captured.
 						var intent = new Intent(this, typeof(MainActivity));
 						intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
 						StartActivity(intent);
 						// Prevent returning to login once authenticated.
 						Finish();
-					}
-					else
-					{
-						RunOnUiThread(() =>
-						{
-							FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = true;
-							FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
-                            email.RequestFocus();
-						});
 					}
 				}
 			};
