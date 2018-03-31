@@ -58,7 +58,7 @@ namespace Gabber
 
                     var api = new GabberPCL.RestClient();
                     var tokens = await api.Login(
-                        email.Text, 
+                        email.Text.ToLower(), 
                         passw.Text, 
                         (errorMessage) => Snackbar.Make(email, errorMessage, 0).Show()
                     );

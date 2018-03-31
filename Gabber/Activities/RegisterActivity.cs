@@ -67,7 +67,7 @@ namespace Gabber
                     var api = new RestClient();
                     var tokens = await api.Register(
                         fname.Text, 
-                        email.Text, 
+                        email.Text.ToLower(), 
                         passw.Text, 
                         (errorMessage) => Snackbar.Make(email, errorMessage, 0).Show()
                     );
