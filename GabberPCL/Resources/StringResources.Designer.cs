@@ -196,5 +196,77 @@ namespace GabberPCL.Resources {
                 return ResourceManager.GetString("about.ui.content", resourceCulture);
             }
         }
+        
+        public static string participants_ui_title {
+            get {
+                return ResourceManager.GetString("participants.ui.title", resourceCulture);
+            }
+        }
+        
+        public static string participants_ui_numselected {
+            get {
+                return ResourceManager.GetString("participants.ui.numselected", resourceCulture);
+            }
+        }
+        
+        public static string participants_ui_addparticipant_button {
+            get {
+                return ResourceManager.GetString("participants.ui.addparticipant.button", resourceCulture);
+            }
+        }
+        
+        public static string participants_ui_startrecording_button {
+            get {
+                return ResourceManager.GetString("participants.ui.startrecording.button", resourceCulture);
+            }
+        }
+        
+        public static string participants_ui_validation_noneselected {
+            get {
+                return ResourceManager.GetString("participants.ui.validation.noneselected", resourceCulture);
+            }
+        }
+        
+        public static string participants_ui_validation_oneselected_title {
+            get {
+                return ResourceManager.GetString("participants.ui.validation.oneselected.title", resourceCulture);
+            }
+        }
+        
+        public static string participants_ui_validation_oneselected_message {
+            get {
+                return ResourceManager.GetString("participants.ui.validation.oneselected.message", resourceCulture);
+            }
+        }
+        
+        public static string participants_ui_validation_oneselected_continue {
+            get {
+                return ResourceManager.GetString("participants.ui.validation.oneselected.continue", resourceCulture);
+            }
+        }
+        
+        public static string participants_ui_validation_oneselected_cancel {
+            get {
+                return ResourceManager.GetString("participants.ui.validation.oneselected.cancel", resourceCulture);
+            }
+        }
+        
+        public static string participants_ui_dialog_add_title {
+            get {
+                return ResourceManager.GetString("participants.ui.dialog.add.title", resourceCulture);
+            }
+        }
+        
+        public static string participants_ui_dialog_add_positive {
+            get {
+                return ResourceManager.GetString("participants.ui.dialog.add.positive", resourceCulture);
+            }
+        }
+        
+        public static string participants_ui_dialog_add_negative {
+            get {
+                return ResourceManager.GetString("participants.ui.dialog.add.negative", resourceCulture);
+            }
+        }
     }
 }

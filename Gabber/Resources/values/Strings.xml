@@ -7,13 +7,8 @@
 	<string name="error_all_details">All details are required.</string>
 	<string name="error_usern_pass_req">A username and password are required.</string>
 
-	<string name="select_participant">At least one participant must be selected</string>
-	<string name="hint_who_gabbering_with">Who is in your Gabber?</string>
 	<string name="previous_participants">Previous participants?</string>
-	<string name="error_invalid_email">The participants email provided is invalid</string>
-	<string name="error_empty_name">The participants full name is required</string>
-	<string name="error_empty_email">The email address is required and will be used to obtain their consent for the recording</string>
-	<string name="topics_to_discuss">Topics for this project</string>
+    <string name="topics_to_discuss">Topics for this project</string>
 	<string name="recording_your_gabber">Record your Gabber</string>
     <string name="popup_record_again">Would you like to save your recording?</string>
 	<string name="popup_record_question">Are you sure you want to end this recording?</string>

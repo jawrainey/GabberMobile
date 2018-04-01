@@ -106,4 +106,46 @@
     <data name="about.ui.content" xml:space="preserve">
         <value>Gabber is a digital workflow for structuring, capturing and creating conversations on audio recordings. The mobile application is used to structure and capture these conversations, and the website is used for viewing and commenting on the structured audios.</value>
     </data>
+
+    <!-- PARTICIPANTS SCREEN -->
+    <data name="participants.ui.title" xml:space="preserve">
+        <value>What is Gabber?</value>
+    </data>
+    <data name="participants.ui.numselected" xml:space="preserve">
+        <value>{0} participants selected</value>
+    </data>
+    <data name="participants.ui.addparticipant.button" xml:space="preserve">
+        <value>Add participant</value>
+    </data>
+    <data name="participants.ui.startrecording.button" xml:space="preserve">
+        <value>Start recording</value>
+    </data>
+    
+    <!-- PARTICIPANTS SCREEN VALIDATION -->
+    <data name="participants.ui.validation.noneselected" xml:space="preserve">
+        <value>At least one participant must be selected</value>
+    </data>
+    <data name="participants.ui.validation.oneselected.title" xml:space="preserve">
+        <value>One participant selected</value>
+    </data>
+    <data name="participants.ui.validation.oneselected.message" xml:space="preserve">
+        <value>Are you sure that you only want to select one participant?</value>
+    </data>
+    <data name="participants.ui.validation.oneselected.continue" xml:space="preserve">
+        <value>Continue</value>
+    </data>
+    <data name="participants.ui.validation.oneselected.cancel" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    
+    <!-- ADD PARTICIPANT DIALOG -->
+    <data name="participants.ui.dialog.add.title" xml:space="preserve">
+        <value>Add a new participant</value>
+    </data>    
+    <data name="participants.ui.dialog.add.positive" xml:space="preserve">
+        <value>Add</value>
+    </data>
+    <data name="participants.ui.dialog.add.negative" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
 </root>

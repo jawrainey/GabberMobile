@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:padding="24dp">
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/participantNameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -16,10 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:imeOptions="actionNext"
-            android:hint="@string/name" />
+            android:imeOptions="actionNext" />
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/participantEmailLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -29,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:imeOptions="actionDone"
-            android:hint="Email" />
+            android:imeOptions="actionDone" />
     </android.support.design.widget.TextInputLayout>
 </LinearLayout>
