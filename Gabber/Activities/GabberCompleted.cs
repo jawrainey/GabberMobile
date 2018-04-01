@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Preferences;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
@@ -21,20 +21,33 @@ namespace Gabber.Activities
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
             SupportActionBar.Title = "NEXT STEPS";
 
-            var pager = FindViewById<ViewPager>(Resource.Id.next_steps_pager);
+            var lastInterviewSession = GabberPCL.Queries.LastInterviewSession;
+
+            var parts = GabberPCL.Queries.ParticipantsForSession(lastInterviewSession.SessionID);
+            var PartNames = new List<string>();
+            foreach (var p in parts) PartNames.Add(p.Name);
+
+            var names = PartNames.Count() > 1 ? string.Join(", ", PartNames.Take(PartNames.Count() - 1)) + " and " + PartNames.Last() : PartNames.FirstOrDefault();
 
             var pages = new List<OnboardingPageContent> {
                 new OnboardingPageContent {
+                    Image=Resource.Drawable.onboarding_first,
+                    Title="Recording success",
+                    Content="Thanks for recording your Gabber. Once you upload the recording we will send you an email to review the recording and provide consent."
+                },
+                new OnboardingPageContent {
                     Image=Resource.Drawable.onboarding_second,
                     Title="Your Consent",
-                    Content="All participants will receive an email to review and provide consent for the Gabber recording"
+                    Content=$"{names} will receive an email to review and provide consent for the Gabber recording. Once a decision on consent is made others may access the recording on the Gabber website."
                 },
                 new OnboardingPageContent {
                     Image=Resource.Drawable.onboarding_third,
                     Title="Annotate Gabbers",
-                    Content="If all participants consent, your Gabber becomes available for project members to listen and annotate"
+                    Content="If all participants consent, your Gabber becomes available for other project members to listen, annotate and learn from the experiences you shared."
                 }
             };
+
+            var pager = FindViewById<ViewPager>(Resource.Id.next_steps_pager);
             pager.Adapter = new Adapters.SharedPager(this, pages);
 
             var tabs = FindViewById<TabLayout>(Resource.Id.next_steps_tabs);

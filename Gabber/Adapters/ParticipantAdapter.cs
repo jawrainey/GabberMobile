@@ -19,7 +19,7 @@ namespace Gabber
 
 		public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
 		{
-			var participant = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.participant, parent, false);
+			var participant = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.prompt, parent, false);
 			return new ParticipantViewHolder(participant, OnParticipantClicked);
 		}
 
@@ -39,6 +39,8 @@ namespace Gabber
                 mholder.Name.SetTextColor(Color.Black);
             }
 		}
+
+        public int SelectedParticipantsCount => _participants.FindAll((i) => i.Selected).Count;
 
         public void ParticipantSeleted(int index) 
         {
@@ -60,7 +62,7 @@ namespace Gabber
 			public ParticipantViewHolder(View item, Action<int> listener) : base(item)
 			{
 				item.Click += (sender, e) => listener(LayoutPosition);
-				Name = item.FindViewById<TextView>(Resource.Id.name);
+                Name = item.FindViewById<TextView>(Resource.Id.caption);
 			}
 		}
 	}

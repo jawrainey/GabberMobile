@@ -10,10 +10,34 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:keepScreenOn="true">
+        <TextView
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:text="Topics below are used to guide and structure the Gabber recording. Select a topic you are currently discussing, and other topics as the conversation changes."
+            android:background="#FFFFFF"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="16dp"
+            android:lineSpacingExtra="6dp" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:background="#CCCCCC" />
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/prompts"
         android:background="@drawable/record_topic_border_bottom"
-        android:elevation="80000dp"
         android:scrollbars="vertical"
         android:layout_weight="9"
         android:layout_height="0dp"

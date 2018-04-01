@@ -32,26 +32,4 @@
             android:imeOptions="actionDone"
             android:hint="Email" />
     </android.support.design.widget.TextInputLayout>
-<!--    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:layout_alignParentBottom="true">
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/cancelParticipantFromDialog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="24dp"
-            android:textColor="@drawable/textcolorbutton"
-            android:background="@drawable/borderbutton"
-            android:text="Cancel" />
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/addParticipantFromDialog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@drawable/textcolorbutton"
-            android:background="@drawable/borderbutton"
-            android:text="Add" />
-    </LinearLayout>-->
 </LinearLayout>

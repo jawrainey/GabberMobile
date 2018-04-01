@@ -33,6 +33,7 @@ namespace Gabber.Adapters
             var num_topics = session.Prompts.Count;
             var num_parts = session.Participants.Count;
             var length = session.Prompts[num_topics - 1].End;
+            var dateCreated = session.CreatedAt.ToString("MM/dd/yyyy HH:mm");
 
             var PartNames = new List<string>();
             foreach (var p in session.Participants) PartNames.Add(Queries.UserById(p.UserID).Name);
@@ -47,6 +48,7 @@ namespace Gabber.Adapters
             }
 
             mholder.Participants.Text = "(" + num_parts.ToString() + ") " + string.Join(", ", PartNames);
+            mholder.DateCreated.Text = dateCreated;
             mholder.Length.Text = TimeSpan.FromSeconds(length).ToString((@"mm\:ss"));
             mholder.ProjectTitle.Text = project_title;
             mholder.NumTopics.Text = num_topics.ToString() + " Topics";
@@ -70,6 +72,7 @@ namespace Gabber.Adapters
         {
             Sessions[position].IsUploaded = true;
             Sessions[position].IsUploading = false;
+            Sessions.Remove(Sessions[position]);
             NotifyItemChanged(position);
         }
 
@@ -81,6 +84,7 @@ namespace Gabber.Adapters
             public TextView Length { get; set; }
             public TextView ProjectTitle { get; set; }
             public TextView NumTopics { get; set; }
+            public TextView DateCreated { get; set; }
             public AppCompatButton SessionUploaded { get; set; }
             public ProgressBar UploadProgress { get; set; }
 
@@ -90,6 +94,7 @@ namespace Gabber.Adapters
                 Length = item.FindViewById<TextView>(Resource.Id.session_length);
                 ProjectTitle = item.FindViewById<TextView>(Resource.Id.project_title);
                 NumTopics = item.FindViewById<TextView>(Resource.Id.session_num_topics);
+                DateCreated = item.FindViewById<TextView>(Resource.Id.session_date_created);
                 SessionUploaded = item.FindViewById<AppCompatButton>(Resource.Id.session_uploaded);
                 UploadProgress = item.FindViewById<ProgressBar>(Resource.Id.upload_progress);
             }

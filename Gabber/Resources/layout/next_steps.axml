@@ -37,8 +37,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="24dp"
             android:text="PROJECTS"
-            android:textColor="@drawable/textcolorbutton"
-            android:background="@drawable/borderbutton" />
+            android:background="@drawable/custom_button" />
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/sessions"
             android:layout_width="0dp"
@@ -48,7 +47,6 @@
             android:layout_marginBottom="16dp"
             android:layout_marginRight="24dp"
             android:text="SESSIONS"
-            android:textColor="@drawable/textcolorbutton"
-            android:background="@drawable/borderbutton" />
+            android:background="@drawable/custom_button" />
     </LinearLayout>
 </LinearLayout>

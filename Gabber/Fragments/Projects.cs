@@ -28,6 +28,7 @@ namespace Gabber.Fragments
         public static Projects NewInstance()
         {
             if (instance == null) instance = new Projects { Arguments = new Bundle() };
+            System.Console.WriteLine("Despite this, we create a new one each time ...");
             return instance;
         }
 
@@ -44,15 +45,18 @@ namespace Gabber.Fragments
             return rootView;
         }
 
-        public override void OnActivityCreated(Bundle savedInstanceState)
+		public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            _projects = Queries.AllProjects();
+             _projects = Queries.AllProjects();
+
+            // It is not possible to SetAdapter in OnActivityCreated as accessing the rootView.
             adapter = new ProjectsAdapter(_projects);
             adapter.ProjectClicked += OnProjectClick;
             Activity.FindViewById<RecyclerView>(Resource.Id.projects).SetAdapter(adapter);
-
-            LoadDataIfNotLoading();
+            // As this method is called each time the Fragment is in view (similar to onResume),
+            // only call it if there are no projects, i.e. on first use.
+            if (_projects.Count <= 0) LoadDataIfNotLoading(true);
 
             var refresher = Activity.FindViewById<SwipeRefreshLayout>(Resource.Id.projectsRefresher);
             refresher.SetColorSchemeResources(Resource.Color.primary_material_dark);
@@ -62,22 +66,12 @@ namespace Gabber.Fragments
             };
         }
 
-        public override void OnResume()
+        public async Task LoadData(bool withLoadingBar=false)
         {
-            base.OnResume();
-
-            if (LoadingProjects == null || LoadingProjects.IsCompleted)
-            {
-                var progressBar = Activity.FindViewById<ProgressBar>(Resource.Id.progressBar);
-                progressBar.Visibility = ViewStates.Visible;
-                LoadingProjects = LoadData();
-                progressBar.Visibility = ViewStates.Gone;
-            }
-        }
-
-        public async Task LoadData()
-        {
+            var progressBar = Activity.FindViewById<RelativeLayout>(Resource.Id.progressBarLayout);
+            if (withLoadingBar) progressBar.Visibility = ViewStates.Visible;
             var response = await new RestClient().GetProjects(ShowErrorMessage);
+            if (withLoadingBar) progressBar.Visibility = ViewStates.Gone;
 
             if (response.Count > 0)
             {
@@ -87,44 +81,18 @@ namespace Gabber.Fragments
             }
         }
 
-        public void LoadDataIfNotLoading()
+        public void LoadDataIfNotLoading(bool withLoadingBar=false)
         {
             if (LoadingProjects == null || LoadingProjects.IsCompleted)
             {
-                var progressBar = Activity.FindViewById<ProgressBar>(Resource.Id.progressBar);
-                progressBar.Visibility = ViewStates.Visible;
-                LoadingProjects = LoadData();
-                progressBar.Visibility = ViewStates.Gone;
+                LoadingProjects = LoadData(withLoadingBar);
             }
         }
 
-        void ShowErrorMessage(string errorMessage)
-        {
-            Toast.MakeText(Activity, errorMessage, ToastLength.Long).Show();
-        }
-
-        void UploadGabbers()
-        {
-            foreach (var InterviewSession in Queries.AllInterviewSessionsForActiveUser())
-            {
-                if (!InterviewSession.IsUploaded)
-                {
-                    Activity.RunOnUiThread(async () =>
-                    {
-                        if (await new RestClient().Upload(InterviewSession))
-                        {
-                            InterviewSession.IsUploaded = true;
-                            Session.Connection.Update(InterviewSession);
-                            Snackbar.Make(Activity.FindViewById<RecyclerView>(Resource.Id.projects), "Gabber uploaded successfully", 0).Show();
-                        }
-                    });
-                }
-            }
-        }
+        void ShowErrorMessage(string errorMessage) => Toast.MakeText(Activity, errorMessage, ToastLength.Long).Show();
 
         void OnProjectClick(object sender, int position)
         {
-            UploadGabbers();
             var _prefs = PreferenceManager.GetDefaultSharedPreferences(Activity);
             var intent = new Intent(Activity.ApplicationContext, typeof(PreparationActivity));
             // The unique ID used to lookup associated prompts (URLs and text).

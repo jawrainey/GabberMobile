@@ -21,19 +21,31 @@ namespace Gabber.Activities
 
             var pages = new List<OnboardingPageContent> {
                 new OnboardingPageContent {
-                    Image=Resource.Drawable.onboarding_first,
-                    Title="What's Gabber?",
-                    Content="A digital tool for structuring and capturing audio conversations"
+                    Image=Resource.Drawable.onboarding_second,
+                    Title="Structuring Gabbers",
+                    Content="Gabber projects define a set of textual topics to structure the audio recording. " +
+                        "Projects are created on the Gabber website for the mobile experience focus on the capturing."
                 },
                 new OnboardingPageContent {
-                    Image=Resource.Drawable.onboarding_second,
-                    Title="Projects",
-                    Content="Each project contains a set of topics to guide your Gabber"
+                    Image=Resource.Drawable.onboarding_first,
+                    Title="Adding Participants",
+                    Content="Add participants whose experience you want to capture. " +
+                        "Once recorded, participants become members of the project and " +
+                        "will receive an email to review their consent for how their recording should be used."
                 },
                 new OnboardingPageContent {
                     Image=Resource.Drawable.onboarding_third,
-                    Title="Recordings",
-                    Content="Once recorded, you can listen and have extend the conversation online"
+                    Title="Tagging Recording",
+                    Content="Project topics appear in a list to structure the audio recording. " +
+                        "These can be tapped to tag the audio from the last time a topic was tapped. " +
+                        "This creates regions on top of the audio that are used to identify what is being discussed in the recording."
+                },
+                new OnboardingPageContent {
+                    Image=Resource.Drawable.onboarding_third,
+                    Title="Review Consent",
+                    Content="Once a recording is uploaded all participants will receive an email " +
+                        "where they can review the audio and their consent for how their recording " +
+                        "will be viewed, used and shared within the Gabber Project."
                 }
             };
             pager.Adapter = new Adapters.SharedPager(this, pages);

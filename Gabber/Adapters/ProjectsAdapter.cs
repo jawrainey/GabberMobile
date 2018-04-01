@@ -24,7 +24,7 @@ namespace Gabber.Adapters
 
 		public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
 		{
-			View project = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.project, parent, false);
+            var project = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.prompt, parent, false);
 			return new ProjectViewHolder(project, OnProjectClick);
 		}
 		
@@ -34,7 +34,7 @@ namespace Gabber.Adapters
             mholder.ProjectTitle.Text = _projects[position].Title;
 		}
 
-        public override int ItemCount => _projects.Count;
+        public override int ItemCount => (_projects != null ? _projects.Count : 0);
 
 		public event EventHandler<int> ProjectClicked;
 
@@ -46,8 +46,8 @@ namespace Gabber.Adapters
 
 			public ProjectViewHolder(View view, Action<int> listener) : base(view)
 			{
-				ProjectTitle = view.FindViewById<TextView>(Resource.Id.imageText);
-				ProjectTitle.Click += (sender, e) => listener(LayoutPosition);
+                view.Click += (sender, e) => listener(LayoutPosition);
+                ProjectTitle = view.FindViewById<TextView>(Resource.Id.caption);
 			}
 		}
 	}

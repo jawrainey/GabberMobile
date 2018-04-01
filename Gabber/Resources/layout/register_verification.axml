@@ -36,7 +36,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:textColor="@drawable/textcolorbutton"
-        android:background="@drawable/borderbutton"
+        android:background="@drawable/custom_button"
         android:text="OPEN EMAIL CLIENT" />
 </LinearLayout>

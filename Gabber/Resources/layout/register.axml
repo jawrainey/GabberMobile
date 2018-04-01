@@ -59,8 +59,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="@drawable/textcolorbutton"
-        android:background="@drawable/borderbutton"
+        android:background="@drawable/custom_button"
         android:text="@string/btn_register" />
     <ProgressBar
         android:id="@+id/progressBar"

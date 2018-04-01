@@ -11,7 +11,7 @@
       android:id="@+id/menu_gabbers"
       android:enabled="true"
       android:icon="@drawable/menu_gabbers"
-      android:title="Gabbers"
+      android:title="View Gabbers"
       app:showAsAction="always" />
   <item
       android:id="@+id/menu_about"

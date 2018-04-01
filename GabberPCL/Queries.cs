@@ -25,9 +25,9 @@ namespace GabberPCL
             return Session.Connection.GetAllWithChildren<Project>().OrderByDescending(p => p.ID).ToList();
         }
 
-        public static List<InterviewSession> AllInterviewSessionsForActiveUser()
+        public static List<InterviewSession> AllNotUploadedInterviewSessionsForActiveUser()
         {
-            var sessions = Session.Connection.GetAllWithChildren<InterviewSession>();
+            var sessions = Session.Connection.GetAllWithChildren<InterviewSession>().Where((i) => !i.IsUploaded);
             return sessions.OrderByDescending(i => i.CreatedAt).ToList();
         }
 
@@ -92,6 +92,12 @@ namespace GabberPCL
 
         public static void AddInterviewSession(InterviewSession InterviewSession) => Session.Connection.Insert(InterviewSession);
 
+        public static List<User> AllParticipantsUnSelected() {
+            var participants = Session.Connection.Table<User>().ToList();
+            foreach (var p in participants) p.Selected = false;
+            // participants.FirstOrDefault(i => i.Email == Session.ActiveUser.Email && !i.Name.Contains("You")).Name += " (You)";
+            return participants;
+        }
         public static List<User> AllParticipants() => Session.Connection.Table<User>().ToList();
         public static List<User> SelectedParticipants() => AllParticipants().FindAll((p) => p.Selected);
 
@@ -130,6 +136,8 @@ namespace GabberPCL
         {
             return Session.Connection.Table<InterviewParticipant>().Where((ip) => ip.InterviewID == InterviewSessionID).ToList();
         }
+
+        public static InterviewSession LastInterviewSession => Session.Connection.Table<InterviewSession>().Last();
 
         public static List<InterviewPrompt> AnnotationsForLastSession()
         {

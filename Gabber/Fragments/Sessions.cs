@@ -25,7 +25,7 @@ namespace Gabber.Fragments
 
             var toolbar = rootView.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             ((AppCompatActivity)Activity).SetSupportActionBar(toolbar);
-            ((AppCompatActivity)Activity).SupportActionBar.Title = "Your sessions";
+            ((AppCompatActivity)Activity).SupportActionBar.Title = "Your Gabbers";
 
             return rootView;
         }
@@ -34,7 +34,7 @@ namespace Gabber.Fragments
         {
             base.OnCreate(savedInstanceState);
 
-            var sessions = Queries.AllInterviewSessionsForActiveUser();
+            var sessions = Queries.AllNotUploadedInterviewSessionsForActiveUser();
             var adapter = new Adapters.SessionAdapter(sessions);
             var sessionsView = Activity.FindViewById<RecyclerView>(Resource.Id.sessions);
 
@@ -42,7 +42,11 @@ namespace Gabber.Fragments
 
             var sessions_upload = Activity.FindViewById<AppCompatButton>(Resource.Id.upload_sessions);
             var sessions_to_upload = sessions.FindAll(t => !t.IsUploaded).ToArray();
-            if (sessions_to_upload.Length <= 0) sessions_upload.Enabled = false;
+
+            if (sessions_to_upload.Length > 0) {
+                sessions_upload.Visibility = ViewStates.Visible;
+                Activity.FindViewById<TextView>(Resource.Id.sessionsInstructions).Visibility = ViewStates.Gone;
+            }
 
             sessions_upload.Click += async delegate
             {
@@ -73,6 +77,10 @@ namespace Gabber.Fragments
                             Toast.MakeText(Activity, "Failed to upload. Try again soon.", ToastLength.Long).Show();
                         }
                     }
+                }
+                if (Queries.AllNotUploadedInterviewSessionsForActiveUser().Count <= 0) {
+                    sessions_upload.Visibility = ViewStates.Invisible;
+                    Activity.FindViewById<TextView>(Resource.Id.sessionsInstructions).Visibility = ViewStates.Visible;
                 }
                 sessions_upload.Enabled = true;
             };

@@ -31,25 +31,14 @@ namespace Gabber
 
 			// Required to access existing gabbers for a given user
 			var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
-            var participants = Queries.AllParticipants();
-
-            if (participants.Count <= 0)
-            {
-                Session.Connection.Insert(new User
-                {
-                    Name = "(You)",
-                    Email = prefs.GetString("username", ""),
-                    Selected = true
-                });
-                participants = Queries.AllParticipants();
-            }
-
+            var participants = Queries.AllParticipantsUnSelected();
 			var participantsView = FindViewById<RecyclerView>(Resource.Id.participants);
             participantsView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Vertical, false));
 
             adapter = new ParticipantAdapter(participants);
 			adapter.ParticipantClicked += ParticipantSelected;
 			participantsView.SetAdapter(adapter);
+            UpdateParticipantsSelectedLabel();
             new LinearSnapHelper().AttachToRecyclerView(participantsView);
 
 			FindViewById<Button>(Resource.Id.addParticipant).Click += delegate
@@ -97,11 +86,11 @@ namespace Gabber
 
 			FindViewById<Button>(Resource.Id.selectPrompt).Click += delegate
 			{
-                if (Queries.SelectedParticipants().Count == 0)
+                if (adapter.SelectedParticipantsCount == 0)
 				{
-                    Snackbar.Make(participantsView, Resources.GetText(Resource.String.select_participant), Snackbar.LengthLong).Show();
+                    Toast.MakeText(this, Resources.GetText(Resource.String.select_participant), ToastLength.Long).Show();
 				}
-                else if (Queries.SelectedParticipants().Count == 1)
+                else if (adapter.SelectedParticipantsCount == 1)
                 {
                     var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
                     alert.SetTitle("One participant selected");
@@ -155,6 +144,16 @@ namespace Gabber
             return true;
         }
 
-        void ParticipantSelected(object sender, int position) => adapter.ParticipantSeleted(position);
+        void UpdateParticipantsSelectedLabel()
+        {
+            var partCount = FindViewById<TextView>(Resource.Id.participantCount);
+            partCount.Text = string.Format("{0} participants selected", adapter.SelectedParticipantsCount);
+        }
+
+        void ParticipantSelected(object sender, int position)
+        {
+            adapter.ParticipantSeleted(position);
+            UpdateParticipantsSelectedLabel();
+        }
     }
 }
