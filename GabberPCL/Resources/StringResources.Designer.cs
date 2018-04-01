@@ -148,5 +148,41 @@ namespace GabberPCL.Resources {
                 return ResourceManager.GetString("projects.ui.instructions", resourceCulture);
             }
         }
+        
+        public static string sessions_ui_title {
+            get {
+                return ResourceManager.GetString("sessions.ui.title", resourceCulture);
+            }
+        }
+        
+        public static string sessions_ui_header_instructions {
+            get {
+                return ResourceManager.GetString("sessions.ui.header.instructions", resourceCulture);
+            }
+        }
+        
+        public static string sessions_ui_body_instructions {
+            get {
+                return ResourceManager.GetString("sessions.ui.body.instructions", resourceCulture);
+            }
+        }
+        
+        public static string sessions_ui_submit_button {
+            get {
+                return ResourceManager.GetString("sessions.ui.submit.button", resourceCulture);
+            }
+        }
+        
+        public static string sessions_ui_message_upload_success {
+            get {
+                return ResourceManager.GetString("sessions.ui.message.upload.success", resourceCulture);
+            }
+        }
+        
+        public static string sessions_ui_message_upload_fail {
+            get {
+                return ResourceManager.GetString("sessions.ui.message.upload.fail", resourceCulture);
+            }
+        }
     }
 }

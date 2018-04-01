@@ -70,12 +70,32 @@
         <value>Your Full Name is empty</value>
     </data>
 
-    <!-- PROJECTS SCREEN -->
+    <!-- PROJECTS FRAGMENT -->
 
     <data name="projects.ui.title" xml:space="preserve">
         <value>Projects</value>
     </data>    
     <data name="projects.ui.instructions" xml:space="preserve">
         <value>Gabber project structures an audio conversation using a set of textual topics to tag the audio during recording. These structural tags are used to simplify viewing and reuse of the audio on the website.</value>
+    </data>
+
+    <!-- SESSIONS FRAGMENT -->
+    <data name="sessions.ui.title" xml:space="preserve">
+        <value>Your Gabbers</value>
+    </data>    
+    <data name="sessions.ui.header.instructions" xml:space="preserve">
+        <value>Upload your Gabber for others to listen, annotate and learn from the experiences you captured.</value>
+    </data>
+    <data name="sessions.ui.body.instructions" xml:space="preserve">
+        <value>There are no Gabber recordings to upload.</value>
+    </data>
+    <data name="sessions.ui.submit.button" xml:space="preserve">
+        <value>Upload all sessions</value>
+    </data>
+    <data name="sessions.ui.message.upload.success" xml:space="preserve">
+        <value>Gabber session uploaded successfully</value>
+    </data>
+    <data name="sessions.ui.message.upload.fail" xml:space="preserve">
+        <value>Failed to upload. Try again soon.</value>
     </data>
 </root>

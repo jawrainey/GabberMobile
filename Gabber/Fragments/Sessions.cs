@@ -4,6 +4,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using GabberPCL;
+using GabberPCL.Resources;
 
 namespace Gabber.Fragments
 {
@@ -23,9 +24,18 @@ namespace Gabber.Fragments
             var sessions = rootView.FindViewById<RecyclerView>(Resource.Id.sessions);
             sessions.SetLayoutManager(new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false));
 
+            var instructions = rootView.FindViewById<TextView>(Resource.Id.sessionsInstructions);
+            instructions.Text = StringResources.sessions_ui_header_instructions;
+
+            var bodyInstructions = rootView.FindViewById<TextView>(Resource.Id.sessionsBodyInstructions);
+            bodyInstructions.Text = StringResources.sessions_ui_body_instructions;
+
+            var sessions_upload = rootView.FindViewById<AppCompatButton>(Resource.Id.upload_sessions);
+            sessions_upload.Text = StringResources.sessions_ui_submit_button;
+                
             var toolbar = rootView.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             ((AppCompatActivity)Activity).SetSupportActionBar(toolbar);
-            ((AppCompatActivity)Activity).SupportActionBar.Title = "Your Gabbers";
+            ((AppCompatActivity)Activity).SupportActionBar.Title = StringResources.sessions_ui_title;
 
             return rootView;
         }
@@ -45,7 +55,7 @@ namespace Gabber.Fragments
 
             if (sessions_to_upload.Length > 0) {
                 sessions_upload.Visibility = ViewStates.Visible;
-                Activity.FindViewById<TextView>(Resource.Id.sessionsInstructions).Visibility = ViewStates.Gone;
+                Activity.FindViewById<TextView>(Resource.Id.sessionsBodyInstructions).Visibility = ViewStates.Gone;
             }
 
             sessions_upload.Click += async delegate
@@ -69,18 +79,18 @@ namespace Gabber.Fragments
                             session.IsUploaded = didUpload;
                             Session.Connection.Update(session);
                             adapter.SessionIsUploaded(i);
-                            Toast.MakeText(Activity, "Session uploaded successfully", ToastLength.Long).Show();
+                            Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_success, ToastLength.Long).Show();
                         }
                         else
                         {
                             adapter.SessionUploadFail(i);
-                            Toast.MakeText(Activity, "Failed to upload. Try again soon.", ToastLength.Long).Show();
+                            Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_fail, ToastLength.Long).Show();
                         }
                     }
                 }
                 if (Queries.AllNotUploadedInterviewSessionsForActiveUser().Count <= 0) {
                     sessions_upload.Visibility = ViewStates.Invisible;
-                    Activity.FindViewById<TextView>(Resource.Id.sessionsInstructions).Visibility = ViewStates.Visible;
+                    Activity.FindViewById<TextView>(Resource.Id.sessionsBodyInstructions).Visibility = ViewStates.Visible;
                 }
                 sessions_upload.Enabled = true;
             };
