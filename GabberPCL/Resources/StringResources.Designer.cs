@@ -184,5 +184,17 @@ namespace GabberPCL.Resources {
                 return ResourceManager.GetString("sessions.ui.message.upload.fail", resourceCulture);
             }
         }
+        
+        public static string about_ui_title {
+            get {
+                return ResourceManager.GetString("about.ui.title", resourceCulture);
+            }
+        }
+        
+        public static string about_ui_content {
+            get {
+                return ResourceManager.GetString("about.ui.content", resourceCulture);
+            }
+        }
     }
 }

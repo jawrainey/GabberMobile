@@ -98,4 +98,12 @@
     <data name="sessions.ui.message.upload.fail" xml:space="preserve">
         <value>Failed to upload. Try again soon.</value>
     </data>
+
+    <!-- ABOUT FRAGMENT -->
+    <data name="about.ui.title" xml:space="preserve">
+        <value>What is Gabber?</value>
+    </data>
+    <data name="about.ui.content" xml:space="preserve">
+        <value>Gabber is a digital workflow for structuring, capturing and creating conversations on audio recordings. The mobile application is used to structure and capture these conversations, and the website is used for viewing and commenting on the structured audios.</value>
+    </data>
 </root>
