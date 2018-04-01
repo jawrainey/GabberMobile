@@ -136,5 +136,17 @@ namespace GabberPCL.Resources {
                 return ResourceManager.GetString("register.ui.fullname.validate.empty", resourceCulture);
             }
         }
+        
+        public static string projects_ui_title {
+            get {
+                return ResourceManager.GetString("projects.ui.title", resourceCulture);
+            }
+        }
+        
+        public static string projects_ui_instructions {
+            get {
+                return ResourceManager.GetString("projects.ui.instructions", resourceCulture);
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ using Android.Widget;
 using Gabber.Adapters;
 using GabberPCL;
 using GabberPCL.Models;
+using GabberPCL.Resources;
 
 namespace Gabber.Fragments
 {
@@ -28,7 +29,6 @@ namespace Gabber.Fragments
         public static Projects NewInstance()
         {
             if (instance == null) instance = new Projects { Arguments = new Bundle() };
-            System.Console.WriteLine("Despite this, we create a new one each time ...");
             return instance;
         }
 
@@ -38,9 +38,12 @@ namespace Gabber.Fragments
             var projects = rootView.FindViewById<RecyclerView>(Resource.Id.projects);
             projects.SetLayoutManager(new LinearLayoutManager(Activity));
 
+            var instructions = rootView.FindViewById<TextView>(Resource.Id.projectInstructions);
+            instructions.Text = StringResources.projects_ui_instructions;
+
             var toolbar = rootView.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             ((AppCompatActivity)Activity).SetSupportActionBar(toolbar);
-            ((AppCompatActivity)Activity).SupportActionBar.Title = Resources.GetText(Resource.String.select_project);
+            ((AppCompatActivity)Activity).SupportActionBar.Title = StringResources.projects_ui_title;
 
             return rootView;
         }
