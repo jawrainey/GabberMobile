@@ -13,38 +13,60 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
 
-    <!-- Shared API errors -->
+    <!-- SHARED UI FORMS -->
+    <data name="common.ui.forms.email.label" xml:space="preserve">
+        <value>Email address</value>
+    </data>
+    <data name="common.ui.forms.password.label" xml:space="preserve">
+        <value>Password</value>
+    </data>
+    <data name="common.ui.forms.email.validate.empty" xml:space="preserve">
+        <value>An email address is required</value>
+    </data>
+    <data name="common.ui.forms.email.validate.invalid" xml:space="preserve">
+        <value>The email provided is invalid</value>
+    </data>
+    <data name="common.ui.forms.password.validate.empty" xml:space="preserve">
+        <value>A password is required</value>
+    </data>
+
+    <!-- USER LOGIN SCREEN: API errors -->
     <data name="login.api.error.GENERAL" xml:space="preserve">
         <value>An unknown error has occurred.</value>
     </data>
-    
-    <!-- USER LOGIN SCREEN: API errors -->
+    <data name="login.api.error.NO_INTERNET" xml:space="preserve">
+        <value>You are not connected to the internet.</value>
+    </data>
     <data name="login.api.error.AUTH_INVALID_PASSWORD" xml:space="preserve">
-        <value>You have provided an incorrect password for that email</value>
+        <value>You have provided an incorrect password for that email.</value>
     </data>
     <data name="login.api.error.AUTH_USER_404" xml:space="preserve">
-        <value>There is no registered user with that email address"</value>
+        <value>There is no registered user with that email address.</value>
     </data>
     
     <!-- USER LOGIN SCREEN: UI -->
-    <data name="login.ui.email.label" xml:space="preserve">
-        <value>Email address</value>
-    </data>
-    <data name="login.ui.password.label" xml:space="preserve">
-        <value>Password</value>
-    </data>
     <data name="login.ui.submit.button" xml:space="preserve">
         <value>Login</value>
     </data>
+
+    <!-- USER REGISTER SCREEN: API errors -->
+    <data name="register.api.error.AUTH_INVALID_PASSWORD" xml:space="preserve">
+        <value>You have provided an incorrect password for that email</value>
+    </data>
+    <data name="register.api.error.AUTH_USER_404" xml:space="preserve">
+        <value>There is no registered user with that email address"</value>
+    </data>
+
+    <!-- USER REGISTER SCREEN: UI -->
+    <data name="register.ui.fullname.label" xml:space="preserve">
+        <value>Fullname</value>
+    </data>
+    <data name="register.ui.submit.button" xml:space="preserve">
+        <value>Register</value>
+    </data>
     
-    <!-- USER LOGIN SCREEN: UI errors -->
-    <data name="login.ui.error.email.empty" xml:space="preserve">
-        <value>An email address is required</value>
-    </data>
-    <data name="login.ui.error.email.invalid" xml:space="preserve">
-        <value>The email provided is invalid</value>
-    </data>
-    <data name="login.ui.error.email.password" xml:space="preserve">
-        <value>A password is required</value>
+    <!-- USER REGISTER SCREEN: UI errors -->
+    <data name="register.ui.fullname.validate.empty" xml:space="preserve">
+        <value>Your Full Name is empty</value>
     </data>
 </root>

@@ -119,8 +119,14 @@ namespace GabberPCL
             return _response;
         }
 
-        public async Task<bool> Register(string fullname, string email, string password, Action<string> errorCallback)
+        public async Task<CustomAuthResponse> Register(string fullname, string email, string password)
 		{
+            var _response = new CustomAuthResponse
+            {
+                Data = null,
+                Meta = new Meta { Messages = new List<string>(), Success = false }
+            };
+
             try
             {
                 var payload = JsonConvert.SerializeObject(new { fullname, email, password });
@@ -129,21 +135,18 @@ namespace GabberPCL
                 var response = await _client.PostAsync("api/auth/register/", _content);
                 var content = await response.Content.ReadAsStringAsync();
 
-                if (response.IsSuccessStatusCode)
-                {
-                    return JsonConvert.DeserializeObject<RegisterAuthResponse>(content).Meta.Success;
-                }
-                errorCallback(JsonConvert.DeserializeObject<RegisterAuthResponse>(content).Meta.Messages[0]);
+                _response.Meta = JsonConvert.DeserializeObject<RegisterAuthResponse>(content).Meta;
+                return _response;
             }
             catch (HttpRequestException)
             {
-                errorCallback("You are not connected to the Internet");
+                _response.Meta.Messages.Add("NO_INTERNET");
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                errorCallback("An unknown error occurred");
+                _response.Meta.Messages.Add("GENERAL");
             }
-            return false;
+            return _response;
 		}
 
         public async Task<RegisterVerifyAuthResponse<DataUserTokens>> RegisterVerify(string token)

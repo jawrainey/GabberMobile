@@ -25,10 +25,10 @@ namespace Gabber
             submit.Text = StringResources.login_ui_submit_button;
 
             // Have to manually change hints on input layout.
-            var _password = FindViewById<TextInputLayout>(Resource.Id.passwordTextInput);
-            _password.Hint = StringResources.login_ui_password_label;
             var _email = FindViewById<TextInputLayout>(Resource.Id.emailTextInput);
-            _email.Hint = StringResources.login_ui_email_label;
+            _email.Hint = StringResources.common_ui_forms_email_label;
+            var _password = FindViewById<TextInputLayout>(Resource.Id.passwordTextInput);
+            _password.Hint = StringResources.common_ui_forms_password_label;
                             
             FindViewById<TextInputEditText>(Resource.Id.password).EditorAction += (_, e) => {
                 e.Handled = false;
@@ -50,17 +50,17 @@ namespace Gabber
 				if (string.IsNullOrWhiteSpace(email.Text))
 				{
                     email.RequestFocus();
-                    Snackbar.Make(email, StringResources.login_ui_error_email_empty, Snackbar.LengthLong).Show();
+                    Snackbar.Make(email, StringResources.common_ui_forms_email_validate_empty, Snackbar.LengthLong).Show();
 				}
                 else if (string.IsNullOrWhiteSpace(passw.Text))
                 {
                     passw.RequestFocus();
-                    Snackbar.Make(passw, StringResources.login_ui_error_email_password, Snackbar.LengthLong).Show();
+                    Snackbar.Make(passw, StringResources.common_ui_forms_password_validate_empty, Snackbar.LengthLong).Show();
                 }
 				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
 				{
                     email.RequestFocus();
-                    Snackbar.Make(email, StringResources.login_ui_error_email_invalid, Snackbar.LengthLong).Show();
+                    Snackbar.Make(email, StringResources.common_ui_forms_email_validate_invalid, Snackbar.LengthLong).Show();
 				}
 				else
 				{
@@ -73,13 +73,7 @@ namespace Gabber
                     {
                         RunOnUiThread(() =>
                         {
-                            response.Meta.Messages.ForEach(
-                                (err) => 
-                                Snackbar.Make(
-                                    email, 
-                                    StringResources.ResourceManager.GetString($"login.api.error.{err}"), 
-                                    Snackbar.LengthLong).Show()
-                            );
+                            response.Meta.Messages.ForEach(MakeError);
                             FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = true;
                             FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
                         });
@@ -108,5 +102,12 @@ namespace Gabber
 				}
 			};
 		}
+
+        void MakeError(string errorMessage)
+        {
+            var email = FindViewById<AppCompatEditText>(Resource.Id.email);
+            var message = StringResources.ResourceManager.GetString($"login.api.error.{errorMessage}");
+            Snackbar.Make(email, message, Snackbar.LengthLong).Show();
+        }
 	}
 }

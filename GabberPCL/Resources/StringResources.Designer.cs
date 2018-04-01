@@ -47,9 +47,45 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string common_ui_forms_email_label {
+            get {
+                return ResourceManager.GetString("common.ui.forms.email.label", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_password_label {
+            get {
+                return ResourceManager.GetString("common.ui.forms.password.label", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_email_validate_empty {
+            get {
+                return ResourceManager.GetString("common.ui.forms.email.validate.empty", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_email_validate_invalid {
+            get {
+                return ResourceManager.GetString("common.ui.forms.email.validate.invalid", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_password_validate_empty {
+            get {
+                return ResourceManager.GetString("common.ui.forms.password.validate.empty", resourceCulture);
+            }
+        }
+        
         public static string login_api_error_GENERAL {
             get {
                 return ResourceManager.GetString("login.api.error.GENERAL", resourceCulture);
+            }
+        }
+        
+        public static string login_api_error_NO_INTERNET {
+            get {
+                return ResourceManager.GetString("login.api.error.NO_INTERNET", resourceCulture);
             }
         }
         
@@ -65,39 +101,39 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string login_ui_email_label {
-            get {
-                return ResourceManager.GetString("login.ui.email.label", resourceCulture);
-            }
-        }
-        
-        public static string login_ui_password_label {
-            get {
-                return ResourceManager.GetString("login.ui.password.label", resourceCulture);
-            }
-        }
-        
         public static string login_ui_submit_button {
             get {
                 return ResourceManager.GetString("login.ui.submit.button", resourceCulture);
             }
         }
         
-        public static string login_ui_error_email_empty {
+        public static string register_api_error_AUTH_INVALID_PASSWORD {
             get {
-                return ResourceManager.GetString("login.ui.error.email.empty", resourceCulture);
+                return ResourceManager.GetString("register.api.error.AUTH_INVALID_PASSWORD", resourceCulture);
             }
         }
         
-        public static string login_ui_error_email_invalid {
+        public static string register_api_error_AUTH_USER_404 {
             get {
-                return ResourceManager.GetString("login.ui.error.email.invalid", resourceCulture);
+                return ResourceManager.GetString("register.api.error.AUTH_USER_404", resourceCulture);
             }
         }
         
-        public static string login_ui_error_email_password {
+        public static string register_ui_fullname_label {
             get {
-                return ResourceManager.GetString("login.ui.error.email.password", resourceCulture);
+                return ResourceManager.GetString("register.ui.fullname.label", resourceCulture);
+            }
+        }
+        
+        public static string register_ui_submit_button {
+            get {
+                return ResourceManager.GetString("register.ui.submit.button", resourceCulture);
+            }
+        }
+        
+        public static string register_ui_fullname_validate_empty {
+            get {
+                return ResourceManager.GetString("register.ui.fullname.validate.empty", resourceCulture);
             }
         }
     }
