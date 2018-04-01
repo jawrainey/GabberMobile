@@ -12,4 +12,4 @@
 
 ### Running locally
 
-Open [Gabber.sln](https://github.com/jawrainey/GabberMobile/blob/master/Gabber.sln) with Visual Studio and install the package dependencies. To use a local version of the [GabberAPI](https://github.com/jawrainey/GabberAPI) update `BaseAddress` in RESTClient to either use your local IP (as it runs on `0.0.0.0:5000` locally) or create an [ngrok](https://ngrok.com/)tunnel to expose the API.
+Open [Gabber.sln](https://github.com/jawrainey/GabberMobile/blob/master/Gabber.sln) with Visual Studio and install the package dependencies. To use a local version of the [GabberAPI](https://github.com/jawrainey/GabberAPI) update `BaseAddress` in RESTClient to either use your local IP (as it runs on `0.0.0.0:5000`) or create an [ngrok](https://ngrok.com/) tunnel to expose the API.
