@@ -87,21 +87,14 @@ namespace Gabber.iOS
                 RegisterUIButton.Enabled = false;
                 var client = new RestClient();
                 RegisterActivityIndicator.StartAnimating();
-                var tokens = await client.Register(fname, email, passw, (message) => ErrorMessageDialog(message));
+                var isRegisterSuccess = await client.Register(fname, email, passw, (message) => ErrorMessageDialog(message));
                 RegisterActivityIndicator.StopAnimating();
                 RegisterUIButton.Enabled = true;
 
-                if (!string.IsNullOrEmpty(tokens.Access))
+                if (isRegisterSuccess)
                 {
-                    NSUserDefaults.StandardUserDefaults.SetString(JsonConvert.SerializeObject(tokens), "ActiveUserTokens");
-                    NSUserDefaults.StandardUserDefaults.SetString(email, "Username");
-                    // This user is new, so needs to be created locally.
-                    Session.Connection.Insert(new User
-                    {
-                        Name = fname + " (You)",
-                        Email = email,
-                        Selected = true
-                    });
+                    // TODO: should take us to the verification page ...
+
                     // Set the root view as ProjectsVC; handled in AppDelegate
                     UIApplication.SharedApplication.Windows[0].RootViewController =
                         UIStoryboard.FromName("Main", null).InstantiateInitialViewController();

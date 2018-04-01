@@ -58,14 +58,20 @@ namespace Gabber.iOS
                 LoginUIButton.Enabled = false;
                 var client = new RestClient();
                 LoginActivityIndicator.StartAnimating();
-                var tokens = await client.Login(email, passw, (message) => ErrorMessageDialog(message));
+                var response = await client.Login(email, passw);
                 LoginActivityIndicator.StopAnimating();
                 LoginUIButton.Enabled = true;
 
-                if (!string.IsNullOrEmpty(tokens.Access))
+                if (response.Meta.Messages.Count > 0)
                 {
-                    NSUserDefaults.StandardUserDefaults.SetString(JsonConvert.SerializeObject(tokens), "ActiveUserTokens");
-                    NSUserDefaults.StandardUserDefaults.SetString(email, "Username");
+                    ErrorMessageDialog(response.Meta.Messages[0]);
+                }
+                else if (!string.IsNullOrEmpty(response.Data?.Tokens.Access))
+                {
+                    NSUserDefaults.StandardUserDefaults.SetString(JsonConvert.SerializeObject(response.Data.Tokens), "tokens");
+                    NSUserDefaults.StandardUserDefaults.SetString(email, "username");
+
+                    Queries.SetActiveUser(response.Data);
 
                     UIApplication.SharedApplication.Windows[0].RootViewController =
                         UIStoryboard.FromName("Main", null).InstantiateInitialViewController();

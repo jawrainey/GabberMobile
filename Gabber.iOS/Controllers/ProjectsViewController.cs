@@ -21,13 +21,11 @@ namespace Gabber.iOS
 
             if (Session.ActiveUser == null)
             {
-                // TODO: although we have Session.ActiveUser, it's overkill at the moment
-                var email = NSUserDefaults.StandardUserDefaults.StringForKey("Username");
-                Session.ActiveUser = Queries.FindOrInsertUser(email);
-                Session.ActiveUser.IsActive = true;
-                // TODO: should only store refresh token and keep access token in memory
-                var tokens = NSUserDefaults.StandardUserDefaults.StringForKey("ActiveUserTokens");
-                Session.Token = JsonConvert.DeserializeObject<JWToken>(tokens);
+                var email = NSUserDefaults.StandardUserDefaults.StringForKey("username");
+                var user = Queries.UserByEmail(email);
+                var _tokens = NSUserDefaults.StandardUserDefaults.StringForKey("tokens");
+                var tokens = JsonConvert.DeserializeObject<JWToken>(_tokens);
+                Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
             }
 
             ProjectsActivityIndicator.StartAnimating();
