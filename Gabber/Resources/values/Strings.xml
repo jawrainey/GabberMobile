@@ -10,10 +10,6 @@
 
 	<string name="name">Full name</string>
 	<string name="full_name">Full name</string>
-	<string name="login_prompt_email">Email address</string>
-	<string name="login_prompt_password">Password</string>
-	<string name="login_button">Login</string>
-	<string name="login_register">Need an account?</string>
 	<string name="btn_register">Register</string>
 	
 	<string name="select_participant">At least one participant must be selected</string>

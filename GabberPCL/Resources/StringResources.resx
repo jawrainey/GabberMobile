@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+
+    <!-- Shared API errors -->
+    <data name="login.api.error.GENERAL" xml:space="preserve">
+        <value>An unknown error has occurred.</value>
+    </data>
+    
+    <!-- USER LOGIN SCREEN: API errors -->
+    <data name="login.api.error.AUTH_INVALID_PASSWORD" xml:space="preserve">
+        <value>You have provided an incorrect password for that email</value>
+    </data>
+    <data name="login.api.error.AUTH_USER_404" xml:space="preserve">
+        <value>There is no registered user with that email address"</value>
+    </data>
+    
+    <!-- USER LOGIN SCREEN: UI -->
+    <data name="login.ui.email.label" xml:space="preserve">
+        <value>Email address</value>
+    </data>
+    <data name="login.ui.password.label" xml:space="preserve">
+        <value>Password</value>
+    </data>
+    <data name="login.ui.submit.button" xml:space="preserve">
+        <value>Login</value>
+    </data>
+    
+    <!-- USER LOGIN SCREEN: UI errors -->
+    <data name="login.ui.error.email.empty" xml:space="preserve">
+        <value>An email address is required</value>
+    </data>
+    <data name="login.ui.error.email.invalid" xml:space="preserve">
+        <value>The email provided is invalid</value>
+    </data>
+    <data name="login.ui.error.email.password" xml:space="preserve">
+        <value>A password is required</value>
+    </data>
+</root>
