@@ -17,8 +17,8 @@
         android:background="#FFFFFF"
         android:keepScreenOn="true">
         <TextView
+            android:id="@+id/recordInstructionsHeader"
             style="@style/TextAppearance.AppCompat.Body2"
-            android:text="Topics below are used to guide and structure the Gabber recording. Select a topic you are currently discussing, and other topics as the conversation changes."
             android:background="#FFFFFF"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -48,9 +48,8 @@
         android:layout_height="0dp"
         android:layout_margin="12dp">
         <TextView
-            android:id="@+id/recordInstructions"
+            android:id="@+id/recordInstructionsFooter"
             style="@style/TextAppearance.AppCompat.Body2"
-            android:text="Select a topic to begin recording"
             android:layout_width="fill_parent"
             android:textColor="@android:color/white"
             android:layout_height="wrap_content"

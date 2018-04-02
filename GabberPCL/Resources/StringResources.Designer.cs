@@ -268,5 +268,71 @@ namespace GabberPCL.Resources {
                 return ResourceManager.GetString("participants.ui.dialog.add.negative", resourceCulture);
             }
         }
+        
+        public static string recording_ui_title {
+            get {
+                return ResourceManager.GetString("recording.ui.title", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_title_active {
+            get {
+                return ResourceManager.GetString("recording.ui.title.active", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_instructions_header {
+            get {
+                return ResourceManager.GetString("recording.ui.instructions.header", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_instructions_footer {
+            get {
+                return ResourceManager.GetString("recording.ui.instructions.footer", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_dialog_finish_title {
+            get {
+                return ResourceManager.GetString("recording.ui.dialog.finish.title", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_dialog_finish_positive {
+            get {
+                return ResourceManager.GetString("recording.ui.dialog.finish.positive", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_dialog_finish_negative {
+            get {
+                return ResourceManager.GetString("recording.ui.dialog.finish.negative", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_dialog_back_title {
+            get {
+                return ResourceManager.GetString("recording.ui.dialog.back.title", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_dialog_back_body {
+            get {
+                return ResourceManager.GetString("recording.ui.dialog.back.body", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_dialog_back_positive {
+            get {
+                return ResourceManager.GetString("recording.ui.dialog.back.positive", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_dialog_back_negative {
+            get {
+                return ResourceManager.GetString("recording.ui.dialog.back.negative", resourceCulture);
+            }
+        }
     }
 }

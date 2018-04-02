@@ -173,9 +173,6 @@
     <AndroidResource Include="Resources\drawable\onboarding_border_top.xml" />
     <AndroidResource Include="Resources\layout\project.axml" />
     <AndroidResource Include="Resources\layout\toolbar.axml" />
-    <AndroidResource Include="Resources\values\Strings.xml" />
-    <AndroidResource Include="Resources\values-hi\Strings.xml" />
-    <AndroidResource Include="Resources\values-hi\styles.xml" />
     <AndroidResource Include="Resources\drawable\record_topic_border_bottom.xml" />
     <AndroidResource Include="Resources\drawable\record_topic_border.xml" />
     <AndroidResource Include="Resources\layout\participantdialog.xml" />
@@ -207,7 +204,6 @@
     <Folder Include="Activities\" />
     <Folder Include="Adapters\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Resources\values-hi\" />
     <Folder Include="Resources\menu\" />
     <Folder Include="Fragments\" />
   </ItemGroup>

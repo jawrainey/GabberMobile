@@ -148,4 +148,44 @@
     <data name="participants.ui.dialog.add.negative" xml:space="preserve">
         <value>Cancel</value>
     </data>
+
+    <!-- RECORD SCREEN -->
+    <data name="recording.ui.title" xml:space="preserve">
+        <value>Record Gabber</value>
+    </data>
+    <data name="recording.ui.title.active" xml:space="preserve">
+        <value>Recording Gabber</value>
+    </data>
+    <data name="recording.ui.instructions.header" xml:space="preserve">
+        <value>Topics below are used to guide and structure the Gabber recording. Select a topic you are currently discussing, and other topics as the conversation changes.</value>
+    </data>
+    <data name="recording.ui.instructions.footer" xml:space="preserve">
+        <value>Select a topic to begin recording</value>    
+    </data>
+    
+    <!-- RECORD SCREEN FINISH -->
+    <data name="recording.ui.dialog.finish.title" xml:space="preserve">
+        <value>Are you sure you want to end this recording?</value>
+    </data>
+    <data name="recording.ui.dialog.finish.positive" xml:space="preserve">
+        <value>Yes</value>
+    </data>
+    <data name="recording.ui.dialog.finish.negative" xml:space="preserve">
+        <value>No</value>    
+    </data>  
+
+    <!-- RECORD SCREEN BACK -->
+    <data name="recording.ui.dialog.back.title" xml:space="preserve">
+        <value>You are recording</value>
+    </data>
+    <data name="recording.ui.dialog.back.body" xml:space="preserve">
+        <value>If you go back the recording will not be saved.</value>
+    </data>
+    <data name="recording.ui.dialog.back.positive" xml:space="preserve">
+        <value>Go back</value>
+    </data>
+    <data name="recording.ui.dialog.back.negative" xml:space="preserve">
+        <value>Stop</value>    
+    </data>  
+    
 </root>

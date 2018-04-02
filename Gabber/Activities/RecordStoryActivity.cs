@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using GabberPCL.Models;
 using Gabber.Adapters;
+using GabberPCL.Resources;
 
 namespace Gabber
 {
@@ -43,8 +44,13 @@ namespace Gabber
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.record);
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
-            SupportActionBar.Title = "Record Gabber";
+            SupportActionBar.Title = StringResources.recording_ui_title;
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            var instructionsHeader = FindViewById<TextView>(Resource.Id.recordInstructionsHeader);
+            instructionsHeader.Text = StringResources.recording_ui_instructions_header;
+            var instructionsFooter = FindViewById<TextView>(Resource.Id.recordInstructionsFooter);
+            instructionsFooter.Text = StringResources.recording_ui_instructions_footer;
 
             InterviewSessionID = Guid.NewGuid().ToString();
 
@@ -90,7 +96,7 @@ namespace Gabber
 
 						while (_isrecording)
 						{
-                            SupportActionBar.Title = "Recording Gabber";
+                            SupportActionBar.Title = StringResources.recording_ui_title_active;
 							timer.Text = TimeSpan.FromSeconds(_seconds++).ToString((@"mm\:ss"));
 							await Task.Delay(1000);
 						}
@@ -110,17 +116,16 @@ namespace Gabber
             if (_isrecording) {
 
                 var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
-                alert.SetTitle("You are currently recording");
-                alert.SetMessage("Are you sure you want to go back? If you do, the recording will not be saved.");
-                alert.SetIcon(Android.Resource.Drawable.IcDialogAlert);
+                alert.SetTitle(StringResources.recording_ui_dialog_back_title);
+                alert.SetMessage(StringResources.recording_ui_dialog_back_body);
 
-                alert.SetPositiveButton(Resources.GetText(Resource.String.popup_record_button), (dialog, id) =>
+                alert.SetPositiveButton(StringResources.recording_ui_dialog_back_positive, (dialog, id) =>
                 {
                     StopRecording();
                     base.OnBackPressed();
                 });
 
-                alert.SetNegativeButton(Resources.GetText(Resource.String.popup_finish), (dialog, id) =>
+                alert.SetNegativeButton(StringResources.recording_ui_dialog_back_negative, (dialog, id) =>
                 {
                     ((Android.Support.V7.App.AlertDialog)dialog).Dismiss();
                 });
@@ -144,7 +149,7 @@ namespace Gabber
             var recordButton = FindViewById<FloatingActionButton>(Resource.Id.start);
             // Has the first topic been selected, i.e. one of the states has changed
             if (themes.FindAll((p) => p.SelectionState != Prompt.SelectedState.never).Count == 1) {
-                FindViewById<TextView>(Resource.Id.recordInstructions).Visibility = ViewStates.Invisible;
+                FindViewById<TextView>(Resource.Id.recordInstructionsFooter).Visibility = ViewStates.Invisible;
                 recordButton.Visibility = ViewStates.Visible;
                 recordButton.PerformClick();
             }
@@ -175,9 +180,9 @@ namespace Gabber
         void ModalToVerifyRecordingEnd()
         {
             var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
-            alert.SetMessage(Resources.GetText(Resource.String.popup_record_question));
+            alert.SetMessage(StringResources.recording_ui_dialog_finish_title);
 
-            alert.SetPositiveButton(Resources.GetText(Resource.String.popup_record_button), (dialog, id) =>
+            alert.SetPositiveButton(StringResources.recording_ui_dialog_finish_positive, (dialog, id) =>
             {
                 StopRecording();
                 SaveRecording();
@@ -188,7 +193,7 @@ namespace Gabber
                 Finish();
             });
 
-            alert.SetNegativeButton(Resources.GetText(Resource.String.popup_finish), (dialog, id) =>
+            alert.SetNegativeButton(StringResources.recording_ui_dialog_finish_negative, (dialog, id) =>
             {
                 ((Android.Support.V7.App.AlertDialog)dialog).Dismiss();
             });
