@@ -83,7 +83,7 @@ namespace GabberPCL
 		{
             _client = new HttpClient
             {
-                BaseAddress = new Uri("https://gabber.audio")
+                BaseAddress = new Uri("https://api.dev.gabber.audio")
             };
         }
 
