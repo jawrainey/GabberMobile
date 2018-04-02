@@ -334,5 +334,59 @@ namespace GabberPCL.Resources {
                 return ResourceManager.GetString("recording.ui.dialog.back.negative", resourceCulture);
             }
         }
+        
+        public static string debriefing_ui_title {
+            get {
+                return ResourceManager.GetString("debriefing.ui.title", resourceCulture);
+            }
+        }
+        
+        public static string debriefing_ui_button_projects {
+            get {
+                return ResourceManager.GetString("debriefing.ui.button.projects", resourceCulture);
+            }
+        }
+        
+        public static string debriefing_ui_button_sessions {
+            get {
+                return ResourceManager.GetString("debriefing.ui.button.sessions", resourceCulture);
+            }
+        }
+        
+        public static string debriefing_ui_page_first_title {
+            get {
+                return ResourceManager.GetString("debriefing.ui.page.first.title", resourceCulture);
+            }
+        }
+        
+        public static string debriefing_ui_page_first_content {
+            get {
+                return ResourceManager.GetString("debriefing.ui.page.first.content", resourceCulture);
+            }
+        }
+        
+        public static string debriefing_ui_page_second_title {
+            get {
+                return ResourceManager.GetString("debriefing.ui.page.second.title", resourceCulture);
+            }
+        }
+        
+        public static string debriefing_ui_page_second_content {
+            get {
+                return ResourceManager.GetString("debriefing.ui.page.second.content", resourceCulture);
+            }
+        }
+        
+        public static string debriefing_ui_page_third_title {
+            get {
+                return ResourceManager.GetString("debriefing.ui.page.third.title", resourceCulture);
+            }
+        }
+        
+        public static string debriefing_ui_page_third_content {
+            get {
+                return ResourceManager.GetString("debriefing.ui.page.third.content", resourceCulture);
+            }
+        }
     }
 }

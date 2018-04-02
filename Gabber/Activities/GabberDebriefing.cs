@@ -8,18 +8,19 @@ using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using GabberPCL.Models;
+using GabberPCL.Resources;
 
 namespace Gabber.Activities
 {
     [Activity]
-    public class GabberCompleted : AppCompatActivity
+    public class GabberDebriefing : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.next_steps);
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
-            SupportActionBar.Title = "NEXT STEPS";
+            SupportActionBar.Title = StringResources.debriefing_ui_title;
 
             var lastInterviewSession = GabberPCL.Queries.LastInterviewSession;
 
@@ -32,18 +33,18 @@ namespace Gabber.Activities
             var pages = new List<OnboardingPageContent> {
                 new OnboardingPageContent {
                     Image=Resource.Drawable.onboarding_first,
-                    Title="Recording success",
-                    Content="Thanks for recording your Gabber. Once you upload the recording we will send you an email to review the recording and provide consent."
+                    Title=StringResources.debriefing_ui_page_first_title,
+                    Content=StringResources.debriefing_ui_page_first_content
                 },
                 new OnboardingPageContent {
                     Image=Resource.Drawable.onboarding_second,
-                    Title="Your Consent",
-                    Content=$"{names} will receive an email to review and provide consent for the Gabber recording. Once a decision on consent is made others may access the recording on the Gabber website."
+                    Title=StringResources.debriefing_ui_page_second_title,
+                    Content=string.Format(StringResources.debriefing_ui_page_second_content, names)
                 },
                 new OnboardingPageContent {
                     Image=Resource.Drawable.onboarding_third,
-                    Title="Annotate Gabbers",
-                    Content="If all participants consent, your Gabber becomes available for other project members to listen, annotate and learn from the experiences you shared."
+                    Title=StringResources.debriefing_ui_page_third_title,
+                    Content=StringResources.debriefing_ui_page_third_content
                 }
             };
 

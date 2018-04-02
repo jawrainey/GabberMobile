@@ -140,7 +140,7 @@
     <Compile Include="Adapters\ParticipantAdapter.cs" />
     <Compile Include="Helpers\PrivatePath.cs" />
     <Compile Include="Activities\Onboarding.cs" />
-    <Compile Include="Activities\GabberCompleted.cs" />
+    <Compile Include="Activities\GabberDebriefing.cs" />
     <Compile Include="Adapters\SessionsAdapter.cs" />
     <Compile Include="Adapters\SharedPager.cs" />
     <Compile Include="Fragments\Projects.cs" />

@@ -58,15 +58,6 @@
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:lineSpacingExtra="6dp" />
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/record_topic_stop"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/startFrame"
-            android:visibility="invisible"
-            app:backgroundTint="@android:color/white" />
         <FrameLayout
             android:id="@+id/startFrame"
             android:layout_width="80dp"

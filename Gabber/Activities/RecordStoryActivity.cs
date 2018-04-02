@@ -67,7 +67,6 @@ namespace Gabber
             promptRecyclerView.SetAdapter(adapter);
 
 			var record = FindViewById<FloatingActionButton>(Resource.Id.start);
-			var cancel = FindViewById<FloatingActionButton>(Resource.Id.cancel);
 			var timer = FindViewById<TextView>(Resource.Id.timer);
 
 			// Note: record has two states: start and stop record.
@@ -187,7 +186,7 @@ namespace Gabber
                 StopRecording();
                 SaveRecording();
 
-                var intent = new Intent(this, typeof(Activities.GabberCompleted));
+                var intent = new Intent(this, typeof(Activities.GabberDebriefing));
                 intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
                 StartActivity(intent);
                 Finish();

@@ -185,7 +185,42 @@
         <value>Go back</value>
     </data>
     <data name="recording.ui.dialog.back.negative" xml:space="preserve">
-        <value>Stop</value>    
+        <value>Continue recording</value>    
     </data>  
+
+    <!-- DEBRIEFING SCREEN -->
+    <data name="debriefing.ui.title" xml:space="preserve">
+        <value>Next steps</value>
+    </data>
+    <data name="debriefing.ui.button.projects" xml:space="preserve">
+        <value>Projects</value>
+    </data>
+    <data name="debriefing.ui.button.sessions" xml:space="preserve">
+        <value>Sessions</value>
+    </data>
+
+    <!-- DEBRIEFING PAGE: 1 -->
+    <data name="debriefing.ui.page.first.title" xml:space="preserve">
+        <value>Recording Success</value>
+    </data>
+    <data name="debriefing.ui.page.first.content" xml:space="preserve">
+        <value>Thanks for recording your Gabber. Once you upload the recording we will send you an email to review the recording and provide consent.</value>
+    </data>
+
+    <!-- DEBRIEFING PAGE: 2 -->
+    <data name="debriefing.ui.page.second.title" xml:space="preserve">
+        <value>Your Consent</value>
+    </data>
+    <data name="debriefing.ui.page.second.content" xml:space="preserve">
+        <value>{0} will receive an email to review and provide consent for the Gabber recording. Once a decision on consent is made others may access the recording on the Gabber website.</value>
+    </data>
+
+    <!-- DEBRIEFING PAGE: 3 -->
+    <data name="debriefing.ui.page.third.title" xml:space="preserve">
+        <value>Annotate Gabbers</value>
+    </data>
+    <data name="debriefing.ui.page.third.content" xml:space="preserve">
+        <value>If all participants consent, your Gabber becomes available for other project members to listen, annotate and learn from the experiences you shared.</value>
+    </data>
     
 </root>
