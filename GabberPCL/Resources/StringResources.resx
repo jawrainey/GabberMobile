@@ -30,6 +30,39 @@
         <value>A password is required</value>
     </data>
 
+    <!-- ONBOARDING PAGE: 1 -->
+    <data name="onboarding.ui.page.first.title" xml:space="preserve">
+        <value>Structuring Gabbers</value>
+    </data>
+    <data name="onboarding.ui.page.first.content" xml:space="preserve">
+        <value>Gabber projects define a set of textual topics to structure the audio recording.Projects are created on the Gabber website for the mobile experience focus on the capturing</value>
+    </data>
+    
+
+    <!-- ONBOARDING PAGE: 2 -->
+    <data name="onboarding.ui.page.second.title" xml:space="preserve">
+        <value>Adding Participants</value>
+    </data>
+    <data name="onboarding.ui.page.second.content" xml:space="preserve">
+        <value>Add participants whose experience you want to capture. Once recorded, participants become members of the project and will receive an email to review their consent for how their recording should be used</value>
+    </data>
+
+    <!-- ONBOARDING PAGE: 3 -->
+    <data name="onboarding.ui.page.third.title" xml:space="preserve">
+        <value>Tagging Recording</value>
+    </data>
+    <data name="onboarding.ui.page.third.content" xml:space="preserve">
+        <value>Project topics appear in a list to structure the audio recording. These can be tapped to tag the audio from the last time a topic was tapped. This creates regions on top of the audio that are used to identify what is being discussed in the recording.</value>
+    </data>
+
+    <!-- ONBOARDING PAGE: 4 -->
+    <data name="onboarding.ui.page.fourth.title" xml:space="preserve">
+        <value>Review Consent</value>
+    </data>
+    <data name="onboarding.ui.page.fourth.content" xml:space="preserve">
+        <value>Once a recording is uploaded all participants will receive an email where they can review the audio and their consent for how their recording will be viewed, used and shared within the Gabber Project.</value>
+    </data>
+    
     <!-- USER LOGIN SCREEN: API errors -->
     <data name="login.api.error.GENERAL" xml:space="preserve">
         <value>An unknown error has occurred.</value>

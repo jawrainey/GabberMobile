@@ -77,6 +77,54 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string onboarding_ui_page_first_title {
+            get {
+                return ResourceManager.GetString("onboarding.ui.page.first.title", resourceCulture);
+            }
+        }
+        
+        public static string onboarding_ui_page_first_content {
+            get {
+                return ResourceManager.GetString("onboarding.ui.page.first.content", resourceCulture);
+            }
+        }
+        
+        public static string onboarding_ui_page_second_title {
+            get {
+                return ResourceManager.GetString("onboarding.ui.page.second.title", resourceCulture);
+            }
+        }
+        
+        public static string onboarding_ui_page_second_content {
+            get {
+                return ResourceManager.GetString("onboarding.ui.page.second.content", resourceCulture);
+            }
+        }
+        
+        public static string onboarding_ui_page_third_title {
+            get {
+                return ResourceManager.GetString("onboarding.ui.page.third.title", resourceCulture);
+            }
+        }
+        
+        public static string onboarding_ui_page_third_content {
+            get {
+                return ResourceManager.GetString("onboarding.ui.page.third.content", resourceCulture);
+            }
+        }
+        
+        public static string onboarding_ui_page_fourth_title {
+            get {
+                return ResourceManager.GetString("onboarding.ui.page.fourth.title", resourceCulture);
+            }
+        }
+        
+        public static string onboarding_ui_page_fourth_content {
+            get {
+                return ResourceManager.GetString("onboarding.ui.page.fourth.content", resourceCulture);
+            }
+        }
+        
         public static string login_api_error_GENERAL {
             get {
                 return ResourceManager.GetString("login.api.error.GENERAL", resourceCulture);
