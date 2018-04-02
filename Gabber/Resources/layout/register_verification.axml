@@ -6,14 +6,12 @@
     android:padding="24dp"
     android:orientation="vertical">
     <ImageView
-        android:id="@+id/onboardingImage"
         android:src="@drawable/onboarding_first"
         android:layout_width="match_parent"
         android:layout_weight="7"
         android:layout_height="0dp" />
     <TextView
-        android:id="@+id/onboardingTitle"
-        android:text="Email Verification"
+        android:id="@+id/verifyTitle"
         android:textSize="38dp"
         android:gravity="center"
         android:textStyle="bold"
@@ -23,8 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent" />
     <TextView
-        android:id="@+id/onboardingContent"
-        android:text="Please confirm your email address by tapping the button in the confirmation email we sent you."
+        android:id="@+id/verifyContent"
         android:textSize="20dp"
         android:textStyle="italic"
         android:gravity="center"
@@ -36,6 +33,5 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@drawable/custom_button"
-        android:text="OPEN EMAIL CLIENT" />
+        android:background="@drawable/custom_button" />
 </LinearLayout>

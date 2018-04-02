@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Preferences;
@@ -9,6 +8,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using GabberPCL;
+using GabberPCL.Resources;
 using Newtonsoft.Json;
 
 namespace Gabber.Activities
@@ -36,8 +36,14 @@ namespace Gabber.Activities
                 Finish();
             }
 
+            var _title = FindViewById<TextView>(Resource.Id.registerVerifyTitle);
+            _title.Text = StringResources.register_verifying_ui_page_title;
+            var _content = FindViewById<TextView>(Resource.Id.registerVerifyContent);
+            _content.Text = StringResources.register_verifying_ui_page_content;
+
             // Shown if an error occurs, such as account already been verified.
             var loginButton = FindViewById<AppCompatButton>(Resource.Id.registerVerifyLogin);
+            loginButton.Text = StringResources.register_verifying_ui_button_login;
 
             // The URI click in the email
             var dataURI = base.Intent.Data;
@@ -62,8 +68,8 @@ namespace Gabber.Activities
                 else
                 {
                     loginButton.Visibility = ViewStates.Visible;
-                    FindViewById<TextView>(Resource.Id.registerVerifyBody).Text = "There was an error.";
-                    ToastErrors(response.Meta.Messages);
+                    FindViewById<TextView>(Resource.Id.registerVerifyContent).Text = StringResources.register_verifying_ui_page_content_error;
+                    response.Meta.Messages.ForEach(MakeError);
                 }
             }
 
@@ -75,10 +81,11 @@ namespace Gabber.Activities
             };
         }
 
-        void ToastErrors(List<string> errors)
+        void MakeError(string errorMessage)
         {
-            var view = FindViewById<TextView>(Resource.Id.registerVerifyBody);
-            errors.ForEach((err) => Snackbar.Make(view, err, Snackbar.LengthLong).Show());
+            var view = FindViewById<TextView>(Resource.Id.registerVerifyContent);
+            var message = StringResources.ResourceManager.GetString($"register.verifying.api.error.{errorMessage}");
+            Snackbar.Make(view, message, Snackbar.LengthLong).Show();
         }
     }
 }

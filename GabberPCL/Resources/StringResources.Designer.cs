@@ -137,6 +137,72 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string register_verify_ui_page_title {
+            get {
+                return ResourceManager.GetString("register.verify.ui.page.title", resourceCulture);
+            }
+        }
+        
+        public static string register_verify_ui_page_content {
+            get {
+                return ResourceManager.GetString("register.verify.ui.page.content", resourceCulture);
+            }
+        }
+        
+        public static string register_verify_ui_button_openemail {
+            get {
+                return ResourceManager.GetString("register.verify.ui.button.openemail", resourceCulture);
+            }
+        }
+        
+        public static string register_verifying_activity_label {
+            get {
+                return ResourceManager.GetString("register.verifying.activity.label", resourceCulture);
+            }
+        }
+        
+        public static string register_verifying_ui_page_title {
+            get {
+                return ResourceManager.GetString("register.verifying.ui.page.title", resourceCulture);
+            }
+        }
+        
+        public static string register_verifying_ui_page_content {
+            get {
+                return ResourceManager.GetString("register.verifying.ui.page.content", resourceCulture);
+            }
+        }
+        
+        public static string register_verifying_ui_page_content_error {
+            get {
+                return ResourceManager.GetString("register.verifying.ui.page.content.error", resourceCulture);
+            }
+        }
+        
+        public static string register_verifying_ui_button_login {
+            get {
+                return ResourceManager.GetString("register.verifying.ui.button.login", resourceCulture);
+            }
+        }
+        
+        public static string register_verifying_api_error_ALREADY_VERIFIED {
+            get {
+                return ResourceManager.GetString("register.verifying.api.error.ALREADY_VERIFIED", resourceCulture);
+            }
+        }
+        
+        public static string register_verifying_api_error_AUTH_TOKEN_404 {
+            get {
+                return ResourceManager.GetString("register.verifying.api.error.AUTH_TOKEN_404", resourceCulture);
+            }
+        }
+        
+        public static string register_verifying_api_error_AUTH_TOKEN_EXPIRED {
+            get {
+                return ResourceManager.GetString("register.verifying.api.error.AUTH_TOKEN_EXPIRED", resourceCulture);
+            }
+        }
+        
         public static string projects_ui_title {
             get {
                 return ResourceManager.GetString("projects.ui.title", resourceCulture);

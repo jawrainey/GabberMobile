@@ -11,7 +11,7 @@
         android:layout_weight="7"
         android:layout_height="0dp" />
     <TextView
-        android:text="Verifying Email"
+        android:id="@+id/registerVerifyTitle"
         android:textSize="38dp"
         android:gravity="center"
         android:textStyle="bold"
@@ -20,8 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent" />
     <TextView
-        android:id="@+id/registerVerifyBody"
-        android:text="Now verifying your account."
+        android:id="@+id/registerVerifyContent"
         android:textSize="20dp"
         android:textStyle="italic"
         android:gravity="center"
@@ -41,6 +40,5 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:visibility="invisible"
-        android:background="@drawable/custom_button"
-        android:text="Login" />
+        android:background="@drawable/custom_button" />
 </LinearLayout>
