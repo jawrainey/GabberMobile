@@ -45,7 +45,8 @@ namespace Gabber.iOS
 
         public override void ViewWillAppear(bool animated)
         {
-            base.ViewDidLoad();
+            base.ViewDidAppear(animated);
+            TabBarController.Title = "Projects";
             // TODO: should upload on swipe up...
             // TODO: there's currently no feedback to the user that items are being uploaded
             Queries.UploadInterviewSessionsAsync();

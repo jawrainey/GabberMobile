@@ -139,6 +139,27 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-180.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-1024.png" />
     <ImageAsset Include="Assets.xcassets\Logo.imageset\logo.png" />
+    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\.Contents.json.swp" />
+    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\cloud_done.png" />
+    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\cloud_done_2x.png" />
+    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\cloud_done_3x.png" />
+    <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\cloud_upload.png" />
+    <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\cloud_upload_2x.png" />
+    <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\cloud_upload_3x.png" />
+    <ImageAsset Include="Assets.xcassets\menu_about.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about.png" />
+    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about_2x.png" />
+    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about_3x.png" />
+    <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\menu_gabbers.png" />
+    <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\menu_gabbers_2x.png" />
+    <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\menu_gabbers_3x.png" />
+    <ImageAsset Include="Assets.xcassets\menu_projects.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects.png" />
+    <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects_2x.png" />
+    <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -203,6 +224,14 @@
     <Compile Include="Controllers\RegisterViewController.cs" />
     <Compile Include="Controllers\RegisterViewController.designer.cs">
       <DependentUpon>RegisterViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AboutViewController.cs" />
+    <Compile Include="Controllers\AboutViewController.designer.cs">
+      <DependentUpon>AboutViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SessionsViewController.cs" />
+    <Compile Include="Controllers\SessionsViewController.designer.cs">
+      <DependentUpon>SessionsViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
