@@ -180,9 +180,6 @@
     <AndroidResource Include="Resources\drawable\onboarding_default_dot.xml" />
     <AndroidResource Include="Resources\drawable\onboarding_selected_dot.xml" />
     <AndroidResource Include="Resources\drawable\onboarding_tab_selector.xml" />
-    <AndroidResource Include="Resources\drawable\onboarding_first.png" />
-    <AndroidResource Include="Resources\drawable\onboarding_second.png" />
-    <AndroidResource Include="Resources\drawable\onboarding_third.png" />
     <AndroidResource Include="Resources\layout\next_steps.axml" />
     <AndroidResource Include="Resources\layout\sessions.axml" />
     <AndroidResource Include="Resources\layout\sessions_rv.xml" />
@@ -219,6 +216,9 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_about.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_gabbers.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_projects.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\onboarding_first.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\onboarding_second.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\onboarding_third.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
@@ -227,6 +227,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Resources\menu\" />
     <Folder Include="Fragments\" />
+    <Folder Include="Resources\drawable-nodpi\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">
