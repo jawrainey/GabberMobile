@@ -21,8 +21,8 @@ namespace Gabber.iOS
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             // If the user is not logged in (hence has not created an account), then show the login view.
-            // The Main view (i.e. ProjectsViewController) is shown and set once the user login or registers.
-            if (string.IsNullOrEmpty(NSUserDefaults.StandardUserDefaults.StringForKey("ActiveUserTokens")))
+            // The Root view (i.e. TabBarController) is shown and set once the user login or registers.
+            if (string.IsNullOrEmpty(NSUserDefaults.StandardUserDefaults.StringForKey("tokens")))
             {
                 Window.RootViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("LoginViewController");
             }
