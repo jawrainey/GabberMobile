@@ -160,6 +160,8 @@
     <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects.png" />
     <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects_2x.png" />
     <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects_3x.png" />
+    <ImageAsset Include="Assets.xcassets\about.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\about.imageset\onboarding_first.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -169,6 +171,7 @@
     <Folder Include="Assets.xcassets\StopButton.imageset\" />
     <Folder Include="Assets.xcassets\Logo.imageset\" />
     <Folder Include="Assets.xcassets\BackButton.imageset\" />
+    <Folder Include="Assets.xcassets\about.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -233,6 +236,11 @@
     <Compile Include="Controllers\SessionsViewController.designer.cs">
       <DependentUpon>SessionsViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cells\SessionsCollectionViewCell.cs" />
+    <Compile Include="Cells\SessionsCollectionViewCell.designer.cs">
+      <DependentUpon>SessionsCollectionViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSources\SessionsCollectionViewSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">

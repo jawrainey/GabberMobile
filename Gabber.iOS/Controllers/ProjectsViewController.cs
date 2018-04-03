@@ -47,9 +47,6 @@ namespace Gabber.iOS
         {
             base.ViewDidAppear(animated);
             TabBarController.Title = "Projects";
-            // TODO: should upload on swipe up...
-            // TODO: there's currently no feedback to the user that items are being uploaded
-            Queries.UploadInterviewSessionsAsync();
         }
 
         [Action("UnwindToProjectsViewController:")]
