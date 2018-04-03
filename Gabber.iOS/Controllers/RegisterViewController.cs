@@ -87,17 +87,21 @@ namespace Gabber.iOS
                 RegisterUIButton.Enabled = false;
                 var client = new RestClient();
                 RegisterActivityIndicator.StartAnimating();
-                var isRegisterSuccess = await client.Register(fname, email, passw, (message) => ErrorMessageDialog(message));
+                var response = await client.Register(fname, email, passw);
                 RegisterActivityIndicator.StopAnimating();
                 RegisterUIButton.Enabled = true;
 
-                if (isRegisterSuccess)
+                if (response.Meta.Success)
                 {
                     // TODO: should take us to the verification page ...
 
                     // Set the root view as ProjectsVC; handled in AppDelegate
                     UIApplication.SharedApplication.Windows[0].RootViewController =
                         UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
+                }
+                else if (response.Meta.Messages.Count > 0)
+                {
+                    ErrorMessageDialog(response.Meta.Messages[0]);
                 }
             }
         }
