@@ -235,7 +235,7 @@
                                     <size key="itemSize" width="333" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="40"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ParticipantCollectionCell" id="18966" customClass="ParticipantsCollectionViewCell">
@@ -276,7 +276,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="18961" kind="show" id="42740"/>
+                                    <segue destination="18961" kind="show" id="i8c-XU-qgP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18972">
@@ -436,71 +436,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="22281">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="22281">
                                 <rect key="frame" x="20" y="84" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="22282">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="22282">
                                 <rect key="frame" x="20" y="134" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l70-ZZ-NES">
-                                <rect key="frame" x="20" y="184" width="374" height="89.666666666666686"/>
-                                <string key="text">The participant will receive an email to listen back to the recording in private and provide consent for how they want the recording to be shared once the interview is complete.
-</string>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22283">
-                                <rect key="frame" x="10" y="676" width="394" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="klR-rw-NLB"/>
-                                </constraints>
+                                <rect key="frame" x="20" y="178" width="374" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                <state key="normal" title="ADD PARTICIPANT">
+                                <state key="normal">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="AddParticipant:" destination="18961" eventType="touchUpInside" id="23796"/>
-                                    <segue destination="22249" kind="unwind" identifier="UnwindToParticipantsViewController" unwindAction="UnwindToParticipantsViewController:" id="23278"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="22283" secondAttribute="trailing" constant="10" id="0gd-bz-0FI"/>
-                            <constraint firstItem="22282" firstAttribute="leading" secondItem="18962" secondAttribute="leadingMargin" id="2be-OD-7RB"/>
-                            <constraint firstItem="22283" firstAttribute="leading" secondItem="18962" secondAttribute="leading" constant="10" id="2ws-MR-8cU"/>
-                            <constraint firstItem="l70-ZZ-NES" firstAttribute="top" secondItem="22282" secondAttribute="bottom" constant="20" id="8CW-zF-DnK"/>
-                            <constraint firstAttribute="bottom" secondItem="22283" secondAttribute="bottom" constant="20" symbolic="YES" id="EGI-zT-Lw9"/>
-                            <constraint firstItem="22282" firstAttribute="height" secondItem="22281" secondAttribute="height" id="Kgb-f8-tSY"/>
-                            <constraint firstItem="22282" firstAttribute="top" secondItem="22281" secondAttribute="bottom" constant="20" id="Kgn-Oe-lcu"/>
-                            <constraint firstItem="22281" firstAttribute="leading" secondItem="18962" secondAttribute="leadingMargin" id="W3w-DD-rie"/>
-                            <constraint firstItem="l70-ZZ-NES" firstAttribute="leading" secondItem="18962" secondAttribute="leadingMargin" id="Y08-W6-SwB"/>
-                            <constraint firstItem="22282" firstAttribute="width" secondItem="22281" secondAttribute="width" id="YKb-Lf-cjD"/>
-                            <constraint firstItem="l70-ZZ-NES" firstAttribute="top" secondItem="22282" secondAttribute="bottom" constant="20" id="a35-SH-6zC"/>
-                            <constraint firstItem="22281" firstAttribute="top" secondItem="18958" secondAttribute="bottom" constant="20" id="idk-DF-cS7"/>
-                            <constraint firstItem="22282" firstAttribute="trailing" secondItem="18962" secondAttribute="trailingMargin" id="jkC-1x-IhM"/>
-                            <constraint firstItem="22281" firstAttribute="trailing" secondItem="18962" secondAttribute="trailingMargin" id="liV-EL-6ll"/>
-                            <constraint firstItem="l70-ZZ-NES" firstAttribute="trailing" secondItem="18962" secondAttribute="trailingMargin" id="zrl-DY-pRC"/>
+                            <constraint firstItem="22281" firstAttribute="leading" secondItem="18962" secondAttribute="leadingMargin" id="5DT-Jf-1gj"/>
+                            <constraint firstItem="22281" firstAttribute="top" secondItem="18958" secondAttribute="bottom" constant="20" id="9Ea-2q-WYe"/>
+                            <constraint firstItem="22281" firstAttribute="leading" secondItem="22282" secondAttribute="leading" id="A2L-li-IfS"/>
+                            <constraint firstItem="22283" firstAttribute="width" secondItem="22281" secondAttribute="width" id="Fpd-KV-OoC"/>
+                            <constraint firstItem="22283" firstAttribute="top" secondItem="22282" secondAttribute="bottom" constant="14" id="Mhg-Go-oFa"/>
+                            <constraint firstItem="22282" firstAttribute="leading" secondItem="22283" secondAttribute="leading" id="USV-80-8w6"/>
+                            <constraint firstItem="22281" firstAttribute="trailing" secondItem="18962" secondAttribute="trailingMargin" id="g9J-O6-Tpx"/>
+                            <constraint firstItem="22282" firstAttribute="width" secondItem="22281" secondAttribute="width" id="gSP-b3-DMr"/>
+                            <constraint firstItem="22283" firstAttribute="height" secondItem="22281" secondAttribute="height" id="hRf-iH-zWl"/>
+                            <constraint firstItem="22282" firstAttribute="top" secondItem="22281" secondAttribute="bottom" constant="20" id="oM8-iB-v82"/>
+                            <constraint firstItem="22282" firstAttribute="height" secondItem="22281" secondAttribute="height" id="yvl-eR-HHb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add a new Participant" id="2hJ-0W-nKb"/>
+                    <navigationItem key="navigationItem" id="2hJ-0W-nKb"/>
                     <connections>
                         <outlet property="AddNewParticipant" destination="22283" id="name-outlet-22283"/>
                         <outlet property="ParticipantEmail" destination="22282" id="name-outlet-22282"/>
                         <outlet property="ParticipantName" destination="22281" id="name-outlet-22281"/>
+                        <segue destination="22249" kind="unwind" identifier="UnwindToPCV" unwindAction="UnwindToParticipantsViewController:" id="lHd-fR-82h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="18963" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="22249" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2202" y="805"/>
+            <point key="canvasLocation" x="2201.449275362319" y="804.61956521739137"/>
         </scene>
         <!--Record Gabber-->
         <scene sceneID="19687">

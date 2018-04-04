@@ -3,12 +3,16 @@ using System.Text.RegularExpressions;
 using Foundation;
 using GabberPCL;
 using GabberPCL.Models;
+using GabberPCL.Resources;
 using UIKit;
 
 namespace Gabber.iOS
 {
     public partial class AddParticipantViewController : UIViewController
     {
+        // Only want to create one Dialog to reuse it.
+        UIAlertController ErrorDialog;
+
         public AddParticipantViewController (IntPtr handle) : base (handle) {}
 
         public override void ViewDidLoad()
@@ -17,8 +21,17 @@ namespace Gabber.iOS
             AddNewParticipant.Layer.BorderWidth = .5f;
             AddNewParticipant.Layer.BorderColor = UIColor.Black.CGColor;
 
+            NavigationItem.Title = StringResources.participants_ui_dialog_add_title;
+            ParticipantName.Placeholder = StringResources.register_ui_fullname_label;
+            ParticipantEmail.Placeholder = StringResources.common_ui_forms_email_label;
+            AddNewParticipant.SetTitle(StringResources.participants_ui_addparticipant_button, UIControlState.Normal);
+
             ParticipantName.ShouldReturn += NavigateNext;
             ParticipantEmail.ShouldReturn += NavigateNext;
+
+            ParticipantName.BecomeFirstResponder();
+
+            ErrorDialog = new Helpers.MessageDialog().BuildErrorMessageDialog("", "");
         }
 
         bool NavigateNext(UITextField _field)
@@ -37,46 +50,37 @@ namespace Gabber.iOS
 
         partial void AddParticipant(UIButton sender)
         {
-            if (ValidateForm())
-            {
-                Session.Connection.Insert(new User
-                {
-                    Name = ParticipantName.Text,
-                    Email = ParticipantEmail.Text,
-                    Selected = true
-                });   
-                PerformSegue("UnwindToParticipantsViewController", this);
-            }
-        }
-
-        public bool ValidateForm()
-        {
-			var name = ParticipantName.Text;
-            var email = ParticipantEmail.Text;
+            var name = ParticipantName.Text;
+            var email = ParticipantEmail.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(name))
             {
-                ErrorMessageDialog("The participants full name is empty");
-                return false;
+                ErrorMessageDialog(StringResources.register_ui_fullname_validate_empty);
             }
-            if (string.IsNullOrWhiteSpace(email))
+            else if (string.IsNullOrWhiteSpace(email))
             {
-                ErrorMessageDialog("The participants email is empty");
-                return false;
+                ErrorMessageDialog(StringResources.common_ui_forms_email_validate_empty);
             }
-            if (!Regex.Match(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success)
+            else if (!Regex.Match(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success)
             {
-                ErrorMessageDialog("The email address provided is invalid");
-                return false;
+                ErrorMessageDialog(StringResources.common_ui_forms_email_validate_invalid);
             }
-            return true;
+            else
+            {
+                Session.Connection.Insert(new User
+                {
+                    Name = name,
+                    Email = email,
+                    Selected = true
+                });
+                PerformSegue("UnwindToPCV", this);
+            }
         }
 
-        void ErrorMessageDialog(string message)
+        void ErrorMessageDialog(string title)
         {
-            var dialog = new Helpers.MessageDialog();
-            var errorDialog = dialog.BuildErrorMessageDialog("Error adding participant", message);
-            PresentViewController(errorDialog, true, null);
+            ErrorDialog.Title = title;
+            PresentViewController(ErrorDialog, true, null);
         }
     }
 }
