@@ -165,7 +165,7 @@
 
     <!-- SESSIONS FRAGMENT -->
     <data name="sessions.ui.title" xml:space="preserve">
-        <value>Your Gabbers</value>
+        <value>Viewing your Gabbers</value>
     </data>    
     <data name="sessions.ui.header.instructions" xml:space="preserve">
         <value>Upload your Gabber for others to listen, annotate and learn from the experiences you captured.</value>
@@ -193,7 +193,7 @@
 
     <!-- PARTICIPANTS SCREEN -->
     <data name="participants.ui.title" xml:space="preserve">
-        <value>What is Gabber?</value>
+        <value>Gabber Participants</value>
     </data>
     <data name="participants.ui.numselected" xml:space="preserve">
         <value>{0} participants selected</value>

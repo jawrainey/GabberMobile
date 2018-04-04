@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Gabber.iOS.ViewSources;
 using GabberPCL;
 using GabberPCL.Models;
@@ -33,43 +34,46 @@ namespace Gabber.iOS
             TabBarController.Title = StringResources.sessions_ui_title;
 		}
 
-        async partial void UploadAll(UIButton sender)
+        // Index is optional such that the method could be used onSelected(item)
+        public async void UploadSessions(int index, bool recursive)
+        {
+            var sessions = SessionsViewSource.Sessions;
+            // Out of bounds validation
+            if (sessions.ElementAtOrDefault(index) == null) return;
+
+            // Update attribute so when item is reloaded the indicator will animate.
+            sessions[index].IsUploading = true;
+            var item = Foundation.NSIndexPath.FromIndex((uint)Sessions.IndexOf(sessions[index]));
+            SessionsCollectionView.ReloadItems(new Foundation.NSIndexPath[] { item });
+            // TODO: creating a new instance of API for each view, urgh.
+            var didUpload = await new RestClient().Upload(sessions[index]);
+
+            if (didUpload)
+            {
+                sessions[index].IsUploaded = true;
+                // Update state so the session isnt shown on reload etc.
+                Session.Connection.Update(sessions[index]);
+                sessions.Remove(sessions[index]);
+                SessionsCollectionView.ReloadData();
+                // Try to upload the next session
+                if (recursive) UploadSessions(0, true);
+            }
+            else
+            {
+                // Stop spining
+                sessions[index].IsUploading = false;
+                SessionsCollectionView.ReloadItems(new Foundation.NSIndexPath[] { item });
+                PresentViewController(
+                    new Helpers.MessageDialog().BuildErrorMessageDialog(
+                        StringResources.sessions_ui_message_upload_fail, ""), true, null);
+            }
+        }
+
+        partial void UploadAll(UIButton sender)
         {
             SessionsUpload.Enabled = false;
-            var api = new RestClient();
-
-            // Iterating backwards to remove session while iterating
-            for (int i = Sessions.Count - 1; i >= 0; i--)
-            {
-                var session = Sessions[i];
-                var item = Foundation.NSIndexPath.FromIndex((uint)Sessions.IndexOf(session));
-
-                // Start spinning indicator
-                session.IsUploading = true;
-                SessionsCollectionView.ReloadItems(new Foundation.NSIndexPath[]{item});
-
-                var didUpload = await api.Upload(session);
-
-                if (didUpload)
-                {
-                    session.IsUploaded = true;
-                    // Update database state so the session isnt shown on reload etc.
-                    Session.Connection.Update(session);
-                    Sessions.Remove(session);
-                    SessionsCollectionView.ReloadData();
-                }
-                else 
-                {
-                    // Stop spining
-                    session.IsUploading = false;
-                    SessionsCollectionView.ReloadItems(new Foundation.NSIndexPath[] { item });  
-                    // Doesnt appear to be a better UI way, darn.
-                    PresentViewController(
-                        new Helpers.MessageDialog().BuildErrorMessageDialog(
-                            StringResources.sessions_ui_message_upload_fail, ""), true, null);
-                }
-            }
-
+            // Recursively uploads sessions
+            UploadSessions(0, true);
             ShowHideInstructions();
             SessionsUpload.Enabled = true;
         }
