@@ -11,11 +11,6 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -34,23 +29,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="197">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="197">
                                 <rect key="frame" x="20" y="295" width="374" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="590">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="590">
                                 <rect key="frame" x="20" y="341" width="374" height="30"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1010">
                                 <rect key="frame" x="20" y="387" width="374" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="LOGIN"/>
                                 <connections>
                                     <action selector="Authenticate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="29640"/>
                                 </connections>
@@ -114,9 +108,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936" y="-951"/>
+            <point key="canvasLocation" x="-1006" y="-814"/>
         </scene>
-        <!--Projects-->
+        <!--Projects View Controller-->
         <scene sceneID="UpM-zT-QUX">
             <objects>
                 <viewController id="R1a-fm-t0V" customClass="ProjectsViewController" sceneMemberID="viewController">
@@ -128,9 +122,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwv-P0-2rl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwv-P0-2rl">
                                 <rect key="frame" x="20" y="36" width="374" height="50.5"/>
-                                <string key="text">Each project contains discussion topics to structure a Gabber recording. You can add one or more participants to the session and choose topics that interest you.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -203,23 +196,24 @@
                             <constraint firstItem="4f9-v9-M4a" firstAttribute="leading" secondItem="N6n-Mc-TJj" secondAttribute="leadingMargin" id="uuq-WB-R8P"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Projects" image="menu_projects" landscapeImage="menu_projects" largeContentSizeImage="menu_projects" id="vcO-KV-wqG"/>
-                    <navigationItem key="navigationItem" title="Projects" id="tzc-Aj-0Xv">
+                    <tabBarItem key="tabBarItem" title="" image="menu_projects" landscapeImage="menu_projects" largeContentSizeImage="menu_projects" id="vcO-KV-wqG"/>
+                    <navigationItem key="navigationItem" id="tzc-Aj-0Xv">
                         <barButtonItem key="backBarButtonItem" title=" " id="nuw-Sh-DWw"/>
                     </navigationItem>
                     <connections>
                         <outlet property="ProjectsActivityIndicator" destination="40306" id="name-outlet-40306"/>
                         <outlet property="ProjectsCollectionView" destination="oEh-EI-jpb" id="name-outlet-oEh-EI-jpb"/>
+                        <outlet property="ProjectsInstructions" destination="Vwv-P0-2rl" id="name-outlet-Vwv-P0-2rl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6jJ-nI-rBg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1365.25" y="-147.25"/>
         </scene>
-        <!--Participants-->
+        <!--Participants View Controller-->
         <scene sceneID="9462">
             <objects>
-                <viewController title="Participants" id="9463" customClass="ParticipantsViewController" sceneMemberID="viewController">
+                <viewController id="9463" customClass="ParticipantsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TJA-pE-key"/>
                         <viewControllerLayoutGuide type="bottom" id="NDq-uv-YdL"/>
@@ -272,7 +266,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                 <inset key="titleEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                <state key="normal" title="ADD PARTICIPANT">
+                                <state key="normal">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -286,7 +280,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                 <inset key="titleEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                <state key="normal" title="RECORD GABBER">
+                                <state key="normal">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -325,7 +319,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9465" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2198.5509999999999" y="-11.413040000000001"/>
+            <point key="canvasLocation" x="2274" y="-148"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Fko-OT-xQe">
@@ -344,7 +338,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KRE-qV-LD7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-789" y="466"/>
+            <point key="canvasLocation" x="-1055" y="462"/>
         </scene>
         <!--Default-->
         <scene sceneID="4ES-go-YYF">
@@ -366,7 +360,7 @@
             </objects>
             <point key="canvasLocation" x="-124" y="463"/>
         </scene>
-        <!--About-->
+        <!--About View Controller-->
         <scene sceneID="hwN-2e-1gh">
             <objects>
                 <viewController id="5F8-jJ-Cnh" customClass="AboutViewController" sceneMemberID="viewController">
@@ -414,7 +408,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="About" image="menu_about" landscapeImage="menu_about" largeContentSizeImage="menu_about" id="Czq-Wh-NDk"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="" image="menu_about" landscapeImage="menu_about" largeContentSizeImage="menu_about" id="Czq-Wh-NDk"/>
                     <connections>
                         <outlet property="AboutContent" destination="X5v-h8-rRv" id="name-outlet-X5v-h8-rRv"/>
                         <outlet property="AboutTitle" destination="VQd-eA-KLO" id="name-outlet-VQd-eA-KLO"/>
@@ -422,12 +416,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="joB-SM-4D2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="460.86959999999999" y="1383.424"/>
+            <point key="canvasLocation" x="1365" y="1316"/>
         </scene>
-        <!--Add New Participant-->
+        <!--Add Participant View Controller-->
         <scene sceneID="18960">
             <objects>
-                <viewController title="Add New Participant" id="18961" customClass="AddParticipantViewController" sceneMemberID="viewController">
+                <viewController id="18961" customClass="AddParticipantViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="18958"/>
                         <viewControllerLayoutGuide type="bottom" id="18959"/>
@@ -485,12 +479,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="18963" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="22249" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2201.449275362319" y="804.61956521739137"/>
+            <point key="canvasLocation" x="2274" y="602"/>
         </scene>
-        <!--Record Gabber-->
+        <!--Record View Controller-->
         <scene sceneID="19687">
             <objects>
-                <viewController title="Record Gabber" id="19688" customClass="RecordViewController" sceneMemberID="viewController">
+                <viewController id="19688" customClass="RecordViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="19685"/>
                         <viewControllerLayoutGuide type="bottom" id="19686"/>
@@ -511,7 +505,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="21989">
-                                <rect key="frame" x="0.0" y="80" width="414" height="577"/>
+                                <rect key="frame" x="0.0" y="258" width="414" height="399"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="21991">
                                     <size key="itemSize" width="294.5" height="75"/>
@@ -547,8 +541,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a topic to begin recording" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26145">
-                                <rect key="frame" x="77.666666666666686" y="678" width="259" height="20.666666666666629"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26145">
+                                <rect key="frame" x="207" y="688.33333333333337" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -562,23 +556,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50804">
+                                <rect key="frame" x="20" y="72" width="374" height="137"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="19686" firstAttribute="top" secondItem="28382" secondAttribute="bottom" constant="33" id="0fZ-bq-Bm6"/>
                             <constraint firstItem="26145" firstAttribute="centerX" secondItem="21989" secondAttribute="centerX" id="3CY-ju-Kbl"/>
+                            <constraint firstItem="50804" firstAttribute="leading" secondItem="19689" secondAttribute="leadingMargin" id="50r-Hd-TSs"/>
                             <constraint firstItem="28382" firstAttribute="leading" secondItem="20164" secondAttribute="trailing" constant="8" id="5YC-fo-TVO"/>
                             <constraint firstAttribute="bottomMargin" secondItem="21989" secondAttribute="bottom" constant="79" id="BR1-NZ-NBt"/>
                             <constraint firstItem="19686" firstAttribute="top" secondItem="20164" secondAttribute="bottom" constant="20" id="GcM-Z2-7ab"/>
                             <constraint firstItem="26145" firstAttribute="centerY" secondItem="20164" secondAttribute="centerY" id="HeK-uW-rhy"/>
                             <constraint firstItem="19686" firstAttribute="top" secondItem="20164" secondAttribute="bottom" constant="20" id="Jyg-tW-dz8"/>
+                            <constraint firstItem="50804" firstAttribute="top" secondItem="19685" secondAttribute="bottom" constant="8" id="PW4-Il-3RQ"/>
+                            <constraint firstItem="50804" firstAttribute="height" secondItem="19689" secondAttribute="height" multiplier="0.2" constant="-10.200000000000017" id="Phn-Ri-nua"/>
                             <constraint firstItem="28382" firstAttribute="top" secondItem="21989" secondAttribute="bottom" constant="16" id="R6m-1M-Bib"/>
                             <constraint firstAttribute="trailing" secondItem="21989" secondAttribute="trailing" id="Ru5-T6-gXN"/>
-                            <constraint firstItem="21989" firstAttribute="top" secondItem="19685" secondAttribute="bottom" constant="16" id="W94-rJ-2Kn"/>
+                            <constraint firstItem="21989" firstAttribute="top" secondItem="19685" secondAttribute="bottom" constant="194" id="W94-rJ-2Kn"/>
+                            <constraint firstItem="50804" firstAttribute="trailing" secondItem="19689" secondAttribute="trailingMargin" id="YVs-EV-SEI"/>
                             <constraint firstItem="21989" firstAttribute="leading" secondItem="19689" secondAttribute="leading" id="ehy-Km-aH0"/>
+                            <constraint firstItem="50804" firstAttribute="top" secondItem="19685" secondAttribute="bottom" constant="8" id="grf-3W-FMo"/>
                             <constraint firstItem="26145" firstAttribute="centerX" secondItem="19689" secondAttribute="centerX" id="oyO-k3-JJ1"/>
+                            <constraint firstItem="50804" firstAttribute="leading" secondItem="19689" secondAttribute="leadingMargin" id="qyN-Hp-yG1"/>
                             <constraint firstItem="20164" firstAttribute="centerX" secondItem="26145" secondAttribute="centerX" id="rIs-fC-Psf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="28382" secondAttribute="trailing" constant="51" id="tVg-hL-9HV"/>
+                            <constraint firstItem="50804" firstAttribute="trailing" secondItem="19689" secondAttribute="trailingMargin" id="wQe-xC-r2e"/>
                         </constraints>
                     </view>
                     <connections>
@@ -586,13 +593,14 @@
                         <outlet property="RecordButton" destination="20164" id="name-outlet-20164"/>
                         <outlet property="RecordInstructions" destination="26145" id="name-outlet-26145"/>
                         <outlet property="TopicsCollectionView" destination="21989" id="name-outlet-21989"/>
+                        <outlet property="TopicsInstructions" destination="50804" id="name-outlet-50804"/>
                         <segue destination="20388" kind="unwind" identifier="UnWindToProjectsVC" unwindAction="UnwindToProjectsViewController:" id="28115"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19690" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="20388" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3309.375" y="-8.75"/>
+            <point key="canvasLocation" x="3142.0289855072465" y="-148.36956521739131"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="30930">
@@ -712,9 +720,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="30933" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2199.1999999999998" y="-735.22170000000006"/>
+            <point key="canvasLocation" x="78" y="-814"/>
         </scene>
-        <!--View Gabbers-->
+        <!--Sessions View Controller-->
         <scene sceneID="47506">
             <objects>
                 <viewController id="47507" customClass="SessionsViewController" sceneMemberID="viewController">
@@ -748,7 +756,6 @@
                                     <constraint firstAttribute="height" constant="36" id="D1b-U3-Fcy"/>
                                 </constraints>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="WAT"/>
                                 <connections>
                                     <action selector="UploadAll:" destination="47507" eventType="touchUpInside" id="50113"/>
                                 </connections>
@@ -793,7 +800,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Bk-ZI-0jo">
-                                                    <rect key="frame" x="307.66666666666669" y="13" width="44.333333333333314" height="14.333333333333336"/>
+                                                    <rect key="frame" x="307.66666666666669" y="13" width="44.333333333333314" height="14.666666666666664"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -889,7 +896,7 @@
                             <constraint firstItem="47512" firstAttribute="top" secondItem="47511" secondAttribute="bottom" id="zpW-1i-MYy"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="View Gabbers" image="menu_gabbers" landscapeImage="menu_gabbers" largeContentSizeImage="menu_gabbers" selectedImage="menu_gabbers" id="47760"/>
+                    <tabBarItem key="tabBarItem" title="" image="menu_gabbers" landscapeImage="menu_gabbers" largeContentSizeImage="menu_gabbers" selectedImage="menu_gabbers" id="47760"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="SessionsCollectionView" destination="47517" id="name-outlet-47517"/>
@@ -900,7 +907,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="47509" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1071.0144927536232" y="904.07608695652186"/>
+            <point key="canvasLocation" x="1365" y="602"/>
         </scene>
     </scenes>
     <resources>

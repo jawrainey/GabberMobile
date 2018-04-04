@@ -3,6 +3,7 @@ using UIKit;
 using Gabber.iOS.ViewSources;
 using GabberPCL;
 using Foundation;
+using GabberPCL.Resources;
 
 namespace Gabber.iOS
 {
@@ -27,6 +28,11 @@ namespace Gabber.iOS
             RecordGabberButton.Layer.BorderWidth = .75f;
             RecordGabberButton.Layer.BorderColor = UIColor.Black.CGColor;
 
+            Title = StringResources.participants_ui_title;
+
+            AddParticipantButton.SetTitle(StringResources.participants_ui_addparticipant_button, UIControlState.Normal);
+            RecordGabberButton.SetTitle(StringResources.participants_ui_startrecording_button, UIControlState.Normal);
+
             participantsViewSource = new ParticipantsCollectionViewSource(Queries.AllParticipants());
             ParticipantsCollectionView.Source = participantsViewSource;
         }
@@ -46,21 +52,27 @@ namespace Gabber.iOS
             {
                 PresentViewController(
                     new Helpers.MessageDialog().BuildErrorMessageDialog(
-                    "Participants not selected", 
-                    "At least one participant must be selected"
-                ), true, null);
+                        StringResources.participants_ui_validation_noneselected, ""), true, null);
                 return;
             }
 
             if (segue.Identifier == "SegueToRecordGabber" && Queries.SelectedParticipants().Count == 1 && !ConfirmOneParticipant)
             {
                 var finishRecordingAlertController = UIAlertController.Create(
-                    "One participant selected", 
-                    "Are you sure that you only want to select one participant?", 
+                    StringResources.participants_ui_validation_oneselected_title, 
+                    StringResources.participants_ui_validation_oneselected_message, 
                     UIAlertControllerStyle.Alert);
                 
-                finishRecordingAlertController.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, X => { }));
-                finishRecordingAlertController.AddAction(UIAlertAction.Create("Continue", UIAlertActionStyle.Default, (_) => {
+                finishRecordingAlertController.AddAction(
+                    UIAlertAction.Create(
+                        StringResources.participants_ui_validation_oneselected_cancel, 
+                        UIAlertActionStyle.Cancel, (_) => { }
+                    )
+                );
+                finishRecordingAlertController.AddAction(
+                    UIAlertAction.Create(StringResources.participants_ui_validation_oneselected_continue, 
+                                         UIAlertActionStyle.Default, (_) => 
+                {
                     ConfirmOneParticipant = true;
                     PerformSegue("SegueToRecordGabber", this);
                 }));

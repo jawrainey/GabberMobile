@@ -47,6 +47,24 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string common_menu_projects {
+            get {
+                return ResourceManager.GetString("common.menu.projects", resourceCulture);
+            }
+        }
+        
+        public static string common_menu_gabbers {
+            get {
+                return ResourceManager.GetString("common.menu.gabbers", resourceCulture);
+            }
+        }
+        
+        public static string common_menu_about {
+            get {
+                return ResourceManager.GetString("common.menu.about", resourceCulture);
+            }
+        }
+        
         public static string common_ui_forms_email_label {
             get {
                 return ResourceManager.GetString("common.ui.forms.email.label", resourceCulture);
@@ -404,6 +422,30 @@ namespace GabberPCL.Resources {
         public static string recording_ui_instructions_footer {
             get {
                 return ResourceManager.GetString("recording.ui.instructions.footer", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_permission_title {
+            get {
+                return ResourceManager.GetString("recording.ui.permission.title", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_permission_body {
+            get {
+                return ResourceManager.GetString("recording.ui.permission.body", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_permission_button_negative {
+            get {
+                return ResourceManager.GetString("recording.ui.permission.button.negative", resourceCulture);
+            }
+        }
+        
+        public static string recording_ui_permission_button_positive {
+            get {
+                return ResourceManager.GetString("recording.ui.permission.button.positive", resourceCulture);
             }
         }
         

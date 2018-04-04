@@ -5,6 +5,7 @@ using Foundation;
 using GabberPCL;
 using Newtonsoft.Json;
 using GabberPCL.Models;
+using GabberPCL.Resources;
 
 namespace Gabber.iOS
 {
@@ -15,6 +16,15 @@ namespace Gabber.iOS
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            ProjectsInstructions.Text = StringResources.projects_ui_instructions;
+            TabBarController.Title = StringResources.projects_ui_title;
+
+            // Have to set this here for now as the default page for TabBar is this and ViewLoad
+            // is where the titles are set within each controler of the tabbar.
+            TabBarController.TabBar.Items[0].Title = StringResources.common_menu_projects;
+            TabBarController.TabBar.Items[1].Title = StringResources.common_menu_gabbers;
+            TabBarController.TabBar.Items[2].Title = StringResources.common_menu_about;
 
             var es = new CoreGraphics.CGSize(UIScreen.MainScreen.Bounds.Width - 36, 70);
             (ProjectsCollectionView.CollectionViewLayout as UICollectionViewFlowLayout).EstimatedItemSize = es;
@@ -46,10 +56,10 @@ namespace Gabber.iOS
         public override void ViewWillAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-            TabBarController.Title = "Projects";
+            TabBarController.Title = StringResources.common_menu_projects;
         }
 
-        [Action("UnwindToProjectsViewController:")]
+		[Action("UnwindToProjectsViewController:")]
         public void UnwindToProjectsViewController(UIStoryboardSegue segue) {}
 
         // TODO: given this is in all controllers, should make a super class to reduce duplication

@@ -4,6 +4,7 @@ using GabberPCL;
 using Foundation;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using GabberPCL.Resources;
 
 namespace Gabber.iOS
 {
@@ -16,6 +17,10 @@ namespace Gabber.iOS
             base.ViewDidLoad();
             LoginUIButton.Layer.BorderWidth = .5f;
             LoginUIButton.Layer.BorderColor = UIColor.Black.CGColor;
+
+            LoginUIButton.SetTitle(StringResources.login_ui_submit_button, UIControlState.Normal);
+            EmailTextField.Placeholder = StringResources.common_ui_forms_email_label;
+            PasswordTextField.Placeholder = StringResources.common_ui_forms_password_label;
 
             EmailTextField.ShouldReturn += NavigateNext;
             PasswordTextField.ShouldReturn += NavigateNext;
@@ -45,13 +50,17 @@ namespace Gabber.iOS
             var email = EmailTextField.Text;
             var passw = PasswordTextField.Text;
 
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(passw))
+            if (string.IsNullOrWhiteSpace(email))
             {
-                ErrorMessageDialog("The username or password is empty");
+                ErrorMessageDialog(StringResources.common_ui_forms_email_validate_empty);
+            }
+            else if (string.IsNullOrWhiteSpace(passw))
+            {
+                ErrorMessageDialog(StringResources.common_ui_forms_password_validate_empty);
             }
             else if (!Regex.Match(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success)
             {
-                ErrorMessageDialog("The email address provided is invalid");
+                ErrorMessageDialog(StringResources.common_ui_forms_email_validate_invalid);
             }
             else 
             {
@@ -64,7 +73,9 @@ namespace Gabber.iOS
 
                 if (response.Meta.Messages.Count > 0)
                 {
-                    ErrorMessageDialog(response.Meta.Messages[0]);
+                    // Only show the first error as there 
+                    var err = StringResources.ResourceManager.GetString($"login.api.error.{response.Meta.Messages[0]}");
+                    ErrorMessageDialog(err);
                 }
                 else if (!string.IsNullOrEmpty(response.Data?.Tokens.Access))
                 {
@@ -79,10 +90,10 @@ namespace Gabber.iOS
             }
         }
 
-        void ErrorMessageDialog(string message)
+        void ErrorMessageDialog(string title)
         {
             var dialog = new Helpers.MessageDialog();
-            var errorDialog = dialog.BuildErrorMessageDialog("Unable to log in", message);
+            var errorDialog = dialog.BuildErrorMessageDialog(title, "");
             PresentViewController(errorDialog, true, null);
         }
     }

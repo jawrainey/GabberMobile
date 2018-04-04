@@ -30,6 +30,10 @@ namespace Gabber.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UICollectionView TopicsCollectionView { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel TopicsInstructions { get; set; }
+
         [Action ("RecordingCompleteDialog:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void RecordingCompleteDialog (UIKit.UIButton sender);
@@ -54,6 +58,11 @@ namespace Gabber.iOS
             if (TopicsCollectionView != null) {
                 TopicsCollectionView.Dispose ();
                 TopicsCollectionView = null;
+            }
+
+            if (TopicsInstructions != null) {
+                TopicsInstructions.Dispose ();
+                TopicsInstructions = null;
             }
         }
     }

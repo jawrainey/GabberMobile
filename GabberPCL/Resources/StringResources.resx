@@ -13,6 +13,17 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
 
+    <!-- MAIN MENU -->
+    <data name="common.menu.projects" xml:space="preserve">
+        <value>Projects</value>
+    </data>
+    <data name="common.menu.gabbers" xml:space="preserve">
+        <value>View Gabbers</value>
+    </data>
+    <data name="common.menu.about" xml:space="preserve">
+        <value>About</value>
+    </data>
+    
     <!-- SHARED UI FORMS -->
     <data name="common.ui.forms.email.label" xml:space="preserve">
         <value>Email address</value>
@@ -234,6 +245,20 @@
     </data>
     <data name="recording.ui.instructions.footer" xml:space="preserve">
         <value>Select a topic to begin recording</value>    
+    </data>
+
+    <!-- RECORD SCREEN RECORD PERMISSION -->
+    <data name="recording.ui.permission.title" xml:space="preserve">
+        <value>Permission required</value>
+    </data>
+    <data name="recording.ui.permission.body" xml:space="preserve">
+        <value>Microphone access is required to record a Gabber</value>
+    </data>
+    <data name="recording.ui.permission.button.negative" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="recording.ui.permission.button.positive" xml:space="preserve">
+        <value>Configure</value>    
     </data>
     
     <!-- RECORD SCREEN FINISH -->

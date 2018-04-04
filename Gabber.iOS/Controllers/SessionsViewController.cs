@@ -22,6 +22,7 @@ namespace Gabber.iOS
             UpdateSessionsSource();
             SessionsInstructions.Text = StringResources.sessions_ui_header_instructions;
             SessionsInstructionsBody.Text = StringResources.sessions_ui_body_instructions;
+            Title = StringResources.common_menu_gabbers;
             SessionsUpload.SetTitle(StringResources.sessions_ui_submit_button, UIControlState.Normal);
         }
 

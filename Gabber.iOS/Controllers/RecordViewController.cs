@@ -8,6 +8,7 @@ using Gabber.iOS.Helpers;
 using System.Threading.Tasks;
 using GabberPCL.Models;
 using AVFoundation;
+using GabberPCL.Resources;
 
 namespace Gabber.iOS
 {
@@ -54,6 +55,10 @@ namespace Gabber.iOS
 
         public override void ViewDidLoad()
         {
+            Title = StringResources.recording_ui_title;
+            TopicsInstructions.Text = StringResources.recording_ui_instructions_header;
+            RecordInstructions.Text = StringResources.recording_ui_instructions_footer;
+
             var es = new CoreGraphics.CGSize(UIScreen.MainScreen.Bounds.Width - 36, 70);
             (TopicsCollectionView.CollectionViewLayout as UICollectionViewFlowLayout).EstimatedItemSize = es;
 
@@ -69,12 +74,21 @@ namespace Gabber.iOS
                 if (AudioRecorder.IsRecording())
                 {
                     var doDeleteRecording = UIAlertController.Create(
-                        "You are currently recording",
-                        "Are you sure you want to go back? If you do, the recording will not be saved.", 
+                        StringResources.recording_ui_dialog_back_title,
+                        StringResources.recording_ui_dialog_back_body, 
                         UIAlertControllerStyle.Alert);
 
-                    doDeleteRecording.AddAction(UIAlertAction.Create("No", UIAlertActionStyle.Cancel, (_) => { }));
-                    doDeleteRecording.AddAction(UIAlertAction.Create("Yes", UIAlertActionStyle.Default, (_) => {
+                    doDeleteRecording.AddAction(
+                        UIAlertAction.Create(
+                            StringResources.recording_ui_dialog_back_negative, 
+                            UIAlertActionStyle.Cancel, 
+                            (_) => { }
+                        )
+                    );
+                    doDeleteRecording.AddAction(
+                        UIAlertAction.Create(
+                            StringResources.recording_ui_dialog_back_positive,
+                            UIAlertActionStyle.Default, (_) => {
                         NavigationController.PopViewController(false);
                     }));
                     PresentViewController(doDeleteRecording, true, null);   
@@ -124,6 +138,7 @@ namespace Gabber.iOS
             {
                 InvokeOnMainThread(() =>
                 {
+                    Title = StringResources.recording_ui_title_active;
                     InterviewTimer.Text = TimeSpan.FromSeconds(AudioRecorder.CurrentTime()).ToString((@"mm\:ss"));
                 });
                 await Task.Delay(15);
@@ -133,26 +148,45 @@ namespace Gabber.iOS
         protected void ConfigureMicrophoneAccessDialog()
         {
             var finishRecordingAlertController = UIAlertController.Create(
-                "Permission required", 
-                "Microphone access is required to record a Gabber", UIAlertControllerStyle.Alert);
+                StringResources.recording_ui_permission_title, 
+                StringResources.recording_ui_permission_body, UIAlertControllerStyle.Alert);
 
-            finishRecordingAlertController.AddAction(UIAlertAction.Create("No", UIAlertActionStyle.Cancel, (_) => { }));
-            finishRecordingAlertController.AddAction(UIAlertAction.Create("Configure", UIAlertActionStyle.Default, (_) => {
-                UIApplication.SharedApplication.OpenUrl(new NSUrl("app-settings:"));
-            }));
+            finishRecordingAlertController.AddAction(
+                UIAlertAction.Create(
+                    StringResources.recording_ui_permission_button_negative, 
+                    UIAlertActionStyle.Cancel, 
+                    (_) => { }
+                )
+            );
+            finishRecordingAlertController.AddAction(
+                UIAlertAction.Create(
+                    StringResources.recording_ui_permission_button_positive, 
+                    UIAlertActionStyle.Default, 
+                    (_) => { UIApplication.SharedApplication.OpenUrl(new NSUrl("app-settings:")); }
+                )
+            );
             PresentViewController(finishRecordingAlertController, true, null);
         }
 
         partial void RecordingCompleteDialog(UIButton sender)
         {
             var finishRecordingAlertController = UIAlertController.Create(
-                "End recording", 
-                "Are you sure you want to end this recording?", 
+                StringResources.recording_ui_dialog_finish_title, "",
                 UIAlertControllerStyle.Alert
             );
 
-            finishRecordingAlertController.AddAction(UIAlertAction.Create("Yes", UIAlertActionStyle.Default, FinishRecording));
-            finishRecordingAlertController.AddAction(UIAlertAction.Create("No", UIAlertActionStyle.Cancel, (_) => {}));
+            finishRecordingAlertController.AddAction(
+                UIAlertAction.Create(
+                    StringResources.recording_ui_dialog_finish_positive, 
+                    UIAlertActionStyle.Default, 
+                    FinishRecording)
+            );
+            finishRecordingAlertController.AddAction(
+                UIAlertAction.Create(
+                    StringResources.recording_ui_dialog_finish_negative, 
+                    UIAlertActionStyle.Cancel, 
+                    (_) => {})
+            );
 
             PresentViewController(finishRecordingAlertController, true, null);
         }
