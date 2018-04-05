@@ -17,15 +17,18 @@ namespace Gabber.Activities
             SetContentView(Resource.Layout.register_verification);
             FindViewById<TextView>(Resource.Id.verifyTitle).Text = StringResources.register_verify_ui_page_title;
             FindViewById<TextView>(Resource.Id.verifyContent).Text = StringResources.register_verify_ui_page_content;
-            FindViewById<AppCompatButton>(Resource.Id.openEmail).Text = StringResources.register_verify_ui_button_openemail;
 
-            FindViewById<AppCompatButton>(Resource.Id.openEmail).Click += delegate
+            Intent intent = new Intent(Intent.ActionMain);
+            intent.SetFlags(ActivityFlags.NewTask);
+            intent.AddCategory(Intent.CategoryAppEmail);
+
+            if (intent.ResolveActivity(PackageManager) != null)
             {
-                Intent intent = new Intent(Intent.ActionMain);
-                intent.SetFlags(ActivityFlags.NewTask);
-                intent.AddCategory(Intent.CategoryAppEmail);
-                StartActivity(intent);
-            };
+                var openEmail = FindViewById<AppCompatButton>(Resource.Id.openEmail);
+                openEmail.Text = StringResources.register_verify_ui_button_openemail;
+                openEmail.Click += (s, e) => StartActivity(intent);
+                openEmail.Visibility = Android.Views.ViewStates.Visible;
+            }
         }
 	}
 }

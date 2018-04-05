@@ -122,7 +122,7 @@
         <value>Please confirm your email address by tapping the button in the confirmation email we sent you.</value>
     </data>
     <data name="register.verify.ui.button.openemail" xml:space="preserve">
-        <value>Open email client</value>
+        <value>Open default email client</value>
     </data>
 
     <!-- REGISTER VERIFYING EMAIL PAGE -->
