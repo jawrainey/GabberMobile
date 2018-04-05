@@ -59,6 +59,13 @@ namespace Gabber.iOS
             TabBarController.Title = StringResources.common_menu_projects;
         }
 
+		public override void ViewWillDisappear(bool animated)
+		{
+            base.ViewWillDisappear(animated);
+            // By removing the title here we also remove it from the navbar item
+            TabBarController.Title = "";
+		}
+
 		[Action("UnwindToProjectsViewController:")]
         public void UnwindToProjectsViewController(UIStoryboardSegue segue) {}
 

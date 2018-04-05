@@ -24,6 +24,9 @@ namespace Gabber.iOS
             SessionsInstructions.Text = StringResources.sessions_ui_header_instructions;
             SessionsInstructionsBody.Text = StringResources.sessions_ui_body_instructions;
             Title = StringResources.common_menu_gabbers;
+
+            SessionsUpload.Layer.BorderWidth = 1.0f;
+            SessionsUpload.Layer.BorderColor = UIColor.FromRGB(.38f, .166f, .154f).CGColor;
             SessionsUpload.SetTitle(StringResources.sessions_ui_submit_button, UIControlState.Normal);
         }
 
@@ -67,14 +70,13 @@ namespace Gabber.iOS
                     new Helpers.MessageDialog().BuildErrorMessageDialog(
                         StringResources.sessions_ui_message_upload_fail, ""), true, null);
             }
+            if (Sessions.Count <= 0) ShowHideInstructions();
         }
 
         partial void UploadAll(UIButton sender)
         {
             SessionsUpload.Enabled = false;
-            // Recursively uploads sessions
             UploadSessions(0, true);
-            ShowHideInstructions();
             SessionsUpload.Enabled = true;
         }
 

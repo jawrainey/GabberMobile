@@ -38,8 +38,8 @@ namespace Gabber.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            RegisterUIButton.Layer.BorderWidth = .5f;
-            RegisterUIButton.Layer.BorderColor = UIColor.Black.CGColor;
+            RegisterUIButton.Layer.BorderWidth = 1.0f;
+            RegisterUIButton.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
 
             FullNameRegisterTextField.Placeholder = StringResources.register_ui_fullname_label;
             EmailRegisterTextField.Placeholder = StringResources.common_ui_forms_email_label;

@@ -18,8 +18,9 @@ namespace Gabber.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            AddNewParticipant.Layer.BorderWidth = .5f;
-            AddNewParticipant.Layer.BorderColor = UIColor.Black.CGColor;
+
+            AddNewParticipant.Layer.BorderWidth = 1.0f;
+            AddNewParticipant.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
 
             NavigationItem.Title = StringResources.participants_ui_dialog_add_title;
             ParticipantName.Placeholder = StringResources.register_ui_fullname_label;

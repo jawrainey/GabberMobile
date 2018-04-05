@@ -42,7 +42,7 @@ namespace Gabber.iOS.ViewSources
         {
             var cell = (ParticipantsCollectionViewCell)collectionView.DequeueReusableCell(ParticipantsCollectionViewCell.CellID, indexPath);                
             cell.Layer.BorderWidth = 1.0f;
-            cell.Layer.BorderColor = UIColor.Black.CGColor;
+            cell.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
             cell.UpdateContent(Rows[indexPath.Row]);
             return cell;
         }
