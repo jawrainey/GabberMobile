@@ -190,7 +190,6 @@
     <AndroidResource Include="Resources\layout\about_frag.axml" />
     <AndroidResource Include="Resources\layout\register_verification.axml" />
     <AndroidResource Include="Resources\layout\register_verification_res.axml" />
-    <AndroidResource Include="Resources\drawable\custom_button.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\cloud_done.png" />
     <AndroidResource Include="Resources\drawable-hdpi\cloud_upload.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_about.png" />
@@ -219,6 +218,8 @@
     <AndroidResource Include="Resources\drawable-nodpi\onboarding_first.png" />
     <AndroidResource Include="Resources\drawable-nodpi\onboarding_second.png" />
     <AndroidResource Include="Resources\drawable-nodpi\onboarding_third.png" />
+    <AndroidResource Include="Resources\drawable-v21\custom_button.xml" />
+    <AndroidResource Include="Resources\drawable\custom_button.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
@@ -228,6 +229,7 @@
     <Folder Include="Resources\menu\" />
     <Folder Include="Fragments\" />
     <Folder Include="Resources\drawable-nodpi\" />
+    <Folder Include="Resources\drawable-v21\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">
