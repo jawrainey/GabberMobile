@@ -26,33 +26,22 @@ namespace Gabber.Adapters
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             var mholder = holder as SessionViewHolder;
-
-            var project = Queries.ProjectById(Sessions[position].ProjectID);
             var session = Sessions[position];
-            var project_title = project.Title;
-            var num_topics = session.Prompts.Count;
-            var num_parts = session.Participants.Count;
-            var length = session.Prompts[num_topics - 1].End;
-            var dateCreated = session.CreatedAt.ToString("MM/dd/yyyy HH:mm");
 
+            mholder.UploadProgress.Visibility = session.IsUploading ? ViewStates.Visible : ViewStates.Gone;
+            mholder.Participants.Text = BuildParticipantsNames(session.Participants);
+            mholder.DateCreated.Text = session.CreatedAt.ToString("MM/dd, HH:mm");
+            mholder.Length.Text = TimeSpan.FromSeconds(session.Prompts[session.Prompts.Count - 1].End).ToString(@"mm\:ss");
+            mholder.ProjectTitle.Text = Queries.ProjectById(Sessions[position].ProjectID).Title;
+        }
+
+        string BuildParticipantsNames(List<InterviewParticipant> participants)
+        {
+            if (participants.Count == 1) return participants[0].Name.Split(' ')[0];
             var PartNames = new List<string>();
-            foreach (var p in session.Participants) PartNames.Add(Queries.UserById(p.UserID).Name);
+            foreach (var p in participants) PartNames.Add(Queries.UserById(p.UserID).Name.Split(' ')[0].Trim());
 
-            mholder.UploadProgress.Visibility = ViewStates.Gone;
-            mholder.SessionUploaded.Visibility = ViewStates.Visible;
-
-            if (session.IsUploading && !(session.IsUploaded))
-            {
-                mholder.UploadProgress.Visibility = ViewStates.Visible;
-                mholder.SessionUploaded.Visibility = ViewStates.Gone;
-            }
-
-            mholder.Participants.Text = "(" + num_parts.ToString() + ") " + string.Join(", ", PartNames);
-            mholder.DateCreated.Text = dateCreated;
-            mholder.Length.Text = TimeSpan.FromSeconds(length).ToString((@"mm\:ss"));
-            mholder.ProjectTitle.Text = project_title;
-            mholder.NumTopics.Text = num_topics.ToString() + " Topics";
-            mholder.SessionUploaded.SetBackgroundResource(session.IsUploaded ? Resource.Drawable.cloud_done : Resource.Drawable.cloud_upload);
+            return string.Join(", ", PartNames);
         }
 
         public void SessionIsUploading(int position)
@@ -84,9 +73,7 @@ namespace Gabber.Adapters
             public TextView Participants { get; set; }
             public TextView Length { get; set; }
             public TextView ProjectTitle { get; set; }
-            public TextView NumTopics { get; set; }
             public TextView DateCreated { get; set; }
-            public AppCompatButton SessionUploaded { get; set; }
             public ProgressBar UploadProgress { get; set; }
 
             public SessionViewHolder(View item) : base(item)
@@ -94,9 +81,7 @@ namespace Gabber.Adapters
                 Participants = item.FindViewById<TextView>(Resource.Id.session_participants);
                 Length = item.FindViewById<TextView>(Resource.Id.session_length);
                 ProjectTitle = item.FindViewById<TextView>(Resource.Id.project_title);
-                NumTopics = item.FindViewById<TextView>(Resource.Id.session_num_topics);
                 DateCreated = item.FindViewById<TextView>(Resource.Id.session_date_created);
-                SessionUploaded = item.FindViewById<AppCompatButton>(Resource.Id.session_uploaded);
                 UploadProgress = item.FindViewById<ProgressBar>(Resource.Id.upload_progress);
             }
         }

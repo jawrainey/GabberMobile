@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Android.OS;
 using Android.Support.V7.App;
@@ -8,7 +7,6 @@ using Android.Views;
 using Android.Widget;
 using Gabber.Adapters;
 using GabberPCL;
-using GabberPCL.Models;
 using GabberPCL.Resources;
 
 namespace Gabber.Fragments
@@ -60,10 +58,8 @@ namespace Gabber.Fragments
             ShowHideInstructions();
 
             sessionsUploadButton.Click += async delegate {
-                System.Console.WriteLine("ABOUT TO DISABLE IT...");
                 sessionsUploadButton.Enabled = false;
                 await UploadSessions(0, true);
-                System.Console.WriteLine("ABOUT TO ENABLE IT...");
                 sessionsUploadButton.Enabled = true;
             };
 
