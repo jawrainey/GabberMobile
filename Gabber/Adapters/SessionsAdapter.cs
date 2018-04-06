@@ -10,7 +10,7 @@ namespace Gabber.Adapters
 {
     public class SessionAdapter : RecyclerView.Adapter
     {
-        List<InterviewSession> Sessions;
+        public List<InterviewSession> Sessions;
 
         public SessionAdapter(List<InterviewSession> _sessions)
         {
@@ -72,8 +72,9 @@ namespace Gabber.Adapters
         {
             Sessions[position].IsUploaded = true;
             Sessions[position].IsUploading = false;
+            Session.Connection.Update(Sessions[position]);
             Sessions.Remove(Sessions[position]);
-            NotifyItemChanged(position);
+            NotifyDataSetChanged();
         }
 
         public override int ItemCount => (Sessions != null ? Sessions.Count : 0);

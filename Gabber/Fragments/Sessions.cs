@@ -1,9 +1,14 @@
-﻿using Android.OS;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Gabber.Adapters;
 using GabberPCL;
+using GabberPCL.Models;
 using GabberPCL.Resources;
 
 namespace Gabber.Fragments
@@ -11,6 +16,7 @@ namespace Gabber.Fragments
     public class Sessions : Android.Support.V4.App.Fragment
     {
         static Sessions instance;
+        SessionAdapter adapter;
 
         public static Sessions NewInstance()
         {
@@ -45,56 +51,53 @@ namespace Gabber.Fragments
             base.OnCreate(savedInstanceState);
 
             var sessions = Queries.AllNotUploadedInterviewSessionsForActiveUser();
-            var adapter = new Adapters.SessionAdapter(sessions);
-            var sessionsView = Activity.FindViewById<RecyclerView>(Resource.Id.sessions);
+            sessions = sessions.FindAll(t => !t.IsUploaded);
+            adapter = new Adapters.SessionAdapter(sessions);
+            Activity.FindViewById<RecyclerView>(Resource.Id.sessions).SetAdapter(adapter);
 
-            sessionsView.SetAdapter(adapter);
+            var sessionsUploadButton = Activity.FindViewById<AppCompatButton>(Resource.Id.upload_sessions);
 
-            var sessions_upload = Activity.FindViewById<AppCompatButton>(Resource.Id.upload_sessions);
-            var sessions_to_upload = sessions.FindAll(t => !t.IsUploaded).ToArray();
+            ShowHideInstructions();
 
-            if (sessions_to_upload.Length > 0) {
-                sessions_upload.Visibility = ViewStates.Visible;
-                Activity.FindViewById<TextView>(Resource.Id.sessionsBodyInstructions).Visibility = ViewStates.Gone;
-            }
-
-            sessions_upload.Click += async delegate
-            {
-                if (sessions_to_upload.Length <= 0) return;
-
-                for (int i = 0; i < sessions.Count; i++)
-                {
-                    var session = sessions[i];
-                    if (!session.IsUploaded)
-                    {
-                        // Changes the UI element to a ProgressBar
-                        adapter.SessionIsUploading(i);
-                        sessions_upload.Enabled = false;
-
-                        var didUpload = await new RestClient().Upload(session);
-
-                        // Changes UI depending on response.
-                        if (didUpload)
-                        {
-                            session.IsUploaded = didUpload;
-                            Session.Connection.Update(session);
-                            adapter.SessionIsUploaded(i);
-                            Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_success, ToastLength.Long).Show();
-                        }
-                        else
-                        {
-                            adapter.SessionUploadFail(i);
-                            Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_fail, ToastLength.Long).Show();
-                        }
-                    }
-                }
-                if (Queries.AllNotUploadedInterviewSessionsForActiveUser().Count <= 0) {
-                    sessions_upload.Visibility = ViewStates.Invisible;
-                    Activity.FindViewById<TextView>(Resource.Id.sessionsBodyInstructions).Visibility = ViewStates.Visible;
-                }
-                sessions_upload.Enabled = true;
+            sessionsUploadButton.Click += async delegate {
+                System.Console.WriteLine("ABOUT TO DISABLE IT...");
+                sessionsUploadButton.Enabled = false;
+                await UploadSessions(0, true);
+                System.Console.WriteLine("ABOUT TO ENABLE IT...");
+                sessionsUploadButton.Enabled = true;
             };
 
+        }
+
+        void ShowHideInstructions()
+        {
+            var sessionsUploadButton = Activity.FindViewById<AppCompatButton>(Resource.Id.upload_sessions);
+            var bodyInstructions = Activity.FindViewById<TextView>(Resource.Id.sessionsBodyInstructions);
+            var noSessions = adapter.Sessions.Count <= 0;
+            sessionsUploadButton.Visibility = noSessions ? ViewStates.Gone : ViewStates.Visible;
+            bodyInstructions.Visibility = noSessions ? ViewStates.Visible : ViewStates.Gone;
+        }
+
+        public async Task<bool> UploadSessions(int index, bool recursive)
+        {
+            if (adapter.Sessions.ElementAtOrDefault(index) == null) return false;
+
+            adapter.SessionIsUploading(index);
+            var didUpload = await new RestClient().Upload(adapter.Sessions[index]);
+
+            if (didUpload)
+            {
+                adapter.SessionIsUploaded(index);
+                Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_success, ToastLength.Long).Show();
+                if (recursive) await UploadSessions(0, true);
+            }
+            else
+            {
+                adapter.SessionUploadFail(index);
+                Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_fail, ToastLength.Long).Show();
+            }
+            ShowHideInstructions();
+            return true;
         }
     }
 }
