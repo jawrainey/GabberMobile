@@ -75,13 +75,14 @@ namespace Gabber
                 case Resource.Id.menu_projects:
                     fragment = Fragments.Projects.NewInstance();
                     break;
-
                 case Resource.Id.menu_gabbers:
                     fragment = Fragments.Sessions.NewInstance();
                     break;
-
                 case Resource.Id.menu_about:
                     fragment = Fragments.About.NewInstance();
+                    break;
+                default:
+                    fragment = Fragments.Projects.NewInstance();
                     break;
             }
 

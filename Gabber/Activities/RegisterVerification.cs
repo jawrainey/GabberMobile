@@ -18,7 +18,7 @@ namespace Gabber.Activities
             FindViewById<TextView>(Resource.Id.verifyTitle).Text = StringResources.register_verify_ui_page_title;
             FindViewById<TextView>(Resource.Id.verifyContent).Text = StringResources.register_verify_ui_page_content;
 
-            Intent intent = new Intent(Intent.ActionMain);
+            var intent = new Intent(Intent.ActionMain);
             intent.SetFlags(ActivityFlags.NewTask);
             intent.AddCategory(Intent.CategoryAppEmail);
 

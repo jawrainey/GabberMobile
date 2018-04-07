@@ -164,7 +164,7 @@ namespace Gabber
 
         void ItemSelected(int currentSelected)
         {
-            int previousSelected = themes.FindIndex((Prompt p) => p.SelectionState == Prompt.SelectedState.current);
+            var previousSelected = themes.FindIndex((Prompt p) => p.SelectionState == Prompt.SelectedState.current);
             var selectedItems = new List<int> { currentSelected };
             if (previousSelected != -1)
             {

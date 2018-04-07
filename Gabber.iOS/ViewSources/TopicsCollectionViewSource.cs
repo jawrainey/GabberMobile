@@ -23,7 +23,7 @@ namespace Gabber.iOS.ViewSources
 
         public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            int previousSelected = Rows.FindIndex((Prompt p) => p.SelectionState == Prompt.SelectedState.current);
+            var previousSelected = Rows.FindIndex((Prompt p) => p.SelectionState == Prompt.SelectedState.current);
             // At least two items must be selected before a previous exists
             if (previousSelected != -1)
             {
