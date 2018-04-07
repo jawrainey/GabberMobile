@@ -17,7 +17,7 @@ using GabberPCL.Resources;
 namespace Gabber
 {
 	[Activity]
-    public class PreparationActivity : AppCompatActivity, IDialogInterfaceOnShowListener
+    public class PreparationActivity : AppCompatActivity
 	{
         // Expose for on-click event to update participants view
         ParticipantAdapter adapter;
@@ -66,7 +66,7 @@ namespace Gabber
                 });
 
                 var AddParticipantDialog = alert.Create();
-                AddParticipantDialog.SetOnShowListener(this);
+                AddParticipantDialog.Window.SetSoftInputMode(SoftInput.StateAlwaysVisible);
                 AddParticipantDialog.Show();
                 // Override the on click such that we can dismiss the dialog from here, otherwise
                 // it dismisses every time the button is clicked and we cannot do validation.
@@ -131,13 +131,6 @@ namespace Gabber
 				}
 			};
 		}
-
-        public void OnShow(IDialogInterface dialog)
-        {
-            var pname = ((Android.Support.V7.App.AlertDialog)dialog).FindViewById<AppCompatEditText>(Resource.Id.participantName);
-            var imm = (Android.Views.InputMethods.InputMethodManager)GetSystemService(InputMethodService);
-            imm.ShowSoftInput(pname, Android.Views.InputMethods.ShowFlags.Implicit);
-        }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
