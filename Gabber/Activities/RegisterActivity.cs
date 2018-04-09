@@ -18,6 +18,9 @@ namespace Gabber
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.register);
+            SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
+            SupportActionBar.Title = StringResources.register_ui_title;
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             var submit = FindViewById<AppCompatButton>(Resource.Id.submit);
             submit.Text = StringResources.register_ui_submit_button;
@@ -49,23 +52,23 @@ namespace Gabber
 
                 if (string.IsNullOrWhiteSpace(fname.Text))
 				{
+                    fname.Error = StringResources.register_ui_fullname_validate_empty;
                     fname.RequestFocus();
-                    Snackbar.Make(email, StringResources.register_ui_fullname_validate_empty, Snackbar.LengthLong).Show();
 				}
                 else if (string.IsNullOrWhiteSpace(email.Text))
                 {
+                    email.Error = StringResources.common_ui_forms_email_validate_empty;
                     email.RequestFocus();
-                    Snackbar.Make(email, StringResources.common_ui_forms_email_validate_empty, Snackbar.LengthLong).Show();
                 }
                 else if (string.IsNullOrWhiteSpace(passw.Text))
                 {
+                    passw.Error = StringResources.common_ui_forms_password_validate_empty;
                     passw.RequestFocus();
-                    Snackbar.Make(email, StringResources.common_ui_forms_password_validate_empty, Snackbar.LengthLong).Show();
                 }
 				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
 				{
+                    email.Error = StringResources.common_ui_forms_email_validate_invalid;
                     email.RequestFocus();
-                    Snackbar.Make(email, StringResources.common_ui_forms_email_validate_invalid, Snackbar.LengthLong).Show();
 				}
 				else
 				{
@@ -97,7 +100,16 @@ namespace Gabber
 					}
 				}
 			};
+
+            _name.RequestFocus();
+            Window.SetSoftInputMode(SoftInput.StateAlwaysVisible);
 		}
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            OnBackPressed();
+            return true;
+        }
 
         void MakeError(string errorMessage)
         {

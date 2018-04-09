@@ -167,6 +167,12 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string login_ui_title {
+            get {
+                return ResourceManager.GetString("login.ui.title", resourceCulture);
+            }
+        }
+        
         public static string login_ui_submit_button {
             get {
                 return ResourceManager.GetString("login.ui.submit.button", resourceCulture);
@@ -182,6 +188,12 @@ namespace GabberPCL.Resources {
         public static string register_api_error_AUTH_USER_404 {
             get {
                 return ResourceManager.GetString("register.api.error.AUTH_USER_404", resourceCulture);
+            }
+        }
+        
+        public static string register_ui_title {
+            get {
+                return ResourceManager.GetString("register.ui.title", resourceCulture);
             }
         }
         

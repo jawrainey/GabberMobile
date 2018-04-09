@@ -89,6 +89,9 @@
     </data>
     
     <!-- USER LOGIN SCREEN: UI -->
+     <data name="login.ui.title" xml:space="preserve">
+        <value>Login to Gabber</value>
+    </data>
     <data name="login.ui.submit.button" xml:space="preserve">
         <value>Login</value>
     </data>
@@ -102,6 +105,9 @@
     </data>
 
     <!-- USER REGISTER SCREEN: UI -->
+    <data name="register.ui.title" xml:space="preserve">
+        <value>Create a Gabber account</value>
+    </data>
     <data name="register.ui.fullname.label" xml:space="preserve">
         <value>Fullname</value>
     </data>
@@ -111,7 +117,7 @@
     
     <!-- USER REGISTER SCREEN: UI errors -->
     <data name="register.ui.fullname.validate.empty" xml:space="preserve">
-        <value>Your Full Name is empty</value>
+        <value>Your fullname is empty</value>
     </data>
 
     <!-- REGISTER VERIFICATION PAGE -->

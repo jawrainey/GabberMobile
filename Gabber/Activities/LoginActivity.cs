@@ -20,6 +20,9 @@ namespace Gabber
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.login);
+            SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
+            SupportActionBar.Title = StringResources.login_ui_title;
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             var submit = FindViewById<AppCompatButton>(Resource.Id.submit);
             submit.Text = StringResources.login_ui_submit_button;
@@ -49,18 +52,18 @@ namespace Gabber
 
 				if (string.IsNullOrWhiteSpace(email.Text))
 				{
+                    email.Error = StringResources.common_ui_forms_email_validate_empty;
                     email.RequestFocus();
-                    Snackbar.Make(email, StringResources.common_ui_forms_email_validate_empty, Snackbar.LengthLong).Show();
 				}
                 else if (string.IsNullOrWhiteSpace(passw.Text))
                 {
+                    passw.Error = StringResources.common_ui_forms_password_validate_empty;
                     passw.RequestFocus();
-                    Snackbar.Make(passw, StringResources.common_ui_forms_password_validate_empty, Snackbar.LengthLong).Show();
                 }
 				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
 				{
+                    email.Error = StringResources.common_ui_forms_email_validate_invalid;
                     email.RequestFocus();
-                    Snackbar.Make(email, StringResources.common_ui_forms_email_validate_invalid, Snackbar.LengthLong).Show();
 				}
 				else
 				{
@@ -101,7 +104,16 @@ namespace Gabber
 					}
 				}
 			};
+
+            _email.RequestFocus();
+            Window.SetSoftInputMode(SoftInput.StateAlwaysVisible);
 		}
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            OnBackPressed();
+            return true;
+        }
 
         void MakeError(string errorMessage)
         {
