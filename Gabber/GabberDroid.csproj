@@ -161,10 +161,8 @@
     <AndroidResource Include="Resources\layout\preparation.axml" />
     <AndroidResource Include="Resources\layout\record.axml" />
     <AndroidResource Include="Resources\layout\register.axml" />
-    <AndroidResource Include="Resources\drawable\record_topic_stop.png" />
     <AndroidResource Include="Resources\layout\onboarding.axml" />
     <AndroidResource Include="Resources\layout\prompt.axml" />
-    <AndroidResource Include="Resources\drawable\record_topic_selector.xml" />
     <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
@@ -220,6 +218,11 @@
     <AndroidResource Include="Resources\drawable-v21\custom_button.xml" />
     <AndroidResource Include="Resources\drawable\custom_button.xml" />
     <AndroidResource Include="Resources\drawable\slideup.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\stop_recording.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\stop_recording.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\stop_recording.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\stop_recording.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\stop_recording.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
