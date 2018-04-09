@@ -92,10 +92,27 @@ namespace GabberPCL
 
         public static void AddInterviewSession(InterviewSession InterviewSession) => Session.Connection.Insert(InterviewSession);
 
-        public static List<User> AllParticipantsUnSelected() {
+        public static List<User> AllParticipantsUnSelected() 
+        {
+            // TODO: This is inefficient as the database is hit each time this page is visited.
+            // Instead, the Selected property should be removed, and SelectedParticipants stored
+            // internally between selecting parts<->Recording, and reset from projects<->parts
+
             var participants = Session.Connection.Table<User>().ToList();
-            foreach (var p in participants) p.Selected = false;
-            // participants.FirstOrDefault(i => i.Email == Session.ActiveUser.Email && !i.Name.Contains("You")).Name += " (You)";
+
+            foreach (var p in participants) 
+            {
+                p.Selected = false;
+
+                if (p.Email == Session.ActiveUser.Email)
+                {
+                    p.Selected = true;
+                    if (!p.Name.Contains("You")) p.Name += (" (You)");
+                }
+
+                Session.Connection.Update(p);
+            }
+
             return participants;
         }
         public static List<User> AllParticipants() => Session.Connection.Table<User>().ToList();
