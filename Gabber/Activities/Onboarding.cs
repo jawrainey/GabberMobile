@@ -5,20 +5,24 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
+using Android.Views.Animations;
+using Android.Widget;
 using GabberPCL.Models;
 using GabberPCL.Resources;
 
 namespace Gabber.Activities
 {
     [Activity]
-    public class Onboarding : AppCompatActivity
+    public class Onboarding : AppCompatActivity, ViewPager.IOnPageChangeListener
     {
+        ViewPager pager;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.onboarding);
 
-            var pager = FindViewById<ViewPager>(Resource.Id.pager);
+            pager = FindViewById<ViewPager>(Resource.Id.pager);
 
             var pages = new List<OnboardingPageContent> {
                 new OnboardingPageContent {
@@ -43,6 +47,7 @@ namespace Gabber.Activities
                 }
             };
             pager.Adapter = new Adapters.SharedPager(this, pages);
+            pager.AddOnPageChangeListener(this);
 
             var tabs = FindViewById<TabLayout>(Resource.Id.tabs);
             tabs.SetupWithViewPager(pager, true);
@@ -56,5 +61,26 @@ namespace Gabber.Activities
             register.Text = StringResources.register_ui_submit_button;
             register.Click += (sender, e) => StartActivity(typeof(RegisterActivity));
         }
+
+        public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+        public void OnPageScrollStateChanged(int state){}
+
+        public void OnPageSelected(int position)
+        {
+            var la = FindViewById<LinearLayout>(Resource.Id.showAuthButtons);
+
+            if (position == pager.Adapter.Count - 1)
+            {
+                la.StartAnimation(AnimationUtils.LoadAnimation(this, Resource.Drawable.slideup));
+                la.Visibility = Android.Views.ViewStates.Visible;
+            }
+            else
+            {
+                la.StartAnimation(AnimationUtils.LoadAnimation(this, Resource.Animation.abc_slide_out_bottom));
+                la.Visibility = Android.Views.ViewStates.Gone;
+            }
+        }
+
     }
 }

@@ -219,6 +219,7 @@
     <AndroidResource Include="Resources\drawable-nodpi\onboarding_third.png" />
     <AndroidResource Include="Resources\drawable-v21\custom_button.xml" />
     <AndroidResource Include="Resources\drawable\custom_button.xml" />
+    <AndroidResource Include="Resources\drawable\slideup.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />
