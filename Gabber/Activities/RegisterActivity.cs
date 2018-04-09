@@ -81,6 +81,7 @@ namespace Gabber
                     if (response.Meta.Success)
 					{
                         var intent = new Intent(this, typeof(Activities.RegisterVerification));
+                        intent.PutExtra("EMAIL_USED_TO_REGISTER", email.Text);
 						intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
 						StartActivity(intent);
 						Finish();

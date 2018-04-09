@@ -16,7 +16,8 @@ namespace Gabber.Activities
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.register_verification);
             FindViewById<TextView>(Resource.Id.verifyTitle).Text = StringResources.register_verify_ui_page_title;
-            FindViewById<TextView>(Resource.Id.verifyContent).Text = StringResources.register_verify_ui_page_content;
+            var email = Intent.GetStringExtra("EMAIL_USED_TO_REGISTER");
+            FindViewById<TextView>(Resource.Id.verifyContent).Text = string.Format(StringResources.register_verify_ui_page_content, email);
 
             var intent = new Intent(Intent.ActionMain);
             intent.SetFlags(ActivityFlags.NewTask);

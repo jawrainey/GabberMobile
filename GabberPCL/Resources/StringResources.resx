@@ -125,7 +125,7 @@
         <value>Email Verification</value>
     </data>
     <data name="register.verify.ui.page.content" xml:space="preserve">
-        <value>Please confirm your email address by tapping the button in the confirmation email we sent you.</value>
+        <value>Please confirm your email address ({0}) by tapping the button in the confirmation email we sent you.</value>
     </data>
     <data name="register.verify.ui.button.openemail" xml:space="preserve">
         <value>Open default email client</value>
