@@ -329,6 +329,12 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string sessions_ui_message_upload_inprogress {
+            get {
+                return ResourceManager.GetString("sessions.ui.message.upload.inprogress", resourceCulture);
+            }
+        }
+        
         public static string about_ui_title {
             get {
                 return ResourceManager.GetString("about.ui.title", resourceCulture);

@@ -18,7 +18,7 @@
         <value>Projects</value>
     </data>
     <data name="common.menu.gabbers" xml:space="preserve">
-        <value>View Gabbers</value>
+        <value>Upload Recordings</value>
     </data>
     <data name="common.menu.about" xml:space="preserve">
         <value>About</value>
@@ -171,7 +171,7 @@
 
     <!-- SESSIONS FRAGMENT -->
     <data name="sessions.ui.title" xml:space="preserve">
-        <value>Viewing your Gabbers</value>
+        <value>Upload Gabbers</value>
     </data>    
     <data name="sessions.ui.header.instructions" xml:space="preserve">
         <value>Upload your Gabber for others to listen, annotate and learn from the experiences you captured.</value>
@@ -180,13 +180,16 @@
         <value>There are no Gabber recordings to upload.</value>
     </data>
     <data name="sessions.ui.submit.button" xml:space="preserve">
-        <value>Upload all sessions</value>
+        <value>Upload all</value>
     </data>
     <data name="sessions.ui.message.upload.success" xml:space="preserve">
         <value>Gabber session uploaded successfully</value>
     </data>
     <data name="sessions.ui.message.upload.fail" xml:space="preserve">
         <value>Failed to upload. Try again soon.</value>
+    </data>
+    <data name="sessions.ui.message.upload.inprogress" xml:space="preserve">
+        <value>A session is currently being uploaded.</value>
     </data>
 
     <!-- ABOUT FRAGMENT -->

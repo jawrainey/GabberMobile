@@ -20,7 +20,7 @@ namespace Gabber.Adapters
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             var session = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.sessions_rv, parent, false);
-            return new SessionViewHolder(session);
+            return new SessionViewHolder(session, OnSessionClicked);
         }
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
@@ -68,6 +68,10 @@ namespace Gabber.Adapters
 
         public override int ItemCount => (Sessions != null ? Sessions.Count : 0);
 
+        public event EventHandler<int> SessionClicked;
+
+        void OnSessionClicked(int position) => SessionClicked?.Invoke(this, position);
+
         public class SessionViewHolder : RecyclerView.ViewHolder
         {
             public TextView Participants { get; set; }
@@ -76,8 +80,9 @@ namespace Gabber.Adapters
             public TextView DateCreated { get; set; }
             public ProgressBar UploadProgress { get; set; }
 
-            public SessionViewHolder(View item) : base(item)
+            public SessionViewHolder(View item, Action<int> listener) : base(item)
             {
+                item.Click += (sender, e) => listener(LayoutPosition);
                 Participants = item.FindViewById<TextView>(Resource.Id.session_participants);
                 Length = item.FindViewById<TextView>(Resource.Id.session_length);
                 ProjectTitle = item.FindViewById<TextView>(Resource.Id.project_title);

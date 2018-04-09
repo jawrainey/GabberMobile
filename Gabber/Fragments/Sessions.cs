@@ -1,17 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Android.OS;
 using Android.Preferences;
-using Android.Support.Design.Widget;
-using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Gabber.Adapters;
 using GabberPCL;
-using GabberPCL.Models;
 using GabberPCL.Resources;
 
 namespace Gabber.Fragments
@@ -20,6 +16,7 @@ namespace Gabber.Fragments
     {
         static Sessions instance;
         SessionAdapter adapter;
+        Task IsUploading;
 
         public static Sessions NewInstance()
         {
@@ -41,7 +38,11 @@ namespace Gabber.Fragments
 
             var sessions_upload = rootView.FindViewById<AppCompatButton>(Resource.Id.upload_sessions);
             sessions_upload.Text = StringResources.sessions_ui_submit_button;
-                
+            // If the user clicks upload all, navigates to projects, then comes back, 
+            // we must ensure that the upload all button is disabled, otherwise a session
+            // being uploaded may attempt to be uploaded again. Double email or index oor.
+            sessions_upload.Enabled = (IsUploading == null || IsUploading.IsCompleted);
+
             var toolbar = rootView.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             ((AppCompatActivity)Activity).SetSupportActionBar(toolbar);
             ((AppCompatActivity)Activity).SupportActionBar.Title = StringResources.sessions_ui_title;
@@ -55,18 +56,16 @@ namespace Gabber.Fragments
 
             var sessions = Queries.AllNotUploadedInterviewSessionsForActiveUser();
             sessions = sessions.FindAll(t => !t.IsUploaded);
-            adapter = new Adapters.SessionAdapter(sessions);
+            adapter = new SessionAdapter(sessions);
+
             Activity.FindViewById<RecyclerView>(Resource.Id.sessions).SetAdapter(adapter);
 
             var sessionsUploadButton = Activity.FindViewById<AppCompatButton>(Resource.Id.upload_sessions);
 
             ShowHideInstructions();
 
-            sessionsUploadButton.Click += async delegate {
-                sessionsUploadButton.Enabled = false;
-                await UploadSessions(0, true);
-                sessionsUploadButton.Enabled = true;
-            };
+            sessionsUploadButton.Click += (s, e) => UploadIfNot(0, true);
+            adapter.SessionClicked += (s, p) => UploadIfNot(p, false);
 
             // As we get to this fragment via MainActivity, passing data via intents
             // is not ideal. Instead, based on existing sessions, we can show the dialog.
@@ -79,6 +78,14 @@ namespace Gabber.Fragments
                     ShowDebriefingDialog();
                 }
             }
+        }
+
+        // Prevents multiple clicks to the same session, which will spawn threads
+        // to upload the session multiple times, which is not good!
+        void UploadIfNot(int position, bool recursive)
+        {
+            if (IsUploading == null || IsUploading.IsCompleted) IsUploading = UploadSessions(position, recursive);
+            else Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_inprogress, ToastLength.Long).Show();
         }
 
         void ShowDebriefingDialog()
@@ -115,6 +122,9 @@ namespace Gabber.Fragments
         public async Task<bool> UploadSessions(int index, bool recursive)
         {
             if (adapter.Sessions.ElementAtOrDefault(index) == null) return false;
+            var sessionsUploadButton = Activity.FindViewById<AppCompatButton>(Resource.Id.upload_sessions);
+
+            sessionsUploadButton.Enabled = false;
 
             adapter.SessionIsUploading(index);
             var didUpload = await new RestClient().Upload(adapter.Sessions[index]);
@@ -130,6 +140,7 @@ namespace Gabber.Fragments
                 adapter.SessionUploadFail(index);
                 Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_fail, ToastLength.Long).Show();
             }
+            sessionsUploadButton.Enabled = true;
             ShowHideInstructions();
             return true;
         }
