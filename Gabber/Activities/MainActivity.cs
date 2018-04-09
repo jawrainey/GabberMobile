@@ -43,7 +43,7 @@ namespace Gabber
                 var nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
                 nav.NavigationItemSelected += (sender, e) => LoadFragment(e.Item.ItemId);
 
-                // Load projects by defauld and sessions/about if they came from other activity.
+                // Load projects by default and sessions/about if they came from other activity.
                 LoadDefaultFragment(nav);
             }
         }

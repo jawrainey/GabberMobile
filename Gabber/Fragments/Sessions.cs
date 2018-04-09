@@ -1,12 +1,17 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Android.OS;
+using Android.Preferences;
+using Android.Support.Design.Widget;
+using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Gabber.Adapters;
 using GabberPCL;
+using GabberPCL.Models;
 using GabberPCL.Resources;
 
 namespace Gabber.Fragments
@@ -63,6 +68,39 @@ namespace Gabber.Fragments
                 sessionsUploadButton.Enabled = true;
             };
 
+            // As we get to this fragment via MainActivity, passing data via intents
+            // is not ideal. Instead, based on existing sessions, we can show the dialog.
+            if (sessions.Count == 1)
+            {
+                var prefs = PreferenceManager.GetDefaultSharedPreferences(Activity.ApplicationContext);
+                if (!prefs.GetBoolean("FIRST_RECORDING_DIALOG", false))
+                {
+                    prefs.Edit().PutBoolean("FIRST_RECORDING_DIALOG", true).Commit();
+                    ShowDebriefingDialog();
+                }
+            }
+        }
+
+        void ShowDebriefingDialog()
+        {
+            var alert = new AlertDialog.Builder(Activity);
+            alert.SetTitle(StringResources.debriefing_ui_page_first_title);
+            alert.SetMessage(StringResources.debriefing_ui_page_first_content);
+
+            alert.SetNeutralButton(
+                StringResources.debriefing_ui_button_hide, 
+                (dialog, id) => ((AlertDialog)dialog).Dismiss()
+            );
+
+            alert.SetPositiveButton(
+                StringResources.debriefing_ui_button_upload, 
+                async (dialog, id) => {
+                    ((AlertDialog)dialog).Dismiss();
+                    await UploadSessions(0, false);
+                }
+            );
+
+            alert.Create().Show();
         }
 
         void ShowHideInstructions()

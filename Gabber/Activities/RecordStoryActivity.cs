@@ -16,6 +16,7 @@ using Android.Support.V7.Widget;
 using GabberPCL.Models;
 using Gabber.Adapters;
 using GabberPCL.Resources;
+using Android.Preferences;
 
 namespace Gabber
 {
@@ -186,10 +187,11 @@ namespace Gabber
                 StopRecording();
                 SaveRecording();
 
-                var intent = new Intent(this, typeof(Activities.GabberDebriefing));
+                var intent = new Intent(this, typeof(MainActivity));
                 intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
-                StartActivity(intent);
+                intent.PutExtra("FRAGMENT_TO_SHOW", "gabbers");
                 Finish();
+                StartActivity(intent);
             });
 
             alert.SetNegativeButton(StringResources.recording_ui_dialog_finish_negative, (dialog, id) =>

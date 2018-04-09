@@ -292,15 +292,12 @@
         <value>Continue recording</value>    
     </data>  
 
-    <!-- DEBRIEFING SCREEN -->
-    <data name="debriefing.ui.title" xml:space="preserve">
-        <value>Next steps</value>
+    <!-- DEBRIEFING BUTTONS -->
+    <data name="debriefing.ui.button.hide" xml:space="preserve">
+        <value>Hide</value>
     </data>
-    <data name="debriefing.ui.button.projects" xml:space="preserve">
-        <value>Projects</value>
-    </data>
-    <data name="debriefing.ui.button.sessions" xml:space="preserve">
-        <value>Sessions</value>
+    <data name="debriefing.ui.button.upload" xml:space="preserve">
+        <value>Upload</value>
     </data>
 
     <!-- DEBRIEFING PAGE: 1 -->
@@ -308,7 +305,7 @@
         <value>Recording Success</value>
     </data>
     <data name="debriefing.ui.page.first.content" xml:space="preserve">
-        <value>Thanks for recording your Gabber. Once you upload the recording we will send you an email to review the recording and provide consent.</value>
+        <value>Thanks for recording your Gabber. Once you upload your recording an email will be sent to all participants to review the recording and provide consent.</value>
     </data>
 
     <!-- DEBRIEFING PAGE: 2 -->

@@ -503,21 +503,15 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string debriefing_ui_title {
+        public static string debriefing_ui_button_hide {
             get {
-                return ResourceManager.GetString("debriefing.ui.title", resourceCulture);
+                return ResourceManager.GetString("debriefing.ui.button.hide", resourceCulture);
             }
         }
         
-        public static string debriefing_ui_button_projects {
+        public static string debriefing_ui_button_upload {
             get {
-                return ResourceManager.GetString("debriefing.ui.button.projects", resourceCulture);
-            }
-        }
-        
-        public static string debriefing_ui_button_sessions {
-            get {
-                return ResourceManager.GetString("debriefing.ui.button.sessions", resourceCulture);
+                return ResourceManager.GetString("debriefing.ui.button.upload", resourceCulture);
             }
         }
         
