@@ -18,7 +18,7 @@
         <value>Projects</value>
     </data>
     <data name="common.menu.gabbers" xml:space="preserve">
-        <value>Upload Recordings</value>
+        <value>Recordings to Upload</value>
     </data>
     <data name="common.menu.about" xml:space="preserve">
         <value>About</value>
@@ -41,37 +41,46 @@
         <value>A password is required</value>
     </data>
 
-    <!-- ONBOARDING PAGE: 1 -->
-    <data name="onboarding.ui.page.first.title" xml:space="preserve">
-        <value>Structuring Gabbers</value>
+    <!-- ONBOARDING PAGE: 0 -->
+    <data name="onboarding.ui.page.zero.title" xml:space="preserve">
+        <value>Welcome to Gabber</value>
     </data>
-    <data name="onboarding.ui.page.first.content" xml:space="preserve">
-        <value>Gabber projects define a set of textual topics to structure the audio recording.Projects are created on the Gabber website for the mobile experience focus on the capturing</value>
+    <data name="onboarding.ui.page.zero.content" xml:space="preserve">
+        <value>Gabber uses topics to structure and capture audio conversations, which are used on the website to represent who was present and what was discussed.
+
+    The next screens explain each step to create a conversation using Gabber.</value>
     </data>
     
+    <!-- ONBOARDING PAGE: 1 -->
+    <data name="onboarding.ui.page.first.title" xml:space="preserve">
+        <value>Choose a project</value>
+    </data>
+    <data name="onboarding.ui.page.first.content" xml:space="preserve">
+        <value>Projects contain sets of discussion topics to structure conversations. Tap the project you want to contribute to</value>
+    </data>
 
     <!-- ONBOARDING PAGE: 2 -->
     <data name="onboarding.ui.page.second.title" xml:space="preserve">
-        <value>Adding Participants</value>
+        <value>Add participants to the conversation</value>
     </data>
     <data name="onboarding.ui.page.second.content" xml:space="preserve">
-        <value>Add participants whose experience you want to capture. Once recorded, participants become members of the project and will receive an email to review their consent for how their recording should be used</value>
+        <value>All you need is their name and email</value>
     </data>
 
     <!-- ONBOARDING PAGE: 3 -->
     <data name="onboarding.ui.page.third.title" xml:space="preserve">
-        <value>Tagging Recording</value>
+        <value>Start recording</value>
     </data>
     <data name="onboarding.ui.page.third.content" xml:space="preserve">
-        <value>Project topics appear in a list to structure the audio recording. These can be tapped to tag the audio from the last time a topic was tapped. This creates regions on top of the audio that are used to identify what is being discussed in the recording.</value>
+        <value>Use project topics to structure the conversation</value>
     </data>
 
     <!-- ONBOARDING PAGE: 4 -->
     <data name="onboarding.ui.page.fourth.title" xml:space="preserve">
-        <value>Review Consent</value>
+        <value>Upload and Consent</value>
     </data>
     <data name="onboarding.ui.page.fourth.content" xml:space="preserve">
-        <value>Once a recording is uploaded all participants will receive an email where they can review the audio and their consent for how their recording will be viewed, used and shared within the Gabber Project.</value>
+        <value>Participants are notified and can choose how their recording is used</value>
     </data>
     
     <!-- USER LOGIN SCREEN: API errors -->
@@ -166,30 +175,30 @@
         <value>Projects</value>
     </data>    
     <data name="projects.ui.instructions" xml:space="preserve">
-        <value>Gabber project structures an audio conversation using a set of textual topics to tag the audio during recording. These structural tags are used to simplify viewing and reuse of the audio on the website.</value>
+        <value>Choose a project that you want to contribute to and have a conversation about</value>
     </data>
 
     <!-- SESSIONS FRAGMENT -->
     <data name="sessions.ui.title" xml:space="preserve">
-        <value>Upload Gabbers</value>
+        <value>Saved recordings</value>
     </data>    
     <data name="sessions.ui.header.instructions" xml:space="preserve">
-        <value>Upload your Gabber for others to listen, annotate and learn from the experiences you captured.</value>
+        <value>Tap a recording to upload or Upload All</value>
     </data>
     <data name="sessions.ui.body.instructions" xml:space="preserve">
-        <value>There are no Gabber recordings to upload.</value>
+        <value>You have no recordings waiting to be uploaded</value>
     </data>
     <data name="sessions.ui.submit.button" xml:space="preserve">
         <value>Upload all</value>
     </data>
     <data name="sessions.ui.message.upload.success" xml:space="preserve">
-        <value>Gabber session uploaded successfully</value>
+        <value>Recording uploaded successfully</value>
     </data>
     <data name="sessions.ui.message.upload.fail" xml:space="preserve">
         <value>Failed to upload. Try again soon.</value>
     </data>
     <data name="sessions.ui.message.upload.inprogress" xml:space="preserve">
-        <value>A session is currently being uploaded.</value>
+        <value>A recording is currently being uploaded.</value>
     </data>
 
     <!-- ABOUT FRAGMENT -->
@@ -197,18 +206,21 @@
         <value>What is Gabber?</value>
     </data>
     <data name="about.ui.content" xml:space="preserve">
-        <value>Gabber is a digital workflow for structuring, capturing and creating conversations on audio recordings. The mobile application is used to structure and capture these conversations, and the website is used for viewing and commenting on the structured audios.</value>
+        <value>Gabber uses topics to structure and capture audio conversations, which are used on the website to represent who was present and what was discussed.</value>
     </data>
-
+    <data name="about.ui.link" xml:space="preserve">
+        <value>Visit Gabber Website: https://gabber.audio</value>
+    </data>
+    
     <!-- PARTICIPANTS SCREEN -->
     <data name="participants.ui.title" xml:space="preserve">
-        <value>Gabber Participants</value>
+        <value>Participants</value>
+    </data>
+    <data name="participants.ui.instructions" xml:space="preserve">
+        <value>Who's in this conversation? Add a new participant by tapping the icon in the menu bar or select a person below and tap start recording when you are ready</value>
     </data>
     <data name="participants.ui.numselected" xml:space="preserve">
         <value>{0} participants selected</value>
-    </data>
-    <data name="participants.ui.addparticipant.button" xml:space="preserve">
-        <value>Add participant</value>
     </data>
     <data name="participants.ui.startrecording.button" xml:space="preserve">
         <value>Start recording</value>
@@ -244,16 +256,13 @@
 
     <!-- RECORD SCREEN -->
     <data name="recording.ui.title" xml:space="preserve">
-        <value>Record Gabber</value>
+        <value>Record Conversation</value>
     </data>
     <data name="recording.ui.title.active" xml:space="preserve">
-        <value>Recording Gabber</value>
+        <value>Recording Conversation</value>
     </data>
     <data name="recording.ui.instructions.header" xml:space="preserve">
-        <value>Topics below are used to guide and structure the Gabber recording. Select a topic you are currently discussing, and other topics as the conversation changes.</value>
-    </data>
-    <data name="recording.ui.instructions.footer" xml:space="preserve">
-        <value>Select a topic to begin recording</value>    
+        <value>Select a topic to begin recording and select topics as the conversation changes to tag the recording</value>
     </data>
 
     <!-- RECORD SCREEN RECORD PERMISSION -->
@@ -272,7 +281,7 @@
     
     <!-- RECORD SCREEN FINISH -->
     <data name="recording.ui.dialog.finish.title" xml:space="preserve">
-        <value>Are you sure you want to end this recording?</value>
+        <value>You have covered {0} of the {1} topics. Are you sure you want to end this recording?</value>
     </data>
     <data name="recording.ui.dialog.finish.positive" xml:space="preserve">
         <value>Yes</value>
@@ -305,10 +314,10 @@
 
     <!-- DEBRIEFING PAGE: 1 -->
     <data name="debriefing.ui.page.first.title" xml:space="preserve">
-        <value>Recording Success</value>
+        <value>Recording Saved</value>
     </data>
     <data name="debriefing.ui.page.first.content" xml:space="preserve">
-        <value>Thanks for recording your Gabber. Once you upload your recording an email will be sent to all participants to review the recording and provide consent.</value>
+        <value>Upload your recording for participants to review their consent</value>
     </data>
 
     <!-- DEBRIEFING PAGE: 2 -->

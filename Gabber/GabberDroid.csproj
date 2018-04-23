@@ -44,7 +44,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidHttpClientHandlerType>System.Net.Http.HttpClientHandler</AndroidHttpClientHandlerType>
-    <AndroidLinkMode>Full</AndroidLinkMode>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
@@ -177,7 +177,6 @@
     <AndroidResource Include="Resources\drawable\onboarding_selected_dot.xml" />
     <AndroidResource Include="Resources\drawable\onboarding_tab_selector.xml" />
     <AndroidResource Include="Resources\layout\next_steps.axml" />
-    <AndroidResource Include="Resources\layout\sessions.axml" />
     <AndroidResource Include="Resources\layout\sessions_rv.xml" />
     <AndroidResource Include="Resources\layout\onboarding_page.xml" />
     <AndroidResource Include="Resources\menu\bottom_nav.xml" />
@@ -186,28 +185,18 @@
     <AndroidResource Include="Resources\layout\about_frag.axml" />
     <AndroidResource Include="Resources\layout\register_verification.axml" />
     <AndroidResource Include="Resources\layout\register_verification_res.axml" />
-    <AndroidResource Include="Resources\drawable-hdpi\cloud_done.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\cloud_upload.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_about.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_gabbers.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_projects.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\cloud_done.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\cloud_upload.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_about.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_gabbers.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_projects.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\cloud_done.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\cloud_upload.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_about.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_gabbers.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_projects.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\cloud_done.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\cloud_upload.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_about.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_gabbers.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_projects.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\cloud_done.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\cloud_upload.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_about.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_gabbers.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_projects.png" />
@@ -222,6 +211,13 @@
     <AndroidResource Include="Resources\drawable-xhdpi\stop_recording.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\stop_recording.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\stop_recording.png" />
+    <AndroidResource Include="Resources\menu\add_person.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\add_person_white.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\add_person_white.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\add_person_white.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\add_person_white.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\add_person_white.png" />
+    <AndroidResource Include="Resources\drawable-nodpi\onboarding_parts.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\values-v21\" />

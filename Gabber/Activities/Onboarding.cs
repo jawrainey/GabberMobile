@@ -26,17 +26,22 @@ namespace Gabber.Activities
 
             var pages = new List<OnboardingPageContent> {
                 new OnboardingPageContent {
+                    Image=Resource.Drawable.onboarding_first,
+                    Title=StringResources.onboarding_ui_page_zero_title,
+                    Content=StringResources.onboarding_ui_page_zero_content
+                },
+                new OnboardingPageContent {
                     Image=Resource.Drawable.onboarding_second,
                     Title=StringResources.onboarding_ui_page_first_title,
                     Content=StringResources.onboarding_ui_page_first_content
                 },
                 new OnboardingPageContent {
-                    Image=Resource.Drawable.onboarding_first,
+                    Image=Resource.Drawable.onboarding_parts,
                     Title=StringResources.onboarding_ui_page_second_title,
                     Content=StringResources.onboarding_ui_page_second_content
                 },
                 new OnboardingPageContent {
-                    Image=Resource.Drawable.onboarding_third,
+                    Image=Resource.Drawable.onboarding_first,
                     Title=StringResources.onboarding_ui_page_third_title,
                     Content=StringResources.onboarding_ui_page_third_content
                 },

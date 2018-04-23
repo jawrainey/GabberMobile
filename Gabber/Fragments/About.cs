@@ -18,14 +18,19 @@ namespace Gabber.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var rootView = inflater.Inflate(Resource.Layout.onboarding_page, null);
-            var image = rootView.FindViewById<ImageView>(Resource.Id.onboardingImage);
-            var title = rootView.FindViewById<TextView>(Resource.Id.onboardingTitle);
-            var content = rootView.FindViewById<TextView>(Resource.Id.onboardingContent);
-
+            var rootView = inflater.Inflate(Resource.Layout.about_frag, null);
+            var image = rootView.FindViewById<ImageView>(Resource.Id.aboutImage);
             image.SetBackgroundResource(Resource.Drawable.onboarding_first);
-            title.Text = StringResources.about_ui_title;
+
+            var content = rootView.FindViewById<TextView>(Resource.Id.aboutContent);
             content.Text = StringResources.about_ui_content;
+
+            var link = rootView.FindViewById<TextView>(Resource.Id.aboutLink);
+            link.Text = StringResources.about_ui_link;
+
+            var toolbar = rootView.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            ((AppCompatActivity)Activity).SetSupportActionBar(toolbar);
+            ((AppCompatActivity)Activity).SupportActionBar.Title = StringResources.about_ui_title;
 
             return rootView;
         }

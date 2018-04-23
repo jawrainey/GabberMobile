@@ -95,6 +95,18 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string onboarding_ui_page_zero_title {
+            get {
+                return ResourceManager.GetString("onboarding.ui.page.zero.title", resourceCulture);
+            }
+        }
+        
+        public static string onboarding_ui_page_zero_content {
+            get {
+                return ResourceManager.GetString("onboarding.ui.page.zero.content", resourceCulture);
+            }
+        }
+        
         public static string onboarding_ui_page_first_title {
             get {
                 return ResourceManager.GetString("onboarding.ui.page.first.title", resourceCulture);
@@ -347,21 +359,27 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string about_ui_link {
+            get {
+                return ResourceManager.GetString("about.ui.link", resourceCulture);
+            }
+        }
+        
         public static string participants_ui_title {
             get {
                 return ResourceManager.GetString("participants.ui.title", resourceCulture);
             }
         }
         
-        public static string participants_ui_numselected {
+        public static string participants_ui_instructions {
             get {
-                return ResourceManager.GetString("participants.ui.numselected", resourceCulture);
+                return ResourceManager.GetString("participants.ui.instructions", resourceCulture);
             }
         }
         
-        public static string participants_ui_addparticipant_button {
+        public static string participants_ui_numselected {
             get {
-                return ResourceManager.GetString("participants.ui.addparticipant.button", resourceCulture);
+                return ResourceManager.GetString("participants.ui.numselected", resourceCulture);
             }
         }
         
@@ -434,12 +452,6 @@ namespace GabberPCL.Resources {
         public static string recording_ui_instructions_header {
             get {
                 return ResourceManager.GetString("recording.ui.instructions.header", resourceCulture);
-            }
-        }
-        
-        public static string recording_ui_instructions_footer {
-            get {
-                return ResourceManager.GetString("recording.ui.instructions.footer", resourceCulture);
             }
         }
         

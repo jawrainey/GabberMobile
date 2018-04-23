@@ -38,7 +38,7 @@ namespace Gabber.Fragments
 
             var sessions_upload = rootView.FindViewById<AppCompatButton>(Resource.Id.upload_sessions);
             sessions_upload.Text = StringResources.sessions_ui_submit_button;
-            // If the user clicks upload all, navigates to projects, then comes back, 
+            // If the user clicks upload all, navigates to projects, then comes back,
             // we must ensure that the upload all button is disabled, otherwise a session
             // being uploaded may attempt to be uploaded again. Double email or index oor.
             sessions_upload.Enabled = (IsUploading == null || IsUploading.IsCompleted);
@@ -57,7 +57,6 @@ namespace Gabber.Fragments
             var sessions = Queries.AllNotUploadedInterviewSessionsForActiveUser();
             sessions = sessions.FindAll(t => !t.IsUploaded);
             adapter = new SessionAdapter(sessions);
-
             Activity.FindViewById<RecyclerView>(Resource.Id.sessions).SetAdapter(adapter);
 
             var sessionsUploadButton = Activity.FindViewById<AppCompatButton>(Resource.Id.upload_sessions);
@@ -94,7 +93,7 @@ namespace Gabber.Fragments
             alert.SetTitle(StringResources.debriefing_ui_page_first_title);
             alert.SetMessage(StringResources.debriefing_ui_page_first_content);
 
-            alert.SetNeutralButton(
+            alert.SetNegativeButton(
                 StringResources.debriefing_ui_button_hide, 
                 (dialog, id) => ((AlertDialog)dialog).Dismiss()
             );

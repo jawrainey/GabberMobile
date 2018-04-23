@@ -16,7 +16,9 @@ using Android.Support.V7.Widget;
 using GabberPCL.Models;
 using Gabber.Adapters;
 using GabberPCL.Resources;
-using Android.Preferences;
+using Android.Graphics;
+using Android.Views.Animations;
+using System.Linq;
 
 namespace Gabber
 {
@@ -50,8 +52,6 @@ namespace Gabber
 
             var instructionsHeader = FindViewById<TextView>(Resource.Id.recordInstructionsHeader);
             instructionsHeader.Text = StringResources.recording_ui_instructions_header;
-            var instructionsFooter = FindViewById<TextView>(Resource.Id.recordInstructionsFooter);
-            instructionsFooter.Text = StringResources.recording_ui_instructions_footer;
 
             InterviewSessionID = Guid.NewGuid().ToString();
 
@@ -68,7 +68,10 @@ namespace Gabber
             promptRecyclerView.SetAdapter(adapter);
 
 			var record = FindViewById<FloatingActionButton>(Resource.Id.start);
+            record.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Color.LightGray);
+            record.Enabled = false;
 			var timer = FindViewById<TextView>(Resource.Id.timer);
+            timer.SetTextColor(Color.LightGray);
 
 			// Note: record has two states: start and stop record.
 			record.Click += delegate
@@ -78,13 +81,11 @@ namespace Gabber
 
 				if (record.Selected)
 				{
-                    timer.Visibility = timer.Visibility == ViewStates.Invisible ? ViewStates.Visible : ViewStates.Invisible;
-
                     // Override path for re-use as user may record many audios. Store only once.
 					if (string.IsNullOrWhiteSpace(_path))
 					{
 						var personal = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-						_path = Path.Combine(personal, DateTimeOffset.Now.ToUnixTimeSeconds() + ".mp3");
+						_path = System.IO.Path.Combine(personal, DateTimeOffset.Now.ToUnixTimeSeconds() + ".mp3");
 					}
 
 					StartRecording();
@@ -149,7 +150,11 @@ namespace Gabber
             var recordButton = FindViewById<FloatingActionButton>(Resource.Id.start);
             // Has the first topic been selected, i.e. one of the states has changed
             if (themes.FindAll((p) => p.SelectionState != Prompt.SelectedState.never).Count == 1) {
-                FindViewById<TextView>(Resource.Id.recordInstructionsFooter).Visibility = ViewStates.Invisible;
+                var record = FindViewById<FloatingActionButton>(Resource.Id.start);
+                record.SetImageResource(Resource.Drawable.stop_recording);
+                record.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Color.White);
+                record.Enabled = true;
+                FindViewById<TextView>(Resource.Id.timer).SetTextColor(Color.White);
                 recordButton.Visibility = ViewStates.Visible;
                 recordButton.PerformClick();
             }
@@ -180,7 +185,9 @@ namespace Gabber
         void ModalToVerifyRecordingEnd()
         {
             var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
-            alert.SetMessage(StringResources.recording_ui_dialog_finish_title);
+            var uniqueTopics = new HashSet<int>(Queries.AnnotationsForLastSession().Select((i) => i.PromptID));
+            var message = string.Format(StringResources.recording_ui_dialog_finish_title, uniqueTopics.Count, themes.Count);
+            alert.SetMessage(message);
 
             alert.SetPositiveButton(StringResources.recording_ui_dialog_finish_positive, (dialog, id) =>
             {
