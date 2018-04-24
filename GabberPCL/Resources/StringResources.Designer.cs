@@ -544,29 +544,5 @@ namespace GabberPCL.Resources {
                 return ResourceManager.GetString("debriefing.ui.page.first.content", resourceCulture);
             }
         }
-        
-        public static string debriefing_ui_page_second_title {
-            get {
-                return ResourceManager.GetString("debriefing.ui.page.second.title", resourceCulture);
-            }
-        }
-        
-        public static string debriefing_ui_page_second_content {
-            get {
-                return ResourceManager.GetString("debriefing.ui.page.second.content", resourceCulture);
-            }
-        }
-        
-        public static string debriefing_ui_page_third_title {
-            get {
-                return ResourceManager.GetString("debriefing.ui.page.third.title", resourceCulture);
-            }
-        }
-        
-        public static string debriefing_ui_page_third_content {
-            get {
-                return ResourceManager.GetString("debriefing.ui.page.third.content", resourceCulture);
-            }
-        }
     }
 }

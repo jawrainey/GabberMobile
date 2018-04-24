@@ -56,15 +56,15 @@
         <value>Choose a project</value>
     </data>
     <data name="onboarding.ui.page.first.content" xml:space="preserve">
-        <value>Projects contain sets of discussion topics to structure conversations. Tap the project you want to contribute to</value>
+        <value>Tap on the project you want to contribute to. Projects contain topics to help structure your conversation.</value>
     </data>
 
     <!-- ONBOARDING PAGE: 2 -->
     <data name="onboarding.ui.page.second.title" xml:space="preserve">
-        <value>Add participants to the conversation</value>
+        <value>Add participants</value>
     </data>
     <data name="onboarding.ui.page.second.content" xml:space="preserve">
-        <value>All you need is their name and email</value>
+        <value>All you need is the name and email of people in the conversation.</value>
     </data>
 
     <!-- ONBOARDING PAGE: 3 -->
@@ -72,7 +72,7 @@
         <value>Start recording</value>
     </data>
     <data name="onboarding.ui.page.third.content" xml:space="preserve">
-        <value>Use project topics to structure the conversation</value>
+        <value>As you are recording, tap on a topic to structure the conversation.</value>
     </data>
 
     <!-- ONBOARDING PAGE: 4 -->
@@ -80,7 +80,7 @@
         <value>Upload and Consent</value>
     </data>
     <data name="onboarding.ui.page.fourth.content" xml:space="preserve">
-        <value>Participants are notified and can choose how their recording is used</value>
+        <value>When the conversation is finished, upload the recording. All participants are then notified and can choose how their recording is used</value>
     </data>
     
     <!-- USER LOGIN SCREEN: API errors -->
@@ -183,22 +183,22 @@
         <value>Saved recordings</value>
     </data>    
     <data name="sessions.ui.header.instructions" xml:space="preserve">
-        <value>Tap a recording to upload or Upload All</value>
+        <value>Tap a conversation to upload or Upload All</value>
     </data>
     <data name="sessions.ui.body.instructions" xml:space="preserve">
-        <value>You have no recordings waiting to be uploaded</value>
+        <value>You have no conversations waiting to be uploaded</value>
     </data>
     <data name="sessions.ui.submit.button" xml:space="preserve">
         <value>Upload all</value>
     </data>
     <data name="sessions.ui.message.upload.success" xml:space="preserve">
-        <value>Recording uploaded successfully</value>
+        <value>Conversation uploaded successfully</value>
     </data>
     <data name="sessions.ui.message.upload.fail" xml:space="preserve">
         <value>Failed to upload. Try again soon.</value>
     </data>
     <data name="sessions.ui.message.upload.inprogress" xml:space="preserve">
-        <value>A recording is currently being uploaded.</value>
+        <value>A conversation is currently being uploaded.</value>
     </data>
 
     <!-- ABOUT FRAGMENT -->
@@ -314,26 +314,10 @@
 
     <!-- DEBRIEFING PAGE: 1 -->
     <data name="debriefing.ui.page.first.title" xml:space="preserve">
-        <value>Recording Saved</value>
+        <value>Conversation Saved</value>
     </data>
     <data name="debriefing.ui.page.first.content" xml:space="preserve">
-        <value>Upload your recording for participants to review their consent</value>
-    </data>
-
-    <!-- DEBRIEFING PAGE: 2 -->
-    <data name="debriefing.ui.page.second.title" xml:space="preserve">
-        <value>Your Consent</value>
-    </data>
-    <data name="debriefing.ui.page.second.content" xml:space="preserve">
-        <value>{0} will receive an email to review and provide consent for the Gabber recording. Once a decision on consent is made others may access the recording on the Gabber website.</value>
-    </data>
-
-    <!-- DEBRIEFING PAGE: 3 -->
-    <data name="debriefing.ui.page.third.title" xml:space="preserve">
-        <value>Annotate Gabbers</value>
-    </data>
-    <data name="debriefing.ui.page.third.content" xml:space="preserve">
-        <value>If all participants consent, your Gabber becomes available for other project members to listen, annotate and learn from the experiences you shared.</value>
+        <value>Upload your conversation for participants to review their consent</value>
     </data>
     
 </root>
