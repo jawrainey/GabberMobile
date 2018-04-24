@@ -167,15 +167,15 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string login_api_error_AUTH_INVALID_PASSWORD {
+        public static string login_api_error_auth_INVALID_PASSWORD {
             get {
-                return ResourceManager.GetString("login.api.error.AUTH_INVALID_PASSWORD", resourceCulture);
+                return ResourceManager.GetString("login.api.error.auth.INVALID_PASSWORD", resourceCulture);
             }
         }
         
-        public static string login_api_error_AUTH_USER_404 {
+        public static string login_api_error_auth_USER_404 {
             get {
-                return ResourceManager.GetString("login.api.error.AUTH_USER_404", resourceCulture);
+                return ResourceManager.GetString("login.api.error.auth.USER_404", resourceCulture);
             }
         }
         
@@ -191,15 +191,15 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string register_api_error_AUTH_INVALID_PASSWORD {
+        public static string register_api_error_auth_INVALID_PASSWORD {
             get {
-                return ResourceManager.GetString("register.api.error.AUTH_INVALID_PASSWORD", resourceCulture);
+                return ResourceManager.GetString("register.api.error.auth.INVALID_PASSWORD", resourceCulture);
             }
         }
         
-        public static string register_api_error_AUTH_USER_404 {
+        public static string register_api_error_auth_USER_404 {
             get {
-                return ResourceManager.GetString("register.api.error.AUTH_USER_404", resourceCulture);
+                return ResourceManager.GetString("register.api.error.auth.USER_404", resourceCulture);
             }
         }
         
@@ -275,21 +275,21 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string register_verifying_api_error_ALREADY_VERIFIED {
+        public static string register_verifying_api_error_auth_ALREADY_VERIFIED {
             get {
-                return ResourceManager.GetString("register.verifying.api.error.ALREADY_VERIFIED", resourceCulture);
+                return ResourceManager.GetString("register.verifying.api.error.auth.ALREADY_VERIFIED", resourceCulture);
             }
         }
         
-        public static string register_verifying_api_error_AUTH_TOKEN_404 {
+        public static string register_verifying_api_error_auth_TOKEN_404 {
             get {
-                return ResourceManager.GetString("register.verifying.api.error.AUTH_TOKEN_404", resourceCulture);
+                return ResourceManager.GetString("register.verifying.api.error.auth.TOKEN_404", resourceCulture);
             }
         }
         
-        public static string register_verifying_api_error_AUTH_TOKEN_EXPIRED {
+        public static string register_verifying_api_error_auth_TOKEN_EXPIRED {
             get {
-                return ResourceManager.GetString("register.verifying.api.error.AUTH_TOKEN_EXPIRED", resourceCulture);
+                return ResourceManager.GetString("register.verifying.api.error.auth.TOKEN_EXPIRED", resourceCulture);
             }
         }
         

@@ -90,10 +90,10 @@
     <data name="login.api.error.NO_INTERNET" xml:space="preserve">
         <value>You are not connected to the internet.</value>
     </data>
-    <data name="login.api.error.AUTH_INVALID_PASSWORD" xml:space="preserve">
+    <data name="login.api.error.auth.INVALID_PASSWORD" xml:space="preserve">
         <value>You have provided an incorrect password for that email.</value>
     </data>
-    <data name="login.api.error.AUTH_USER_404" xml:space="preserve">
+    <data name="login.api.error.auth.USER_404" xml:space="preserve">
         <value>There is no registered user with that email address.</value>
     </data>
     
@@ -106,10 +106,10 @@
     </data>
 
     <!-- USER REGISTER SCREEN: API errors -->
-    <data name="register.api.error.AUTH_INVALID_PASSWORD" xml:space="preserve">
+    <data name="register.api.error.auth.INVALID_PASSWORD" xml:space="preserve">
         <value>You have provided an incorrect password for that email</value>
     </data>
-    <data name="register.api.error.AUTH_USER_404" xml:space="preserve">
+    <data name="register.api.error.auth.USER_404" xml:space="preserve">
         <value>There is no registered user with that email address"</value>
     </data>
 
@@ -160,13 +160,13 @@
     </data>
     
     <!-- REGISTER VERIFYING EMAIL PAGE: API errors -->
-    <data name="register.verifying.api.error.ALREADY_VERIFIED" xml:space="preserve">
+    <data name="register.verifying.api.error.auth.ALREADY_VERIFIED" xml:space="preserve">
         <value>Your account has already been verified. Try logging in instead.</value>
     </data>
-    <data name="register.verifying.api.error.AUTH_TOKEN_404" xml:space="preserve">
+    <data name="register.verifying.api.error.auth.TOKEN_404" xml:space="preserve">
         <value>There was an error veryifing your account. Try logging in or resetting your password instead.</value>
     </data>
-    <data name="register.verifying.api.error.AUTH_TOKEN_EXPIRED" xml:space="preserve">
+    <data name="register.verifying.api.error.auth.TOKEN_EXPIRED" xml:space="preserve">
         <value>The URL in the link you clicked has expired. Try logging in or resetting your password instead.</value>
     </data>
     
