@@ -37,19 +37,26 @@ namespace Gabber.iOS
 
             ParticipantsInstructions.Text = StringResources.participants_ui_instructions;
             RecordGabberButton.SetTitle(StringResources.participants_ui_startrecording_button, UIControlState.Normal);
-            NumSelectedParts.Text = string.Format(StringResources.participants_ui_numselected, Queries.SelectedParticipants().Count);
-            participantsViewSource = new ParticipantsCollectionViewSource(Queries.AllParticipants());
+            participantsViewSource = new ParticipantsCollectionViewSource(Queries.AllParticipantsUnSelected());
             participantsViewSource.AddParticipant += (int num) => {
                 NumSelectedParts.Text = string.Format(StringResources.participants_ui_numselected, num);
             };
             ParticipantsCollectionView.Source = participantsViewSource;
+            UpdateNumSelectedPartsLabel();
         }
 
+        // i.e. they navigated to here or they segued from adding parts
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
             participantsViewSource.Rows = Queries.AllParticipants();
+            UpdateNumSelectedPartsLabel();
             ParticipantsCollectionView.ReloadData();
+        }
+
+        void UpdateNumSelectedPartsLabel()
+        {
+            NumSelectedParts.Text = string.Format(StringResources.participants_ui_numselected, Queries.SelectedParticipants().Count);
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
