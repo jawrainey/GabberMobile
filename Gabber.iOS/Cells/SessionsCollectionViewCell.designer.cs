@@ -19,19 +19,7 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIImageView SessionIsUploaded { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIActivityIndicatorView SessionIsUploadedIndicator { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel SessionLength { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel SessionNumTopics { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -48,24 +36,9 @@ namespace Gabber.iOS
                 SessionCreateDate = null;
             }
 
-            if (SessionIsUploaded != null) {
-                SessionIsUploaded.Dispose ();
-                SessionIsUploaded = null;
-            }
-
-            if (SessionIsUploadedIndicator != null) {
-                SessionIsUploadedIndicator.Dispose ();
-                SessionIsUploadedIndicator = null;
-            }
-
             if (SessionLength != null) {
                 SessionLength.Dispose ();
                 SessionLength = null;
-            }
-
-            if (SessionNumTopics != null) {
-                SessionNumTopics.Dispose ();
-                SessionNumTopics = null;
             }
 
             if (SessionParticipants != null) {

@@ -24,10 +24,6 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel RecordInstructions { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UICollectionView TopicsCollectionView { get; set; }
 
         [Outlet]
@@ -48,11 +44,6 @@ namespace Gabber.iOS
             if (RecordButton != null) {
                 RecordButton.Dispose ();
                 RecordButton = null;
-            }
-
-            if (RecordInstructions != null) {
-                RecordInstructions.Dispose ();
-                RecordInstructions = null;
             }
 
             if (TopicsCollectionView != null) {

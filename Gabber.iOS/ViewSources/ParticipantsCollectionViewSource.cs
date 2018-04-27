@@ -9,6 +9,7 @@ namespace Gabber.iOS.ViewSources
 {
     public class ParticipantsCollectionViewSource : UICollectionViewSource
     {
+        public Action<int> AddParticipant;
         public List<User> Rows { get; set; }
 
         public ParticipantsCollectionViewSource(List<User> _rows)
@@ -53,6 +54,8 @@ namespace Gabber.iOS.ViewSources
             Rows[indexPath.Row].Selected = !Rows[indexPath.Row].Selected;
             Session.Connection.Update(Rows[indexPath.Row]);
             collectionView.ReloadData();
+            // Updates the label once its been selected
+            AddParticipant(Rows.FindAll((obj) => obj.Selected).Count);
         }
     }
 }

@@ -13,30 +13,20 @@ namespace Gabber.iOS
 
 		public SessionsCollectionViewCell (IntPtr handle) : base (handle){}
 
+        string BuildParticipantsNames(List<InterviewParticipant> participants)
+        {
+            if (participants.Count == 1) return participants[0].Name.Split(' ')[0];
+            var PartNames = new List<string>();
+            foreach (var p in participants) PartNames.Add(Queries.UserById(p.UserID).Name.Split(' ')[0].Trim());
+            return string.Join(", ", PartNames);
+        }
+
         public void UpdateContent(InterviewSession session)
         {
-            var project = Queries.ProjectById(session.ProjectID);
-
-            var PartNames = new List<string>();
-            foreach (var p in session.Participants) PartNames.Add(Queries.UserById(p.UserID).Name);
-
-            SessionParticipants.Text = $"({session.Participants.Count.ToString()}) {string.Join(", ", PartNames)}";
-            SessionCreateDate.Text = session.CreatedAt.ToString("MM/dd, HH:mm");
+            SessionProjectTitle.Text = Queries.ProjectById(session.ProjectID).Title;
             SessionLength.Text = TimeSpan.FromSeconds(session.Prompts.Count - 1).ToString((@"mm\:ss"));
-            SessionProjectTitle.Text = project.Title;
-            SessionNumTopics.Text = $"{session.Prompts.Count} Topics";
-
-
-            if (session.IsUploading)
-            {
-                SessionIsUploaded.Hidden = true;
-                SessionIsUploadedIndicator.StartAnimating();
-            }
-            else
-            {
-                SessionIsUploaded.Hidden = false;
-                SessionIsUploadedIndicator.StopAnimating();
-            }
+            SessionParticipants.Text = BuildParticipantsNames(session.Participants);
+            SessionCreateDate.Text = session.CreatedAt.ToString("MM/dd, HH:mm");
         }
 
         public override UICollectionViewLayoutAttributes PreferredLayoutAttributesFittingAttributes(UICollectionViewLayoutAttributes layoutAttributes)

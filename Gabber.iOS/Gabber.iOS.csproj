@@ -160,8 +160,8 @@
     <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects.png" />
     <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects_2x.png" />
     <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects_3x.png" />
-    <ImageAsset Include="Assets.xcassets\about.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\about.imageset\onboarding_first.png" />
+    <ImageAsset Include="Assets.xcassets\StopButtonDisabled.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\StopButtonDisabled.imageset\StopButtonDisabled.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -172,6 +172,7 @@
     <Folder Include="Assets.xcassets\Logo.imageset\" />
     <Folder Include="Assets.xcassets\BackButton.imageset\" />
     <Folder Include="Assets.xcassets\about.imageset\" />
+    <Folder Include="Assets.xcassets\StopButtonDisabled.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />

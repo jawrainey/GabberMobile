@@ -12,15 +12,16 @@ namespace Gabber.iOS
 		{
             base.ViewDidLoad();
 
-            AboutTitle.Text = StringResources.about_ui_title;
             AboutContent.Text = StringResources.about_ui_content;
+            AboutURL.Text = StringResources.about_ui_link;
             Title = StringResources.common_menu_about;
+            TabBarController.Title = StringResources.about_ui_title;
 		}
 
-		public override void ViewWillAppear(bool animated)
+        public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
-            TabBarController.Title = StringResources.common_menu_about;
+            TabBarController.Title = StringResources.about_ui_title;
         }
     }
 }

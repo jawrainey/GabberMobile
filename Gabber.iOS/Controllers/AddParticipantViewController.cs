@@ -25,7 +25,7 @@ namespace Gabber.iOS
             NavigationItem.Title = StringResources.participants_ui_dialog_add_title;
             ParticipantName.Placeholder = StringResources.register_ui_fullname_label;
             ParticipantEmail.Placeholder = StringResources.common_ui_forms_email_label;
-            AddNewParticipant.SetTitle(StringResources.participants_ui_addparticipant_button, UIControlState.Normal);
+            AddNewParticipant.SetTitle(StringResources.participants_ui_dialog_add_positive, UIControlState.Normal);
 
             ParticipantName.ShouldReturn += NavigateNext;
             ParticipantEmail.ShouldReturn += NavigateNext;

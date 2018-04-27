@@ -26,7 +26,7 @@ namespace Gabber.iOS
             Title = StringResources.common_menu_gabbers;
 
             SessionsUpload.Layer.BorderWidth = 1.0f;
-            SessionsUpload.Layer.BorderColor = UIColor.FromRGB(.38f, .166f, .154f).CGColor;
+            SessionsUpload.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
             SessionsUpload.SetTitle(StringResources.sessions_ui_submit_button, UIControlState.Normal);
         }
 

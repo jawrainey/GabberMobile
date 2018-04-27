@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using GabberPCL.Models;
 using AVFoundation;
 using GabberPCL.Resources;
+using System.Linq;
 
 namespace Gabber.iOS
 {
@@ -57,7 +58,6 @@ namespace Gabber.iOS
         {
             Title = StringResources.recording_ui_title;
             TopicsInstructions.Text = StringResources.recording_ui_instructions_header;
-            RecordInstructions.Text = StringResources.recording_ui_instructions_footer;
 
             var es = new CoreGraphics.CGSize(UIScreen.MainScreen.Bounds.Width - 36, 70);
             (TopicsCollectionView.CollectionViewLayout as UICollectionViewFlowLayout).EstimatedItemSize = es;
@@ -122,9 +122,8 @@ namespace Gabber.iOS
             // Has the first topic been selected, i.e. one of the states has changed
             if (Topics.FindAll((p) => p.SelectionState != Prompt.SelectedState.never).Count == 1)
             {
-                RecordInstructions.Hidden = true;
-                RecordButton.Hidden = false;
-                InterviewTimer.Hidden = false;
+                RecordButton.Enabled = true;
+                InterviewTimer.Enabled = true;
                 AudioRecorder.Record();
                 UpdateTimeLabelAsync();
             }
@@ -170,10 +169,10 @@ namespace Gabber.iOS
 
         partial void RecordingCompleteDialog(UIButton sender)
         {
-            var finishRecordingAlertController = UIAlertController.Create(
-                StringResources.recording_ui_dialog_finish_title, "",
-                UIAlertControllerStyle.Alert
-            );
+            var uniqueTopics = new HashSet<int>(Queries.AnnotationsForLastSession().Select((i) => i.PromptID));
+            var title = string.Format(StringResources.recording_ui_dialog_finish_title, uniqueTopics.Count, Topics.Count);
+
+            var finishRecordingAlertController = UIAlertController.Create(title, "", UIAlertControllerStyle.Alert);
 
             finishRecordingAlertController.AddAction(
                 UIAlertAction.Create(

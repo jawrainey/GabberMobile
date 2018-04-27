@@ -16,7 +16,7 @@ namespace Gabber.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton AddParticipantButton { get; set; }
+        UIKit.UILabel NumSelectedParts { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -24,18 +24,27 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel ParticipantsInstructions { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton RecordGabberButton { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (AddParticipantButton != null) {
-                AddParticipantButton.Dispose ();
-                AddParticipantButton = null;
+            if (NumSelectedParts != null) {
+                NumSelectedParts.Dispose ();
+                NumSelectedParts = null;
             }
 
             if (ParticipantsCollectionView != null) {
                 ParticipantsCollectionView.Dispose ();
                 ParticipantsCollectionView = null;
+            }
+
+            if (ParticipantsInstructions != null) {
+                ParticipantsInstructions.Dispose ();
+                ParticipantsInstructions = null;
             }
 
             if (RecordGabberButton != null) {
