@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Foundation;
 using GabberPCL;
 using GabberPCL.Models;
@@ -24,9 +25,12 @@ namespace Gabber.iOS
         public void UpdateContent(InterviewSession session)
         {
             SessionProjectTitle.Text = Queries.ProjectById(session.ProjectID).Title;
-            SessionLength.Text = TimeSpan.FromSeconds(session.Prompts.Count - 1).ToString((@"mm\:ss"));
+            SessionLength.Text = TimeSpan.FromSeconds(session.Prompts[session.Prompts.Count - 1].End).ToString((@"mm\:ss"));
             SessionParticipants.Text = BuildParticipantsNames(session.Participants);
             SessionCreateDate.Text = session.CreatedAt.ToString("MM/dd, HH:mm");
+
+            if (session.IsUploading) SessionIsUploadedIndicator.StartAnimating();
+            else SessionIsUploadedIndicator.StopAnimating();
         }
 
         public override UICollectionViewLayoutAttributes PreferredLayoutAttributesFittingAttributes(UICollectionViewLayoutAttributes layoutAttributes)

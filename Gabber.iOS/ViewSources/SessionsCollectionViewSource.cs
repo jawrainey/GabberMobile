@@ -8,6 +8,7 @@ namespace Gabber.iOS.ViewSources
 {
     public class SessionsCollectionViewSource : UICollectionViewSource
     {
+        public Action<int> SelectSession;
         public List<InterviewSession> Sessions { get; set; }
 
         public SessionsCollectionViewSource(List<InterviewSession> _sessions)
@@ -15,9 +16,14 @@ namespace Gabber.iOS.ViewSources
              Sessions = _sessions;
         }
 
-        public override nint NumberOfSections(UICollectionView _) => 1;
+        public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
+        {
+            SelectSession(indexPath.Row);
+        }
 
-        public override nint GetItemsCount(UICollectionView __, nint _) => Sessions.Count;
+        public override nint NumberOfSections(UICollectionView collectionView) => 1;
+
+        public override nint GetItemsCount(UICollectionView collectionView, nint section) => Sessions.Count;
 
         public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {

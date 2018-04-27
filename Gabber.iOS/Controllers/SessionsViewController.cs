@@ -101,8 +101,8 @@ namespace Gabber.iOS
             Sessions = Queries.AllNotUploadedInterviewSessionsForActiveUser();
             // Must set this locally to access RemoveSession ...
             SessionsViewSource = new SessionsCollectionViewSource(Sessions);
+            SessionsViewSource.SelectSession += (int s) => UploadSessions(s, false);
             SessionsCollectionView.Source = SessionsViewSource;
-
             ShowHideInstructions();
         }
 
