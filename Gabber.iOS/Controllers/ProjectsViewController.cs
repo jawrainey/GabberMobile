@@ -66,9 +66,6 @@ namespace Gabber.iOS
             TabBarController.Title = "";
 		}
 
-		[Action("UnwindToProjectsViewController:")]
-        public void UnwindToProjectsViewController(UIStoryboardSegue segue) {}
-
         // TODO: given this is in all controllers, should make a super class to reduce duplication
         void ErrorMessageDialog(string message)
         {

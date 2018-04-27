@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Foundation;
 using Gabber.iOS.ViewSources;
 using GabberPCL;
 using GabberPCL.Models;
@@ -16,6 +17,9 @@ namespace Gabber.iOS
         SessionsCollectionViewSource SessionsViewSource;
 
 		public SessionsViewController (IntPtr handle) : base (handle) {}
+
+        [Action("UnwindToSessionsViewController:")]
+        public void UnwindToSessionsViewController(UIStoryboardSegue segue) {}
 
         public override void ViewDidLoad()
         {
@@ -35,6 +39,18 @@ namespace Gabber.iOS
             UpdateSessionsSource();
             base.ViewDidAppear(animated);
             TabBarController.Title = StringResources.sessions_ui_title;
+
+            if (Sessions.Count == 1)
+            {
+                var prefs = NSUserDefaults.StandardUserDefaults;
+                if (!prefs.BoolForKey("FIRST_RECORDING_DIALOG"))
+                {
+                    prefs.SetBool(true, "FIRST_RECORDING_DIALOG");
+                    PresentViewController(new Helpers.MessageDialog().BuildErrorMessageDialog(
+                        StringResources.debriefing_ui_page_first_title,
+                        StringResources.debriefing_ui_page_first_content), true, null);
+                }
+            }
 		}
 
         // Index is optional such that the method could be used onSelected(item)

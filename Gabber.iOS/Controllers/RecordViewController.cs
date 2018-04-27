@@ -217,7 +217,7 @@ namespace Gabber.iOS
             Queries.AddInterviewSession(InterviewSession);
 
             // The ProjectsController manages uploading sessions
-            PerformSegue("UnWindToProjectsVC", this);
+            PerformSegue("UnWindToSessionsVC", this);
         }
     }
 }
