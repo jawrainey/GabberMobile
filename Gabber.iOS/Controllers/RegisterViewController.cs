@@ -105,11 +105,8 @@ namespace Gabber.iOS
 
                 if (response.Meta.Success)
                 {
-                    // TODO: should take us to the verification page ...
-
-                    // Set the root view as ProjectsVC; handled in AppDelegate
-                    UIApplication.SharedApplication.Windows[0].RootViewController =
-                        UIStoryboard.FromName("Main", null).InstantiateInitialViewController();
+                    NSUserDefaults.StandardUserDefaults.SetString(email, "username");
+                    PerformSegue("ShowVerifySegue", this);
                 }
                 else if (response.Meta.Messages.Count > 0)
                 {

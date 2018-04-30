@@ -134,7 +134,10 @@
         <value>Email Verification</value>
     </data>
     <data name="register.verify.ui.page.content" xml:space="preserve">
-        <value>Please confirm your email address ({0}) by tapping the button in the confirmation email we sent you.</value>
+        <value>Please confirm your email address ({0}) by tapping the button in the confirmation email we sent you. This will open the Gabber application and log you in automatically.</value>
+    </data>
+    <data name="register.verify.ui.page.subcontent" xml:space="preserve">
+        <value>If you have verified your email address through the website, then please manually login to the application.</value>
     </data>
     <data name="register.verify.ui.button.openemail" xml:space="preserve">
         <value>Open default email client</value>

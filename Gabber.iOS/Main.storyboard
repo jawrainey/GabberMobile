@@ -737,11 +737,100 @@
                         <outlet property="RegisterLogo" destination="31309" id="name-outlet-31309"/>
                         <outlet property="RegisterMasterView" destination="30932" id="name-outlet-30932"/>
                         <outlet property="RegisterUIButton" destination="31314" id="name-outlet-31314"/>
+                        <segue destination="FaO-rc-Ysm" kind="show" identifier="ShowVerifySegue" id="PQN-Qq-xyz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="30933" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="78" y="-814"/>
+            <point key="canvasLocation" x="90" y="-816"/>
+        </scene>
+        <!--Register Verify-->
+        <scene sceneID="gCY-mG-Ga5">
+            <objects>
+                <viewController id="FaO-rc-Ysm" customClass="RegisterVerify" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gRe-rp-Bj0"/>
+                        <viewControllerLayoutGuide type="bottom" id="E00-As-gdF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v2c-iE-CuP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Verification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfT-eb-C1E">
+                                <rect key="frame" x="20" y="28" width="374" height="51"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="42"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please confirm your email address (blah) by tapping the button in the confirmation email we sent you." textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09B-aF-kTf">
+                                <rect key="frame" x="20" y="95" width="374" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="new-TI-yxT">
+                                <rect key="frame" x="20" y="172" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="sBw-ca-saf"/>
+                                </constraints>
+                                <state key="normal" title="Open default email client"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you verified through the website then please login" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDP-nD-PJ4">
+                                <rect key="frame" x="20" y="255.99999999999997" width="374" height="40.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rjq-uE-3hg">
+                                <rect key="frame" x="0.0" y="238" width="414" height="2"/>
+                                <color key="backgroundColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.60392156860000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="TYT-gt-oa6"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgr-Ye-MUS">
+                                <rect key="frame" x="20" y="312.66666666666669" width="374" height="30"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="52090"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kfT-eb-C1E" firstAttribute="leading" secondItem="v2c-iE-CuP" secondAttribute="leadingMargin" id="1F9-nf-Ic8"/>
+                            <constraint firstItem="cgr-Ye-MUS" firstAttribute="leading" secondItem="v2c-iE-CuP" secondAttribute="leadingMargin" id="7KL-zg-PcJ"/>
+                            <constraint firstItem="new-TI-yxT" firstAttribute="leading" secondItem="v2c-iE-CuP" secondAttribute="leadingMargin" id="8aJ-FF-PHT"/>
+                            <constraint firstItem="cgr-Ye-MUS" firstAttribute="leading" secondItem="v2c-iE-CuP" secondAttribute="leadingMargin" id="DYK-Oe-tWt"/>
+                            <constraint firstItem="09B-aF-kTf" firstAttribute="leading" secondItem="v2c-iE-CuP" secondAttribute="leadingMargin" id="FKc-ny-eZ2"/>
+                            <constraint firstItem="kfT-eb-C1E" firstAttribute="trailing" secondItem="v2c-iE-CuP" secondAttribute="trailingMargin" id="Jay-Gi-yFD"/>
+                            <constraint firstItem="cgr-Ye-MUS" firstAttribute="top" secondItem="pDP-nD-PJ4" secondAttribute="bottom" constant="16" id="O7n-Rz-7hf"/>
+                            <constraint firstItem="Rjq-uE-3hg" firstAttribute="leading" secondItem="v2c-iE-CuP" secondAttribute="leading" id="PWf-hH-w1o"/>
+                            <constraint firstItem="09B-aF-kTf" firstAttribute="trailing" secondItem="v2c-iE-CuP" secondAttribute="trailingMargin" id="SXs-im-y0R"/>
+                            <constraint firstItem="Rjq-uE-3hg" firstAttribute="centerX" secondItem="pDP-nD-PJ4" secondAttribute="centerX" id="Sgs-Ie-7ss"/>
+                            <constraint firstItem="pDP-nD-PJ4" firstAttribute="trailing" secondItem="v2c-iE-CuP" secondAttribute="trailingMargin" id="UvQ-Ad-9W8"/>
+                            <constraint firstItem="new-TI-yxT" firstAttribute="trailing" secondItem="v2c-iE-CuP" secondAttribute="trailingMargin" id="YF8-bf-gZP"/>
+                            <constraint firstItem="09B-aF-kTf" firstAttribute="top" secondItem="kfT-eb-C1E" secondAttribute="bottom" constant="16" id="bOu-37-OUw"/>
+                            <constraint firstItem="cgr-Ye-MUS" firstAttribute="trailing" secondItem="v2c-iE-CuP" secondAttribute="trailingMargin" id="dDw-eY-RNp"/>
+                            <constraint firstItem="pDP-nD-PJ4" firstAttribute="leading" secondItem="v2c-iE-CuP" secondAttribute="leadingMargin" id="iOr-NC-Exd"/>
+                            <constraint firstItem="pDP-nD-PJ4" firstAttribute="top" secondItem="Rjq-uE-3hg" secondAttribute="bottom" constant="16" id="j5u-nA-Ees"/>
+                            <constraint firstItem="Rjq-uE-3hg" firstAttribute="top" secondItem="new-TI-yxT" secondAttribute="bottom" constant="16" id="oRz-Go-0tK"/>
+                            <constraint firstItem="cgr-Ye-MUS" firstAttribute="trailing" secondItem="v2c-iE-CuP" secondAttribute="trailingMargin" id="qTz-bc-lPf"/>
+                            <constraint firstItem="kfT-eb-C1E" firstAttribute="top" secondItem="gRe-rp-Bj0" secondAttribute="bottom" constant="8" id="rmv-EP-MG6"/>
+                            <constraint firstItem="new-TI-yxT" firstAttribute="top" secondItem="09B-aF-kTf" secondAttribute="bottom" constant="16" id="xsC-sF-Apc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="RegisterVerifyBody" destination="09B-aF-kTf" id="name-outlet-09B-aF-kTf"/>
+                        <outlet property="RegisterVerifyLogin" destination="cgr-Ye-MUS" id="name-outlet-cgr-Ye-MUS"/>
+                        <outlet property="RegisterVerifyOpenEmail" destination="new-TI-yxT" id="name-outlet-new-TI-yxT"/>
+                        <outlet property="RegisterVerifySubcontent" destination="pDP-nD-PJ4" id="name-outlet-pDP-nD-PJ4"/>
+                        <outlet property="RegisterVerifyTitle" destination="kfT-eb-C1E" id="name-outlet-kfT-eb-C1E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ag-uB-mgO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="837.68119999999999" y="-815.2174"/>
         </scene>
         <!--Sessions View Controller-->
         <scene sceneID="47506">
@@ -916,7 +1005,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="47509" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1362.3188405797102" y="600"/>
+            <point key="canvasLocation" x="1362.319" y="600"/>
         </scene>
     </scenes>
     <resources>
@@ -928,6 +1017,6 @@
         <image name="menu_projects" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a6W-CZ-k4V"/>
+        <segue reference="52090"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -242,6 +242,10 @@
       <DependentUpon>SessionsCollectionViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewSources\SessionsCollectionViewSource.cs" />
+    <Compile Include="Controllers\RegisterVerify.cs" />
+    <Compile Include="Controllers\RegisterVerify.designer.cs">
+      <DependentUpon>RegisterVerify.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">

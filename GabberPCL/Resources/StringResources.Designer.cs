@@ -239,6 +239,12 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string register_verify_ui_page_subcontent {
+            get {
+                return ResourceManager.GetString("register.verify.ui.page.subcontent", resourceCulture);
+            }
+        }
+        
         public static string register_verify_ui_button_openemail {
             get {
                 return ResourceManager.GetString("register.verify.ui.button.openemail", resourceCulture);
