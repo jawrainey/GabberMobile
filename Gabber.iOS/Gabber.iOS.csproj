@@ -162,6 +162,14 @@
     <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects_3x.png" />
     <ImageAsset Include="Assets.xcassets\StopButtonDisabled.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\StopButtonDisabled.imageset\StopButtonDisabled.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingWelcome.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\OnboardingParts.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\OnboardingConsent.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\OnboardingConsent.imageset\onboarding_third.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingParts.imageset\onboarding_parts.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingProjects.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\OnboardingProjects.imageset\onboarding_second.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingWelcome.imageset\onboarding_first.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -173,6 +181,10 @@
     <Folder Include="Assets.xcassets\BackButton.imageset\" />
     <Folder Include="Assets.xcassets\about.imageset\" />
     <Folder Include="Assets.xcassets\StopButtonDisabled.imageset\" />
+    <Folder Include="Assets.xcassets\OnboardingWelcome.imageset\" />
+    <Folder Include="Assets.xcassets\OnboardingParts.imageset\" />
+    <Folder Include="Assets.xcassets\OnboardingConsent.imageset\" />
+    <Folder Include="Assets.xcassets\OnboardingProjects.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -245,6 +257,18 @@
     <Compile Include="Controllers\RegisterVerify.cs" />
     <Compile Include="Controllers\RegisterVerify.designer.cs">
       <DependentUpon>RegisterVerify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\OnboardingContent.cs" />
+    <Compile Include="Controllers\OnboardingContent.designer.cs">
+      <DependentUpon>OnboardingContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Onboarding.cs" />
+    <Compile Include="Controllers\Onboarding.designer.cs">
+      <DependentUpon>Onboarding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\OnboardingPager.cs" />
+    <Compile Include="Controllers\OnboardingPager.designer.cs">
+      <DependentUpon>OnboardingPager.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

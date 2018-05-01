@@ -32,10 +32,6 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIImageView RegisterLogo { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIView RegisterMasterView { get; set; }
 
         [Outlet]
@@ -66,11 +62,6 @@ namespace Gabber.iOS
             if (RegisterActivityIndicator != null) {
                 RegisterActivityIndicator.Dispose ();
                 RegisterActivityIndicator = null;
-            }
-
-            if (RegisterLogo != null) {
-                RegisterLogo.Dispose ();
-                RegisterLogo = null;
             }
 
             if (RegisterMasterView != null) {

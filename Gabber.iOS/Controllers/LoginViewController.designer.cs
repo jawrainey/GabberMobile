@@ -28,10 +28,6 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIImageView LoginLogo { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIView LoginMasterView { get; set; }
 
         [Outlet]
@@ -41,10 +37,6 @@ namespace Gabber.iOS
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField PasswordTextField { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton RegisterUIButton { get; set; }
 
         [Action ("Authenticate:")]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -67,11 +59,6 @@ namespace Gabber.iOS
                 LoginErrorLabel = null;
             }
 
-            if (LoginLogo != null) {
-                LoginLogo.Dispose ();
-                LoginLogo = null;
-            }
-
             if (LoginMasterView != null) {
                 LoginMasterView.Dispose ();
                 LoginMasterView = null;
@@ -85,11 +72,6 @@ namespace Gabber.iOS
             if (PasswordTextField != null) {
                 PasswordTextField.Dispose ();
                 PasswordTextField = null;
-            }
-
-            if (RegisterUIButton != null) {
-                RegisterUIButton.Dispose ();
-                RegisterUIButton = null;
             }
         }
     }

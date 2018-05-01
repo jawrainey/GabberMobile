@@ -15,6 +15,7 @@ namespace Gabber.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
             LoginUIButton.Layer.BorderWidth = 1.0f;
             LoginUIButton.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
 
@@ -24,11 +25,9 @@ namespace Gabber.iOS
 
             EmailTextField.ShouldReturn += NavigateNext;
             PasswordTextField.ShouldReturn += NavigateNext;
-            // Move container when keyboard is shown/hidden
-            RegisterViewController.SetUpViewKeyboardAnimation(LoginMasterView, LoginMasterView.Bounds);
         }
 
-        bool NavigateNext(UITextField _field)
+		bool NavigateNext(UITextField _field)
         {
             // If 'Next' on the email field is pressed, then
             // make the password field the focus, otherwise 
@@ -40,7 +39,7 @@ namespace Gabber.iOS
             else
             {
                 _field.ResignFirstResponder();
-                Authenticate(RegisterUIButton);
+                Authenticate(LoginUIButton);
             }
             return false;
         }
