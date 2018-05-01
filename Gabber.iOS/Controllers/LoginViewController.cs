@@ -15,6 +15,7 @@ namespace Gabber.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            Title = StringResources.login_ui_title;
 
             LoginUIButton.Layer.BorderWidth = 1.0f;
             LoginUIButton.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;

@@ -97,5 +97,15 @@ namespace Gabber.iOS
             var errorDialog = dialog.BuildErrorMessageDialog(title, "");
             PresentViewController(errorDialog, true, null);
         }
-    }
+
+		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+		{
+            base.PrepareForSegue(segue, sender);
+
+            if (segue.Identifier == "ShowVerifySegue")
+            {
+                NavigationItem.BackBarButtonItem = new UIBarButtonItem() { Title = "" };
+            }
+		}
+	}
 }

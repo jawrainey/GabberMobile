@@ -33,11 +33,14 @@ namespace Gabber.iOS
             };
         }
 
-		public override void ViewWillAppear(bool animated)
-		{
-            base.ViewWillAppear(animated);
-            // Overrides the default "Back" text
-            NavigationController.NavigationBar.TopItem.Title = "";
-		}
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            base.PrepareForSegue(segue, sender);
+
+            if (segue.Identifier == "RegisterVerifyToLogin")
+            {
+                NavigationItem.BackBarButtonItem = new UIBarButtonItem() { Title = "" };
+            }
+        }
 	}
 }
