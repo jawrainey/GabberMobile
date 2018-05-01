@@ -30,10 +30,6 @@ namespace Gabber.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel RegisterVerifySubcontent { get; set; }
 
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel RegisterVerifyTitle { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
             if (RegisterVerifyBody != null) {
@@ -54,11 +50,6 @@ namespace Gabber.iOS
             if (RegisterVerifySubcontent != null) {
                 RegisterVerifySubcontent.Dispose ();
                 RegisterVerifySubcontent = null;
-            }
-
-            if (RegisterVerifyTitle != null) {
-                RegisterVerifyTitle.Dispose ();
-                RegisterVerifyTitle = null;
             }
         }
     }
