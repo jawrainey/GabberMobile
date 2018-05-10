@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Preferences;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
+using Firebase;
 using Gabber.Helpers;
 using GabberPCL;
 using GabberPCL.Models;
@@ -15,6 +16,7 @@ namespace Gabber
 	{
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            FirebaseApp.InitializeApp(ApplicationContext);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main);
 
