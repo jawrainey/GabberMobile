@@ -6,10 +6,6 @@
 	<string>Gabber</string>
 	<key>CFBundleIdentifier</key>
 	<string>uk.ac.ncl.openlab.gabber</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -17,7 +13,6 @@
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
-		<integer>2</integer>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -26,6 +21,7 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>gamekit</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -35,5 +31,9 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Microphone access is required to record a Gabber</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1</string>
+	<key>CFBundleVersion</key>
+	<string>0.1</string>
 </dict>
 </plist>
