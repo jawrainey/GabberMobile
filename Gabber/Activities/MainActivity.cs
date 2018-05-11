@@ -30,7 +30,11 @@ namespace Gabber
 
             if (string.IsNullOrWhiteSpace(UserEmail))
             {
-                StartActivity(typeof(Activities.Onboarding));
+				// We must clear the navigation stack here otherwise this activity is behind onboarding.
+				var intent = new Intent(this, typeof(Activities.Onboarding));
+                intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask);
+                StartActivity(intent);
+                Finish();
             }
             else 
             {
