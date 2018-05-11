@@ -8,6 +8,7 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Firebase.Analytics;
 using Gabber.Adapters;
 using GabberPCL;
 using GabberPCL.Models;
@@ -17,6 +18,7 @@ namespace Gabber.Fragments
 {
     public class Projects : Android.Support.V4.App.Fragment
     {
+		FirebaseAnalytics firebaseAnalytics;
         List<Project> _projects;
         // Made availiable to update projects on data load.
         ProjectsAdapter adapter;
@@ -49,6 +51,8 @@ namespace Gabber.Fragments
 
 		public override void OnActivityCreated(Bundle savedInstanceState)
         {
+			firebaseAnalytics = FirebaseAnalytics.GetInstance(Context);
+
             base.OnCreate(savedInstanceState);
              _projects = Queries.AllProjects();
 
@@ -63,6 +67,7 @@ namespace Gabber.Fragments
             var refresher = Activity.FindViewById<SwipeRefreshLayout>(Resource.Id.projectsRefresher);
             refresher.SetColorSchemeResources(Resource.Color.primary_material_dark);
             refresher.Refresh += async delegate {
+				LOG_SWIPE_REFRESH();
                 await LoadData();
                 refresher.Refreshing = false;
             };
@@ -96,10 +101,26 @@ namespace Gabber.Fragments
         void OnProjectClick(object sender, int position)
         {
             var _prefs = PreferenceManager.GetDefaultSharedPreferences(Activity);
+			LOG_SELECTED_PROJECT(position);
             var intent = new Intent(Activity.ApplicationContext, typeof(PreparationActivity));
             // The unique ID used to lookup associated prompts (URLs and text).
             _prefs.Edit().PutInt("SelectedProjectID", _projects[position].ID).Commit();
             StartActivity(intent);
         }
+      
+		void LOG_SWIPE_REFRESH()
+        {
+            var bundle = new Bundle();
+			bundle.PutInt("PROJECT_COUNT", _projects.Count);
+			firebaseAnalytics.LogEvent("SWIPE_REFRESH", bundle);
+        }
+
+		void LOG_SELECTED_PROJECT(int position)
+		{
+			var bundle = new Bundle();
+            bundle.PutString("PROJECT", _projects[position].Title);
+			bundle.PutString("USER", Session.ActiveUser.Email);
+			firebaseAnalytics.LogEvent("PROJECT_SELECTED", bundle);
+		}
     }
 }

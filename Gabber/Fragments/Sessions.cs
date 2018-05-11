@@ -6,14 +6,17 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Firebase.Analytics;
 using Gabber.Adapters;
 using GabberPCL;
+using GabberPCL.Models;
 using GabberPCL.Resources;
 
 namespace Gabber.Fragments
 {
     public class Sessions : Android.Support.V4.App.Fragment
     {
+		FirebaseAnalytics firebaseAnalytics;
         static Sessions instance;
         SessionAdapter adapter;
         Task IsUploading;
@@ -52,6 +55,7 @@ namespace Gabber.Fragments
 
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
+			firebaseAnalytics = FirebaseAnalytics.GetInstance(Context);
             base.OnCreate(savedInstanceState);
 
             var sessions = Queries.AllNotUploadedInterviewSessionsForActiveUser();
@@ -63,8 +67,8 @@ namespace Gabber.Fragments
 
             ShowHideInstructions();
 
-            sessionsUploadButton.Click += (s, e) => UploadIfNot(0, true);
-            adapter.SessionClicked += (s, p) => UploadIfNot(p, false);
+			sessionsUploadButton.Click += (s, e) => UploadIfNot(0, true);
+			adapter.SessionClicked += (s, p) => UploadIfNot(p, false);
 
             // As we get to this fragment via MainActivity, passing data via intents
             // is not ideal. Instead, based on existing sessions, we can show the dialog.
@@ -95,13 +99,17 @@ namespace Gabber.Fragments
 
             alert.SetNegativeButton(
                 StringResources.debriefing_ui_button_hide, 
-                (dialog, id) => ((AlertDialog)dialog).Dismiss()
+				(dialog, id) => {
+					((AlertDialog)dialog).Dismiss();
+				    LOG_EVENT_WITH_ACTION("DEBRIEF", "DISMISSED");
+			    }
             );
 
             alert.SetPositiveButton(
                 StringResources.debriefing_ui_button_upload, 
                 async (dialog, id) => {
                     ((AlertDialog)dialog).Dismiss();
+				    LOG_EVENT_WITH_ACTION("DEBRIEF", "UPLOADED");
                     await UploadSessions(0, false);
                 }
             );
@@ -126,22 +134,51 @@ namespace Gabber.Fragments
             sessionsUploadButton.Enabled = false;
 
             adapter.SessionIsUploading(index);
+
+			LOG_EVENT("ATTEMPT_UPLOAD");
             var didUpload = await new RestClient().Upload(adapter.Sessions[index]);
 
             if (didUpload)
             {
+				LOG_EVENT("UPLOAD_SUCCESS");
+				LOG_UPLOAD_ONE(adapter.Sessions[index]);
                 adapter.SessionIsUploaded(index);
                 Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_success, ToastLength.Long).Show();
                 if (recursive) await UploadSessions(0, true);
             }
             else
             {
+				LOG_EVENT("UPLOAD_FAIL");
                 adapter.SessionUploadFail(index);
                 Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_fail, ToastLength.Long).Show();
             }
             sessionsUploadButton.Enabled = true;
             ShowHideInstructions();
             return true;
+        }
+
+		void LOG_EVENT(string eventName)
+        {
+            var bundle = new Bundle();
+            bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
+            firebaseAnalytics.LogEvent(eventName, bundle);
+        }
+
+		void LOG_EVENT_WITH_ACTION(string eventName, string action)
+        {
+            var bundle = new Bundle();
+            bundle.PutString("ACTION", action);
+            bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
+            firebaseAnalytics.LogEvent(eventName, bundle);
+        }
+      
+		void LOG_UPLOAD_ONE(InterviewSession session)
+        {
+            var bundle = new Bundle();
+			bundle.PutInt("NUM_PARTS", session.Participants.Count);
+			bundle.PutString("ID", session.SessionID);
+			bundle.PutInt("NUM_TOPICS", session.Prompts.Count);
+			firebaseAnalytics.LogEvent("UPLOAD_SESSION", bundle);
         }
     }
 }

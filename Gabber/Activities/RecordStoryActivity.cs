@@ -19,12 +19,14 @@ using GabberPCL.Resources;
 using Android.Graphics;
 using Android.Views.Animations;
 using System.Linq;
+using Firebase.Analytics;
 
 namespace Gabber
 {
 	[Activity]
 	public class RecordStoryActivity : AppCompatActivity
 	{
+		FirebaseAnalytics firebaseAnalytics;
 		// TODO: move all recording logic to a seperate class, which is useful when creating a PCL
 		MediaRecorder _recorder;
 		// Gosh: https://code.google.com/p/android/issues/detail?id=800
@@ -44,6 +46,7 @@ namespace Gabber
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
+			firebaseAnalytics = FirebaseAnalytics.GetInstance(ApplicationContext);
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.record);
             SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
@@ -76,6 +79,7 @@ namespace Gabber
 			// Note: record has two states: start and stop record.
 			record.Click += delegate
 			{
+				LOG_EVENT("RECORD_CLICKED");
 				// Change icon between record to stop.
                 record.Selected = !record.Selected;
 
@@ -123,17 +127,20 @@ namespace Gabber
                 alert.SetPositiveButton(StringResources.recording_ui_dialog_back_positive, (dialog, id) =>
                 {
                     StopRecording();
+					LOG_EVENT_WITH_ACTION("BACK_PRESSED_WHILE_RECORDING", "CONTINUE");
                     base.OnBackPressed();
                 });
 
                 alert.SetNegativeButton(StringResources.recording_ui_dialog_back_negative, (dialog, id) =>
                 {
+					LOG_EVENT_WITH_ACTION("CANCEL_BACK_PRESSED_WHILE_RECORDING", "DISMISSED");
                     ((Android.Support.V7.App.AlertDialog)dialog).Dismiss();
                 });
-
+				LOG_EVENT_WITH_ACTION("PRESSED_GO_BACK_WHEN_RECORDING", "DISPLAYED");
                 alert.Create().Show();
             }
             else {
+				LOG_EVENT("BACK_WITHOUT_RECORD");
                 base.OnBackPressed();
             }
         }
@@ -179,6 +186,7 @@ namespace Gabber
                 themes[previousSelected].SelectionState = Prompt.SelectedState.previous;
                 selectedItems.Add(previousSelected);
             }
+			LOG_TOPIC_SELECTED(themes[currentSelected]);
             themes[currentSelected].SelectionState = Prompt.SelectedState.current;
         }
 
@@ -249,6 +257,7 @@ namespace Gabber
 			_recorder.SetOutputFile(_path);
 			_recorder.Prepare();
 			_recorder.Start();
+			LOG_EVENT("START_RECORDING");
 		}
 
 		void StopRecording()
@@ -258,7 +267,36 @@ namespace Gabber
 				_isrecording = false;
 				_recorder.Stop();
 				_recorder.Reset();
+				LOG_EVENT("STOP_RECORDING");
 			}
 		}
+
+		void LOG_EVENT_WITH_ACTION(string eventName, string action)
+        {
+            var bundle = new Bundle();
+			bundle.PutString("ACTION", action);
+			bundle.PutString("TIMESTAMP", DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
+            firebaseAnalytics.LogEvent(eventName, bundle);
+        }
+
+		void LOG_EVENT(string eventName)
+        {
+            var bundle = new Bundle();
+			bundle.PutString("TIMESTAMP", DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
+            firebaseAnalytics.LogEvent(eventName, bundle);
+        }
+
+		public void LOG_TOPIC_SELECTED(Prompt topic)
+        {
+            var bundle = new Bundle();
+            bundle.PutString("TEXT", topic.Text);
+            bundle.PutInt("ID", topic.ID);
+
+			var previous = themes.Find((obj) => obj.SelectionState == Prompt.SelectedState.previous);
+			bundle.PutString("PREVIOUS_TEXT", previous != null ? previous.Text : "");
+			bundle.PutInt("PREVIOUS_ID", previous != null ? previous.ID : -1);
+         
+            firebaseAnalytics.LogEvent("TOPIC_SELECTED", bundle);
+        }
 	}
 }

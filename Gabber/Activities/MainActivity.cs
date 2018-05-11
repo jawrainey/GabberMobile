@@ -1,9 +1,11 @@
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Preferences;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Firebase;
+using Firebase.Analytics;
 using Gabber.Helpers;
 using GabberPCL;
 using GabberPCL.Models;
@@ -14,9 +16,13 @@ namespace Gabber
 	[Activity(MainLauncher=true)]
 	public class MainActivity : AppCompatActivity
 	{
+		FirebaseAnalytics firebaseAnalytics;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             FirebaseApp.InitializeApp(ApplicationContext);
+			firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
+
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main);
 
@@ -38,12 +44,13 @@ namespace Gabber
             }
             else 
             {
-                // Create the user once as they can come here after Register/Login
+                // Create the user once as they can come here after Register/Login or anytime they reopen app
                 if (Session.ActiveUser == null)
                 {
                     var user = Queries.UserByEmail(UserEmail);
                     var tokens = JsonConvert.DeserializeObject<JWToken>(preferences.GetString("tokens", ""));
                     Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
+                    firebaseAnalytics.SetUserId(Session.ActiveUser.Id.ToString());
                 }
 
                 var nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
@@ -80,12 +87,15 @@ namespace Gabber
             {
                 case Resource.Id.menu_projects:
                     fragment = Fragments.Projects.NewInstance();
+					LOG_FRAGMENT_SELECTED("projects");
                     break;
                 case Resource.Id.menu_gabbers:
                     fragment = Fragments.Sessions.NewInstance();
+					LOG_FRAGMENT_SELECTED("recordings");
                     break;
                 case Resource.Id.menu_about:
                     fragment = Fragments.About.NewInstance();
+					LOG_FRAGMENT_SELECTED("about");
                     break;
                 default:
                     fragment = Fragments.Projects.NewInstance();
@@ -97,6 +107,13 @@ namespace Gabber
             SupportFragmentManager.BeginTransaction()
                .Replace(Resource.Id.content_frame, fragment)
                .Commit();
+        }
+
+		void LOG_FRAGMENT_SELECTED(string name)
+        {
+            var bundle = new Bundle();
+			bundle.PutString("FRAGMENT", name);
+			firebaseAnalytics.LogEvent("FRAGMENT_SHOWN", bundle);
         }
 	}
 }

@@ -7,6 +7,7 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Firebase.Analytics;
 using GabberPCL;
 using GabberPCL.Resources;
 using Newtonsoft.Json;
@@ -23,8 +24,12 @@ namespace Gabber.Activities
     )]
     public class VerifyEmail : AppCompatActivity
     {
+		FirebaseAnalytics firebaseAnalytics;
+
         protected override async void OnCreate(Bundle savedInstanceState)
         {
+			firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
+
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.register_verification_res);
 
@@ -56,6 +61,7 @@ namespace Gabber.Activities
 
                 if (response.Meta.Success)
                 {
+					LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "VERIFIED_SUCCESS");
                     prefs.Edit().PutString("username", response.Data.User.Email).Commit();
                     prefs.Edit().PutString("tokens", JsonConvert.SerializeObject(response.Data.Tokens)).Commit();
                     Queries.SetActiveUser(response.Data);
@@ -67,6 +73,7 @@ namespace Gabber.Activities
                 }
                 else
                 {
+					LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "ALREADY_REGISTERED");
                     loginButton.Visibility = ViewStates.Visible;
                     FindViewById<TextView>(Resource.Id.registerVerifyContent).Text = StringResources.register_verifying_ui_page_content_error;
                     response.Meta.Messages.ForEach(MakeError);
@@ -74,6 +81,7 @@ namespace Gabber.Activities
             }
 
             loginButton.Click += delegate {
+				LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "ALREADY_REGISTERED");
                 var intent = new Intent(this, typeof(LoginActivity));
                 intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
                 StartActivity(intent);
@@ -86,6 +94,14 @@ namespace Gabber.Activities
             var view = FindViewById<TextView>(Resource.Id.registerVerifyContent);
             var message = StringResources.ResourceManager.GetString($"register.verifying.api.error.{errorMessage}");
             Snackbar.Make(view, message, Snackbar.LengthLong).Show();
+        }
+
+		void LOG_EVENT_WITH_ACTION(string eventName, string action)
+        {
+            var bundle = new Bundle();
+            bundle.PutString("ACTION", action);
+            bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
+            firebaseAnalytics.LogEvent(eventName, bundle);
         }
     }
 }

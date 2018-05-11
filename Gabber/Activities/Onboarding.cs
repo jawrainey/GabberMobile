@@ -7,6 +7,7 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views.Animations;
 using Android.Widget;
+using Firebase.Analytics;
 using GabberPCL.Models;
 using GabberPCL.Resources;
 
@@ -15,10 +16,12 @@ namespace Gabber.Activities
     [Activity]
     public class Onboarding : AppCompatActivity, ViewPager.IOnPageChangeListener
     {
+		FirebaseAnalytics firebaseAnalytics;
         ViewPager pager;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+			firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.onboarding);
 
@@ -73,6 +76,7 @@ namespace Gabber.Activities
 
         public void OnPageSelected(int position)
         {
+			LOG_ONBOARDING_SWIPE(position);
             var la = FindViewById<LinearLayout>(Resource.Id.showAuthButtons);
 
             if (position == pager.Adapter.Count - 1)
@@ -86,5 +90,20 @@ namespace Gabber.Activities
             }
         }
 
+		void LOG_ONBOARDING_SWIPE(int position)
+        {
+            var bundle = new Bundle();
+			bundle.PutInt("POSITION", position);
+            bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
+			firebaseAnalytics.LogEvent("ONBOARDING_SWIPE", bundle);
+        }
+
+		void LOG_EVENT_WITH_ACTION(string eventName, string action)
+        {
+            var bundle = new Bundle();
+            bundle.PutString("ACTION", action);
+            bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
+            firebaseAnalytics.LogEvent(eventName, bundle);
+        }
     }
 }

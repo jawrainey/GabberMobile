@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Widget;
+using Firebase.Analytics;
 using GabberPCL.Resources;
 
 namespace Gabber.Activities
@@ -11,8 +12,12 @@ namespace Gabber.Activities
     [Activity]
     public class RegisterVerification : AppCompatActivity
     {
+		FirebaseAnalytics firebaseAnalytics;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
+			firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
+
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.register_verification);
             FindViewById<TextView>(Resource.Id.verifyTitle).Text = StringResources.register_verify_ui_page_title;
@@ -27,9 +32,25 @@ namespace Gabber.Activities
             {
                 var openEmail = FindViewById<AppCompatButton>(Resource.Id.openEmail);
                 openEmail.Text = StringResources.register_verify_ui_button_openemail;
-                openEmail.Click += (s, e) => StartActivity(intent);
+				openEmail.Click += (s, e) =>
+				{
+					LOG_EVENT_WITH_ACTION("EMAIL_CLIENT", "CLICK_OPENED");
+					StartActivity(intent);
+				};
                 openEmail.Visibility = Android.Views.ViewStates.Visible;
             }
+			else
+			{
+				LOG_EVENT_WITH_ACTION("EMAIL_CLIENT", "NOT_SHOWN");
+			}
+        }
+
+		void LOG_EVENT_WITH_ACTION(string eventName, string action)
+        {
+            var bundle = new Bundle();
+            bundle.PutString("ACTION", action);
+            bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
+            firebaseAnalytics.LogEvent(eventName, bundle);
         }
 	}
 }

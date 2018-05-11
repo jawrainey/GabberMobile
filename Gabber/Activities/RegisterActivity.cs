@@ -6,6 +6,7 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Firebase.Analytics;
 using GabberPCL;
 using GabberPCL.Resources;
 
@@ -14,8 +15,11 @@ namespace Gabber
 	[Activity]
 	public class RegisterActivity : AppCompatActivity
 	{
+		FirebaseAnalytics firebaseAnalytics;
+
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
+			firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.register);
             SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
@@ -76,10 +80,12 @@ namespace Gabber
 					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 
                     var api = new RestClient();
+					LOG_EVENT_WITH_ACTION("REGISTER", "ATTEMPT");
                     var response = await api.Register(fname.Text, email.Text.ToLower(), passw.Text);
 
                     if (response.Meta.Success)
 					{
+                        LOG_EVENT_WITH_ACTION("REGISTER", "SUCCESS");
                         var intent = new Intent(this, typeof(Activities.RegisterVerification));
                         intent.PutExtra("EMAIL_USED_TO_REGISTER", email.Text);
 						intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
@@ -92,6 +98,7 @@ namespace Gabber
 						{
                             if (response.Meta.Messages.Count > 0)
                             {
+								LOG_EVENT_WITH_ACTION("REGISTER", "ERROR");
                                 response.Meta.Messages.ForEach(MakeError);
                             }
 							FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = true;
@@ -108,6 +115,7 @@ namespace Gabber
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
+			LOG_EVENT_WITH_ACTION("BACK_BUTTON", "PRESSED");
             OnBackPressed();
             return true;
         }
@@ -118,6 +126,14 @@ namespace Gabber
             // Using login string lookup as there are no different error messages between login/register, only general.
             var message = StringResources.ResourceManager.GetString($"login.api.error.{errorMessage}");
             Snackbar.Make(email, message, Snackbar.LengthLong).Show();
+        }
+
+		void LOG_EVENT_WITH_ACTION(string eventName, string action)
+        {
+            var bundle = new Bundle();
+            bundle.PutString("ACTION", action);
+			bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
+            firebaseAnalytics.LogEvent(eventName, bundle);
         }
     }
 }
