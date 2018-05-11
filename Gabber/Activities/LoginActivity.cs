@@ -102,6 +102,7 @@ namespace Gabber
                         // Set active user on login/register as the user object is in the response.
                         // This prevents us from storing a user object in local storage.
                         Queries.SetActiveUser(response.Data);
+						FirebaseAnalytics.GetInstance(this).SetUserId(Session.ActiveUser.Id.ToString());
 
                         // We do not want the user to return to ANY gabber recording pages once captured.
 						var intent = new Intent(this, typeof(MainActivity));
