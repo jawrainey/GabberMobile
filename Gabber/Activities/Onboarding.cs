@@ -82,7 +82,6 @@ namespace Gabber.Activities
             }
             else
             {
-                la.StartAnimation(AnimationUtils.LoadAnimation(this, Resource.Animation.abc_slide_out_bottom));
                 la.Visibility = Android.Views.ViewStates.Gone;
             }
         }
