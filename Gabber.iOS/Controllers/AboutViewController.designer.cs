@@ -20,7 +20,11 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel AboutURL { get; set; }
+        UIKit.UITextView AboutURL { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel AboutURLDescription { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
@@ -32,6 +36,11 @@ namespace Gabber.iOS
             if (AboutURL != null) {
                 AboutURL.Dispose ();
                 AboutURL = null;
+            }
+
+            if (AboutURLDescription != null) {
+                AboutURLDescription.Dispose ();
+                AboutURLDescription = null;
             }
         }
     }

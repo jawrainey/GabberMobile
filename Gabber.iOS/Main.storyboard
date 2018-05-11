@@ -367,45 +367,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OnboardingWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="D7L-bU-M21">
+                                <rect key="frame" x="107" y="80" width="200" height="158"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="158" id="3EO-S4-QKc"/>
+                                    <constraint firstAttribute="width" constant="200" id="HMW-69-YLe"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5v-h8-rRv">
-                                <rect key="frame" x="20" y="80" width="374" height="0.0"/>
+                                <rect key="frame" x="16" y="254" width="382" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" misplaced="YES" text="" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50N-N3-rPi" userLabel="About URL">
-                                <rect key="frame" x="20" y="116" width="374" height="82"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6WT-xV-4MQ">
+                                <rect key="frame" x="16" y="270" width="382" height="401"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.23552465438842773" green="0.75617581605911255" blue="0.087043069303035736" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50N-N3-rPi" userLabel="About Desc">
+                                <rect key="frame" x="20" y="270" width="374" height="0.0"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                 </accessibility>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="OKi-yA-5HC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="X5v-h8-rRv" secondAttribute="trailing" constant="20" id="NZj-Rd-DQV"/>
-                            <constraint firstItem="X5v-h8-rRv" firstAttribute="top" secondItem="BZl-gw-dB9" secondAttribute="bottom" constant="16" id="Of5-LD-iNE"/>
-                            <constraint firstItem="50N-N3-rPi" firstAttribute="top" secondItem="X5v-h8-rRv" secondAttribute="bottom" constant="16.666666666666671" id="TcX-2e-LLF"/>
-                            <constraint firstItem="X5v-h8-rRv" firstAttribute="leading" secondItem="PEv-DQ-OAQ" secondAttribute="leading" constant="20" id="ZSj-Lp-pqw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="50N-N3-rPi" secondAttribute="trailing" id="bWm-AC-5fO"/>
-                            <constraint firstItem="50N-N3-rPi" firstAttribute="leading" secondItem="PEv-DQ-OAQ" secondAttribute="leadingMargin" id="cdu-lV-6fo"/>
-                            <constraint firstItem="50N-N3-rPi" firstAttribute="leading" secondItem="X5v-h8-rRv" secondAttribute="leading" id="f7q-Hn-F32"/>
+                            <constraint firstItem="50N-N3-rPi" firstAttribute="leading" secondItem="PEv-DQ-OAQ" secondAttribute="leadingMargin" id="5m9-l3-Ytt"/>
+                            <constraint firstItem="6WT-xV-4MQ" firstAttribute="leading" secondItem="PEv-DQ-OAQ" secondAttribute="leading" constant="16" id="6QS-jn-5L1"/>
+                            <constraint firstItem="D7L-bU-M21" firstAttribute="top" secondItem="BZl-gw-dB9" secondAttribute="bottom" constant="16" id="AME-AL-Mms"/>
+                            <constraint firstItem="50N-N3-rPi" firstAttribute="trailing" secondItem="PEv-DQ-OAQ" secondAttribute="trailingMargin" id="BHM-oC-gXa"/>
+                            <constraint firstItem="6WT-xV-4MQ" firstAttribute="top" secondItem="50N-N3-rPi" secondAttribute="bottom" id="BOH-bH-ujz"/>
+                            <constraint firstItem="D7L-bU-M21" firstAttribute="centerX" secondItem="PEv-DQ-OAQ" secondAttribute="centerX" id="Qvf-br-c4r"/>
+                            <constraint firstItem="50N-N3-rPi" firstAttribute="top" secondItem="X5v-h8-rRv" secondAttribute="bottom" constant="16" id="VOU-gy-HyT"/>
+                            <constraint firstAttribute="trailing" secondItem="6WT-xV-4MQ" secondAttribute="trailing" constant="16" id="Xqq-qZ-ajf"/>
+                            <constraint firstItem="X5v-h8-rRv" firstAttribute="top" secondItem="D7L-bU-M21" secondAttribute="bottom" constant="16" id="d0e-bh-Ryg"/>
+                            <constraint firstItem="X5v-h8-rRv" firstAttribute="leading" secondItem="PEv-DQ-OAQ" secondAttribute="leading" constant="16" id="dJl-ZQ-QLW"/>
+                            <constraint firstItem="PFF-Fq-8qM" firstAttribute="top" secondItem="6WT-xV-4MQ" secondAttribute="bottom" constant="16" id="mB9-KR-0sI"/>
+                            <constraint firstAttribute="trailing" secondItem="X5v-h8-rRv" secondAttribute="trailing" constant="16" id="w8D-AC-lga"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" title="" image="menu_about" landscapeImage="menu_about" largeContentSizeImage="menu_about" id="Czq-Wh-NDk"/>
                     <connections>
                         <outlet property="AboutContent" destination="X5v-h8-rRv" id="name-outlet-X5v-h8-rRv"/>
-                        <outlet property="AboutURL" destination="50N-N3-rPi" id="name-outlet-50N-N3-rPi"/>
+                        <outlet property="AboutURL" destination="6WT-xV-4MQ" id="name-outlet-6WT-xV-4MQ"/>
+                        <outlet property="AboutURLDescription" destination="50N-N3-rPi" id="name-outlet-50N-N3-rPi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="joB-SM-4D2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1357.971" y="1771.4670000000001"/>
+            <point key="canvasLocation" x="1356.521739130435" y="1769.8369565217392"/>
         </scene>
         <!--Add Participant View Controller-->
         <scene sceneID="18960">
@@ -1099,6 +1117,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="OnboardingWelcome" width="375" height="339"/>
         <image name="StopButton" width="256" height="256"/>
         <image name="StopButtonDisabled" width="256" height="256"/>
         <image name="menu_about" width="24" height="24"/>
