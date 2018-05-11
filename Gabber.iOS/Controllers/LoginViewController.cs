@@ -79,6 +79,8 @@ namespace Gabber.iOS
                 }
                 else if (!string.IsNullOrEmpty(response.Data?.Tokens.Access))
                 {
+					_.BecomeFirstResponder();
+					_.ResignFirstResponder();
                     NSUserDefaults.StandardUserDefaults.SetString(JsonConvert.SerializeObject(response.Data.Tokens), "tokens");
                     NSUserDefaults.StandardUserDefaults.SetString(email, "username");
 
