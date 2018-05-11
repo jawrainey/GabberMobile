@@ -44,6 +44,16 @@ namespace Gabber.Activities
 			{
 				LOG_EVENT_WITH_ACTION("EMAIL_CLIENT", "NOT_SHOWN");
 			}
+
+			FindViewById<TextView>(Resource.Id.loginContent).Text = StringResources.register_verify_ui_page_subcontent;
+			var login = FindViewById<AppCompatButton>(Resource.Id.loginButton);
+			login.Text = StringResources.login_ui_submit_button;
+
+			login.Click += (s, e) =>
+			{
+				LOG_EVENT_WITH_ACTION("LOGIN_BUTTON", "CLICKED");
+				StartActivity(typeof(LoginActivity));
+			};
         }
 
 		void LOG_EVENT_WITH_ACTION(string eventName, string action)
