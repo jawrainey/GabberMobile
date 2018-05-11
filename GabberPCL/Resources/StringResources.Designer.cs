@@ -365,9 +365,15 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string about_ui_link {
+        public static string about_ui_url_description {
             get {
-                return ResourceManager.GetString("about.ui.link", resourceCulture);
+                return ResourceManager.GetString("about.ui.url.description", resourceCulture);
+            }
+        }
+        
+        public static string about_ui_url {
+            get {
+                return ResourceManager.GetString("about.ui.url", resourceCulture);
             }
         }
         

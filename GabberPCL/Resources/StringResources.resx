@@ -211,8 +211,11 @@
     <data name="about.ui.content" xml:space="preserve">
         <value>Gabber uses topics to structure and capture audio conversations, which are used on the website to represent who was present and what was discussed.</value>
     </data>
-    <data name="about.ui.link" xml:space="preserve">
-        <value>Visit Gabber Website: https://gabber.audio</value>
+    <data name="about.ui.url.description" xml:space="preserve">
+        <value>Listen to Gabber recordings:</value>
+    </data>
+    <data name="about.ui.url" xml:space="preserve">
+        <value>https://gabber.audio</value>
     </data>
     
     <!-- PARTICIPANTS SCREEN -->
