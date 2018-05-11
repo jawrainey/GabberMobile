@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
 using Android.Support.Design.Widget;
@@ -14,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace Gabber.Activities
 {
-    [Activity(Label = "Gabber to verify email")]
+	[Activity(Label = "Gabber to verify email", ScreenOrientation = ScreenOrientation.Portrait)]
     [IntentFilter(
         new[] { Intent.ActionView },
         Categories = new[] { Intent.CategoryBrowsable, Intent.CategoryDefault },

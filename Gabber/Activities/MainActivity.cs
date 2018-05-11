@@ -1,5 +1,6 @@
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
 using Android.Support.Design.Widget;
@@ -13,7 +14,7 @@ using Newtonsoft.Json;
 
 namespace Gabber
 {
-	[Activity(MainLauncher=true)]
+	[Activity(MainLauncher=true, ScreenOrientation = ScreenOrientation.Portrait)]
 	public class MainActivity : AppCompatActivity
 	{
 		FirebaseAnalytics firebaseAnalytics;

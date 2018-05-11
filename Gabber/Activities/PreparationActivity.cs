@@ -16,10 +16,11 @@ using GabberPCL.Resources;
 using System.Collections.Generic;
 using System.Globalization;
 using Firebase.Analytics;
+using Android.Content.PM;
 
 namespace Gabber
 {
-	[Activity]
+	[Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class PreparationActivity : AppCompatActivity
 	{
 		FirebaseAnalytics firebaseAnalytics;

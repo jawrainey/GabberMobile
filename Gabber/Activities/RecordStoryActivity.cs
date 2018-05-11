@@ -20,10 +20,11 @@ using Android.Graphics;
 using Android.Views.Animations;
 using System.Linq;
 using Firebase.Analytics;
+using Android.Content.PM;
 
 namespace Gabber
 {
-	[Activity]
+	[Activity(ScreenOrientation = ScreenOrientation.Portrait)]
 	public class RecordStoryActivity : AppCompatActivity
 	{
 		FirebaseAnalytics firebaseAnalytics;

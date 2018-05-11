@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Android.App;
+using Android.Content.PM;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
@@ -13,7 +14,7 @@ using GabberPCL.Resources;
 
 namespace Gabber.Activities
 {
-    [Activity]
+	[Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class Onboarding : AppCompatActivity, ViewPager.IOnPageChangeListener
     {
 		FirebaseAnalytics firebaseAnalytics;

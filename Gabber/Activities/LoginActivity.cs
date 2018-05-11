@@ -1,5 +1,6 @@
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
 using Android.Support.Design.Widget;
@@ -14,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace Gabber
 {
-	[Activity]
+	[Activity(ScreenOrientation = ScreenOrientation.Portrait)]
 	public class LoginActivity : AppCompatActivity
 	{
 		FirebaseAnalytics firebaseAnalytics;

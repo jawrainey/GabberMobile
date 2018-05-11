@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
@@ -9,7 +10,7 @@ using GabberPCL.Resources;
 
 namespace Gabber.Activities
 {
-    [Activity]
+	[Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class RegisterVerification : AppCompatActivity
     {
 		FirebaseAnalytics firebaseAnalytics;
