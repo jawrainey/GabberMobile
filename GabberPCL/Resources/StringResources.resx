@@ -186,7 +186,7 @@
         <value>Saved recordings</value>
     </data>    
     <data name="sessions.ui.header.instructions" xml:space="preserve">
-        <value>Tap a conversation to upload or Upload All</value>
+        <value>These are the recordings that you have made and that have not yet been uploaded to the website.</value>
     </data>
     <data name="sessions.ui.body.instructions" xml:space="preserve">
         <value>You have no conversations waiting to be uploaded</value>
