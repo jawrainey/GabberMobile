@@ -74,6 +74,8 @@ namespace Gabber.iOS
                 Session.Connection.Update(sessions[index]);
                 sessions.Remove(sessions[index]);
                 SessionsCollectionView.ReloadData();
+				PresentViewController(new Helpers.MessageDialog().BuildErrorMessageDialog(
+					StringResources.sessions_ui_message_upload_success, ""), true, null);
                 // Try to upload the next session
                 if (recursive) UploadSessions(0, true);
             }
