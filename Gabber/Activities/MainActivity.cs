@@ -5,11 +5,13 @@ using Android.OS;
 using Android.Preferences;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
+using Android.Views;
 using Firebase;
 using Firebase.Analytics;
 using Gabber.Helpers;
 using GabberPCL;
 using GabberPCL.Models;
+using GabberPCL.Resources;
 using Newtonsoft.Json;
 
 namespace Gabber
@@ -55,6 +57,10 @@ namespace Gabber
                 }
 
                 var nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
+				nav.Menu.FindItem(Resource.Id.menu_projects).SetTitle(StringResources.common_menu_projects);
+				nav.Menu.FindItem(Resource.Id.menu_gabbers).SetTitle(StringResources.common_menu_gabbers);
+				nav.Menu.FindItem(Resource.Id.menu_about).SetTitle(StringResources.common_menu_about);
+
                 nav.NavigationItemSelected += (sender, e) => LoadFragment(e.Item.ItemId);
 
                 // Load projects by default and sessions/about if they came from other activity.
