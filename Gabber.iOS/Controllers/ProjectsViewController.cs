@@ -36,6 +36,26 @@ namespace Gabber.iOS
             var es = new CoreGraphics.CGSize(UIScreen.MainScreen.Bounds.Width - 36, 70);
             (ProjectsCollectionView.CollectionViewLayout as UICollectionViewFlowLayout).EstimatedItemSize = es;
 
+            var refreshControl = new UIRefreshControl
+            {
+                AttributedTitle = new NSAttributedString("Fetching projects ..."),
+                TintColor = UIColor.FromRGB(.43f, .80f, .79f)
+            };
+
+			refreshControl.AddTarget(async delegate {
+				await LoadData();
+                refreshControl.EndRefreshing();
+            }, UIControlEvent.AllEvents);
+            
+			if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+			{
+                ProjectsCollectionView.RefreshControl = refreshControl;	
+			}
+			else
+			{
+				ProjectsCollectionView.AddSubview(refreshControl);
+			}
+
             if (Session.ActiveUser == null)
             {
                 var email = NSUserDefaults.StandardUserDefaults.StringForKey("username");
