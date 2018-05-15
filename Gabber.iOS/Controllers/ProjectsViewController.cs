@@ -6,11 +6,18 @@ using GabberPCL;
 using Newtonsoft.Json;
 using GabberPCL.Models;
 using GabberPCL.Resources;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Gabber.iOS
 {
     public partial class ProjectsViewController : UIViewController
     {
+		// Prevents multiple calls being made to the API when one is in progress.
+        Task LoadingProjects;
+        // Make availiable to update
+		List<Project> _projects;
+
         public ProjectsViewController (IntPtr handle) : base (handle) {}
 
         public async override void ViewDidLoad()
@@ -37,24 +44,36 @@ namespace Gabber.iOS
                 var tokens = JsonConvert.DeserializeObject<JWToken>(_tokens);
                 Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
             }
+			_projects = Queries.AllProjects();
+			ProjectsCollectionView.Source = new ProjectsCollectionViewSource(_projects);
+            if (_projects.Count <= 0) LoadDataIfNotLoading(true);
+        }
 
-            ProjectsActivityIndicator.StartAnimating();
-            var projects = await (new RestClient()).GetProjects(ErrorMessageDialog);
-            ProjectsActivityIndicator.StopAnimating();
+		public async Task LoadData(bool withLoadingBar=false)
+        {
+			if (withLoadingBar) ProjectsActivityIndicator.StartAnimating();
+            var response = await new RestClient().GetProjects(ErrorMessageDialog);
+			if (withLoadingBar) ProjectsActivityIndicator.StopAnimating();
+         
+            if (response.Count > 0)
+            {
+                Queries.AddProjects(response);
+				_projects = response;
+				ProjectsCollectionView.Source = new ProjectsCollectionViewSource(_projects);
+            }
+        }
 
-            if (projects.Count > 0)
+        public void LoadDataIfNotLoading(bool withLoadingBar = false)
+        {
+            if (LoadingProjects == null || LoadingProjects.IsCompleted)
             {
-                Queries.AddProjects(projects);
+                LoadingProjects = LoadData(withLoadingBar);
             }
-            else 
-            {
-                projects = Queries.AllProjects();
-            }
-            ProjectsCollectionView.Source = new ProjectsCollectionViewSource(projects);
         }
 
         public override void ViewWillAppear(bool animated)
         {
+			LoadDataIfNotLoading();
             base.ViewDidAppear(animated);
             TabBarController.Title = StringResources.common_menu_projects;
         }
