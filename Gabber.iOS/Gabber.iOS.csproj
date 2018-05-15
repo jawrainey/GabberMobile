@@ -270,6 +270,10 @@
     <Compile Include="Controllers\OnboardingPager.designer.cs">
       <DependentUpon>OnboardingPager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\RegisterVerifying.cs" />
+    <Compile Include="Controllers\RegisterVerifying.designer.cs">
+      <DependentUpon>RegisterVerifying.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">
