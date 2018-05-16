@@ -25,9 +25,11 @@ namespace Gabber.iOS
             // TODO: animate OnboardingActions when the user is on the final page
             OnboardingActions.Hidden &= Index != 4;
 
+			OBRegister.SetTitle(StringResources.register_ui_submit_button, UIControlState.Normal);
             OBRegister.Layer.BorderWidth = 1.0f;
             OBRegister.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
 
+			OBLogin.SetTitle(StringResources.login_ui_submit_button, UIControlState.Normal);
             OBLogin.Layer.BorderWidth = OBRegister.Layer.BorderWidth;
             OBLogin.Layer.BorderColor = OBRegister.Layer.BorderColor;
         }
