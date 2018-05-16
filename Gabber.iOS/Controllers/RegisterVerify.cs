@@ -1,4 +1,5 @@
 using Foundation;
+using Gabber.iOS.Helpers;
 using GabberPCL.Resources;
 using System;
 using UIKit;
@@ -27,8 +28,13 @@ namespace Gabber.iOS
             RegisterVerifyLogin.Layer.BorderWidth = RegisterVerifyOpenEmail.Layer.BorderWidth;
             RegisterVerifyLogin.Layer.BorderColor = RegisterVerifyOpenEmail.Layer.BorderColor;
 
+            RegisterVerifyLogin.TouchUpInside += delegate {
+                Logger.LOG_EVENT_WITH_ACTION("LOGIN_BUTTON", "CLICKED");
+            };
+
             RegisterVerifyOpenEmail.SetTitle(StringResources.register_verify_ui_button_openemail, UIControlState.Normal);
             RegisterVerifyOpenEmail.TouchUpInside += delegate {
+                Logger.LOG_EVENT_WITH_ACTION("EMAIL_CLIENT", "CLICKED");
                 UIApplication.SharedApplication.OpenUrl(new NSUrl("message://"));
             };
         }

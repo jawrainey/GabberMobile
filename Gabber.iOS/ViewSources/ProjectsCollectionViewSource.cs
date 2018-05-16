@@ -3,6 +3,7 @@ using Foundation;
 using UIKit;
 using System.Collections.Generic;
 using GabberPCL.Models;
+using Gabber.iOS.Helpers;
 
 namespace Gabber.iOS.ViewSources
 {
@@ -27,6 +28,7 @@ namespace Gabber.iOS.ViewSources
 
         public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
         {
+            Logger.LOG_EVENT_WITH_ACTION("PROJECT_SELECTED", Rows[indexPath.Row].Title, "PROJECT");
             NSUserDefaults.StandardUserDefaults.SetInt(Rows[indexPath.Row].ID, "SelectedProjectID");
         }
 

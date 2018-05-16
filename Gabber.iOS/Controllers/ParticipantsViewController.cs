@@ -4,6 +4,7 @@ using Gabber.iOS.ViewSources;
 using GabberPCL;
 using Foundation;
 using GabberPCL.Resources;
+using Gabber.iOS.Helpers;
 
 namespace Gabber.iOS
 {
@@ -39,6 +40,7 @@ namespace Gabber.iOS
             RecordGabberButton.SetTitle(StringResources.participants_ui_startrecording_button, UIControlState.Normal);
             participantsViewSource = new ParticipantsCollectionViewSource(Queries.AllParticipantsUnSelected());
             participantsViewSource.AddParticipant += (int num) => {
+
                 NumSelectedParts.Text = string.Format(StringResources.participants_ui_numselected, num);
             };
             ParticipantsCollectionView.Source = participantsViewSource;
@@ -65,6 +67,7 @@ namespace Gabber.iOS
 
             if (segue.Identifier == "SegueToRecordGabber" && Queries.SelectedParticipants().Count == 0)
             {
+                Logger.LOG_EVENT_WITH_ACTION("NO_PARTICIPANTS_SELECTED", "TOAST");
                 PresentViewController(
                     new Helpers.MessageDialog().BuildErrorMessageDialog(
                         StringResources.participants_ui_validation_noneselected, ""), true, null);
@@ -73,6 +76,7 @@ namespace Gabber.iOS
 
             if (segue.Identifier == "SegueToRecordGabber" && Queries.SelectedParticipants().Count == 1 && !ConfirmOneParticipant)
             {
+                Logger.LOG_EVENT_WITH_ACTION("ONE_PARTICIPANT_MODAL", "DISPLAYED");
                 var finishRecordingAlertController = UIAlertController.Create(
                     StringResources.participants_ui_validation_oneselected_title, 
                     StringResources.participants_ui_validation_oneselected_message, 
@@ -81,13 +85,16 @@ namespace Gabber.iOS
                 finishRecordingAlertController.AddAction(
                     UIAlertAction.Create(
                         StringResources.participants_ui_validation_oneselected_cancel, 
-                        UIAlertActionStyle.Cancel, (_) => { }
+                        UIAlertActionStyle.Cancel, (_) => { 
+                            Logger.LOG_EVENT_WITH_ACTION("ONE_PARTICIPANT_MODAL", "DISMISSED");
+                        }
                     )
                 );
                 finishRecordingAlertController.AddAction(
                     UIAlertAction.Create(StringResources.participants_ui_validation_oneselected_continue, 
                                          UIAlertActionStyle.Default, (_) => 
                 {
+                    Logger.LOG_EVENT_WITH_ACTION("ONE_PARTICIPANT_MODAL", "CONTINUE");
                     ConfirmOneParticipant = true;
                     PerformSegue("SegueToRecordGabber", this);
                 }));

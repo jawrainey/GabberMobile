@@ -4,6 +4,7 @@ using UIKit;
 using System.Collections.Generic;
 using GabberPCL;
 using GabberPCL.Models;
+using Gabber.iOS.Helpers;
 
 namespace Gabber.iOS.ViewSources
 {
@@ -56,6 +57,24 @@ namespace Gabber.iOS.ViewSources
             collectionView.ReloadData();
             // Updates the label once its been selected
             AddParticipant(Rows.FindAll((obj) => obj.Selected).Count);
+
+            NSString[] keys = {
+                new NSString("NAME"),
+                new NSString("EMAIL"),
+                new NSString("STATE"),
+                new NSString("NUM_PARTICIPANTS"),
+                new NSString("TIMESTAMP")
+            };
+            NSObject[] values = {
+                new NSString(Rows[indexPath.Row].Name),
+                new NSString(Rows[indexPath.Row].Email),
+                new NSString(Rows[indexPath.Row].Selected.ToString()),
+                new NSString(Rows.Count.ToString()),
+                new NSString(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString())
+            };
+
+            var parameters = NSDictionary<NSString, NSObject>.FromObjectsAndKeys(values, keys, keys.Length);
+            Logger.LOG_EVENT_WITH_DICT("PARTICIPANT_SELECTED", parameters);
         }
     }
 }

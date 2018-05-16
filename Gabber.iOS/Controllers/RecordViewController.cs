@@ -122,6 +122,7 @@ namespace Gabber.iOS
             // Has the first topic been selected, i.e. one of the states has changed
             if (Topics.FindAll((p) => p.SelectionState != Prompt.SelectedState.never).Count == 1)
             {
+                Logger.LOG_EVENT_WITH_ACTION("START_RECORDING", "");
                 RecordButton.Enabled = true;
                 InterviewTimer.Enabled = true;
                 AudioRecorder.Record();
@@ -192,6 +193,7 @@ namespace Gabber.iOS
 
         void FinishRecording(UIAlertAction _)
         {
+            Logger.LOG_EVENT_WITH_ACTION("STOP_RECORDING", "");
             // Only once a recording is complete can End for each annotation be computed
             InterviewPrompt.ComputeEndForAllAnnotationsInSession(AudioRecorder.CurrentTime());
 

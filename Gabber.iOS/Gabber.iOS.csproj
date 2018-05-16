@@ -732,6 +732,7 @@
     <Compile Include="Controllers\RegisterVerifying.designer.cs">
       <DependentUpon>RegisterVerifying.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Logger.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">

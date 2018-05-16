@@ -98,13 +98,5 @@ namespace Gabber.Activities
             bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
 			firebaseAnalytics.LogEvent("ONBOARDING_SWIPE", bundle);
         }
-
-		void LOG_EVENT_WITH_ACTION(string eventName, string action)
-        {
-            var bundle = new Bundle();
-            bundle.PutString("ACTION", action);
-            bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
-            firebaseAnalytics.LogEvent(eventName, bundle);
-        }
     }
 }

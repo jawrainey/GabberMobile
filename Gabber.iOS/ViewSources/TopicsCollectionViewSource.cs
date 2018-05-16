@@ -3,6 +3,7 @@ using Foundation;
 using UIKit;
 using System.Collections.Generic;
 using GabberPCL.Models;
+using Gabber.iOS.Helpers;
 
 namespace Gabber.iOS.ViewSources
 {
@@ -34,6 +35,9 @@ namespace Gabber.iOS.ViewSources
             Rows[indexPath.Row].SelectionState = Prompt.SelectedState.current;
             // Reloads (i.e. draws) the specific items, including those outside of the scrollview.
             collectionView.ReloadData();
+
+            LOG_TOPIC_SELECTED(Rows[indexPath.Row]);
+
             // Invoked after as this requires knowing if the Current/Previous was selected, particularly the first time.
             AddAnnotation?.Invoke();
         }
@@ -45,6 +49,24 @@ namespace Gabber.iOS.ViewSources
             cell.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
             cell.UpdateContent(Rows[indexPath.Row]);
             return cell;
+        }
+
+        void LOG_TOPIC_SELECTED(Prompt current)
+        {
+            NSString[] keys = {
+                new NSString("TEXT"),
+                new NSString("ID"),
+                new NSString("TIMESTAMP")
+            };
+
+            NSObject[] values = {
+                new NSString(current.Text),
+                new NSString(current.ID.ToString()),
+                new NSString(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString())
+            };
+
+            var parameters = NSDictionary<NSString, NSObject>.FromObjectsAndKeys(values, keys, keys.Length);
+            Logger.LOG_EVENT_WITH_DICT("TOPIC_SELECTED", parameters);
         }
     }
 }

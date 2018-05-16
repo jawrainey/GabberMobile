@@ -1,6 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 using Foundation;
+using Gabber.iOS.Helpers;
 using GabberPCL;
 using GabberPCL.Resources;
 using UIKit;
@@ -73,17 +74,20 @@ namespace Gabber.iOS
                 RegisterUIButton.Enabled = false;
                 var client = new RestClient();
                 RegisterActivityIndicator.StartAnimating();
+                Logger.LOG_EVENT_WITH_ACTION("REGISTER", "ATTEMPT");
                 var response = await client.Register(fname, email, passw);
                 RegisterActivityIndicator.StopAnimating();
                 RegisterUIButton.Enabled = true;
 
                 if (response.Meta.Success)
                 {
+                    Logger.LOG_EVENT_WITH_ACTION("REGISTER", "SUCCESS");
                     NSUserDefaults.StandardUserDefaults.SetString(email, "username");
                     PerformSegue("ShowVerifySegue", this);
                 }
                 else if (response.Meta.Messages.Count > 0)
                 {
+                    Logger.LOG_EVENT_WITH_ACTION("REGISTER", "ERROR");
                     // Note: errors returned by register are the same as logjn, hence using that for lookup.
                     var err = StringResources.ResourceManager.GetString($"login.api.error.{response.Meta.Messages[0]}");
                     ErrorMessageDialog(err);
@@ -93,7 +97,7 @@ namespace Gabber.iOS
 
         void ErrorMessageDialog(string title)
         {
-            var dialog = new Helpers.MessageDialog();
+            var dialog = new MessageDialog();
             var errorDialog = dialog.BuildErrorMessageDialog(title, "");
             PresentViewController(errorDialog, true, null);
         }

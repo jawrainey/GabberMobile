@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
+using Gabber.iOS.Helpers;
 using Gabber.iOS.ViewSources;
 using GabberPCL;
 using GabberPCL.Models;
@@ -46,7 +47,7 @@ namespace Gabber.iOS
                 if (!prefs.BoolForKey("FIRST_RECORDING_DIALOG"))
                 {
                     prefs.SetBool(true, "FIRST_RECORDING_DIALOG");
-                    PresentViewController(new Helpers.MessageDialog().BuildErrorMessageDialog(
+                    PresentViewController(new MessageDialog().BuildErrorMessageDialog(
                         StringResources.debriefing_ui_page_first_title,
                         StringResources.debriefing_ui_page_first_content), true, null);
                 }
@@ -62,30 +63,33 @@ namespace Gabber.iOS
 
             // Update attribute so when item is reloaded the indicator will animate.
             sessions[index].IsUploading = true;
-            var item = Foundation.NSIndexPath.FromIndex((uint)Sessions.IndexOf(sessions[index]));
-            SessionsCollectionView.ReloadItems(new Foundation.NSIndexPath[] { item });
+            var item = NSIndexPath.FromIndex((uint)Sessions.IndexOf(sessions[index]));
+            SessionsCollectionView.ReloadItems(new NSIndexPath[] { item });
+            Logger.LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "ATTEMPT");
             // TODO: creating a new instance of API for each view, urgh.
             var didUpload = await new RestClient().Upload(sessions[index]);
 
             if (didUpload)
             {
+                Logger.LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "SUCCESS");
                 sessions[index].IsUploaded = true;
                 // Update state so the session isnt shown on reload etc.
                 Session.Connection.Update(sessions[index]);
                 sessions.Remove(sessions[index]);
                 SessionsCollectionView.ReloadData();
-				PresentViewController(new Helpers.MessageDialog().BuildErrorMessageDialog(
+				PresentViewController(new MessageDialog().BuildErrorMessageDialog(
 					StringResources.sessions_ui_message_upload_success, ""), true, null);
                 // Try to upload the next session
                 if (recursive) UploadSessions(0, true);
             }
             else
             {
+                Logger.LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "ERROR");
                 // Stop spining
                 sessions[index].IsUploading = false;
-                SessionsCollectionView.ReloadItems(new Foundation.NSIndexPath[] { item });
+                SessionsCollectionView.ReloadItems(new NSIndexPath[] { item });
                 PresentViewController(
-                    new Helpers.MessageDialog().BuildErrorMessageDialog(
+                    new MessageDialog().BuildErrorMessageDialog(
                         StringResources.sessions_ui_message_upload_fail, ""), true, null);
             }
             if (Sessions.Count <= 0) ShowHideInstructions();

@@ -5,6 +5,8 @@ using Foundation;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using GabberPCL.Resources;
+using Firebase.Analytics;
+using Gabber.iOS.Helpers;
 
 namespace Gabber.iOS
 {
@@ -67,24 +69,29 @@ namespace Gabber.iOS
                 LoginUIButton.Enabled = false;
                 var client = new RestClient();
                 LoginActivityIndicator.StartAnimating();
+
+                Logger.LOG_EVENT_WITH_ACTION("LOGIN", "ATTEMPT");
                 var response = await client.Login(email, passw);
                 LoginActivityIndicator.StopAnimating();
                 LoginUIButton.Enabled = true;
 
                 if (response.Meta.Messages.Count > 0)
                 {
+                    Logger.LOG_EVENT_WITH_ACTION("LOGIN", "ERROR");
                     // Only show the first error as there 
                     var err = StringResources.ResourceManager.GetString($"login.api.error.{response.Meta.Messages[0]}");
                     ErrorMessageDialog(err);
                 }
                 else if (!string.IsNullOrEmpty(response.Data?.Tokens.Access))
                 {
+                    Logger.LOG_EVENT_WITH_ACTION("LOGIN", "SUCCESS");
 					_.BecomeFirstResponder();
 					_.ResignFirstResponder();
                     NSUserDefaults.StandardUserDefaults.SetString(JsonConvert.SerializeObject(response.Data.Tokens), "tokens");
                     NSUserDefaults.StandardUserDefaults.SetString(email, "username");
 
                     Queries.SetActiveUser(response.Data);
+                    Analytics.SetUserID(response.Data.User.Id.ToString());
 
                     UIApplication.SharedApplication.Windows[0].RootViewController =
                         UIStoryboard.FromName("Main", null).InstantiateInitialViewController();

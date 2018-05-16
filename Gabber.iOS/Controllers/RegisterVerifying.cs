@@ -1,4 +1,5 @@
 using Foundation;
+using Gabber.iOS.Helpers;
 using GabberPCL;
 using GabberPCL.Resources;
 using Newtonsoft.Json;
@@ -21,13 +22,18 @@ namespace Gabber.iOS
 
 			VerifyLoginButton.Layer.BorderWidth = 1.0f;
 			VerifyLoginButton.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+
+            VerifyLoginButton.TouchUpInside += delegate {
+                Logger.LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "LOGIN_CLICKED");
+            };
             
 			var url = NSUserDefaults.StandardUserDefaults.URLForKey("VERIFY_URL");
 
 			var response = await new RestClient().RegisterVerify(url.LastPathComponent);
 
 			if (response.Meta.Success)
-            {            
+            {
+                Logger.LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "SUCCESS");
 				NSUserDefaults.StandardUserDefaults.SetString(JsonConvert.SerializeObject(response.Data.Tokens), "tokens");
 				NSUserDefaults.StandardUserDefaults.SetString(response.Data.User.Email, "username");
                 Queries.SetActiveUser(response.Data);
@@ -37,6 +43,7 @@ namespace Gabber.iOS
             }
             else
             {
+                Logger.LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "ERROR");
 				VerifyContent.Text = string.Format("{0} ", StringResources.register_verifying_ui_page_content_error);
                 // Saves popping a dialog
 				VerifyContent.Text += StringResources.ResourceManager.GetString($"register.verifying.api.error.{response.Meta.Messages[0]}");
@@ -44,5 +51,5 @@ namespace Gabber.iOS
 				VerifyLoginButton.Hidden = false;
             }
 		}
-	}
+    }
 }

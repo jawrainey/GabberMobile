@@ -62,7 +62,7 @@ namespace Gabber.Activities
 
                 if (response.Meta.Success)
                 {
-					LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "VERIFIED_SUCCESS");
+					LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "SUCCESS");
                     prefs.Edit().PutString("username", response.Data.User.Email).Commit();
                     prefs.Edit().PutString("tokens", JsonConvert.SerializeObject(response.Data.Tokens)).Commit();
                     Queries.SetActiveUser(response.Data);
@@ -74,7 +74,7 @@ namespace Gabber.Activities
                 }
                 else
                 {
-					LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "ALREADY_REGISTERED");
+					LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "ERROR");
                     loginButton.Visibility = ViewStates.Visible;
                     FindViewById<TextView>(Resource.Id.registerVerifyContent).Text = StringResources.register_verifying_ui_page_content_error;
                     response.Meta.Messages.ForEach(MakeError);
@@ -82,7 +82,7 @@ namespace Gabber.Activities
             }
 
             loginButton.Click += delegate {
-				LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "ALREADY_REGISTERED");
+                LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "LOGIN_CLICKED");
                 var intent = new Intent(this, typeof(LoginActivity));
                 intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
                 StartActivity(intent);

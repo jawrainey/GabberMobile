@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CoreGraphics;
 using Foundation;
+using Gabber.iOS.Helpers;
 using GabberPCL.Models;
 using GabberPCL.Resources;
 using UIKit;
@@ -79,6 +80,7 @@ namespace Gabber.iOS
             {
                 var vc = rvc as OnboardingContent;
                 var index = vc.Index;
+                Logger.LOG_EVENT_WITH_ACTION("ONBOARDING_SWIPE", index.ToString(), "POSITION");
                 index++;
                 if (index == Pages.Count) return null;
                 return Pages[index];
@@ -88,6 +90,7 @@ namespace Gabber.iOS
             {
                 var vc = rvc as OnboardingContent;
                 var index = vc.Index;
+                Logger.LOG_EVENT_WITH_ACTION("ONBOARDING_SWIPE", (index).ToString(), "POSITION");
                 if (index == 0) return null;
                 index--;
                 return Pages[index];

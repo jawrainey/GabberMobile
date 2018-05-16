@@ -1,6 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 using Foundation;
+using Gabber.iOS.Helpers;
 using GabberPCL;
 using GabberPCL.Models;
 using GabberPCL.Resources;
@@ -74,8 +75,27 @@ namespace Gabber.iOS
                     Email = email,
                     Selected = true
                 });
+                LOG_ADD_PARTICIPANT(name, email);
                 PerformSegue("UnwindToPCV", this);
             }
+        }
+
+        void LOG_ADD_PARTICIPANT(string name, string email)
+        {
+            // Logging information
+            NSString[] keys = {
+                new NSString("NAME"),
+                new NSString("EMAIL"),
+                new NSString("TIMESTAMP")
+            };
+            NSObject[] values = {
+                new NSString(name),
+                new NSString(email),
+                new NSString(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString())
+            };
+
+            var parameters = NSDictionary<NSString, NSObject>.FromObjectsAndKeys(values, keys, keys.Length);
+            Logger.LOG_EVENT_WITH_DICT("ADD_PARTICIPANT", parameters);
         }
 
         void ErrorMessageDialog(string title)

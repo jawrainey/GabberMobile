@@ -8,6 +8,7 @@ using GabberPCL.Models;
 using GabberPCL.Resources;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Gabber.iOS.Helpers;
 
 namespace Gabber.iOS
 {
@@ -43,6 +44,7 @@ namespace Gabber.iOS
             };
 
 			refreshControl.AddTarget(async delegate {
+                Logger.LOG_EVENT_WITH_ACTION("SWIPE_REFRESH", _projects.Count.ToString(), "PROJECT_COUNT");
 				await LoadData();
                 refreshControl.EndRefreshing();
             }, UIControlEvent.AllEvents);
@@ -63,6 +65,7 @@ namespace Gabber.iOS
                 var _tokens = NSUserDefaults.StandardUserDefaults.StringForKey("tokens");
                 var tokens = JsonConvert.DeserializeObject<JWToken>(_tokens);
                 Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
+                Firebase.Analytics.Analytics.SetUserID(Session.ActiveUser.Id.ToString());
             }
 			_projects = Queries.AllProjects();
 			ProjectsCollectionView.Source = new ProjectsCollectionViewSource(_projects);

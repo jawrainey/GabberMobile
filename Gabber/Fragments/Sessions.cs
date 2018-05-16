@@ -135,12 +135,12 @@ namespace Gabber.Fragments
 
             adapter.SessionIsUploading(index);
 
-			LOG_EVENT("ATTEMPT_UPLOAD");
+            LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "ATTEMPT");
             var didUpload = await new RestClient().Upload(adapter.Sessions[index]);
 
             if (didUpload)
             {
-				LOG_EVENT("UPLOAD_SUCCESS");
+                LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "SUCCESS");
 				LOG_UPLOAD_ONE(adapter.Sessions[index]);
                 adapter.SessionIsUploaded(index);
                 Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_success, ToastLength.Long).Show();
@@ -148,20 +148,13 @@ namespace Gabber.Fragments
             }
             else
             {
-				LOG_EVENT("UPLOAD_FAIL");
+                LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "FAIL");
                 adapter.SessionUploadFail(index);
                 Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_fail, ToastLength.Long).Show();
             }
             sessionsUploadButton.Enabled = true;
             ShowHideInstructions();
             return true;
-        }
-
-		void LOG_EVENT(string eventName)
-        {
-            var bundle = new Bundle();
-            bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
-            firebaseAnalytics.LogEvent(eventName, bundle);
         }
 
 		void LOG_EVENT_WITH_ACTION(string eventName, string action)
