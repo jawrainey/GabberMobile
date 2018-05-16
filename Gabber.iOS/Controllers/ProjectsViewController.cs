@@ -39,7 +39,7 @@ namespace Gabber.iOS
 
             var refreshControl = new UIRefreshControl
             {
-                AttributedTitle = new NSAttributedString("Fetching projects ..."),
+                AttributedTitle = new NSAttributedString(StringResources.projects_ui_fetching),
                 TintColor = UIColor.FromRGB(.43f, .80f, .79f)
             };
 

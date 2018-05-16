@@ -311,6 +311,12 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string projects_ui_fetching {
+            get {
+                return ResourceManager.GetString("projects.ui.fetching", resourceCulture);
+            }
+        }
+        
         public static string sessions_ui_title {
             get {
                 return ResourceManager.GetString("sessions.ui.title", resourceCulture);

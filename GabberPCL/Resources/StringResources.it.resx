@@ -180,7 +180,10 @@
     <data name="projects.ui.instructions" xml:space="preserve">
         <value>Scegli un progetto a cui vuoi contribuire e avere conversazioni</value>
     </data>
-
+    <data name="projects.ui.fetching" xml:space="preserve">
+        <value>Recupero di progetti...</value>
+    </data>
+    
     <!-- SESSIONS FRAGMENT -->
     <data name="sessions.ui.title" xml:space="preserve">
         <value>Registrazioni salvate</value>
