@@ -371,12 +371,6 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string about_ui_url {
-            get {
-                return ResourceManager.GetString("about.ui.url", resourceCulture);
-            }
-        }
-        
         public static string participants_ui_title {
             get {
                 return ResourceManager.GetString("participants.ui.title", resourceCulture);

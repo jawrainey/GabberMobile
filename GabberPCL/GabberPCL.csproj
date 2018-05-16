@@ -47,6 +47,7 @@
     <Compile Include="Resources\StringResources.Designer.cs">
       <DependentUpon>StringResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Config.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

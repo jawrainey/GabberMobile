@@ -23,7 +23,7 @@ namespace GabberPCL
             {
                 if (_connection == null)
                 {
-                    _connection = new SQLiteConnection(Path.Combine(PrivatePath.PrivatePath(), "gabber.db3"));
+                    _connection = new SQLiteConnection(Path.Combine(PrivatePath.PrivatePath(), Config.DATABASE_NAME));
                     _connection.CreateTable<User>();
                     _connection.CreateTable<Project>();
                     _connection.CreateTable<Prompt>();

@@ -23,7 +23,7 @@ namespace Gabber.Fragments
 			rootView.FindViewById<TextView>(Resource.Id.aboutContent).Text = StringResources.about_ui_content;
 			rootView.FindViewById<TextView>(Resource.Id.URLDescription).Text = StringResources.about_ui_url_description;
 			var link = rootView.FindViewById<TextView>(Resource.Id.aboutURL);
-			link.Text = StringResources.about_ui_url;
+            link.Text = GabberPCL.Config.WEB_URL;
 
             var toolbar = rootView.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             ((AppCompatActivity)Activity).SetSupportActionBar(toolbar);

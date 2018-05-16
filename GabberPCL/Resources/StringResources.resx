@@ -214,9 +214,6 @@
     <data name="about.ui.url.description" xml:space="preserve">
         <value>Listen to Gabber recordings:</value>
     </data>
-    <data name="about.ui.url" xml:space="preserve">
-        <value>https://gabber.audio</value>
-    </data>
     
     <!-- PARTICIPANTS SCREEN -->
     <data name="participants.ui.title" xml:space="preserve">
