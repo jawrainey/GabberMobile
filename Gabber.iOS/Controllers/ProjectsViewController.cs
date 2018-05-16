@@ -20,7 +20,7 @@ namespace Gabber.iOS
 
         public ProjectsViewController (IntPtr handle) : base (handle) {}
 
-        public async override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 

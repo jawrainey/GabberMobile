@@ -26,6 +26,11 @@ namespace Gabber.iOS
             {
                 Window.RootViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("Onboarding");
             }
+
+            // Create here as this method will always get run when opening the app.
+			Firebase.CrashReporting.CrashReporting.Configure();
+			Firebase.Core.App.Configure();
+
             // Used by the PCL for database interactions so must be defined early.
             Session.PrivatePath = new PrivatePath();
             // Register the implementation to the global interface within the PCL.

@@ -15,3 +15,7 @@ Gabber/*.userprefs
 */bin/*
 */obj/*
 .vs/*
+Gabber.iOS/scripts/FirebaseCrashReporting/*
+Gabber.iOS/service-account.json
+Gabber.iOS/xamarin_upload_symbols.sh
+Gabber.iOS/GoogleService-Info.plist
