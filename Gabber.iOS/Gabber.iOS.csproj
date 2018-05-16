@@ -651,7 +651,6 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
-    <None Include="xamarin_upload_symbols.sh" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
