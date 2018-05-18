@@ -85,8 +85,7 @@ namespace Gabber.iOS
                 else if (!string.IsNullOrEmpty(response.Data?.Tokens.Access))
                 {
                     Logger.LOG_EVENT_WITH_ACTION("LOGIN", "SUCCESS");
-					_.BecomeFirstResponder();
-					_.ResignFirstResponder();
+                    PasswordTextField.ResignFirstResponder();
                     NSUserDefaults.StandardUserDefaults.SetString(JsonConvert.SerializeObject(response.Data.Tokens), "tokens");
                     NSUserDefaults.StandardUserDefaults.SetString(email, "username");
 
