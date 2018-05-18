@@ -181,7 +181,7 @@
         <value>Scegli un progetto a cui vuoi contribuire e avere conversazioni</value>
     </data>
     <data name="projects.ui.fetching" xml:space="preserve">
-        <value>Recupero di progetti...</value>
+        <value>Recupero dei progetti...</value>
     </data>
     
     <!-- SESSIONS FRAGMENT -->
