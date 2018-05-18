@@ -947,7 +947,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="47517">
-                                <rect key="frame" x="16" y="141" width="343" height="514"/>
+                                <rect key="frame" x="8" y="141" width="359" height="514"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="47519">
                                     <size key="itemSize" width="277" height="60"/>
@@ -957,7 +957,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SessionCollectionCell" id="47518" customClass="SessionsCollectionViewCell">
-                                        <rect key="frame" x="33" y="16" width="277" height="60"/>
+                                        <rect key="frame" x="41" y="16" width="277" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="277" height="60"/>
@@ -1066,7 +1066,7 @@
                         <constraints>
                             <constraint firstItem="47511" firstAttribute="leading" secondItem="47508" secondAttribute="leading" constant="16" id="1tj-yu-wbU"/>
                             <constraint firstAttribute="trailing" secondItem="47520" secondAttribute="trailing" constant="16" id="DSa-Bk-P3m"/>
-                            <constraint firstItem="47517" firstAttribute="leading" secondItem="47508" secondAttribute="leadingMargin" id="F7U-tq-WvL"/>
+                            <constraint firstItem="47517" firstAttribute="leading" secondItem="47512" secondAttribute="leadingMargin" id="F7U-tq-WvL"/>
                             <constraint firstItem="47512" firstAttribute="top" secondItem="47511" secondAttribute="bottom" constant="16" id="Ps7-dh-v2h"/>
                             <constraint firstItem="Xjt-oI-Lay" firstAttribute="leading" secondItem="47508" secondAttribute="leading" constant="20" id="QIR-jG-m6s"/>
                             <constraint firstAttribute="trailing" secondItem="47511" secondAttribute="trailing" constant="16" id="QkU-dX-6cV"/>
@@ -1076,7 +1076,7 @@
                             <constraint firstItem="47511" firstAttribute="top" secondItem="47504" secondAttribute="bottom" constant="16" id="gf6-tx-yln"/>
                             <constraint firstItem="47505" firstAttribute="top" secondItem="Xjt-oI-Lay" secondAttribute="bottom" id="hi8-HR-Hvb"/>
                             <constraint firstItem="47517" firstAttribute="top" secondItem="47512" secondAttribute="bottom" id="k3U-Dg-zHb"/>
-                            <constraint firstItem="47517" firstAttribute="trailing" secondItem="47508" secondAttribute="trailingMargin" id="l1U-O2-3PB"/>
+                            <constraint firstItem="47517" firstAttribute="trailing" secondItem="47512" secondAttribute="trailingMargin" id="l1U-O2-3PB"/>
                             <constraint firstItem="Xjt-oI-Lay" firstAttribute="top" secondItem="47511" secondAttribute="bottom" id="n83-OH-cfH"/>
                             <constraint firstItem="47505" firstAttribute="top" secondItem="47520" secondAttribute="bottom" constant="16" id="rZc-Eo-mA5"/>
                             <constraint firstItem="47520" firstAttribute="leading" secondItem="47508" secondAttribute="leading" constant="16" id="v8n-R8-SXU"/>

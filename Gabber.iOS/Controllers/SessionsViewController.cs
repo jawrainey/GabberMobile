@@ -30,6 +30,9 @@ namespace Gabber.iOS
             SessionsInstructionsBody.Text = StringResources.sessions_ui_body_instructions;
             Title = StringResources.common_menu_gabbers;
 
+            var es = new CoreGraphics.CGSize(UIScreen.MainScreen.Bounds.Width - 36, 70);
+            (SessionsCollectionView.CollectionViewLayout as UICollectionViewFlowLayout).EstimatedItemSize = es;
+
             SessionsUpload.Layer.BorderWidth = 1.0f;
             SessionsUpload.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
             SessionsUpload.SetTitle(StringResources.sessions_ui_submit_button, UIControlState.Normal);
