@@ -35,5 +35,9 @@
 	<string>0.1.2</string>
 	<key>CFBundleVersion</key>
 	<string>0.1.2</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 </dict>
 </plist>
