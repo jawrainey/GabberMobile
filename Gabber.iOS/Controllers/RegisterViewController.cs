@@ -40,7 +40,6 @@ namespace Gabber.iOS
             }
             else
             {
-                _field.ResignFirstResponder();
                 Register(RegisterUIButton);
             }
             return false;
@@ -71,6 +70,9 @@ namespace Gabber.iOS
             }
             else
             {
+				PasswordRegisterTextField.BecomeFirstResponder();
+				PasswordRegisterTextField.ResignFirstResponder();
+
                 RegisterUIButton.Enabled = false;
                 var client = new RestClient();
                 RegisterActivityIndicator.StartAnimating();

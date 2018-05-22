@@ -41,7 +41,6 @@ namespace Gabber.iOS
             }
             else
             {
-                _field.ResignFirstResponder();
                 Authenticate(LoginUIButton);
             }
             return false;
@@ -66,6 +65,9 @@ namespace Gabber.iOS
             }
             else 
             {
+                PasswordTextField.BecomeFirstResponder();
+                PasswordTextField.ResignFirstResponder();
+
                 LoginUIButton.Enabled = false;
                 var client = new RestClient();
                 LoginActivityIndicator.StartAnimating();
@@ -85,7 +87,6 @@ namespace Gabber.iOS
                 else if (!string.IsNullOrEmpty(response.Data?.Tokens.Access))
                 {
                     Logger.LOG_EVENT_WITH_ACTION("LOGIN", "SUCCESS");
-                    PasswordTextField.ResignFirstResponder();
                     NSUserDefaults.StandardUserDefaults.SetString(JsonConvert.SerializeObject(response.Data.Tokens), "tokens");
                     NSUserDefaults.StandardUserDefaults.SetString(email, "username");
 
