@@ -25,7 +25,7 @@ namespace Gabber.iOS
         public void UpdateContent(InterviewSession session)
         {
             SessionProjectTitle.Text = Queries.ProjectById(session.ProjectID).Title;
-            SessionLength.Text = TimeSpan.FromSeconds(session.Prompts[session.Prompts.Count - 1].End).ToString((@"mm\:ss"));
+            SessionLength.Text = Queries.FormatFromSeconds(session.Prompts[session.Prompts.Count - 1].End);
             SessionParticipants.Text = BuildParticipantsNames(session.Participants);
             SessionCreateDate.Text = session.CreatedAt.ToString("MM/dd, HH:mm");
 

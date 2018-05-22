@@ -7,6 +7,12 @@ namespace GabberPCL
 {
     public static class Queries
     {
+        public static string FormatFromSeconds(int seconds)
+        {
+            var timeSpan = System.TimeSpan.FromSeconds(seconds);
+            return string.Format("{0:D2}:{1:D2}", (int)timeSpan.TotalMinutes, timeSpan.Seconds);
+        }
+
         public static void AddProjects(List<Project> _projects)
         {
             // Resync database when data pulled from the server.

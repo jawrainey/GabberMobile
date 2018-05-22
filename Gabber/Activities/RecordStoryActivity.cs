@@ -103,7 +103,7 @@ namespace Gabber
 						while (_isrecording)
 						{
                             SupportActionBar.Title = StringResources.recording_ui_title_active;
-							timer.Text = TimeSpan.FromSeconds(_seconds++).ToString((@"mm\:ss"));
+                            timer.Text = Queries.FormatFromSeconds(_seconds++);
 							await Task.Delay(1000);
 						}
 					});

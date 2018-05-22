@@ -139,7 +139,7 @@ namespace Gabber.iOS
                 InvokeOnMainThread(() =>
                 {
                     Title = StringResources.recording_ui_title_active;
-                    InterviewTimer.Text = TimeSpan.FromSeconds(AudioRecorder.CurrentTime()).ToString((@"mm\:ss"));
+                    InterviewTimer.Text = Queries.FormatFromSeconds(AudioRecorder.CurrentTime());
                 });
                 await Task.Delay(15);
             }

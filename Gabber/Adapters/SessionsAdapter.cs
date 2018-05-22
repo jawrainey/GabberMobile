@@ -31,7 +31,7 @@ namespace Gabber.Adapters
             mholder.UploadProgress.Visibility = session.IsUploading ? ViewStates.Visible : ViewStates.Gone;
             mholder.Participants.Text = BuildParticipantsNames(session.Participants);
             mholder.DateCreated.Text = session.CreatedAt.ToString("MM/dd, HH:mm");
-            mholder.Length.Text = TimeSpan.FromSeconds(session.Prompts[session.Prompts.Count - 1].End).ToString(@"mm\:ss");
+            mholder.Length.Text = Queries.FormatFromSeconds(session.Prompts[session.Prompts.Count - 1].End);
             mholder.ProjectTitle.Text = Queries.ProjectById(Sessions[position].ProjectID).Title;
         }
 
