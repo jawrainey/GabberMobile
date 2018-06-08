@@ -3,11 +3,15 @@ using SQLite;
 
 namespace GabberPCL.Models
 {
-    // This represents a participant, so each new user is a participant
+    // This represents a conversation participant or/and project owner.
     public class User
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
         public int Id { get; set; }
+        // Private methods are not (de)serialized; setting Id with a different
+        // property, which is returned in Project.creator
+        [JsonProperty("user_id")]
+        int UserId { set => Id = value; }
         [JsonProperty("fullname")]
         public string Name { get; set; }
         public string Email { get; set; }

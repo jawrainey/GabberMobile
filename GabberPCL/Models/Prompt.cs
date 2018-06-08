@@ -12,10 +12,6 @@ namespace GabberPCL.Models
         public string Text { get; set; }
         [JsonProperty("is_active")]
         public bool IsActive { get; set; }
-
-        [ForeignKey(typeof(User))]
-        [JsonProperty("creator_id.user_id")]
-        public int CreatorID { get; set; }
         [ForeignKey(typeof(Project))]
         [JsonProperty("project_id")]
         public int ProjectID { get; set; }

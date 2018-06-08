@@ -22,6 +22,7 @@ namespace GabberPCL
             foreach (var p in _projects)
             {
                 Session.Connection.InsertOrReplace(p);
+                Session.Connection.InsertOrReplace(p.Creator);
                 Session.Connection.InsertOrReplaceAllWithChildren(p.Prompts);
             }
         }
