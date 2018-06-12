@@ -34,7 +34,7 @@ namespace Gabber.Activities
             var controlTitle = FindViewById<TextView>(Resource.Id.GabberConsentControlTitle);
             controlTitle.Text = StringResources.consent_gabber_title_control;
             var controlDesc = FindViewById<TextView>(Resource.Id.GabberConsentControlDesc);
-            controlDesc.TextFormatted = Html.FromHtml(StringResources.consent_gabber_body_control, FromHtmlOptions.ModeLegacy);
+            controlDesc.TextFormatted = Html.FromHtml(StringResources.consent_gabber_body_control);
 
             var decisionTitle = FindViewById<TextView>(Resource.Id.GabberConsentDecisionTitle);
             decisionTitle.Text = StringResources.consent_gabber_title_decision;
