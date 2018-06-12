@@ -22,6 +22,7 @@ using System.Linq;
 using Firebase.Analytics;
 using Android.Content.PM;
 using Android.Preferences;
+using Android.Support.V4.View;
 
 namespace Gabber
 {
@@ -76,7 +77,7 @@ namespace Gabber
             promptRecyclerView.SetAdapter(adapter);
 
 			var record = FindViewById<FloatingActionButton>(Resource.Id.start);
-            record.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Color.LightGray);
+            ViewCompat.SetBackgroundTintList(record, Android.Content.Res.ColorStateList.ValueOf(Color.LightGray));
             record.Enabled = false;
 			var timer = FindViewById<TextView>(Resource.Id.timer);
             timer.SetTextColor(Color.LightGray);
@@ -164,7 +165,7 @@ namespace Gabber
             if (themes.FindAll((p) => p.SelectionState != Prompt.SelectedState.never).Count == 1) {
                 var record = FindViewById<FloatingActionButton>(Resource.Id.start);
                 record.SetImageResource(Resource.Drawable.stop_recording);
-                record.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Color.White);
+                ViewCompat.SetBackgroundTintList(record, Android.Content.Res.ColorStateList.ValueOf(Color.White));
                 record.Enabled = true;
                 FindViewById<TextView>(Resource.Id.timer).SetTextColor(Color.White);
                 recordButton.Visibility = ViewStates.Visible;

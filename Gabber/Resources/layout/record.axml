@@ -53,10 +53,10 @@
             android:layout_centerInParent="true">
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/start"
-                android:visibility="visible"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_gravity="center"
+                app:backgroundTint="@color/material_grey_300"
                 android:clickable="true"
                 android:src="@drawable/stop_recording" />
         </FrameLayout>
