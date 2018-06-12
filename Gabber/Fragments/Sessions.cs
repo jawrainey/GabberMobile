@@ -11,6 +11,7 @@ using Gabber.Adapters;
 using GabberPCL;
 using GabberPCL.Models;
 using GabberPCL.Resources;
+using Android.Text;
 
 namespace Gabber.Fragments
 {
@@ -70,16 +71,12 @@ namespace Gabber.Fragments
 			sessionsUploadButton.Click += (s, e) => UploadIfNot(0, true);
 			adapter.SessionClicked += (s, p) => UploadIfNot(p, false);
 
-            // As we get to this fragment via MainActivity, passing data via intents
-            // is not ideal. Instead, based on existing sessions, we can show the dialog.
-            if (sessions.Count == 1)
+            var prefs = PreferenceManager.GetDefaultSharedPreferences(Activity.ApplicationContext);
+            // Ensures that the dialog only shows after completing a recording.
+            if (prefs.GetBoolean("SESSION_RECORDED", false))
             {
-                var prefs = PreferenceManager.GetDefaultSharedPreferences(Activity.ApplicationContext);
-                if (!prefs.GetBoolean("FIRST_RECORDING_DIALOG", false))
-                {
-                    prefs.Edit().PutBoolean("FIRST_RECORDING_DIALOG", true).Commit();
-                    ShowDebriefingDialog();
-                }
+                prefs.Edit().PutBoolean("SESSION_RECORDED", false).Commit();
+                ShowDebriefingDialog();
             }
         }
 
@@ -94,22 +91,30 @@ namespace Gabber.Fragments
         void ShowDebriefingDialog()
         {
             var alert = new AlertDialog.Builder(Activity);
+            var session = Queries.LastInterviewSession;
+            var content = string.Format(
+                StringResources.debriefing_ui_page_first_content, 
+                Queries.ProjectById(session.ProjectID).Title, 
+                session.ConsentType
+            );
             alert.SetTitle(StringResources.debriefing_ui_page_first_title);
-            alert.SetMessage(StringResources.debriefing_ui_page_first_content);
+            alert.SetMessage(Html.FromHtml(content));
 
             alert.SetNegativeButton(
-                StringResources.debriefing_ui_button_hide, 
-				(dialog, id) => {
-					((AlertDialog)dialog).Dismiss();
-				    LOG_EVENT_WITH_ACTION("DEBRIEF", "DISMISSED");
-			    }
+                StringResources.debriefing_ui_button_hide,
+                (dialog, id) =>
+                {
+                    ((AlertDialog)dialog).Dismiss();
+                    LOG_EVENT_WITH_ACTION("DEBRIEF", "DISMISSED");
+                }
             );
 
             alert.SetPositiveButton(
-                StringResources.debriefing_ui_button_upload, 
-                async (dialog, id) => {
+                StringResources.debriefing_ui_button_upload,
+                async (dialog, id) =>
+                {
                     ((AlertDialog)dialog).Dismiss();
-				    LOG_EVENT_WITH_ACTION("DEBRIEF", "UPLOADED");
+                    LOG_EVENT_WITH_ACTION("DEBRIEF", "UPLOADED");
                     await UploadSessions(0, false);
                 }
             );

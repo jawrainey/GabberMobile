@@ -251,6 +251,7 @@ namespace Gabber
             // Now the session has been stored to the database we no longer need it
             var _prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
             _prefs.Edit().Remove("SESSION_CONSENT").Commit();
+            _prefs.Edit().PutBoolean("SESSION_RECORDED", true).Commit();
 		}
 
 		void StartRecording()

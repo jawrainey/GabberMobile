@@ -388,15 +388,22 @@ By being part of this conversation you will also become a project member where y
         <value>Hide</value>
     </data>
     <data name="debriefing.ui.button.upload" xml:space="preserve">
-        <value>Upload</value>
+        <value>Understood</value>
     </data>
 
     <!-- DEBRIEFING PAGE: 1 -->
     <data name="debriefing.ui.page.first.title" xml:space="preserve">
-        <value>Conversation Saved</value>
+        <value>Next steps</value>
     </data>
     <data name="debriefing.ui.page.first.content" xml:space="preserve">
-        <value>Upload your conversation for participants to review their consent</value>
+        <value>Thank you for sharing your experiences for &lt;b>{0}&lt;/b>, which has been saved and is ready to be uploaded. By being part of this conversation you will also become a project member where you can listen to other project conversations and help make sense of them through the website. We hope that you revisit the content to create discussions with participants in the conversation and other project members.
+&lt;br>
+&lt;br>         
+&lt;b>CHANGING YOUR CONSENT&lt;/b>
+&lt;br>
+&lt;br>
+The recording is only available to participants of the conversation for the first &lt;b>24-hours&lt;/b>. When the recording is uploaded all participants will receive a unique link to view and modify the consent you agreed on and provided before recording (&lt;b>{1}&lt;/b>). This email may go to your &lt;b>SPAM/JUNK&lt;/b> folders, so be sure to check there if you have not received it.
+&lt;br>
+</value>
     </data>
-    
 </root>
