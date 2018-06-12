@@ -14,11 +14,14 @@ namespace GabberPCL.Models
         [ForeignKey(typeof(Project))]
         public int ProjectID { get; set; }
         public DateTime CreatedAt { get; set; }
+        // Consent type participants agreed to: public, members, or private
+        public string ConsentType { get; set; }
 
         [OneToMany]
         public List<InterviewPrompt> Prompts { get; set; }
         [OneToMany]
         public List<InterviewParticipant> Participants { get; set; }
+
         // Used for UI
         public bool IsUploaded { get; set; }
         public bool IsUploading { get; set; }

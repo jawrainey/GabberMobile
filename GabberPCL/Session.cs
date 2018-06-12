@@ -25,6 +25,9 @@ namespace GabberPCL
                 {
                     _connection = new SQLiteConnection(Path.Combine(PrivatePath.PrivatePath(), Config.DATABASE_NAME));
                     _connection.CreateTable<User>();
+                    _connection.CreateTable<Member>();
+                    _connection.CreateTable<Organisation>();
+                    _connection.CreateTable<Creator>();
                     _connection.CreateTable<Project>();
                     _connection.CreateTable<Prompt>();
                     _connection.CreateTable<InterviewSession>();

@@ -21,6 +21,7 @@ using Android.Views.Animations;
 using System.Linq;
 using Firebase.Analytics;
 using Android.Content.PM;
+using Android.Preferences;
 
 namespace Gabber
 {
@@ -44,6 +45,8 @@ namespace Gabber
         string InterviewSessionID;
         // Which project are we recording an interview for?
         int SelectedProjectID;
+        // The consent chosen by participants about to Gabber
+        string ConsentType;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -60,6 +63,7 @@ namespace Gabber
             InterviewSessionID = Guid.NewGuid().ToString();
 
             var _prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+            ConsentType = _prefs.GetString("SESSION_CONSENT", "");
             SelectedProjectID = _prefs.GetInt("SelectedProjectID", 0);
             var selectedProject = Queries.ProjectById(SelectedProjectID);
 
@@ -228,6 +232,7 @@ namespace Gabber
 
             var InterviewSession = new InterviewSession
             {
+                ConsentType = ConsentType,
                 SessionID = InterviewSessionID,
                 RecordingURL = _path,
                 CreatedAt = DateTime.Now,
@@ -242,6 +247,9 @@ namespace Gabber
             };
 
             Queries.AddInterviewSession(InterviewSession);
+            // Now the session has been stored to the database we no longer need it
+            var _prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+            _prefs.Edit().Remove("SESSION_CONSENT").Commit();
 		}
 
 		void StartRecording()

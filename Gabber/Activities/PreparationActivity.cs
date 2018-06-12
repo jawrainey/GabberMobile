@@ -74,7 +74,7 @@ namespace Gabber
                     alert.SetPositiveButton(StringResources.participants_ui_validation_oneselected_continue, (dialog, id) =>
                     {
 						LOG_EVENT_WITH_ACTION("ONE_PARTICIPANT_MODAL", "CONTINUE");
-                        StartActivity(new Intent(this, typeof(RecordStoryActivity)));
+                        StartActivity(new Intent(this, typeof(Activities.ResearchConsent)));
                     });
 
                     alert.SetNegativeButton(StringResources.participants_ui_validation_oneselected_cancel, (dialog, id) =>
@@ -88,7 +88,7 @@ namespace Gabber
 				else
 				{
 					LOG_EVENT_WITH_ACTION("NAVIGATE_TO_RECORD", "NAVIGATE");
-                    StartActivity(new Intent(this, typeof(RecordStoryActivity)));
+                    StartActivity(new Intent(this, typeof(Activities.ResearchConsent)));
 				}
 			};
 		}

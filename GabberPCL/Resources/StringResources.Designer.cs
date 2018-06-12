@@ -449,6 +449,114 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string consent_research_toolbar_title {
+            get {
+                return ResourceManager.GetString("consent.research.toolbar.title", resourceCulture);
+            }
+        }
+        
+        public static string consent_research_submit {
+            get {
+                return ResourceManager.GetString("consent.research.submit", resourceCulture);
+            }
+        }
+        
+        public static string consent_research_title {
+            get {
+                return ResourceManager.GetString("consent.research.title", resourceCulture);
+            }
+        }
+        
+        public static string consent_research_body {
+            get {
+                return ResourceManager.GetString("consent.research.body", resourceCulture);
+            }
+        }
+        
+        public static string consent_research_form {
+            get {
+                return ResourceManager.GetString("consent.research.form", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_toolbar_title {
+            get {
+                return ResourceManager.GetString("consent.gabber.toolbar.title", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_submit {
+            get {
+                return ResourceManager.GetString("consent.gabber.submit", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_title_control {
+            get {
+                return ResourceManager.GetString("consent.gabber.title.control", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_body_control {
+            get {
+                return ResourceManager.GetString("consent.gabber.body.control", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_title_decision {
+            get {
+                return ResourceManager.GetString("consent.gabber.title.decision", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_body_decision {
+            get {
+                return ResourceManager.GetString("consent.gabber.body.decision", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_consent_type_public_full {
+            get {
+                return ResourceManager.GetString("consent.gabber.consent.type.public.full", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_consent_type_public_brief {
+            get {
+                return ResourceManager.GetString("consent.gabber.consent.type.public.brief", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_consent_type_members_full {
+            get {
+                return ResourceManager.GetString("consent.gabber.consent.type.members.full", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_consent_type_members_brief {
+            get {
+                return ResourceManager.GetString("consent.gabber.consent.type.members.brief", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_consent_type_private_full {
+            get {
+                return ResourceManager.GetString("consent.gabber.consent.type.private.full", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_consent_type_private_brief {
+            get {
+                return ResourceManager.GetString("consent.gabber.consent.type.private.brief", resourceCulture);
+            }
+        }
+        
+        public static string conversation_consent_gabber_submit {
+            get {
+                return ResourceManager.GetString("conversation.consent.gabber.submit", resourceCulture);
+            }
+        }
+        
         public static string recording_ui_title {
             get {
                 return ResourceManager.GetString("recording.ui.title", resourceCulture);

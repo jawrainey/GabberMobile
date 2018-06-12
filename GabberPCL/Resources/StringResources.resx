@@ -260,6 +260,79 @@
         <value>Cancel</value>
     </data>
 
+    <!-- RESEARCH CONSENT -->
+    <data name="consent.research.toolbar.title" xml:space="preserve">
+        <value>Research consent</value>
+    </data>
+    <data name="consent.research.submit" xml:space="preserve">
+        <value>Next</value>
+    </data>
+    <data name="consent.research.title" xml:space="preserve">
+        <value>How your conversation will be used for research</value>
+    </data>    
+    <data name="consent.research.body" xml:space="preserve">
+        <value>The conversation you are about to record will become part of a research project &lt;b>({0})&lt;/b> created by &lt;b>{1}&lt;/b>. Your recording and the associated meta-data will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible more details. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.</value>
+    </data>
+    <data name="consent.research.form" xml:space="preserve">
+        <value>All participants understand and agree for this recording and anonymized personal details to be used in this research.</value>
+    </data>
+
+    <!-- Gabber CONSENT -->
+    <data name="consent.gabber.toolbar.title" xml:space="preserve">
+        <value>Conversation consent</value>
+    </data>
+    <data name="consent.gabber.submit" xml:space="preserve">
+        <value>Next</value>
+    </data>
+
+    <data name="consent.gabber.title.control" xml:space="preserve">
+        <value>How you control the data you capture</value>
+    </data>    
+    <data name="consent.gabber.body.control" xml:space="preserve">
+        <value>Gabber provides you with control over how you want your audio conversation to be used and who you want to be able to listen and comment on it. Gabber works best when other people can access, listen and learn from the experiences you record. 
+
+All participants will receive an email with a unique link to the audio recording, where you can view or change your consent on who can access the recording. This email may go to your &lt;b>SPAM/JUNK &lt;/b> folder. 
+&lt;br>
+&lt;br>
+Your conversation will undergo a &lt;b>24-hour embargo&lt;/b> where only participants can listen. After this period the audio conversation will be available based on the consent you choose below or if you have changed it in the email afterwards.
+&lt;br>
+&lt;br>
+By being part of this conversation you will also become a project member where you can listen to other project conversations and help make sense of them through the website.
+</value>
+    </data>
+    
+    <data name="consent.gabber.title.decision" xml:space="preserve">
+        <value>Who would you like to have access to your conversation?</value>
+    </data>    
+    <data name="consent.gabber.body.decision" xml:space="preserve">
+        <value>Research staff and project administrators can access recordings after the embargo period.</value>
+    </data>
+
+    <!-- Gabber CONSENT Public -->
+    <data name="consent.gabber.consent.type.public.full" xml:space="preserve">
+        <value>Your recording will become public for anyone to discover and listen to, including yourself, other participants, and project members.</value>
+    </data>
+        <data name="consent.gabber.consent.type.public.brief" xml:space="preserve">
+        <value>Anyone visiting Gabber</value>
+    </data>
+    <!-- Gabber CONSENT Members -->
+    <data name="consent.gabber.consent.type.members.full" xml:space="preserve">
+        <value>There are currently &lt;b>{0}&lt;/b> members and &lt;b>{1}&lt;/b> researchers in this project.</value>
+    </data>
+    <data name="consent.gabber.consent.type.members.brief" xml:space="preserve">
+        <value>Only Project Members</value>
+    </data>
+    <!-- Gabber CONSENT Private -->
+    <data name="consent.gabber.consent.type.private.full" xml:space="preserve">
+        <value>&lt;b>{0}&lt;/b> are participants of this conversation.</value>
+    </data>
+    <data name="consent.gabber.consent.type.private.brief" xml:space="preserve">
+        <value>Only conversation participants</value>
+    </data>
+    <data name="conversation.consent.gabber.submit" xml:space="preserve">
+        <value>Show details</value>
+    </data>
+    
     <!-- RECORD SCREEN -->
     <data name="recording.ui.title" xml:space="preserve">
         <value>Record Conversation</value>

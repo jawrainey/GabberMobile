@@ -11,7 +11,7 @@ namespace GabberPCL.Models
         // Private methods are not (de)serialized; setting Id with a different
         // property, which is returned in Project.creator
         [JsonProperty("user_id")]
-        int UserId { set => Id = value; }
+        int UserId { get; set; }
         [JsonProperty("fullname")]
         public string Name { get; set; }
         public string Email { get; set; }
