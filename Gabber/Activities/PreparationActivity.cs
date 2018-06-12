@@ -101,6 +101,7 @@ namespace Gabber
 
             var _fullname = _dialog.FindViewById<TextInputLayout>(Resource.Id.participantNameLayout);
             _fullname.Hint = StringResources.register_ui_fullname_label;
+            _fullname.RequestFocus();
             var _email = _dialog.FindViewById<TextInputLayout>(Resource.Id.participantEmailLayout);
             _email.Hint = StringResources.common_ui_forms_email_label;
 
