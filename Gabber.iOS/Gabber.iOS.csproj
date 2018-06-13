@@ -736,6 +736,14 @@
       <DependentUpon>RegisterVerifying.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Controllers\ResearchConsent.cs" />
+    <Compile Include="Controllers\ResearchConsent.designer.cs">
+      <DependentUpon>ResearchConsent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ConversationConsent.cs" />
+    <Compile Include="Controllers\ConversationConsent.designer.cs">
+      <DependentUpon>ConversationConsent.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CoreText;
 using Foundation;
 using Gabber.iOS.Helpers;
 using Gabber.iOS.ViewSources;
@@ -44,17 +45,29 @@ namespace Gabber.iOS
             base.ViewDidAppear(animated);
             TabBarController.Title = StringResources.sessions_ui_title;
 
-            if (Sessions.Count == 1)
+            var prefs = NSUserDefaults.StandardUserDefaults;
+            if (prefs.BoolForKey("SESSION_RECORDED"))
             {
-                var prefs = NSUserDefaults.StandardUserDefaults;
-                if (!prefs.BoolForKey("FIRST_RECORDING_DIALOG"))
-                {
-                    prefs.SetBool(true, "FIRST_RECORDING_DIALOG");
-                    PresentViewController(new MessageDialog().BuildErrorMessageDialog(
-                        StringResources.debriefing_ui_page_first_title,
-                        StringResources.debriefing_ui_page_first_content), true, null);
-                }
-            }
+                var session = Queries.LastInterviewSession;
+                var _content = string.Format(
+                    StringResources.debriefing_ui_page_first_content,
+                    Queries.ProjectById(session.ProjectID).Title,
+                    session.ConsentType
+                );
+
+                prefs.SetBool(false, "SESSION_RECORDED");
+
+                // TODO: this string creation should be in a shared method where we also set the font, etc.
+                var err = new NSError();
+                var atts = new NSAttributedStringDocumentAttributes { DocumentType = NSDocumentType.HTML };
+
+                var content = new NSAttributedString(NSData.FromString(_content), atts, ref err);
+                var content_fonted = new NSMutableAttributedString(content);
+                content_fonted.AddAttribute(UIStringAttributeKey.Font, UIFont.FromName("Helvetica", 16), new NSRange(0, content.Length - 1));
+                var dialog = new MessageDialog().BuildErrorMessageDialog(StringResources.debriefing_ui_page_first_title, "");
+                dialog.SetValueForKey(content_fonted, new NSString("attributedMessage"));
+                PresentViewController(dialog, true, null);
+             }
 		}
 
         // Index is optional such that the method could be used onSelected(item)

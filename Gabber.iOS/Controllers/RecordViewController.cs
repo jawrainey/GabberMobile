@@ -202,6 +202,7 @@ namespace Gabber.iOS
 
             var InterviewSession = new InterviewSession
             {
+                ConsentType = NSUserDefaults.StandardUserDefaults.StringForKey("SESSION_CONSENT"),
                 SessionID = InterviewSessionID,
                 RecordingURL = AudioRecorder.FinishRecording(),
                 CreatedAt = DateTime.Now,
@@ -217,6 +218,7 @@ namespace Gabber.iOS
             };
 
             Queries.AddInterviewSession(InterviewSession);
+            NSUserDefaults.StandardUserDefaults.SetBool(true, "SESSION_RECORDED");
 
             // The ProjectsController manages uploading sessions
             PerformSegue("UnWindToSessionsVC", this);
