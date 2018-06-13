@@ -32,6 +32,10 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIScrollView ResearchConsentSV { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel ResearchConsentTitle { get; set; }
 
         void ReleaseDesignerOutlets ()
@@ -54,6 +58,11 @@ namespace Gabber.iOS
             if (ResearchConsentSubmit != null) {
                 ResearchConsentSubmit.Dispose ();
                 ResearchConsentSubmit = null;
+            }
+
+            if (ResearchConsentSV != null) {
+                ResearchConsentSV.Dispose ();
+                ResearchConsentSV = null;
             }
 
             if (ResearchConsentTitle != null) {

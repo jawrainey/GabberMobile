@@ -17,8 +17,7 @@ namespace Gabber.iOS
             Title = StringResources.consent_gabber_toolbar_title;
 
             ConversationConsentTitle.Text = StringResources.consent_gabber_title_control;
-            ConversationConsentContent.AttributedText = BuildDescFromHTML();
-            ConversationConsentContent.Text = "";
+            ConversationConsentContent.AttributedText = ResearchConsent.BuildFromHTML(StringResources.consent_gabber_body_control);
             ConversationDecisionTitle.Text = StringResources.consent_gabber_title_decision;
             ConversationDecisionDes.Text = StringResources.consent_gabber_body_decision;
 
@@ -32,14 +31,6 @@ namespace Gabber.iOS
                 var consent = "members";
                 NSUserDefaults.StandardUserDefaults.SetString(consent, "SESSION_CONSENT");
             };
-        }
-
-        NSAttributedString BuildDescFromHTML()
-        {
-            var content = $"<span style=\"font-family: .SF UI Text; font-size: 17;\">{StringResources.consent_gabber_body_control}</span>";
-            var err = new NSError();
-            var atts = new NSAttributedStringDocumentAttributes { DocumentType = NSDocumentType.HTML };
-            return new NSAttributedString(NSData.FromString(content), atts, ref err);
         }
     }
 }

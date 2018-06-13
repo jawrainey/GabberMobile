@@ -16,7 +16,13 @@ namespace Gabber.iOS
             Title = StringResources.consent_research_toolbar_title;
 
             ResearchConsentTitle.Text = StringResources.consent_research_title;
-            ResearchConsentDesc.AttributedText = BuildDescFromHTML();
+
+            int SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
+            var SelectedProject = Queries.ProjectById(SelectedProjectID);
+            var org = SelectedProject.Organisation == null ? SelectedProject.Creator.Name : SelectedProject.Organisation.Name;
+            var content = string.Format(StringResources.consent_research_body, SelectedProject.Title, org);
+
+            ResearchConsentDesc.AttributedText = BuildFromHTML(content);
             ResearchConsentFormDetails.Text = StringResources.consent_research_form;
 
             ResearchConsentSubmit.SetTitle(StringResources.consent_research_submit, UIControlState.Normal);
@@ -29,21 +35,32 @@ namespace Gabber.iOS
             };
         }
 
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+            // Identify that the content is scrollable
+            ResearchConsentSV.FlashScrollIndicators();
+        }
+
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
             base.PrepareForSegue(segue, sender);
             NavigationItem.BackBarButtonItem = new UIBarButtonItem { Title = "" };
         }
 
-        NSAttributedString BuildDescFromHTML()
+        public static NSAttributedString BuildFromHTML(string content)
         {
-            int SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
-            var SelectedProject = Queries.ProjectById(SelectedProjectID);
-            var org = SelectedProject.Organisation == null ? SelectedProject.Creator.Name : SelectedProject.Organisation.Name;
-            var content = $"<span style=\"font-family: .SF UI Text; font-size: 17;\">{string.Format(StringResources.consent_research_body, SelectedProject.Title, org)}</span>";
+            // Style the content
+            var _content = $"<span style=\"font-family: .SF UI Text; font-size: 16;\">{content}</span>";
+            // Convert the HTML in the content string to a NSAttributedString
             var err = new NSError();
             var atts = new NSAttributedStringDocumentAttributes { DocumentType = NSDocumentType.HTML };
-            return new NSAttributedString(NSData.FromString(content), atts, ref err);
+            var html = new NSAttributedString(NSData.FromString(_content), atts, ref err);
+            // Now the content is converted to HTML, we want to justify it
+            var mutableContent = new NSMutableAttributedString(html);
+            var para = new NSMutableParagraphStyle { Alignment = UITextAlignment.Justified };
+            mutableContent.AddAttribute(UIStringAttributeKey.ParagraphStyle, para, new NSRange(0, html.Length - 1));
+            return mutableContent;
         }
     }
 }

@@ -56,16 +56,8 @@ namespace Gabber.iOS
                 );
 
                 prefs.SetBool(false, "SESSION_RECORDED");
-
-                // TODO: this string creation should be in a shared method where we also set the font, etc.
-                var err = new NSError();
-                var atts = new NSAttributedStringDocumentAttributes { DocumentType = NSDocumentType.HTML };
-
-                var content = new NSAttributedString(NSData.FromString(_content), atts, ref err);
-                var content_fonted = new NSMutableAttributedString(content);
-                content_fonted.AddAttribute(UIStringAttributeKey.Font, UIFont.FromName("Helvetica", 16), new NSRange(0, content.Length - 1));
                 var dialog = new MessageDialog().BuildErrorMessageDialog(StringResources.debriefing_ui_page_first_title, "");
-                dialog.SetValueForKey(content_fonted, new NSString("attributedMessage"));
+                dialog.SetValueForKey(ResearchConsent.BuildFromHTML(_content), new NSString("attributedMessage"));
                 PresentViewController(dialog, true, null);
              }
 		}
