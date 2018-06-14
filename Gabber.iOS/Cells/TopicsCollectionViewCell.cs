@@ -15,6 +15,11 @@ namespace Gabber.iOS
         {
             var themeColor = UIColor.FromRGB(.43f, .80f, .79f);
             ProjectTopic.Text = topic.Text;
+
+            var topCorrect = (ProjectTopic.Bounds.Size.Height - ProjectTopic.ContentSize.Height * ProjectTopic.ZoomScale) / 2.0;
+            topCorrect = (topCorrect < 0.0 ? 0.0 : topCorrect);
+            ProjectTopic.ContentInset = new UIEdgeInsets((nfloat)topCorrect, 0, 0, 0);
+
             ProjectTopic.TextColor = UIColor.Black;
             Layer.BorderColor = themeColor.CGColor;
 
