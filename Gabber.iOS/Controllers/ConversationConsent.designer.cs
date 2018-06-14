@@ -24,6 +24,10 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableView ConversationConsentTableView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel ConversationConsentTitle { get; set; }
 
         [Outlet]
@@ -44,6 +48,11 @@ namespace Gabber.iOS
             if (ConversationConsentSubmit != null) {
                 ConversationConsentSubmit.Dispose ();
                 ConversationConsentSubmit = null;
+            }
+
+            if (ConversationConsentTableView != null) {
+                ConversationConsentTableView.Dispose ();
+                ConversationConsentTableView = null;
             }
 
             if (ConversationConsentTitle != null) {

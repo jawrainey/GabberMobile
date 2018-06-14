@@ -48,17 +48,20 @@ namespace Gabber.iOS
             NavigationItem.BackBarButtonItem = new UIBarButtonItem { Title = "" };
         }
 
-        public static NSAttributedString BuildFromHTML(string content)
+        public static NSAttributedString BuildFromHTML(string content, int fsize=16, bool justify=true)
         {
             // Style the content
-            var _content = $"<span style=\"font-family: .SF UI Text; font-size: 16;\">{content}</span>";
+            var _content = $"<span style=\"font-family: .SF UI Text; font-size: {fsize};\">{content}</span>";
             // Convert the HTML in the content string to a NSAttributedString
             var err = new NSError();
             var atts = new NSAttributedStringDocumentAttributes { DocumentType = NSDocumentType.HTML };
             var html = new NSAttributedString(NSData.FromString(_content), atts, ref err);
             // Now the content is converted to HTML, we want to justify it
             var mutableContent = new NSMutableAttributedString(html);
-            var para = new NSMutableParagraphStyle { Alignment = UITextAlignment.Justified };
+            var para = new NSMutableParagraphStyle
+            {
+                Alignment = justify ? UITextAlignment.Justified : UITextAlignment.Left
+            };
             mutableContent.AddAttribute(UIStringAttributeKey.ParagraphStyle, para, new NSRange(0, html.Length - 1));
             return mutableContent;
         }

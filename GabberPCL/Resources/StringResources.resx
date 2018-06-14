@@ -229,7 +229,7 @@
         <value>{0} participants selected</value>
     </data>
     <data name="participants.ui.startrecording.button" xml:space="preserve">
-        <value>Start recording</value>
+        <value>Choose Consent</value>
     </data>
     
     <!-- PARTICIPANTS SCREEN VALIDATION -->
@@ -330,7 +330,7 @@ By being part of this conversation you will also become a project member where y
         <value>Only conversation participants</value>
     </data>
     <data name="conversation.consent.gabber.submit" xml:space="preserve">
-        <value>Show details</value>
+        <value>Review consent</value>
     </data>
     
     <!-- RECORD SCREEN -->
