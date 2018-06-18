@@ -83,6 +83,12 @@ namespace Gabber.iOS
             };
         }
 
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            base.PrepareForSegue(segue, sender);
+            NavigationItem.BackBarButtonItem = new UIBarButtonItem { Title = "" };
+        }
+
         string BuildParticipants()
         {
             var participants = Queries.SelectedParticipants().ToList();

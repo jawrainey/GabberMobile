@@ -57,7 +57,7 @@ namespace GabberPCL
 
         public static User FindOrInsertUser(User user, string email)
         {
-            var usr = Session.Connection.Table<User>().Where(u => u.Email == email).FirstOrDefault();
+            var usr = UserByEmail(email);
 
             if (usr == null)
             {

@@ -271,7 +271,7 @@
         <value>How your conversation will be used for research</value>
     </data>    
     <data name="consent.research.body" xml:space="preserve">
-        <value>The conversation you are about to record will become part of a research project &lt;b>({0})&lt;/b> created by &lt;b>{1}&lt;/b>. Your recording and the associated meta-data will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible more details. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.</value>
+        <value>The conversation you are about to record will become part of a research project &lt;b>({0})&lt;/b> created by &lt;b>{1}&lt;/b>. Your recording and the associated metadata will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.</value>
     </data>
     <data name="consent.research.form" xml:space="preserve">
         <value>All participants understand and agree for this recording and anonymized personal details to be used in this research.</value>
@@ -320,17 +320,56 @@ By being part of this conversation you will also become a project member where y
         <value>There are currently &lt;b>{0}&lt;/b> members and &lt;b>{1}&lt;/b> researchers in this project.</value>
     </data>
     <data name="consent.gabber.consent.type.members.brief" xml:space="preserve">
-        <value>Only Project Members</value>
+        <value>Project Members only</value>
     </data>
     <!-- Gabber CONSENT Private -->
     <data name="consent.gabber.consent.type.private.full" xml:space="preserve">
         <value>&lt;b>{0}&lt;/b> are participants of this conversation.</value>
     </data>
     <data name="consent.gabber.consent.type.private.brief" xml:space="preserve">
-        <value>Only conversation participants</value>
+        <value>Participants only</value>
     </data>
     <data name="conversation.consent.gabber.submit" xml:space="preserve">
         <value>Review consent</value>
+    </data>
+
+    <!-- Consent Summary -->
+    <data name="consent.summary.title" xml:space="preserve">
+        <value>Consent Summary</value>
+    </data>
+    <data name="consent.summary.subtitle" xml:space="preserve">
+        <value>A summary of the consent you have agreed to and the project you are contributing to are listed below:</value>
+    </data>
+    
+    <data name="consent.summary.screen.content.project.title" xml:space="preserve">
+        <value>Project</value>
+    </data>
+    <data name="consent.summary.screen.content.participants.title" xml:space="preserve">
+        <value>Participants</value>
+    </data>
+    <data name="consent.summary.screen.content.participants.desc" xml:space="preserve">
+        <value>{0} are selected to be in your conversation.</value>
+    </data>
+    <data name="consent.summary.screen.content.research.title" xml:space="preserve">
+        <value>Research Consent</value>
+    </data>
+    <data name="consent.summary.screen.content.research.desc" xml:space="preserve">
+        <value>You agreed for this conversation to be used in research.</value>
+    </data>
+    <data name="consent.summary.screen.content.conversation.title" xml:space="preserve">
+        <value>Conversation Consent</value>
+    </data>
+    <data name="consent.summary.screen.content.conversation.desc" xml:space="preserve">
+        <value>You agreed for this conversation to be made availiable to &lt;b>{0}&lt;/b>.</value>
+    </data>
+    <data name="consent.summary.screen.content.embargo.title" xml:space="preserve">
+        <value>Conversation Embargo</value>
+    </data>
+    <data name="consent.summary.screen.content.embargo.desc" xml:space="preserve">
+        <value>Your conversation will undergo a 24-hour embargo where only participants can listen.</value>
+    </data>
+    <data name="consent.summary.screen.action" xml:space="preserve">
+        <value>Start Recording</value>
     </data>
     
     <!-- RECORD SCREEN -->
@@ -396,14 +435,16 @@ By being part of this conversation you will also become a project member where y
         <value>Next steps</value>
     </data>
     <data name="debriefing.ui.page.first.content" xml:space="preserve">
-        <value>Thank you for sharing your experiences for &lt;b>{0}&lt;/b>, which has been saved and is ready to be uploaded. By being part of this conversation you will also become a project member where you can listen to other project conversations and help make sense of them through the website. We hope that you revisit the content to create discussions with participants in the conversation and other project members.
+        <value>&lt;br>Thank you for sharing your experiences for &lt;b>{0}&lt;/b>, which has been saved and is ready to be uploaded. 
+&lt;br>
+&lt;br>
+By being part of this conversation you will also become a project member where you can listen to other project conversations and help make sense of them through the website. We hope that you revisit the content to create discussions with participants in the conversation and other project members.
 &lt;br>
 &lt;br>         
 &lt;b>CHANGING YOUR CONSENT&lt;/b>
 &lt;br>
 &lt;br>
 The recording is only available to participants of the conversation for the first &lt;b>24-hours&lt;/b>. When the recording is uploaded all participants will receive a unique link to view and modify the consent you agreed on and provided before recording (&lt;b>{1}&lt;/b>). This email may go to your &lt;b>SPAM/JUNK&lt;/b> folders, so be sure to check there if you have not received it.
-&lt;br>
 </value>
     </data>
 </root>

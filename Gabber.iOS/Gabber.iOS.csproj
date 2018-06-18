@@ -759,6 +759,10 @@
     <Compile Include="Cells\ConsentViewCell.designer.cs">
       <DependentUpon>ConsentViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ConsentSummary.cs" />
+    <Compile Include="Controllers\ConsentSummary.designer.cs">
+      <DependentUpon>ConsentSummary.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">
