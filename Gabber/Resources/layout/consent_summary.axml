@@ -19,7 +19,6 @@
             android:layout_weight="1">
             <TextView
                 android:id="@+id/ConsentSummaryDesc"
-                android:text="Hello world DESC"
                 android:textSize="16dp"
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp"
@@ -34,7 +33,6 @@
                 android:background="#CCCCCC" />
             <TextView
                 android:id="@+id/ConsentSummaryContentProject"
-                android:text="Hello world PROJECT"
                 android:layout_marginTop="24dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginBottom="16dp"
@@ -44,7 +42,6 @@
                 android:layout_width="match_parent" />
             <TextView
                 android:id="@+id/ConsentSummaryContentParticipants"
-                android:text="Hello world PARTS"
                 android:layout_marginLeft="32dp"
                 android:layout_marginBottom="16dp"
                 android:textSize="14dp"
@@ -53,7 +50,6 @@
                 android:layout_width="match_parent" />
             <TextView
                 android:id="@+id/ConsentSummaryContentResearch"
-                android:text="Hello world RESEARCH"
                 android:layout_marginLeft="32dp"
                 android:layout_marginBottom="16dp"
                 android:textSize="14dp"
@@ -62,7 +58,6 @@
                 android:layout_width="match_parent" />
             <TextView
                 android:id="@+id/ConsentSummaryContentConversation"
-                android:text="Hello world Conversation"
                 android:layout_marginLeft="32dp"
                 android:layout_marginBottom="16dp"
                 android:textSize="14dp"
@@ -71,7 +66,6 @@
                 android:layout_width="match_parent" />
             <TextView
                 android:id="@+id/ConsentSummaryEmbargo"
-                android:text="Hello world Embargo"
                 android:layout_marginLeft="32dp"
                 android:layout_marginBottom="24dp"
                 android:textSize="14dp"
@@ -80,7 +74,6 @@
                 android:layout_width="match_parent" />
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/ConsentSummarySubmit"
-                android:text="Record"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
