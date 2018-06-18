@@ -21,6 +21,11 @@ namespace Gabber.iOS
             FullNameRegisterTextField.Placeholder = StringResources.register_ui_fullname_label;
             EmailRegisterTextField.Placeholder = StringResources.common_ui_forms_email_label;
             PasswordRegisterTextField.Placeholder = StringResources.common_ui_forms_password_label;
+
+            var termsContent = string.Format(StringResources.register_ui_terms_label, Config.WEB_URL);
+            Terms.AttributedText = ResearchConsent.BuildFromHTML(termsContent, 14, false);
+            Terms.DataDetectorTypes = UIDataDetectorType.Link;
+
             RegisterUIButton.SetTitle(StringResources.register_ui_submit_button, UIControlState.Normal);
 
             FullNameRegisterTextField.ShouldReturn += NavigateNext;

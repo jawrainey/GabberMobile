@@ -36,7 +36,15 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel RegisterTerms { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton RegisterUIButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextView Terms { get; set; }
 
         [Action ("Register:")]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -69,9 +77,19 @@ namespace Gabber.iOS
                 RegisterMasterView = null;
             }
 
+            if (RegisterTerms != null) {
+                RegisterTerms.Dispose ();
+                RegisterTerms = null;
+            }
+
             if (RegisterUIButton != null) {
                 RegisterUIButton.Dispose ();
                 RegisterUIButton = null;
+            }
+
+            if (Terms != null) {
+                Terms.Dispose ();
+                Terms = null;
             }
         }
     }

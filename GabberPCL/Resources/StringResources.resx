@@ -120,6 +120,9 @@
     <data name="register.ui.fullname.label" xml:space="preserve">
         <value>Fullname</value>
     </data>
+    <data name="register.ui.terms.label" xml:space="preserve">
+        <value>&lt;i>By continuing to use Gabber, you agree with our &lt;a href={0}/terms>Terms of Use&lt;/a> &amp; &lt;a href={0}/privacy>Privacy Policy&lt;/a>&lt;/i></value>
+    </data>
     <data name="register.ui.submit.button" xml:space="preserve">
         <value>Register</value>
     </data>

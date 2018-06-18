@@ -10,6 +10,7 @@ using Android.Widget;
 using Firebase.Analytics;
 using GabberPCL;
 using GabberPCL.Resources;
+using Android.Text.Util;
 
 namespace Gabber
 {
@@ -36,6 +37,11 @@ namespace Gabber
             _email.Hint = StringResources.common_ui_forms_email_label;
             var _password = FindViewById<TextInputLayout>(Resource.Id.passwordLayout);
             _password.Hint = StringResources.common_ui_forms_password_label;
+
+            var terms = FindViewById<TextView>(Resource.Id.Terms);
+            var termsContent = string.Format(StringResources.register_ui_terms_label, Config.WEB_URL);
+            terms.TextFormatted = Android.Text.Html.FromHtml(termsContent);
+            terms.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
 
             FindViewById<TextInputEditText>(Resource.Id.password).EditorAction += (_, e) => {
                 e.Handled = false;

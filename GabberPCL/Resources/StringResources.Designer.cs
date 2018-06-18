@@ -215,6 +215,12 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string register_ui_terms_label {
+            get {
+                return ResourceManager.GetString("register.ui.terms.label", resourceCulture);
+            }
+        }
+        
         public static string register_ui_submit_button {
             get {
                 return ResourceManager.GetString("register.ui.submit.button", resourceCulture);

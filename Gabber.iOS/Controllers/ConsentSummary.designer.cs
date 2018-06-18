@@ -16,15 +16,7 @@ namespace Gabber.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel ConsentConversation { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel ConsentConversationDesc { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel ConsentEmbargo { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -32,15 +24,7 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel ConsentParticipants { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel ConsentParticipantsDesc { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel ConsentResearch { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -56,27 +40,13 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel ConsentTitle { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel ConsentTitleDesc { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (ConsentConversation != null) {
-                ConsentConversation.Dispose ();
-                ConsentConversation = null;
-            }
-
             if (ConsentConversationDesc != null) {
                 ConsentConversationDesc.Dispose ();
                 ConsentConversationDesc = null;
-            }
-
-            if (ConsentEmbargo != null) {
-                ConsentEmbargo.Dispose ();
-                ConsentEmbargo = null;
             }
 
             if (ConsentEmbargoDesc != null) {
@@ -84,19 +54,9 @@ namespace Gabber.iOS
                 ConsentEmbargoDesc = null;
             }
 
-            if (ConsentParticipants != null) {
-                ConsentParticipants.Dispose ();
-                ConsentParticipants = null;
-            }
-
             if (ConsentParticipantsDesc != null) {
                 ConsentParticipantsDesc.Dispose ();
                 ConsentParticipantsDesc = null;
-            }
-
-            if (ConsentResearch != null) {
-                ConsentResearch.Dispose ();
-                ConsentResearch = null;
             }
 
             if (ConsentResearchDesc != null) {
@@ -112,11 +72,6 @@ namespace Gabber.iOS
             if (ConsentSummaryTitle != null) {
                 ConsentSummaryTitle.Dispose ();
                 ConsentSummaryTitle = null;
-            }
-
-            if (ConsentTitle != null) {
-                ConsentTitle.Dispose ();
-                ConsentTitle = null;
             }
 
             if (ConsentTitleDesc != null) {
