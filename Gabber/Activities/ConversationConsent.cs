@@ -79,7 +79,7 @@ namespace Gabber.Activities
                 if (consentTypePrivate.Checked) consent = "private";
                 // This is used then deleted when saving the recording session
                 _prefs.Edit().PutString("SESSION_CONSENT", consent).Commit();
-                StartActivity(new Intent(this, typeof(RecordStoryActivity))); 
+                StartActivity(new Intent(this, typeof(ConsentSummary))); 
             };
 
             isConsented.CheckedChange += (s, e) => { submit.Enabled = true; };
