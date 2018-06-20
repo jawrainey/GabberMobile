@@ -21,7 +21,8 @@ namespace Gabber.iOS
             OBImage.Image = UIImage.FromBundle($"Onboarding{options[Index]}");
             OBTitle.Text = OBCTitle;
             OBContent.Text = OBCContent;
-
+            // Only show the view on the final screen otherwise space is taken; similar to .GONE on android.
+            if (Index < 4) OnboardingActions.RemoveFromSuperview();
             // TODO: animate OnboardingActions when the user is on the final page
             OnboardingActions.Hidden &= Index != 4;
 
