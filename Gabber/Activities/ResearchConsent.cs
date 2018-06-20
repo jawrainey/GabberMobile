@@ -30,7 +30,8 @@ namespace Gabber.Activities
             var SelectedProjectID = _prefs.GetInt("SelectedProjectID", 0);
             var selectedProject = Queries.ProjectById(SelectedProjectID);
             // If there is no organisation then the project was created by an individual.
-            var org = selectedProject.Organisation == null ? selectedProject.Creator.Name : selectedProject.Organisation.Name;
+            var IsOrg = selectedProject.Organisation.Name.ToLower() == "individual";
+            var org = IsOrg ? selectedProject.Creator.Name : selectedProject.Organisation.Name;
 
             var researchConsentDesc = FindViewById<TextView>(Resource.Id.researchConsentDesc);
             researchConsentDesc.TextFormatted = Html.FromHtml(string.Format(StringResources.consent_research_body, selectedProject.Title, org));

@@ -19,7 +19,8 @@ namespace Gabber.iOS
 
             int SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
             var SelectedProject = Queries.ProjectById(SelectedProjectID);
-            var org = SelectedProject.Organisation == null ? SelectedProject.Creator.Name : SelectedProject.Organisation.Name;
+            var IsOrg = SelectedProject.Organisation.Name.ToLower() == "individual";
+            var org = IsOrg ? SelectedProject.Creator.Name : SelectedProject.Organisation.Name;
             var content = string.Format(StringResources.consent_research_body, SelectedProject.Title, org);
 
             ResearchConsentDesc.AttributedText = BuildFromHTML(content);
