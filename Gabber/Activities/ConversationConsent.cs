@@ -56,6 +56,12 @@ namespace Gabber.Activities
                               selectedProject.Members.Count,
                               selectedProject.Members.FindAll((obj) => obj.Role == "researcher").Count));
 
+            if (selectedProject.IsPublic)
+            {
+                consentTypeMembers.Visibility = ViewStates.Gone;
+                consentTypeMembersFull.Visibility = ViewStates.Gone;
+            }
+
             var consentTypePrivate = FindViewById<RadioButton>(Resource.Id.GabberConsentTypePrivate);
             consentTypePrivate.Text = StringResources.consent_gabber_consent_type_private_brief;
 

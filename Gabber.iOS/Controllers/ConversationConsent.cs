@@ -60,6 +60,9 @@ namespace Gabber.iOS
                 }
             };
 
+            // Only show members if the project is private
+            if (SelectedProject.IsPublic) items.RemoveAt(1);
+
             var consentVSource = new ConsentViewSource(items);
 
             consentVSource.ConsentSelected += (int selectedIndex) => 
