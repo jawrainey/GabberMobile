@@ -18,30 +18,22 @@ namespace Gabber.iOS.Helpers
             // An extension is required otherwise the file does not save to a format that browsers support (mp4)
             // Note: output the file rather than the path as the path is calculated via PrivatePath interface in the PCL
             var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            filename = Path.Combine(documents, DateTimeOffset.Now.ToUnixTimeSeconds().ToString() + ".m4a");
+            filename = Path.Combine(documents, DateTimeOffset.Now.ToUnixTimeSeconds().ToString() + ".3gp");
 
             var audioSession = AVAudioSession.SharedInstance();
             var err = audioSession.SetCategory(AVAudioSessionCategory.PlayAndRecord);
             err = audioSession.SetActive(true);
 
             NSObject[] values = {
-                NSNumber.FromFloat (44100.0f),
+                NSNumber.FromFloat (8000.0f),
                 NSNumber.FromInt32 ((int)AudioToolbox.AudioFormatType.MPEG4AAC),
-                NSNumber.FromInt32 (2),
-                NSNumber.FromInt32 (16),
-                NSNumber.FromInt32 ((int) AVAudioQuality.High),
-                NSNumber.FromBoolean (false),
-                NSNumber.FromBoolean (false)
+                NSNumber.FromInt32 (1)
             };
 
             NSObject[] keys = {
                 AVAudioSettings.AVSampleRateKey,
                 AVAudioSettings.AVFormatIDKey,
-                AVAudioSettings.AVNumberOfChannelsKey,
-                AVAudioSettings.AVLinearPCMBitDepthKey,
-                AVAudioSettings.AVEncoderAudioQualityKey,
-                AVAudioSettings.AVLinearPCMIsBigEndianKey,
-                AVAudioSettings.AVLinearPCMIsFloatKey
+                AVAudioSettings.AVNumberOfChannelsKey
             };
 
             recorder = AVAudioRecorder.Create(

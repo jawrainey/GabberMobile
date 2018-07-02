@@ -260,10 +260,8 @@ namespace Gabber
 			_isrecording = true;
 			// Set how we want the audio formatting to be.
 			_recorder.SetAudioSource(AudioSource.Mic);
-			_recorder.SetOutputFormat(OutputFormat.Mpeg4);
-			_recorder.SetAudioEncoder(AudioEncoder.Aac);
-			_recorder.SetAudioSamplingRate(44100);
-			_recorder.SetAudioEncodingBitRate(512000);
+            _recorder.SetOutputFormat(OutputFormat.AmrNb);
+            _recorder.SetAudioEncoder(AudioEncoder.AmrNb);
 
 			_recorder.SetOutputFile(_path);
 			_recorder.Prepare();
