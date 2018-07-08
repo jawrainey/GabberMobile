@@ -110,7 +110,7 @@
         <value>You have provided an incorrect password for that email</value>
     </data>
     <data name="register.api.error.auth.USER_404" xml:space="preserve">
-        <value>There is no registered user with that email address"</value>
+        <value>There is no registered user with that email address</value>
     </data>
 
     <!-- USER REGISTER SCREEN: UI -->
@@ -265,7 +265,7 @@
 
     <!-- RESEARCH CONSENT -->
     <data name="consent.research.toolbar.title" xml:space="preserve">
-        <value>Research consent</value>
+        <value>Research Consent</value>
     </data>
     <data name="consent.research.submit" xml:space="preserve">
         <value>Next</value>
@@ -297,7 +297,7 @@
 All participants will receive an email with a unique link to the audio recording, where you can view or change your consent on who can access the recording. This email may go to your &lt;b>SPAM/JUNK &lt;/b> folder. 
 &lt;br>
 &lt;br>
-Your conversation will undergo a &lt;b>24-hour embargo&lt;/b> where only participants can listen. After this period the audio conversation will be available based on the consent you choose below or if you have changed it in the email afterwards.
+Your conversation will only be accessible to participants in the conversation for the first 24-hours. After this period the audio conversation will be available based on the consent you agree to below or if you have changed it in the email afterwards.
 &lt;br>
 &lt;br>
 By being part of this conversation you will also become a project member where you can listen to other project conversations and help make sense of them through the website.
@@ -363,13 +363,13 @@ By being part of this conversation you will also become a project member where y
         <value>Conversation Consent</value>
     </data>
     <data name="consent.summary.screen.content.conversation.desc" xml:space="preserve">
-        <value>You agreed for this conversation to be made availiable to &lt;b>{0}&lt;/b>.</value>
+        <value>You agreed for this conversation to be made available to &lt;b>{0}&lt;/b>.</value>
     </data>
     <data name="consent.summary.screen.content.embargo.title" xml:space="preserve">
         <value>Conversation Embargo</value>
     </data>
     <data name="consent.summary.screen.content.embargo.desc" xml:space="preserve">
-        <value>Your conversation will undergo a 24-hour embargo where only participants can listen.</value>
+        <value>Your conversation will only be accessible to participants in the conversation for the first 24-hours. After this period the audio conversation will be available based on the consent you have agreed to or if you have changed it in the email afterwards.</value>
     </data>
     <data name="consent.summary.screen.action" xml:space="preserve">
         <value>Start Recording</value>

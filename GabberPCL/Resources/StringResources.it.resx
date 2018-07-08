@@ -120,6 +120,9 @@
     <data name="register.ui.fullname.label" xml:space="preserve">
         <value>Nome e cognome</value>
     </data>
+    <data name="register.ui.terms.label" xml:space="preserve">
+        <value>&lt;i>Continuando a utilizzare Gabber, accetti i nostri &lt;a href={0}/terms>Termini D'uso&lt;/a> e &lt;a href={0}/privacy>L'Informativa Sulla Privacy&lt;/a>&lt;/i></value>
+    </data>
     <data name="register.ui.submit.button" xml:space="preserve">
         <value>Registrati</value>
     </data>
@@ -258,6 +261,118 @@
     </data>
     <data name="participants.ui.dialog.add.negative" xml:space="preserve">
         <value>Cancella</value>
+    </data>
+
+    <!-- RESEARCH CONSENT -->
+    <data name="consent.research.toolbar.title" xml:space="preserve">
+        <value>Consenso alla ricerca</value>
+    </data>
+    <data name="consent.research.submit" xml:space="preserve">
+        <value>Prossimo</value>
+    </data>
+    <data name="consent.research.title" xml:space="preserve">
+        <value>Come la conversazione verrà utilizzata per la ricerca</value>
+    </data>    
+    <data name="consent.research.body" xml:space="preserve">
+        <value>La conversazione che si sta per registrare entrerà a far parte di un progetto di ricerca &lt;b>({0})&lt;/b> creato da &lt;b>{1}&lt;/b>. La registrazione e i metadati associati saranno accessibili dal personale di ricerca e verranno utilizzati per aiutare a capire come gli strumenti digitali possono  sostenere te e gli altri cittadini impegnati in pratiche di ricerca qualitativa e come gli audio possono rendere queste più accessibili. Ogni lavoro pubblicato sulla base dei dati acquisiti attraverso Gabber non potrà mai includere i dettagli che potrebbero essere utilizzati per identificare te o gli altri partecipanti.</value>
+    </data>
+    <data name="consent.research.form" xml:space="preserve">
+        <value>Tutti i partecipanti comprendono ed acconsentono all'uso di questa registrazione e dei dati personali anonimi per questa ricerca.</value>
+    </data>
+
+    <!-- Gabber CONSENT -->
+    <data name="consent.gabber.toolbar.title" xml:space="preserve">
+        <value>Consenso alla conversazione</value>
+    </data>
+    <data name="consent.gabber.submit" xml:space="preserve">
+        <value>Prossimo</value>
+    </data>
+
+    <data name="consent.gabber.title.control" xml:space="preserve">
+        <value>Come puoi controllare i dati che acquisisci</value>
+    </data>    
+    <data name="consent.gabber.body.control" xml:space="preserve">
+        <value>Gabber ti fornisce il controllo su come desideri utilizzare la vostra conversazione audio e su chi vuoi che sia in grado di ascoltare e commentare su di essa. Gabber funziona al meglio quando le altre persone possono accedere, ascoltare e imparare dalle esperienze registrate.
+
+Tutti i partecipanti riceveranno una mail con un link unico alla conversazione audio, in cui è possibile visualizzare o modificare il proprio consenso su chi può accedere alla registrazione. Questa email potrebbe essere nella cartella &lt;b>SPAM/INDESIDERATA &lt;/b>.
+&lt;br>
+&lt;br>
+La tua conversazione sarà accessibile solo ai partecipanti alla conversazione per le prime 24 ore. Dopo questo periodo, la conversazione audio sarà disponibile in base al consenso che l'utente accetta di seguito o se lo ha cambiato successivamente nell'e-mail.
+&lt;br>
+&lt;br>
+Essendo parte di questa conversazione diventerai anche un membro del progetto e ti sarà possibile ascoltare altre conversazioni del progetto e contribuire a dargli un senso attraverso il sito web.
+</value>
+    </data>
+    
+    <data name="consent.gabber.title.decision" xml:space="preserve">
+        <value>Chi ti piacerebbe avesse accesso alla vostra conversazione?</value>
+    </data>    
+    <data name="consent.gabber.body.decision" xml:space="preserve">
+        <value>Ricercatori e amministratori di progetto possono accedere alle registrazioni dopo il periodo di embargo.</value>
+    </data>
+
+    <!-- Gabber CONSENT Public -->
+    <data name="consent.gabber.consent.type.public.full" xml:space="preserve">
+        <value>La tua registrazione diventerà pubblica e chiunque potrà scoprirla e ascoltarla, compreso te stesso, gli altri partecipanti, e membri del progetto.</value>
+    </data>
+        <data name="consent.gabber.consent.type.public.brief" xml:space="preserve">
+        <value>Chiunque visiti Gabber</value>
+    </data>
+    <!-- Gabber CONSENT Members -->
+    <data name="consent.gabber.consent.type.members.full" xml:space="preserve">
+        <value>Al momento ci sono &lt;b>{0}&lt;/b> membri e &lt;b>{1}&lt;/b> ricercatori in questo progetto.</value>
+    </data>
+    <data name="consent.gabber.consent.type.members.brief" xml:space="preserve">
+        <value>Solo membri del progetto</value>
+    </data>
+    <!-- Gabber CONSENT Private -->
+    <data name="consent.gabber.consent.type.private.full" xml:space="preserve">
+        <value>&lt;b>{0}&lt;/b> di questa conversazione.</value>
+    </data>
+    <data name="consent.gabber.consent.type.private.brief" xml:space="preserve">
+        <value>Solo i partecipanti</value>
+    </data>
+    <data name="conversation.consent.gabber.submit" xml:space="preserve">
+        <value>Riesaminare il consenso</value>
+    </data>
+
+    <!-- Consent Summary -->
+    <data name="consent.summary.title" xml:space="preserve">
+        <value>Riepilogo del consenso</value>
+    </data>
+    <data name="consent.summary.subtitle" xml:space="preserve">
+        <value>Sono elencati di seguito un riepilogo del consenso che hai accettato e il progetto a cui stai contribuendo:</value>
+    </data>
+    
+    <data name="consent.summary.screen.content.project.title" xml:space="preserve">
+        <value>Progetto</value>
+    </data>
+    <data name="consent.summary.screen.content.participants.title" xml:space="preserve">
+        <value>Partecipanti</value>
+    </data>
+    <data name="consent.summary.screen.content.participants.desc" xml:space="preserve">
+        <value>{0} sono selezionati per far parte della tua conversazione.</value>
+    </data>
+    <data name="consent.summary.screen.content.research.title" xml:space="preserve">
+        <value>Consenso alla ricerca</value>
+    </data>
+    <data name="consent.summary.screen.content.research.desc" xml:space="preserve">
+        <value>Acconsente che questa conversazione sia utilizzata nella ricerca.</value>
+    </data>
+    <data name="consent.summary.screen.content.conversation.title" xml:space="preserve">
+        <value>Consenso alla conversazione</value>
+    </data>
+    <data name="consent.summary.screen.content.conversation.desc" xml:space="preserve">
+        <value>Acconsente che questa conservazione sia resa disponibile a &lt;b>{0}&lt;/b>.</value>
+    </data>
+    <data name="consent.summary.screen.content.embargo.title" xml:space="preserve">
+        <value>Embargo della conversazione</value>
+    </data>
+    <data name="consent.summary.screen.content.embargo.desc" xml:space="preserve">
+        <value>La tua conversazione sarà accessibile solo ai partecipanti alla conversazione per le prime 24 ore. Dopo questo periodo, la conversazione audio sarà disponibile in base al consenso che l'utente accetta di seguito o se lo ha cambiato successivamente nell'e-mail.</value>
+    </data>
+    <data name="consent.summary.screen.action" xml:space="preserve">
+        <value>Inizia a registrare</value>
     </data>
 
     <!-- RECORD SCREEN -->
