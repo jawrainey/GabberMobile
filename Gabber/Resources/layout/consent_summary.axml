@@ -9,77 +9,87 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/ConsentSummaryDesc"
+            android:textSize="16dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:lineSpacingExtra="6dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-            <TextView
-                android:id="@+id/ConsentSummaryDesc"
-                android:textSize="16dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"
-                android:lineSpacingExtra="6dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
+            android:layout_width="match_parent" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC" />
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#CCCCCC" />
-            <TextView
-                android:id="@+id/ConsentSummaryContentProject"
-                android:layout_marginTop="24dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginBottom="16dp"
-                android:textSize="14dp"
-                android:textColor="@android:color/black"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
-            <TextView
-                android:id="@+id/ConsentSummaryContentParticipants"
-                android:layout_marginLeft="32dp"
-                android:layout_marginBottom="16dp"
-                android:textSize="14dp"
-                android:textColor="@android:color/black"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
-            <TextView
-                android:id="@+id/ConsentSummaryContentResearch"
-                android:layout_marginLeft="32dp"
-                android:layout_marginBottom="16dp"
-                android:textSize="14dp"
-                android:textColor="@android:color/black"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
-            <TextView
-                android:id="@+id/ConsentSummaryContentConversation"
-                android:layout_marginLeft="32dp"
-                android:layout_marginBottom="16dp"
-                android:textSize="14dp"
-                android:textColor="@android:color/black"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
-            <TextView
-                android:id="@+id/ConsentSummaryEmbargo"
-                android:layout_marginLeft="32dp"
-                android:layout_marginBottom="24dp"
-                android:textSize="14dp"
-                android:textColor="@android:color/black"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/ConsentSummarySubmit"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/custom_button" />
-        </LinearLayout>
-    </ScrollView>
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/ConsentSummaryContentProject"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:textSize="14dp"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
+                <TextView
+                    android:id="@+id/ConsentSummaryContentParticipants"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:textSize="14dp"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
+                <TextView
+                    android:id="@+id/ConsentSummaryContentResearch"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:textSize="14dp"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
+                <TextView
+                    android:id="@+id/ConsentSummaryContentConversation"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:textSize="14dp"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
+                <TextView
+                    android:id="@+id/ConsentSummaryEmbargo"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginBottom="24dp"
+                    android:textSize="14dp"
+                    android:textColor="@android:color/black"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" />
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/ConsentSummarySubmit"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/custom_button" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </LinearLayout>
