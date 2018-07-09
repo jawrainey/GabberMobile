@@ -94,6 +94,10 @@
       <LastGenOutput>StringResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\StringResources.it.resx" />
+    <EmbeddedResource Include="Resources\StringResources.es.resx" />
+    <EmbeddedResource Include="Resources\StringResources.ru.resx" />
+    <EmbeddedResource Include="Resources\StringResources.fr.resx" />
+    <EmbeddedResource Include="Resources\StringResources.ar.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
