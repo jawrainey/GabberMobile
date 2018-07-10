@@ -107,7 +107,7 @@ namespace GabberPCL
             // Instead, the Selected property should be removed, and SelectedParticipants stored
             // internally between selecting parts<->Recording, and reset from projects<->parts
 
-            var participants = Session.Connection.Table<User>().ToList();
+            var participants = AllParticipants();
 
             foreach (var p in participants) 
             {
@@ -116,15 +116,18 @@ namespace GabberPCL
                 if (p.Email == Session.ActiveUser.Email)
                 {
                     p.Selected = true;
+                    Session.Connection.Update(p);
                     if (!p.Name.Contains("You")) p.Name += (" (You)");
                 }
-
-                Session.Connection.Update(p);
+                else 
+                {
+                    Session.Connection.Update(p);
+                }
             }
 
             return participants;
         }
-        public static List<User> AllParticipants() => Session.Connection.Table<User>().ToList();
+        public static List<User> AllParticipants() => Session.Connection.Table<User>().OrderBy(u => u.Id).ToList();
         public static List<User> SelectedParticipants() => AllParticipants().FindAll((p) => p.Selected);
 
         public static void CreateAnnotation(int start, string interviewID, int promptID)
