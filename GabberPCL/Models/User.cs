@@ -6,7 +6,7 @@ namespace GabberPCL.Models
     // This represents a conversation participant or/and project owner.
     public class User
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         // Private methods are not (de)serialized; setting Id with a different
         // property, which is returned in Project.creator
