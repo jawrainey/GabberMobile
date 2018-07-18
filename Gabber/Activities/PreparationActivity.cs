@@ -118,6 +118,16 @@ namespace Gabber
             var AddParticipantDialog = alert.Create();
             AddParticipantDialog.Window.SetSoftInputMode(SoftInput.StateAlwaysVisible);
             AddParticipantDialog.Show();
+
+            var __email = AddParticipantDialog.FindViewById<TextInputEditText>(Resource.Id.participantEmail);
+            __email.EditorAction += (_, e) => {
+                e.Handled = false;
+                if (e.ActionId == Android.Views.InputMethods.ImeAction.Done)
+                {
+                    AddParticipantDialog.GetButton((int)DialogButtonType.Positive).PerformClick();
+                    e.Handled = true;
+                }
+            };
             // Override the on click such that we can dismiss the dialog from here, otherwise
             // it dismisses every time the button is clicked and we cannot do validation.
             AddParticipantDialog.GetButton((int)DialogButtonType.Positive).Click += delegate
