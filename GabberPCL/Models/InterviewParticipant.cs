@@ -15,9 +15,7 @@ namespace GabberPCL.Models
         // True if the participant was the interviewer, otherwise False
         public bool Role { get; set; }
 
-        [ForeignKey(typeof(User))]
         public int UserID { get; set; }
-        [ForeignKey(typeof(InterviewSession))]
         public string InterviewID { get; set; }
     }
 }

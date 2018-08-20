@@ -228,10 +228,7 @@ namespace Gabber
             // Only once a recording is complete can End for each annotation be computed
             InterviewPrompt.ComputeEndForAllAnnotationsInSession(_seconds);
 
-            // Added before to simplify accessing the participants involved next.
-            Queries.AddSelectedParticipantsToInterviewSession(InterviewSessionID);
-
-            var InterviewSession = new InterviewSession
+            InterviewSession thisSession = new InterviewSession
             {
                 ConsentType = ConsentType,
                 SessionID = InterviewSessionID,
@@ -242,12 +239,14 @@ namespace Gabber
                 ProjectID = SelectedProjectID,
 
                 Prompts = Queries.AnnotationsForLastSession(),
-                Participants = Queries.ParticipantsForSession(InterviewSessionID),
 
                 IsUploaded = false
             };
 
-            Queries.AddInterviewSession(InterviewSession);
+            // Added before to simplify accessing the participants involved next.
+            thisSession = Queries.AddSelectedParticipantsToInterviewSession(thisSession);
+
+            Queries.AddInterviewSession(thisSession);
             // Now the session has been stored to the database we no longer need it
             var _prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
             _prefs.Edit().Remove("SESSION_CONSENT").Commit();

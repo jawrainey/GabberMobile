@@ -30,7 +30,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
-    <MtouchVerbosity></MtouchVerbosity>
+    <MtouchVerbosity>
+    </MtouchVerbosity>
     <CodesignProvision>VS: uk.ac.ncl.openlab.gabber Development</CodesignProvision>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
@@ -39,7 +40,8 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhone\Release</OutputPath>
-    <DefineConstants></DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodesignKey>iPhone Developer: Jay Rainey (G4QY8CALPA)</CodesignKey>
@@ -49,14 +51,16 @@
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
-    <MtouchVerbosity></MtouchVerbosity>
+    <MtouchVerbosity>
+    </MtouchVerbosity>
     <CodesignProvision>VS: uk.ac.ncl.openlab.gabber Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
-    <DefineConstants></DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodesignKey>iPhone Developer: Jay Rainey (G4QY8CALPA)</CodesignKey>
@@ -64,7 +68,8 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
-    <MtouchVerbosity></MtouchVerbosity>
+    <MtouchVerbosity>
+    </MtouchVerbosity>
     <CodesignProvision>VS: uk.ac.ncl.openlab.gabber Development</CodesignProvision>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
@@ -89,7 +94,8 @@
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
-    <MtouchVerbosity></MtouchVerbosity>
+    <MtouchVerbosity>
+    </MtouchVerbosity>
     <CodesignProvision>VS: uk.ac.ncl.openlab.gabber Development</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
@@ -580,65 +586,183 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Resources\StopButton.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Resources\StopButton.png" />
-    <ImageAsset Include="Assets.xcassets\StopButton.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\StopButton.imageset\StopButton.png" />
-    <ImageAsset Include="Assets.xcassets\Logo.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\BackButton.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\BackButton.imageset\1x.png" />
-    <ImageAsset Include="Assets.xcassets\BackButton.imageset\2x.png" />
-    <ImageAsset Include="Assets.xcassets\BackButton.imageset\3x.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-40.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-60.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-58.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-87.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-80.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-120.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-180.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-1024.png" />
-    <ImageAsset Include="Assets.xcassets\Logo.imageset\logo.png" />
-    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\.Contents.json.swp" />
-    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\cloud_done.png" />
-    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\cloud_done_2x.png" />
-    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\cloud_done_3x.png" />
-    <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\cloud_upload.png" />
-    <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\cloud_upload_2x.png" />
-    <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\cloud_upload_3x.png" />
-    <ImageAsset Include="Assets.xcassets\menu_about.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about.png" />
-    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about_2x.png" />
-    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about_3x.png" />
-    <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\menu_gabbers.png" />
-    <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\menu_gabbers_2x.png" />
-    <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\menu_gabbers_3x.png" />
-    <ImageAsset Include="Assets.xcassets\menu_projects.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects.png" />
-    <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects_2x.png" />
-    <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects_3x.png" />
-    <ImageAsset Include="Assets.xcassets\StopButtonDisabled.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\StopButtonDisabled.imageset\StopButtonDisabled.png" />
-    <ImageAsset Include="Assets.xcassets\OnboardingWelcome.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\OnboardingParts.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\OnboardingConsent.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\OnboardingConsent.imageset\onboarding_third.png" />
-    <ImageAsset Include="Assets.xcassets\OnboardingParts.imageset\onboarding_parts.png" />
-    <ImageAsset Include="Assets.xcassets\OnboardingProjects.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\OnboardingProjects.imageset\onboarding_second.png" />
-    <ImageAsset Include="Assets.xcassets\OnboardingWelcome.imageset\onboarding_first.png" />
-    <ImageAsset Include="Assets.xcassets\CheckboxChecked.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\CheckboxUnchecked.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\CheckboxChecked.imageset\checked.png" />
-    <ImageAsset Include="Assets.xcassets\CheckboxChecked.imageset\checked-x1.png" />
-    <ImageAsset Include="Assets.xcassets\CheckboxChecked.imageset\checked-x2.png" />
-    <ImageAsset Include="Assets.xcassets\CheckboxUnchecked.imageset\unchecked.png" />
-    <ImageAsset Include="Assets.xcassets\CheckboxUnchecked.imageset\unchecked-x1.png" />
-    <ImageAsset Include="Assets.xcassets\CheckboxUnchecked.imageset\unchecked-x2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Resources\StopButton.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Resources\StopButton.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\StopButton.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\StopButton.imageset\StopButton.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Logo.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\BackButton.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\BackButton.imageset\1x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\BackButton.imageset\2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\BackButton.imageset\3x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-60.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-120.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-180.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-1024.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Logo.imageset\logo.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\.Contents.json.swp">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\cloud_done.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\cloud_done_2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\cloud_done_3x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\cloud_upload.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\cloud_upload_2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\cloud_upload_3x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\menu_about.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about_2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about_3x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\menu_gabbers.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\menu_gabbers_2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\menu_gabbers_3x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\menu_projects.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects_2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\menu_projects.imageset\menu_projects_3x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\StopButtonDisabled.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\StopButtonDisabled.imageset\StopButtonDisabled.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\OnboardingWelcome.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\OnboardingParts.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\OnboardingConsent.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\OnboardingConsent.imageset\onboarding_third.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\OnboardingParts.imageset\onboarding_parts.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\OnboardingProjects.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\OnboardingProjects.imageset\onboarding_second.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\OnboardingWelcome.imageset\onboarding_first.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CheckboxChecked.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CheckboxUnchecked.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CheckboxChecked.imageset\checked.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CheckboxChecked.imageset\checked-x1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CheckboxChecked.imageset\checked-x2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CheckboxUnchecked.imageset\unchecked.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CheckboxUnchecked.imageset\unchecked-x1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\CheckboxUnchecked.imageset\unchecked-x2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

@@ -18,12 +18,13 @@ namespace Gabber.Fragments
 {
     public class Projects : Android.Support.V4.App.Fragment
     {
-		FirebaseAnalytics firebaseAnalytics;
-        List<Project> _projects;
+		private FirebaseAnalytics firebaseAnalytics;
+        private List<Project> _projects;
+        private SwipeRefreshLayout refresher;
         // Made availiable to update projects on data load.
-        ProjectsAdapter adapter;
+        private ProjectsAdapter adapter;
         // Prevents multiple calls being made to the API when one is in progress.
-        Task LoadingProjects;
+        private Task LoadingProjects;
         // One instance to rule them all
         static Projects instance;
 
@@ -60,27 +61,31 @@ namespace Gabber.Fragments
             adapter = new ProjectsAdapter(_projects);
             adapter.ProjectClicked += OnProjectClick;
             Activity.FindViewById<RecyclerView>(Resource.Id.projects).SetAdapter(adapter);
+            
+            refresher = Activity.FindViewById<SwipeRefreshLayout>(Resource.Id.projectsRefresher);
+            refresher.SetColorSchemeResources(Resource.Color.primary_material_dark);
+            refresher.Refresh += Refresher_Refresh;
+
             // As this method is called each time the Fragment is in view (similar to onResume),
             // only call it if there are no projects, i.e. on first use.
-            if (_projects.Count <= 0) LoadDataIfNotLoading(true);
-
-            var refresher = Activity.FindViewById<SwipeRefreshLayout>(Resource.Id.projectsRefresher);
-            refresher.SetColorSchemeResources(Resource.Color.primary_material_dark);
-            refresher.Refresh += async delegate {
-				LOG_SWIPE_REFRESH();
-                await LoadData();
-                refresher.Refreshing = false;
-            };
+            if (_projects.Count <= 0) LoadDataIfNotLoading();
         }
 
-        public async Task LoadData(bool withLoadingBar=false)
+        private void Refresher_Refresh(object sender, System.EventArgs e)
         {
-            var progressBar = Activity.FindViewById<RelativeLayout>(Resource.Id.progressBarLayout);
-            if (withLoadingBar) progressBar.Visibility = ViewStates.Visible;
-            var response = await new RestClient().GetProjects(ShowErrorMessage);
-            if (withLoadingBar) progressBar.Visibility = ViewStates.Gone;
+            LoadDataIfNotLoading();
+        }
 
-            if (response.Count > 0)
+        public async Task LoadData()
+        {
+            refresher.Refreshing = true;
+
+            //LOG_SWIPE_REFRESH();
+            List<Project> response = await RestClient.GetProjects(ErrorDelegate);
+
+            refresher.Refreshing = false;
+
+            if (response != null && response.Count > 0)
             {
                 Queries.AddProjects(response);
                 _projects = response;
@@ -88,15 +93,18 @@ namespace Gabber.Fragments
             }
         }
 
-        public void LoadDataIfNotLoading(bool withLoadingBar=false)
+        private void LoadDataIfNotLoading()
         {
             if (LoadingProjects == null || LoadingProjects.IsCompleted)
             {
-                LoadingProjects = LoadData(withLoadingBar);
+                LoadingProjects = LoadData();
             }
         }
 
-        void ShowErrorMessage(string errorMessage) => Toast.MakeText(Activity, errorMessage, ToastLength.Long).Show();
+        private void ErrorDelegate(string errorMessage)
+        {
+            Toast.MakeText(Activity, errorMessage, ToastLength.Long).Show();
+        }
 
         void OnProjectClick(object sender, int position)
         {
@@ -108,14 +116,14 @@ namespace Gabber.Fragments
             StartActivity(intent);
         }
       
-		void LOG_SWIPE_REFRESH()
+		private void LOG_SWIPE_REFRESH()
         {
             var bundle = new Bundle();
 			bundle.PutInt("PROJECT_COUNT", _projects.Count);
 			firebaseAnalytics.LogEvent("SWIPE_REFRESH", bundle);
         }
 
-		void LOG_SELECTED_PROJECT(int position)
+		private void LOG_SELECTED_PROJECT(int position)
 		{
 			var bundle = new Bundle();
             bundle.PutString("PROJECT", _projects[position].Title);

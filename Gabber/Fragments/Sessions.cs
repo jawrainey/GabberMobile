@@ -91,7 +91,7 @@ namespace Gabber.Fragments
         void ShowDebriefingDialog()
         {
             var alert = new AlertDialog.Builder(Activity);
-            var session = Queries.LastInterviewSession;
+            var session = Queries.LastInterviewSession();
             var content = string.Format(
                 StringResources.debriefing_ui_page_first_content, 
                 Queries.ProjectById(session.ProjectID).Title, 
@@ -141,7 +141,7 @@ namespace Gabber.Fragments
             adapter.SessionIsUploading(index);
 
             LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "ATTEMPT");
-            var didUpload = await new RestClient().Upload(adapter.Sessions[index]);
+            var didUpload = await RestClient.Upload(adapter.Sessions[index]);
 
             if (didUpload)
             {

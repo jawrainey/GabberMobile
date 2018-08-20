@@ -11,38 +11,39 @@ namespace GabberPCL.Models
         public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+
         [JsonProperty("is_public")]
         public bool IsPublic { get; set; }
 
-        [OneToMany]
         [JsonProperty("topics")]
-        public List<Prompt> Prompts { get; set; }
+        public List<Prompt> Prompts;
+        public string PromptsJson { get; set; }
 
-        [ForeignKey(typeof(Creator))]
-        [JsonProperty("creator_id")]
-        public int CreatorId { get; set; }
+        public Creator Creator;
+        public string CreatorJson { get; set; }
 
-        // Although a creator can create multiple projects, it is not possible
-        // to have a OneToMany and automatically populate the creator table
-        // without rewriting the deserialiser that is used in the Rest Client.
-        [OneToOne]
-        public Creator Creator { get; set; }
-
-        [ForeignKey(typeof(Organisation))]
-        [JsonProperty("organisation_id", NullValueHandling = NullValueHandling.Ignore)]
+        public Organisation Organisation;
         public int OrganisationId { get; set; }
+        public string OrganisationJson { get; set; }
 
-        // This is unfortunatly the same issue as above: because we are using a
-        // class as a type it must have a relationship. In this case it should be
-        // ManyToOne as a project can have one organisation, but an org can be 
-        // associated with many projects. As above, this would require populating
-        // the organisation inside Queries.cs:AddProjects however, this takes
-        // a list of projects as input, hence a larger re-write would be required.
-        [OneToOne]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Organisation Organisation { get; set; }
+        public List<Member> Members;
+        public string MembersJson { get; set; }
 
-        [OneToMany]
-        public List<Member> Members { get; set; }
+        public void LoadJson()
+        {
+            if (CreatorJson == null) return;
+            Creator = JsonConvert.DeserializeObject<Creator>(CreatorJson);
+            Members = JsonConvert.DeserializeObject<List<Member>>(MembersJson);
+            Organisation = JsonConvert.DeserializeObject<Organisation>(OrganisationJson);
+            Prompts = JsonConvert.DeserializeObject<List<Prompt>>(PromptsJson);
+        }
+
+        public void SerializeJson()
+        {
+            CreatorJson = JsonConvert.SerializeObject(Creator);
+            MembersJson = JsonConvert.SerializeObject(Members);
+            OrganisationJson = JsonConvert.SerializeObject(Organisation);
+            PromptsJson = JsonConvert.SerializeObject(Prompts);
+        }
     }
 }

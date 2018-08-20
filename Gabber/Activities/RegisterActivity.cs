@@ -86,9 +86,8 @@ namespace Gabber
 					FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Visible;
 					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 
-                    var api = new RestClient();
 					LOG_EVENT_WITH_ACTION("REGISTER", "ATTEMPT");
-                    var response = await api.Register(fname.Text, email.Text.ToLower(), passw.Text);
+                    var response = await RestClient.Register(fname.Text, email.Text.ToLower(), passw.Text);
 
                     if (response.Meta.Success)
 					{
