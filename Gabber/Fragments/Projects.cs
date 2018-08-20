@@ -28,6 +28,8 @@ namespace Gabber.Fragments
         // One instance to rule them all
         static Projects instance;
 
+        private bool refreshed;
+
         public static Projects NewInstance()
         {
             if (instance == null) instance = new Projects { Arguments = new Bundle() };
@@ -66,9 +68,7 @@ namespace Gabber.Fragments
             refresher.SetColorSchemeResources(Resource.Color.primary_material_dark);
             refresher.Refresh += Refresher_Refresh;
 
-            // As this method is called each time the Fragment is in view (similar to onResume),
-            // only call it if there are no projects, i.e. on first use.
-            if (_projects.Count <= 0) LoadDataIfNotLoading();
+            if(!refreshed) LoadDataIfNotLoading();            
         }
 
         private void Refresher_Refresh(object sender, System.EventArgs e)
@@ -83,14 +83,15 @@ namespace Gabber.Fragments
             //LOG_SWIPE_REFRESH();
             List<Project> response = await RestClient.GetProjects(ErrorDelegate);
 
-            refresher.Refreshing = false;
-
             if (response != null && response.Count > 0)
             {
                 Queries.AddProjects(response);
                 _projects = response;
                 adapter.UpdateProjects(_projects);
             }
+
+            refresher.Refreshing = false;
+            refreshed = true;
         }
 
         private void LoadDataIfNotLoading()

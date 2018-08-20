@@ -233,7 +233,7 @@ namespace Gabber
                 ConsentType = ConsentType,
                 SessionID = InterviewSessionID,
                 RecordingURL = _path,
-                CreatedAt = DateTime.Now,
+                CreatedAt = DateTime.UtcNow,
 
                 CreatorEmail = Session.ActiveUser.Email,
                 ProjectID = SelectedProjectID,

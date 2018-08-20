@@ -199,8 +199,9 @@ namespace GabberPCL
                 formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Participants)), "participants");
                 formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Prompts)), "prompts");
                 formData.Add(new StringContent(interviewSession.ConsentType.ToString()), "consent");
+                formData.Add(new StringContent(interviewSession.CreatedAt.ToString(System.Globalization.CultureInfo.InvariantCulture)), "created_on");
 
-				// Access the OS specific implementation to load data from a file.
+                // Access the OS specific implementation to load data from a file.
                 formData.Add(new ByteArrayContent(GlobalIO.Load(interviewSession.RecordingURL)), "recording",
                              Path.GetFileName(interviewSession.RecordingURL));
 				try
