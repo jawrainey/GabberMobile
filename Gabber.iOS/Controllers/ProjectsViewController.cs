@@ -14,12 +14,12 @@ namespace Gabber.iOS
 {
     public partial class ProjectsViewController : UIViewController
     {
-		// Prevents multiple calls being made to the API when one is in progress.
+        // Prevents multiple calls being made to the API when one is in progress.
         Task LoadingProjects;
         // Make availiable to update
-		List<Project> _projects;
+        List<Project> _projects;
 
-        public ProjectsViewController (IntPtr handle) : base (handle) {}
+        public ProjectsViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {
@@ -43,20 +43,21 @@ namespace Gabber.iOS
                 TintColor = UIColor.FromRGB(.43f, .80f, .79f)
             };
 
-			refreshControl.AddTarget(async delegate {
+            refreshControl.AddTarget(async delegate
+            {
                 Logger.LOG_EVENT_WITH_ACTION("SWIPE_REFRESH", _projects.Count.ToString(), "PROJECT_COUNT");
-				await LoadData();
+                await LoadData();
                 refreshControl.EndRefreshing();
             }, UIControlEvent.AllEvents);
-            
-			if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
-			{
-                ProjectsCollectionView.RefreshControl = refreshControl;	
-			}
-			else
-			{
-				ProjectsCollectionView.AddSubview(refreshControl);
-			}
+
+            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+            {
+                ProjectsCollectionView.RefreshControl = refreshControl;
+            }
+            else
+            {
+                ProjectsCollectionView.AddSubview(refreshControl);
+            }
 
             if (Session.ActiveUser == null)
             {
@@ -67,22 +68,22 @@ namespace Gabber.iOS
                 Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
                 Firebase.Analytics.Analytics.SetUserID(Session.ActiveUser.Id.ToString());
             }
-			_projects = Queries.AllProjects();
-			ProjectsCollectionView.Source = new ProjectsCollectionViewSource(_projects);
+            _projects = Queries.AllProjects();
+            ProjectsCollectionView.Source = new ProjectsCollectionViewSource(_projects);
             if (_projects.Count <= 0) LoadDataIfNotLoading(true);
         }
 
-		public async Task LoadData(bool withLoadingBar=false)
+        public async Task LoadData(bool withLoadingBar = false)
         {
-			if (withLoadingBar) ProjectsActivityIndicator.StartAnimating();
-            var response = await new RestClient().GetProjects(ErrorMessageDialog);
-			if (withLoadingBar) ProjectsActivityIndicator.StopAnimating();
-         
+            if (withLoadingBar) ProjectsActivityIndicator.StartAnimating();
+            var response = await RestClient.GetProjects(ErrorMessageDialog);
+            if (withLoadingBar) ProjectsActivityIndicator.StopAnimating();
+
             if (response.Count > 0)
             {
                 Queries.AddProjects(response);
-				_projects = response;
-				ProjectsCollectionView.Source = new ProjectsCollectionViewSource(_projects);
+                _projects = response;
+                ProjectsCollectionView.Source = new ProjectsCollectionViewSource(_projects);
             }
         }
 
@@ -96,17 +97,17 @@ namespace Gabber.iOS
 
         public override void ViewWillAppear(bool animated)
         {
-			LoadDataIfNotLoading();
+            LoadDataIfNotLoading();
             base.ViewDidAppear(animated);
             TabBarController.Title = StringResources.common_menu_projects;
         }
 
-		public override void ViewWillDisappear(bool animated)
-		{
+        public override void ViewWillDisappear(bool animated)
+        {
             base.ViewWillDisappear(animated);
             // By removing the title here we also remove it from the navbar item
             TabBarController.Title = "";
-		}
+        }
 
         // TODO: given this is in all controllers, should make a super class to reduce duplication
         void ErrorMessageDialog(string message)

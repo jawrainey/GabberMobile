@@ -10,7 +10,7 @@ namespace Gabber.iOS
 {
     public partial class RegisterViewController : UIViewController
     {
-        public RegisterViewController (IntPtr handle) : base (handle) {}
+        public RegisterViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {
@@ -39,7 +39,7 @@ namespace Gabber.iOS
             {
                 View.ViewWithTag(1).BecomeFirstResponder();
             }
-            else if (_field.Tag == 1) 
+            else if (_field.Tag == 1)
             {
                 View.ViewWithTag(2).BecomeFirstResponder();
             }
@@ -75,14 +75,13 @@ namespace Gabber.iOS
             }
             else
             {
-				PasswordRegisterTextField.BecomeFirstResponder();
-				PasswordRegisterTextField.ResignFirstResponder();
+                PasswordRegisterTextField.BecomeFirstResponder();
+                PasswordRegisterTextField.ResignFirstResponder();
 
                 RegisterUIButton.Enabled = false;
-                var client = new RestClient();
                 RegisterActivityIndicator.StartAnimating();
                 Logger.LOG_EVENT_WITH_ACTION("REGISTER", "ATTEMPT");
-                var response = await client.Register(fname, email, passw);
+                var response = await RestClient.Register(fname, email, passw);
                 RegisterActivityIndicator.StopAnimating();
                 RegisterUIButton.Enabled = true;
 
@@ -109,14 +108,14 @@ namespace Gabber.iOS
             PresentViewController(errorDialog, true, null);
         }
 
-		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-		{
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
             base.PrepareForSegue(segue, sender);
 
             if (segue.Identifier == "ShowVerifySegue")
             {
                 NavigationItem.BackBarButtonItem = new UIBarButtonItem() { Title = "" };
             }
-		}
-	}
+        }
+    }
 }

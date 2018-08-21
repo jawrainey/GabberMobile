@@ -12,7 +12,7 @@ namespace Gabber.iOS
 {
     public partial class LoginViewController : UIViewController
     {
-        public LoginViewController (IntPtr handle) : base (handle) {}
+        public LoginViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {
@@ -30,7 +30,7 @@ namespace Gabber.iOS
             PasswordTextField.ShouldReturn += NavigateNext;
         }
 
-		bool NavigateNext(UITextField _field)
+        bool NavigateNext(UITextField _field)
         {
             // If 'Next' on the email field is pressed, then
             // make the password field the focus, otherwise 
@@ -63,17 +63,16 @@ namespace Gabber.iOS
             {
                 ErrorMessageDialog(StringResources.common_ui_forms_email_validate_invalid);
             }
-            else 
+            else
             {
                 PasswordTextField.BecomeFirstResponder();
                 PasswordTextField.ResignFirstResponder();
 
                 LoginUIButton.Enabled = false;
-                var client = new RestClient();
                 LoginActivityIndicator.StartAnimating();
 
                 Logger.LOG_EVENT_WITH_ACTION("LOGIN", "ATTEMPT");
-                var response = await client.Login(email, passw);
+                var response = await RestClient.Login(email, passw);
                 LoginActivityIndicator.StopAnimating();
                 LoginUIButton.Enabled = true;
 

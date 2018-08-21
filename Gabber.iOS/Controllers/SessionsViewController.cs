@@ -18,10 +18,10 @@ namespace Gabber.iOS
 
         SessionsCollectionViewSource SessionsViewSource;
 
-		public SessionsViewController (IntPtr handle) : base (handle) {}
+        public SessionsViewController(IntPtr handle) : base(handle) { }
 
         [Action("UnwindToSessionsViewController:")]
-        public void UnwindToSessionsViewController(UIStoryboardSegue segue) {}
+        public void UnwindToSessionsViewController(UIStoryboardSegue segue) { }
 
         public override void ViewDidLoad()
         {
@@ -39,8 +39,8 @@ namespace Gabber.iOS
             SessionsUpload.SetTitle(StringResources.sessions_ui_submit_button, UIControlState.Normal);
         }
 
-		public override void ViewDidAppear(bool animated)
-		{
+        public override void ViewDidAppear(bool animated)
+        {
             UpdateSessionsSource();
             base.ViewDidAppear(animated);
             TabBarController.Title = StringResources.sessions_ui_title;
@@ -48,7 +48,7 @@ namespace Gabber.iOS
             var prefs = NSUserDefaults.StandardUserDefaults;
             if (prefs.BoolForKey("SESSION_RECORDED"))
             {
-                var session = Queries.LastInterviewSession;
+                var session = Queries.LastInterviewSession();
                 var _content = string.Format(
                     StringResources.debriefing_ui_page_first_content,
                     Queries.ProjectById(session.ProjectID).Title,
@@ -59,8 +59,8 @@ namespace Gabber.iOS
                 var dialog = new MessageDialog().BuildErrorMessageDialog(StringResources.debriefing_ui_page_first_title, "");
                 dialog.SetValueForKey(ResearchConsent.BuildFromHTML(_content), new NSString("attributedMessage"));
                 PresentViewController(dialog, true, null);
-             }
-		}
+            }
+        }
 
         // Index is optional such that the method could be used onSelected(item)
         public async void UploadSessions(int index, bool recursive)
@@ -75,7 +75,7 @@ namespace Gabber.iOS
             SessionsCollectionView.ReloadItems(new NSIndexPath[] { item });
             Logger.LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "ATTEMPT");
             // TODO: creating a new instance of API for each view, urgh.
-            var didUpload = await new RestClient().Upload(sessions[index]);
+            var didUpload = await RestClient.Upload(sessions[index]);
 
             if (didUpload)
             {
@@ -85,8 +85,8 @@ namespace Gabber.iOS
                 Session.Connection.Update(sessions[index]);
                 sessions.Remove(sessions[index]);
                 SessionsCollectionView.ReloadData();
-				PresentViewController(new MessageDialog().BuildErrorMessageDialog(
-					StringResources.sessions_ui_message_upload_success, ""), true, null);
+                PresentViewController(new MessageDialog().BuildErrorMessageDialog(
+                    StringResources.sessions_ui_message_upload_success, ""), true, null);
                 // Try to upload the next session
                 if (recursive) UploadSessions(0, true);
             }
@@ -135,5 +135,5 @@ namespace Gabber.iOS
                 SessionsInstructionsBody.Hidden = false;
             }
         }
-	}
+    }
 }
