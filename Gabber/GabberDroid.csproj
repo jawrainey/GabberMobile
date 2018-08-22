@@ -283,8 +283,6 @@
     <AndroidResource Include="Resources\layout\consent_summary.axml" />
     <AndroidResource Include="Resources\layout\project_headercell.axml" />
     <AndroidResource Include="Resources\layout\project_descriptionCell.axml" />
-    <AndroidResource Include="Resources\layout\project_promptCell.axml" />
-    <AndroidResource Include="Resources\layout\project_buttonCell.axml" />
     <AndroidResource Include="Resources\drawable-xxhdpi\test.png" />
   </ItemGroup>
   <ItemGroup />

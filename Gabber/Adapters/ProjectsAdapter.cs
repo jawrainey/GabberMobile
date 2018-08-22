@@ -29,20 +29,7 @@ namespace Gabber.Adapters
 
         public override bool HasStableIds => true;
 
-        public override int ChildTypeCount => 3;
-
-        public override int GetChildType(int groupPosition, int childPosition)
-        {
-            int numPrompts = projects[groupPosition].Prompts.Count;
-
-            // 0 = description cell
-            // 1 = prompt cell
-            // 2 = button cell
-
-            if (childPosition == 0) return 0;
-            if (childPosition - 1 >= numPrompts) return 2;
-            return 1;
-        }
+        public override int ChildTypeCount => 1;
 
         public event EventHandler<int> ProjectClicked;
 
@@ -59,22 +46,12 @@ namespace Gabber.Adapters
 
         public override long GetChildId(int groupPosition, int childPosition)
         {
-            int viewType = GetChildType(groupPosition, childPosition);
-
-            switch (viewType)
-            {
-                case 0:
-                    return projects[groupPosition].ID + randomOffset;
-                case 1:
-                    return projects[groupPosition].Prompts[childPosition - 1].ID;
-                default:
-                    return projects[groupPosition].ID - randomOffset;
-            }
+            return projects[groupPosition].ID + randomOffset;
         }
 
         public override int GetChildrenCount(int groupPosition)
         {
-            return projects[groupPosition].Prompts.Count + 2;
+            return 1;
         }
 
         public override View GetChildView(int groupPosition, int childPosition, bool isLastChild, View convertView, ViewGroup parent)
@@ -86,41 +63,24 @@ namespace Gabber.Adapters
             {
                 viewHolder = new ProjectChildViewHolder();
 
-                switch (viewType)
-                {
-                    case 0:
-                        convertView = LayoutInflater.From(parent.Context)
-                                                .Inflate(Resource.Layout.project_descriptionCell, parent, false);
-                        viewHolder.Text = convertView.FindViewById<TextView>(Resource.Id.project_description);
-                        break;
-
-                    case 1:
-                        convertView = LayoutInflater.From(parent.Context)
-                                                    .Inflate(Resource.Layout.project_promptCell, parent, false);
-                        viewHolder.Text = convertView.FindViewById<TextView>(Resource.Id.prompt_text);
-                        break;
-                    default:
-                        convertView = LayoutInflater.From(parent.Context)
-                                                .Inflate(Resource.Layout.project_buttonCell, parent, false);
-                        viewHolder.Button = convertView.FindViewById<Button>(Resource.Id.project_startBtn);
-                        break;
-                }
+                convertView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.project_descriptionCell, parent, false);
+                viewHolder.DescriptionText = convertView.FindViewById<TextView>(Resource.Id.project_description);
+                viewHolder.PromptText = convertView.FindViewById<TextView>(Resource.Id.project_topics);
+                viewHolder.Button = convertView.FindViewById<Button>(Resource.Id.project_startBtn);
 
                 convertView.Tag = viewHolder;
             }
 
-            switch (viewType)
+            viewHolder.DescriptionText.Text = projects[groupPosition].Description;
+
+            viewHolder.PromptText.Text = "";
+
+            foreach (Prompt prompt in projects[groupPosition].Prompts)
             {
-                case 0:
-                    viewHolder.Text.Text = projects[groupPosition].Description;
-                    break;
-                case 1:
-                    viewHolder.Text.Text = projects[groupPosition].Prompts[childPosition - 1].Text;
-                    break;
-                default:
-                    viewHolder.SetUpButton(OnProjectClick, groupPosition);
-                    break;
+                viewHolder.PromptText.Text += "\n" + prompt.Text + "\n";
             }
+
+            viewHolder.SetUpButton(OnProjectClick, groupPosition);
 
             return convertView;
         }
@@ -173,7 +133,8 @@ namespace Gabber.Adapters
 
     public class ProjectChildViewHolder : Java.Lang.Object
     {
-        public TextView Text { get; set; }
+        public TextView DescriptionText { get; set; }
+        public TextView PromptText { get; set; }
         public Button Button { get; set; }
         private int parentIndex;
         private Action<int> buttonClicked;
