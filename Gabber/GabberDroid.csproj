@@ -35,9 +35,6 @@
     <AndroidHttpClientHandlerType>System.Net.Http.HttpClientHandler</AndroidHttpClientHandlerType>
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -144,9 +141,6 @@
     <Reference Include="Xamarin.Android.Support.Media.Compat">
       <HintPath>..\packages\Xamarin.Android.Support.Media.Compat.27.0.2\lib\MonoAndroid81\Xamarin.Android.Support.Media.Compat.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.Support.Transition">
-      <HintPath>..\packages\Xamarin.Android.Support.Transition.27.0.2\lib\MonoAndroid81\Xamarin.Android.Support.Transition.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\packages\Xamarin.Android.Support.v4.27.0.2\lib\MonoAndroid81\Xamarin.Android.Support.v4.dll</HintPath>
       <Private>False</Private>
@@ -176,6 +170,18 @@
     <Reference Include="Xamarin.GooglePlayServices.Base">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Base.60.1142.1\lib\MonoAndroid80\Xamarin.GooglePlayServices.Base.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.Transition">
+      <HintPath>..\packages\Xamarin.Android.Support.Transition.27.0.2\lib\MonoAndroid81\Xamarin.Android.Support.Transition.dll</HintPath>
+    </Reference>
+    <Reference Include="FFImageLoading">
+      <HintPath>..\packages\Xamarin.FFImageLoading.2.4.3.840\lib\MonoAndroid10\FFImageLoading.dll</HintPath>
+    </Reference>
+    <Reference Include="FFImageLoading.Platform">
+      <HintPath>..\packages\Xamarin.FFImageLoading.2.4.3.840\lib\MonoAndroid10\FFImageLoading.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="FFImageLoading.Transformations">
+      <HintPath>..\packages\Xamarin.FFImageLoading.Transformations.2.4.3.840\lib\MonoAndroid10\FFImageLoading.Transformations.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -193,8 +199,8 @@
     <Compile Include="Activities\Onboarding.cs" />
     <Compile Include="Adapters\SessionsAdapter.cs" />
     <Compile Include="Adapters\SharedPager.cs" />
-    <Compile Include="Fragments\Projects.cs" />
-    <Compile Include="Fragments\Sessions.cs" />
+    <Compile Include="Fragments\ProjectsFragment.cs" />
+    <Compile Include="Fragments\SessionsFragment.cs" />
     <Compile Include="Fragments\About.cs" />
     <Compile Include="Activities\RegisterVerification.cs" />
     <Compile Include="Activities\VerifyEmail.cs" />
@@ -275,6 +281,11 @@
     <AndroidResource Include="Resources\layout\consent_research.axml" />
     <AndroidResource Include="Resources\layout\consent_conversation.axml" />
     <AndroidResource Include="Resources\layout\consent_summary.axml" />
+    <AndroidResource Include="Resources\layout\project_headercell.axml" />
+    <AndroidResource Include="Resources\layout\project_descriptionCell.axml" />
+    <AndroidResource Include="Resources\layout\project_promptCell.axml" />
+    <AndroidResource Include="Resources\layout\project_buttonCell.axml" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\test.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

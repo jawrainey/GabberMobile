@@ -6,6 +6,7 @@ using Android.Preferences;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Firebase.Analytics;
@@ -16,34 +17,33 @@ using GabberPCL.Resources;
 
 namespace Gabber.Fragments
 {
-    public class Projects : Android.Support.V4.App.Fragment
+    public class ProjectsFragment : Android.Support.V4.App.Fragment
     {
-		private FirebaseAnalytics firebaseAnalytics;
+        private FirebaseAnalytics firebaseAnalytics;
         private List<Project> _projects;
         private SwipeRefreshLayout refresher;
-        // Made availiable to update projects on data load.
         private ProjectsAdapter adapter;
+        private ExpandableListView listView;
         // Prevents multiple calls being made to the API when one is in progress.
         private Task LoadingProjects;
         // One instance to rule them all
-        static Projects instance;
+        static ProjectsFragment instance;
 
         private bool refreshed;
 
-        public static Projects NewInstance()
+        public static ProjectsFragment NewInstance()
         {
-            if (instance == null) instance = new Projects { Arguments = new Bundle() };
+            if (instance == null) instance = new ProjectsFragment { Arguments = new Bundle() };
             return instance;
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var rootView = inflater.Inflate(Resource.Layout.projects_frag, null);
-            var projects = rootView.FindViewById<RecyclerView>(Resource.Id.projects);
-            projects.SetLayoutManager(new LinearLayoutManager(Activity));
 
             var instructions = rootView.FindViewById<TextView>(Resource.Id.projectInstructions);
             instructions.Text = StringResources.projects_ui_instructions;
+            listView = rootView.FindViewById<ExpandableListView>(Resource.Id.projects);
 
             var toolbar = rootView.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             ((AppCompatActivity)Activity).SetSupportActionBar(toolbar);
@@ -52,23 +52,41 @@ namespace Gabber.Fragments
             return rootView;
         }
 
-		public override void OnActivityCreated(Bundle savedInstanceState)
+        public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
-			firebaseAnalytics = FirebaseAnalytics.GetInstance(Context);
+            base.OnViewCreated(view, savedInstanceState);
+
+            DisplayMetrics displaymetrics = new DisplayMetrics();
+            Activity.WindowManager.DefaultDisplay.GetMetrics(displaymetrics);
+            int screenWidth = displaymetrics.WidthPixels;
+
+            if (Build.VERSION.SdkInt < BuildVersionCodes.JellyBeanMr2)
+            {
+                listView.SetIndicatorBounds(screenWidth - 120, screenWidth - 30);
+            }
+            else
+            {
+                listView.SetIndicatorBoundsRelative(screenWidth - 120, screenWidth - 30);
+            }
+        }
+
+        public override void OnActivityCreated(Bundle savedInstanceState)
+        {
+            firebaseAnalytics = FirebaseAnalytics.GetInstance(Context);
 
             base.OnCreate(savedInstanceState);
-             _projects = Queries.AllProjects();
+            _projects = Queries.AllProjects();
 
             // It is not possible to SetAdapter in OnActivityCreated as accessing the rootView.
             adapter = new ProjectsAdapter(_projects);
             adapter.ProjectClicked += OnProjectClick;
-            Activity.FindViewById<RecyclerView>(Resource.Id.projects).SetAdapter(adapter);
-            
+            listView.SetAdapter(adapter);
+
             refresher = Activity.FindViewById<SwipeRefreshLayout>(Resource.Id.projectsRefresher);
             refresher.SetColorSchemeResources(Resource.Color.primary_material_dark);
             refresher.Refresh += Refresher_Refresh;
 
-            if(!refreshed) LoadDataIfNotLoading();            
+            if (!refreshed) LoadDataIfNotLoading();
         }
 
         private void Refresher_Refresh(object sender, System.EventArgs e)
@@ -110,26 +128,26 @@ namespace Gabber.Fragments
         void OnProjectClick(object sender, int position)
         {
             var _prefs = PreferenceManager.GetDefaultSharedPreferences(Activity);
-			LOG_SELECTED_PROJECT(position);
+            LOG_SELECTED_PROJECT(position);
             var intent = new Intent(Activity.ApplicationContext, typeof(PreparationActivity));
             // The unique ID used to lookup associated prompts (URLs and text).
             _prefs.Edit().PutInt("SelectedProjectID", _projects[position].ID).Commit();
             StartActivity(intent);
         }
-      
-		private void LOG_SWIPE_REFRESH()
+
+        private void LOG_SWIPE_REFRESH()
         {
             var bundle = new Bundle();
-			bundle.PutInt("PROJECT_COUNT", _projects.Count);
-			firebaseAnalytics.LogEvent("SWIPE_REFRESH", bundle);
+            bundle.PutInt("PROJECT_COUNT", _projects.Count);
+            firebaseAnalytics.LogEvent("SWIPE_REFRESH", bundle);
         }
 
-		private void LOG_SELECTED_PROJECT(int position)
-		{
-			var bundle = new Bundle();
+        private void LOG_SELECTED_PROJECT(int position)
+        {
+            var bundle = new Bundle();
             bundle.PutString("PROJECT", _projects[position].Title);
-			bundle.PutString("USER", Session.ActiveUser.Email);
-			firebaseAnalytics.LogEvent("PROJECT_SELECTED", bundle);
-		}
+            bundle.PutString("USER", Session.ActiveUser.Email);
+            firebaseAnalytics.LogEvent("PROJECT_SELECTED", bundle);
+        }
     }
 }

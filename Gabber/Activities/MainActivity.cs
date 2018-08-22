@@ -93,11 +93,11 @@ namespace Gabber
             switch (id)
             {
                 case Resource.Id.menu_projects:
-                    fragment = Fragments.Projects.NewInstance();
+                    fragment = Fragments.ProjectsFragment.NewInstance();
 					LOG_FRAGMENT_SELECTED("projects");
                     break;
                 case Resource.Id.menu_gabbers:
-                    fragment = Fragments.Sessions.NewInstance();
+                    fragment = Fragments.SessionsFragment.NewInstance();
 					LOG_FRAGMENT_SELECTED("recordings");
                     break;
                 case Resource.Id.menu_about:
@@ -105,7 +105,7 @@ namespace Gabber
 					LOG_FRAGMENT_SELECTED("about");
                     break;
                 default:
-                    fragment = Fragments.Projects.NewInstance();
+                    fragment = Fragments.ProjectsFragment.NewInstance();
                     break;
             }
 
