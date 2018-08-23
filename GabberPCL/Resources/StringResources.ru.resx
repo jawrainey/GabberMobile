@@ -12,7 +12,6 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-
     <!-- MAIN MENU -->
     <data name="common.menu.projects" xml:space="preserve">
         <value>Проекты</value>
@@ -23,7 +22,6 @@
     <data name="common.menu.about" xml:space="preserve">
         <value>О приложении </value>
     </data>
-    
     <!-- SHARED UI FORMS -->
     <data name="common.ui.forms.email.label" xml:space="preserve">
         <value>Адрес электронной почты</value>
@@ -40,7 +38,6 @@
     <data name="common.ui.forms.password.validate.empty" xml:space="preserve">
         <value>Введите пароль.</value>
     </data>
-
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
         <value>Добро пожаловать в Gabber</value>
@@ -48,7 +45,6 @@
     <data name="onboarding.ui.page.zero.content" xml:space="preserve">
         <value>Gabber использует темы для структурирования и записи аудио, которые впоследствии используются на веб-сайте для понимания того кто присутствовал и кто участвовал в  обсуждение.</value>
     </data>
-    
     <!-- ONBOARDING PAGE: 1 -->
     <data name="onboarding.ui.page.first.title" xml:space="preserve">
         <value>Выбрать проект</value>
@@ -56,7 +52,6 @@
     <data name="onboarding.ui.page.first.content" xml:space="preserve">
         <value>Нажмите на проект в котором вы хотите участвовать. Проекты содержат темы, которые помогут структурировать ваш разговор.</value>
     </data>
-
     <!-- ONBOARDING PAGE: 2 -->
     <data name="onboarding.ui.page.second.title" xml:space="preserve">
         <value>Добавить участников</value>
@@ -64,7 +59,6 @@
     <data name="onboarding.ui.page.second.content" xml:space="preserve">
         <value>Все, что вам нужно - это имя и адрес электронной почты людей участвующих в разговоре.</value>
     </data>
-
     <!-- ONBOARDING PAGE: 3 -->
     <data name="onboarding.ui.page.third.title" xml:space="preserve">
         <value>Начать запись</value>
@@ -72,7 +66,6 @@
     <data name="onboarding.ui.page.third.content" xml:space="preserve">
         <value>В процессе записи, нажмите на тему, чтобы ее выбрать и начать ее обсуждение.</value>
     </data>
-
     <!-- ONBOARDING PAGE: 4 -->
     <data name="onboarding.ui.page.fourth.title" xml:space="preserve">
         <value>Выгрузить на сервер и  отправить запрос(ы) на согласие</value>
@@ -80,7 +73,6 @@
     <data name="onboarding.ui.page.fourth.content" xml:space="preserve">
         <value>По завершению разговора, выгрузите запись на сервер. После чего все участники получат уведомление (запрос на согласие) и могут выбрать, степень публичности/доступности записи.</value>
     </data>
-    
     <!-- USER LOGIN SCREEN: API errors -->
     <data name="login.api.error.GENERAL" xml:space="preserve">
         <value>Произошла неизвестная ошибка.</value>
@@ -94,15 +86,13 @@
     <data name="login.api.error.auth.USER_404" xml:space="preserve">
         <value>На данный адрес электронной почты не зарегистрировано пользователей.</value>
     </data>
-    
     <!-- USER LOGIN SCREEN: UI -->
-     <data name="login.ui.title" xml:space="preserve">
+    <data name="login.ui.title" xml:space="preserve">
         <value>Войти в Gabber</value>
     </data>
     <data name="login.ui.submit.button" xml:space="preserve">
         <value>Логин</value>
     </data>
-
     <!-- USER REGISTER SCREEN: API errors -->
     <data name="register.api.error.auth.INVALID_PASSWORD" xml:space="preserve">
         <value>Пароль указан неверно.</value>
@@ -110,7 +100,6 @@
     <data name="register.api.error.auth.USER_404" xml:space="preserve">
         <value>На данный адрес электронной почты не зарегистрировано пользователей.</value>
     </data>
-
     <!-- USER REGISTER SCREEN: UI -->
     <data name="register.ui.title" xml:space="preserve">
         <value>Создать учетную запись в Gabber</value>
@@ -119,17 +108,15 @@
         <value>ФИО</value>
     </data>
     <data name="register.ui.terms.label" xml:space="preserve">
-        <value>&lt;i>Продолжая использовать Gabber, вы соглашаетесь с нашими &lt;a href={0}/terms>Условиями использования&lt;/a> и &lt;a href={0}/privacy>Политикой конфиденциальности&lt;/a>&lt;/i></value>
+        <value>&lt;i&gt;Продолжая использовать Gabber, вы соглашаетесь с нашими &lt;a href={0}/terms&gt;Условиями использования&lt;/a&gt; и &lt;a href={0}/privacy&gt;Политикой конфиденциальности&lt;/a&gt;&lt;/i&gt;</value>
     </data>
     <data name="register.ui.submit.button" xml:space="preserve">
         <value>Зарегистрироваться</value>
     </data>
-    
     <!-- USER REGISTER SCREEN: UI errors -->
     <data name="register.ui.fullname.validate.empty" xml:space="preserve">
         <value>Поле ФИО не заполнено</value>
     </data>
-
     <!-- REGISTER VERIFICATION PAGE -->
     <data name="register.verify.ui.page.title" xml:space="preserve">
         <value>Подтверждение электронной почты</value>
@@ -143,7 +130,6 @@
     <data name="register.verify.ui.button.openemail" xml:space="preserve">
         <value>Открыть клиент электронной почты по умолчанию.</value>
     </data>
-
     <!-- REGISTER VERIFYING EMAIL PAGE -->
     <data name="register.verifying.activity.label" xml:space="preserve">
         <value>Gabber проведет проверку электронной почты</value>
@@ -162,7 +148,6 @@
         <value>Авторизоваться</value>
         <comment>Appears when verification fails</comment>
     </data>
-    
     <!-- REGISTER VERIFYING EMAIL PAGE: API errors -->
     <data name="register.verifying.api.error.auth.ALREADY_VERIFIED" xml:space="preserve">
         <value>Ваша учетная запись уже проверена. Попробуйте авторизоваться в системе по логину и паролю.</value>
@@ -173,22 +158,26 @@
     <data name="register.verifying.api.error.auth.TOKEN_EXPIRED" xml:space="preserve">
         <value>URL-адрес в ссылке, которую вы нажали, истек. Попробуйте выполнить вход через экран авторизации или сбросить пароль.</value>
     </data>
-    
     <!-- PROJECTS FRAGMENT -->
     <data name="projects.ui.title" xml:space="preserve">
         <value>Проекты</value>
-    </data>    
+    </data>
     <data name="projects.ui.instructions" xml:space="preserve">
         <value>Выберите проект, в который вы хотите участвовать  и на темы которого вы хотите поговорить</value>
     </data>
     <data name="projects.ui.fetching" xml:space="preserve">
         <value>Fetching projects...</value>
     </data>
-
+    <data name="projects.ui.topics" xml:space="preserve">
+        <value>Topics for discussion:</value>
+    </data>
+    <data name="projects.ui.get.started.button" xml:space="preserve">
+        <value>Get Started</value>
+    </data>
     <!-- SESSIONS FRAGMENT -->
     <data name="sessions.ui.title" xml:space="preserve">
         <value>Записи сохранены</value>
-    </data>    
+    </data>
     <data name="sessions.ui.header.instructions" xml:space="preserve">
         <value>У вас имеются аудиозаписи, которые вы сделали но которые еще не выгружены на веб-сайт.</value>
     </data>
@@ -207,7 +196,6 @@
     <data name="sessions.ui.message.upload.inprogress" xml:space="preserve">
         <value>Разговор выгружается в данный момент</value>
     </data>
-
     <!-- ABOUT FRAGMENT -->
     <data name="about.ui.title" xml:space="preserve">
         <value>Что такое Gabber?</value>
@@ -218,7 +206,6 @@
     <data name="about.ui.url.description" xml:space="preserve">
         <value>Прослушать записи Gabber:</value>
     </data>
-    
     <!-- PARTICIPANTS SCREEN -->
     <data name="participants.ui.title" xml:space="preserve">
         <value>Участники</value>
@@ -232,7 +219,6 @@
     <data name="participants.ui.startrecording.button" xml:space="preserve">
         <value>Choose Consent</value>
     </data>
-    
     <!-- PARTICIPANTS SCREEN VALIDATION -->
     <data name="participants.ui.validation.noneselected" xml:space="preserve">
         <value>Необходимо выбрать хотя бы одного участника</value>
@@ -249,18 +235,16 @@
     <data name="participants.ui.validation.oneselected.cancel" xml:space="preserve">
         <value>Отмена</value>
     </data>
-    
     <!-- ADD PARTICIPANT DIALOG -->
     <data name="participants.ui.dialog.add.title" xml:space="preserve">
         <value>Добавить нового участника</value>
-    </data>    
+    </data>
     <data name="participants.ui.dialog.add.positive" xml:space="preserve">
         <value>Добавить</value>
     </data>
     <data name="participants.ui.dialog.add.negative" xml:space="preserve">
         <value>Отмена</value>
     </data>
-
     <!-- RESEARCH CONSENT -->
     <data name="consent.research.toolbar.title" xml:space="preserve">
         <value>Согласие на использование в исследование</value>
@@ -270,14 +254,13 @@
     </data>
     <data name="consent.research.title" xml:space="preserve">
         <value>Как ваш разговор будет использоваться для исследования</value>
-    </data>    
+    </data>
     <data name="consent.research.body" xml:space="preserve">
-        <value>Разговор который вы собираетесь записать станет частью исследовательского проекта &lt;b>({0})&lt;/b>, созданного &lt;b>{1}&lt;/b>. Ваша запись и связанные с ними метаданные будут доступны исследователям и помогут понять, как цифровые инструменты могут поддерживать вас и других людей, проводящих качественный анализ и как аудио данные могут сделать его более доступным. Любая опубликованная работа, вытекающая из данных, полученных через Gabber никогда не будет включать в себя детали, которые могут быть использованы, чтобы идентифицировать вас или других участников.</value>
+        <value>Разговор который вы собираетесь записать станет частью исследовательского проекта &lt;b&gt;({0})&lt;/b&gt;, созданного &lt;b&gt;{1}&lt;/b&gt;. Ваша запись и связанные с ними метаданные будут доступны исследователям и помогут понять, как цифровые инструменты могут поддерживать вас и других людей, проводящих качественный анализ и как аудио данные могут сделать его более доступным. Любая опубликованная работа, вытекающая из данных, полученных через Gabber никогда не будет включать в себя детали, которые могут быть использованы, чтобы идентифицировать вас или других участников.</value>
     </data>
     <data name="consent.research.form" xml:space="preserve">
         <value>Все участники понимают и соглашаются что эта запись и анонимизированные личные данные,  будут использоваться в исследовательской работе.</value>
     </data>
-
     <!-- Gabber CONSENT -->
     <data name="consent.gabber.toolbar.title" xml:space="preserve">
         <value>Информированное согласие о разговоре</value>
@@ -285,47 +268,44 @@
     <data name="consent.gabber.submit" xml:space="preserve">
         <value>Следующий</value>
     </data>
-
     <data name="consent.gabber.title.control" xml:space="preserve">
         <value>Как вы контролируете собираемые данные</value>
-    </data>    
+    </data>
     <data name="consent.gabber.body.control" xml:space="preserve">
         <value>Gabber дает вам контроль над тем, как вы хотите, чтобы аудио запись вашего разговора была использована, и кто имел возможность прослушивать и комментировать ее. Gabber работает лучше всего, когда другие люди имеют доступ и могут прослушать вашу запись чтобы учиться на вашем  опыте.
 
-Все участники получат электронное письмо с уникальной ссылкой на аудиозапись, где вы сможете просмотреть или изменить тип своего согласие на то, кто получит доступ к аудиозаписи. Будьте внимательны, это электронное письмо может попасть в папку &lt;b>СПАМ &lt;/b>.
-&lt;br>
-&lt;br>
+Все участники получат электронное письмо с уникальной ссылкой на аудиозапись, где вы сможете просмотреть или изменить тип своего согласие на то, кто получит доступ к аудиозаписи. Будьте внимательны, это электронное письмо может попасть в папку &lt;b&gt;СПАМ &lt;/b&gt;.
+&lt;br&gt;
+&lt;br&gt;
 Ваш разговор будет доступен только участникам беседы в течение первых 24 часов. После этого периода аудиозапись будет доступна на основании согласия, которое вы дали ниже, или если вы впоследствии изменили его в письме.
-&lt;br>
-&lt;br>
+&lt;br&gt;
+&lt;br&gt;
 Будучи частью этого разговора вы станете участником проекта, где вы также сможете прослушивать другие разговоры проекта и помочь в их аннотации и разборе, через веб-сайт.
 </value>
     </data>
-    
     <data name="consent.gabber.title.decision" xml:space="preserve">
         <value>Кому бы вы хотели открыть доступ к вашему разговору?</value>
-    </data>    
+    </data>
     <data name="consent.gabber.body.decision" xml:space="preserve">
         <value>Исследователи и администраторы проекта могут получить доступ к записи после первоначального периода запрета (24 часа).</value>
     </data>
-
     <!-- Gabber CONSENT Public -->
     <data name="consent.gabber.consent.type.public.full" xml:space="preserve">
         <value>Ваша аудиозапись станет доступна для обнаружения и прослушивания, в том числе для вас, других участников и членов проекта.</value>
     </data>
-        <data name="consent.gabber.consent.type.public.brief" xml:space="preserve">
+    <data name="consent.gabber.consent.type.public.brief" xml:space="preserve">
         <value>Любой посетитель Gabber</value>
     </data>
     <!-- Gabber CONSENT Members -->
     <data name="consent.gabber.consent.type.members.full" xml:space="preserve">
-        <value>В настоящее время в этом проекте &lt;b>{0}&lt;/b> участников и &lt;b>{1}&lt;/b> исследователей.</value>
+        <value>В настоящее время в этом проекте &lt;b&gt;{0}&lt;/b&gt; участников и &lt;b&gt;{1}&lt;/b&gt; исследователей.</value>
     </data>
     <data name="consent.gabber.consent.type.members.brief" xml:space="preserve">
-        <value>В настоящее время в этом проекте &lt;b>{0}&lt;/b> участников и &lt;b>{1}&lt;/b> исследователей.</value>
+        <value>В настоящее время в этом проекте &lt;b&gt;{0}&lt;/b&gt; участников и &lt;b&gt;{1}&lt;/b&gt; исследователей.</value>
     </data>
     <!-- Gabber CONSENT Private -->
     <data name="consent.gabber.consent.type.private.full" xml:space="preserve">
-        <value>&lt;b>{0}&lt;/b> являются участниками этого разговора.</value>
+        <value>&lt;b&gt;{0}&lt;/b&gt; являются участниками этого разговора.</value>
     </data>
     <data name="consent.gabber.consent.type.private.brief" xml:space="preserve">
         <value>только для участники</value>
@@ -333,7 +313,6 @@
     <data name="conversation.consent.gabber.submit" xml:space="preserve">
         <value>обзор информированного согласия</value>
     </data>
-
     <!-- Consent Summary -->
     <data name="consent.summary.title" xml:space="preserve">
         <value>Резюме информированного согласия</value>
@@ -341,7 +320,6 @@
     <data name="consent.summary.subtitle" xml:space="preserve">
         <value>Резюме согласия которое вы дали, и проекта в котором вы принимаете участие перечислены ниже:</value>
     </data>
-    
     <data name="consent.summary.screen.content.project.title" xml:space="preserve">
         <value>Проект</value>
     </data>
@@ -361,7 +339,7 @@
         <value>Информированное согласие о разговоре</value>
     </data>
     <data name="consent.summary.screen.content.conversation.desc" xml:space="preserve">
-        <value>Вы согласились что этот разговор, будет доступен для &lt;b>{0}&lt;/b>.</value>
+        <value>Вы согласились что этот разговор, будет доступен для &lt;b&gt;{0}&lt;/b&gt;.</value>
     </data>
     <data name="consent.summary.screen.content.embargo.title" xml:space="preserve">
         <value>Запрет на разговор</value>
@@ -372,7 +350,6 @@
     <data name="consent.summary.screen.action" xml:space="preserve">
         <value>Начать запись</value>
     </data>
-    
     <!-- RECORD SCREEN -->
     <data name="recording.ui.title" xml:space="preserve">
         <value>Запись разговоров</value>
@@ -383,7 +360,6 @@
     <data name="recording.ui.instructions.header" xml:space="preserve">
         <value>Выберите тему, чтобы начать запись и выберите темы, когда разговор изменится, чтобы пометить запись</value>
     </data>
-
     <!-- RECORD SCREEN RECORD PERMISSION -->
     <data name="recording.ui.permission.title" xml:space="preserve">
         <value>Требуется разрешение</value>
@@ -397,7 +373,6 @@
     <data name="recording.ui.permission.button.positive" xml:space="preserve">
         <value>Настроить</value>    
     </data>
-    
     <!-- RECORD SCREEN FINISH -->
     <data name="recording.ui.dialog.finish.title" xml:space="preserve">
         <value>Вы затронули {0} {1} темы. Вы действительно хотите завершить эту запись?</value>
@@ -407,8 +382,7 @@
     </data>
     <data name="recording.ui.dialog.finish.negative" xml:space="preserve">
         <value>Нет</value>    
-    </data>  
-
+    </data>
     <!-- RECORD SCREEN BACK -->
     <data name="recording.ui.dialog.back.title" xml:space="preserve">
         <value>Осуществляется запись </value>
@@ -421,8 +395,7 @@
     </data>
     <data name="recording.ui.dialog.back.negative" xml:space="preserve">
         <value>Продолжить запись</value>    
-    </data>  
-
+    </data>
     <!-- DEBRIEFING BUTTONS -->
     <data name="debriefing.ui.button.hide" xml:space="preserve">
         <value>Свернуть</value>
@@ -430,22 +403,21 @@
     <data name="debriefing.ui.button.upload" xml:space="preserve">
         <value>Выгрузить на сервер</value>
     </data>
-
     <!-- DEBRIEFING PAGE: 1 -->
     <data name="debriefing.ui.page.first.title" xml:space="preserve">
         <value>следующие шаги</value>
     </data>
     <data name="debriefing.ui.page.first.content" xml:space="preserve">
-        <value>&lt;br>Благодарим вас за то, что поделились вашим опытом для &lt;b>{0}&lt;/b>, который успешно сохранен и готов к выгрузке на сервер.
-&lt;br>
-&lt;br>
+        <value>&lt;br&gt;Благодарим вас за то, что поделились вашим опытом для &lt;b&gt;{0}&lt;/b&gt;, который успешно сохранен и готов к выгрузке на сервер.
+&lt;br&gt;
+&lt;br&gt;
 Будучи частью этого разговора вы станете участником проекта, где вы также сможете прослушивать другие разговоры проекта и помочь в их аннотации и разборе, через веб-сайт. Мы надеемся, что вы посетите сайт, чтобы  подискутировать с участниками записанного разговора и другими участниками проекта.
-&lt;br>
-&lt;br>         
-&lt;b>ИЗМЕНИТЬ ВАШЕ ИНФОРМИРОВАННОЕ СОГЛАСИЕ&lt;/b>
-&lt;br>
-&lt;br>
-Запись вашего разговор будет доступен только участникам беседы в течение первых &lt;b>24 часов&lt;/b>. После выгрузки запись на сервер  все участники получат уникальную ссылку, для просмотра и возможного изменения своего согласия, которое вы дали перед записью (&lt;b>{1}&lt;/b>). Это электронное письмо может быть отправлено в СПАМ, поэтому обязательно проверьте папку &lt;b>СПАМ&lt;/b>, если вы не увидели письмо в папке ВХОДЯЩИЕ.
+&lt;br&gt;
+&lt;br&gt;         
+&lt;b&gt;ИЗМЕНИТЬ ВАШЕ ИНФОРМИРОВАННОЕ СОГЛАСИЕ&lt;/b&gt;
+&lt;br&gt;
+&lt;br&gt;
+Запись вашего разговор будет доступен только участникам беседы в течение первых &lt;b&gt;24 часов&lt;/b&gt;. После выгрузки запись на сервер  все участники получат уникальную ссылку, для просмотра и возможного изменения своего согласия, которое вы дали перед записью (&lt;b&gt;{1}&lt;/b&gt;). Это электронное письмо может быть отправлено в СПАМ, поэтому обязательно проверьте папку &lt;b&gt;СПАМ&lt;/b&gt;, если вы не увидели письмо в папке ВХОДЯЩИЕ.
 </value>
     </data>
 </root>

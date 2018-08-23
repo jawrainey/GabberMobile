@@ -5,6 +5,9 @@ using System;
 using System.Collections.Generic;
 using GabberPCL.Models;
 using Java.Lang;
+using Android.Content;
+using Android.Graphics;
+using GabberPCL.Resources;
 
 namespace Gabber.Adapters
 {
@@ -12,9 +15,11 @@ namespace Gabber.Adapters
     {
         private List<Project> projects;
         private long randomOffset;
+        private Context context;
 
-        public ProjectsAdapter(List<Project> projects)
+        public ProjectsAdapter(List<Project> projects, Context context)
         {
+            this.context = context;
             this.randomOffset = new Random().Next(100000, 1000000);
             this.projects = projects;
         }
@@ -65,19 +70,37 @@ namespace Gabber.Adapters
 
                 convertView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.project_descriptionCell, parent, false);
                 viewHolder.DescriptionText = convertView.FindViewById<TextView>(Resource.Id.project_description);
-                viewHolder.PromptText = convertView.FindViewById<TextView>(Resource.Id.project_topics);
+                viewHolder.PromptLayout = convertView.FindViewById<LinearLayout>(Resource.Id.project_topics);
                 viewHolder.Button = convertView.FindViewById<Button>(Resource.Id.project_startBtn);
+
+                //TODO non-english translations
+                convertView.FindViewById<TextView>(Resource.Id.topics_tease).Text = StringResources.projects_ui_topics;
 
                 convertView.Tag = viewHolder;
             }
 
             viewHolder.DescriptionText.Text = projects[groupPosition].Description;
-
-            viewHolder.PromptText.Text = "";
+            viewHolder.PromptLayout.RemoveAllViews();
 
             foreach (Prompt prompt in projects[groupPosition].Prompts)
             {
-                viewHolder.PromptText.Text += "\n" + prompt.Text + "\n";
+                TextView textView = new TextView(context);
+
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MatchParent,
+                    ViewGroup.LayoutParams.WrapContent);
+
+                layoutParams.SetMargins(0, 1, 0, 1);
+                textView.LayoutParameters = layoutParams;
+                textView.SetMinHeight(100);
+                textView.SetPadding(15, 15, 15, 15);
+                textView.SetBackgroundColor(Color.WhiteSmoke); ;
+                textView.Gravity = GravityFlags.Center;
+
+                textView.Text += prompt.Text;
+
+                viewHolder.PromptLayout.AddView(textView);
+
             }
 
             viewHolder.SetUpButton(OnProjectClick, groupPosition);
@@ -105,8 +128,9 @@ namespace Gabber.Adapters
 
                 convertView = LayoutInflater.From(parent.Context)
                                             .Inflate(Resource.Layout.project_headercell, parent, false);
+
                 viewHolder.Title = convertView.FindViewById<TextView>(Resource.Id.project_title);
-                // TODO image
+                //TODO image
 
                 convertView.Tag = viewHolder;
             }
@@ -134,7 +158,7 @@ namespace Gabber.Adapters
     public class ProjectChildViewHolder : Java.Lang.Object
     {
         public TextView DescriptionText { get; set; }
-        public TextView PromptText { get; set; }
+        public LinearLayout PromptLayout { get; set; }
         public Button Button { get; set; }
         private int parentIndex;
         private Action<int> buttonClicked;
@@ -147,6 +171,9 @@ namespace Gabber.Adapters
             parentIndex = parentInd;
             Button.Click -= Button_Click;
             Button.Click += Button_Click;
+
+            //TODO non-english translations
+            Button.Text = StringResources.projects_ui_get_started_button;
         }
 
         private void Button_Click(object sender, EventArgs e)

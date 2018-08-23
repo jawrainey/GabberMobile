@@ -12,7 +12,6 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-
     <!-- MAIN MENU -->
     <data name="common.menu.projects" xml:space="preserve">
         <value>Proyectos</value>
@@ -23,7 +22,6 @@
     <data name="common.menu.about" xml:space="preserve">
         <value>Acerca de</value>
     </data>
-    
     <!-- SHARED UI FORMS -->
     <data name="common.ui.forms.email.label" xml:space="preserve">
         <value>Correo electrónico</value>
@@ -40,7 +38,6 @@
     <data name="common.ui.forms.password.validate.empty" xml:space="preserve">
         <value>Se requiere una contraseña</value>
     </data>
-
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
         <value>Bienvenido a Gabber</value>
@@ -50,7 +47,6 @@
 
     Las siguientes pantallas explican cada paso para crear una conversación usando Gabber.</value>
     </data>
-    
     <!-- ONBOARDING PAGE: 1 -->
     <data name="onboarding.ui.page.first.title" xml:space="preserve">
         <value>Elige un proyecto</value>
@@ -58,7 +54,6 @@
     <data name="onboarding.ui.page.first.content" xml:space="preserve">
         <value>Toca el proyecto al que deseas contribuir. Los proyectos contienen temas para ayudar a estructurar su conversación.</value>
     </data>
-
     <!-- ONBOARDING PAGE: 2 -->
     <data name="onboarding.ui.page.second.title" xml:space="preserve">
         <value>Agregar participantes</value>
@@ -66,7 +61,6 @@
     <data name="onboarding.ui.page.second.content" xml:space="preserve">
         <value>Todo lo que necesita es el nombre y el correo electrónico de las personas que participan en la conversación.</value>
     </data>
-
     <!-- ONBOARDING PAGE: 3 -->
     <data name="onboarding.ui.page.third.title" xml:space="preserve">
         <value>Empezar a grabar</value>
@@ -74,7 +68,6 @@
     <data name="onboarding.ui.page.third.content" xml:space="preserve">
         <value>Mientras graba, seleccione un tema para estructurar la conversación.</value>
     </data>
-
     <!-- ONBOARDING PAGE: 4 -->
     <data name="onboarding.ui.page.fourth.title" xml:space="preserve">
         <value>Carga y consentimiento</value>
@@ -82,7 +75,6 @@
     <data name="onboarding.ui.page.fourth.content" xml:space="preserve">
         <value>Cuando termine la conversación, cargue la grabación. Todos los participantes serán notificados y podrán elegir cómo se usa su grabación</value>
     </data>
-    
     <!-- USER LOGIN SCREEN: API errors -->
     <data name="login.api.error.GENERAL" xml:space="preserve">
         <value>Un error desconocido a ocurrido.</value>
@@ -96,15 +88,13 @@
     <data name="login.api.error.auth.USER_404" xml:space="preserve">
         <value>No hay un usuario registrado con esa dirección de correo electrónico.</value>
     </data>
-    
     <!-- USER LOGIN SCREEN: UI -->
-     <data name="login.ui.title" xml:space="preserve">
+    <data name="login.ui.title" xml:space="preserve">
         <value>Iniciar sesión en Gabber</value>
     </data>
     <data name="login.ui.submit.button" xml:space="preserve">
         <value>Iniciar sesión</value>
     </data>
-
     <!-- USER REGISTER SCREEN: API errors -->
     <data name="register.api.error.auth.INVALID_PASSWORD" xml:space="preserve">
         <value>Usted ha proporcionado una contraseña incorrecta para ese correo electrónico</value>
@@ -112,7 +102,6 @@
     <data name="register.api.error.auth.USER_404" xml:space="preserve">
         <value>No hay ningún usuario registrado con esa dirección de correo electrónico</value>
     </data>
-
     <!-- USER REGISTER SCREEN: UI -->
     <data name="register.ui.title" xml:space="preserve">
         <value>Crea una cuenta de Gabber</value>
@@ -121,17 +110,15 @@
         <value>Nombre completo</value>
     </data>
     <data name="register.ui.terms.label" xml:space="preserve">
-        <value>&lt;i>Al continuar usando Gabber, acepta nuestros &lt;a href={0}/terms>Términos de uso&lt;/a> y &lt;a href={0}/privacy>Política de privacidad&lt;/a>&lt;/i></value>
+        <value>&lt;i&gt;Al continuar usando Gabber, acepta nuestros &lt;a href={0}/terms&gt;Términos de uso&lt;/a&gt; y &lt;a href={0}/privacy&gt;Política de privacidad&lt;/a&gt;&lt;/i&gt;</value>
     </data>
     <data name="register.ui.submit.button" xml:space="preserve">
         <value>Registro</value>
     </data>
-    
     <!-- USER REGISTER SCREEN: UI errors -->
     <data name="register.ui.fullname.validate.empty" xml:space="preserve">
         <value>Su nombre completo está vacío</value>
     </data>
-
     <!-- REGISTER VERIFICATION PAGE -->
     <data name="register.verify.ui.page.title" xml:space="preserve">
         <value>Verificacion de email</value>
@@ -145,7 +132,6 @@
     <data name="register.verify.ui.button.openemail" xml:space="preserve">
         <value>Abrir cliente de correo electrónico predeterminado</value>
     </data>
-
     <!-- REGISTER VERIFYING EMAIL PAGE -->
     <data name="register.verifying.activity.label" xml:space="preserve">
         <value>Gabber para verificar el correo electrónico</value>
@@ -164,7 +150,6 @@
         <value>Iniciar sesión</value>
         <comment>Appears when verification fails</comment>
     </data>
-    
     <!-- REGISTER VERIFYING EMAIL PAGE: API errors -->
     <data name="register.verifying.api.error.auth.ALREADY_VERIFIED" xml:space="preserve">
         <value>Tu cuenta ya ha sido verificada. Intente iniciar sesión en su lugar.</value>
@@ -175,22 +160,26 @@
     <data name="register.verifying.api.error.auth.TOKEN_EXPIRED" xml:space="preserve">
         <value>La URL en el enlace en el que hizo clic ha expirado. Intente iniciar sesión o restablecer su contraseña en su lugar.</value>
     </data>
-    
     <!-- PROJECTS FRAGMENT -->
     <data name="projects.ui.title" xml:space="preserve">
         <value>Proyectos</value>
-    </data>    
+    </data>
     <data name="projects.ui.instructions" xml:space="preserve">
         <value>Elija un proyecto con el que quiera contribuir y tenga una conversación sobre</value>
     </data>
     <data name="projects.ui.fetching" xml:space="preserve">
         <value>Fetching projects...</value>
     </data>
-
+    <data name="projects.ui.topics" xml:space="preserve">
+        <value>Topics for discussion:</value>
+    </data>
+    <data name="projects.ui.get.started.button" xml:space="preserve">
+        <value>Get Started</value>
+    </data>
     <!-- SESSIONS FRAGMENT -->
     <data name="sessions.ui.title" xml:space="preserve">
         <value>Grabaciones guardadas</value>
-    </data>    
+    </data>
     <data name="sessions.ui.header.instructions" xml:space="preserve">
         <value>Estas son las grabaciones que ha realizado y que aún no se han subido al sitio web.</value>
     </data>
@@ -209,7 +198,6 @@
     <data name="sessions.ui.message.upload.inprogress" xml:space="preserve">
         <value>Una conversación se está cargando actualmente.</value>
     </data>
-
     <!-- ABOUT FRAGMENT -->
     <data name="about.ui.title" xml:space="preserve">
         <value>¿Qué es Gabber?</value>
@@ -220,7 +208,6 @@
     <data name="about.ui.url.description" xml:space="preserve">
         <value>Escuche las grabaciones de Gabber:</value>
     </data>
-    
     <!-- PARTICIPANTS SCREEN -->
     <data name="participants.ui.title" xml:space="preserve">
         <value>Participantes</value>
@@ -234,7 +221,6 @@
     <data name="participants.ui.startrecording.button" xml:space="preserve">
         <value>Elija consentimiento</value>
     </data>
-    
     <!-- PARTICIPANTS SCREEN VALIDATION -->
     <data name="participants.ui.validation.noneselected" xml:space="preserve">
         <value>Al menos un participante debe ser seleccionado</value>
@@ -251,18 +237,16 @@
     <data name="participants.ui.validation.oneselected.cancel" xml:space="preserve">
         <value>Cancelar</value>
     </data>
-    
     <!-- ADD PARTICIPANT DIALOG -->
     <data name="participants.ui.dialog.add.title" xml:space="preserve">
         <value>Agregar un nuevo participante</value>
-    </data>    
+    </data>
     <data name="participants.ui.dialog.add.positive" xml:space="preserve">
         <value>Añadir</value>
     </data>
     <data name="participants.ui.dialog.add.negative" xml:space="preserve">
         <value>Cancelar</value>
     </data>
-
     <!-- RESEARCH CONSENT -->
     <data name="consent.research.toolbar.title" xml:space="preserve">
         <value>Consentimiento de investigación</value>
@@ -272,14 +256,13 @@
     </data>
     <data name="consent.research.title" xml:space="preserve">
         <value>Cómo se usará su conversación para la investigación</value>
-    </data>    
+    </data>
     <data name="consent.research.body" xml:space="preserve">
-        <value>La conversación que va a grabar formará parte de un proyecto de investigación &lt;b>({0})&lt;/b> creado por &lt;b>{1}&lt;/b>. Su grabación y los metadatos asociados serán accesibles por el personal de investigación y se utilizarán para ayudar a comprender cómo las herramientas digitales pueden ayudarlo a usted y a otros ciudadanos que participan en las prácticas de investigación cualitativa y cómo el audio puede hacerlas más accesibles. Cualquier trabajo publicado que resulte de los datos capturados a través de Gabber nunca incluirá detalles que podrían usarse para identificarse a usted o a otros participantes.</value>
+        <value>La conversación que va a grabar formará parte de un proyecto de investigación &lt;b&gt;({0})&lt;/b&gt; creado por &lt;b&gt;{1}&lt;/b&gt;. Su grabación y los metadatos asociados serán accesibles por el personal de investigación y se utilizarán para ayudar a comprender cómo las herramientas digitales pueden ayudarlo a usted y a otros ciudadanos que participan en las prácticas de investigación cualitativa y cómo el audio puede hacerlas más accesibles. Cualquier trabajo publicado que resulte de los datos capturados a través de Gabber nunca incluirá detalles que podrían usarse para identificarse a usted o a otros participantes.</value>
     </data>
     <data name="consent.research.form" xml:space="preserve">
         <value>Todos los participantes entienden y aceptan esta grabación y detalles personales anónimos para ser utilizados en esta investigación.</value>
     </data>
-
     <!-- Gabber CONSENT -->
     <data name="consent.gabber.toolbar.title" xml:space="preserve">
         <value>Consentimiento de conversación</value>
@@ -287,47 +270,44 @@
     <data name="consent.gabber.submit" xml:space="preserve">
         <value>Siguiente</value>
     </data>
-
     <data name="consent.gabber.title.control" xml:space="preserve">
         <value>Cómo controlas los datos que capturas</value>
-    </data>    
+    </data>
     <data name="consent.gabber.body.control" xml:space="preserve">
         <value>Gabber le proporciona control sobre cómo desea que se use su conversación de audio y a quién quiere que pueda escuchar y comentar sobre ella. Gabber funciona mejor cuando otras personas pueden acceder, escuchar y aprender de las experiencias que registra.
 
-Todos los participantes recibirán un correo electrónico con un enlace único a la grabación de audio, donde puede ver o cambiar su consentimiento sobre quién puede acceder a la grabación. Este correo electrónico puede ir a su carpeta &lt;b>SPAM/JUNK &lt;/b>.
-&lt;br>
-&lt;br>
+Todos los participantes recibirán un correo electrónico con un enlace único a la grabación de audio, donde puede ver o cambiar su consentimiento sobre quién puede acceder a la grabación. Este correo electrónico puede ir a su carpeta &lt;b&gt;SPAM/JUNK &lt;/b&gt;.
+&lt;br&gt;
+&lt;br&gt;
 Su conversación solo será accesible para los participantes de la conversación durante las primeras 24 horas. Después de este período, la conversación de audio estará disponible según el consentimiento que acuerde a continuación o si lo ha cambiado en el correo electrónico posterior.
-&lt;br>
-&lt;br>
+&lt;br&gt;
+&lt;br&gt;
 Al formar parte de esta conversación, también se convertirá en un miembro del proyecto donde podrá escuchar otras conversaciones de proyectos y ayudar a darles sentido a través del sitio web.
 </value>
     </data>
-    
     <data name="consent.gabber.title.decision" xml:space="preserve">
         <value>¿A quién le gustaría tener acceso a su conversación?</value>
-    </data>    
+    </data>
     <data name="consent.gabber.body.decision" xml:space="preserve">
         <value>El personal de investigación y los administradores del proyecto pueden acceder a las grabaciones después del período de embargo.</value>
     </data>
-
     <!-- Gabber CONSENT Public -->
     <data name="consent.gabber.consent.type.public.full" xml:space="preserve">
         <value>Su grabación se hará pública para que cualquiera la descubra y escuche, incluyéndose a usted, a otros participantes y a los miembros del proyecto.</value>
     </data>
-        <data name="consent.gabber.consent.type.public.brief" xml:space="preserve">
+    <data name="consent.gabber.consent.type.public.brief" xml:space="preserve">
         <value>Cualquiera que visite Gabber</value>
     </data>
     <!-- Gabber CONSENT Members -->
     <data name="consent.gabber.consent.type.members.full" xml:space="preserve">
-        <value>Actualmente hay &lt;b>{0}&lt;/b> miembros y &lt;b>{1}&lt;/b> investigadores en este proyecto.</value>
+        <value>Actualmente hay &lt;b&gt;{0}&lt;/b&gt; miembros y &lt;b&gt;{1}&lt;/b&gt; investigadores en este proyecto.</value>
     </data>
     <data name="consent.gabber.consent.type.members.brief" xml:space="preserve">
         <value>Solo miembros del proyecto</value>
     </data>
     <!-- Gabber CONSENT Private -->
     <data name="consent.gabber.consent.type.private.full" xml:space="preserve">
-        <value>&lt;b>{0}&lt;/b> de esta conversación.</value>
+        <value>&lt;b&gt;{0}&lt;/b&gt; de esta conversación.</value>
     </data>
     <data name="consent.gabber.consent.type.private.brief" xml:space="preserve">
         <value>Solo participantes</value>
@@ -335,7 +315,6 @@ Al formar parte de esta conversación, también se convertirá en un miembro del
     <data name="conversation.consent.gabber.submit" xml:space="preserve">
         <value>Solo participantes</value>
     </data>
-
     <!-- Consent Summary -->
     <data name="consent.summary.title" xml:space="preserve">
         <value>Resumen de consentimiento</value>
@@ -343,7 +322,6 @@ Al formar parte de esta conversación, también se convertirá en un miembro del
     <data name="consent.summary.subtitle" xml:space="preserve">
         <value>Un resumen del consentimiento que ha aceptado y el proyecto al que contribuye se enumeran a continuación:</value>
     </data>
-    
     <data name="consent.summary.screen.content.project.title" xml:space="preserve">
         <value>Proyecto</value>
     </data>
@@ -363,7 +341,7 @@ Al formar parte de esta conversación, también se convertirá en un miembro del
         <value>Consentimiento de conversación</value>
     </data>
     <data name="consent.summary.screen.content.conversation.desc" xml:space="preserve">
-        <value>Usted acordó que esta conversación esté disponible para &lt;b>{0}&lt;/b>.</value>
+        <value>Usted acordó que esta conversación esté disponible para &lt;b&gt;{0}&lt;/b&gt;.</value>
     </data>
     <data name="consent.summary.screen.content.embargo.title" xml:space="preserve">
         <value>Embargo de conversación</value>
@@ -374,7 +352,6 @@ Al formar parte de esta conversación, también se convertirá en un miembro del
     <data name="consent.summary.screen.action" xml:space="preserve">
         <value>Empezar a grabar</value>
     </data>
-    
     <!-- RECORD SCREEN -->
     <data name="recording.ui.title" xml:space="preserve">
         <value>Grabar conversación</value>
@@ -385,7 +362,6 @@ Al formar parte de esta conversación, también se convertirá en un miembro del
     <data name="recording.ui.instructions.header" xml:space="preserve">
         <value>Seleccione un tema para comenzar a grabar y seleccione temas a medida que la conversación cambie para etiquetar la grabación</value>
     </data>
-
     <!-- RECORD SCREEN RECORD PERMISSION -->
     <data name="recording.ui.permission.title" xml:space="preserve">
         <value>Permiso requerido</value>
@@ -399,7 +375,6 @@ Al formar parte de esta conversación, también se convertirá en un miembro del
     <data name="recording.ui.permission.button.positive" xml:space="preserve">
         <value>Configurar</value>    
     </data>
-    
     <!-- RECORD SCREEN FINISH -->
     <data name="recording.ui.dialog.finish.title" xml:space="preserve">
         <value>Has cubierto {0} de los {1} temas. ¿Estás seguro de que quieres finalizar esta grabación?</value>
@@ -409,8 +384,7 @@ Al formar parte de esta conversación, también se convertirá en un miembro del
     </data>
     <data name="recording.ui.dialog.finish.negative" xml:space="preserve">
         <value>No</value>    
-    </data>  
-
+    </data>
     <!-- RECORD SCREEN BACK -->
     <data name="recording.ui.dialog.back.title" xml:space="preserve">
         <value>Estas grabando</value>
@@ -423,8 +397,7 @@ Al formar parte de esta conversación, también se convertirá en un miembro del
     </data>
     <data name="recording.ui.dialog.back.negative" xml:space="preserve">
         <value>Continuar grabando</value>    
-    </data>  
-
+    </data>
     <!-- DEBRIEFING BUTTONS -->
     <data name="debriefing.ui.button.hide" xml:space="preserve">
         <value>Esconder</value>
@@ -432,22 +405,21 @@ Al formar parte de esta conversación, también se convertirá en un miembro del
     <data name="debriefing.ui.button.upload" xml:space="preserve">
         <value>Subir</value>
     </data>
-
     <!-- DEBRIEFING PAGE: 1 -->
     <data name="debriefing.ui.page.first.title" xml:space="preserve">
         <value>Próximos pasos</value>
     </data>
     <data name="debriefing.ui.page.first.content" xml:space="preserve">
-        <value>&lt;br>Gracias por compartir sus experiencias para &lt;b>{0}&lt;/b> que se ha guardado y está listo para ser cargado.
-&lt;br>
-&lt;br>
+        <value>&lt;br&gt;Gracias por compartir sus experiencias para &lt;b&gt;{0}&lt;/b&gt; que se ha guardado y está listo para ser cargado.
+&lt;br&gt;
+&lt;br&gt;
 Al formar parte de esta conversación, también se convertirá en un miembro del proyecto donde podrá escuchar otras conversaciones de proyectos y ayudar a darles sentido a través del sitio web. Esperamos que vuelva a visitar el contenido para crear discusiones con los participantes en la conversación y otros miembros del proyecto.
-&lt;br>
-&lt;br>         
-&lt;b>CAMBIANDO SU CONSENTIMIENTO&lt;/b>
-&lt;br>
-&lt;br>
-La grabación solo está disponible para los participantes de la conversación durante las primeras &lt;b>24-horas&lt;/b>. Cuando se suba la grabación, todos los participantes recibirán un enlace único para ver y modificar el consentimiento que acordaron y proporcionaron antes de la grabación (&lt;b>{1}&lt;/b>). Este correo electrónico puede ir a sus carpetas de &lt;b>SPAM / JUNK&lt;/b>, así que asegúrese de verificar si no lo ha recibido.
+&lt;br&gt;
+&lt;br&gt;         
+&lt;b&gt;CAMBIANDO SU CONSENTIMIENTO&lt;/b&gt;
+&lt;br&gt;
+&lt;br&gt;
+La grabación solo está disponible para los participantes de la conversación durante las primeras &lt;b&gt;24-horas&lt;/b&gt;. Cuando se suba la grabación, todos los participantes recibirán un enlace único para ver y modificar el consentimiento que acordaron y proporcionaron antes de la grabación (&lt;b&gt;{1}&lt;/b&gt;). Este correo electrónico puede ir a sus carpetas de &lt;b&gt;SPAM / JUNK&lt;/b&gt;, así que asegúrese de verificar si no lo ha recibido.
 </value>
     </data>
 </root>

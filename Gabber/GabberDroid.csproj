@@ -284,6 +284,7 @@
     <AndroidResource Include="Resources\layout\project_headercell.axml" />
     <AndroidResource Include="Resources\layout\project_descriptionCell.axml" />
     <AndroidResource Include="Resources\drawable-xxhdpi\test.png" />
+    <AndroidResource Include="Resources\layout\project_prompt.axml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

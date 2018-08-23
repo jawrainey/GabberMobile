@@ -70,15 +70,21 @@ namespace Gabber.Fragments
             }
         }
 
-        public override void OnActivityCreated(Bundle savedInstanceState)
+        public override void OnAttach(Context context)
         {
+            base.OnAttach(context);
+        }
+
+        public override void OnStart()
+        {
+            base.OnStart();
+
             firebaseAnalytics = FirebaseAnalytics.GetInstance(Context);
 
-            base.OnCreate(savedInstanceState);
             _projects = Queries.AllProjects();
 
             // It is not possible to SetAdapter in OnActivityCreated as accessing the rootView.
-            adapter = new ProjectsAdapter(_projects);
+            adapter = new ProjectsAdapter(_projects, Context);
             adapter.ProjectClicked += OnProjectClick;
             listView.SetAdapter(adapter);
 
