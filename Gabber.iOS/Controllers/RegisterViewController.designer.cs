@@ -36,10 +36,6 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel RegisterTerms { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton RegisterUIButton { get; set; }
 
         [Outlet]
@@ -75,11 +71,6 @@ namespace Gabber.iOS
             if (RegisterMasterView != null) {
                 RegisterMasterView.Dispose ();
                 RegisterMasterView = null;
-            }
-
-            if (RegisterTerms != null) {
-                RegisterTerms.Dispose ();
-                RegisterTerms = null;
             }
 
             if (RegisterUIButton != null) {
