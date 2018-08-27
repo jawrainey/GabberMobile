@@ -8,6 +8,9 @@ using Java.Lang;
 using Android.Content;
 using Android.Graphics;
 using GabberPCL.Resources;
+using FFImageLoading.Views;
+using FFImageLoading;
+using FFImageLoading.Transformations;
 
 namespace Gabber.Adapters
 {
@@ -130,7 +133,8 @@ namespace Gabber.Adapters
                                             .Inflate(Resource.Layout.project_headercell, parent, false);
 
                 viewHolder.Title = convertView.FindViewById<TextView>(Resource.Id.project_title);
-                //TODO image
+
+                viewHolder.Image = convertView.FindViewById<ImageViewAsync>(Resource.Id.project_icon);
 
                 convertView.Tag = viewHolder;
             }
@@ -138,6 +142,13 @@ namespace Gabber.Adapters
             Project thisProj = projects[groupPosition];
 
             viewHolder.Title.Text = thisProj.Title;
+
+            ImageService.Instance.LoadCompiledResource("ic_launcher").Transform(new CircleTransformation()).Into(viewHolder.Image);
+
+            if (!string.IsNullOrWhiteSpace(thisProj.image))
+            {
+                ImageService.Instance.LoadUrl(thisProj.image).Transform(new CircleTransformation()).Into(viewHolder.Image);
+            }
 
             return convertView;
         }
@@ -152,7 +163,7 @@ namespace Gabber.Adapters
     public class ProjectParentViewHolder : Java.Lang.Object
     {
         public TextView Title { get; set; }
-        public ImageView Image { get; set; }
+        public ImageViewAsync Image { get; set; }
     }
 
     public class ProjectChildViewHolder : Java.Lang.Object
