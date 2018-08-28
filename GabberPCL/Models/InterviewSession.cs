@@ -14,6 +14,7 @@ namespace GabberPCL.Models
         public string CreatorEmail { get; set; }
         public int ProjectID { get; set; }
         public DateTime CreatedAt { get; set; }
+        public int Lang { get; set; }
 
         // Consent type participants agreed to: public, members, or private
         public string ConsentType { get; set; }
@@ -31,7 +32,7 @@ namespace GabberPCL.Models
         public void LoadJson()
         {
             Prompts = JsonConvert.DeserializeObject<List<InterviewPrompt>>(PromptsJson);
-            Participants = JsonConvert.DeserializeObject< List<InterviewParticipant>>(ParticipantsJson);
+            Participants = JsonConvert.DeserializeObject<List<InterviewParticipant>>(ParticipantsJson);
         }
 
         public void SerializeJson()

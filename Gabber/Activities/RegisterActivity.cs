@@ -82,9 +82,9 @@ namespace Gabber
             RelativeLayout loadingLayout = FindViewById<RelativeLayout>(Resource.Id.loadingLayout);
             loadingLayout.Visibility = ViewStates.Visible;
 
-            languageChoices = await RestClient.GetLanguages((err) => { Toast.MakeText(this, err, ToastLength.Long).Show(); });
+            languageChoices = await LanguagesManager.GetLanguageChoices();
 
-            if (languageChoices.Count == 0)
+            if (languageChoices == null || languageChoices.Count == 0)
             {
                 new Android.Support.V7.App.AlertDialog.Builder(this)
                     .SetTitle(StringResources.common_comms_error)

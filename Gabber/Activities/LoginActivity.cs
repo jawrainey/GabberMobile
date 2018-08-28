@@ -15,16 +15,16 @@ using Newtonsoft.Json;
 
 namespace Gabber
 {
-	[Activity(ScreenOrientation = ScreenOrientation.Portrait)]
-	public class LoginActivity : AppCompatActivity
-	{
-		FirebaseAnalytics firebaseAnalytics;
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    public class LoginActivity : AppCompatActivity
+    {
+        FirebaseAnalytics firebaseAnalytics;
 
-		protected override void OnCreate(Bundle savedInstanceState)
-		{
-			firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
-			base.OnCreate(savedInstanceState);
-			SetContentView(Resource.Layout.login);
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.login);
             SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
             SupportActionBar.Title = StringResources.login_ui_title;
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -37,8 +37,9 @@ namespace Gabber
             _email.Hint = StringResources.common_ui_forms_email_label;
             var _password = FindViewById<TextInputLayout>(Resource.Id.passwordTextInput);
             _password.Hint = StringResources.common_ui_forms_password_label;
-                            
-            FindViewById<TextInputEditText>(Resource.Id.password).EditorAction += (_, e) => {
+
+            FindViewById<TextInputEditText>(Resource.Id.password).EditorAction += (_, e) =>
+            {
                 e.Handled = false;
                 if (e.ActionId == Android.Views.InputMethods.ImeAction.Done)
                 {
@@ -47,40 +48,40 @@ namespace Gabber
                 }
             };
 
-			submit.Click += async delegate
-			{
+            submit.Click += async delegate
+            {
                 var imm = (Android.Views.InputMethods.InputMethodManager)GetSystemService(InputMethodService);
                 imm.HideSoftInputFromWindow(FindViewById<TextInputEditText>(Resource.Id.password).WindowToken, 0);
 
-				var email = FindViewById<AppCompatEditText>(Resource.Id.email);
-				var passw = FindViewById<AppCompatEditText>(Resource.Id.password);
+                var email = FindViewById<AppCompatEditText>(Resource.Id.email);
+                var passw = FindViewById<AppCompatEditText>(Resource.Id.password);
 
-				if (string.IsNullOrWhiteSpace(email.Text))
-				{
+                if (string.IsNullOrWhiteSpace(email.Text))
+                {
                     email.Error = StringResources.common_ui_forms_email_validate_empty;
                     email.RequestFocus();
-				}
+                }
                 else if (string.IsNullOrWhiteSpace(passw.Text))
                 {
                     passw.Error = StringResources.common_ui_forms_password_validate_empty;
                     passw.RequestFocus();
                 }
-				else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
-				{
+                else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
+                {
                     email.Error = StringResources.common_ui_forms_email_validate_invalid;
                     email.RequestFocus();
-				}
-				else
-				{
-					FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Visible;
-					FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
+                }
+                else
+                {
+                    FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Visible;
+                    FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 
-					LOG_EVENT_WITH_ACTION("LOGIN", "ATTEMPT");
-                    var response = await RestClient.Login(email.Text.ToLower(), passw.Text);
+                    LOG_EVENT_WITH_ACTION("LOGIN", "ATTEMPT");
+                    CustomAuthResponse response = await RestClient.Login(email.Text.ToLower(), passw.Text);
 
                     if (response.Meta.Messages.Count > 0)
                     {
-						LOG_EVENT_WITH_ACTION("LOGIN", "ERROR");
+                        LOG_EVENT_WITH_ACTION("LOGIN", "ERROR");
                         RunOnUiThread(() =>
                         {
                             response.Meta.Messages.ForEach(MakeError);
@@ -88,10 +89,10 @@ namespace Gabber
                             FindViewById<ProgressBar>(Resource.Id.progressBar).Visibility = ViewStates.Gone;
                         });
                     }
-					// If there are no errors, then tokens exist as the request was a great success.
+                    // If there are no errors, then tokens exist as the request was a great success.
                     else if (!string.IsNullOrEmpty(response.Data?.Tokens.Access))
-					{
-						LOG_EVENT_WITH_ACTION("LOGIN", "SUCCESS");
+                    {
+                        LOG_EVENT_WITH_ACTION("LOGIN", "SUCCESS");
                         // When the application is closed, the ActiveUser is reset. The username and tokens
                         // are used to build a new active user.
                         var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
@@ -102,25 +103,25 @@ namespace Gabber
                         // Set active user on login/register as the user object is in the response.
                         // This prevents us from storing a user object in local storage.
                         Queries.SetActiveUser(response.Data);
-						FirebaseAnalytics.GetInstance(this).SetUserId(Session.ActiveUser.Id.ToString());
+                        FirebaseAnalytics.GetInstance(this).SetUserId(Session.ActiveUser.Id.ToString());
 
                         // We do not want the user to return to ANY gabber recording pages once captured.
-						var intent = new Intent(this, typeof(MainActivity));
-						intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
-						StartActivity(intent);
-						// Prevent returning to login once authenticated.
-						Finish();
-					}
-				}
-			};
+                        var intent = new Intent(this, typeof(MainActivity));
+                        intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
+                        StartActivity(intent);
+                        // Prevent returning to login once authenticated.
+                        Finish();
+                    }
+                }
+            };
 
             _email.RequestFocus();
             Window.SetSoftInputMode(SoftInput.StateAlwaysVisible);
-		}
+        }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-			LOG_EVENT_WITH_ACTION("BACK_BUTTON", "PRESSED");
+            LOG_EVENT_WITH_ACTION("BACK_BUTTON", "PRESSED");
             OnBackPressed();
             return true;
         }
@@ -132,12 +133,12 @@ namespace Gabber
             Snackbar.Make(email, message, Snackbar.LengthLong).Show();
         }
 
-		void LOG_EVENT_WITH_ACTION(string eventName, string action)
+        void LOG_EVENT_WITH_ACTION(string eventName, string action)
         {
             var bundle = new Bundle();
             bundle.PutString("ACTION", action);
-			bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
+            bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
             firebaseAnalytics.LogEvent(eventName, bundle);
         }
-	}
+    }
 }

@@ -28,6 +28,7 @@ namespace GabberPCL
                     _connection.CreateTable<Project>();
                     _connection.CreateTable<InterviewSession>();
                     _connection.CreateTable<InterviewPrompt>();
+                    _connection.CreateTable<LanguageChoice>();
                 }
                 return _connection;
             }

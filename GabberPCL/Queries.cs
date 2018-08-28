@@ -19,7 +19,7 @@ namespace GabberPCL
             // Resync database when data pulled from the server.
             Session.Connection.DeleteAll<Project>();
 
-            foreach(Project project in _projects)
+            foreach (Project project in _projects)
             {
                 project.SerializeJson();
                 Session.Connection.Insert(project);
@@ -31,7 +31,7 @@ namespace GabberPCL
             List<Project> res = Session.Connection.GetAllWithChildren<Project>()
                 .OrderByDescending(p => p.ID).ToList();
 
-            foreach(Project proj in res)
+            foreach (Project proj in res)
             {
                 proj.LoadJson();
             }
@@ -39,12 +39,29 @@ namespace GabberPCL
             return res;
         }
 
+        public static void AddLanguages(List<LanguageChoice> languages)
+        {
+            // Resync database when data pulled from the server.
+            Session.Connection.DeleteAll<LanguageChoice>();
+
+            foreach (LanguageChoice lang in languages)
+            {
+                Session.Connection.Insert(lang);
+            }
+        }
+
+        public static List<LanguageChoice> AllLanguages()
+        {
+            return Session.Connection.GetAllWithChildren<LanguageChoice>()
+                          .OrderBy(lang => lang.Code).ToList();
+        }
+
         public static List<InterviewSession> AllNotUploadedInterviewSessionsForActiveUser()
         {
             var sessions = Session.Connection.GetAllWithChildren<InterviewSession>().Where((i) => !i.IsUploaded);
             List<InterviewSession> res = sessions.OrderByDescending(i => i.CreatedAt).ToList();
-            
-            foreach(InterviewSession session in res)
+
+            foreach (InterviewSession session in res)
             {
                 session.LoadJson();
             }
@@ -110,7 +127,7 @@ namespace GabberPCL
         {
             List<InterviewSession> res = Session.Connection.GetAllWithChildren<InterviewSession>((i) => !i.IsUploaded);
 
-            foreach(InterviewSession session in res)
+            foreach (InterviewSession session in res)
             {
                 session.LoadJson();
             }
@@ -124,7 +141,7 @@ namespace GabberPCL
             Session.Connection.Insert(interviewSession);
         }
 
-        public static List<User> AllParticipantsUnSelected() 
+        public static List<User> AllParticipantsUnSelected()
         {
             // TODO: This is inefficient as the database is hit each time this page is visited.
             // Instead, the Selected property should be removed, and SelectedParticipants stored
@@ -132,7 +149,7 @@ namespace GabberPCL
 
             var participants = AllParticipants();
 
-            foreach (var p in participants) 
+            foreach (var p in participants)
             {
                 p.Selected = false;
 
@@ -142,7 +159,7 @@ namespace GabberPCL
                     Session.Connection.Update(p);
                     if (!p.Name.Contains("You")) p.Name += (" (You)");
                 }
-                else 
+                else
                 {
                     Session.Connection.Update(p);
                 }
@@ -174,7 +191,7 @@ namespace GabberPCL
                 // as this is duplicated information between InterviewParticipant, etc
                 // We represent a participant as a User, but in doing so do not send the Email/Name
                 // when creating a session object (as they are abstracted away), which imho is not ideal.
-                session.Participants.Add (new InterviewParticipant
+                session.Participants.Add(new InterviewParticipant
                 {
                     InterviewID = session.SessionID,
                     // True if participant was the intervieweer
@@ -195,7 +212,7 @@ namespace GabberPCL
 
         public static InterviewSession LastInterviewSession()
         {
-            InterviewSession last =  Session.Connection.Table<InterviewSession>().Last();
+            InterviewSession last = Session.Connection.Table<InterviewSession>().Last();
             last.LoadJson();
             return last;
         }

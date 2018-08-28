@@ -343,6 +343,9 @@ By being part of this conversation you will also become a project member where y
     <data name="conversation.consent.gabber.submit" xml:space="preserve">
         <value>Review consent</value>
     </data>
+    <data name="conversation.language.prompt" xml:space="preserve">
+        <value>What language will this conversation be held in?</value>
+    </data>
     <!-- Consent Summary -->
     <data name="consent.summary.title" xml:space="preserve">
         <value>Consent Summary</value>

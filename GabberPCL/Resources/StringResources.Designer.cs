@@ -629,6 +629,12 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string conversation_language_prompt {
+            get {
+                return ResourceManager.GetString("conversation.language.prompt", resourceCulture);
+            }
+        }
+        
         public static string consent_summary_title {
             get {
                 return ResourceManager.GetString("consent.summary.title", resourceCulture);
