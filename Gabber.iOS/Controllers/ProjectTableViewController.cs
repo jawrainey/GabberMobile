@@ -41,6 +41,12 @@ namespace Gabber.iOS
                 Firebase.Analytics.Analytics.SetUserID(Session.ActiveUser.Id.ToString());
             }
 
+            // Have to set this here for now as the default page for TabBar is this and ViewLoad
+            // is where the titles are set within each controler of the tabbar.
+            TabBarController.TabBar.Items[0].Title = StringResources.common_menu_projects;
+            TabBarController.TabBar.Items[1].Title = StringResources.common_menu_gabbers;
+            TabBarController.TabBar.Items[2].Title = StringResources.common_menu_about;
+
             blurbLabel.Text = StringResources.projects_ui_instructions;
 
             projects = Queries.AllProjects();
