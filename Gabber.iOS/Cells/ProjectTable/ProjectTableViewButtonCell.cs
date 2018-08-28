@@ -25,6 +25,9 @@ namespace Gabber.iOS
 
             GetStartedButton.SetTitle(StringResources.projects_ui_get_started_button, UIControlState.Normal);
 
+            GetStartedButton.Layer.BorderWidth = 1.0f;
+            GetStartedButton.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+
             GetStartedButton.TouchUpInside -= ButtonTouched;
             GetStartedButton.TouchUpInside += ButtonTouched;
         }

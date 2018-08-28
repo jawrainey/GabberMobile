@@ -193,7 +193,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rE-NL-U2e">
-                                            <rect key="frame" x="8" y="8" width="398" height="28"/>
+                                            <rect key="frame" x="20" y="11" width="374" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="tin-Ye-yGA"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                             <state key="normal" title="Button">
                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -201,10 +204,10 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="9rE-NL-U2e" firstAttribute="leading" secondItem="o6u-cg-9Mg" secondAttribute="leading" constant="8" id="3Ce-mP-0wA"/>
-                                        <constraint firstItem="9rE-NL-U2e" firstAttribute="top" secondItem="o6u-cg-9Mg" secondAttribute="top" constant="8" id="Off-uZ-F9f"/>
-                                        <constraint firstAttribute="bottom" secondItem="9rE-NL-U2e" secondAttribute="bottom" constant="8" id="Tjs-Ma-o31"/>
-                                        <constraint firstAttribute="trailing" secondItem="9rE-NL-U2e" secondAttribute="trailing" constant="8" id="rBn-Ad-Wy9"/>
+                                        <constraint firstItem="9rE-NL-U2e" firstAttribute="bottom" secondItem="o6u-cg-9Mg" secondAttribute="bottomMargin" id="1xw-ke-UYN"/>
+                                        <constraint firstItem="9rE-NL-U2e" firstAttribute="leading" secondItem="o6u-cg-9Mg" secondAttribute="leadingMargin" id="toG-Z3-evh"/>
+                                        <constraint firstItem="9rE-NL-U2e" firstAttribute="trailing" secondItem="o6u-cg-9Mg" secondAttribute="trailingMargin" id="wAc-qM-UJ3"/>
+                                        <constraint firstItem="9rE-NL-U2e" firstAttribute="top" secondItem="o6u-cg-9Mg" secondAttribute="topMargin" id="wHI-Bg-HWM"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
