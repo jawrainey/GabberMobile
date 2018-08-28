@@ -35,9 +35,6 @@
     <AndroidHttpClientHandlerType>System.Net.Http.HttpClientHandler</AndroidHttpClientHandlerType>
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -275,6 +272,7 @@
     <AndroidResource Include="Resources\layout\consent_research.axml" />
     <AndroidResource Include="Resources\layout\consent_conversation.axml" />
     <AndroidResource Include="Resources\layout\consent_summary.axml" />
+    <AndroidResource Include="Resources\layout\spinner_row.axml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

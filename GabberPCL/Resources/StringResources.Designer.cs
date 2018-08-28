@@ -47,6 +47,42 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string common_comms_loading {
+            get {
+                return ResourceManager.GetString("common.comms.loading", resourceCulture);
+            }
+        }
+        
+        public static string common_comms_error {
+            get {
+                return ResourceManager.GetString("common.comms.error", resourceCulture);
+            }
+        }
+        
+        public static string common_comms_error_server {
+            get {
+                return ResourceManager.GetString("common.comms.error.server", resourceCulture);
+            }
+        }
+        
+        public static string common_comms_retry {
+            get {
+                return ResourceManager.GetString("common.comms.retry", resourceCulture);
+            }
+        }
+        
+        public static string common_comms_cancel {
+            get {
+                return ResourceManager.GetString("common.comms.cancel", resourceCulture);
+            }
+        }
+        
+        public static string common_comms_ok {
+            get {
+                return ResourceManager.GetString("common.comms.ok", resourceCulture);
+            }
+        }
+        
         public static string common_menu_projects {
             get {
                 return ResourceManager.GetString("common.menu.projects", resourceCulture);
@@ -77,6 +113,12 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string common_ui_forms_password_confirm_label {
+            get {
+                return ResourceManager.GetString("common.ui.forms.password.confirm.label", resourceCulture);
+            }
+        }
+        
         public static string common_ui_forms_email_validate_empty {
             get {
                 return ResourceManager.GetString("common.ui.forms.email.validate.empty", resourceCulture);
@@ -92,6 +134,30 @@ namespace GabberPCL.Resources {
         public static string common_ui_forms_password_validate_empty {
             get {
                 return ResourceManager.GetString("common.ui.forms.password.validate.empty", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_password_validate_mismatch {
+            get {
+                return ResourceManager.GetString("common.ui.forms.password.validate.mismatch", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_language_prompt {
+            get {
+                return ResourceManager.GetString("common.ui.forms.language.prompt", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_language_error {
+            get {
+                return ResourceManager.GetString("common.ui.forms.language.error", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_language_default {
+            get {
+                return ResourceManager.GetString("common.ui.forms.language.default", resourceCulture);
             }
         }
         

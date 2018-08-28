@@ -59,6 +59,12 @@ namespace GabberPCL
         public Meta Meta { get; set; }
     }
 
+    public class CustomLanguagesResponse
+    {
+        public Meta Meta { get; set; }
+        public List<LanguageChoice> Data { get; set; }
+    }
+
     public class CustomErrorResponse : Entity<List<string>>
     {
         [JsonProperty("meta")]
@@ -73,14 +79,15 @@ namespace GabberPCL
         public List<string> Messages { get; set; }
     }
 
-	public static class RestClient
-	{
-		// Used to access platform specific implementations
-		public static Interfaces.IDiskIO GlobalIO;
+    public static class RestClient
+    {
+        // Used to access platform specific implementations
+        public static Interfaces.IDiskIO GlobalIO;
 
         private static HttpClient _client;
 
-        private static HttpClient Client {
+        private static HttpClient Client
+        {
             get
             {
                 if (_client == null)
@@ -96,7 +103,7 @@ namespace GabberPCL
         }
 
         public static async Task<CustomAuthResponse> Login(string email, string password)
-		{
+        {
             var _response = new CustomAuthResponse
             {
                 Data = null,
@@ -127,8 +134,8 @@ namespace GabberPCL
             return _response;
         }
 
-        public static async Task<CustomAuthResponse> Register(string fullname, string email, string password)
-		{
+        public static async Task<CustomAuthResponse> Register(string fullname, string email, string password, int lang)
+        {
             var _response = new CustomAuthResponse
             {
                 Data = null,
@@ -137,7 +144,7 @@ namespace GabberPCL
 
             try
             {
-                var payload = JsonConvert.SerializeObject(new { fullname, email, password });
+                var payload = JsonConvert.SerializeObject(new { fullname, email, password, lang });
                 var _content = new StringContent(payload, Encoding.UTF8, "application/json");
 
                 var response = await Client.PostAsync("api/auth/register/", _content);
@@ -155,7 +162,7 @@ namespace GabberPCL
                 _response.Meta.Messages.Add("GENERAL");
             }
             return _response;
-		}
+        }
 
         public static async Task<RegisterVerifyAuthResponse<DataUserTokens>> RegisterVerify(string token)
         {
@@ -190,12 +197,12 @@ namespace GabberPCL
             return _response;
         }
 
-		// As this deals with reading files from platform specific paths, 
-		// then we must implement this on each specific platform.
+        // As this deals with reading files from platform specific paths, 
+        // then we must implement this on each specific platform.
         public static async Task<bool> Upload(InterviewSession interviewSession)
-		{
-			using (var formData = new MultipartFormDataContent())
-			{
+        {
+            using (var formData = new MultipartFormDataContent())
+            {
                 formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Participants)), "participants");
                 formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Prompts)), "prompts");
                 formData.Add(new StringContent(interviewSession.ConsentType.ToString()), "consent");
@@ -204,22 +211,22 @@ namespace GabberPCL
                 // Access the OS specific implementation to load data from a file.
                 formData.Add(new ByteArrayContent(GlobalIO.Load(interviewSession.RecordingURL)), "recording",
                              Path.GetFileName(interviewSession.RecordingURL));
-				try
-				{
+                try
+                {
                     var endpoint = $"api/projects/{interviewSession.ProjectID.ToString()}/sessions/";
                     Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session.Token.Access);
                     var response = await Client.PostAsync(endpoint, formData);
-					return response.IsSuccessStatusCode;
-				}
-				catch(Exception e)
-				{
-					return false;
-				}
-			}
-		}
+                    return response.IsSuccessStatusCode;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
 
         public static async Task<List<Project>> GetProjects(Action<string> errorCallback)
-		{
+        {
             //Client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token.Access);   
 
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session.Token.Access);
@@ -245,7 +252,32 @@ namespace GabberPCL
             }
 
             return new List<Project>();
-		}
+        }
 
-	}
+        public static async Task<List<LanguageChoice>> GetLanguages(Action<string> errorCallback)
+        {
+            try
+            {
+                HttpResponseMessage response = await Client.GetAsync("api/help/languages/");
+                string content = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return JsonConvert.DeserializeObject<CustomLanguagesResponse>(content).Data;
+                }
+                errorCallback(JsonConvert.DeserializeObject<Error>(content).Message);
+            }
+            catch (HttpRequestException)
+            {
+                errorCallback("You are not connected to the Internet");
+            }
+            catch (Exception e)
+            {
+                errorCallback("An unknown error occurred:" + e.Message);
+            }
+
+            return new List<LanguageChoice>();
+        }
+
+    }
 }

@@ -12,7 +12,25 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-
+    <!-- Shared comms -->
+    <data name="common.comms.loading" xml:space="preserve">
+        <value>Loading, please wait</value>
+    </data>
+    <data name="common.comms.error" xml:space="preserve">
+        <value>Something went wrong</value>
+    </data>
+    <data name="common.comms.error.server" xml:space="preserve">
+        <value>There was an issue communicating with the server. Please check your internet connection and try again.</value>
+    </data>
+    <data name="common.comms.retry" xml:space="preserve">
+        <value>Retry</value>
+    </data>
+    <data name="common.comms.cancel" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="common.comms.ok" xml:space="preserve">
+        <value>OK</value>
+    </data>
     <!-- MAIN MENU -->
     <data name="common.menu.projects" xml:space="preserve">
         <value>Projects</value>
@@ -23,13 +41,15 @@
     <data name="common.menu.about" xml:space="preserve">
         <value>About</value>
     </data>
-    
     <!-- SHARED UI FORMS -->
     <data name="common.ui.forms.email.label" xml:space="preserve">
         <value>Email address</value>
     </data>
     <data name="common.ui.forms.password.label" xml:space="preserve">
         <value>Password</value>
+    </data>
+    <data name="common.ui.forms.password.confirm.label" xml:space="preserve">
+        <value>Confirm password</value>
     </data>
     <data name="common.ui.forms.email.validate.empty" xml:space="preserve">
         <value>An email address is required</value>
@@ -40,7 +60,18 @@
     <data name="common.ui.forms.password.validate.empty" xml:space="preserve">
         <value>A password is required</value>
     </data>
-
+    <data name="common.ui.forms.password.validate.mismatch" xml:space="preserve">
+        <value>Entered passwords don't match</value>
+    </data>
+    <data name="common.ui.forms.language.prompt" xml:space="preserve">
+        <value>Please choose your preferred spoken language:</value>
+    </data>
+    <data name="common.ui.forms.language.error" xml:space="preserve">
+        <value>Please choose your preferred spoken language.</value>
+    </data>
+    <data name="common.ui.forms.language.default" xml:space="preserve">
+        <value>Choose language</value>
+    </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
         <value>Welcome to Gabber</value>
@@ -50,7 +81,6 @@
 
     The next screens explain each step to create a conversation using Gabber.</value>
     </data>
-    
     <!-- ONBOARDING PAGE: 1 -->
     <data name="onboarding.ui.page.first.title" xml:space="preserve">
         <value>Choose a project</value>
@@ -58,7 +88,6 @@
     <data name="onboarding.ui.page.first.content" xml:space="preserve">
         <value>Tap on the project you want to contribute to. Projects contain topics to help structure your conversation.</value>
     </data>
-
     <!-- ONBOARDING PAGE: 2 -->
     <data name="onboarding.ui.page.second.title" xml:space="preserve">
         <value>Add participants</value>
@@ -66,7 +95,6 @@
     <data name="onboarding.ui.page.second.content" xml:space="preserve">
         <value>All you need is the name and email of people in the conversation.</value>
     </data>
-
     <!-- ONBOARDING PAGE: 3 -->
     <data name="onboarding.ui.page.third.title" xml:space="preserve">
         <value>Start recording</value>
@@ -74,7 +102,6 @@
     <data name="onboarding.ui.page.third.content" xml:space="preserve">
         <value>As you are recording, tap on a topic to structure the conversation.</value>
     </data>
-
     <!-- ONBOARDING PAGE: 4 -->
     <data name="onboarding.ui.page.fourth.title" xml:space="preserve">
         <value>Upload and Consent</value>
@@ -82,7 +109,6 @@
     <data name="onboarding.ui.page.fourth.content" xml:space="preserve">
         <value>When the conversation is finished, upload the recording. All participants are then notified and can review their consent for the recording</value>
     </data>
-    
     <!-- USER LOGIN SCREEN: API errors -->
     <data name="login.api.error.GENERAL" xml:space="preserve">
         <value>An unknown error has occurred.</value>
@@ -96,15 +122,13 @@
     <data name="login.api.error.auth.USER_404" xml:space="preserve">
         <value>There is no registered user with that email address.</value>
     </data>
-    
     <!-- USER LOGIN SCREEN: UI -->
-     <data name="login.ui.title" xml:space="preserve">
+    <data name="login.ui.title" xml:space="preserve">
         <value>Login to Gabber</value>
     </data>
     <data name="login.ui.submit.button" xml:space="preserve">
         <value>Login</value>
     </data>
-
     <!-- USER REGISTER SCREEN: API errors -->
     <data name="register.api.error.auth.INVALID_PASSWORD" xml:space="preserve">
         <value>You have provided an incorrect password for that email</value>
@@ -112,7 +136,6 @@
     <data name="register.api.error.auth.USER_404" xml:space="preserve">
         <value>There is no registered user with that email address</value>
     </data>
-
     <!-- USER REGISTER SCREEN: UI -->
     <data name="register.ui.title" xml:space="preserve">
         <value>Create a Gabber account</value>
@@ -121,17 +144,15 @@
         <value>Fullname</value>
     </data>
     <data name="register.ui.terms.label" xml:space="preserve">
-        <value>&lt;i>By continuing to use Gabber, you agree with our &lt;a href={0}/terms>Terms of Use&lt;/a> &amp; &lt;a href={0}/privacy>Privacy Policy&lt;/a>&lt;/i></value>
+        <value>&lt;i&gt;By continuing to use Gabber, you agree with our &lt;a href={0}/terms&gt;Terms of Use&lt;/a&gt; &amp; &lt;a href={0}/privacy&gt;Privacy Policy&lt;/a&gt;&lt;/i&gt;</value>
     </data>
     <data name="register.ui.submit.button" xml:space="preserve">
         <value>Register</value>
     </data>
-    
     <!-- USER REGISTER SCREEN: UI errors -->
     <data name="register.ui.fullname.validate.empty" xml:space="preserve">
         <value>Your fullname is empty</value>
     </data>
-
     <!-- REGISTER VERIFICATION PAGE -->
     <data name="register.verify.ui.page.title" xml:space="preserve">
         <value>Email Verification</value>
@@ -145,7 +166,6 @@
     <data name="register.verify.ui.button.openemail" xml:space="preserve">
         <value>Open default email client</value>
     </data>
-
     <!-- REGISTER VERIFYING EMAIL PAGE -->
     <data name="register.verifying.activity.label" xml:space="preserve">
         <value>Gabber to verify email</value>
@@ -164,7 +184,6 @@
         <value>Login</value>
         <comment>Appears when verification fails</comment>
     </data>
-    
     <!-- REGISTER VERIFYING EMAIL PAGE: API errors -->
     <data name="register.verifying.api.error.auth.ALREADY_VERIFIED" xml:space="preserve">
         <value>Your account has already been verified. Try logging in instead.</value>
@@ -175,22 +194,20 @@
     <data name="register.verifying.api.error.auth.TOKEN_EXPIRED" xml:space="preserve">
         <value>The URL in the link you clicked has expired. Try logging in or resetting your password instead.</value>
     </data>
-    
     <!-- PROJECTS FRAGMENT -->
     <data name="projects.ui.title" xml:space="preserve">
         <value>Projects</value>
-    </data>    
+    </data>
     <data name="projects.ui.instructions" xml:space="preserve">
         <value>Choose a project that you want to contribute to and have a conversation about</value>
     </data>
     <data name="projects.ui.fetching" xml:space="preserve">
         <value>Fetching projects...</value>
     </data>
-
     <!-- SESSIONS FRAGMENT -->
     <data name="sessions.ui.title" xml:space="preserve">
         <value>Saved recordings</value>
-    </data>    
+    </data>
     <data name="sessions.ui.header.instructions" xml:space="preserve">
         <value>These are the recordings that you have made and that have not yet been uploaded to the website.</value>
     </data>
@@ -209,7 +226,6 @@
     <data name="sessions.ui.message.upload.inprogress" xml:space="preserve">
         <value>A conversation is currently being uploaded.</value>
     </data>
-
     <!-- ABOUT FRAGMENT -->
     <data name="about.ui.title" xml:space="preserve">
         <value>What is Gabber?</value>
@@ -220,7 +236,6 @@
     <data name="about.ui.url.description" xml:space="preserve">
         <value>Listen to Gabber recordings:</value>
     </data>
-    
     <!-- PARTICIPANTS SCREEN -->
     <data name="participants.ui.title" xml:space="preserve">
         <value>Participants</value>
@@ -234,7 +249,6 @@
     <data name="participants.ui.startrecording.button" xml:space="preserve">
         <value>Choose Consent</value>
     </data>
-    
     <!-- PARTICIPANTS SCREEN VALIDATION -->
     <data name="participants.ui.validation.noneselected" xml:space="preserve">
         <value>At least one participant must be selected</value>
@@ -251,18 +265,16 @@
     <data name="participants.ui.validation.oneselected.cancel" xml:space="preserve">
         <value>Cancel</value>
     </data>
-    
     <!-- ADD PARTICIPANT DIALOG -->
     <data name="participants.ui.dialog.add.title" xml:space="preserve">
         <value>Add a new participant</value>
-    </data>    
+    </data>
     <data name="participants.ui.dialog.add.positive" xml:space="preserve">
         <value>Add</value>
     </data>
     <data name="participants.ui.dialog.add.negative" xml:space="preserve">
         <value>Cancel</value>
     </data>
-
     <!-- RESEARCH CONSENT -->
     <data name="consent.research.toolbar.title" xml:space="preserve">
         <value>Research Consent</value>
@@ -272,14 +284,13 @@
     </data>
     <data name="consent.research.title" xml:space="preserve">
         <value>How your conversation will be used for research</value>
-    </data>    
+    </data>
     <data name="consent.research.body" xml:space="preserve">
-        <value>The conversation you are about to record will become part of a research project &lt;b>({0})&lt;/b> created by &lt;b>{1}&lt;/b>. Your recording and the associated metadata will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.</value>
+        <value>The conversation you are about to record will become part of a research project &lt;b&gt;({0})&lt;/b&gt; created by &lt;b&gt;{1}&lt;/b&gt;. Your recording and the associated metadata will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.</value>
     </data>
     <data name="consent.research.form" xml:space="preserve">
         <value>All participants understand and agree for this recording and anonymized personal details to be used in this research.</value>
     </data>
-
     <!-- Gabber CONSENT -->
     <data name="consent.gabber.toolbar.title" xml:space="preserve">
         <value>Conversation consent</value>
@@ -287,47 +298,44 @@
     <data name="consent.gabber.submit" xml:space="preserve">
         <value>Next</value>
     </data>
-
     <data name="consent.gabber.title.control" xml:space="preserve">
         <value>How you control the data you capture</value>
-    </data>    
+    </data>
     <data name="consent.gabber.body.control" xml:space="preserve">
         <value>Gabber provides you with control over how you want your audio conversation to be used and who you want to be able to listen and comment on it. Gabber works best when other people can access, listen and learn from the experiences you record. 
 
-All participants will receive an email with a unique link to the audio recording, where you can view or change your consent on who can access the recording. This email may go to your &lt;b>SPAM / JUNK &lt;/b>. 
-&lt;br>
-&lt;br>
+All participants will receive an email with a unique link to the audio recording, where you can view or change your consent on who can access the recording. This email may go to your &lt;b&gt;SPAM / JUNK &lt;/b&gt;. 
+&lt;br&gt;
+&lt;br&gt;
 Your conversation will only be accessible to participants in the conversation for the first 24-hours. After this period the audio conversation will be available based on the consent you agree to below or if you have changed it in the email afterwards.
-&lt;br>
-&lt;br>
+&lt;br&gt;
+&lt;br&gt;
 By being part of this conversation you will also become a project member where you can listen to other project conversations and help make sense of them through the website.
 </value>
     </data>
-    
     <data name="consent.gabber.title.decision" xml:space="preserve">
         <value>Who would you like to have access to your conversation?</value>
-    </data>    
+    </data>
     <data name="consent.gabber.body.decision" xml:space="preserve">
         <value>Research staff and project administrators can access recordings after the embargo period.</value>
     </data>
-
     <!-- Gabber CONSENT Public -->
     <data name="consent.gabber.consent.type.public.full" xml:space="preserve">
         <value>Your recording will become public for anyone to discover and listen to, including yourself, other participants, and project members.</value>
     </data>
-        <data name="consent.gabber.consent.type.public.brief" xml:space="preserve">
+    <data name="consent.gabber.consent.type.public.brief" xml:space="preserve">
         <value>Anyone visiting Gabber</value>
     </data>
     <!-- Gabber CONSENT Members -->
     <data name="consent.gabber.consent.type.members.full" xml:space="preserve">
-        <value>There are currently &lt;b>{0}&lt;/b> members and &lt;b>{1}&lt;/b> researchers in this project.</value>
+        <value>There are currently &lt;b&gt;{0}&lt;/b&gt; members and &lt;b&gt;{1}&lt;/b&gt; researchers in this project.</value>
     </data>
     <data name="consent.gabber.consent.type.members.brief" xml:space="preserve">
         <value>Project Members only</value>
     </data>
     <!-- Gabber CONSENT Private -->
     <data name="consent.gabber.consent.type.private.full" xml:space="preserve">
-        <value>&lt;b>{0}&lt;/b> are participants of this conversation.</value>
+        <value>&lt;b&gt;{0}&lt;/b&gt; are participants of this conversation.</value>
     </data>
     <data name="consent.gabber.consent.type.private.brief" xml:space="preserve">
         <value>Participants only</value>
@@ -335,7 +343,6 @@ By being part of this conversation you will also become a project member where y
     <data name="conversation.consent.gabber.submit" xml:space="preserve">
         <value>Review consent</value>
     </data>
-
     <!-- Consent Summary -->
     <data name="consent.summary.title" xml:space="preserve">
         <value>Consent Summary</value>
@@ -343,7 +350,6 @@ By being part of this conversation you will also become a project member where y
     <data name="consent.summary.subtitle" xml:space="preserve">
         <value>A summary of the consent you have agreed to and the project you are contributing to are listed below:</value>
     </data>
-    
     <data name="consent.summary.screen.content.project.title" xml:space="preserve">
         <value>Project</value>
     </data>
@@ -363,7 +369,7 @@ By being part of this conversation you will also become a project member where y
         <value>Conversation Consent</value>
     </data>
     <data name="consent.summary.screen.content.conversation.desc" xml:space="preserve">
-        <value>You agreed for this conversation to be made available to &lt;b>{0}&lt;/b>.</value>
+        <value>You agreed for this conversation to be made available to &lt;b&gt;{0}&lt;/b&gt;.</value>
     </data>
     <data name="consent.summary.screen.content.embargo.title" xml:space="preserve">
         <value>Conversation Embargo</value>
@@ -374,7 +380,6 @@ By being part of this conversation you will also become a project member where y
     <data name="consent.summary.screen.action" xml:space="preserve">
         <value>Start Recording</value>
     </data>
-    
     <!-- RECORD SCREEN -->
     <data name="recording.ui.title" xml:space="preserve">
         <value>Record Conversation</value>
@@ -385,7 +390,6 @@ By being part of this conversation you will also become a project member where y
     <data name="recording.ui.instructions.header" xml:space="preserve">
         <value>Select a topic to begin recording and select topics as the conversation changes to tag the recording</value>
     </data>
-
     <!-- RECORD SCREEN RECORD PERMISSION -->
     <data name="recording.ui.permission.title" xml:space="preserve">
         <value>Permission required</value>
@@ -399,7 +403,6 @@ By being part of this conversation you will also become a project member where y
     <data name="recording.ui.permission.button.positive" xml:space="preserve">
         <value>Configure</value>    
     </data>
-    
     <!-- RECORD SCREEN FINISH -->
     <data name="recording.ui.dialog.finish.title" xml:space="preserve">
         <value>You have covered {0} of the {1} topics. Are you sure you want to end this recording?</value>
@@ -409,8 +412,7 @@ By being part of this conversation you will also become a project member where y
     </data>
     <data name="recording.ui.dialog.finish.negative" xml:space="preserve">
         <value>No</value>    
-    </data>  
-
+    </data>
     <!-- RECORD SCREEN BACK -->
     <data name="recording.ui.dialog.back.title" xml:space="preserve">
         <value>You are recording</value>
@@ -423,8 +425,7 @@ By being part of this conversation you will also become a project member where y
     </data>
     <data name="recording.ui.dialog.back.negative" xml:space="preserve">
         <value>Continue recording</value>    
-    </data>  
-
+    </data>
     <!-- DEBRIEFING BUTTONS -->
     <data name="debriefing.ui.button.hide" xml:space="preserve">
         <value>Hide</value>
@@ -432,22 +433,21 @@ By being part of this conversation you will also become a project member where y
     <data name="debriefing.ui.button.upload" xml:space="preserve">
         <value>Understood</value>
     </data>
-
     <!-- DEBRIEFING PAGE: 1 -->
     <data name="debriefing.ui.page.first.title" xml:space="preserve">
         <value>Next steps</value>
     </data>
     <data name="debriefing.ui.page.first.content" xml:space="preserve">
-        <value>&lt;br>Thank you for sharing your experiences for &lt;b>{0}&lt;/b>, which has been saved and is ready to be uploaded. 
-&lt;br>
-&lt;br>
+        <value>&lt;br&gt;Thank you for sharing your experiences for &lt;b&gt;{0}&lt;/b&gt;, which has been saved and is ready to be uploaded. 
+&lt;br&gt;
+&lt;br&gt;
 By being part of this conversation you will also become a project member where you can listen to other project conversations and help make sense of them through the website. We hope that you revisit the content to create discussions with participants in the conversation and other project members.
-&lt;br>
-&lt;br>         
-&lt;b>CHANGING YOUR CONSENT&lt;/b>
-&lt;br>
-&lt;br>
-The recording is only available to participants of the conversation for the first &lt;b>24-hours&lt;/b>. When the recording is uploaded all participants will receive a unique link to view and modify the consent you agreed on and provided before recording (&lt;b>{1}&lt;/b>). This email may go to your &lt;b>SPAM / JUNK&lt;/b>, so be sure to check there if you have not received it.
+&lt;br&gt;
+&lt;br&gt;         
+&lt;b&gt;CHANGING YOUR CONSENT&lt;/b&gt;
+&lt;br&gt;
+&lt;br&gt;
+The recording is only available to participants of the conversation for the first &lt;b&gt;24-hours&lt;/b&gt;. When the recording is uploaded all participants will receive a unique link to view and modify the consent you agreed on and provided before recording (&lt;b&gt;{1}&lt;/b&gt;). This email may go to your &lt;b&gt;SPAM / JUNK&lt;/b&gt;, so be sure to check there if you have not received it.
 </value>
     </data>
 </root>
