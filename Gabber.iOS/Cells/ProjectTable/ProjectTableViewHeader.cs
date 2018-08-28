@@ -31,7 +31,6 @@ namespace Gabber.iOS
 
         private void Tapped()
         {
-            Console.WriteLine("Tapped");
             TappedCallback?.Invoke(thisIndex);
         }
 

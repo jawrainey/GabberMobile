@@ -104,7 +104,6 @@ namespace Gabber.Fragments
         {
             refresher.Refreshing = true;
 
-            //LOG_SWIPE_REFRESH();
             List<Project> response = await RestClient.GetProjects(ErrorDelegate);
 
             if (response != null && response.Count > 0)

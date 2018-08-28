@@ -194,8 +194,10 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rE-NL-U2e">
                                             <rect key="frame" x="8" y="8" width="398" height="28"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                            <state key="normal" title="Button"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                         </button>
                                     </subviews>
                                     <constraints>

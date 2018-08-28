@@ -65,7 +65,6 @@ namespace Gabber.iOS.ViewSources
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
                 return null;
             }
         }

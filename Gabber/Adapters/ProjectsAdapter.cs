@@ -43,7 +43,6 @@ namespace Gabber.Adapters
 
         private void OnProjectClick(int position)
         {
-            Console.WriteLine("BUTTON CLICK AT POS " + position);
             ProjectClicked?.Invoke(this, position);
         }
 
