@@ -171,10 +171,10 @@
         <value>Recupero dei progetti...</value>
     </data>
     <data name="projects.ui.topics" xml:space="preserve">
-        <value>Topics for discussion:</value>
+        <value>Argomenti per la discussione:</value>
     </data>
     <data name="projects.ui.get.started.button" xml:space="preserve">
-        <value>Get Started</value>
+        <value>Iniziare</value>
     </data>
     <!-- SESSIONS FRAGMENT -->
     <data name="sessions.ui.title" xml:space="preserve">
