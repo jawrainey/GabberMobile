@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="ProjectTableViewHeader" id="iN0-l3-epB" customClass="ProjectTableViewHeader">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="JbA-Eg-dgb">
+                    <rect key="frame" x="8" y="8" width="75" height="75"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="75" id="icV-p8-TtC"/>
+                        <constraint firstAttribute="width" constant="75" id="yBV-kR-YKC"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqG-dB-iLi">
+                    <rect key="frame" x="95" y="8" width="243" height="75"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VW-t0-Xqf">
+                    <rect key="frame" x="350" y="33.5" width="13" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="13" id="X0E-NK-NeU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oqG-dB-iLi" secondAttribute="bottom" constant="8" id="3iM-TQ-p5n"/>
+                <constraint firstItem="oqG-dB-iLi" firstAttribute="leading" secondItem="JbA-Eg-dgb" secondAttribute="trailing" constant="12" id="4q4-OY-0yx"/>
+                <constraint firstItem="6VW-t0-Xqf" firstAttribute="leading" secondItem="oqG-dB-iLi" secondAttribute="trailing" constant="12" id="6bY-E4-1XU"/>
+                <constraint firstItem="oqG-dB-iLi" firstAttribute="centerY" secondItem="JbA-Eg-dgb" secondAttribute="centerY" id="EXo-RH-OfE"/>
+                <constraint firstItem="JbA-Eg-dgb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="W4j-u9-X1F"/>
+                <constraint firstItem="JbA-Eg-dgb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Xjv-cW-7jv"/>
+                <constraint firstItem="oqG-dB-iLi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Zjg-oD-Ve3"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="JbA-Eg-dgb" secondAttribute="bottom" constant="8" id="eqU-3f-dpW"/>
+                <constraint firstItem="6VW-t0-Xqf" firstAttribute="centerY" secondItem="JbA-Eg-dgb" secondAttribute="centerY" id="hHz-aH-HCb"/>
+                <constraint firstAttribute="trailing" secondItem="6VW-t0-Xqf" secondAttribute="trailing" constant="12" id="l6Z-eN-lmT"/>
+            </constraints>
+            <connections>
+                <outlet property="ArrowLabel" destination="6VW-t0-Xqf" id="swB-d2-fmW"/>
+                <outlet property="ProjectIcon" destination="JbA-Eg-dgb" id="U4s-TQ-k1o"/>
+                <outlet property="TitleLabel" destination="oqG-dB-iLi" id="m0r-tZ-Bnj"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="Logo" width="192" height="192"/>
+    </resources>
+</document>

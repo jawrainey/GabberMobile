@@ -10,7 +10,6 @@ namespace GabberPCL.Models
         public int Start { get; set; }
         public int End { get; set; }
 
-        [ForeignKey(typeof(Prompt))]
         public int PromptID { get; set; }
         [ForeignKey(typeof(InterviewSession))]
         public string InterviewID { get; set; }

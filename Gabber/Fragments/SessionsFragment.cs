@@ -15,16 +15,16 @@ using Android.Text;
 
 namespace Gabber.Fragments
 {
-    public class Sessions : Android.Support.V4.App.Fragment
+    public class SessionsFragment : Android.Support.V4.App.Fragment
     {
 		FirebaseAnalytics firebaseAnalytics;
-        static Sessions instance;
+        static SessionsFragment instance;
         SessionAdapter adapter;
         Task IsUploading;
 
-        public static Sessions NewInstance()
+        public static SessionsFragment NewInstance()
         {
-            if (instance == null) instance = new Sessions { Arguments = new Bundle() };
+            if (instance == null) instance = new SessionsFragment { Arguments = new Bundle() };
             return instance;
         }
 
@@ -91,7 +91,7 @@ namespace Gabber.Fragments
         void ShowDebriefingDialog()
         {
             var alert = new AlertDialog.Builder(Activity);
-            var session = Queries.LastInterviewSession;
+            var session = Queries.LastInterviewSession();
             var content = string.Format(
                 StringResources.debriefing_ui_page_first_content, 
                 Queries.ProjectById(session.ProjectID).Title, 
@@ -141,7 +141,7 @@ namespace Gabber.Fragments
             adapter.SessionIsUploading(index);
 
             LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "ATTEMPT");
-            var didUpload = await new RestClient().Upload(adapter.Sessions[index]);
+            var didUpload = await RestClient.Upload(adapter.Sessions[index]);
 
             if (didUpload)
             {

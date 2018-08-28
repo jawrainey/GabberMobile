@@ -2,8 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:keepScreenOn="true">
+    android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/projectsFragment"
         android:layout_width="match_parent"
@@ -45,12 +44,15 @@
                 android:id="@+id/projectsRefresher"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <android.support.v7.widget.RecyclerView
+                <ExpandableListView
                     android:id="@+id/projects"
-                    android:paddingTop="24dp"
-                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scrollbars="vertical" />
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="2.0sp"
+                    android:background="#e5e5e5"
+                    android:listSelector="@android:color/transparent" />
             </android.support.v4.widget.SwipeRefreshLayout>
         </LinearLayout>
     </LinearLayout>

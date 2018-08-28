@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Xamarin.Build.Download.0.4.9\build\Xamarin.Build.Download.props" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.9\build\Xamarin.Build.Download.props')" />
   <PropertyGroup>
@@ -141,9 +141,6 @@
     <Reference Include="Xamarin.Android.Support.Media.Compat">
       <HintPath>..\packages\Xamarin.Android.Support.Media.Compat.27.0.2\lib\MonoAndroid81\Xamarin.Android.Support.Media.Compat.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Android.Support.Transition">
-      <HintPath>..\packages\Xamarin.Android.Support.Transition.27.0.2\lib\MonoAndroid81\Xamarin.Android.Support.Transition.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\packages\Xamarin.Android.Support.v4.27.0.2\lib\MonoAndroid81\Xamarin.Android.Support.v4.dll</HintPath>
       <Private>False</Private>
@@ -173,6 +170,18 @@
     <Reference Include="Xamarin.GooglePlayServices.Base">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Base.60.1142.1\lib\MonoAndroid80\Xamarin.GooglePlayServices.Base.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.Transition">
+      <HintPath>..\packages\Xamarin.Android.Support.Transition.27.0.2\lib\MonoAndroid81\Xamarin.Android.Support.Transition.dll</HintPath>
+    </Reference>
+    <Reference Include="FFImageLoading">
+      <HintPath>..\packages\Xamarin.FFImageLoading.2.4.3.840\lib\MonoAndroid10\FFImageLoading.dll</HintPath>
+    </Reference>
+    <Reference Include="FFImageLoading.Platform">
+      <HintPath>..\packages\Xamarin.FFImageLoading.2.4.3.840\lib\MonoAndroid10\FFImageLoading.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="FFImageLoading.Transformations">
+      <HintPath>..\packages\Xamarin.FFImageLoading.Transformations.2.4.3.840\lib\MonoAndroid10\FFImageLoading.Transformations.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -190,8 +199,8 @@
     <Compile Include="Activities\Onboarding.cs" />
     <Compile Include="Adapters\SessionsAdapter.cs" />
     <Compile Include="Adapters\SharedPager.cs" />
-    <Compile Include="Fragments\Projects.cs" />
-    <Compile Include="Fragments\Sessions.cs" />
+    <Compile Include="Fragments\ProjectsFragment.cs" />
+    <Compile Include="Fragments\SessionsFragment.cs" />
     <Compile Include="Fragments\About.cs" />
     <Compile Include="Activities\RegisterVerification.cs" />
     <Compile Include="Activities\VerifyEmail.cs" />
@@ -272,17 +281,12 @@
     <AndroidResource Include="Resources\layout\consent_research.axml" />
     <AndroidResource Include="Resources\layout\consent_conversation.axml" />
     <AndroidResource Include="Resources\layout\consent_summary.axml" />
+    <AndroidResource Include="Resources\layout\project_headercell.axml" />
+    <AndroidResource Include="Resources\layout\project_descriptionCell.axml" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\test.png" />
+    <AndroidResource Include="Resources\layout\project_prompt.axml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\values-v21\" />
-    <Folder Include="Activities\" />
-    <Folder Include="Adapters\" />
-    <Folder Include="Helpers\" />
-    <Folder Include="Resources\menu\" />
-    <Folder Include="Fragments\" />
-    <Folder Include="Resources\drawable-nodpi\" />
-    <Folder Include="Resources\drawable-v21\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">
       <Project>{5CD5713F-78D1-4532-8393-8E5F9BF1B7FA}</Project>

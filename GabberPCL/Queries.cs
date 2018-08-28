@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using GabberPCL.Models;
+using Newtonsoft.Json;
 using SQLiteNetExtensions.Extensions;
 
 namespace GabberPCL
@@ -16,36 +17,49 @@ namespace GabberPCL
         public static void AddProjects(List<Project> _projects)
         {
             // Resync database when data pulled from the server.
-            // Projects that the user may have had access to could change, and if they
-            // are not removed, then sessions could be created for them.
             Session.Connection.DeleteAll<Project>();
-            foreach (var p in _projects)
+
+            foreach(Project project in _projects)
             {
-                Session.Connection.InsertOrReplace(p.Creator);
-                Session.Connection.InsertOrReplace(p.Organisation);
-                Session.Connection.InsertOrReplaceAllWithChildren(p.Prompts);
-                Session.Connection.InsertOrReplace(p);
-                Session.Connection.InsertOrReplaceAllWithChildren(p.Members);
+                project.SerializeJson();
+                Session.Connection.Insert(project);
             }
         }
 
         public static List<Project> AllProjects()
         {
-            return Session.Connection.GetAllWithChildren<Project>().OrderByDescending(p => p.ID).ToList();
+            List<Project> res = Session.Connection.GetAllWithChildren<Project>()
+                .OrderByDescending(p => p.ID).ToList();
+
+            foreach(Project proj in res)
+            {
+                proj.LoadJson();
+            }
+
+            return res;
         }
 
         public static List<InterviewSession> AllNotUploadedInterviewSessionsForActiveUser()
         {
             var sessions = Session.Connection.GetAllWithChildren<InterviewSession>().Where((i) => !i.IsUploaded);
-            return sessions.OrderByDescending(i => i.CreatedAt).ToList();
+            List<InterviewSession> res = sessions.OrderByDescending(i => i.CreatedAt).ToList();
+            
+            foreach(InterviewSession session in res)
+            {
+                session.LoadJson();
+            }
+
+            return res;
         }
 
         public static Project ProjectById(int projectID)
         {
-            var project = Session.Connection.GetWithChildren<Project>(projectID);
+            Project proj = Session.Connection.Get<Project>(projectID);
+            proj.LoadJson();
+
             // Only show the active topics to the user
-            project.Prompts = project.Prompts.Where((p) => p.IsActive).ToList();
-            return project;
+            proj.Prompts = proj.Prompts.Where((p) => p.IsActive).ToList();
+            return proj;
         }
 
         public static User UserById(int userID) => Session.Connection.Get<User>(userID);
@@ -81,11 +95,9 @@ namespace GabberPCL
 
         public static async void UploadInterviewSessionsAsync()
         {
-            var api = new RestClient();
-
             foreach (var s in AllInterviewSessionsNotUploaded())
             {
-                var didUpload = await api.Upload(s);
+                var didUpload = await RestClient.Upload(s);
                 if (didUpload)
                 {
                     s.IsUploaded = didUpload;
@@ -96,10 +108,21 @@ namespace GabberPCL
 
         public static List<InterviewSession> AllInterviewSessionsNotUploaded()
         {
-            return Session.Connection.GetAllWithChildren<InterviewSession>((i) => !i.IsUploaded);
+            List<InterviewSession> res = Session.Connection.GetAllWithChildren<InterviewSession>((i) => !i.IsUploaded);
+
+            foreach(InterviewSession session in res)
+            {
+                session.LoadJson();
+            }
+
+            return res;
         }
 
-        public static void AddInterviewSession(InterviewSession InterviewSession) => Session.Connection.Insert(InterviewSession);
+        public static void AddInterviewSession(InterviewSession interviewSession)
+        {
+            interviewSession.SerializeJson();
+            Session.Connection.Insert(interviewSession);
+        }
 
         public static List<User> AllParticipantsUnSelected() 
         {
@@ -141,17 +164,19 @@ namespace GabberPCL
             });
         }
 
-        public static void AddSelectedParticipantsToInterviewSession(string InterviewSessionID)
+        public static InterviewSession AddSelectedParticipantsToInterviewSession(InterviewSession session)
         {
-            foreach (var participant in SelectedParticipants())
+            if (session.Participants == null) session.Participants = new List<InterviewParticipant>();
+
+            foreach (User participant in SelectedParticipants())
             {
                 // TODO: we store the Email/UserID here to simplify logic on the server, which is bad
                 // as this is duplicated information between InterviewParticipant, etc
                 // We represent a participant as a User, but in doing so do not send the Email/Name
                 // when creating a session object (as they are abstracted away), which imho is not ideal.
-                Session.Connection.Insert(new InterviewParticipant
+                session.Participants.Add (new InterviewParticipant
                 {
-                    InterviewID = InterviewSessionID,
+                    InterviewID = session.SessionID,
                     // True if participant was the intervieweer
                     Role = Session.ActiveUser.Id == participant.Id,
                     Name = participant.Name,
@@ -159,6 +184,8 @@ namespace GabberPCL
                     UserID = participant.Id
                 });
             }
+
+            return session;
         }
 
         public static List<InterviewParticipant> ParticipantsForSession(string InterviewSessionID)
@@ -166,13 +193,18 @@ namespace GabberPCL
             return Session.Connection.Table<InterviewParticipant>().Where((ip) => ip.InterviewID == InterviewSessionID).ToList();
         }
 
-        public static InterviewSession LastInterviewSession => Session.Connection.Table<InterviewSession>().Last();
+        public static InterviewSession LastInterviewSession()
+        {
+            InterviewSession last =  Session.Connection.Table<InterviewSession>().Last();
+            last.LoadJson();
+            return last;
+        }
 
         public static List<InterviewPrompt> AnnotationsForLastSession()
         {
             var AnnotationTable = Session.Connection.Table<InterviewPrompt>();
-            var LastAnnotationInserted = AnnotationTable.Last().InterviewID;
-            return AnnotationTable.Where((a) => a.InterviewID == LastAnnotationInserted).ToList();
+            string lastAnnotatedInterviewId = AnnotationTable.Last().InterviewID;
+            return AnnotationTable.Where((a) => a.InterviewID == lastAnnotatedInterviewId).ToList();
         }
 
         public static void UpdateAnnotation(InterviewPrompt annotation) => Session.Connection.Update(annotation);

@@ -57,7 +57,7 @@ namespace Gabber.Activities
             if (!string.IsNullOrEmpty(dataURI.ToString()))
             {
                 FindViewById<ProgressBar>(Resource.Id.registerVerifyProgressBar).Visibility = ViewStates.Visible;
-                var response = await new RestClient().RegisterVerify(dataURI.LastPathSegment);
+                var response = await RestClient.RegisterVerify(dataURI.LastPathSegment);
                 FindViewById<ProgressBar>(Resource.Id.registerVerifyProgressBar).Visibility = ViewStates.Gone;
 
                 if (response.Meta.Success)

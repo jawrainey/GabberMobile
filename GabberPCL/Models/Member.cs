@@ -13,13 +13,13 @@ namespace GabberPCL.Models
         public bool Confirmed { get; set; }
         public bool Deactivated { get; set; }
         public string Role { get; set; }
+
         [JsonProperty("fullname")]
         public string Fullname { get; set; }
 
         [JsonProperty("user_id")]
         public long UserId { get; set; }
 
-        [ForeignKey(typeof(Project))]
         [JsonProperty("project_id")]
         public int ProjectID { get; set; }
     }

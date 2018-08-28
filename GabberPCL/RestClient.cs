@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.IO;
 using GabberPCL.Models;
 using System.Text;
+using System.Net.Http.Headers;
 
 namespace GabberPCL
 {
@@ -72,22 +73,29 @@ namespace GabberPCL
         public List<string> Messages { get; set; }
     }
 
-	public class RestClient
+	public static class RestClient
 	{
 		// Used to access platform specific implementations
 		public static Interfaces.IDiskIO GlobalIO;
 
-		readonly HttpClient _client;
+        private static HttpClient _client;
 
-		public RestClient()
-		{
-            _client = new HttpClient
+        private static HttpClient Client {
+            get
             {
-                BaseAddress = new Uri(Config.API_ENDPOINT)
-            };
+                if (_client == null)
+                {
+                    _client = new HttpClient
+                    {
+                        BaseAddress = new Uri(Config.API_ENDPOINT)
+                    };
+                }
+
+                return _client;
+            }
         }
 
-        public async Task<CustomAuthResponse> Login(string email, string password)
+        public static async Task<CustomAuthResponse> Login(string email, string password)
 		{
             var _response = new CustomAuthResponse
             {
@@ -99,7 +107,7 @@ namespace GabberPCL
             {
                 var payload = new { email, password };
                 var _content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
-                var response = await _client.PostAsync("api/auth/login/", _content);
+                var response = await Client.PostAsync("api/auth/login/", _content);
                 var content = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
@@ -119,7 +127,7 @@ namespace GabberPCL
             return _response;
         }
 
-        public async Task<CustomAuthResponse> Register(string fullname, string email, string password)
+        public static async Task<CustomAuthResponse> Register(string fullname, string email, string password)
 		{
             var _response = new CustomAuthResponse
             {
@@ -132,7 +140,7 @@ namespace GabberPCL
                 var payload = JsonConvert.SerializeObject(new { fullname, email, password });
                 var _content = new StringContent(payload, Encoding.UTF8, "application/json");
 
-                var response = await _client.PostAsync("api/auth/register/", _content);
+                var response = await Client.PostAsync("api/auth/register/", _content);
                 var content = await response.Content.ReadAsStringAsync();
 
                 _response.Meta = JsonConvert.DeserializeObject<RegisterAuthResponse>(content).Meta;
@@ -149,7 +157,7 @@ namespace GabberPCL
             return _response;
 		}
 
-        public async Task<RegisterVerifyAuthResponse<DataUserTokens>> RegisterVerify(string token)
+        public static async Task<RegisterVerifyAuthResponse<DataUserTokens>> RegisterVerify(string token)
         {
             var _response = new RegisterVerifyAuthResponse<DataUserTokens>
             {
@@ -160,7 +168,7 @@ namespace GabberPCL
             try
             {
                 var _content = new StringContent("", Encoding.UTF8, "application/json");
-                var response = await _client.PostAsync($"api/auth/verify/{token}/", _content);
+                var response = await Client.PostAsync($"api/auth/verify/{token}/", _content);
                 var content = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
@@ -184,38 +192,41 @@ namespace GabberPCL
 
 		// As this deals with reading files from platform specific paths, 
 		// then we must implement this on each specific platform.
-        public async Task<bool> Upload(InterviewSession interviewSession)
+        public static async Task<bool> Upload(InterviewSession interviewSession)
 		{
 			using (var formData = new MultipartFormDataContent())
 			{
                 formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Participants)), "participants");
                 formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Prompts)), "prompts");
                 formData.Add(new StringContent(interviewSession.ConsentType.ToString()), "consent");
+                formData.Add(new StringContent(interviewSession.CreatedAt.ToString(System.Globalization.CultureInfo.InvariantCulture)), "created_on");
 
-				// Access the OS specific implementation to load data from a file.
+                // Access the OS specific implementation to load data from a file.
                 formData.Add(new ByteArrayContent(GlobalIO.Load(interviewSession.RecordingURL)), "recording",
                              Path.GetFileName(interviewSession.RecordingURL));
 				try
 				{
                     var endpoint = $"api/projects/{interviewSession.ProjectID.ToString()}/sessions/";
-                    _client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token.Access);
-                    var response = await _client.PostAsync(endpoint, formData);
+                    Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session.Token.Access);
+                    var response = await Client.PostAsync(endpoint, formData);
 					return response.IsSuccessStatusCode;
 				}
-				catch
+				catch(Exception e)
 				{
 					return false;
 				}
 			}
 		}
 
-        public async Task<List<Project>> GetProjects(Action<string> errorCallback)
+        public static async Task<List<Project>> GetProjects(Action<string> errorCallback)
 		{
-            _client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token.Access);   
+            //Client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token.Access);   
+
+            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session.Token.Access);
 
             try
             {
-                var response = await _client.GetAsync("api/projects/");
+                var response = await Client.GetAsync("api/projects/");
                 var content = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
