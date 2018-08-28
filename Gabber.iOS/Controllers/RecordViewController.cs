@@ -23,7 +23,7 @@ namespace Gabber.iOS
         // Which project are we recording an interview for?
         int SelectedProjectID;
 
-        public RecordViewController(IntPtr handle) : base(handle) {}
+        public RecordViewController(IntPtr handle) : base(handle) { }
 
         static string GetTextStatus(bool granted)
         {
@@ -48,7 +48,8 @@ namespace Gabber.iOS
 
         public void RequestAudioRecordPermission()
         {
-            AVAudioSession.SharedInstance().RequestRecordPermission(granted => {
+            AVAudioSession.SharedInstance().RequestRecordPermission(granted =>
+            {
                 GetTextStatus(granted);
                 new TaskCompletionSource<object>().SetResult(null);
             });
@@ -62,36 +63,37 @@ namespace Gabber.iOS
             var es = new CoreGraphics.CGSize(UIScreen.MainScreen.Bounds.Width - 36, 70);
             (TopicsCollectionView.CollectionViewLayout as UICollectionViewFlowLayout).EstimatedItemSize = es;
 
-            RequestAudioRecordPermission();                  
+            RequestAudioRecordPermission();
             if (CheckAccess().Contains("denied"))
             {
                 ConfigureMicrophoneAccessDialog();
                 return;
             }
 
-            NavigationItem.LeftBarButtonItem = new UIBarButtonItem(UIImage.FromBundle("BackButton"), UIBarButtonItemStyle.Plain, (sender, args) => 
+            NavigationItem.LeftBarButtonItem = new UIBarButtonItem(UIImage.FromBundle("BackButton"), UIBarButtonItemStyle.Plain, (sender, args) =>
             {
                 if (AudioRecorder.IsRecording())
                 {
                     var doDeleteRecording = UIAlertController.Create(
                         StringResources.recording_ui_dialog_back_title,
-                        StringResources.recording_ui_dialog_back_body, 
+                        StringResources.recording_ui_dialog_back_body,
                         UIAlertControllerStyle.Alert);
 
                     doDeleteRecording.AddAction(
                         UIAlertAction.Create(
-                            StringResources.recording_ui_dialog_back_negative, 
-                            UIAlertActionStyle.Cancel, 
+                            StringResources.recording_ui_dialog_back_negative,
+                            UIAlertActionStyle.Cancel,
                             (_) => { }
                         )
                     );
                     doDeleteRecording.AddAction(
                         UIAlertAction.Create(
                             StringResources.recording_ui_dialog_back_positive,
-                            UIAlertActionStyle.Default, (_) => {
-                        NavigationController.PopViewController(false);
-                    }));
-                    PresentViewController(doDeleteRecording, true, null);   
+                            UIAlertActionStyle.Default, (_) =>
+                            {
+                                NavigationController.PopViewController(false);
+                            }));
+                    PresentViewController(doDeleteRecording, true, null);
                 }
                 NavigationController.PopViewController(false);
             });
@@ -105,7 +107,8 @@ namespace Gabber.iOS
 
             // Shared as we can use this to determine when a row is first clicked
             Topics = SelectedProject.Prompts;
-            TopicsCollectionView.Source = new TopicsCollectionViewSource { 
+            TopicsCollectionView.Source = new TopicsCollectionViewSource
+            {
                 Rows = Topics,
                 AddAnnotation = AddAnnotation
             };
@@ -148,20 +151,20 @@ namespace Gabber.iOS
         protected void ConfigureMicrophoneAccessDialog()
         {
             var finishRecordingAlertController = UIAlertController.Create(
-                StringResources.recording_ui_permission_title, 
+                StringResources.recording_ui_permission_title,
                 StringResources.recording_ui_permission_body, UIAlertControllerStyle.Alert);
 
             finishRecordingAlertController.AddAction(
                 UIAlertAction.Create(
-                    StringResources.recording_ui_permission_button_negative, 
-                    UIAlertActionStyle.Cancel, 
+                    StringResources.recording_ui_permission_button_negative,
+                    UIAlertActionStyle.Cancel,
                     (_) => { }
                 )
             );
             finishRecordingAlertController.AddAction(
                 UIAlertAction.Create(
-                    StringResources.recording_ui_permission_button_positive, 
-                    UIAlertActionStyle.Default, 
+                    StringResources.recording_ui_permission_button_positive,
+                    UIAlertActionStyle.Default,
                     (_) => { UIApplication.SharedApplication.OpenUrl(new NSUrl("app-settings:")); }
                 )
             );
@@ -177,15 +180,15 @@ namespace Gabber.iOS
 
             finishRecordingAlertController.AddAction(
                 UIAlertAction.Create(
-                    StringResources.recording_ui_dialog_finish_positive, 
-                    UIAlertActionStyle.Default, 
+                    StringResources.recording_ui_dialog_finish_positive,
+                    UIAlertActionStyle.Default,
                     FinishRecording)
             );
             finishRecordingAlertController.AddAction(
                 UIAlertAction.Create(
-                    StringResources.recording_ui_dialog_finish_negative, 
-                    UIAlertActionStyle.Cancel, 
-                    (_) => {})
+                    StringResources.recording_ui_dialog_finish_negative,
+                    UIAlertActionStyle.Cancel,
+                    (_) => { })
             );
 
             PresentViewController(finishRecordingAlertController, true, null);
@@ -197,10 +200,7 @@ namespace Gabber.iOS
             // Only once a recording is complete can End for each annotation be computed
             InterviewPrompt.ComputeEndForAllAnnotationsInSession(AudioRecorder.CurrentTime());
 
-            // Added before to simplify accessing the participants involved next.
-            Queries.AddSelectedParticipantsToInterviewSession(InterviewSessionID);
-
-            var InterviewSession = new InterviewSession
+            InterviewSession session = new InterviewSession
             {
                 ConsentType = NSUserDefaults.StandardUserDefaults.StringForKey("SESSION_CONSENT"),
                 SessionID = InterviewSessionID,
@@ -210,14 +210,13 @@ namespace Gabber.iOS
                 // will have a different ID than the one on the server as they are not in sync
                 CreatorEmail = Session.ActiveUser.Email,
                 ProjectID = SelectedProjectID,
-
                 Prompts = Queries.AnnotationsForLastSession(),
-                Participants = Queries.ParticipantsForSession(InterviewSessionID),
-
                 IsUploaded = false
             };
 
-            Queries.AddInterviewSession(InterviewSession);
+            session = Queries.AddSelectedParticipantsToInterviewSession(session);
+
+            Queries.AddInterviewSession(session);
             NSUserDefaults.StandardUserDefaults.SetBool(true, "SESSION_RECORDED");
 
             // The ProjectsController manages uploading sessions

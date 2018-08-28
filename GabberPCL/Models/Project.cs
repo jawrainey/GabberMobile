@@ -29,6 +29,11 @@ namespace GabberPCL.Models
         public List<Member> Members;
         public string MembersJson { get; set; }
 
+        public string image { get; set; }
+
+        // only used in iOS collectionview
+        public bool IsExpanded;
+
         public void LoadJson()
         {
             if (CreatorJson == null) return;

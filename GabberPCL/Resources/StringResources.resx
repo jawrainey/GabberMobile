@@ -199,10 +199,16 @@
         <value>Projects</value>
     </data>
     <data name="projects.ui.instructions" xml:space="preserve">
-        <value>Choose a project that you want to contribute to and have a conversation about</value>
+        <value>Choose a project that you want to have a conversation about</value>
     </data>
     <data name="projects.ui.fetching" xml:space="preserve">
         <value>Fetching projects...</value>
+    </data>
+    <data name="projects.ui.topics" xml:space="preserve">
+        <value>Topics for discussion:</value>
+    </data>
+    <data name="projects.ui.get.started.button" xml:space="preserve">
+        <value>Get Started</value>
     </data>
     <!-- SESSIONS FRAGMENT -->
     <data name="sessions.ui.title" xml:space="preserve">

@@ -82,7 +82,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Jay Rainey (G4QY8CALPA)</CodesignKey>
+    <CodesignKey>iPhone Developer: Dan Richardson (JR3T9MH59D)</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
@@ -584,6 +584,21 @@
     <Reference Include="netstandard">
       <HintPath>..\..\..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\Current\lib\mono\Xamarin.iOS\Facades\netstandard.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\Library\Frameworks\Mono.framework\External\xbuild-frameworks\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="WebP.Touch">
+      <HintPath>..\packages\WebP.Touch.1.0.8\lib\Xamarin.iOS10\WebP.Touch.dll</HintPath>
+    </Reference>
+    <Reference Include="FFImageLoading">
+      <HintPath>..\packages\Xamarin.FFImageLoading.2.4.3.840\lib\Xamarin.iOS10\FFImageLoading.dll</HintPath>
+    </Reference>
+    <Reference Include="FFImageLoading.Platform">
+      <HintPath>..\packages\Xamarin.FFImageLoading.2.4.3.840\lib\Xamarin.iOS10\FFImageLoading.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="FFImageLoading.Transformations">
+      <HintPath>..\packages\Xamarin.FFImageLoading.Transformations.2.4.3.840\lib\Xamarin.iOS10\FFImageLoading.Transformations.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -644,9 +659,6 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\Logo.imageset\logo.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\cloud_done.imageset\.Contents.json.swp">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\cloud_done.imageset\Contents.json">
@@ -780,10 +792,12 @@
     <Folder Include="Assets.xcassets\OnboardingProjects.imageset\" />
     <Folder Include="Assets.xcassets\CheckboxChecked.imageset\" />
     <Folder Include="Assets.xcassets\CheckboxUnchecked.imageset\" />
+    <Folder Include="Cells\ProjectTable\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Resources\ProjectTableViewHeader.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -796,15 +810,6 @@
     <Compile Include="Controllers\LoginViewController.cs" />
     <Compile Include="Controllers\LoginViewController.designer.cs">
       <DependentUpon>LoginViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\ProjectsViewController.cs" />
-    <Compile Include="Controllers\ProjectsViewController.designer.cs">
-      <DependentUpon>ProjectsViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewSources\ProjectsCollectionViewSource.cs" />
-    <Compile Include="Cells\ProjectsCollectionViewCell.cs" />
-    <Compile Include="Cells\ProjectsCollectionViewCell.designer.cs">
-      <DependentUpon>ProjectsCollectionViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\ParticipantsViewController.cs" />
     <Compile Include="Controllers\ParticipantsViewController.designer.cs">
@@ -886,6 +891,27 @@
     <Compile Include="Controllers\ConsentSummary.cs" />
     <Compile Include="Controllers\ConsentSummary.designer.cs">
       <DependentUpon>ConsentSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSources\ProjectsTableViewSource.cs" />
+    <Compile Include="Controllers\ProjectTableViewController.cs" />
+    <Compile Include="Controllers\ProjectTableViewController.designer.cs">
+      <DependentUpon>ProjectTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cells\ProjectTable\ProjectTableViewDescriptionCell.cs" />
+    <Compile Include="Cells\ProjectTable\ProjectTableViewDescriptionCell.designer.cs">
+      <DependentUpon>ProjectTableViewDescriptionCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cells\ProjectTable\ProjectTableViewPromptCell.cs" />
+    <Compile Include="Cells\ProjectTable\ProjectTableViewPromptCell.designer.cs">
+      <DependentUpon>ProjectTableViewPromptCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cells\ProjectTable\ProjectTableViewHeader.cs" />
+    <Compile Include="Cells\ProjectTable\ProjectTableViewHeader.designer.cs">
+      <DependentUpon>ProjectTableViewHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cells\ProjectTable\ProjectTableViewButtonCell.cs" />
+    <Compile Include="Cells\ProjectTable\ProjectTableViewButtonCell.designer.cs">
+      <DependentUpon>ProjectTableViewButtonCell.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

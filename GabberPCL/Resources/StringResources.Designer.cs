@@ -389,6 +389,18 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string projects_ui_topics {
+            get {
+                return ResourceManager.GetString("projects.ui.topics", resourceCulture);
+            }
+        }
+        
+        public static string projects_ui_get_started_button {
+            get {
+                return ResourceManager.GetString("projects.ui.get.started.button", resourceCulture);
+            }
+        }
+        
         public static string sessions_ui_title {
             get {
                 return ResourceManager.GetString("sessions.ui.title", resourceCulture);
