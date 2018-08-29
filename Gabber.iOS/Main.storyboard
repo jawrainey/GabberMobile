@@ -1111,10 +1111,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jpt-c3-shr" userLabel="ContentView">
-                                        <rect key="frame" x="8" y="0.0" width="398" height="736"/>
+                                        <rect key="frame" x="16" y="0.0" width="382" height="736"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="752" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31314">
-                                                <rect key="frame" x="0.0" y="419.33333333333331" width="398" height="50"/>
+                                                <rect key="frame" x="0.0" y="402" width="382" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="5zm-22-nem"/>
                                                 </constraints>
@@ -1126,13 +1126,13 @@
                                                 </connections>
                                             </button>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SiE-nu-Iqe">
-                                                <rect key="frame" x="0.0" y="269.33333333333331" width="398" height="80"/>
+                                                <rect key="frame" x="0.0" y="264" width="382" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="Gzh-BP-UU8"/>
                                                 </constraints>
                                             </pickerView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your full name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31312">
-                                                <rect key="frame" x="0.0" y="8" width="398" height="50"/>
+                                                <rect key="frame" x="0.0" y="16" width="382" height="50"/>
                                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.40000000000000002"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="weJ-Ka-zPu"/>
@@ -1142,7 +1142,7 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="name"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31313">
-                                                <rect key="frame" x="0.0" y="66" width="398" height="50"/>
+                                                <rect key="frame" x="0.0" y="82" width="382" height="50"/>
                                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.40000000000000002"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Qt2-1s-i1u"/>
@@ -1152,7 +1152,7 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="31317">
-                                                <rect key="frame" x="0.0" y="124" width="398" height="50"/>
+                                                <rect key="frame" x="0.0" y="148" width="382" height="50"/>
                                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.40000000000000002"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="n6F-du-Fgi"/>
@@ -1162,7 +1162,7 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm your password placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SDy-LV-5LZ">
-                                                <rect key="frame" x="0.0" y="182" width="398" height="50"/>
+                                                <rect key="frame" x="0.0" y="214" width="382" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="mj6-vA-0Et"/>
                                                 </constraints>
@@ -1170,14 +1170,8 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose language placeholder:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQO-p7-3bM">
-                                                <rect key="frame" x="0.0" y="242" width="398" height="19.333333333333314"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Terms and conditions placeholder" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3Se-b2-woI">
-                                                <rect key="frame" x="0.0" y="361.33333333333331" width="398" height="50"/>
+                                                <rect key="frame" x="0.0" y="344" width="382" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="O0W-h3-6QB"/>
@@ -1190,40 +1184,37 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="31312" firstAttribute="top" secondItem="Jpt-c3-shr" secondAttribute="top" constant="8" id="979-SB-QCe"/>
+                                            <constraint firstItem="31312" firstAttribute="top" secondItem="Jpt-c3-shr" secondAttribute="top" constant="16" id="979-SB-QCe"/>
                                             <constraint firstItem="SDy-LV-5LZ" firstAttribute="leading" secondItem="Jpt-c3-shr" secondAttribute="leading" id="EJx-ed-d6j"/>
                                             <constraint firstItem="31317" firstAttribute="leading" secondItem="Jpt-c3-shr" secondAttribute="leading" id="EXt-Dm-ZY5"/>
-                                            <constraint firstItem="TQO-p7-3bM" firstAttribute="top" secondItem="SDy-LV-5LZ" secondAttribute="bottom" constant="10" id="Fnu-mF-Y6K"/>
-                                            <constraint firstItem="SiE-nu-Iqe" firstAttribute="top" secondItem="TQO-p7-3bM" secondAttribute="bottom" constant="8" id="HYC-o6-PKY"/>
                                             <constraint firstItem="31313" firstAttribute="leading" secondItem="Jpt-c3-shr" secondAttribute="leading" id="Hd3-xq-EN4"/>
-                                            <constraint firstAttribute="trailing" secondItem="TQO-p7-3bM" secondAttribute="trailing" id="ICq-2q-vdg"/>
                                             <constraint firstItem="31312" firstAttribute="leading" secondItem="Jpt-c3-shr" secondAttribute="leading" id="JKM-Vg-gi7"/>
                                             <constraint firstItem="31314" firstAttribute="top" secondItem="3Se-b2-woI" secondAttribute="bottom" constant="8" id="Ow9-XE-cau"/>
-                                            <constraint firstItem="TQO-p7-3bM" firstAttribute="leading" secondItem="Jpt-c3-shr" secondAttribute="leading" id="QRr-6p-N1s"/>
                                             <constraint firstAttribute="trailing" secondItem="SiE-nu-Iqe" secondAttribute="trailing" id="Yh3-6g-xmX"/>
                                             <constraint firstAttribute="trailing" secondItem="31317" secondAttribute="trailing" id="YtG-oE-j4u"/>
                                             <constraint firstAttribute="trailing" secondItem="31314" secondAttribute="trailing" id="ZAp-iY-s7R"/>
                                             <constraint firstItem="3Se-b2-woI" firstAttribute="leading" secondItem="Jpt-c3-shr" secondAttribute="leading" id="byR-ty-7G5"/>
                                             <constraint firstAttribute="trailing" secondItem="SDy-LV-5LZ" secondAttribute="trailing" id="d3r-7X-BE6"/>
-                                            <constraint firstItem="3Se-b2-woI" firstAttribute="top" secondItem="SiE-nu-Iqe" secondAttribute="bottom" constant="12" id="eSu-1M-F9b"/>
+                                            <constraint firstItem="3Se-b2-woI" firstAttribute="top" secondItem="SiE-nu-Iqe" secondAttribute="bottom" id="eSu-1M-F9b"/>
                                             <constraint firstAttribute="trailing" secondItem="31312" secondAttribute="trailing" id="eb9-gq-aX2"/>
-                                            <constraint firstItem="SDy-LV-5LZ" firstAttribute="top" secondItem="31317" secondAttribute="bottom" constant="8" id="f47-ek-Tc6"/>
+                                            <constraint firstItem="SDy-LV-5LZ" firstAttribute="top" secondItem="31317" secondAttribute="bottom" constant="16" id="f47-ek-Tc6"/>
                                             <constraint firstItem="31314" firstAttribute="leading" secondItem="Jpt-c3-shr" secondAttribute="leading" id="hcg-ef-iap"/>
-                                            <constraint firstItem="31317" firstAttribute="top" secondItem="31313" secondAttribute="bottom" constant="8" id="p8F-Gh-NUd"/>
-                                            <constraint firstItem="31313" firstAttribute="top" secondItem="31312" secondAttribute="bottom" constant="8" id="rYp-Nm-qOq"/>
+                                            <constraint firstItem="31317" firstAttribute="top" secondItem="31313" secondAttribute="bottom" constant="16" id="p8F-Gh-NUd"/>
+                                            <constraint firstItem="31313" firstAttribute="top" secondItem="31312" secondAttribute="bottom" constant="16" id="rYp-Nm-qOq"/>
                                             <constraint firstAttribute="trailing" secondItem="3Se-b2-woI" secondAttribute="trailing" id="riJ-vQ-YgW"/>
                                             <constraint firstItem="SiE-nu-Iqe" firstAttribute="leading" secondItem="Jpt-c3-shr" secondAttribute="leading" id="ttV-3s-Irh"/>
+                                            <constraint firstItem="SiE-nu-Iqe" firstAttribute="top" secondItem="SDy-LV-5LZ" secondAttribute="bottom" id="xch-Mf-EX0"/>
                                             <constraint firstAttribute="trailing" secondItem="31313" secondAttribute="trailing" id="znH-jG-1fn"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Jpt-c3-shr" secondAttribute="bottom" id="31M-1v-Mfl"/>
-                                    <constraint firstAttribute="trailing" secondItem="Jpt-c3-shr" secondAttribute="trailing" constant="8" id="MmC-hw-pvv"/>
+                                    <constraint firstAttribute="bottom" secondItem="Jpt-c3-shr" secondAttribute="bottom" constant="16" id="31M-1v-Mfl"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jpt-c3-shr" secondAttribute="trailing" constant="16" id="MmC-hw-pvv"/>
                                     <constraint firstItem="Jpt-c3-shr" firstAttribute="height" secondItem="5Bv-1S-9NV" secondAttribute="height" id="ank-sO-o4z"/>
                                     <constraint firstItem="Jpt-c3-shr" firstAttribute="centerX" secondItem="5Bv-1S-9NV" secondAttribute="centerX" id="nk0-KX-V6f"/>
                                     <constraint firstItem="Jpt-c3-shr" firstAttribute="centerY" secondItem="5Bv-1S-9NV" secondAttribute="centerY" id="phu-22-eo1"/>
-                                    <constraint firstItem="Jpt-c3-shr" firstAttribute="leading" secondItem="5Bv-1S-9NV" secondAttribute="leading" constant="8" id="zxV-4H-1Js"/>
+                                    <constraint firstItem="Jpt-c3-shr" firstAttribute="leading" secondItem="5Bv-1S-9NV" secondAttribute="leading" constant="16" id="zxV-4H-1Js"/>
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKT-G9-K1l">
@@ -1255,7 +1246,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ChooseLanguagePromptLabel" destination="TQO-p7-3bM" id="lIC-6g-JBQ"/>
                         <outlet property="ConfirmPasswordTextField" destination="SDy-LV-5LZ" id="i1h-rm-zwX"/>
                         <outlet property="EmailRegisterTextField" destination="31313" id="name-outlet-31313"/>
                         <outlet property="FullNameRegisterTextField" destination="31312" id="name-outlet-31312"/>
@@ -1808,6 +1798,6 @@
         <image name="menu_projects" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rri-Ft-jR5"/>
+        <segue reference="52090"/>
     </inferredMetricsTieBreakers>
 </document>
