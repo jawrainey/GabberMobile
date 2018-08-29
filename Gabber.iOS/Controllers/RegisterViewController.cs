@@ -55,9 +55,7 @@ namespace Gabber.iOS
                 pickerModel = new LanguagePickerViewModel(languages);
                 LanguagePicker.Model = pickerModel;
                 LoadingOverlay.Alpha = 0;
-                //LoadingOverlay.RemoveFromSuperview();
             }
-
         }
 
         bool NavigateNext(UITextField _field)

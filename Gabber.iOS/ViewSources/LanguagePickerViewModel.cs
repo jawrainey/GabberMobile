@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Foundation;
 using GabberPCL.Models;
 using GabberPCL.Resources;
 using UIKit;
@@ -10,10 +11,22 @@ namespace Gabber.iOS.ViewSources
     public class LanguagePickerViewModel : UIPickerViewModel
     {
         private readonly List<LanguageChoice> rows;
+        private Action<LanguageChoice> selectCallback;
 
-        public LanguagePickerViewModel(List<LanguageChoice> data)
+        public LanguagePickerViewModel(List<LanguageChoice> data, Action<LanguageChoice> didSelect = null)
         {
             rows = data;
+            selectCallback = didSelect;
+        }
+
+        public bool SelectById(UIPickerView pickerView, int id)
+        {
+            int index = rows.FindIndex((LanguageChoice obj) => obj.Id == id);
+
+            pickerView.Select(index + 1, 0, true);
+
+            // found?
+            return index != -1;
         }
 
         public LanguageChoice GetChoice(UIPickerView pickerView)
@@ -23,6 +36,18 @@ namespace Gabber.iOS.ViewSources
             if (row == 0) return null;
 
             return rows[row - 1];
+        }
+
+        [Export("pickerView:didSelectRow:inComponent:")]
+        public override void Selected(UIPickerView pickerView, nint row, nint component)
+        {
+            LanguageChoice choice = null;
+            if ((int)row != 0)
+            {
+                choice = rows[(int)row - 1];
+            }
+
+            selectCallback?.Invoke(choice);
         }
 
         public override nint GetComponentCount(UIPickerView pickerView)
