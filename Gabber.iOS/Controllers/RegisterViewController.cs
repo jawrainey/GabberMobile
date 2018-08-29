@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Foundation;
 using Gabber.iOS.Helpers;
+using Gabber.iOS.ViewSources;
 using GabberPCL;
+using GabberPCL.Models;
 using GabberPCL.Resources;
 using UIKit;
 
@@ -10,7 +13,12 @@ namespace Gabber.iOS
 {
     public partial class RegisterViewController : UIViewController
     {
-        public RegisterViewController(IntPtr handle) : base(handle) { }
+        private LanguagePickerViewModel pickerModel;
+
+        public RegisterViewController(IntPtr handle) : base(handle)
+        {
+
+        }
 
         public override void ViewDidLoad()
         {
@@ -21,6 +29,8 @@ namespace Gabber.iOS
             FullNameRegisterTextField.Placeholder = StringResources.register_ui_fullname_label;
             EmailRegisterTextField.Placeholder = StringResources.common_ui_forms_email_label;
             PasswordRegisterTextField.Placeholder = StringResources.common_ui_forms_password_label;
+            ConfirmPasswordTextField.Placeholder = StringResources.common_ui_forms_password_confirm_label;
+            ChooseLanguagePromptLabel.Text = StringResources.common_ui_forms_language_prompt;
 
             var termsContent = string.Format(StringResources.register_ui_terms_label, Config.WEB_URL);
             Terms.AttributedText = ResearchConsent.BuildFromHTML(termsContent, 14, false);
@@ -31,21 +41,33 @@ namespace Gabber.iOS
             FullNameRegisterTextField.ShouldReturn += NavigateNext;
             EmailRegisterTextField.ShouldReturn += NavigateNext;
             PasswordRegisterTextField.ShouldReturn += NavigateNext;
+            ConfirmPasswordTextField.ShouldReturn += NavigateNext;
+
+            LoadLanguages();
+        }
+
+        private async void LoadLanguages()
+        {
+            List<LanguageChoice> languages = await LanguagesManager.GetLanguageChoices();
+
+            if (languages != null && languages.Count > 0)
+            {
+                pickerModel = new LanguagePickerViewModel(languages);
+                LanguagePicker.Model = pickerModel;
+                LoadingOverlay.RemoveFromSuperview();
+            }
+
         }
 
         bool NavigateNext(UITextField _field)
         {
-            if (_field.Tag == 0)
+            if (_field.Tag < 3)
             {
-                View.ViewWithTag(1).BecomeFirstResponder();
-            }
-            else if (_field.Tag == 1)
-            {
-                View.ViewWithTag(2).BecomeFirstResponder();
+                View.ViewWithTag(_field.Tag + 1).BecomeFirstResponder();
             }
             else
             {
-                Register(RegisterUIButton);
+                _field.ResignFirstResponder();
             }
             return false;
         }
@@ -73,6 +95,14 @@ namespace Gabber.iOS
             {
                 ErrorMessageDialog(StringResources.common_ui_forms_email_validate_invalid);
             }
+            else if (PasswordRegisterTextField.Text != ConfirmPasswordTextField.Text)
+            {
+                ErrorMessageDialog(StringResources.common_ui_forms_password_validate_mismatch);
+            }
+            else if (pickerModel.GetChoice(LanguagePicker) == null)
+            {
+                ErrorMessageDialog(StringResources.common_ui_forms_language_error);
+            }
             else
             {
                 PasswordRegisterTextField.BecomeFirstResponder();
@@ -81,7 +111,7 @@ namespace Gabber.iOS
                 RegisterUIButton.Enabled = false;
                 RegisterActivityIndicator.StartAnimating();
                 Logger.LOG_EVENT_WITH_ACTION("REGISTER", "ATTEMPT");
-                var response = await RestClient.Register(fname, email, passw);
+                var response = await RestClient.Register(fname, email, passw, pickerModel.GetChoice(LanguagePicker).Id);
                 RegisterActivityIndicator.StopAnimating();
                 RegisterUIButton.Enabled = true;
 
