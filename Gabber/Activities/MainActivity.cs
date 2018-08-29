@@ -16,15 +16,15 @@ using Newtonsoft.Json;
 
 namespace Gabber
 {
-	[Activity(MainLauncher=true, ScreenOrientation = ScreenOrientation.Portrait)]
-	public class MainActivity : AppCompatActivity
-	{
-		FirebaseAnalytics firebaseAnalytics;
+    [Activity(MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
+    public class MainActivity : AppCompatActivity
+    {
+        FirebaseAnalytics firebaseAnalytics;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             FirebaseApp.InitializeApp(ApplicationContext);
-			firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
+            firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
 
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main);
@@ -39,13 +39,13 @@ namespace Gabber
 
             if (string.IsNullOrWhiteSpace(UserEmail))
             {
-				// We must clear the navigation stack here otherwise this activity is behind onboarding.
-				var intent = new Intent(this, typeof(Activities.Onboarding));
+                // We must clear the navigation stack here otherwise this activity is behind onboarding.
+                var intent = new Intent(this, typeof(Activities.Onboarding));
                 intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask);
                 StartActivity(intent);
                 Finish();
             }
-            else 
+            else
             {
                 // Create the user once as they can come here after Register/Login or anytime they reopen app
                 if (Session.ActiveUser == null)
@@ -57,15 +57,17 @@ namespace Gabber
                 }
 
                 var nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
-				nav.Menu.FindItem(Resource.Id.menu_projects).SetTitle(StringResources.common_menu_projects);
-				nav.Menu.FindItem(Resource.Id.menu_gabbers).SetTitle(StringResources.common_menu_gabbers);
-				nav.Menu.FindItem(Resource.Id.menu_about).SetTitle(StringResources.common_menu_about);
+                nav.Menu.FindItem(Resource.Id.menu_projects).SetTitle(StringResources.common_menu_projects);
+                nav.Menu.FindItem(Resource.Id.menu_gabbers).SetTitle(StringResources.common_menu_gabbers);
+                nav.Menu.FindItem(Resource.Id.menu_about).SetTitle(StringResources.common_menu_about);
 
                 nav.NavigationItemSelected += (sender, e) => LoadFragment(e.Item.ItemId);
 
                 // Load projects by default and sessions/about if they came from other activity.
                 LoadDefaultFragment(nav);
             }
+
+            LanguagesManager.RefreshIfNeeded();
         }
 
         void LoadDefaultFragment(BottomNavigationView nav)
@@ -102,7 +104,7 @@ namespace Gabber
                     break;
                 case Resource.Id.menu_about:
                     fragment = Fragments.About.NewInstance();
-					LOG_FRAGMENT_SELECTED("about");
+                    LOG_FRAGMENT_SELECTED("about");
                     break;
                 default:
                     fragment = Fragments.ProjectsFragment.NewInstance();
@@ -116,11 +118,11 @@ namespace Gabber
                .Commit();
         }
 
-		void LOG_FRAGMENT_SELECTED(string name)
+        void LOG_FRAGMENT_SELECTED(string name)
         {
             var bundle = new Bundle();
-			bundle.PutString("FRAGMENT", name);
-			firebaseAnalytics.LogEvent("FRAGMENT_SHOWN", bundle);
+            bundle.PutString("FRAGMENT", name);
+            firebaseAnalytics.LogEvent("FRAGMENT_SHOWN", bundle);
         }
-	}
+    }
 }

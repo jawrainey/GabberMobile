@@ -20,9 +20,10 @@ namespace Gabber.iOS
     public partial class ConversationConsent : UIViewController
     {
         // The type of consent participants have chosen
-        string ConsentType;
+        private string ConsentType;
+        private LanguagePickerViewModel pickerModel;
 
-        public ConversationConsent (IntPtr handle) : base (handle) {}
+        public ConversationConsent(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {
@@ -36,6 +37,7 @@ namespace Gabber.iOS
             ConversationConsentContent.AttributedText = ResearchConsent.BuildFromHTML(StringResources.consent_gabber_body_control);
             ConversationDecisionTitle.Text = StringResources.consent_gabber_title_decision;
             ConversationDecisionDes.AttributedText = ResearchConsent.BuildFromHTML(StringResources.consent_gabber_body_decision);
+            ChooseLanguageTitle.Text = StringResources.conversation_language_prompt;
 
             var membersContent = string.Format(
                 StringResources.consent_gabber_consent_type_members_full,
@@ -44,7 +46,7 @@ namespace Gabber.iOS
 
             var privateContent = string.Format(StringResources.consent_gabber_consent_type_private_full, BuildParticipants());
 
-            var items = new List<Consent> 
+            var items = new List<Consent>
             {
                 new Consent {
                     Title=StringResources.consent_gabber_consent_type_public_brief,
@@ -65,11 +67,11 @@ namespace Gabber.iOS
 
             var consentVSource = new ConsentViewSource(items);
 
-            consentVSource.ConsentSelected += (int selectedIndex) => 
+            consentVSource.ConsentSelected += (int selectedIndex) =>
             {
                 var consentOptions = new string[] { "public", "members", "private" };
                 ConsentType = consentOptions[selectedIndex];
-                ConversationConsentSubmit.Enabled = true;
+                CheckSubmitEnabled();
             };
 
             ConversationConsentTableView.Source = consentVSource;
@@ -81,9 +83,36 @@ namespace Gabber.iOS
             ConversationConsentSubmit.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
             ConversationConsentSubmit.Enabled = false;
 
-            ConversationConsentSubmit.TouchUpInside += delegate {
+            ConversationConsentSubmit.TouchUpInside += delegate
+            {
                 NSUserDefaults.StandardUserDefaults.SetString(ConsentType, "SESSION_CONSENT");
+                NSUserDefaults.StandardUserDefaults.SetInt(pickerModel.GetChoice(LanguagePicker).Id, "SESSION_LANG");
             };
+
+            LoadLanguages();
+        }
+
+        private async void LoadLanguages()
+        {
+            List<LanguageChoice> languages = await LanguagesManager.GetLanguageChoices();
+
+            if (languages != null && languages.Count > 0)
+            {
+                pickerModel = new LanguagePickerViewModel(languages, PickerSelected);
+                LanguagePicker.Model = pickerModel;
+                pickerModel.SelectById(LanguagePicker, Session.ActiveUser.Lang);
+            }
+        }
+
+        private void PickerSelected(LanguageChoice choice)
+        {
+            CheckSubmitEnabled();
+        }
+
+        private void CheckSubmitEnabled()
+        {
+            ConversationConsentSubmit.Enabled = !string.IsNullOrWhiteSpace(ConsentType) &&
+                pickerModel.GetChoice(LanguagePicker) != null;
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)

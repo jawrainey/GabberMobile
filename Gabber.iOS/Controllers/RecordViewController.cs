@@ -203,6 +203,7 @@ namespace Gabber.iOS
             InterviewSession session = new InterviewSession
             {
                 ConsentType = NSUserDefaults.StandardUserDefaults.StringForKey("SESSION_CONSENT"),
+                Lang = (int)NSUserDefaults.StandardUserDefaults.IntForKey("SESSION_LANG"),
                 SessionID = InterviewSessionID,
                 RecordingURL = AudioRecorder.FinishRecording(),
                 CreatedAt = DateTime.Now,

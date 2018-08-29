@@ -51,6 +51,8 @@
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Creator.cs" />
     <Compile Include="Models\Organsation.cs" />
+    <Compile Include="Models\LanguageChoice.cs" />
+    <Compile Include="LanguagesManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

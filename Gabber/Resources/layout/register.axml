@@ -6,6 +6,28 @@
     android:orientation="vertical"
     android:focusableInTouchMode="true"
     android:keepScreenOn="true">
+<!-- Loading Layout -->
+    <RelativeLayout
+        android:id="@+id/loadingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+        <ProgressBar
+            android:id="@+id/loadingProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+        <TextView
+            android:id="@+id/loadingMessage"
+            android:textSize="14dp"
+            android:text="Loading"
+            android:layout_below="@id/loadingProgress"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+    </RelativeLayout>
+<!-- Main layout -->
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
@@ -57,9 +79,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
+                    android:maxLines="1" />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/passwordConfirmLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/confirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
                     android:maxLines="1"
                     android:imeOptions="actionDone" />
             </android.support.design.widget.TextInputLayout>
+            <Spinner
+                android:id="@+id/chooseLanguageSpinner"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_height="45dp"
+                android:layout_width="match_parent" />
             <TextView
                 android:id="@+id/Terms"
                 android:textSize="14dp"
@@ -77,14 +118,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/custom_button" />
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_marginTop="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="invisible"
-                style="@android:style/Widget.ProgressBar.Small" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

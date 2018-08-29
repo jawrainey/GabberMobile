@@ -17,42 +17,50 @@ using System.Collections.Generic;
 
 namespace Gabber.Activities
 {
-	[Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class ConversationConsent : AppCompatActivity
-	{
-		protected override void OnCreate(Bundle savedInstanceState)
-		{
+    {
+        private AppCompatButton submitButton;
+        private List<LanguageChoice> languageChoices;
+        private Spinner languageSpinner;
+        private string selectedLanguage;
+        private bool consentChecked;
+
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.consent_conversation);
             SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
             SupportActionBar.Title = StringResources.consent_gabber_toolbar_title;
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            var _prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
-            var selectedProject = Queries.ProjectById(_prefs.GetInt("SelectedProjectID", 0));
+            ISharedPreferences _prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+            Project selectedProject = Queries.ProjectById(_prefs.GetInt("SelectedProjectID", 0));
 
-            var controlTitle = FindViewById<TextView>(Resource.Id.GabberConsentControlTitle);
-            controlTitle.Text = StringResources.consent_gabber_title_control;
-            var controlDesc = FindViewById<TextView>(Resource.Id.GabberConsentControlDesc);
-            controlDesc.TextFormatted = Html.FromHtml(StringResources.consent_gabber_body_control);
+            FindViewById<TextView>(Resource.Id.GabberConsentControlTitle).Text =
+                StringResources.consent_gabber_title_control;
 
-            var decisionTitle = FindViewById<TextView>(Resource.Id.GabberConsentDecisionTitle);
-            decisionTitle.Text = StringResources.consent_gabber_title_decision;
-            var decisionDesc = FindViewById<TextView>(Resource.Id.GabberConsentDecisionDesc);
-            decisionDesc.Text = StringResources.consent_gabber_body_decision;
+            FindViewById<TextView>(Resource.Id.GabberConsentControlDesc).TextFormatted =
+                Html.FromHtml(StringResources.consent_gabber_body_control);
 
-            var consentTypePublic = FindViewById<RadioButton>(Resource.Id.GabberConsentTypePublic);
+            FindViewById<TextView>(Resource.Id.GabberConsentDecisionTitle).Text =
+                StringResources.consent_gabber_title_decision;
+
+            FindViewById<TextView>(Resource.Id.GabberConsentDecisionDesc).Text =
+                StringResources.consent_gabber_body_decision;
+
+            RadioButton consentTypePublic = FindViewById<RadioButton>(Resource.Id.GabberConsentTypePublic);
             consentTypePublic.Text = StringResources.consent_gabber_consent_type_public_brief;
 
-            var consentTypePublicFull = FindViewById<TextView>(Resource.Id.GabberConsentTypePublicFull);
-            consentTypePublicFull.Text = StringResources.consent_gabber_consent_type_public_full;
+            FindViewById<TextView>(Resource.Id.GabberConsentTypePublicFull).Text =
+                StringResources.consent_gabber_consent_type_public_full;
 
-            var consentTypeMembers = FindViewById<RadioButton>(Resource.Id.GabberConsentTypeMembers);
+            RadioButton consentTypeMembers = FindViewById<RadioButton>(Resource.Id.GabberConsentTypeMembers);
             consentTypeMembers.Text = StringResources.consent_gabber_consent_type_members_brief;
 
-            var consentTypeMembersFull = FindViewById<TextView>(Resource.Id.GabberConsentTypeMembersFull);
+            TextView consentTypeMembersFull = FindViewById<TextView>(Resource.Id.GabberConsentTypeMembersFull);
             consentTypeMembersFull.TextFormatted = Html.FromHtml(
-                string.Format(StringResources.consent_gabber_consent_type_members_full, 
+                string.Format(StringResources.consent_gabber_consent_type_members_full,
                               selectedProject.Members.Count,
                               selectedProject.Members.FindAll((obj) => obj.Role == "researcher").Count));
 
@@ -71,27 +79,83 @@ namespace Gabber.Activities
 
             var isConsented = FindViewById<RadioGroup>(Resource.Id.GabberConsentProvided);
 
-            var submit = FindViewById<AppCompatButton>(Resource.Id.GabberConsentSubmit);
-            submit.Text = StringResources.consent_gabber_submit;
-            submit.Enabled = false;
+            submitButton = FindViewById<AppCompatButton>(Resource.Id.GabberConsentSubmit);
+            submitButton.Text = StringResources.consent_gabber_submit;
+            submitButton.Enabled = false;
 
-            submit.Click += (s, e) => 
-            { 
+            submitButton.Click += (s, e) =>
+            {
                 // TODO: If (consentTypeMembers.Checked || consentTypePrivate.Checked) 
                 // then show dialog to illustrate the affect of this choice.
                 var consent = "";
-                if (consentTypePublic.Checked)  consent = "public";
+                if (consentTypePublic.Checked) consent = "public";
                 if (consentTypeMembers.Checked) consent = "members";
                 if (consentTypePrivate.Checked) consent = "private";
                 // This is used then deleted when saving the recording session
                 _prefs.Edit().PutString("SESSION_CONSENT", consent).Commit();
-                StartActivity(new Intent(this, typeof(ConsentSummary))); 
+
+                LanguageChoice chosenLang = languageChoices.FirstOrDefault((arg) => arg.Endonym == selectedLanguage);
+
+                _prefs.Edit().PutInt("SESSION_LANG", chosenLang.Id).Commit();
+
+                StartActivity(new Intent(this, typeof(ConsentSummary)));
             };
 
-            isConsented.CheckedChange += (s, e) => { submit.Enabled = true; };
-		}
+            isConsented.CheckedChange += (s, e) =>
+            {
+                consentChecked = true;
+                CheckIfCanSubmit();
+            };
 
-        string BuildParticipants(List<User> participants)
+            languageSpinner = FindViewById<Spinner>(Resource.Id.chooseLanguageSpinner);
+            languageSpinner.ItemSelected += LanguageSpinner_ItemSelected;
+
+            LoadLanguages();
+        }
+
+        private async void LoadLanguages()
+        {
+            RelativeLayout loadingLayout = FindViewById<RelativeLayout>(Resource.Id.loadingLayout);
+            loadingLayout.Visibility = ViewStates.Visible;
+
+            languageChoices = await LanguagesManager.GetLanguageChoices();
+
+            if (languageChoices == null || languageChoices.Count == 0)
+            {
+                new Android.Support.V7.App.AlertDialog.Builder(this)
+                    .SetTitle(StringResources.common_comms_error)
+                    .SetMessage(StringResources.common_comms_error_server)
+                    .SetPositiveButton(StringResources.common_comms_retry, (a, b) =>
+                    {
+                        LoadLanguages();
+                    })
+                    .SetNegativeButton(StringResources.common_comms_cancel, (a, b) => { Finish(); })
+                    .Show();
+            }
+            else
+            {
+                loadingLayout.Visibility = ViewStates.Gone;
+
+                List<string> langNames = languageChoices.Select(lang => lang.Endonym).ToList();
+                langNames.Insert(0, StringResources.common_ui_forms_language_default);
+
+                LanguageChoice defaultLang = languageChoices.First(lang => lang.Id == Session.ActiveUser.Lang);
+                int defaultInd = langNames.IndexOf(defaultLang.Endonym);
+
+                ArrayAdapter spinnerAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, langNames);
+                languageSpinner.Adapter = spinnerAdapter;
+                languageSpinner.SetSelection(defaultInd);
+            }
+        }
+
+        private void CheckIfCanSubmit()
+        {
+            submitButton.Enabled = (consentChecked &&
+                                    !string.IsNullOrWhiteSpace(selectedLanguage) &&
+                                    selectedLanguage != StringResources.common_ui_forms_language_default);
+        }
+
+        private string BuildParticipants(List<User> participants)
         {
             if (participants.Count == 1) return participants[0].Name.Split(' ')[0];
             var PartNames = new List<string>();
@@ -105,5 +169,12 @@ namespace Gabber.Activities
             OnBackPressed();
             return true;
         }
+
+        private void LanguageSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            selectedLanguage = (string)languageSpinner.GetItemAtPosition(e.Position);
+            CheckIfCanSubmit();
+        }
+
     }
 }

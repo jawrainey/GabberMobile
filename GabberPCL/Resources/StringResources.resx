@@ -12,6 +12,25 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <!-- Shared comms -->
+    <data name="common.comms.loading" xml:space="preserve">
+        <value>Loading, please wait</value>
+    </data>
+    <data name="common.comms.error" xml:space="preserve">
+        <value>Something went wrong</value>
+    </data>
+    <data name="common.comms.error.server" xml:space="preserve">
+        <value>There was an issue communicating with the server. Please check your internet connection and try again.</value>
+    </data>
+    <data name="common.comms.retry" xml:space="preserve">
+        <value>Retry</value>
+    </data>
+    <data name="common.comms.cancel" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="common.comms.ok" xml:space="preserve">
+        <value>OK</value>
+    </data>
     <!-- MAIN MENU -->
     <data name="common.menu.projects" xml:space="preserve">
         <value>Projects</value>
@@ -29,6 +48,9 @@
     <data name="common.ui.forms.password.label" xml:space="preserve">
         <value>Password</value>
     </data>
+    <data name="common.ui.forms.password.confirm.label" xml:space="preserve">
+        <value>Confirm password</value>
+    </data>
     <data name="common.ui.forms.email.validate.empty" xml:space="preserve">
         <value>An email address is required</value>
     </data>
@@ -37,6 +59,15 @@
     </data>
     <data name="common.ui.forms.password.validate.empty" xml:space="preserve">
         <value>A password is required</value>
+    </data>
+    <data name="common.ui.forms.password.validate.mismatch" xml:space="preserve">
+        <value>Entered passwords don't match</value>
+    </data>
+    <data name="common.ui.forms.language.error" xml:space="preserve">
+        <value>Please choose your preferred spoken language.</value>
+    </data>
+    <data name="common.ui.forms.language.default" xml:space="preserve">
+        <value>Spoken language</value>
     </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
@@ -314,6 +345,9 @@ By being part of this conversation you will also become a project member where y
     </data>
     <data name="conversation.consent.gabber.submit" xml:space="preserve">
         <value>Review consent</value>
+    </data>
+    <data name="conversation.language.prompt" xml:space="preserve">
+        <value>What language will this conversation be held in?</value>
     </data>
     <!-- Consent Summary -->
     <data name="consent.summary.title" xml:space="preserve">
