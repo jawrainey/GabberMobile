@@ -2,9 +2,14 @@
 {
     public static class Config
     {
-        public static string WEB_URL = "https://dev.gabber.audio";
-        public static string ABOUT_DATA_PAGE = "/research";
-        public static string API_ENDPOINT = "https://api.dev.gabber.audio";
+        private static string base_url = "dev.gabber.audio";
+
+        public static string WEB_URL = "https://" + base_url;
+        public static string PRINT_URL = "www." + base_url;
+        public static string ABOUT_DATA_PAGE = WEB_URL + "/research";
+
+        public static string API_ENDPOINT = "https://api." + base_url;
+
         public static string DATABASE_NAME = "gabber.db3";
     }
 }

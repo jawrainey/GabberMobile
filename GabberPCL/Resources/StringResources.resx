@@ -299,10 +299,10 @@
     </data>
     <!-- Gabber CONSENT -->
     <data name="consent.gabber.toolbar.title" xml:space="preserve">
-        <value>Conversation consent</value>
+        <value>Configure Conversation</value>
     </data>
     <data name="consent.gabber.submit" xml:space="preserve">
-        <value>Next</value>
+        <value>Continue</value>
     </data>
     <data name="consent.gabber.title.control" xml:space="preserve">
         <value>How you control the data you capture</value>
@@ -320,31 +320,40 @@ By being part of this conversation you will also become a project member where y
 </value>
     </data>
     <data name="consent.gabber.title.decision" xml:space="preserve">
-        <value>Who would you like to have access to your conversation?</value>
+        <value>Who can access your conversation?</value>
     </data>
     <data name="consent.gabber.body.decision" xml:space="preserve">
-        <value>Research staff and project administrators can access recordings after the embargo period.</value>
+        <value>When uploaded, your conversation will be available at {0}. Research staff and project administrators can always access recordings.</value>
     </data>
     <!-- Gabber CONSENT Public -->
     <data name="consent.gabber.consent.type.public.full" xml:space="preserve">
-        <value>Your recording will become public for anyone to discover and listen to, including yourself, other participants, and project members.</value>
+        <value>Your recording is available to anyone visiting the website</value>
     </data>
     <data name="consent.gabber.consent.type.public.brief" xml:space="preserve">
-        <value>Anyone visiting Gabber</value>
+        <value>Anyone</value>
     </data>
     <!-- Gabber CONSENT Members -->
     <data name="consent.gabber.consent.type.members.full" xml:space="preserve">
-        <value>There are currently &lt;b&gt;{0}&lt;/b&gt; members and &lt;b&gt;{1}&lt;/b&gt; researchers in this project.</value>
+        <value>{0} {1} access to this project</value>
+    </data>
+    <data name="consent.gabber.consent.type.members.full.plural" xml:space="preserve">
+        <value>people have</value>
+    </data>
+    <data name="consent.gabber.consent.type.members.full.singular" xml:space="preserve">
+        <value>person has</value>
     </data>
     <data name="consent.gabber.consent.type.members.brief" xml:space="preserve">
-        <value>Project Members only</value>
+        <value>Only others who have contributed or were invited to ‘{0}’</value>
     </data>
     <!-- Gabber CONSENT Private -->
     <data name="consent.gabber.consent.type.private.full" xml:space="preserve">
-        <value>&lt;b&gt;{0}&lt;/b&gt; are participants of this conversation.</value>
+        <value>People with access: {0}</value>
+    </data>
+    <data name="consent.gabber.consent.type.private.full.you" xml:space="preserve">
+        <value>You</value>
     </data>
     <data name="consent.gabber.consent.type.private.brief" xml:space="preserve">
-        <value>Participants only</value>
+        <value>Only participants</value>
     </data>
     <data name="conversation.consent.gabber.submit" xml:space="preserve">
         <value>Review consent</value>

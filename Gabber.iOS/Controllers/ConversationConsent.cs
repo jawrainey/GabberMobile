@@ -14,7 +14,7 @@ namespace Gabber.iOS
     public class Consent
     {
         public string Title { get; set; }
-        public NSAttributedString Subtitle { get; set; }
+        public string Subtitle { get; set; }
     }
 
     public partial class ConversationConsent : UIViewController
@@ -33,32 +33,44 @@ namespace Gabber.iOS
             int SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
             var SelectedProject = Queries.ProjectById(SelectedProjectID);
 
-            ConversationConsentTitle.Text = StringResources.consent_gabber_title_control;
-            ConversationConsentContent.AttributedText = ResearchConsent.BuildFromHTML(StringResources.consent_gabber_body_control);
             ConversationDecisionTitle.Text = StringResources.consent_gabber_title_decision;
-            ConversationDecisionDes.AttributedText = ResearchConsent.BuildFromHTML(StringResources.consent_gabber_body_decision);
+            ConversationDecisionDes.Text = string.Format(StringResources.consent_gabber_body_decision, Config.PRINT_URL);
             ChooseLanguageTitle.Text = StringResources.conversation_language_prompt;
+
+            List<User> participants = Queries.SelectedParticipants().ToList();
+            string inConversation = StringResources.consent_gabber_consent_type_private_full_you;
+
+            for (int i = 0; i < participants.Count; i++)
+            {
+                User p = participants[i];
+                if (p.Id == Session.ActiveUser.Id) continue;
+                inConversation += ", " + p.Name;
+            }
+
+            int inProject = SelectedProject.Members.Count;
+
+
 
             var membersContent = string.Format(
                 StringResources.consent_gabber_consent_type_members_full,
-                SelectedProject.Members.Count,
-                SelectedProject.Members.FindAll((obj) => obj.Role == "researcher").Count);
+                inProject, (inProject > 1) ? StringResources.consent_gabber_consent_type_members_full_plural :
+                StringResources.consent_gabber_consent_type_members_full_singular);
 
-            var privateContent = string.Format(StringResources.consent_gabber_consent_type_private_full, BuildParticipants());
+            var privateContent = string.Format(StringResources.consent_gabber_consent_type_private_full, inConversation);
 
             var items = new List<Consent>
             {
                 new Consent {
-                    Title=StringResources.consent_gabber_consent_type_public_brief,
-                    Subtitle=ResearchConsent.BuildFromHTML(StringResources.consent_gabber_consent_type_public_full, 14, false)
+                    Title = StringResources.consent_gabber_consent_type_public_brief,
+                    Subtitle = StringResources.consent_gabber_consent_type_public_full
                 },
                 new Consent {
-                    Title=StringResources.consent_gabber_consent_type_members_brief,
-                    Subtitle=ResearchConsent.BuildFromHTML(membersContent, 14, false)
+                    Title = string.Format(StringResources.consent_gabber_consent_type_members_brief, SelectedProject.Title),
+                    Subtitle = membersContent
                 },
                 new Consent {
                     Title=StringResources.consent_gabber_consent_type_private_brief,
-                    Subtitle=ResearchConsent.BuildFromHTML(privateContent, 14, false)
+                    Subtitle = privateContent
                 }
             };
 
@@ -121,13 +133,21 @@ namespace Gabber.iOS
             NavigationItem.BackBarButtonItem = new UIBarButtonItem { Title = "" };
         }
 
-        string BuildParticipants()
+        public override void ViewWillAppear(bool animated)
         {
-            var participants = Queries.SelectedParticipants().ToList();
-            if (participants.Count == 1) return participants[0].Name.Split(' ')[0];
-            var PartNames = new List<string>();
-            foreach (var p in participants) PartNames.Add(p.Name.Split(' ')[0].Trim());
-            return string.Join(", ", PartNames);
+            nfloat tableHeight = 0f;
+            int numRows = (int)ConversationConsentTableView.NumberOfRowsInSection(0);
+
+            for (int i = 0; i < numRows; i++)
+            {
+                tableHeight += 1.2f * ConversationConsentTableView.RectForRowAtIndexPath(NSIndexPath.FromItemSection(i, 0)).Height;
+            }
+
+            TableViewHeight.Constant = tableHeight;
+            ConversationConsentTableView.UpdateConstraints();
+            //ConversationConsentTableView.SetNeedsLayout();
+            ConversationConsentTableView.LayoutIfNeeded();
+            //View.LayoutIfNeeded();
         }
     }
 }

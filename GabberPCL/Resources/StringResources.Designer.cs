@@ -617,6 +617,18 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string consent_gabber_consent_type_members_full_plural {
+            get {
+                return ResourceManager.GetString("consent.gabber.consent.type.members.full.plural", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_consent_type_members_full_singular {
+            get {
+                return ResourceManager.GetString("consent.gabber.consent.type.members.full.singular", resourceCulture);
+            }
+        }
+        
         public static string consent_gabber_consent_type_members_brief {
             get {
                 return ResourceManager.GetString("consent.gabber.consent.type.members.brief", resourceCulture);
@@ -626,6 +638,12 @@ namespace GabberPCL.Resources {
         public static string consent_gabber_consent_type_private_full {
             get {
                 return ResourceManager.GetString("consent.gabber.consent.type.private.full", resourceCulture);
+            }
+        }
+        
+        public static string consent_gabber_consent_type_private_full_you {
+            get {
+                return ResourceManager.GetString("consent.gabber.consent.type.private.full.you", resourceCulture);
             }
         }
         

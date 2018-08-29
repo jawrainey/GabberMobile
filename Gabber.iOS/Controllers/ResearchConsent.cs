@@ -34,7 +34,7 @@ namespace Gabber.iOS
 
             MoreDetailsButton.TouchUpInside += (sender, e) =>
             {
-                UIApplication.SharedApplication.OpenUrl(new NSUrl(Config.WEB_URL + Config.ABOUT_DATA_PAGE));
+                UIApplication.SharedApplication.OpenUrl(new NSUrl(Config.ABOUT_DATA_PAGE));
             };
 
             ResearchConsentFormSwitch.ValueChanged += delegate
