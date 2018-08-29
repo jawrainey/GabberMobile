@@ -143,12 +143,6 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string common_ui_forms_language_prompt {
-            get {
-                return ResourceManager.GetString("common.ui.forms.language.prompt", resourceCulture);
-            }
-        }
-        
         public static string common_ui_forms_language_error {
             get {
                 return ResourceManager.GetString("common.ui.forms.language.error", resourceCulture);

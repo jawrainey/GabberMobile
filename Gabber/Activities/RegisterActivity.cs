@@ -37,7 +37,6 @@ namespace Gabber
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             FindViewById<TextView>(Resource.Id.loadingMessage).Text = StringResources.common_comms_loading;
-            FindViewById<TextView>(Resource.Id.chooseLanguagePrompt).Text = StringResources.common_ui_forms_language_prompt;
 
             languageSpinner = FindViewById<Spinner>(Resource.Id.chooseLanguageSpinner);
             languageSpinner.ItemSelected += LanguageSpinner_ItemSelected;

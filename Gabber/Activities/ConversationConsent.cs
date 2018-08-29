@@ -64,8 +64,6 @@ namespace Gabber.Activities
                               selectedProject.Members.Count,
                               selectedProject.Members.FindAll((obj) => obj.Role == "researcher").Count));
 
-            FindViewById<TextView>(Resource.Id.chooseLanguagePrompt).Text = StringResources.conversation_language_prompt;
-
             if (selectedProject.IsPublic)
             {
                 consentTypeMembers.Visibility = ViewStates.Gone;

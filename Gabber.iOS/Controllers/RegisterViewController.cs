@@ -30,7 +30,6 @@ namespace Gabber.iOS
             EmailRegisterTextField.Placeholder = StringResources.common_ui_forms_email_label;
             PasswordRegisterTextField.Placeholder = StringResources.common_ui_forms_password_label;
             ConfirmPasswordTextField.Placeholder = StringResources.common_ui_forms_password_confirm_label;
-            ChooseLanguagePromptLabel.Text = StringResources.common_ui_forms_language_prompt;
 
             var termsContent = string.Format(StringResources.register_ui_terms_label, Config.WEB_URL);
             Terms.AttributedText = ResearchConsent.BuildFromHTML(termsContent, 14, false);

@@ -63,14 +63,11 @@
     <data name="common.ui.forms.password.validate.mismatch" xml:space="preserve">
         <value>Entered passwords don't match</value>
     </data>
-    <data name="common.ui.forms.language.prompt" xml:space="preserve">
-        <value>Please choose your preferred spoken language:</value>
-    </data>
     <data name="common.ui.forms.language.error" xml:space="preserve">
         <value>Please choose your preferred spoken language.</value>
     </data>
     <data name="common.ui.forms.language.default" xml:space="preserve">
-        <value>Choose language</value>
+        <value>Spoken language</value>
     </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
