@@ -54,7 +54,8 @@ namespace Gabber.iOS
             {
                 pickerModel = new LanguagePickerViewModel(languages);
                 LanguagePicker.Model = pickerModel;
-                LoadingOverlay.RemoveFromSuperview();
+                LoadingOverlay.Alpha = 0;
+                //LoadingOverlay.RemoveFromSuperview();
             }
 
         }
@@ -105,15 +106,18 @@ namespace Gabber.iOS
             }
             else
             {
-                PasswordRegisterTextField.BecomeFirstResponder();
-                PasswordRegisterTextField.ResignFirstResponder();
+                ConfirmPasswordTextField.BecomeFirstResponder();
+                ConfirmPasswordTextField.ResignFirstResponder();
 
                 RegisterUIButton.Enabled = false;
-                RegisterActivityIndicator.StartAnimating();
                 Logger.LOG_EVENT_WITH_ACTION("REGISTER", "ATTEMPT");
+
+                LoadingOverlay.Alpha = 1;
+
                 var response = await RestClient.Register(fname, email, passw, pickerModel.GetChoice(LanguagePicker).Id);
-                RegisterActivityIndicator.StopAnimating();
                 RegisterUIButton.Enabled = true;
+
+                LoadingOverlay.Alpha = 0;
 
                 if (response.Meta.Success)
                 {

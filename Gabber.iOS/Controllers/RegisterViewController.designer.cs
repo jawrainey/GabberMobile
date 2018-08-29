@@ -38,10 +38,6 @@ namespace Gabber.iOS
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIKit.UIActivityIndicatorView RegisterActivityIndicator { get; set; }
-
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
 		UIKit.UIView RegisterMasterView { get; set; }
 
 		[Outlet]
@@ -57,6 +53,16 @@ namespace Gabber.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (ChooseLanguagePromptLabel != null) {
+				ChooseLanguagePromptLabel.Dispose ();
+				ChooseLanguagePromptLabel = null;
+			}
+
+			if (ConfirmPasswordTextField != null) {
+				ConfirmPasswordTextField.Dispose ();
+				ConfirmPasswordTextField = null;
+			}
+
 			if (EmailRegisterTextField != null) {
 				EmailRegisterTextField.Dispose ();
 				EmailRegisterTextField = null;
@@ -67,29 +73,19 @@ namespace Gabber.iOS
 				FullNameRegisterTextField = null;
 			}
 
-			if (PasswordRegisterTextField != null) {
-				PasswordRegisterTextField.Dispose ();
-				PasswordRegisterTextField = null;
-			}
-
-			if (ConfirmPasswordTextField != null) {
-				ConfirmPasswordTextField.Dispose ();
-				ConfirmPasswordTextField = null;
-			}
-
-			if (RegisterActivityIndicator != null) {
-				RegisterActivityIndicator.Dispose ();
-				RegisterActivityIndicator = null;
-			}
-
-			if (ChooseLanguagePromptLabel != null) {
-				ChooseLanguagePromptLabel.Dispose ();
-				ChooseLanguagePromptLabel = null;
-			}
-
 			if (LanguagePicker != null) {
 				LanguagePicker.Dispose ();
 				LanguagePicker = null;
+			}
+
+			if (LoadingOverlay != null) {
+				LoadingOverlay.Dispose ();
+				LoadingOverlay = null;
+			}
+
+			if (PasswordRegisterTextField != null) {
+				PasswordRegisterTextField.Dispose ();
+				PasswordRegisterTextField = null;
 			}
 
 			if (RegisterMasterView != null) {
@@ -105,11 +101,6 @@ namespace Gabber.iOS
 			if (Terms != null) {
 				Terms.Dispose ();
 				Terms = null;
-			}
-
-			if (LoadingOverlay != null) {
-				LoadingOverlay.Dispose ();
-				LoadingOverlay = null;
 			}
 		}
 	}

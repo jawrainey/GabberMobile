@@ -1093,9 +1093,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jpt-c3-shr" userLabel="ContentView">
                                         <rect key="frame" x="8" y="0.0" width="398" height="736"/>
                                         <subviews>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Atn-nk-LUc">
-                                                <rect key="frame" x="189" y="477.33333333333331" width="20" height="20"/>
-                                            </activityIndicatorView>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="752" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31314">
                                                 <rect key="frame" x="0.0" y="419.33333333333331" width="398" height="50"/>
                                                 <constraints>
@@ -1144,14 +1141,14 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                             </textField>
-                                            <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm your password placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SDy-LV-5LZ">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm your password placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SDy-LV-5LZ">
                                                 <rect key="frame" x="0.0" y="182" width="398" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="mj6-vA-0Et"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose language placeholder:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQO-p7-3bM">
                                                 <rect key="frame" x="0.0" y="242" width="398" height="19.333333333333314"/>
@@ -1174,7 +1171,6 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="31312" firstAttribute="top" secondItem="Jpt-c3-shr" secondAttribute="top" constant="8" id="979-SB-QCe"/>
-                                            <constraint firstItem="Atn-nk-LUc" firstAttribute="centerX" secondItem="Jpt-c3-shr" secondAttribute="centerX" id="EIx-3t-muz"/>
                                             <constraint firstItem="SDy-LV-5LZ" firstAttribute="leading" secondItem="Jpt-c3-shr" secondAttribute="leading" id="EJx-ed-d6j"/>
                                             <constraint firstItem="31317" firstAttribute="leading" secondItem="Jpt-c3-shr" secondAttribute="leading" id="EXt-Dm-ZY5"/>
                                             <constraint firstItem="TQO-p7-3bM" firstAttribute="top" secondItem="SDy-LV-5LZ" secondAttribute="bottom" constant="10" id="Fnu-mF-Y6K"/>
@@ -1184,7 +1180,6 @@
                                             <constraint firstItem="31312" firstAttribute="leading" secondItem="Jpt-c3-shr" secondAttribute="leading" id="JKM-Vg-gi7"/>
                                             <constraint firstItem="31314" firstAttribute="top" secondItem="3Se-b2-woI" secondAttribute="bottom" constant="8" id="Ow9-XE-cau"/>
                                             <constraint firstItem="TQO-p7-3bM" firstAttribute="leading" secondItem="Jpt-c3-shr" secondAttribute="leading" id="QRr-6p-N1s"/>
-                                            <constraint firstItem="Atn-nk-LUc" firstAttribute="top" secondItem="31314" secondAttribute="bottom" constant="8" id="Vxh-aA-qGq"/>
                                             <constraint firstAttribute="trailing" secondItem="SiE-nu-Iqe" secondAttribute="trailing" id="Yh3-6g-xmX"/>
                                             <constraint firstAttribute="trailing" secondItem="31317" secondAttribute="trailing" id="YtG-oE-j4u"/>
                                             <constraint firstAttribute="trailing" secondItem="31314" secondAttribute="trailing" id="ZAp-iY-s7R"/>
@@ -1247,7 +1242,6 @@
                         <outlet property="LanguagePicker" destination="SiE-nu-Iqe" id="kRR-mt-IVk"/>
                         <outlet property="LoadingOverlay" destination="BKT-G9-K1l" id="HLg-W1-QzA"/>
                         <outlet property="PasswordRegisterTextField" destination="31317" id="name-outlet-31317"/>
-                        <outlet property="RegisterActivityIndicator" destination="Atn-nk-LUc" id="name-outlet-Atn-nk-LUc"/>
                         <outlet property="RegisterMasterView" destination="30932" id="name-outlet-30932"/>
                         <outlet property="RegisterUIButton" destination="31314" id="name-outlet-31314"/>
                         <outlet property="Terms" destination="3Se-b2-woI" id="name-outlet-3Se-b2-woI"/>
