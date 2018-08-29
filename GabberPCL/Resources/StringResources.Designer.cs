@@ -551,6 +551,12 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string consent_research_details_button {
+            get {
+                return ResourceManager.GetString("consent.research.details.button", resourceCulture);
+            }
+        }
+        
         public static string consent_research_form {
             get {
                 return ResourceManager.GetString("consent.research.form", resourceCulture);

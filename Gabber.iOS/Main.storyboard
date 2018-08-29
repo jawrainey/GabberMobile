@@ -977,52 +977,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HI9-7Y-AS9">
-                                <rect key="frame" x="20" y="80" width="374" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Placeholder consent to use in research" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HI9-7Y-AS9">
+                                <rect key="frame" x="20" y="80" width="374" height="23"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="248" misplaced="YES" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjV-XC-fbJ">
-                                <rect key="frame" x="20" y="134" width="374" height="428"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="7e6-sV-3yY">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="0.0"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWt-5Y-JeO">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="0.0"/>
-                                                <attributedString key="attributedText"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="IWt-5Y-JeO" secondAttribute="trailing" id="1w9-Jw-yEF"/>
-                                            <constraint firstItem="IWt-5Y-JeO" firstAttribute="leading" secondItem="7e6-sV-3yY" secondAttribute="leading" id="K6P-fy-0am"/>
-                                            <constraint firstAttribute="bottom" secondItem="IWt-5Y-JeO" secondAttribute="bottom" id="Q1u-qT-dhd"/>
-                                            <constraint firstItem="IWt-5Y-JeO" firstAttribute="top" secondItem="7e6-sV-3yY" secondAttribute="top" id="e0f-NO-meo"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="7e6-sV-3yY" firstAttribute="top" secondItem="CjV-XC-fbJ" secondAttribute="top" id="6pF-ss-gAN"/>
-                                    <constraint firstItem="7e6-sV-3yY" firstAttribute="leading" secondItem="CjV-XC-fbJ" secondAttribute="leading" id="cLM-ow-Cyg"/>
-                                    <constraint firstAttribute="trailing" secondItem="7e6-sV-3yY" secondAttribute="trailing" id="f27-XK-h3J"/>
-                                    <constraint firstAttribute="bottom" secondItem="7e6-sV-3yY" secondAttribute="bottom" id="k6D-Dq-Qtw"/>
-                                    <constraint firstItem="7e6-sV-3yY" firstAttribute="width" secondItem="CjV-XC-fbJ" secondAttribute="width" id="kmZ-Id-9FC"/>
-                                    <constraint firstItem="7e6-sV-3yY" firstAttribute="height" secondItem="CjV-XC-fbJ" secondAttribute="height" priority="250" id="t2D-dd-8LB"/>
-                                </constraints>
-                            </scrollView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PvS-mL-tpH">
-                                <rect key="frame" x="16" y="605.66666666666663" width="51" height="31"/>
+                                <rect key="frame" x="16" y="599" width="51" height="31"/>
                                 <color key="tintColor" red="0.81951814889999997" green="0.81965965029999999" blue="0.81950914860000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="onTintColor" red="0.14901960780000001" green="0.65098039220000004" blue="0.60392156860000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7V8-d6-KvG">
-                                <rect key="frame" x="81" y="588" width="317" height="66"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Placeholder All participants understand and agree to this recording and their anonymized details being used in research." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7V8-d6-KvG">
+                                <rect key="frame" x="81" y="574" width="317" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="WyG-7r-1Sv"/>
+                                    <constraint firstAttribute="height" constant="80" id="WyG-7r-1Sv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1043,42 +1014,56 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTC-1m-2eu">
-                                <rect key="frame" x="0.0" y="570" width="414" height="2"/>
+                                <rect key="frame" x="0.0" y="556" width="414" height="2"/>
                                 <color key="backgroundColor" red="0.68877509719999996" green="0.68877509719999996" blue="0.68877509719999996" alpha="0.57149537849999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="DF5-s9-8pS"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lx2-bt-EZx">
+                                <rect key="frame" x="12" y="115" width="390" height="101.66666666666669"/>
+                                <string key="text">Placeholder The conversation you are about to record will become part of this research project created by {1:creator name}. Any published work will not include details that could be used to identify yourself or other participants.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="uE5-LH-8dm">
+                                <rect key="frame" x="20" y="228.66666666666666" width="374" height="32.999999999999972"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Placeholder how will my data be used?"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="uE5-LH-8dm" secondAttribute="trailing" id="2Js-y9-1d7"/>
                             <constraint firstItem="7V8-d6-KvG" firstAttribute="leading" secondItem="PvS-mL-tpH" secondAttribute="trailing" constant="16" id="5gh-eh-bjD"/>
                             <constraint firstItem="HI9-7Y-AS9" firstAttribute="leading" secondItem="9XK-r0-YHU" secondAttribute="leadingMargin" id="EP5-ud-x8I"/>
                             <constraint firstAttribute="trailing" secondItem="jQd-Uu-XbC" secondAttribute="trailing" constant="16" id="EpJ-rT-Kpm"/>
                             <constraint firstAttribute="trailing" secondItem="7V8-d6-KvG" secondAttribute="trailing" constant="16" id="Fbx-tN-s3j"/>
+                            <constraint firstAttribute="trailing" secondItem="Lx2-bt-EZx" secondAttribute="trailing" constant="12" id="MyH-0t-Al9"/>
                             <constraint firstItem="jQd-Uu-XbC" firstAttribute="leading" secondItem="9XK-r0-YHU" secondAttribute="leading" constant="16" id="VIJ-Nr-AsP"/>
-                            <constraint firstItem="CjV-XC-fbJ" firstAttribute="trailing" secondItem="9XK-r0-YHU" secondAttribute="trailingMargin" id="Zdo-sV-mz0"/>
+                            <constraint firstItem="uE5-LH-8dm" firstAttribute="top" secondItem="Lx2-bt-EZx" secondAttribute="bottom" constant="12" id="Wbg-jh-LiM"/>
                             <constraint firstItem="HI9-7Y-AS9" firstAttribute="top" secondItem="QJX-rE-PoG" secondAttribute="bottom" constant="16" id="a3X-70-UrT"/>
+                            <constraint firstItem="Lx2-bt-EZx" firstAttribute="top" secondItem="HI9-7Y-AS9" secondAttribute="bottom" constant="12" id="anW-Sl-1Bz"/>
+                            <constraint firstItem="Lx2-bt-EZx" firstAttribute="leading" secondItem="9XK-r0-YHU" secondAttribute="leading" constant="12" id="b0E-Kr-9jl"/>
                             <constraint firstItem="PvS-mL-tpH" firstAttribute="leading" secondItem="9XK-r0-YHU" secondAttribute="leading" constant="16" id="cjY-hc-izk"/>
                             <constraint firstItem="PvS-mL-tpH" firstAttribute="centerY" secondItem="7V8-d6-KvG" secondAttribute="centerY" id="fhd-JS-ECq"/>
                             <constraint firstItem="ftI-6C-Kd4" firstAttribute="top" secondItem="jQd-Uu-XbC" secondAttribute="bottom" constant="16" id="gWP-mX-nbh"/>
-                            <constraint firstItem="BTC-1m-2eu" firstAttribute="top" secondItem="CjV-XC-fbJ" secondAttribute="bottom" id="ncg-Dm-V8m"/>
                             <constraint firstItem="jQd-Uu-XbC" firstAttribute="top" secondItem="7V8-d6-KvG" secondAttribute="bottom" constant="16" id="ndA-RV-MuK"/>
-                            <constraint firstItem="CjV-XC-fbJ" firstAttribute="leading" secondItem="9XK-r0-YHU" secondAttribute="leadingMargin" id="o4z-nd-ntJ"/>
                             <constraint firstItem="HI9-7Y-AS9" firstAttribute="trailing" secondItem="9XK-r0-YHU" secondAttribute="trailingMargin" id="p8v-PN-b2p"/>
                             <constraint firstItem="BTC-1m-2eu" firstAttribute="leading" secondItem="9XK-r0-YHU" secondAttribute="leading" id="qOD-9l-HyW"/>
                             <constraint firstAttribute="trailing" secondItem="BTC-1m-2eu" secondAttribute="trailing" id="s27-iq-N38"/>
+                            <constraint firstItem="uE5-LH-8dm" firstAttribute="leading" secondItem="9XK-r0-YHU" secondAttribute="leadingMargin" id="w6I-fN-jUV"/>
                             <constraint firstItem="7V8-d6-KvG" firstAttribute="top" secondItem="BTC-1m-2eu" secondAttribute="bottom" constant="16" id="wTt-kH-ze6"/>
-                            <constraint firstItem="CjV-XC-fbJ" firstAttribute="top" secondItem="HI9-7Y-AS9" secondAttribute="bottom" constant="12" id="zZe-KP-psD"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ResearchConsentDesc" destination="IWt-5Y-JeO" id="name-outlet-IWt-5Y-JeO"/>
+                        <outlet property="MoreDetailsButton" destination="uE5-LH-8dm" id="eVV-pr-0c8"/>
+                        <outlet property="ResearchConsentDesc" destination="Lx2-bt-EZx" id="H8o-a6-sUa"/>
                         <outlet property="ResearchConsentFormDetails" destination="7V8-d6-KvG" id="name-outlet-7V8-d6-KvG"/>
                         <outlet property="ResearchConsentFormSwitch" destination="PvS-mL-tpH" id="name-outlet-PvS-mL-tpH"/>
-                        <outlet property="ResearchConsentSV" destination="CjV-XC-fbJ" id="name-outlet-CjV-XC-fbJ"/>
                         <outlet property="ResearchConsentSubmit" destination="jQd-Uu-XbC" id="name-outlet-jQd-Uu-XbC"/>
-                        <outlet property="ResearchConsentTitle" destination="HI9-7Y-AS9" id="name-outlet-HI9-7Y-AS9"/>
+                        <outlet property="ResearchConsentTitle" destination="HI9-7Y-AS9" id="ATS-25-Ref"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fwv-pj-JAS" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -286,13 +286,16 @@
         <value>Next</value>
     </data>
     <data name="consent.research.title" xml:space="preserve">
-        <value>How your conversation will be used for research</value>
+        <value>Consent for use in research</value>
     </data>
     <data name="consent.research.body" xml:space="preserve">
-        <value>The conversation you are about to record will become part of a research project &lt;b&gt;({0})&lt;/b&gt; created by &lt;b&gt;{1}&lt;/b&gt;. Your recording and the associated metadata will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.</value>
+        <value>The conversation you are about to record will become part of {0}'s research project '{1}'. Any published work will not include details that could be used to identify yourself or other participants.</value>
+    </data>
+    <data name="consent.research.details.button" xml:space="preserve">
+        <value>How will my data be used?</value>
     </data>
     <data name="consent.research.form" xml:space="preserve">
-        <value>All participants understand and agree for this recording and anonymized personal details to be used in this research.</value>
+        <value>All participants understand and agree to this recording and their anonymized details being used in research.</value>
     </data>
     <!-- Gabber CONSENT -->
     <data name="consent.gabber.toolbar.title" xml:space="preserve">
