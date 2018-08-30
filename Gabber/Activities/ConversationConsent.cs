@@ -37,17 +37,14 @@ namespace Gabber.Activities
             ISharedPreferences _prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
             Project selectedProject = Queries.ProjectById(_prefs.GetInt("SelectedProjectID", 0));
 
-            FindViewById<TextView>(Resource.Id.GabberConsentControlTitle).Text =
-                StringResources.consent_gabber_title_control;
-
-            FindViewById<TextView>(Resource.Id.GabberConsentControlDesc).TextFormatted =
-                Html.FromHtml(StringResources.consent_gabber_body_control);
-
             FindViewById<TextView>(Resource.Id.GabberConsentDecisionTitle).Text =
                 StringResources.consent_gabber_title_decision;
 
             FindViewById<TextView>(Resource.Id.GabberConsentDecisionDesc).Text =
-                StringResources.consent_gabber_body_decision;
+                string.Format(StringResources.consent_gabber_body_decision, Config.PRINT_URL);
+
+            FindViewById<TextView>(Resource.Id.chooseLanguageTitle).Text =
+                StringResources.conversation_language_prompt;
 
             RadioButton consentTypePublic = FindViewById<RadioButton>(Resource.Id.GabberConsentTypePublic);
             consentTypePublic.Text = StringResources.consent_gabber_consent_type_public_brief;
@@ -56,13 +53,15 @@ namespace Gabber.Activities
                 StringResources.consent_gabber_consent_type_public_full;
 
             RadioButton consentTypeMembers = FindViewById<RadioButton>(Resource.Id.GabberConsentTypeMembers);
-            consentTypeMembers.Text = StringResources.consent_gabber_consent_type_members_brief;
+            consentTypeMembers.Text = string.Format(StringResources.consent_gabber_consent_type_members_brief, selectedProject.Title);
 
             TextView consentTypeMembersFull = FindViewById<TextView>(Resource.Id.GabberConsentTypeMembersFull);
-            consentTypeMembersFull.TextFormatted = Html.FromHtml(
+            consentTypeMembersFull.Text =
                 string.Format(StringResources.consent_gabber_consent_type_members_full,
                               selectedProject.Members.Count,
-                              selectedProject.Members.FindAll((obj) => obj.Role == "researcher").Count));
+                              (selectedProject.Members.Count > 1) ?
+                                  StringResources.consent_gabber_consent_type_members_full_plural :
+                                  StringResources.consent_gabber_consent_type_members_full_singular);
 
             if (selectedProject.IsPublic)
             {
@@ -85,8 +84,6 @@ namespace Gabber.Activities
 
             submitButton.Click += (s, e) =>
             {
-                // TODO: If (consentTypeMembers.Checked || consentTypePrivate.Checked) 
-                // then show dialog to illustrate the affect of this choice.
                 var consent = "";
                 if (consentTypePublic.Checked) consent = "public";
                 if (consentTypeMembers.Checked) consent = "members";
@@ -98,7 +95,7 @@ namespace Gabber.Activities
 
                 _prefs.Edit().PutInt("SESSION_LANG", chosenLang.Id).Commit();
 
-                StartActivity(new Intent(this, typeof(ConsentSummary)));
+                StartActivity(new Intent(this, typeof(RecordStoryActivity)));
             };
 
             isConsented.CheckedChange += (s, e) =>

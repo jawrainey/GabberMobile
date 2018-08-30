@@ -206,7 +206,6 @@
     <Compile Include="Activities\VerifyEmail.cs" />
     <Compile Include="Activities\ResearchConsent.cs" />
     <Compile Include="Activities\ConversationConsent.cs" />
-    <Compile Include="Activities\ConsentSummary.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
