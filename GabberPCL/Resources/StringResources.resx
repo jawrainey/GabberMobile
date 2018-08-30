@@ -444,28 +444,29 @@ By being part of this conversation you will also become a project member where y
     <data name="recording.ui.dialog.back.negative" xml:space="preserve">
         <value>Continue recording</value>    
     </data>
-    <!-- DEBRIEFING BUTTONS -->
-    <data name="debriefing.ui.button.hide" xml:space="preserve">
-        <value>Hide</value>
+    <!-- FIRST UPLOAD DEBRIEFING -->
+    <data name="debriefing.activity.title" xml:space="preserve">
+        <value>Congratulations!</value>
     </data>
-    <data name="debriefing.ui.button.upload" xml:space="preserve">
-        <value>Understood</value>
+    <data name="debriefing.congrats.title" xml:space="preserve">
+        <value>You've uploaded a conversation!</value>
     </data>
-    <!-- DEBRIEFING PAGE: 1 -->
-    <data name="debriefing.ui.page.first.title" xml:space="preserve">
-        <value>Next steps</value>
+    <data name="debriefing.congrats.body" xml:space="preserve">
+        <value>Thank you for sharing your experiences - the recording has been uploaded to the Gabber website at {0}. Why not give it a visit and see what others have uploaded? </value>
     </data>
-    <data name="debriefing.ui.page.first.content" xml:space="preserve">
-        <value>&lt;br&gt;Thank you for sharing your experiences for &lt;b&gt;{0}&lt;/b&gt;, which has been saved and is ready to be uploaded. 
-&lt;br&gt;
-&lt;br&gt;
-By being part of this conversation you will also become a project member where you can listen to other project conversations and help make sense of them through the website. We hope that you revisit the content to create discussions with participants in the conversation and other project members.
-&lt;br&gt;
-&lt;br&gt;         
-&lt;b&gt;CHANGING YOUR CONSENT&lt;/b&gt;
-&lt;br&gt;
-&lt;br&gt;
-The recording is only available to participants of the conversation for the first &lt;b&gt;24-hours&lt;/b&gt;. When the recording is uploaded all participants will receive a unique link to view and modify the consent you agreed on and provided before recording (&lt;b&gt;{1}&lt;/b&gt;). This email may go to your &lt;b&gt;SPAM / JUNK&lt;/b&gt;, so be sure to check there if you have not received it.
-</value>
+    <data name="debriefing.consent.title" xml:space="preserve">
+        <value>Changing your consent</value>
+    </data>
+    <data name="debriefing.consent.body1" xml:space="preserve">
+        <value>For the next 24 hours, the recording is only available to the conversation's participants.</value>
+    </data>
+    <data name="debriefing.consent.body2" xml:space="preserve">
+        <value>If at any time someone in the conversation has changed their mind about who they want to be able to access the recording, they can still change their consent.</value>
+    </data>
+    <data name="debriefing.consent.body3" xml:space="preserve">
+        <value>Each of you will have received an email with a link to view and/or modify your given consent. If you can't see it, be sure to check your spam folder!</value>
+    </data>
+    <data name="debriefing.finish.button" xml:space="preserve">
+        <value>Understood, don't show this again</value>
     </data>
 </root>

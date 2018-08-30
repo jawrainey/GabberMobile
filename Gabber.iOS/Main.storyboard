@@ -460,7 +460,142 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="joB-SM-4D2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1356.5219999999999" y="1769.837"/>
+            <point key="canvasLocation" x="-125" y="1397"/>
+        </scene>
+        <!--Congratulations!-->
+        <scene sceneID="XTt-PN-4mq">
+            <objects>
+                <viewController title="Congratulations!" id="DUy-4s-KdN" customClass="FirstDebriefViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D7M-Ys-iK5"/>
+                        <viewControllerLayoutGuide type="bottom" id="Oa1-zg-amR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XOg-ZR-HpO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixr-oR-MCN">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6PY-NP-R21">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2V-td-ewG">
+                                                <rect key="frame" x="16" y="474" width="382" height="61"/>
+                                                <string key="text">Each of you will have received an email with a link to view and/or modify your given consent. If you can't see it, be sure to check your spam folder!</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For the next 24 hours, the recording is only available to the conversation's participants." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUu-cy-55M">
+                                                <rect key="frame" x="16" y="336" width="382" height="40.666666666666686"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🎉" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQl-GU-Uba">
+                                                <rect key="frame" x="28" y="32" width="358" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="4Jn-hX-jKn"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="95"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've uploaded your first conversation!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APl-Qv-Dq5">
+                                                <rect key="frame" x="20" y="164" width="374" height="21.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AY5-pZ-yyo">
+                                                <rect key="frame" x="16" y="197.66666666666666" width="382" height="81.333333333333343"/>
+                                                <string key="text">Thank you for sharing your experiences - the recording has been uploaded to the Gabber website at {0}. Why not give it a visit and see what others have uploaded? </string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Changing your consent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="va8-Uq-yD4">
+                                                <rect key="frame" x="20" y="303" width="374" height="21"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2q8-Ls-xub">
+                                                <rect key="frame" x="16" y="384.66666666666669" width="382" height="81.333333333333314"/>
+                                                <string key="text">If at any time someone in the conversation has changed their mind about who they want to be able to access the recording, they can still change their consent.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQq-r6-x97">
+                                                <rect key="frame" x="20" y="673" width="374" height="33"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <state key="normal" title="Understood, don't show this again"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="APl-Qv-Dq5" secondAttribute="trailing" constant="20" id="36F-g7-5Zs"/>
+                                            <constraint firstAttribute="trailing" secondItem="j2V-td-ewG" secondAttribute="trailing" constant="16" id="4HK-fR-wPy"/>
+                                            <constraint firstItem="va8-Uq-yD4" firstAttribute="top" secondItem="AY5-pZ-yyo" secondAttribute="bottom" constant="24" id="4yz-bC-7Cw"/>
+                                            <constraint firstItem="jQl-GU-Uba" firstAttribute="top" secondItem="6PY-NP-R21" secondAttribute="top" constant="32" id="DKK-Yq-fWj"/>
+                                            <constraint firstAttribute="trailing" secondItem="AY5-pZ-yyo" secondAttribute="trailing" constant="16" id="FdW-Yf-ehM"/>
+                                            <constraint firstAttribute="trailing" secondItem="GQq-r6-x97" secondAttribute="trailing" constant="20" id="Few-oh-E37"/>
+                                            <constraint firstItem="AY5-pZ-yyo" firstAttribute="leading" secondItem="6PY-NP-R21" secondAttribute="leading" constant="16" id="GTc-uq-iVQ"/>
+                                            <constraint firstItem="APl-Qv-Dq5" firstAttribute="leading" secondItem="6PY-NP-R21" secondAttribute="leading" constant="20" id="L1J-DD-dSU"/>
+                                            <constraint firstItem="AUu-cy-55M" firstAttribute="top" secondItem="va8-Uq-yD4" secondAttribute="bottom" constant="12" id="M0e-rY-EJ0"/>
+                                            <constraint firstAttribute="trailing" secondItem="AUu-cy-55M" secondAttribute="trailing" constant="16" id="OfS-sn-ckO"/>
+                                            <constraint firstAttribute="trailing" secondItem="jQl-GU-Uba" secondAttribute="trailing" constant="28" id="OwZ-hU-IQ9"/>
+                                            <constraint firstItem="GQq-r6-x97" firstAttribute="top" relation="greaterThanOrEqual" secondItem="j2V-td-ewG" secondAttribute="bottom" constant="24" id="Pm9-kx-xGz"/>
+                                            <constraint firstItem="AUu-cy-55M" firstAttribute="leading" secondItem="6PY-NP-R21" secondAttribute="leading" constant="16" id="VWb-Hl-nbo"/>
+                                            <constraint firstAttribute="trailing" secondItem="va8-Uq-yD4" secondAttribute="trailing" constant="20" id="WX1-fe-IqE"/>
+                                            <constraint firstItem="jQl-GU-Uba" firstAttribute="leading" secondItem="6PY-NP-R21" secondAttribute="leading" constant="28" id="Ye2-XS-MEW"/>
+                                            <constraint firstAttribute="bottom" secondItem="GQq-r6-x97" secondAttribute="bottom" constant="30" id="aiA-7a-Qk3"/>
+                                            <constraint firstItem="AY5-pZ-yyo" firstAttribute="top" secondItem="APl-Qv-Dq5" secondAttribute="bottom" constant="12" id="dvo-3K-PXA"/>
+                                            <constraint firstItem="2q8-Ls-xub" firstAttribute="top" secondItem="AUu-cy-55M" secondAttribute="bottom" constant="8" id="fKi-gl-EMg"/>
+                                            <constraint firstItem="APl-Qv-Dq5" firstAttribute="top" secondItem="jQl-GU-Uba" secondAttribute="bottom" constant="32" id="i3X-s1-Sgu"/>
+                                            <constraint firstItem="j2V-td-ewG" firstAttribute="leading" secondItem="6PY-NP-R21" secondAttribute="leading" constant="16" id="j5w-j5-fCW"/>
+                                            <constraint firstItem="va8-Uq-yD4" firstAttribute="leading" secondItem="6PY-NP-R21" secondAttribute="leading" constant="20" id="kwK-GP-Hy4"/>
+                                            <constraint firstAttribute="trailing" secondItem="2q8-Ls-xub" secondAttribute="trailing" constant="16" id="rgC-J9-KZU"/>
+                                            <constraint firstItem="2q8-Ls-xub" firstAttribute="leading" secondItem="6PY-NP-R21" secondAttribute="leading" constant="16" id="uAa-hz-Wgv"/>
+                                            <constraint firstItem="j2V-td-ewG" firstAttribute="top" secondItem="2q8-Ls-xub" secondAttribute="bottom" constant="8" id="ujE-wM-gOy"/>
+                                            <constraint firstItem="GQq-r6-x97" firstAttribute="leading" secondItem="6PY-NP-R21" secondAttribute="leading" constant="20" id="yIC-tu-DK1"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="6PY-NP-R21" firstAttribute="leading" secondItem="ixr-oR-MCN" secondAttribute="leading" id="4pi-BY-84u"/>
+                                    <constraint firstItem="6PY-NP-R21" firstAttribute="top" secondItem="ixr-oR-MCN" secondAttribute="top" id="DZK-Tu-KdV"/>
+                                    <constraint firstAttribute="bottom" secondItem="6PY-NP-R21" secondAttribute="bottom" priority="250" id="XY4-HL-RAM"/>
+                                    <constraint firstAttribute="trailing" secondItem="6PY-NP-R21" secondAttribute="trailing" id="jLC-sl-h0P"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6PY-NP-R21" firstAttribute="width" secondItem="XOg-ZR-HpO" secondAttribute="width" id="3tO-NS-dIt"/>
+                            <constraint firstItem="ixr-oR-MCN" firstAttribute="trailing" secondItem="XOg-ZR-HpO" secondAttribute="trailing" id="Hz1-6A-lFx"/>
+                            <constraint firstAttribute="bottom" secondItem="ixr-oR-MCN" secondAttribute="bottom" id="PtX-rc-dpq"/>
+                            <constraint firstItem="6PY-NP-R21" firstAttribute="height" secondItem="XOg-ZR-HpO" secondAttribute="height" priority="250" id="WWB-jO-btt"/>
+                            <constraint firstItem="ixr-oR-MCN" firstAttribute="top" secondItem="XOg-ZR-HpO" secondAttribute="top" id="gkc-QR-zah"/>
+                            <constraint firstItem="ixr-oR-MCN" firstAttribute="leading" secondItem="XOg-ZR-HpO" secondAttribute="leading" id="o21-6w-WNC"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="CongratsBody" destination="AY5-pZ-yyo" id="B5Y-vv-qW5"/>
+                        <outlet property="CongratsTitle" destination="APl-Qv-Dq5" id="LI4-JE-KtP"/>
+                        <outlet property="ConsentBody1" destination="AUu-cy-55M" id="Y4h-vg-er6"/>
+                        <outlet property="ConsentBody2" destination="2q8-Ls-xub" id="gX3-iT-HSX"/>
+                        <outlet property="ConsentBody3" destination="j2V-td-ewG" id="uJp-Lt-Z0z"/>
+                        <outlet property="ConsentTitle" destination="va8-Uq-yD4" id="E7H-Ml-eRj"/>
+                        <outlet property="FinishedButton" destination="GQq-r6-x97" id="uK7-WD-FPv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ekr-kF-L9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1360.8695652173915" y="1436.413043478261"/>
         </scene>
         <!--Add Participant View Controller-->
         <scene sceneID="18960">
@@ -636,7 +771,7 @@
                                                     <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="auq-Ps-ods" kind="show" id="fM2-0T-vyo"/>
+                                                    <segue destination="19688" kind="show" id="q9u-c4-xlg"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose language placeholder" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgx-lX-0Ii">
@@ -840,118 +975,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19690" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="20388" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5853.6229999999996" y="-156.52170000000001"/>
-        </scene>
-        <!--Consent Summary-->
-        <scene sceneID="BCQ-12-Dgj">
-            <objects>
-                <viewController id="auq-Ps-ods" customClass="ConsentSummary" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cbX-Qr-TGW"/>
-                        <viewControllerLayoutGuide type="bottom" id="mS1-vT-uoL"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ELq-ER-cJp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIa-L2-Ldl">
-                                <rect key="frame" x="20" y="80" width="374" height="19.333333333333329"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iab-3K-VuX">
-                                <rect key="frame" x="0.0" y="115.33333333333333" width="414" height="2"/>
-                                <color key="backgroundColor" red="0.68877509719999996" green="0.68877509719999996" blue="0.68877509719999996" alpha="0.57149537849999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1.5" id="hAb-Y0-7DX"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aam-3X-Pd0">
-                                <rect key="frame" x="20" y="670" width="374" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="XIp-oC-ty0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                <state key="normal" title="START RECORDING">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <segue destination="19688" kind="show" id="ZnO-Tf-mji"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cool project title" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLX-0g-Dse">
-                                <rect key="frame" x="28" y="129.33333333333334" width="366" height="17"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="J and B are selected to be in your conversation" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbK-cg-UW1">
-                                <rect key="frame" x="28" y="154.33333333333334" width="366" height="17"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You agree for this conversation to be used in research" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mS-JE-Cix">
-                                <rect key="frame" x="28" y="179.33333333333334" width="366" height="17"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You agree for this conversation to be made availiable to" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqn-pp-g6j">
-                                <rect key="frame" x="28" y="204.33333333333334" width="366" height="17"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You agree for this conversation to be made availiable to" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jsc-uX-ZLx">
-                                <rect key="frame" x="28" y="229.33333333333334" width="366" height="17"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="MLX-0g-Dse" firstAttribute="leading" secondItem="ELq-ER-cJp" secondAttribute="leadingMargin" constant="8" id="0jo-3z-jJ4"/>
-                            <constraint firstItem="jsc-uX-ZLx" firstAttribute="top" secondItem="tqn-pp-g6j" secondAttribute="bottom" constant="8" id="11w-7J-hIy"/>
-                            <constraint firstAttribute="trailing" secondItem="Iab-3K-VuX" secondAttribute="trailing" id="1p6-FJ-ACa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="aam-3X-Pd0" secondAttribute="trailing" id="7EN-a9-rBA"/>
-                            <constraint firstItem="8mS-JE-Cix" firstAttribute="leading" secondItem="ELq-ER-cJp" secondAttribute="leadingMargin" constant="8" id="DgJ-W9-zZj"/>
-                            <constraint firstItem="IIa-L2-Ldl" firstAttribute="top" secondItem="cbX-Qr-TGW" secondAttribute="bottom" constant="16" id="EBi-P6-pFC"/>
-                            <constraint firstItem="tqn-pp-g6j" firstAttribute="trailing" secondItem="ELq-ER-cJp" secondAttribute="trailingMargin" id="FTu-51-XLb"/>
-                            <constraint firstItem="tqn-pp-g6j" firstAttribute="leading" secondItem="ELq-ER-cJp" secondAttribute="leadingMargin" constant="8" id="GaQ-f7-WmL"/>
-                            <constraint firstItem="jbK-cg-UW1" firstAttribute="top" secondItem="MLX-0g-Dse" secondAttribute="bottom" constant="8" id="Hqd-gj-rrc"/>
-                            <constraint firstItem="jbK-cg-UW1" firstAttribute="leading" secondItem="ELq-ER-cJp" secondAttribute="leadingMargin" constant="8" id="NXL-Ic-hGf"/>
-                            <constraint firstItem="jsc-uX-ZLx" firstAttribute="leading" secondItem="ELq-ER-cJp" secondAttribute="leadingMargin" constant="8" id="RC1-jM-26p"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="MLX-0g-Dse" secondAttribute="trailing" id="RRN-SU-h1P"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="IIa-L2-Ldl" secondAttribute="trailing" id="TZD-T5-l2x"/>
-                            <constraint firstItem="Iab-3K-VuX" firstAttribute="leading" secondItem="ELq-ER-cJp" secondAttribute="leading" id="Wyv-nC-xvg"/>
-                            <constraint firstItem="8mS-JE-Cix" firstAttribute="trailing" secondItem="ELq-ER-cJp" secondAttribute="trailingMargin" id="ZWV-et-FUK"/>
-                            <constraint firstItem="IIa-L2-Ldl" firstAttribute="leading" secondItem="ELq-ER-cJp" secondAttribute="leadingMargin" id="Zmi-Um-TEw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="jbK-cg-UW1" secondAttribute="trailing" id="iP6-Ai-I5z"/>
-                            <constraint firstItem="jsc-uX-ZLx" firstAttribute="trailing" secondItem="ELq-ER-cJp" secondAttribute="trailingMargin" id="oBS-nv-bsM"/>
-                            <constraint firstItem="8mS-JE-Cix" firstAttribute="top" secondItem="jbK-cg-UW1" secondAttribute="bottom" constant="8" id="oPa-t2-qkJ"/>
-                            <constraint firstItem="MLX-0g-Dse" firstAttribute="top" secondItem="Iab-3K-VuX" secondAttribute="bottom" constant="12" id="p5T-Xl-LRK"/>
-                            <constraint firstItem="mS1-vT-uoL" firstAttribute="top" secondItem="aam-3X-Pd0" secondAttribute="bottom" constant="16" id="pe6-aN-jcw"/>
-                            <constraint firstItem="Iab-3K-VuX" firstAttribute="top" secondItem="IIa-L2-Ldl" secondAttribute="bottom" constant="16" id="saX-32-Cb1"/>
-                            <constraint firstItem="tqn-pp-g6j" firstAttribute="top" secondItem="8mS-JE-Cix" secondAttribute="bottom" constant="8" id="tYO-pB-Ggg"/>
-                            <constraint firstItem="aam-3X-Pd0" firstAttribute="leading" secondItem="ELq-ER-cJp" secondAttribute="leadingMargin" id="zgo-34-gUx"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="ConsentConversationDesc" destination="tqn-pp-g6j" id="name-outlet-tqn-pp-g6j"/>
-                        <outlet property="ConsentEmbargoDesc" destination="jsc-uX-ZLx" id="name-outlet-jsc-uX-ZLx"/>
-                        <outlet property="ConsentParticipantsDesc" destination="jbK-cg-UW1" id="name-outlet-jbK-cg-UW1"/>
-                        <outlet property="ConsentResearchDesc" destination="8mS-JE-Cix" id="name-outlet-8mS-JE-Cix"/>
-                        <outlet property="ConsentSummarySubmit" destination="aam-3X-Pd0" id="name-outlet-aam-3X-Pd0"/>
-                        <outlet property="ConsentSummaryTitle" destination="IIa-L2-Ldl" id="name-outlet-IIa-L2-Ldl"/>
-                        <outlet property="ConsentTitleDesc" destination="MLX-0g-Dse" id="name-outlet-MLX-0g-Dse"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gUr-aq-nId" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4668.116" y="-150"/>
+            <point key="canvasLocation" x="4699" y="-156"/>
         </scene>
         <!-- -->
         <scene sceneID="Kme-7C-hQY">
@@ -1594,6 +1618,7 @@
                         <outlet property="SessionsInstructions" destination="47511" id="name-outlet-47511"/>
                         <outlet property="SessionsInstructionsBody" destination="Xjt-oI-Lay" id="name-outlet-Xjt-oI-Lay"/>
                         <outlet property="SessionsUpload" destination="47520" id="name-outlet-47520"/>
+                        <segue destination="DUy-4s-KdN" kind="show" identifier="FirstUploadModal" id="VVL-CX-7lh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="47509" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -821,27 +821,51 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string debriefing_ui_button_hide {
+        public static string debriefing_activity_title {
             get {
-                return ResourceManager.GetString("debriefing.ui.button.hide", resourceCulture);
+                return ResourceManager.GetString("debriefing.activity.title", resourceCulture);
             }
         }
         
-        public static string debriefing_ui_button_upload {
+        public static string debriefing_congrats_title {
             get {
-                return ResourceManager.GetString("debriefing.ui.button.upload", resourceCulture);
+                return ResourceManager.GetString("debriefing.congrats.title", resourceCulture);
             }
         }
         
-        public static string debriefing_ui_page_first_title {
+        public static string debriefing_congrats_body {
             get {
-                return ResourceManager.GetString("debriefing.ui.page.first.title", resourceCulture);
+                return ResourceManager.GetString("debriefing.congrats.body", resourceCulture);
             }
         }
         
-        public static string debriefing_ui_page_first_content {
+        public static string debriefing_consent_title {
             get {
-                return ResourceManager.GetString("debriefing.ui.page.first.content", resourceCulture);
+                return ResourceManager.GetString("debriefing.consent.title", resourceCulture);
+            }
+        }
+        
+        public static string debriefing_consent_body1 {
+            get {
+                return ResourceManager.GetString("debriefing.consent.body1", resourceCulture);
+            }
+        }
+        
+        public static string debriefing_consent_body2 {
+            get {
+                return ResourceManager.GetString("debriefing.consent.body2", resourceCulture);
+            }
+        }
+        
+        public static string debriefing_consent_body3 {
+            get {
+                return ResourceManager.GetString("debriefing.consent.body3", resourceCulture);
+            }
+        }
+        
+        public static string debriefing_finish_button {
+            get {
+                return ResourceManager.GetString("debriefing.finish.button", resourceCulture);
             }
         }
     }

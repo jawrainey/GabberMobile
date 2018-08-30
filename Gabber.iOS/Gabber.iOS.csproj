@@ -911,6 +911,10 @@
       <DependentUpon>ProjectTableViewButtonCell.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewSources\LanguagePickerViewModel.cs" />
+    <Compile Include="Controllers\FirstDebriefViewController.cs" />
+    <Compile Include="Controllers\FirstDebriefViewController.designer.cs">
+      <DependentUpon>FirstDebriefViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">
