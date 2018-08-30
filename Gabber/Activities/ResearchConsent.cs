@@ -46,7 +46,10 @@ namespace Gabber.Activities
             var submit = FindViewById<AppCompatButton>(Resource.Id.researchConsentSubmit);
             submit.Text = StringResources.consent_research_submit;
             submit.Enabled = false;
-            submit.Click += (s, e) => { StartActivity(new Intent(this, typeof(ConversationConsent))); };
+            submit.Click += (s, e) =>
+            {
+                StartActivity(new Intent(this, typeof(ConversationConsent)));
+            };
 
             var isConsented = FindViewById<CheckBox>(Resource.Id.researchConsentProvided);
             isConsented.Click += (s, e) => { submit.Enabled = isConsented.Checked; };
