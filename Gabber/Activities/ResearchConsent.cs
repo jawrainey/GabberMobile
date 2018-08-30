@@ -34,10 +34,14 @@ namespace Gabber.Activities
             var org = IsOrg ? selectedProject.Creator.Name : selectedProject.Organisation.Name;
 
             var researchConsentDesc = FindViewById<TextView>(Resource.Id.researchConsentDesc);
-            researchConsentDesc.TextFormatted = Html.FromHtml(string.Format(StringResources.consent_research_body, selectedProject.Title, org));
+            researchConsentDesc.Text = string.Format(StringResources.consent_research_body, org, selectedProject.Title);
 
             var researchConsentForm = FindViewById<TextView>(Resource.Id.researchConsentForm);
             researchConsentForm.Text = StringResources.consent_research_form;
+
+            AppCompatButton moreInfoBtn = FindViewById<AppCompatButton>(Resource.Id.consentInfoButton);
+            moreInfoBtn.Text = StringResources.consent_research_details_button;
+            moreInfoBtn.Click += ViewConsentDetails;
 
             var submit = FindViewById<AppCompatButton>(Resource.Id.researchConsentSubmit);
             submit.Text = StringResources.consent_research_submit;
@@ -60,5 +64,13 @@ namespace Gabber.Activities
             OnBackPressed();
             return true;
         }
+
+        private void ViewConsentDetails(object sender, System.EventArgs e)
+        {
+            Intent intent = new Intent(Intent.ActionView);
+            intent.SetData(Android.Net.Uri.Parse(Config.ABOUT_DATA_PAGE));
+            StartActivity(intent);
+        }
+
     }
 }

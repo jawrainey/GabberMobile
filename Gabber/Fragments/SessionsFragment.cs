@@ -17,7 +17,7 @@ namespace Gabber.Fragments
 {
     public class SessionsFragment : Android.Support.V4.App.Fragment
     {
-		FirebaseAnalytics firebaseAnalytics;
+        FirebaseAnalytics firebaseAnalytics;
         static SessionsFragment instance;
         SessionAdapter adapter;
         Task IsUploading;
@@ -56,7 +56,7 @@ namespace Gabber.Fragments
 
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
-			firebaseAnalytics = FirebaseAnalytics.GetInstance(Context);
+            firebaseAnalytics = FirebaseAnalytics.GetInstance(Context);
             base.OnCreate(savedInstanceState);
 
             var sessions = Queries.AllNotUploadedInterviewSessionsForActiveUser();
@@ -68,15 +68,15 @@ namespace Gabber.Fragments
 
             ShowHideInstructions();
 
-			sessionsUploadButton.Click += (s, e) => UploadIfNot(0, true);
-			adapter.SessionClicked += (s, p) => UploadIfNot(p, false);
+            sessionsUploadButton.Click += (s, e) => UploadIfNot(0, true);
+            adapter.SessionClicked += (s, p) => UploadIfNot(p, false);
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Activity.ApplicationContext);
             // Ensures that the dialog only shows after completing a recording.
             if (prefs.GetBoolean("SESSION_RECORDED", false))
             {
                 prefs.Edit().PutBoolean("SESSION_RECORDED", false).Commit();
-                ShowDebriefingDialog();
+                //ShowDebriefingDialog();
             }
         }
 
@@ -88,39 +88,39 @@ namespace Gabber.Fragments
             else Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_inprogress, ToastLength.Long).Show();
         }
 
-        void ShowDebriefingDialog()
-        {
-            var alert = new AlertDialog.Builder(Activity);
-            var session = Queries.LastInterviewSession();
-            var content = string.Format(
-                StringResources.debriefing_ui_page_first_content, 
-                Queries.ProjectById(session.ProjectID).Title, 
-                session.ConsentType
-            );
-            alert.SetTitle(StringResources.debriefing_ui_page_first_title);
-            alert.SetMessage(Html.FromHtml(content));
+        //void ShowDebriefingDialog()
+        //{
+        //    var alert = new AlertDialog.Builder(Activity);
+        //    var session = Queries.LastInterviewSession();
+        //    var content = string.Format(
+        //        StringResources.debriefing_ui_page_first_content, 
+        //        Queries.ProjectById(session.ProjectID).Title, 
+        //        session.ConsentType
+        //    );
+        //    alert.SetTitle(StringResources.debriefing_ui_page_first_title);
+        //    alert.SetMessage(Html.FromHtml(content));
 
-            alert.SetNegativeButton(
-                StringResources.debriefing_ui_button_hide,
-                (dialog, id) =>
-                {
-                    ((AlertDialog)dialog).Dismiss();
-                    LOG_EVENT_WITH_ACTION("DEBRIEF", "DISMISSED");
-                }
-            );
+        //    alert.SetNegativeButton(
+        //        StringResources.debriefing_ui_button_hide,
+        //        (dialog, id) =>
+        //        {
+        //            ((AlertDialog)dialog).Dismiss();
+        //            LOG_EVENT_WITH_ACTION("DEBRIEF", "DISMISSED");
+        //        }
+        //    );
 
-            alert.SetPositiveButton(
-                StringResources.debriefing_ui_button_upload,
-                async (dialog, id) =>
-                {
-                    ((AlertDialog)dialog).Dismiss();
-                    LOG_EVENT_WITH_ACTION("DEBRIEF", "UPLOADED");
-                    await UploadSessions(0, false);
-                }
-            );
+        //    alert.SetPositiveButton(
+        //        StringResources.debriefing_ui_button_upload,
+        //        async (dialog, id) =>
+        //        {
+        //            ((AlertDialog)dialog).Dismiss();
+        //            LOG_EVENT_WITH_ACTION("DEBRIEF", "UPLOADED");
+        //            await UploadSessions(0, false);
+        //        }
+        //    );
 
-            alert.Create().Show();
-        }
+        //    alert.Create().Show();
+        //}
 
         void ShowHideInstructions()
         {
@@ -146,7 +146,7 @@ namespace Gabber.Fragments
             if (didUpload)
             {
                 LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "SUCCESS");
-				LOG_UPLOAD_ONE(adapter.Sessions[index]);
+                LOG_UPLOAD_ONE(adapter.Sessions[index]);
                 adapter.SessionIsUploaded(index);
                 Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_success, ToastLength.Long).Show();
                 if (recursive) await UploadSessions(0, true);
@@ -162,21 +162,21 @@ namespace Gabber.Fragments
             return true;
         }
 
-		void LOG_EVENT_WITH_ACTION(string eventName, string action)
+        void LOG_EVENT_WITH_ACTION(string eventName, string action)
         {
             var bundle = new Bundle();
             bundle.PutString("ACTION", action);
             bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
             firebaseAnalytics.LogEvent(eventName, bundle);
         }
-      
-		void LOG_UPLOAD_ONE(InterviewSession session)
+
+        void LOG_UPLOAD_ONE(InterviewSession session)
         {
             var bundle = new Bundle();
-			bundle.PutInt("NUM_PARTS", session.Participants.Count);
-			bundle.PutString("ID", session.SessionID);
-			bundle.PutInt("NUM_TOPICS", session.Prompts.Count);
-			firebaseAnalytics.LogEvent("UPLOAD_SESSION", bundle);
+            bundle.PutInt("NUM_PARTS", session.Participants.Count);
+            bundle.PutString("ID", session.SessionID);
+            bundle.PutInt("NUM_TOPICS", session.Prompts.Count);
+            firebaseAnalytics.LogEvent("UPLOAD_SESSION", bundle);
         }
     }
 }

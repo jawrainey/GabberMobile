@@ -885,10 +885,6 @@
     <Compile Include="Cells\ConsentViewCell.designer.cs">
       <DependentUpon>ConsentViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\ConsentSummary.cs" />
-    <Compile Include="Controllers\ConsentSummary.designer.cs">
-      <DependentUpon>ConsentSummary.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewSources\ProjectsTableViewSource.cs" />
     <Compile Include="Controllers\ProjectTableViewController.cs" />
     <Compile Include="Controllers\ProjectTableViewController.designer.cs">
