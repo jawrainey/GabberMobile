@@ -108,7 +108,6 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:lineSpacingExtra="3dp"
-                android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent" />

@@ -33,11 +33,11 @@
                 android:text="PLACEHOLDER TEXT PLACEHOLDER TEXT" />
             <TextView
                 android:id="@+id/researchConsentDesc"
-                android:textSize="16dp"
+                android:textSize="14dp"
+                android:lineSpacingExtra="3dp"
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp"
                 android:layout_marginBottom="24dp"
-                android:lineSpacingExtra="6dp"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:text="PLACEHOLDER TEXT PLACEHOLDER TEXT" />
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/custom_button"
                 android:text="PLACEHOLDER TEXT" />
         </LinearLayout>
