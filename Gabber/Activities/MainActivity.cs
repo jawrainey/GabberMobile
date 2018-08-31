@@ -23,6 +23,12 @@ namespace Gabber
         private FirebaseAnalytics firebaseAnalytics;
         private BottomNavigationView nav;
 
+        private PrefsFragment prefsFragment;
+        private ProjectsFragment projectsFragment;
+        private SessionsFragment sessionsFragment;
+        private Android.Support.V4.App.Fragment activeFragment;
+
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             FirebaseApp.InitializeApp(ApplicationContext);
@@ -42,25 +48,31 @@ namespace Gabber
             if (string.IsNullOrWhiteSpace(UserEmail))
             {
                 GoToOnboarding();
+                return;
             }
-            else
+
+            // Create the user once as they can come here after Register/Login or anytime they reopen app
+            if (Session.ActiveUser == null)
             {
-                // Create the user once as they can come here after Register/Login or anytime they reopen app
-                if (Session.ActiveUser == null)
-                {
-                    var user = Queries.UserByEmail(UserEmail);
-                    var tokens = JsonConvert.DeserializeObject<JWToken>(preferences.GetString("tokens", ""));
-                    Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
-                    firebaseAnalytics.SetUserId(Session.ActiveUser.Id.ToString());
-                }
-
-                nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
-                nav.NavigationItemSelected += (sender, e) => LoadFragment(e.Item.ItemId);
-                LoadStrings();
-
-                // Load projects by default and sessions/about if they came from other activity.
-                LoadDefaultFragment();
+                var user = Queries.UserByEmail(UserEmail);
+                var tokens = JsonConvert.DeserializeObject<JWToken>(preferences.GetString("tokens", ""));
+                Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
+                firebaseAnalytics.SetUserId(Session.ActiveUser.Id.ToString());
             }
+
+            nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
+            nav.NavigationItemSelected += NavigationItemSelected;
+            LoadStrings();
+
+
+            prefsFragment = new PrefsFragment();
+            projectsFragment = new ProjectsFragment();
+            sessionsFragment = new SessionsFragment();
+            activeFragment = projectsFragment;
+
+            SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, prefsFragment, "settings").Hide(prefsFragment).Commit();
+            SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, sessionsFragment, "sessions").Hide(sessionsFragment).Commit();
+            SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, projectsFragment, "projects").Commit();
 
             LanguagesManager.RefreshIfNeeded();
         }
@@ -69,63 +81,43 @@ namespace Gabber
         {
             nav.Menu.FindItem(Resource.Id.menu_projects).SetTitle(StringResources.common_menu_projects);
             nav.Menu.FindItem(Resource.Id.menu_gabbers).SetTitle(StringResources.common_menu_gabbers);
-            nav.Menu.FindItem(Resource.Id.menu_about).SetTitle(StringResources.common_menu_settings);
+            nav.Menu.FindItem(Resource.Id.menu_settings).SetTitle(StringResources.common_menu_settings);
 
             int selectedTabId = nav.SelectedItemId;
 
-            if (selectedTabId == Resource.Id.menu_about)
+            if (selectedTabId == Resource.Id.menu_settings)
             {
                 SupportActionBar.Title = StringResources.common_menu_settings;
             }
         }
 
-        private void LoadDefaultFragment()
+        private void NavigationItemSelected(object sender, BottomNavigationView.NavigationItemSelectedEventArgs e)
         {
-            var fragmentToShow = Intent.GetStringExtra("FRAGMENT_TO_SHOW");
-            fragmentToShow = !string.IsNullOrWhiteSpace(fragmentToShow) ? fragmentToShow : "";
-
-            switch (fragmentToShow)
-            {
-                case "gabbers":
-                    LoadFragment(Resource.Id.menu_gabbers);
-                    nav.Menu.FindItem(Resource.Id.menu_gabbers).SetChecked(true);
-                    break;
-                default:
-                    LoadFragment(Resource.Id.menu_projects);
-                    nav.Menu.FindItem(Resource.Id.menu_projects).SetChecked(true);
-                    break;
-            }
-        }
-
-        private void LoadFragment(int id)
-        {
-            Android.Support.V4.App.Fragment fragment = null;
+            int id = e.Item.ItemId;
+            Android.Support.V4.App.Fragment toShow = null;
 
             switch (id)
             {
                 case Resource.Id.menu_projects:
-                    fragment = Fragments.ProjectsFragment.NewInstance();
+                    toShow = projectsFragment;
                     LOG_FRAGMENT_SELECTED("projects");
                     break;
                 case Resource.Id.menu_gabbers:
-                    fragment = Fragments.SessionsFragment.NewInstance();
+                    toShow = sessionsFragment;
                     LOG_FRAGMENT_SELECTED("recordings");
                     break;
-                case Resource.Id.menu_about:
+                case Resource.Id.menu_settings:
                     SupportActionBar.Title = StringResources.common_menu_settings;
-                    fragment = Fragments.PrefsFragment.NewInstance();
-                    LOG_FRAGMENT_SELECTED("about");
+                    toShow = prefsFragment;
+                    LOG_FRAGMENT_SELECTED("settings");
                     break;
                 default:
-                    fragment = Fragments.ProjectsFragment.NewInstance();
+                    toShow = projectsFragment;
                     break;
             }
 
-            if (fragment == null) return;
-
-            SupportFragmentManager.BeginTransaction()
-               .Replace(Resource.Id.content_frame, fragment)
-               .Commit();
+            SupportFragmentManager.BeginTransaction().Hide(activeFragment).Show(toShow).Commit();
+            activeFragment = toShow;
         }
 
         private void LOG_FRAGMENT_SELECTED(string name)

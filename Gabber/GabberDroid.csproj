@@ -291,6 +291,11 @@
     <AndroidResource Include="Resources\xml\preferences.xml" />
     <AndroidResource Include="Resources\layout\PrefsFragment.axml" />
     <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\baseline_settings_black_36.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\baseline_settings_black_36.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\baseline_settings_black_36.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\baseline_settings_black_36.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_settings_black_36.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
