@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using Android.OS;
 using Android.Preferences;
 using Android.Support.V7.App;
 using Android.Support.V7.Preferences;
+using Android.Widget;
 using Gabber.Helpers;
 using GabberPCL;
 using GabberPCL.Models;
@@ -88,7 +90,7 @@ namespace Gabber.Fragments
                 Session.ActiveUser.Lang = newLangVal;
                 Queries.SaveActiveUser();
 
-                //TODO update on server
+                var suppress = RestClient.PushUpdateForCurrentUser();
             }
         }
 

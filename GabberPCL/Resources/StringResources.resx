@@ -36,7 +36,7 @@
         <value>Projects</value>
     </data>
     <data name="common.menu.gabbers" xml:space="preserve">
-        <value>Recordings</value>
+        <value>Uploads</value>
     </data>
     <data name="common.menu.settings" xml:space="preserve">
         <value>Settings</value>
@@ -231,7 +231,7 @@
     </data>
     <!-- SESSIONS FRAGMENT -->
     <data name="sessions.ui.title" xml:space="preserve">
-        <value>Saved recordings</value>
+        <value>Upload Queue</value>
     </data>
     <data name="sessions.ui.header.instructions" xml:space="preserve">
         <value>These are the recordings that you have made and that have not yet been uploaded to the website.</value>

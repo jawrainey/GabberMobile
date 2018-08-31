@@ -200,7 +200,7 @@
     <Compile Include="Adapters\SessionsAdapter.cs" />
     <Compile Include="Adapters\SharedPager.cs" />
     <Compile Include="Fragments\ProjectsFragment.cs" />
-    <Compile Include="Fragments\SessionsFragment.cs" />
+    <Compile Include="Fragments\UploadsFragment.cs" />
     <Compile Include="Fragments\About.cs" />
     <Compile Include="Activities\RegisterVerification.cs" />
     <Compile Include="Activities\VerifyEmail.cs" />
@@ -217,7 +217,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\styles.xml" />
-    <AndroidResource Include="Resources\values-v21\styles.xml" />
     <AndroidResource Include="Resources\layout\main.axml" />
     <AndroidResource Include="Resources\layout\login.axml" />
     <AndroidResource Include="Resources\layout\preparation.axml" />
@@ -248,20 +247,10 @@
     <AndroidResource Include="Resources\layout\about_frag.axml" />
     <AndroidResource Include="Resources\layout\register_verification.axml" />
     <AndroidResource Include="Resources\layout\register_verification_res.axml" />
-    <AndroidResource Include="Resources\drawable-hdpi\menu_about.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\menu_gabbers.png" />
     <AndroidResource Include="Resources\drawable-hdpi\menu_projects.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\menu_about.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\menu_gabbers.png" />
     <AndroidResource Include="Resources\drawable-mdpi\menu_projects.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\menu_about.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\menu_gabbers.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\menu_projects.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\menu_about.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\menu_gabbers.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_projects.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\menu_about.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\menu_gabbers.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_projects.png" />
     <AndroidResource Include="Resources\drawable-nodpi\onboarding_first.png" />
     <AndroidResource Include="Resources\drawable-nodpi\onboarding_second.png" />
@@ -299,6 +288,11 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_settings_black_36.png" />
     <AndroidResource Include="Resources\drawable\splash.xml" />
     <AndroidResource Include="Resources\drawable\icon_xml.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\baseline_cloud_upload_black_36.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\baseline_cloud_upload_black_36.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\baseline_cloud_upload_black_36.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\baseline_cloud_upload_black_36.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_cloud_upload_black_36.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

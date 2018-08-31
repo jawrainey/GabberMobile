@@ -15,16 +15,16 @@ using Android.Text;
 
 namespace Gabber.Fragments
 {
-    public class SessionsFragment : Android.Support.V4.App.Fragment
+    public class UploadsFragment : Android.Support.V4.App.Fragment
     {
         FirebaseAnalytics firebaseAnalytics;
-        static SessionsFragment instance;
+        static UploadsFragment instance;
         SessionAdapter adapter;
         Task IsUploading;
 
-        public static SessionsFragment NewInstance()
+        public static UploadsFragment NewInstance()
         {
-            if (instance == null) instance = new SessionsFragment { Arguments = new Bundle() };
+            if (instance == null) instance = new UploadsFragment { Arguments = new Bundle() };
             return instance;
         }
 

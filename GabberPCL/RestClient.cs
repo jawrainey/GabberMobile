@@ -164,6 +164,36 @@ namespace GabberPCL
             return _response;
         }
 
+        public static async Task<CustomAuthResponse> PushUpdateForCurrentUser()
+        {
+            var _response = new CustomAuthResponse
+            {
+                Data = null,
+                Meta = new Meta { Messages = new List<string>(), Success = false }
+            };
+
+            try
+            {
+                var payload = JsonConvert.SerializeObject(Session.ActiveUser);
+                var _content = new StringContent(payload, Encoding.UTF8, "application/json");
+
+                var response = await Client.PutAsync("api/auth/me/", _content);
+                var content = await response.Content.ReadAsStringAsync();
+
+                _response.Meta = JsonConvert.DeserializeObject<RegisterAuthResponse>(content).Meta;
+                return _response;
+            }
+            catch (HttpRequestException)
+            {
+                _response.Meta.Messages.Add("NO_INTERNET");
+            }
+            catch (Exception)
+            {
+                _response.Meta.Messages.Add("GENERAL");
+            }
+            return _response;
+        }
+
         public static async Task<RegisterVerifyAuthResponse<DataUserTokens>> RegisterVerify(string token)
         {
             var _response = new RegisterVerifyAuthResponse<DataUserTokens>

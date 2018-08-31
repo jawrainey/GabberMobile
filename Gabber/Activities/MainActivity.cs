@@ -25,7 +25,7 @@ namespace Gabber
 
         private PrefsFragment prefsFragment;
         private ProjectsFragment projectsFragment;
-        private SessionsFragment sessionsFragment;
+        private UploadsFragment sessionsFragment;
         private Android.Support.V4.App.Fragment activeFragment;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -52,12 +52,14 @@ namespace Gabber
 
             prefsFragment = new PrefsFragment();
             projectsFragment = new ProjectsFragment();
-            sessionsFragment = new SessionsFragment();
+            sessionsFragment = new UploadsFragment();
             activeFragment = projectsFragment;
 
             SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, prefsFragment, "settings").Hide(prefsFragment).Commit();
             SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, sessionsFragment, "sessions").Hide(sessionsFragment).Commit();
             SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, projectsFragment, "projects").Commit();
+
+            SupportActionBar.Title = StringResources.projects_ui_title;
 
             LanguagesManager.RefreshIfNeeded();
         }
@@ -70,9 +72,17 @@ namespace Gabber
 
             int selectedTabId = nav.SelectedItemId;
 
-            if (selectedTabId == Resource.Id.menu_settings)
+            switch (nav.SelectedItemId)
             {
-                SupportActionBar.Title = StringResources.common_menu_settings;
+                case Resource.Id.menu_projects:
+                    SupportActionBar.Title = StringResources.projects_ui_title;
+                    break;
+                case Resource.Id.menu_gabbers:
+                    SupportActionBar.Title = StringResources.sessions_ui_title;
+                    break;
+                case Resource.Id.menu_settings:
+                    SupportActionBar.Title = StringResources.common_menu_settings;
+                    break;
             }
         }
 
@@ -84,12 +94,14 @@ namespace Gabber
             switch (id)
             {
                 case Resource.Id.menu_projects:
+                    SupportActionBar.Title = StringResources.projects_ui_title;
                     toShow = projectsFragment;
                     LOG_FRAGMENT_SELECTED("projects");
                     break;
                 case Resource.Id.menu_gabbers:
+                    SupportActionBar.Title = StringResources.sessions_ui_title;
                     toShow = sessionsFragment;
-                    LOG_FRAGMENT_SELECTED("recordings");
+                    LOG_FRAGMENT_SELECTED("uploads");
                     break;
                 case Resource.Id.menu_settings:
                     SupportActionBar.Title = StringResources.common_menu_settings;

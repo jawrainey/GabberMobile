@@ -45,8 +45,6 @@ namespace Gabber.Fragments
             instructions.Text = StringResources.projects_ui_instructions;
             listView = rootView.FindViewById<ExpandableListView>(Resource.Id.projects);
 
-            ((AppCompatActivity)Activity).SupportActionBar.Title = StringResources.projects_ui_title;
-
             return rootView;
         }
 
