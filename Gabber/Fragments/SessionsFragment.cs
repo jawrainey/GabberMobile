@@ -17,7 +17,7 @@ namespace Gabber.Fragments
 {
     public class SessionsFragment : Android.Support.V4.App.Fragment
     {
-		FirebaseAnalytics firebaseAnalytics;
+        FirebaseAnalytics firebaseAnalytics;
         static SessionsFragment instance;
         SessionAdapter adapter;
         Task IsUploading;
@@ -47,8 +47,6 @@ namespace Gabber.Fragments
             // being uploaded may attempt to be uploaded again. Double email or index oor.
             sessions_upload.Enabled = (IsUploading == null || IsUploading.IsCompleted);
 
-            var toolbar = rootView.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-            ((AppCompatActivity)Activity).SetSupportActionBar(toolbar);
             ((AppCompatActivity)Activity).SupportActionBar.Title = StringResources.sessions_ui_title;
 
             return rootView;
@@ -56,7 +54,7 @@ namespace Gabber.Fragments
 
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
-			firebaseAnalytics = FirebaseAnalytics.GetInstance(Context);
+            firebaseAnalytics = FirebaseAnalytics.GetInstance(Context);
             base.OnCreate(savedInstanceState);
 
             var sessions = Queries.AllNotUploadedInterviewSessionsForActiveUser();
@@ -68,8 +66,8 @@ namespace Gabber.Fragments
 
             ShowHideInstructions();
 
-			sessionsUploadButton.Click += (s, e) => UploadIfNot(0, true);
-			adapter.SessionClicked += (s, p) => UploadIfNot(p, false);
+            sessionsUploadButton.Click += (s, e) => UploadIfNot(0, true);
+            adapter.SessionClicked += (s, p) => UploadIfNot(p, false);
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Activity.ApplicationContext);
             // Ensures that the dialog only shows after completing a recording.
@@ -93,8 +91,8 @@ namespace Gabber.Fragments
             var alert = new AlertDialog.Builder(Activity);
             var session = Queries.LastInterviewSession();
             var content = string.Format(
-                StringResources.debriefing_ui_page_first_content, 
-                Queries.ProjectById(session.ProjectID).Title, 
+                StringResources.debriefing_ui_page_first_content,
+                Queries.ProjectById(session.ProjectID).Title,
                 session.ConsentType
             );
             alert.SetTitle(StringResources.debriefing_ui_page_first_title);
@@ -146,7 +144,7 @@ namespace Gabber.Fragments
             if (didUpload)
             {
                 LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "SUCCESS");
-				LOG_UPLOAD_ONE(adapter.Sessions[index]);
+                LOG_UPLOAD_ONE(adapter.Sessions[index]);
                 adapter.SessionIsUploaded(index);
                 Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_success, ToastLength.Long).Show();
                 if (recursive) await UploadSessions(0, true);
@@ -162,21 +160,21 @@ namespace Gabber.Fragments
             return true;
         }
 
-		void LOG_EVENT_WITH_ACTION(string eventName, string action)
+        void LOG_EVENT_WITH_ACTION(string eventName, string action)
         {
             var bundle = new Bundle();
             bundle.PutString("ACTION", action);
             bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
             firebaseAnalytics.LogEvent(eventName, bundle);
         }
-      
-		void LOG_UPLOAD_ONE(InterviewSession session)
+
+        void LOG_UPLOAD_ONE(InterviewSession session)
         {
             var bundle = new Bundle();
-			bundle.PutInt("NUM_PARTS", session.Participants.Count);
-			bundle.PutString("ID", session.SessionID);
-			bundle.PutInt("NUM_TOPICS", session.Prompts.Count);
-			firebaseAnalytics.LogEvent("UPLOAD_SESSION", bundle);
+            bundle.PutInt("NUM_PARTS", session.Participants.Count);
+            bundle.PutString("ID", session.SessionID);
+            bundle.PutInt("NUM_TOPICS", session.Prompts.Count);
+            firebaseAnalytics.LogEvent("UPLOAD_SESSION", bundle);
         }
     }
 }

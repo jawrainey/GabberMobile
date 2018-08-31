@@ -18,14 +18,14 @@ using Java.Lang;
 
 namespace Gabber.Activities
 {
-	[Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class ConsentSummary : AppCompatActivity
-	{
-		protected override void OnCreate(Bundle savedInstanceState)
-		{
+    {
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.consent_summary);
-            SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
+
             SupportActionBar.Title = StringResources.consent_summary_title;
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
@@ -47,7 +47,7 @@ namespace Gabber.Activities
 
             var convoContent = FindViewById<TextView>(Resource.Id.ConsentSummaryContentConversation);
             convoContent.TextFormatted = BuildHTML(
-                StringResources.consent_summary_screen_content_conversation_title, 
+                StringResources.consent_summary_screen_content_conversation_title,
                 string.Format(StringResources.consent_summary_screen_content_conversation_desc, _prefs.GetString("SESSION_CONSENT", "public"))
             );
 
@@ -57,7 +57,7 @@ namespace Gabber.Activities
             var submit = FindViewById<AppCompatButton>(Resource.Id.ConsentSummarySubmit);
             submit.Text = StringResources.consent_summary_screen_action;
             submit.Click += (s, e) => StartActivity(new Intent(this, typeof(RecordStoryActivity)));
-		}
+        }
 
         ICharSequence BuildHTML(string title, string content) => Html.FromHtml($"&bullet; <b>{title}:</b> {content}");
 

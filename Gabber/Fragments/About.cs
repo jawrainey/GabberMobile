@@ -20,13 +20,11 @@ namespace Gabber.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var rootView = inflater.Inflate(Resource.Layout.about_frag, null);
-			rootView.FindViewById<TextView>(Resource.Id.aboutContent).Text = StringResources.about_ui_content;
-			rootView.FindViewById<TextView>(Resource.Id.URLDescription).Text = StringResources.about_ui_url_description;
-			var link = rootView.FindViewById<TextView>(Resource.Id.aboutURL);
+            rootView.FindViewById<TextView>(Resource.Id.aboutContent).Text = StringResources.about_ui_content;
+            rootView.FindViewById<TextView>(Resource.Id.URLDescription).Text = StringResources.about_ui_url_description;
+            var link = rootView.FindViewById<TextView>(Resource.Id.aboutURL);
             link.Text = GabberPCL.Config.WEB_URL;
 
-            var toolbar = rootView.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-            ((AppCompatActivity)Activity).SetSupportActionBar(toolbar);
             ((AppCompatActivity)Activity).SupportActionBar.Title = StringResources.about_ui_title;
 
             return rootView;

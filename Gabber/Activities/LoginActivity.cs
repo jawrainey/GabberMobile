@@ -25,7 +25,7 @@ namespace Gabber
             firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.login);
-            SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
+
             SupportActionBar.Title = StringResources.login_ui_title;
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 

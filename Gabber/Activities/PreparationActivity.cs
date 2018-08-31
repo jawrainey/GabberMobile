@@ -20,36 +20,35 @@ using Android.Content.PM;
 
 namespace Gabber
 {
-	[Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class PreparationActivity : AppCompatActivity
-	{
-		FirebaseAnalytics firebaseAnalytics;
+    {
+        FirebaseAnalytics firebaseAnalytics;
         // Expose for on-click event to update participants view
         ParticipantAdapter adapter;
         // Expose for on-click event to update participants view
         List<User> participants;
 
-		protected override void OnCreate(Bundle savedInstanceState)
-		{
-			firebaseAnalytics = FirebaseAnalytics.GetInstance(ApplicationContext);
-			base.OnCreate(savedInstanceState);
-			SetContentView(Resource.Layout.preparation);
-            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            firebaseAnalytics = FirebaseAnalytics.GetInstance(ApplicationContext);
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.preparation);
             SupportActionBar.Title = StringResources.participants_ui_title;
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             var partsInstructs = FindViewById<TextView>(Resource.Id.participantsInstructions);
             partsInstructs.Text = StringResources.participants_ui_instructions;
 
-			// Required to access existing gabbers for a given user
-			var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+            // Required to access existing gabbers for a given user
+            var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
             participants = Queries.AllParticipantsUnSelected();
-			var participantsView = FindViewById<RecyclerView>(Resource.Id.participants);
+            var participantsView = FindViewById<RecyclerView>(Resource.Id.participants);
             participantsView.SetLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.Vertical, false));
 
             adapter = new ParticipantAdapter(participants);
-			adapter.ParticipantClicked += ParticipantSelected;
-			participantsView.SetAdapter(adapter);
+            adapter.ParticipantClicked += ParticipantSelected;
+            participantsView.SetAdapter(adapter);
             UpdateParticipantsSelectedLabel();
             new LinearSnapHelper().AttachToRecyclerView(participantsView);
 
@@ -57,15 +56,15 @@ namespace Gabber
             startRecording.Text = StringResources.participants_ui_startrecording_button;
 
             startRecording.Click += delegate
-			{
+            {
                 if (adapter.SelectedParticipantsCount == 0)
-				{
-					LOG_EVENT_WITH_ACTION("NO_PARTICIPANTS_SELECTED", "TOAST");
+                {
+                    LOG_EVENT_WITH_ACTION("NO_PARTICIPANTS_SELECTED", "TOAST");
                     Toast.MakeText(this, StringResources.participants_ui_validation_noneselected, ToastLength.Long).Show();
-				}
+                }
                 else if (adapter.SelectedParticipantsCount == 1)
                 {
-					LOG_EVENT_WITH_ACTION("ONE_PARTICIPANT_MODAL", "DISPLAYED");
+                    LOG_EVENT_WITH_ACTION("ONE_PARTICIPANT_MODAL", "DISPLAYED");
                     var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
                     alert.SetTitle(StringResources.participants_ui_validation_oneselected_title);
                     alert.SetMessage(StringResources.participants_ui_validation_oneselected_message);
@@ -73,25 +72,25 @@ namespace Gabber
 
                     alert.SetPositiveButton(StringResources.participants_ui_validation_oneselected_continue, (dialog, id) =>
                     {
-						LOG_EVENT_WITH_ACTION("ONE_PARTICIPANT_MODAL", "CONTINUE");
+                        LOG_EVENT_WITH_ACTION("ONE_PARTICIPANT_MODAL", "CONTINUE");
                         StartActivity(new Intent(this, typeof(Activities.ResearchConsent)));
                     });
 
                     alert.SetNegativeButton(StringResources.participants_ui_validation_oneselected_cancel, (dialog, id) =>
                     {
-						LOG_EVENT_WITH_ACTION("ONE_PARTICIPANT_MODAL", "DISMISSED");
+                        LOG_EVENT_WITH_ACTION("ONE_PARTICIPANT_MODAL", "DISMISSED");
                         ((Android.Support.V7.App.AlertDialog)dialog).Dismiss();
                     });
 
                     alert.Create().Show();
                 }
-				else
-				{
-					LOG_EVENT_WITH_ACTION("NAVIGATE_TO_RECORD", "NAVIGATE");
+                else
+                {
+                    LOG_EVENT_WITH_ACTION("NAVIGATE_TO_RECORD", "NAVIGATE");
                     StartActivity(new Intent(this, typeof(Activities.ResearchConsent)));
-				}
-			};
-		}
+                }
+            };
+        }
 
         void ShowAddParticipantDialog()
         {
@@ -111,7 +110,7 @@ namespace Gabber
 
             alert.SetNegativeButton(StringResources.participants_ui_dialog_add_negative, (dialog, id) =>
             {
-				LOG_EVENT_WITH_ACTION("ADD_NEW_PARTICIPANT", "DISMISSED");
+                LOG_EVENT_WITH_ACTION("ADD_NEW_PARTICIPANT", "DISMISSED");
                 ((Android.Support.V7.App.AlertDialog)dialog).Dismiss();
             });
 
@@ -120,7 +119,8 @@ namespace Gabber
             AddParticipantDialog.Show();
 
             var __email = AddParticipantDialog.FindViewById<TextInputEditText>(Resource.Id.participantEmail);
-            __email.EditorAction += (_, e) => {
+            __email.EditorAction += (_, e) =>
+            {
                 e.Handled = false;
                 if (e.ActionId == Android.Views.InputMethods.ImeAction.Done)
                 {
@@ -147,7 +147,7 @@ namespace Gabber
                     Session.Connection.Insert(participant);
                     participants.Add(participant);
                     adapter.NotifyItemInserted(participants.Count);
-					LOG_ADD_PARTICIPANT(name.Text, email.Text);
+                    LOG_ADD_PARTICIPANT(name.Text, email.Text);
 
                     // Reset form content once participant is successfully added
                     name.Text = "";
@@ -188,8 +188,8 @@ namespace Gabber
 
         void ParticipantSelected(object sender, int position)
         {
-			adapter.ParticipantSeleted(position);
-			LOG_PARTICIPANT(position);
+            adapter.ParticipantSeleted(position);
+            LOG_PARTICIPANT(position);
             UpdateParticipantsSelectedLabel();
         }
 
@@ -207,33 +207,33 @@ namespace Gabber
                     ShowAddParticipantDialog();
                     return true;
                 default:
-					OnBackPressed();
+                    OnBackPressed();
                     return true;
             }
         }
-      
-		void LOG_EVENT_WITH_ACTION(string eventName, string action)
-		{
-			var bundle = new Bundle();
-			bundle.PutString("ACTION", action);
-			firebaseAnalytics.LogEvent(eventName, bundle);
-		}
 
-		void LOG_ADD_PARTICIPANT(string name, string email)
+        void LOG_EVENT_WITH_ACTION(string eventName, string action)
         {
             var bundle = new Bundle();
-			bundle.PutString("NAME", name);
-			bundle.PutString("EMAIL", email);
+            bundle.PutString("ACTION", action);
+            firebaseAnalytics.LogEvent(eventName, bundle);
+        }
+
+        void LOG_ADD_PARTICIPANT(string name, string email)
+        {
+            var bundle = new Bundle();
+            bundle.PutString("NAME", name);
+            bundle.PutString("EMAIL", email);
             firebaseAnalytics.LogEvent("ADD_PARTICIPANT", bundle);
         }
 
-		void LOG_PARTICIPANT(int position)
+        void LOG_PARTICIPANT(int position)
         {
             var bundle = new Bundle();
-			bundle.PutString("NAME", participants[position].Name);
-			bundle.PutString("EMAIL", participants[position].Email);
-			bundle.PutBoolean("STATE", participants[position].Selected);
-			bundle.PutInt("NUM_PARTICIPANTS", participants.Count);
+            bundle.PutString("NAME", participants[position].Name);
+            bundle.PutString("EMAIL", participants[position].Email);
+            bundle.PutBoolean("STATE", participants[position].Selected);
+            bundle.PutInt("NUM_PARTICIPANTS", participants.Count);
             firebaseAnalytics.LogEvent("PARTICIPANT_SELECTED", bundle);
         }
     }

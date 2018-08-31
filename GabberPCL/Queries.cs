@@ -79,6 +79,11 @@ namespace GabberPCL
             return proj;
         }
 
+        public static void SaveActiveUser()
+        {
+            Session.Connection.InsertOrReplace(Session.ActiveUser);
+        }
+
         public static User UserById(int userID) => Session.Connection.Get<User>(userID);
 
         public static User UserByEmail(string email)

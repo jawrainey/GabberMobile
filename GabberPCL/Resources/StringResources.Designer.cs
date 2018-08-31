@@ -95,9 +95,33 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string common_menu_about {
+        public static string common_menu_settings {
             get {
-                return ResourceManager.GetString("common.menu.about", resourceCulture);
+                return ResourceManager.GetString("common.menu.settings", resourceCulture);
+            }
+        }
+        
+        public static string settings_title {
+            get {
+                return ResourceManager.GetString("settings.title", resourceCulture);
+            }
+        }
+        
+        public static string settings_chooseAppLanguage {
+            get {
+                return ResourceManager.GetString("settings.chooseAppLanguage", resourceCulture);
+            }
+        }
+        
+        public static string settings_chooseConvoLanguage {
+            get {
+                return ResourceManager.GetString("settings.chooseConvoLanguage", resourceCulture);
+            }
+        }
+        
+        public static string settings_chooseLanguage {
+            get {
+                return ResourceManager.GetString("settings.chooseLanguage", resourceCulture);
             }
         }
         

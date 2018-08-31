@@ -38,8 +38,21 @@
     <data name="common.menu.gabbers" xml:space="preserve">
         <value>Recordings</value>
     </data>
-    <data name="common.menu.about" xml:space="preserve">
-        <value>About</value>
+    <data name="common.menu.settings" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+    <!-- SETTINGS -->
+    <data name="settings.title" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+    <data name="settings.chooseAppLanguage" xml:space="preserve">
+        <value>Application Language</value>
+    </data>
+    <data name="settings.chooseConvoLanguage" xml:space="preserve">
+        <value>Default Conversation Language</value>
+    </data>
+    <data name="settings.chooseLanguage" xml:space="preserve">
+        <value>Logout</value>
     </data>
     <!-- SHARED UI FORMS -->
     <data name="common.ui.forms.email.label" xml:space="preserve">

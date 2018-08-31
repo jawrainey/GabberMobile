@@ -16,10 +16,11 @@ using Newtonsoft.Json;
 
 namespace Gabber
 {
-    [Activity(MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/MyTheme")]
     public class MainActivity : AppCompatActivity
     {
-        FirebaseAnalytics firebaseAnalytics;
+        private FirebaseAnalytics firebaseAnalytics;
+        private BottomNavigationView nav;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -56,21 +57,32 @@ namespace Gabber
                     firebaseAnalytics.SetUserId(Session.ActiveUser.Id.ToString());
                 }
 
-                var nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
-                nav.Menu.FindItem(Resource.Id.menu_projects).SetTitle(StringResources.common_menu_projects);
-                nav.Menu.FindItem(Resource.Id.menu_gabbers).SetTitle(StringResources.common_menu_gabbers);
-                nav.Menu.FindItem(Resource.Id.menu_about).SetTitle(StringResources.common_menu_about);
-
+                nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
                 nav.NavigationItemSelected += (sender, e) => LoadFragment(e.Item.ItemId);
+                LoadStrings();
 
                 // Load projects by default and sessions/about if they came from other activity.
-                LoadDefaultFragment(nav);
+                LoadDefaultFragment();
             }
 
             LanguagesManager.RefreshIfNeeded();
         }
 
-        void LoadDefaultFragment(BottomNavigationView nav)
+        public void LoadStrings()
+        {
+            nav.Menu.FindItem(Resource.Id.menu_projects).SetTitle(StringResources.common_menu_projects);
+            nav.Menu.FindItem(Resource.Id.menu_gabbers).SetTitle(StringResources.common_menu_gabbers);
+            nav.Menu.FindItem(Resource.Id.menu_about).SetTitle(StringResources.common_menu_settings);
+
+            int selectedTabId = nav.SelectedItemId;
+
+            if (selectedTabId == Resource.Id.menu_about)
+            {
+                SupportActionBar.Title = StringResources.common_menu_settings;
+            }
+        }
+
+        private void LoadDefaultFragment()
         {
             var fragmentToShow = Intent.GetStringExtra("FRAGMENT_TO_SHOW");
             fragmentToShow = !string.IsNullOrWhiteSpace(fragmentToShow) ? fragmentToShow : "";
@@ -88,7 +100,7 @@ namespace Gabber
             }
         }
 
-        void LoadFragment(int id)
+        private void LoadFragment(int id)
         {
             Android.Support.V4.App.Fragment fragment = null;
 
@@ -96,14 +108,15 @@ namespace Gabber
             {
                 case Resource.Id.menu_projects:
                     fragment = Fragments.ProjectsFragment.NewInstance();
-					LOG_FRAGMENT_SELECTED("projects");
+                    LOG_FRAGMENT_SELECTED("projects");
                     break;
                 case Resource.Id.menu_gabbers:
                     fragment = Fragments.SessionsFragment.NewInstance();
-					LOG_FRAGMENT_SELECTED("recordings");
+                    LOG_FRAGMENT_SELECTED("recordings");
                     break;
                 case Resource.Id.menu_about:
-                    fragment = Fragments.About.NewInstance();
+                    SupportActionBar.Title = StringResources.common_menu_settings;
+                    fragment = Fragments.PrefsFragment.NewInstance();
                     LOG_FRAGMENT_SELECTED("about");
                     break;
                 default:
@@ -118,7 +131,7 @@ namespace Gabber
                .Commit();
         }
 
-        void LOG_FRAGMENT_SELECTED(string name)
+        private void LOG_FRAGMENT_SELECTED(string name)
         {
             var bundle = new Bundle();
             bundle.PutString("FRAGMENT", name);

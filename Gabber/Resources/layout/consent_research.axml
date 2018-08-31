@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:keepScreenOn="true">
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">

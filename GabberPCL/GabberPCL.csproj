@@ -53,6 +53,7 @@
     <Compile Include="Models\Organsation.cs" />
     <Compile Include="Models\LanguageChoice.cs" />
     <Compile Include="LanguagesManager.cs" />
+    <Compile Include="Models\PlatformCulture.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
