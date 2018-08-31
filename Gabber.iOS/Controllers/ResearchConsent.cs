@@ -32,6 +32,9 @@ namespace Gabber.iOS
             ResearchConsentSubmit.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
             ResearchConsentSubmit.Enabled = false;
 
+            MoreDetailsButton.Layer.BorderWidth = ResearchConsentSubmit.Layer.BorderWidth;
+            MoreDetailsButton.Layer.BorderColor = ResearchConsentSubmit.Layer.BorderColor;
+
             MoreDetailsButton.TouchUpInside += (sender, e) =>
             {
                 UIApplication.SharedApplication.OpenUrl(new NSUrl(Config.ABOUT_DATA_PAGE));
@@ -47,24 +50,6 @@ namespace Gabber.iOS
         {
             base.PrepareForSegue(segue, sender);
             NavigationItem.BackBarButtonItem = new UIBarButtonItem { Title = "" };
-        }
-
-        public static NSAttributedString BuildFromHTML(string content, int fsize = 16, bool justify = true)
-        {
-            // Style the content
-            var _content = $"<span style=\"font-family: .SF UI Text; font-size: {fsize};\">{content}</span>";
-            // Convert the HTML in the content string to a NSAttributedString
-            var err = new NSError();
-            var atts = new NSAttributedStringDocumentAttributes { DocumentType = NSDocumentType.HTML };
-            var html = new NSAttributedString(NSData.FromString(_content), atts, ref err);
-            // Now the content is converted to HTML, we want to justify it
-            var mutableContent = new NSMutableAttributedString(html);
-            var para = new NSMutableParagraphStyle
-            {
-                Alignment = justify ? UITextAlignment.Justified : UITextAlignment.Left
-            };
-            mutableContent.AddAttribute(UIStringAttributeKey.ParagraphStyle, para, new NSRange(0, html.Length - 1));
-            return mutableContent;
         }
     }
 }

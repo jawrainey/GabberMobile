@@ -195,7 +195,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rE-NL-U2e">
                                             <rect key="frame" x="20" y="11" width="374" height="28"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="tin-Ye-yGA"/>
+                                                <constraint firstAttribute="height" constant="50" id="tin-Ye-yGA"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                             <state key="normal" title="Button">
@@ -478,7 +478,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6PY-NP-R21">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="617"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2V-td-ewG">
                                                 <rect key="frame" x="16" y="474" width="382" height="61"/>
@@ -529,9 +529,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQq-r6-x97">
-                                                <rect key="frame" x="20" y="673" width="374" height="33"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <state key="normal" title="Understood, don't show this again"/>
+                                                <rect key="frame" x="20" y="551" width="374" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="O3u-7o-dht"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                                <state key="normal" title="Understood, don't show this again">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -547,11 +552,11 @@
                                             <constraint firstItem="AUu-cy-55M" firstAttribute="top" secondItem="va8-Uq-yD4" secondAttribute="bottom" constant="12" id="M0e-rY-EJ0"/>
                                             <constraint firstAttribute="trailing" secondItem="AUu-cy-55M" secondAttribute="trailing" constant="16" id="OfS-sn-ckO"/>
                                             <constraint firstAttribute="trailing" secondItem="jQl-GU-Uba" secondAttribute="trailing" constant="28" id="OwZ-hU-IQ9"/>
-                                            <constraint firstItem="GQq-r6-x97" firstAttribute="top" relation="greaterThanOrEqual" secondItem="j2V-td-ewG" secondAttribute="bottom" constant="24" id="Pm9-kx-xGz"/>
+                                            <constraint firstItem="GQq-r6-x97" firstAttribute="top" secondItem="j2V-td-ewG" secondAttribute="bottom" constant="16" id="Pm9-kx-xGz"/>
                                             <constraint firstItem="AUu-cy-55M" firstAttribute="leading" secondItem="6PY-NP-R21" secondAttribute="leading" constant="16" id="VWb-Hl-nbo"/>
                                             <constraint firstAttribute="trailing" secondItem="va8-Uq-yD4" secondAttribute="trailing" constant="20" id="WX1-fe-IqE"/>
                                             <constraint firstItem="jQl-GU-Uba" firstAttribute="leading" secondItem="6PY-NP-R21" secondAttribute="leading" constant="28" id="Ye2-XS-MEW"/>
-                                            <constraint firstAttribute="bottom" secondItem="GQq-r6-x97" secondAttribute="bottom" constant="30" id="aiA-7a-Qk3"/>
+                                            <constraint firstAttribute="bottom" secondItem="GQq-r6-x97" secondAttribute="bottom" constant="16" id="aiA-7a-Qk3"/>
                                             <constraint firstItem="AY5-pZ-yyo" firstAttribute="top" secondItem="APl-Qv-Dq5" secondAttribute="bottom" constant="12" id="dvo-3K-PXA"/>
                                             <constraint firstItem="2q8-Ls-xub" firstAttribute="top" secondItem="AUu-cy-55M" secondAttribute="bottom" constant="8" id="fKi-gl-EMg"/>
                                             <constraint firstItem="APl-Qv-Dq5" firstAttribute="top" secondItem="jQl-GU-Uba" secondAttribute="bottom" constant="32" id="i3X-s1-Sgu"/>
@@ -1040,9 +1045,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="uE5-LH-8dm">
-                                <rect key="frame" x="20" y="228.66666666666666" width="374" height="32.999999999999972"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Placeholder how will my data be used?"/>
+                                <rect key="frame" x="20" y="228.66666666666666" width="374" height="49.999999999999972"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="xBx-iG-XTP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                <state key="normal" title="Placeholder how will my data be used?">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

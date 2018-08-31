@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CoreText;
 using Foundation;
 using Gabber.iOS.Helpers;
 using Gabber.iOS.ViewSources;

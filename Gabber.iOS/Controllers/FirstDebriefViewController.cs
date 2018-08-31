@@ -10,14 +10,11 @@ namespace Gabber.iOS
 {
     public partial class FirstDebriefViewController : UIViewController
     {
-        public FirstDebriefViewController(IntPtr handle) : base(handle)
-        {
-        }
+        public FirstDebriefViewController(IntPtr handle) : base(handle) {}
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
             Title = StringResources.debriefing_activity_title;
 
             CongratsTitle.Text = StringResources.debriefing_congrats_title;
@@ -29,10 +26,16 @@ namespace Gabber.iOS
             ConsentBody3.Text = StringResources.debriefing_consent_body3;
 
             FinishedButton.SetTitle(StringResources.debriefing_finish_button, UIControlState.Normal);
+            FinishedButton.Layer.BorderWidth = 1.0f;
+            FinishedButton.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+
             FinishedButton.TouchUpInside += FinishedButton_TouchUpInside;
+
+            // Removes the title from the previous (Sessions) view controller as it is too long.
+            NavigationController.NavigationBar.TopItem.Title = "";
         }
 
-        private void FinishedButton_TouchUpInside(object sender, EventArgs e)
+        void FinishedButton_TouchUpInside(object sender, EventArgs e)
         {
             var prefs = NSUserDefaults.StandardUserDefaults;
             prefs.SetBool(true, "SHOWN_FIRSTUPLOAD");
