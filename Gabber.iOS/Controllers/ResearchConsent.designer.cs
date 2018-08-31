@@ -7,13 +7,15 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace Gabber.iOS
 {
     [Register ("ResearchConsent")]
     partial class ResearchConsent
     {
+        [Outlet]
+        UIKit.UIButton MoreDetailsButton { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel ResearchConsentDesc { get; set; }
@@ -32,14 +34,15 @@ namespace Gabber.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIScrollView ResearchConsentSV { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel ResearchConsentTitle { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
+            if (MoreDetailsButton != null) {
+                MoreDetailsButton.Dispose ();
+                MoreDetailsButton = null;
+            }
+
             if (ResearchConsentDesc != null) {
                 ResearchConsentDesc.Dispose ();
                 ResearchConsentDesc = null;
@@ -58,11 +61,6 @@ namespace Gabber.iOS
             if (ResearchConsentSubmit != null) {
                 ResearchConsentSubmit.Dispose ();
                 ResearchConsentSubmit = null;
-            }
-
-            if (ResearchConsentSV != null) {
-                ResearchConsentSV.Dispose ();
-                ResearchConsentSV = null;
             }
 
             if (ResearchConsentTitle != null) {

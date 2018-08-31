@@ -32,7 +32,7 @@ namespace Gabber.iOS
             ConfirmPasswordTextField.Placeholder = StringResources.common_ui_forms_password_confirm_label;
 
             var termsContent = string.Format(StringResources.register_ui_terms_label, Config.WEB_URL);
-            Terms.AttributedText = ResearchConsent.BuildFromHTML(termsContent, 14, false);
+            Terms.AttributedText = BuildFromHTML(termsContent, 14, false);
             Terms.DataDetectorTypes = UIDataDetectorType.Link;
 
             RegisterUIButton.SetTitle(StringResources.register_ui_submit_button, UIControlState.Normal);
@@ -43,6 +43,24 @@ namespace Gabber.iOS
             ConfirmPasswordTextField.ShouldReturn += NavigateNext;
 
             LoadLanguages();
+        }
+
+        public static NSAttributedString BuildFromHTML(string content, int fsize = 16, bool justify = true)
+        {
+            // Style the content
+            var _content = $"<span style=\"font-family: .SF UI Text; font-size: {fsize};\">{content}</span>";
+            // Convert the HTML in the content string to a NSAttributedString
+            var err = new NSError();
+            var atts = new NSAttributedStringDocumentAttributes { DocumentType = NSDocumentType.HTML };
+            var html = new NSAttributedString(NSData.FromString(_content), atts, ref err);
+            // Now the content is converted to HTML, we want to justify it
+            var mutableContent = new NSMutableAttributedString(html);
+            var para = new NSMutableParagraphStyle
+            {
+                Alignment = justify ? UITextAlignment.Justified : UITextAlignment.Left
+            };
+            mutableContent.AddAttribute(UIStringAttributeKey.ParagraphStyle, para, new NSRange(0, html.Length - 1));
+            return mutableContent;
         }
 
         private async void LoadLanguages()

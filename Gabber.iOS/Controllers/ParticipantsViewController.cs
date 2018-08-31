@@ -64,6 +64,9 @@ namespace Gabber.iOS
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
             base.PrepareForSegue(segue, sender);
+            // This removes the default title ("Participants") that appears next 
+            // to the text on the back button. Only show button without text.
+            NavigationItem.BackBarButtonItem = new UIBarButtonItem { Title = "" };
 
             if (segue.Identifier == "SegueToRecordGabber" && Queries.SelectedParticipants().Count == 0)
             {

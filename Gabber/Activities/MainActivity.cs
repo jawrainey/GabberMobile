@@ -4,6 +4,8 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
 using Android.Support.Design.Widget;
+using Android.Support.Text.Emoji;
+using Android.Support.Text.Emoji.Bundled;
 using Android.Support.V7.App;
 using Android.Views;
 using Firebase;
@@ -25,6 +27,9 @@ namespace Gabber
         {
             FirebaseApp.InitializeApp(ApplicationContext);
             firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
+
+            EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
+            EmojiCompat.Init(config);
 
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main);
@@ -96,11 +101,11 @@ namespace Gabber
             {
                 case Resource.Id.menu_projects:
                     fragment = Fragments.ProjectsFragment.NewInstance();
-					LOG_FRAGMENT_SELECTED("projects");
+                    LOG_FRAGMENT_SELECTED("projects");
                     break;
                 case Resource.Id.menu_gabbers:
                     fragment = Fragments.SessionsFragment.NewInstance();
-					LOG_FRAGMENT_SELECTED("recordings");
+                    LOG_FRAGMENT_SELECTED("recordings");
                     break;
                 case Resource.Id.menu_about:
                     fragment = Fragments.About.NewInstance();
