@@ -228,8 +228,6 @@ namespace GabberPCL
 
         public static async Task<List<Project>> GetProjects(Action<string> errorCallback)
         {
-            //Client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Session.Token.Access);   
-
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session.Token.Access);
 
             try

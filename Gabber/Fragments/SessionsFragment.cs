@@ -78,7 +78,6 @@ namespace Gabber.Fragments
             if (prefs.GetBoolean("SESSION_RECORDED", false))
             {
                 prefs.Edit().PutBoolean("SESSION_RECORDED", false).Commit();
-                //ShowDebriefingDialog();
             }
         }
 

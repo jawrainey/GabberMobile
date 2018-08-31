@@ -12,13 +12,7 @@ namespace GabberPCL
         public static async Task<List<LanguageChoice>> GetLanguageChoices()
         {
             List<LanguageChoice> cache = Queries.AllLanguages();
-
-            if (cache != null && cache.Count > 0)
-            {
-                return cache;
-            }
-
-            return await RefreshLanguages();
+            return cache != null && cache.Count > 0 ? cache : await RefreshLanguages();
         }
 
         public static void RefreshIfNeeded()

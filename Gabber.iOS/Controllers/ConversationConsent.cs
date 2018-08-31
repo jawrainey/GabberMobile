@@ -145,9 +145,7 @@ namespace Gabber.iOS
 
             TableViewHeight.Constant = tableHeight;
             ConversationConsentTableView.UpdateConstraints();
-            //ConversationConsentTableView.SetNeedsLayout();
             ConversationConsentTableView.LayoutIfNeeded();
-            //View.LayoutIfNeeded();
         }
     }
 }
