@@ -119,9 +119,27 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string settings_chooseLanguage {
+        public static string settings_logout {
             get {
-                return ResourceManager.GetString("settings.chooseLanguage", resourceCulture);
+                return ResourceManager.GetString("settings.logout", resourceCulture);
+            }
+        }
+        
+        public static string settings_logout_dialog_title {
+            get {
+                return ResourceManager.GetString("settings.logout.dialog.title", resourceCulture);
+            }
+        }
+        
+        public static string settings_logout_dialog_message {
+            get {
+                return ResourceManager.GetString("settings.logout.dialog.message", resourceCulture);
+            }
+        }
+        
+        public static string settings_logout_dialog_confirm {
+            get {
+                return ResourceManager.GetString("settings.logout.dialog.confirm", resourceCulture);
             }
         }
         

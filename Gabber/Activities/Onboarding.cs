@@ -14,15 +14,15 @@ using GabberPCL.Resources;
 
 namespace Gabber.Activities
 {
-	[Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/MyTheme.NoActionBar")]
     public class Onboarding : AppCompatActivity, ViewPager.IOnPageChangeListener
     {
-		FirebaseAnalytics firebaseAnalytics;
+        FirebaseAnalytics firebaseAnalytics;
         ViewPager pager;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-			firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
+            firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.onboarding);
 
@@ -71,13 +71,13 @@ namespace Gabber.Activities
             register.Click += (sender, e) => StartActivity(typeof(RegisterActivity));
         }
 
-        public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+        public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
-        public void OnPageScrollStateChanged(int state){}
+        public void OnPageScrollStateChanged(int state) { }
 
         public void OnPageSelected(int position)
         {
-			LOG_ONBOARDING_SWIPE(position);
+            LOG_ONBOARDING_SWIPE(position);
             var la = FindViewById<LinearLayout>(Resource.Id.showAuthButtons);
 
             if (position == pager.Adapter.Count - 1)
@@ -91,12 +91,12 @@ namespace Gabber.Activities
             }
         }
 
-		void LOG_ONBOARDING_SWIPE(int position)
+        void LOG_ONBOARDING_SWIPE(int position)
         {
             var bundle = new Bundle();
-			bundle.PutInt("POSITION", position);
+            bundle.PutInt("POSITION", position);
             bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
-			firebaseAnalytics.LogEvent("ONBOARDING_SWIPE", bundle);
+            firebaseAnalytics.LogEvent("ONBOARDING_SWIPE", bundle);
         }
     }
 }

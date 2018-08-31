@@ -29,7 +29,7 @@ namespace Gabber.Fragments
         // One instance to rule them all
         static ProjectsFragment instance;
 
-        private bool refreshed;
+        public static bool HasRefreshedProjects;
 
         public static ProjectsFragment NewInstance()
         {
@@ -90,7 +90,7 @@ namespace Gabber.Fragments
             refresher.SetColorSchemeResources(Resource.Color.primary_material_dark);
             refresher.Refresh += Refresher_Refresh;
 
-            if (!refreshed) LoadDataIfNotLoading();
+            if (!HasRefreshedProjects) LoadDataIfNotLoading();
         }
 
         private void Refresher_Refresh(object sender, System.EventArgs e)
@@ -112,7 +112,7 @@ namespace Gabber.Fragments
             }
 
             refresher.Refreshing = false;
-            refreshed = true;
+            HasRefreshedProjects = true;
         }
 
         private void LoadDataIfNotLoading()

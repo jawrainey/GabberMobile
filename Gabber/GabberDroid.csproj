@@ -290,6 +290,7 @@
     <AndroidResource Include="Resources\layout\project_prompt.axml" />
     <AndroidResource Include="Resources\xml\preferences.xml" />
     <AndroidResource Include="Resources\layout\PrefsFragment.axml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

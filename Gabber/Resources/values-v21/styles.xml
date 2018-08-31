@@ -1,15 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <style name="MyTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">#26A69A</item>
-        <item name="colorAccent">#26A69A</item>
-        <item name="colorPrimaryDark">#1c7a71</item>
-        <item name="colorControlHighlight">#009688</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>
+        <item name="preferenceTheme">@style/settingsTheme</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowAllowEnterTransitionOverlap">true</item>
         <item name="android:windowAllowReturnTransitionOverlap">true</item>
         <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>
         <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
+    </style>
+    <style name="MyTheme.NoActionBar" parent="MyTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 </resources>

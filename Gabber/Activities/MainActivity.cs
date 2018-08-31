@@ -8,6 +8,7 @@ using Android.Support.V7.App;
 using Android.Views;
 using Firebase;
 using Firebase.Analytics;
+using Gabber.Fragments;
 using Gabber.Helpers;
 using GabberPCL;
 using GabberPCL.Models;
@@ -40,11 +41,7 @@ namespace Gabber
 
             if (string.IsNullOrWhiteSpace(UserEmail))
             {
-                // We must clear the navigation stack here otherwise this activity is behind onboarding.
-                var intent = new Intent(this, typeof(Activities.Onboarding));
-                intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask);
-                StartActivity(intent);
-                Finish();
+                GoToOnboarding();
             }
             else
             {
@@ -136,6 +133,34 @@ namespace Gabber
             var bundle = new Bundle();
             bundle.PutString("FRAGMENT", name);
             firebaseAnalytics.LogEvent("FRAGMENT_SHOWN", bundle);
+        }
+
+        public void LogOut()
+        {
+            // reset all data stored in prefs
+            var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+            prefs.Edit().Clear().Commit();
+
+            // Make sure the projects fragment pulls from the server when we log back in 
+            ProjectsFragment.HasRefreshedProjects = false;
+
+            // reset to system language
+            StringResources.Culture = Localise.GetCurrentCultureInfo();
+
+            // nuke the database
+            Session.NukeItFromOrbit();
+
+            //return to login
+            GoToOnboarding();
+        }
+
+        private void GoToOnboarding()
+        {
+            // We must clear the navigation stack here otherwise this activity is behind onboarding.
+            var intent = new Intent(this, typeof(Activities.Onboarding));
+            intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask);
+            StartActivity(intent);
+            Finish();
         }
     }
 }

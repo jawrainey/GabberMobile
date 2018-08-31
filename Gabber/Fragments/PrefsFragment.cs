@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Android.OS;
 using Android.Preferences;
+using Android.Support.V7.App;
 using Android.Support.V7.Preferences;
 using Gabber.Helpers;
 using GabberPCL;
@@ -55,6 +56,10 @@ namespace Gabber.Fragments
             convoLangPref.SetValueIndex(convoDefaultVal);
             convoLangPref.PreferenceChange += ConvoLangPrefChanged;
 
+            var logOutPref = FindPreference("logOutPref");
+            logOutPref.Title = StringResources.settings_logout;
+            logOutPref.PreferenceClick += LogOutPref_PreferenceClick;
+
         }
 
         private void AppLangPrefChanged(object sender, Android.Support.V7.Preferences.Preference.PreferenceChangeEventArgs e)
@@ -86,5 +91,16 @@ namespace Gabber.Fragments
                 //TODO update on server
             }
         }
+
+        private void LogOutPref_PreferenceClick(object sender, Android.Support.V7.Preferences.Preference.PreferenceClickEventArgs e)
+        {
+            new AlertDialog.Builder(Activity)
+                .SetTitle(StringResources.settings_logout_dialog_title)
+                .SetMessage(StringResources.settings_logout_dialog_message)
+                .SetNegativeButton(StringResources.common_comms_cancel, (a, b) => { })
+                .SetPositiveButton(StringResources.settings_logout_dialog_confirm, (a, b) => { ((MainActivity)Activity).LogOut(); })
+                .Show();
+        }
+
     }
 }

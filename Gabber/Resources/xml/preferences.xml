@@ -2,4 +2,5 @@
 <android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <android.support.v7.preference.ListPreference android:summary="%s" android:key="appLanguagePref" />
     <android.support.v7.preference.ListPreference android:summary="%s" android:key="convoLanguagePref" />
+    <android.support.v7.preference.Preference android:key="logOutPref" />
 </android.support.v7.preference.PreferenceScreen>

@@ -1,9 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="MyTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">#26A69A</item>
-        <item name="colorAccent">#26A69A</item>
-        <item name="colorControlHighlight">#009688</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorControlHighlight</item>
+        <item name="preferenceTheme">@style/settingsTheme</item>
+    </style>
+    <style name="MyTheme.NoActionBar" parent="MyTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="settingsTheme" parent="PreferenceThemeOverlay">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/colorAccent</item>
+        <item name="android:textSize">14sp</item>
     </style>
 </resources>

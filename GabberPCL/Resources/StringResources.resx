@@ -51,7 +51,16 @@
     <data name="settings.chooseConvoLanguage" xml:space="preserve">
         <value>Default Conversation Language</value>
     </data>
-    <data name="settings.chooseLanguage" xml:space="preserve">
+    <data name="settings.logout" xml:space="preserve">
+        <value>Log Out of Gabber</value>
+    </data>
+    <data name="settings.logout.dialog.title" xml:space="preserve">
+        <value>Are you sure?</value>
+    </data>
+    <data name="settings.logout.dialog.message" xml:space="preserve">
+        <value>Logging out will delete any conversations waiting to upload. Are you sure you want to do this?</value>
+    </data>
+    <data name="settings.logout.dialog.confirm" xml:space="preserve">
         <value>Logout</value>
     </data>
     <!-- SHARED UI FORMS -->

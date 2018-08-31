@@ -33,5 +33,20 @@ namespace GabberPCL
                 return _connection;
             }
         }
+
+        // I say we take off and
+        public static void NukeItFromOrbit()
+        {
+            // it's the only way to be sure
+
+            ActiveUser = null;
+            Token = null;
+            Connection.DropTable<User>();
+            Connection.DropTable<Project>();
+            Connection.DropTable<InterviewSession>();
+            Connection.DropTable<InterviewPrompt>();
+            Connection.DropTable<LanguageChoice>();
+            _connection = null;
+        }
     }
 }
