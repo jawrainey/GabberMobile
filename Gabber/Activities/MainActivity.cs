@@ -17,10 +17,10 @@ using Newtonsoft.Json;
 
 namespace Gabber
 {
-    [Activity(MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/MyTheme")]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/MyTheme")]
     public class MainActivity : AppCompatActivity
     {
-        private FirebaseAnalytics firebaseAnalytics;
+        public static FirebaseAnalytics FireBaseAnalytics;
         private BottomNavigationView nav;
 
         private PrefsFragment prefsFragment;
@@ -28,28 +28,13 @@ namespace Gabber
         private SessionsFragment sessionsFragment;
         private Android.Support.V4.App.Fragment activeFragment;
 
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            FirebaseApp.InitializeApp(ApplicationContext);
-            firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
-
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main);
 
-            // Used by the PCL for database interactions so must be defined early.
-            Session.PrivatePath = new PrivatePath();
-            // Register the implementation to the global interface within the PCL.
-            RestClient.GlobalIO = new DiskIO();
-
             var preferences = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
             var UserEmail = preferences.GetString("username", "");
-
-            if (string.IsNullOrWhiteSpace(UserEmail))
-            {
-                GoToOnboarding();
-                return;
-            }
 
             // Create the user once as they can come here after Register/Login or anytime they reopen app
             if (Session.ActiveUser == null)
@@ -57,7 +42,7 @@ namespace Gabber
                 var user = Queries.UserByEmail(UserEmail);
                 var tokens = JsonConvert.DeserializeObject<JWToken>(preferences.GetString("tokens", ""));
                 Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
-                firebaseAnalytics.SetUserId(Session.ActiveUser.Id.ToString());
+                FireBaseAnalytics.SetUserId(Session.ActiveUser.Id.ToString());
             }
 
             nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
@@ -124,7 +109,7 @@ namespace Gabber
         {
             var bundle = new Bundle();
             bundle.PutString("FRAGMENT", name);
-            firebaseAnalytics.LogEvent("FRAGMENT_SHOWN", bundle);
+            FireBaseAnalytics.LogEvent("FRAGMENT_SHOWN", bundle);
         }
 
         public void LogOut()

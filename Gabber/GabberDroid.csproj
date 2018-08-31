@@ -209,6 +209,7 @@
     <Compile Include="Activities\ConsentSummary.cs" />
     <Compile Include="Fragments\PrefsFragment.cs" />
     <Compile Include="Helpers\Localise.cs" />
+    <Compile Include="Activities\SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -296,6 +297,8 @@
     <AndroidResource Include="Resources\drawable-xhdpi\baseline_settings_black_36.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\baseline_settings_black_36.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_settings_black_36.png" />
+    <AndroidResource Include="Resources\drawable\splash.xml" />
+    <AndroidResource Include="Resources\drawable\icon_xml.xml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
