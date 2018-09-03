@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using Android.OS;
-using Android.Preferences;
+﻿using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Preferences;
-using Android.Widget;
 using Gabber.Helpers;
 using GabberPCL;
 using GabberPCL.Models;
 using GabberPCL.Resources;
-using Java.Lang;
-using static Android.Preferences.Preference;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 
 namespace Gabber.Fragments
 {
@@ -61,7 +55,7 @@ namespace Gabber.Fragments
             var logOutPref = FindPreference("logOutPref");
             logOutPref.Title = StringResources.settings_logout;
             logOutPref.PreferenceClick += LogOutPref_PreferenceClick;
-
+            // ((AppCompatActivity)Activity).SupportActionBar.Title = StringResources.common_menu_settings;
         }
 
         private void AppLangPrefChanged(object sender, Android.Support.V7.Preferences.Preference.PreferenceChangeEventArgs e)
@@ -75,7 +69,7 @@ namespace Gabber.Fragments
             if (newLangVal != -1 && chosen != null && chosen.Code != StringResources.Culture?.TwoLetterISOLanguageName)
             {
                 StringResources.Culture = new CultureInfo(chosen.Code);
-                ((MainActivity)Activity).LoadStrings();
+                ((MainActivity)Activity).LoadNavigationTitles();
             }
         }
 

@@ -147,6 +147,9 @@
     <Reference Include="Xamarin.Android.Support.Core.Utils">
       <HintPath>..\packages\Xamarin.Android.Support.Core.Utils.27.0.2.1\lib\MonoAndroid81\Xamarin.Android.Support.Core.Utils.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.Emoji">
+      <HintPath>..\packages\Xamarin.Android.Support.Emoji.27.0.2.1\lib\MonoAndroid81\Xamarin.Android.Support.Emoji.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Android.Support.Fragment">
       <HintPath>..\packages\Xamarin.Android.Support.Fragment.27.0.2.1\lib\MonoAndroid81\Xamarin.Android.Support.Fragment.dll</HintPath>
     </Reference>
@@ -182,6 +185,12 @@
     <Reference Include="Xamarin.Android.Support.v7.Preference">
       <HintPath>..\packages\Xamarin.Android.Support.v7.Preference.27.0.2.1\lib\MonoAndroid81\Xamarin.Android.Support.v7.Preference.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.Emoji.AppCompat">
+      <HintPath>..\packages\Xamarin.Android.Support.Emoji.AppCompat.27.0.2.1\lib\MonoAndroid81\Xamarin.Android.Support.Emoji.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Emoji.Bundled">
+      <HintPath>..\packages\Xamarin.Android.Support.Emoji.Bundled.27.0.2.1\lib\MonoAndroid81\Xamarin.Android.Support.Emoji.Bundled.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -206,10 +215,10 @@
     <Compile Include="Activities\VerifyEmail.cs" />
     <Compile Include="Activities\ResearchConsent.cs" />
     <Compile Include="Activities\ConversationConsent.cs" />
-    <Compile Include="Activities\ConsentSummary.cs" />
     <Compile Include="Fragments\PrefsFragment.cs" />
     <Compile Include="Helpers\Localise.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
+    <Compile Include="Activities\FirstDebriefActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -293,6 +302,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\baseline_cloud_upload_black_36.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\baseline_cloud_upload_black_36.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_cloud_upload_black_36.png" />
+    <AndroidResource Include="Resources\layout\FirstDebriefActivity.axml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -324,6 +334,7 @@
   <Import Project="..\packages\Xamarin.Android.Support.Compat.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Compat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Compat.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Compat.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.Core.UI.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Core.UI.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Core.UI.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Core.UI.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.Core.Utils.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Core.Utils.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Core.Utils.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Core.Utils.targets')" />
+  <Import Project="..\packages\Xamarin.Android.Support.Emoji.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Emoji.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Emoji.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Emoji.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.Fragment.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Fragment.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Fragment.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Fragment.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.Media.Compat.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Media.Compat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Media.Compat.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Media.Compat.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.Transition.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Transition.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Transition.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Transition.targets')" />
@@ -336,4 +347,6 @@
   <Import Project="..\packages\Xamarin.Android.Support.Design.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Design.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Design.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Design.targets')" />
   <Import Project="..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.v7.Preference.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.v7.Preference.targets" Condition="Exists('..\packages\Xamarin.Android.Support.v7.Preference.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.v7.Preference.targets')" />
+  <Import Project="..\packages\Xamarin.Android.Support.Emoji.AppCompat.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Emoji.AppCompat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Emoji.AppCompat.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Emoji.AppCompat.targets')" />
+  <Import Project="..\packages\Xamarin.Android.Support.Emoji.Bundled.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Emoji.Bundled.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Emoji.Bundled.27.0.2.1\build\MonoAndroid81\Xamarin.Android.Support.Emoji.Bundled.targets')" />
 </Project>

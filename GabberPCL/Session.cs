@@ -8,11 +8,8 @@ namespace GabberPCL
     // opening/closing operations on the database file
     public static class Session
     {
-        // ??
         public static JWToken Token;
-        // ??
         public static User ActiveUser;
-        // ??
         static SQLiteConnection _connection;
         // Used to access platform specific implementations
         public static Interfaces.IPrivatePath PrivatePath;
@@ -34,11 +31,8 @@ namespace GabberPCL
             }
         }
 
-        // I say we take off and
         public static void NukeItFromOrbit()
         {
-            // it's the only way to be sure
-
             ActiveUser = null;
             Token = null;
             Connection.DropTable<User>();

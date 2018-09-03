@@ -8,7 +8,8 @@
     android:keepScreenOn="true">
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="0dp"
+        android:layout_weight="7">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,52 +26,70 @@
                 android:gravity="center"
                 android:textColor="@android:color/black"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_width="match_parent"
+                android:text="PLACEHOLDER TEXT PLACEHOLDER TEXT" />
             <TextView
                 android:id="@+id/researchConsentDesc"
-                android:textSize="16dp"
+                android:textSize="14dp"
+                android:lineSpacingExtra="3dp"
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp"
                 android:layout_marginBottom="24dp"
-                android:lineSpacingExtra="6dp"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#CCCCCC" />
-            <LinearLayout
-                android:id="@+id/researchConsentFormLayout"
-                android:padding="24dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:weightSum="10">
-                <CheckBox
-                    android:id="@+id/researchConsentProvided"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="9" />
-                <TextView
-                    android:id="@+id/researchConsentForm"
-                    android:paddingLeft="12dp"
-                    android:textColor="@android:color/black"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_weight="1"
-                    android:textSize="14dp"
-                    android:lineSpacingExtra="6dp" />
-            </LinearLayout>
+                android:text="PLACEHOLDER TEXT PLACEHOLDER TEXT" />
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/researchConsentSubmit"
+                android:id="@+id/consentInfoButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/custom_button" />
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/custom_button"
+                android:text="PLACEHOLDER TEXT" />
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="3">
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC" />
+        <LinearLayout
+            android:id="@+id/researchConsentFormLayout"
+            android:padding="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <CheckBox
+                android:id="@+id/researchConsentProvided"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="9" />
+            <TextView
+                android:id="@+id/researchConsentForm"
+                android:paddingLeft="12dp"
+                android:textColor="@android:color/black"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="1"
+                android:textSize="14dp"
+                android:lineSpacingExtra="6dp"
+                android:text="PLACEHOLDER TEXT PLACEHOLDER TEXT" />
+        </LinearLayout>
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/researchConsentSubmit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/custom_button"
+            android:text="PLACEHOLDER TEXT" />
+    </LinearLayout>
 </LinearLayout>

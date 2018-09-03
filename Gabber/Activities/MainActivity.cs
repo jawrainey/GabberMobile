@@ -4,6 +4,8 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Preferences;
 using Android.Support.Design.Widget;
+using Android.Support.Text.Emoji;
+using Android.Support.Text.Emoji.Bundled;
 using Android.Support.V7.App;
 using Android.Views;
 using Firebase;
@@ -21,25 +23,25 @@ namespace Gabber
     public class MainActivity : AppCompatActivity
     {
         public static FirebaseAnalytics FireBaseAnalytics;
-        private BottomNavigationView nav;
+        BottomNavigationView nav;
 
-        private PrefsFragment prefsFragment;
-        private ProjectsFragment projectsFragment;
-        private UploadsFragment sessionsFragment;
-        private Android.Support.V4.App.Fragment activeFragment;
+        PrefsFragment prefsFragment;
+        ProjectsFragment projectsFragment;
+        UploadsFragment sessionsFragment;
+        Android.Support.V4.App.Fragment activeFragment;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main);
 
-            var preferences = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
-            var UserEmail = preferences.GetString("username", "");
-
+            EmojiCompat.Init(new BundledEmojiCompatConfig(this));
+            
             // Create the user once as they can come here after Register/Login or anytime they reopen app
             if (Session.ActiveUser == null)
             {
-                var user = Queries.UserByEmail(UserEmail);
+                var preferences = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+                var user = Queries.UserByEmail(preferences.GetString("username", ""));
                 var tokens = JsonConvert.DeserializeObject<JWToken>(preferences.GetString("tokens", ""));
                 Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
                 FireBaseAnalytics.SetUserId(Session.ActiveUser.Id.ToString());
@@ -47,24 +49,39 @@ namespace Gabber
 
             nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
             nav.NavigationItemSelected += NavigationItemSelected;
-            LoadStrings();
-
 
             prefsFragment = new PrefsFragment();
-            projectsFragment = new ProjectsFragment();
             sessionsFragment = new UploadsFragment();
+            projectsFragment = new ProjectsFragment();
             activeFragment = projectsFragment;
 
             SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, prefsFragment, "settings").Hide(prefsFragment).Commit();
             SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, sessionsFragment, "sessions").Hide(sessionsFragment).Commit();
             SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, projectsFragment, "projects").Commit();
-
-            SupportActionBar.Title = StringResources.projects_ui_title;
-
+            
+            LoadUploadFragmentAfterSession();
             LanguagesManager.RefreshIfNeeded();
+            SupportActionBar.Title = StringResources.login_ui_title;
         }
 
-        public void LoadStrings()
+        protected override void OnResume()
+        {
+            base.OnResume();
+            LoadNavigationTitles();
+        }
+
+        void LoadUploadFragmentAfterSession()
+        {
+            if (!string.IsNullOrWhiteSpace(Intent.GetStringExtra("FRAGMENT_TO_SHOW")))
+            {
+                SupportFragmentManager.BeginTransaction().Hide(activeFragment).Show(sessionsFragment).Commit();
+                nav.SelectedItemId = Resource.Id.menu_gabbers;
+                activeFragment = sessionsFragment;
+                LOG_FRAGMENT_SELECTED("uploads");
+            }
+        }
+
+        public void LoadNavigationTitles()
         {
             nav.Menu.FindItem(Resource.Id.menu_projects).SetTitle(StringResources.common_menu_projects);
             nav.Menu.FindItem(Resource.Id.menu_gabbers).SetTitle(StringResources.common_menu_gabbers);
@@ -88,10 +105,9 @@ namespace Gabber
 
         private void NavigationItemSelected(object sender, BottomNavigationView.NavigationItemSelectedEventArgs e)
         {
-            int id = e.Item.ItemId;
             Android.Support.V4.App.Fragment toShow = null;
 
-            switch (id)
+            switch (e.Item.ItemId)
             {
                 case Resource.Id.menu_projects:
                     SupportActionBar.Title = StringResources.projects_ui_title;

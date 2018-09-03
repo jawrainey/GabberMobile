@@ -11,7 +11,7 @@
         android:id="@+id/loadingLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="gone">
         <ProgressBar
             android:id="@+id/loadingProgress"
             android:layout_width="wrap_content"
@@ -37,30 +37,11 @@
             android:orientation="vertical"
             android:layout_weight="1">
             <TextView
-                android:id="@+id/GabberConsentControlTitle"
-                android:layout_margin="24dp"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textColor="@android:color/black"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
-            <TextView
-                android:id="@+id/GabberConsentControlDesc"
-                android:textSize="16dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"
-                android:lineSpacingExtra="6dp"
-                android:layout_marginBottom="24dp"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#CCCCCC" />
-            <TextView
                 android:id="@+id/GabberConsentDecisionTitle"
-                android:layout_margin="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -70,9 +51,9 @@
             <TextView
                 android:id="@+id/GabberConsentDecisionDesc"
                 android:textSize="14dp"
+                android:lineSpacingExtra="3dp"
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp"
-                android:lineSpacingExtra="6dp"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent" />
             <RadioGroup
@@ -142,10 +123,24 @@
                     android:paddingLeft="8dp"
                     android:textSize="14dp" />
             </RadioGroup>
-            <Spinner
-                android:id="@+id/chooseLanguageSpinner"
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <TextView
+                android:id="@+id/chooseLanguageTitle"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+            <Spinner
+                android:id="@+id/chooseLanguageSpinner"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
                 android:layout_height="45dp"
@@ -155,7 +150,10 @@
                 android:text="Record"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 android:background="@drawable/custom_button" />
         </LinearLayout>
     </ScrollView>

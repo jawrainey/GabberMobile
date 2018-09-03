@@ -1,15 +1,6 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Firebase;
 using Firebase.Analytics;
 using Gabber.Helpers;
@@ -28,7 +19,7 @@ namespace Gabber.Activities
             Init();
         }
 
-        private async void Init()
+        async void Init()
         {
             FirebaseApp.InitializeApp(ApplicationContext);
             MainActivity.FireBaseAnalytics = FirebaseAnalytics.GetInstance(this);
@@ -43,7 +34,7 @@ namespace Gabber.Activities
 
             if (string.IsNullOrWhiteSpace(UserEmail))
             {
-                var onboardingIntent = new Intent(this, typeof(Activities.Onboarding));
+                var onboardingIntent = new Intent(this, typeof(Onboarding));
                 onboardingIntent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask);
                 StartActivity(onboardingIntent);
             }
@@ -58,8 +49,6 @@ namespace Gabber.Activities
                 StartActivity(intent);
             }
             Finish();
-
         }
     }
-
 }

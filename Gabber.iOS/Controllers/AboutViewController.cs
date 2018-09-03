@@ -19,7 +19,7 @@ namespace Gabber.iOS
 			AboutURL.DataDetectorTypes = UIDataDetectorType.Link;
             AboutURL.Text = GabberPCL.Config.WEB_URL;
 
-            Title = StringResources.common_menu_about;
+            Title = StringResources.common_menu_settings;
             TabBarController.Title = StringResources.about_ui_title;
 		}
 

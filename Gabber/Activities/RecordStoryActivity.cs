@@ -216,7 +216,7 @@ namespace Gabber
 
                 var intent = new Intent(this, typeof(MainActivity));
                 intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
-                intent.PutExtra("FRAGMENT_TO_SHOW", "gabbers");
+                intent.PutExtra("FRAGMENT_TO_SHOW", "settings");
                 Finish();
                 StartActivity(intent);
             });

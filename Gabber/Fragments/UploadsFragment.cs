@@ -11,7 +11,8 @@ using Gabber.Adapters;
 using GabberPCL;
 using GabberPCL.Models;
 using GabberPCL.Resources;
-using Android.Text;
+using Android.Content;
+using Gabber.Activities;
 
 namespace Gabber.Fragments
 {
@@ -74,50 +75,15 @@ namespace Gabber.Fragments
             if (prefs.GetBoolean("SESSION_RECORDED", false))
             {
                 prefs.Edit().PutBoolean("SESSION_RECORDED", false).Commit();
-                ShowDebriefingDialog();
             }
         }
 
         // Prevents multiple clicks to the same session, which will spawn threads
         // to upload the session multiple times, which is not good!
-        void UploadIfNot(int position, bool recursive)
+        private void UploadIfNot(int position, bool recursive)
         {
             if (IsUploading == null || IsUploading.IsCompleted) IsUploading = UploadSessions(position, recursive);
             else Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_inprogress, ToastLength.Long).Show();
-        }
-
-        void ShowDebriefingDialog()
-        {
-            var alert = new AlertDialog.Builder(Activity);
-            var session = Queries.LastInterviewSession();
-            var content = string.Format(
-                StringResources.debriefing_ui_page_first_content,
-                Queries.ProjectById(session.ProjectID).Title,
-                session.ConsentType
-            );
-            alert.SetTitle(StringResources.debriefing_ui_page_first_title);
-            alert.SetMessage(Html.FromHtml(content));
-
-            alert.SetNegativeButton(
-                StringResources.debriefing_ui_button_hide,
-                (dialog, id) =>
-                {
-                    ((AlertDialog)dialog).Dismiss();
-                    LOG_EVENT_WITH_ACTION("DEBRIEF", "DISMISSED");
-                }
-            );
-
-            alert.SetPositiveButton(
-                StringResources.debriefing_ui_button_upload,
-                async (dialog, id) =>
-                {
-                    ((AlertDialog)dialog).Dismiss();
-                    LOG_EVENT_WITH_ACTION("DEBRIEF", "UPLOADED");
-                    await UploadSessions(0, false);
-                }
-            );
-
-            alert.Create().Show();
         }
 
         void ShowHideInstructions()
@@ -147,7 +113,17 @@ namespace Gabber.Fragments
                 LOG_UPLOAD_ONE(adapter.Sessions[index]);
                 adapter.SessionIsUploaded(index);
                 Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_success, ToastLength.Long).Show();
-                if (recursive) await UploadSessions(0, true);
+
+                ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(Activity);
+
+                if (!prefs.GetBoolean("HAS_DISMISSED_DEBRIEF", false))
+                {
+                    StartActivity(new Intent(Activity, typeof(FirstDebriefActivity)));
+                }
+                else
+                {
+                    if (recursive) await UploadSessions(0, true);
+                }
             }
             else
             {

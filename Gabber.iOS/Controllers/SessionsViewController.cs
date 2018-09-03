@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CoreText;
 using Foundation;
 using Gabber.iOS.Helpers;
 using Gabber.iOS.ViewSources;
@@ -37,6 +36,8 @@ namespace Gabber.iOS
             SessionsUpload.Layer.BorderWidth = 1.0f;
             SessionsUpload.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
             SessionsUpload.SetTitle(StringResources.sessions_ui_submit_button, UIControlState.Normal);
+
+
         }
 
         public override void ViewDidAppear(bool animated)
@@ -44,22 +45,6 @@ namespace Gabber.iOS
             UpdateSessionsSource();
             base.ViewDidAppear(animated);
             TabBarController.Title = StringResources.sessions_ui_title;
-
-            var prefs = NSUserDefaults.StandardUserDefaults;
-            if (prefs.BoolForKey("SESSION_RECORDED"))
-            {
-                var session = Queries.LastInterviewSession();
-                var _content = string.Format(
-                    StringResources.debriefing_ui_page_first_content,
-                    Queries.ProjectById(session.ProjectID).Title,
-                    session.ConsentType
-                );
-
-                prefs.SetBool(false, "SESSION_RECORDED");
-                var dialog = new MessageDialog().BuildErrorMessageDialog(StringResources.debriefing_ui_page_first_title, "");
-                dialog.SetValueForKey(ResearchConsent.BuildFromHTML(_content), new NSString("attributedMessage"));
-                PresentViewController(dialog, true, null);
-            }
         }
 
         // Index is optional such that the method could be used onSelected(item)
@@ -85,10 +70,20 @@ namespace Gabber.iOS
                 Session.Connection.Update(sessions[index]);
                 sessions.Remove(sessions[index]);
                 SessionsCollectionView.ReloadData();
-                PresentViewController(new MessageDialog().BuildErrorMessageDialog(
+
+                var prefs = NSUserDefaults.StandardUserDefaults;
+                if (!prefs.BoolForKey("SHOWN_FIRSTUPLOAD"))
+                {
+                    // Show pop-up explaining viewing uploaded data and changing consent
+                    PerformSegue("FirstUploadModal", this);
+                }
+                else
+                {
+                    PresentViewController(new MessageDialog().BuildErrorMessageDialog(
                     StringResources.sessions_ui_message_upload_success, ""), true, null);
-                // Try to upload the next session
-                if (recursive) UploadSessions(0, true);
+                    // Try to upload the next session
+                    if (recursive) UploadSessions(0, true);
+                }
             }
             else
             {
