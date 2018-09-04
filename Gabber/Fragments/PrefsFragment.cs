@@ -55,7 +55,6 @@ namespace Gabber.Fragments
             var logOutPref = FindPreference("logOutPref");
             logOutPref.Title = StringResources.settings_logout;
             logOutPref.PreferenceClick += LogOutPref_PreferenceClick;
-            // ((AppCompatActivity)Activity).SupportActionBar.Title = StringResources.common_menu_settings;
         }
 
         private void AppLangPrefChanged(object sender, Android.Support.V7.Preferences.Preference.PreferenceChangeEventArgs e)

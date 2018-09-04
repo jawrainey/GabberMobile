@@ -107,6 +107,12 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string settings_about {
+            get {
+                return ResourceManager.GetString("settings.about", resourceCulture);
+            }
+        }
+        
         public static string settings_chooseAppLanguage {
             get {
                 return ResourceManager.GetString("settings.chooseAppLanguage", resourceCulture);

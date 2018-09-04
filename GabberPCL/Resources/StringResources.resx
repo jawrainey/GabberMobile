@@ -45,6 +45,9 @@
     <data name="settings.title" xml:space="preserve">
         <value>Settings</value>
     </data>
+    <data name="settings.about" xml:space="preserve">
+        <value>About</value>
+    </data>
     <data name="settings.chooseAppLanguage" xml:space="preserve">
         <value>Application Language</value>
     </data>

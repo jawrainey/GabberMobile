@@ -1,7 +1,8 @@
 using System;
-using Foundation;
 using GabberPCL.Resources;
+using SafariServices;
 using UIKit;
+using Gabber.iOS.ViewSources;
 
 namespace Gabber.iOS
 {
@@ -13,15 +14,13 @@ namespace Gabber.iOS
 		{
             base.ViewDidLoad();
 
-            AboutContent.Text = StringResources.about_ui_content;
-			AboutURLDescription.Text = StringResources.about_ui_url_description;
-         
-			AboutURL.DataDetectorTypes = UIDataDetectorType.Link;
-            AboutURL.Text = GabberPCL.Config.WEB_URL;
-
             Title = StringResources.common_menu_settings;
             TabBarController.Title = StringResources.about_ui_title;
-		}
+
+            SettingsTableView.Source = new SettingsTableViewSource(
+                this, (url) => PresentViewControllerAsync(new SFSafariViewController(url), true));
+            SettingsTableView.SizeToFit();
+        }
 
         public override void ViewDidAppear(bool animated)
         {

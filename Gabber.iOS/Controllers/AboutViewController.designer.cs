@@ -26,6 +26,10 @@ namespace Gabber.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel AboutURLDescription { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableView SettingsTableView { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (AboutContent != null) {
@@ -41,6 +45,11 @@ namespace Gabber.iOS
             if (AboutURLDescription != null) {
                 AboutURLDescription.Dispose ();
                 AboutURLDescription = null;
+            }
+
+            if (SettingsTableView != null) {
+                SettingsTableView.Dispose ();
+                SettingsTableView = null;
             }
         }
     }

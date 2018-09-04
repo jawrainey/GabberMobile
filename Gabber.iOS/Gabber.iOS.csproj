@@ -911,6 +911,7 @@
     <Compile Include="Controllers\FirstDebriefViewController.designer.cs">
       <DependentUpon>FirstDebriefViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewSources\SettingsTableViewSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">
