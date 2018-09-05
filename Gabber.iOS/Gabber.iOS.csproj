@@ -682,18 +682,6 @@
     <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\cloud_upload_3x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\menu_about.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about_2x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about_3x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -772,6 +760,10 @@
     <ImageAsset Include="Assets.xcassets\CheckboxUnchecked.imageset\unchecked-x2.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Settings.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Settings.imageset\baseline_settings_black_24pt_1x.png" />
+    <ImageAsset Include="Assets.xcassets\Settings.imageset\baseline_settings_black_24pt_2x.png" />
+    <ImageAsset Include="Assets.xcassets\Settings.imageset\baseline_settings_black_24pt_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -790,6 +782,7 @@
     <Folder Include="Assets.xcassets\CheckboxChecked.imageset\" />
     <Folder Include="Assets.xcassets\CheckboxUnchecked.imageset\" />
     <Folder Include="Cells\ProjectTable\" />
+    <Folder Include="Assets.xcassets\Settings.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -838,9 +831,9 @@
     <Compile Include="Controllers\RegisterViewController.designer.cs">
       <DependentUpon>RegisterViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\AboutViewController.cs" />
+    <Compile Include="Controllers\SettingsViewController.cs" />
     <Compile Include="Controllers\AboutViewController.designer.cs">
-      <DependentUpon>AboutViewController.cs</DependentUpon>
+      <DependentUpon>SettingsViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\SessionsViewController.cs" />
     <Compile Include="Controllers\SessionsViewController.designer.cs">

@@ -20,14 +20,14 @@ namespace Gabber.iOS
         public string Subtitle { get; set; }
     }
 
-    public partial class AboutViewController : UIViewController
+    public partial class SettingsViewController : UIViewController
     {
         List<LanguageChoice> SupportedLanguages;
 
         int CurrentSelectedPrefLanguageID;
         int CurrentAppLanguageID;
 
-        public AboutViewController (IntPtr handle) : base (handle){}
+        public SettingsViewController (IntPtr handle) : base (handle){}
 
 		public async override void ViewDidLoad()
 		{

@@ -11,42 +11,15 @@ using UIKit;
 
 namespace Gabber.iOS
 {
-    [Register ("AboutViewController")]
-    partial class AboutViewController
+    [Register ("SettingsViewController")]
+    partial class SettingsViewController
     {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel AboutContent { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextView AboutURL { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel AboutURLDescription { get; set; }
-
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITableView SettingsTableView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (AboutContent != null) {
-                AboutContent.Dispose ();
-                AboutContent = null;
-            }
-
-            if (AboutURL != null) {
-                AboutURL.Dispose ();
-                AboutURL = null;
-            }
-
-            if (AboutURLDescription != null) {
-                AboutURLDescription.Dispose ();
-                AboutURLDescription = null;
-            }
-
             if (SettingsTableView != null) {
                 SettingsTableView.Dispose ();
                 SettingsTableView = null;
