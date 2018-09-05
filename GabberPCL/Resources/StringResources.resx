@@ -52,7 +52,7 @@
         <value>Application Language</value>
     </data>
     <data name="settings.chooseConvoLanguage" xml:space="preserve">
-        <value>Default Conversation Language</value>
+        <value>Conversation Language</value>
     </data>
     <data name="settings.logout" xml:space="preserve">
         <value>Log Out of Gabber</value>

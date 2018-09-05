@@ -19,8 +19,33 @@
     <data name="common.menu.gabbers" xml:space="preserve">
         <value>Enregistrements audio</value>
     </data>
-    <data name="common.menu.about" xml:space="preserve">
+    <data name="common.menu.settings" xml:space="preserve">
+        <value>Paramètres</value>
+    </data>
+    <!-- SETTINGS -->
+    <data name="settings.title" xml:space="preserve">
+        <value>Paramètres</value>
+    </data>
+    <data name="settings.about" xml:space="preserve">
         <value>A propos</value>
+    </data>
+    <data name="settings.chooseAppLanguage" xml:space="preserve">
+        <value>Langue de l'application</value>
+    </data>
+    <data name="settings.chooseConvoLanguage" xml:space="preserve">
+        <value>Langue de conversation</value>
+    </data>
+    <data name="settings.logout" xml:space="preserve">
+        <value>Déconnexion de Gabber</value>
+    </data>
+    <data name="settings.logout.dialog.title" xml:space="preserve">
+        <value>Êtes-vous sûr?</value>
+    </data>
+    <data name="settings.logout.dialog.message" xml:space="preserve">
+        <value>La déconnexion supprimera toutes les conversations en attente de téléchargement. Es-tu sûr de vouloir faire ça?</value>
+    </data>
+    <data name="settings.logout.dialog.confirm" xml:space="preserve">
+        <value>Déconnexion</value>
     </data>
     <!-- SHARED UI FORMS -->
     <data name="common.ui.forms.email.label" xml:space="preserve">

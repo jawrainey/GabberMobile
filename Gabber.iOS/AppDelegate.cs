@@ -1,6 +1,7 @@
 ﻿using Foundation;
 using Gabber.iOS.Helpers;
 using GabberPCL;
+using GabberPCL.Resources;
 using UIKit;
 
 namespace Gabber.iOS
@@ -25,6 +26,8 @@ namespace Gabber.iOS
             // The Root view (i.e. TabBarController) is shown and set once the user login or registers.
             if (string.IsNullOrEmpty(NSUserDefaults.StandardUserDefaults.StringForKey("tokens")))
             {
+                // Required to show onboarding in native device language or English if resources dont exist.
+                StringResources.Culture = Localize.GetCurrentCultureInfo();
                 Window.RootViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("Onboarding");
             }
 

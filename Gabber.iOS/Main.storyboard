@@ -405,13 +405,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hPE-U7-ikC">
-                                <rect key="frame" x="0.0" y="64" width="414" height="223"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="8E5-5W-ZiE"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="400" id="ESf-WF-qZY"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingsTableViewCell" id="8Lu-rS-fV9">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTableViewCell" id="8Lu-rS-fV9">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Lu-rS-fV9" id="BVK-F0-XH3">
@@ -424,10 +424,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="hPE-U7-ikC" secondAttribute="trailing" id="FZn-sn-AXC"/>
-                            <constraint firstItem="PFF-Fq-8qM" firstAttribute="top" secondItem="hPE-U7-ikC" secondAttribute="bottom" constant="400" id="UQM-zd-W8B"/>
-                            <constraint firstItem="hPE-U7-ikC" firstAttribute="leading" secondItem="PEv-DQ-OAQ" secondAttribute="leading" id="eZp-5H-gb0"/>
-                            <constraint firstItem="hPE-U7-ikC" firstAttribute="top" secondItem="BZl-gw-dB9" secondAttribute="bottom" id="mwt-zQ-8yC"/>
+                            <constraint firstAttribute="trailing" secondItem="hPE-U7-ikC" secondAttribute="trailing" id="5yI-9e-NtY"/>
+                            <constraint firstItem="hPE-U7-ikC" firstAttribute="top" secondItem="BZl-gw-dB9" secondAttribute="bottom" id="LEs-1O-3vE"/>
+                            <constraint firstItem="hPE-U7-ikC" firstAttribute="leading" secondItem="PEv-DQ-OAQ" secondAttribute="leading" id="PEi-eQ-8xj"/>
+                            <constraint firstItem="PFF-Fq-8qM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hPE-U7-ikC" secondAttribute="bottom" constant="223" id="hVz-ap-bnx"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" title="" image="menu_about" landscapeImage="menu_about" largeContentSizeImage="menu_about" id="Czq-Wh-NDk"/>
