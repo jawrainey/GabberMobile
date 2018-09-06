@@ -82,7 +82,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Dan Richardson (JR3T9MH59D)</CodesignKey>
+    <CodesignKey>iPhone Developer: Jay Rainey (G4QY8CALPA)</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
@@ -682,18 +682,6 @@
     <ImageAsset Include="Assets.xcassets\cloud_upload.imageset\cloud_upload_3x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\menu_about.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about_2x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\menu_about.imageset\menu_about_3x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\menu_gabbers.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -772,6 +760,10 @@
     <ImageAsset Include="Assets.xcassets\CheckboxUnchecked.imageset\unchecked-x2.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Settings.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Settings.imageset\baseline_settings_black_24pt_1x.png" />
+    <ImageAsset Include="Assets.xcassets\Settings.imageset\baseline_settings_black_24pt_2x.png" />
+    <ImageAsset Include="Assets.xcassets\Settings.imageset\baseline_settings_black_24pt_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -790,6 +782,7 @@
     <Folder Include="Assets.xcassets\CheckboxChecked.imageset\" />
     <Folder Include="Assets.xcassets\CheckboxUnchecked.imageset\" />
     <Folder Include="Cells\ProjectTable\" />
+    <Folder Include="Assets.xcassets\Settings.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -838,9 +831,9 @@
     <Compile Include="Controllers\RegisterViewController.designer.cs">
       <DependentUpon>RegisterViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\AboutViewController.cs" />
+    <Compile Include="Controllers\SettingsViewController.cs" />
     <Compile Include="Controllers\AboutViewController.designer.cs">
-      <DependentUpon>AboutViewController.cs</DependentUpon>
+      <DependentUpon>SettingsViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\SessionsViewController.cs" />
     <Compile Include="Controllers\SessionsViewController.designer.cs">
@@ -911,6 +904,8 @@
     <Compile Include="Controllers\FirstDebriefViewController.designer.cs">
       <DependentUpon>FirstDebriefViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewSources\SettingsTableViewSource.cs" />
+    <Compile Include="Helpers\Localise.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">

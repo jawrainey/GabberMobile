@@ -11,22 +11,21 @@ using Gabber.Adapters;
 using GabberPCL;
 using GabberPCL.Models;
 using GabberPCL.Resources;
-using Android.Text;
 using Android.Content;
 using Gabber.Activities;
 
 namespace Gabber.Fragments
 {
-    public class SessionsFragment : Android.Support.V4.App.Fragment
+    public class UploadsFragment : Android.Support.V4.App.Fragment
     {
         FirebaseAnalytics firebaseAnalytics;
-        static SessionsFragment instance;
+        static UploadsFragment instance;
         SessionAdapter adapter;
         Task IsUploading;
 
-        public static SessionsFragment NewInstance()
+        public static UploadsFragment NewInstance()
         {
-            if (instance == null) instance = new SessionsFragment { Arguments = new Bundle() };
+            if (instance == null) instance = new UploadsFragment { Arguments = new Bundle() };
             return instance;
         }
 
@@ -49,8 +48,6 @@ namespace Gabber.Fragments
             // being uploaded may attempt to be uploaded again. Double email or index oor.
             sessions_upload.Enabled = (IsUploading == null || IsUploading.IsCompleted);
 
-            var toolbar = rootView.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-            ((AppCompatActivity)Activity).SetSupportActionBar(toolbar);
             ((AppCompatActivity)Activity).SupportActionBar.Title = StringResources.sessions_ui_title;
 
             return rootView;
@@ -89,7 +86,7 @@ namespace Gabber.Fragments
             else Toast.MakeText(Activity, StringResources.sessions_ui_message_upload_inprogress, ToastLength.Long).Show();
         }
 
-        private void ShowHideInstructions()
+        void ShowHideInstructions()
         {
             var sessionsUploadButton = Activity.FindViewById<AppCompatButton>(Resource.Id.upload_sessions);
             var bodyInstructions = Activity.FindViewById<TextView>(Resource.Id.sessionsBodyInstructions);

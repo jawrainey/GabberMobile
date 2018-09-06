@@ -56,7 +56,7 @@ namespace Gabber
             firebaseAnalytics = FirebaseAnalytics.GetInstance(ApplicationContext);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.record);
-            SetSupportActionBar(FindViewById<Toolbar>(Resource.Id.toolbar));
+
             SupportActionBar.Title = StringResources.recording_ui_title;
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
@@ -216,7 +216,7 @@ namespace Gabber
 
                 var intent = new Intent(this, typeof(MainActivity));
                 intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
-                intent.PutExtra("FRAGMENT_TO_SHOW", "gabbers");
+                intent.PutExtra("FRAGMENT_TO_SHOW", "settings");
                 Finish();
                 StartActivity(intent);
             });

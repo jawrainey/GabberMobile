@@ -36,10 +36,35 @@
         <value>Projects</value>
     </data>
     <data name="common.menu.gabbers" xml:space="preserve">
-        <value>Recordings</value>
+        <value>Uploads</value>
     </data>
-    <data name="common.menu.about" xml:space="preserve">
+    <data name="common.menu.settings" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+    <!-- SETTINGS -->
+    <data name="settings.title" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+    <data name="settings.about" xml:space="preserve">
         <value>About</value>
+    </data>
+    <data name="settings.chooseAppLanguage" xml:space="preserve">
+        <value>Application Language</value>
+    </data>
+    <data name="settings.chooseConvoLanguage" xml:space="preserve">
+        <value>Conversation Language</value>
+    </data>
+    <data name="settings.logout" xml:space="preserve">
+        <value>Log Out of Gabber</value>
+    </data>
+    <data name="settings.logout.dialog.title" xml:space="preserve">
+        <value>Are you sure?</value>
+    </data>
+    <data name="settings.logout.dialog.message" xml:space="preserve">
+        <value>Logging out will delete any conversations waiting to upload. Are you sure you want to do this?</value>
+    </data>
+    <data name="settings.logout.dialog.confirm" xml:space="preserve">
+        <value>Logout</value>
     </data>
     <!-- SHARED UI FORMS -->
     <data name="common.ui.forms.email.label" xml:space="preserve">
@@ -209,7 +234,7 @@
     </data>
     <!-- SESSIONS FRAGMENT -->
     <data name="sessions.ui.title" xml:space="preserve">
-        <value>Saved recordings</value>
+        <value>Upload Queue</value>
     </data>
     <data name="sessions.ui.header.instructions" xml:space="preserve">
         <value>These are the recordings that you have made and that have not yet been uploaded to the website.</value>

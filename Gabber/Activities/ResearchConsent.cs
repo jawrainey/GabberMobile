@@ -19,7 +19,7 @@ namespace Gabber.Activities
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.consent_research);
-            SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
+
             SupportActionBar.Title = StringResources.consent_research_toolbar_title;
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 

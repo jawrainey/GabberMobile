@@ -8,11 +8,8 @@ namespace GabberPCL
     // opening/closing operations on the database file
     public static class Session
     {
-        // ??
         public static JWToken Token;
-        // ??
         public static User ActiveUser;
-        // ??
         static SQLiteConnection _connection;
         // Used to access platform specific implementations
         public static Interfaces.IPrivatePath PrivatePath;
@@ -32,6 +29,18 @@ namespace GabberPCL
                 }
                 return _connection;
             }
+        }
+
+        public static void NukeItFromOrbit()
+        {
+            ActiveUser = null;
+            Token = null;
+            Connection.DropTable<User>();
+            Connection.DropTable<Project>();
+            Connection.DropTable<InterviewSession>();
+            Connection.DropTable<InterviewPrompt>();
+            Connection.DropTable<LanguageChoice>();
+            _connection = null;
         }
     }
 }

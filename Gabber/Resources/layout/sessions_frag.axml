@@ -7,9 +7,6 @@
     android:orientation="vertical"
     android:weightSum="10"
     android:keepScreenOn="true">
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
     <TextView
         style="@style/TextAppearance.AppCompat.Body2"
         android:id="@+id/sessionsInstructions"

@@ -12,15 +12,13 @@ using Android.Preferences;
 
 namespace Gabber.Activities
 {
-    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/MyTheme")]
     public class FirstDebriefActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             SetContentView(Resource.Layout.FirstDebriefActivity);
-            SetSupportActionBar(FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar));
             SupportActionBar.Title = StringResources.debriefing_activity_title;
 
             var emojiTextView = (EmojiAppCompatTextView)FindViewById(Resource.Id.emoji_text_view);

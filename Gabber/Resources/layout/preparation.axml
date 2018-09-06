@@ -6,10 +6,6 @@
     android:orientation="vertical"
     android:weightSum="10"
     android:keepScreenOn="true">
-    <include
-        android:layout_marginRight="16dp"
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
     <TextView
         android:id="@+id/participantsInstructions"
         style="@style/TextAppearance.AppCompat.Body2"

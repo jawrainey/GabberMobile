@@ -29,7 +29,7 @@ namespace Gabber.Fragments
         // One instance to rule them all
         static ProjectsFragment instance;
 
-        private bool refreshed;
+        public static bool HasRefreshedProjects;
 
         public static ProjectsFragment NewInstance()
         {
@@ -45,8 +45,6 @@ namespace Gabber.Fragments
             instructions.Text = StringResources.projects_ui_instructions;
             listView = rootView.FindViewById<ExpandableListView>(Resource.Id.projects);
 
-            var toolbar = rootView.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-            ((AppCompatActivity)Activity).SetSupportActionBar(toolbar);
             ((AppCompatActivity)Activity).SupportActionBar.Title = StringResources.projects_ui_title;
 
             return rootView;
@@ -92,7 +90,7 @@ namespace Gabber.Fragments
             refresher.SetColorSchemeResources(Resource.Color.primary_material_dark);
             refresher.Refresh += Refresher_Refresh;
 
-            if (!refreshed) LoadDataIfNotLoading();
+            if (!HasRefreshedProjects) LoadDataIfNotLoading();
         }
 
         private void Refresher_Refresh(object sender, System.EventArgs e)
@@ -114,7 +112,7 @@ namespace Gabber.Fragments
             }
 
             refresher.Refreshing = false;
-            refreshed = true;
+            HasRefreshedProjects = true;
         }
 
         private void LoadDataIfNotLoading()

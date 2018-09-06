@@ -16,7 +16,9 @@ namespace GabberPCL.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public bool IsActive { get; set; }
+        [JsonProperty("lang")]
         public int Lang { get; set; }
+        public int AppLang { get; set; }
         // This is the view model and not data model
         public bool Selected { get; set; }
     }

@@ -8,126 +8,185 @@ using Android.Support.Text.Emoji;
 using Android.Support.Text.Emoji.Bundled;
 using Android.Support.V7.App;
 using Android.Views;
-using Firebase;
 using Firebase.Analytics;
+using Gabber.Fragments;
 using Gabber.Helpers;
 using GabberPCL;
 using GabberPCL.Models;
 using GabberPCL.Resources;
 using Newtonsoft.Json;
+using System.Globalization;
+using System.Linq;
 
 namespace Gabber
 {
-    [Activity(MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait, Theme = "@style/MyTheme")]
     public class MainActivity : AppCompatActivity
     {
-        FirebaseAnalytics firebaseAnalytics;
+        public static FirebaseAnalytics FireBaseAnalytics;
+        BottomNavigationView nav;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        PrefsFragment prefsFragment;
+        ProjectsFragment projectsFragment;
+        UploadsFragment sessionsFragment;
+        Android.Support.V4.App.Fragment activeFragment;
+
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
-            FirebaseApp.InitializeApp(ApplicationContext);
-            firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
-
-            EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
-            EmojiCompat.Init(config);
-
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main);
+            SupportActionBar.Title = StringResources.projects_ui_title;
+            var SupportedLanguages = (await LanguagesManager.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
 
-            // Used by the PCL for database interactions so must be defined early.
-            Session.PrivatePath = new PrivatePath();
-            // Register the implementation to the global interface within the PCL.
-            RestClient.GlobalIO = new DiskIO();
-
-            var preferences = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
-            var UserEmail = preferences.GetString("username", "");
-
-            if (string.IsNullOrWhiteSpace(UserEmail))
+            EmojiCompat.Init(new BundledEmojiCompatConfig(this));
+            
+            // Create the active user anytime they reopen app
+            if (Session.ActiveUser == null)
             {
-                // We must clear the navigation stack here otherwise this activity is behind onboarding.
-                var intent = new Intent(this, typeof(Activities.Onboarding));
-                intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask);
-                StartActivity(intent);
-                Finish();
+                var preferences = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+                var user = Queries.UserByEmail(preferences.GetString("username", ""));
+                var tokens = JsonConvert.DeserializeObject<JWToken>(preferences.GetString("tokens", ""));
+                Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
+                FireBaseAnalytics.SetUserId(Session.ActiveUser.Id.ToString());
+                Session.ActiveUser.AppLang = user.AppLang;
             }
-            else
+            
+            // First time users logs in, set the language to their culture if we support it, or English.
+            if (Session.ActiveUser.AppLang == 0)
             {
-                // Create the user once as they can come here after Register/Login or anytime they reopen app
-                if (Session.ActiveUser == null)
-                {
-                    var user = Queries.UserByEmail(UserEmail);
-                    var tokens = JsonConvert.DeserializeObject<JWToken>(preferences.GetString("tokens", ""));
-                    Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
-                    firebaseAnalytics.SetUserId(Session.ActiveUser.Id.ToString());
-                }
-
-                var nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
-                nav.Menu.FindItem(Resource.Id.menu_projects).SetTitle(StringResources.common_menu_projects);
-                nav.Menu.FindItem(Resource.Id.menu_gabbers).SetTitle(StringResources.common_menu_gabbers);
-                nav.Menu.FindItem(Resource.Id.menu_about).SetTitle(StringResources.common_menu_about);
-
-                nav.NavigationItemSelected += (sender, e) => LoadFragment(e.Item.ItemId);
-
-                // Load projects by default and sessions/about if they came from other activity.
-                LoadDefaultFragment(nav);
+                var currentMobileLang = Localise.GetCurrentCultureInfo().TwoLetterISOLanguageName;
+                var isSupportedLang = SupportedLanguages.FirstOrDefault((lang) => lang.Code == currentMobileLang);
+                Session.ActiveUser.AppLang = isSupportedLang != null ? isSupportedLang.Id : 1;
+                // This will save the choice for future: reopening app, other activities, etc.
+                Queries.SaveActiveUser();
             }
 
+            var found = SupportedLanguages.Find((lang) => lang.Id == Session.ActiveUser.AppLang);
+            StringResources.Culture = new CultureInfo(found.Code);
+            Localise.SetLocale(StringResources.Culture);
+
+            nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
+            LoadNavigationTitles();
+            nav.NavigationItemSelected += NavigationItemSelected;
+
+            prefsFragment = new PrefsFragment();
+            sessionsFragment = new UploadsFragment();
+            projectsFragment = new ProjectsFragment();
+            activeFragment = projectsFragment;
+
+            SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, prefsFragment, "settings").Hide(prefsFragment).Commit();
+            SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, sessionsFragment, "sessions").Hide(sessionsFragment).Commit();
+            SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, projectsFragment, "projects").Commit();
+            
+            LoadUploadFragmentAfterSession();
             LanguagesManager.RefreshIfNeeded();
+            SupportActionBar.Title = StringResources.login_ui_title;
         }
 
-        void LoadDefaultFragment(BottomNavigationView nav)
+        public void RefreshFragments()
         {
-            var fragmentToShow = Intent.GetStringExtra("FRAGMENT_TO_SHOW");
-            fragmentToShow = !string.IsNullOrWhiteSpace(fragmentToShow) ? fragmentToShow : "";
+            // This is required when changing the language from PrefsFragment to update the text across fragments.
+            SupportFragmentManager.BeginTransaction().Detach(prefsFragment).Attach(prefsFragment).Commit();
+            SupportFragmentManager.BeginTransaction().Detach(sessionsFragment).Attach(sessionsFragment).Commit();
+            SupportFragmentManager.BeginTransaction().Detach(projectsFragment).Attach(projectsFragment).Commit();
+        }
 
-            switch (fragmentToShow)
+        void LoadUploadFragmentAfterSession()
+        {
+            if (!string.IsNullOrWhiteSpace(Intent.GetStringExtra("FRAGMENT_TO_SHOW")))
             {
-                case "gabbers":
-                    LoadFragment(Resource.Id.menu_gabbers);
-                    nav.Menu.FindItem(Resource.Id.menu_gabbers).SetChecked(true);
-                    break;
-                default:
-                    LoadFragment(Resource.Id.menu_projects);
-                    nav.Menu.FindItem(Resource.Id.menu_projects).SetChecked(true);
-                    break;
+                SupportFragmentManager.BeginTransaction().Hide(activeFragment).Show(sessionsFragment).Commit();
+                nav.SelectedItemId = Resource.Id.menu_gabbers;
+                activeFragment = sessionsFragment;
+                LOG_FRAGMENT_SELECTED("uploads");
             }
         }
 
-        void LoadFragment(int id)
+        public void LoadNavigationTitles()
         {
-            Android.Support.V4.App.Fragment fragment = null;
+            nav.Menu.FindItem(Resource.Id.menu_projects).SetTitle(StringResources.common_menu_projects);
+            nav.Menu.FindItem(Resource.Id.menu_gabbers).SetTitle(StringResources.common_menu_gabbers);
+            nav.Menu.FindItem(Resource.Id.menu_settings).SetTitle(StringResources.common_menu_settings);
 
-            switch (id)
+            int selectedTabId = nav.SelectedItemId;
+
+            switch (nav.SelectedItemId)
             {
                 case Resource.Id.menu_projects:
-                    fragment = Fragments.ProjectsFragment.NewInstance();
+                    SupportActionBar.Title = StringResources.projects_ui_title;
+                    break;
+                case Resource.Id.menu_gabbers:
+                    SupportActionBar.Title = StringResources.sessions_ui_title;
+                    break;
+                case Resource.Id.menu_settings:
+                    SupportActionBar.Title = StringResources.common_menu_settings;
+                    break;
+            }
+        }
+
+        private void NavigationItemSelected(object sender, BottomNavigationView.NavigationItemSelectedEventArgs e)
+        {
+            Android.Support.V4.App.Fragment toShow = null;
+
+            switch (e.Item.ItemId)
+            {
+                case Resource.Id.menu_projects:
+                    SupportActionBar.Title = StringResources.projects_ui_title;
+                    toShow = projectsFragment;
                     LOG_FRAGMENT_SELECTED("projects");
                     break;
                 case Resource.Id.menu_gabbers:
-                    fragment = Fragments.SessionsFragment.NewInstance();
-                    LOG_FRAGMENT_SELECTED("recordings");
+                    SupportActionBar.Title = StringResources.sessions_ui_title;
+                    toShow = sessionsFragment;
+                    LOG_FRAGMENT_SELECTED("uploads");
                     break;
-                case Resource.Id.menu_about:
-                    fragment = Fragments.About.NewInstance();
-                    LOG_FRAGMENT_SELECTED("about");
+                case Resource.Id.menu_settings:
+                    SupportActionBar.Title = StringResources.common_menu_settings;
+                    toShow = prefsFragment;
+                    LOG_FRAGMENT_SELECTED("settings");
                     break;
                 default:
-                    fragment = Fragments.ProjectsFragment.NewInstance();
+                    toShow = projectsFragment;
                     break;
             }
 
-            if (fragment == null) return;
-
-            SupportFragmentManager.BeginTransaction()
-               .Replace(Resource.Id.content_frame, fragment)
-               .Commit();
+            SupportFragmentManager.BeginTransaction().Hide(activeFragment).Show(toShow).Commit();
+            activeFragment = toShow;
         }
 
-        void LOG_FRAGMENT_SELECTED(string name)
+        private void LOG_FRAGMENT_SELECTED(string name)
         {
             var bundle = new Bundle();
             bundle.PutString("FRAGMENT", name);
-            firebaseAnalytics.LogEvent("FRAGMENT_SHOWN", bundle);
+            FireBaseAnalytics.LogEvent("FRAGMENT_SHOWN", bundle);
+        }
+
+        public void LogOut()
+        {
+            // reset all data stored in prefs
+            var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+            prefs.Edit().Clear().Commit();
+
+            // Make sure the projects fragment pulls from the server when we log back in 
+            ProjectsFragment.HasRefreshedProjects = false;
+
+            // reset to system language
+            StringResources.Culture = Localise.GetCurrentCultureInfo();
+
+            // nuke the database
+            Session.NukeItFromOrbit();
+
+            //return to login
+            GoToOnboarding();
+        }
+
+        private void GoToOnboarding()
+        {
+            // We must clear the navigation stack here otherwise this activity is behind onboarding.
+            var intent = new Intent(this, typeof(Activities.Onboarding));
+            intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask);
+            StartActivity(intent);
+            Finish();
         }
     }
 }

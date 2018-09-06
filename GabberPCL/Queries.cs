@@ -79,6 +79,11 @@ namespace GabberPCL
             return proj;
         }
 
+        public static void SaveActiveUser()
+        {
+            Session.Connection.InsertOrReplace(Session.ActiveUser);
+        }
+
         public static User UserById(int userID) => Session.Connection.Get<User>(userID);
 
         public static User UserByEmail(string email)
@@ -106,7 +111,7 @@ namespace GabberPCL
             user.Selected = true;
             user.IsActive = true;
             Session.ActiveUser = user;
-            Session.ActiveUser.Name += " (You)";
+            if (!Session.ActiveUser.Name.Contains("You")) Session.ActiveUser.Name += (" (You)");
             Session.Token = response.Tokens;
         }
 
@@ -157,7 +162,7 @@ namespace GabberPCL
                 {
                     p.Selected = true;
                     Session.Connection.Update(p);
-                    if (!p.Name.Contains("You")) p.Name += (" (You)");
+                    p.Name = Session.ActiveUser.Name;
                 }
                 else
                 {

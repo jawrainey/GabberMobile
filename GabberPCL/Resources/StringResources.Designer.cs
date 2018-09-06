@@ -95,9 +95,57 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string common_menu_about {
+        public static string common_menu_settings {
             get {
-                return ResourceManager.GetString("common.menu.about", resourceCulture);
+                return ResourceManager.GetString("common.menu.settings", resourceCulture);
+            }
+        }
+        
+        public static string settings_title {
+            get {
+                return ResourceManager.GetString("settings.title", resourceCulture);
+            }
+        }
+        
+        public static string settings_about {
+            get {
+                return ResourceManager.GetString("settings.about", resourceCulture);
+            }
+        }
+        
+        public static string settings_chooseAppLanguage {
+            get {
+                return ResourceManager.GetString("settings.chooseAppLanguage", resourceCulture);
+            }
+        }
+        
+        public static string settings_chooseConvoLanguage {
+            get {
+                return ResourceManager.GetString("settings.chooseConvoLanguage", resourceCulture);
+            }
+        }
+        
+        public static string settings_logout {
+            get {
+                return ResourceManager.GetString("settings.logout", resourceCulture);
+            }
+        }
+        
+        public static string settings_logout_dialog_title {
+            get {
+                return ResourceManager.GetString("settings.logout.dialog.title", resourceCulture);
+            }
+        }
+        
+        public static string settings_logout_dialog_message {
+            get {
+                return ResourceManager.GetString("settings.logout.dialog.message", resourceCulture);
+            }
+        }
+        
+        public static string settings_logout_dialog_confirm {
+            get {
+                return ResourceManager.GetString("settings.logout.dialog.confirm", resourceCulture);
             }
         }
         

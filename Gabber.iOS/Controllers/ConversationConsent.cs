@@ -49,8 +49,6 @@ namespace Gabber.iOS
 
             int inProject = SelectedProject.Members.Count;
 
-
-
             var membersContent = string.Format(
                 StringResources.consent_gabber_consent_type_members_full,
                 inProject, (inProject > 1) ? StringResources.consent_gabber_consent_type_members_full_plural :
