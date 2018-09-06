@@ -171,6 +171,8 @@ namespace Gabber.iOS
             Queries.SaveActiveUser();
             SettingsTableView.Source = new SettingsTableViewSource(ReCreateSettings(), this, RowSelected);
             InvokeOnMainThread(SettingsTableView.ReloadData);
+            // Push this change, so when they visit the site we can use their preference.
+            var suppress = RestClient.PushUpdateForCurrentUser();
         }
 
         void SetTabBarTitles()

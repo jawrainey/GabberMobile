@@ -68,6 +68,13 @@ namespace Gabber.Fragments
             if (newLangVal != -1 && chosen != null && chosen.Code != StringResources.Culture?.TwoLetterISOLanguageName)
             {
                 StringResources.Culture = new CultureInfo(chosen.Code);
+                Session.ActiveUser.AppLang = chosen.Id;
+                Queries.SaveActiveUser();
+                // Refreshing the fragment we are in does not change text, so must be set manually.
+                ((ListPreference)FindPreference("convoLanguagePref")).Title = StringResources.settings_chooseConvoLanguage;
+                ((ListPreference)FindPreference("appLanguagePref")).Title = StringResources.settings_chooseAppLanguage;
+                FindPreference("logOutPref").Title = StringResources.settings_logout;
+                ((MainActivity)Activity).RefreshFragments();
                 ((MainActivity)Activity).LoadNavigationTitles();
             }
         }

@@ -8,7 +8,6 @@ using Android.Support.Text.Emoji;
 using Android.Support.Text.Emoji.Bundled;
 using Android.Support.V7.App;
 using Android.Views;
-using Firebase;
 using Firebase.Analytics;
 using Gabber.Fragments;
 using Gabber.Helpers;
@@ -16,6 +15,8 @@ using GabberPCL;
 using GabberPCL.Models;
 using GabberPCL.Resources;
 using Newtonsoft.Json;
+using System.Globalization;
+using System.Linq;
 
 namespace Gabber
 {
@@ -30,14 +31,16 @@ namespace Gabber
         UploadsFragment sessionsFragment;
         Android.Support.V4.App.Fragment activeFragment;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.main);
+            SupportActionBar.Title = StringResources.projects_ui_title;
+            var SupportedLanguages = (await LanguagesManager.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
 
             EmojiCompat.Init(new BundledEmojiCompatConfig(this));
             
-            // Create the user once as they can come here after Register/Login or anytime they reopen app
+            // Create the active user anytime they reopen app
             if (Session.ActiveUser == null)
             {
                 var preferences = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
@@ -45,9 +48,25 @@ namespace Gabber
                 var tokens = JsonConvert.DeserializeObject<JWToken>(preferences.GetString("tokens", ""));
                 Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
                 FireBaseAnalytics.SetUserId(Session.ActiveUser.Id.ToString());
+                Session.ActiveUser.AppLang = user.AppLang;
+            }
+            
+            // First time users logs in, set the language to their culture if we support it, or English.
+            if (Session.ActiveUser.AppLang == 0)
+            {
+                var currentMobileLang = Localise.GetCurrentCultureInfo().TwoLetterISOLanguageName;
+                var isSupportedLang = SupportedLanguages.FirstOrDefault((lang) => lang.Code == currentMobileLang);
+                Session.ActiveUser.AppLang = isSupportedLang != null ? isSupportedLang.Id : 1;
+                // This will save the choice for future: reopening app, other activities, etc.
+                Queries.SaveActiveUser();
             }
 
+            var found = SupportedLanguages.Find((lang) => lang.Id == Session.ActiveUser.AppLang);
+            StringResources.Culture = new CultureInfo(found.Code);
+            Localise.SetLocale(StringResources.Culture);
+
             nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
+            LoadNavigationTitles();
             nav.NavigationItemSelected += NavigationItemSelected;
 
             prefsFragment = new PrefsFragment();
@@ -64,10 +83,12 @@ namespace Gabber
             SupportActionBar.Title = StringResources.login_ui_title;
         }
 
-        protected override void OnResume()
+        public void RefreshFragments()
         {
-            base.OnResume();
-            LoadNavigationTitles();
+            // This is required when changing the language from PrefsFragment to update the text across fragments.
+            SupportFragmentManager.BeginTransaction().Detach(prefsFragment).Attach(prefsFragment).Commit();
+            SupportFragmentManager.BeginTransaction().Detach(sessionsFragment).Attach(sessionsFragment).Commit();
+            SupportFragmentManager.BeginTransaction().Detach(projectsFragment).Attach(projectsFragment).Commit();
         }
 
         void LoadUploadFragmentAfterSession()
