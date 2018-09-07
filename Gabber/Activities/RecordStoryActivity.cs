@@ -106,7 +106,6 @@ namespace Gabber
 
                     StartRecording();
 
-                    // TODO: do we want users to record for as long as they desire?
                     RunOnUiThread(async () =>
                     {
                         _seconds = 0;

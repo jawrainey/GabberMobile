@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using UIKit;
 using System.Linq;
+using Gabber.iOS.Helpers;
 
 namespace Gabber.iOS
 {
@@ -32,6 +33,7 @@ namespace Gabber.iOS
 
             int SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
             var SelectedProject = Queries.ProjectById(SelectedProjectID);
+            var content = Queries.ContentByLanguage(SelectedProject, Localize.GetCurrentCultureInfo());
 
             ConversationDecisionTitle.Text = StringResources.consent_gabber_title_decision;
             ConversationDecisionDes.Text = string.Format(StringResources.consent_gabber_body_decision, Config.PRINT_URL);
@@ -63,7 +65,7 @@ namespace Gabber.iOS
                     Subtitle = StringResources.consent_gabber_consent_type_public_full
                 },
                 new Consent {
-                    Title = string.Format(StringResources.consent_gabber_consent_type_members_brief, SelectedProject.Title),
+                    Title = string.Format(StringResources.consent_gabber_consent_type_members_brief, content.Title),
                     Subtitle = membersContent
                 },
                 new Consent {

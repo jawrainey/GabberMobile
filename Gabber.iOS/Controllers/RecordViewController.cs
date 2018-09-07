@@ -17,7 +17,7 @@ namespace Gabber.iOS
     {
         AudioRecorder AudioRecorder;
         // The topics associated with the selected project 
-        List<Prompt> Topics;
+        List<Topic> Topics;
         // Each interview recorded has a unique SID (GUID) to associate annotations with a session.
         string InterviewSessionID;
         // Which project are we recording an interview for?
@@ -103,10 +103,11 @@ namespace Gabber.iOS
             InterviewSessionID = Guid.NewGuid().ToString();
 
             SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
-            var SelectedProject = Queries.ProjectById(SelectedProjectID);
+            var SelectedProject = Queries.ContentByLanguage(Queries.ProjectById(SelectedProjectID), Localize.GetCurrentCultureInfo());
 
-            // Shared as we can use this to determine when a row is first clicked
-            Topics = SelectedProject.Prompts;
+            var activeTopics = SelectedProject.Topics.Where((t) => t.IsActive).ToList();
+
+            Topics = activeTopics;
             TopicsCollectionView.Source = new TopicsCollectionViewSource
             {
                 Rows = Topics,
@@ -123,7 +124,7 @@ namespace Gabber.iOS
             }
 
             // Has the first topic been selected, i.e. one of the states has changed
-            if (Topics.FindAll((p) => p.SelectionState != Prompt.SelectedState.never).Count == 1)
+            if (Topics.FindAll((p) => p.SelectionState != Topic.SelectedState.never).Count == 1)
             {
                 Logger.LOG_EVENT_WITH_ACTION("START_RECORDING", "");
                 RecordButton.Enabled = true;
@@ -131,7 +132,7 @@ namespace Gabber.iOS
                 AudioRecorder.Record();
                 UpdateTimeLabelAsync();
             }
-            var current = Topics.Find((p) => p.SelectionState == Prompt.SelectedState.current);
+            var current = Topics.Find((p) => p.SelectionState == Topic.SelectedState.current);
             Queries.CreateAnnotation(AudioRecorder.CurrentTime(), InterviewSessionID, current.ID);
         }
 

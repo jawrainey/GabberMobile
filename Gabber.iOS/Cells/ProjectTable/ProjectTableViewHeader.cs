@@ -6,8 +6,10 @@ using FFImageLoading;
 using FFImageLoading.Transformations;
 using FFImageLoading.Work;
 using Foundation;
+using GabberPCL;
 using GabberPCL.Models;
 using UIKit;
+using Gabber.iOS.Helpers;
 
 namespace Gabber.iOS
 {
@@ -36,7 +38,7 @@ namespace Gabber.iOS
 
         public void UpdateContent(Project project, Action<nint> tappedCallback, nint index)
         {
-            TitleLabel.Text = project.Title;
+            TitleLabel.Text = Queries.ContentByLanguage(project, Localize.GetCurrentCultureInfo()).Title;
             TappedCallback = tappedCallback;
             thisIndex = index;
 

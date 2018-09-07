@@ -45,6 +45,8 @@ namespace Gabber.iOS
             UpdateSessionsSource();
             base.ViewDidAppear(animated);
             TabBarController.Title = StringResources.sessions_ui_title;
+            SessionsInstructions.Text = StringResources.sessions_ui_header_instructions;
+            SessionsInstructionsBody.Text = StringResources.sessions_ui_body_instructions;
         }
 
         // Index is optional such that the method could be used onSelected(item)
@@ -59,7 +61,7 @@ namespace Gabber.iOS
             var item = NSIndexPath.FromIndex((uint)Sessions.IndexOf(sessions[index]));
             SessionsCollectionView.ReloadItems(new NSIndexPath[] { item });
             Logger.LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "ATTEMPT");
-            // TODO: creating a new instance of API for each view, urgh.
+
             var didUpload = await RestClient.Upload(sessions[index]);
 
             if (didUpload)

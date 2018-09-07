@@ -10,7 +10,7 @@ namespace Gabber.iOS.ViewSources
     public class TopicsCollectionViewSource : UICollectionViewSource
     {
         public Action AddAnnotation;
-        public List<Prompt> Rows { get; set; }
+        public List<Topic> Rows { get; set; }
 
         public override nint NumberOfSections(UICollectionView collectionView) 
         {
@@ -24,15 +24,15 @@ namespace Gabber.iOS.ViewSources
 
         public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            var previousSelected = Rows.FindIndex((Prompt p) => p.SelectionState == Prompt.SelectedState.current);
+            var previousSelected = Rows.FindIndex((p) => p.SelectionState == Topic.SelectedState.current);
             // At least two items must be selected before a previous exists
             if (previousSelected != -1)
             {
                 // The item selected was the same as the last (nothing changed) so do nothing.
                 if (Rows[previousSelected].Equals(Rows[indexPath.Row])) return;
-                Rows[previousSelected].SelectionState = Prompt.SelectedState.previous;
+                Rows[previousSelected].SelectionState = Topic.SelectedState.previous;
             }
-            Rows[indexPath.Row].SelectionState = Prompt.SelectedState.current;
+            Rows[indexPath.Row].SelectionState = Topic.SelectedState.current;
             // Reloads (i.e. draws) the specific items, including those outside of the scrollview.
             collectionView.ReloadData();
 
@@ -51,7 +51,7 @@ namespace Gabber.iOS.ViewSources
             return cell;
         }
 
-        void LOG_TOPIC_SELECTED(Prompt current)
+        void LOG_TOPIC_SELECTED(Topic current)
         {
             NSString[] keys = {
                 new NSString("TEXT"),
