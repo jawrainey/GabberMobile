@@ -71,12 +71,9 @@ namespace GabberPCL
 
         public static Project ProjectById(int projectID)
         {
-            Project proj = Session.Connection.Get<Project>(projectID);
-            proj.LoadJson();
-
-            // Only show the active topics to the user
-            proj.Prompts = proj.Prompts.Where((p) => p.IsActive).ToList();
-            return proj;
+            var project = Session.Connection.Get<Project>(projectID);
+            project.LoadJson();
+            return project;
         }
 
         public static void SaveActiveUser()

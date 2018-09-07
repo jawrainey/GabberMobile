@@ -148,7 +148,8 @@ namespace Gabber.Fragments
         private void LOG_SELECTED_PROJECT(int position)
         {
             var bundle = new Bundle();
-            bundle.PutString("PROJECT", _projects[position].Title);
+            var project = Helpers.Localise.ContentByLanguage(_projects[position]);
+            bundle.PutString("PROJECT", project.Title);
             bundle.PutString("USER", Session.ActiveUser.Email);
             firebaseAnalytics.LogEvent("PROJECT_SELECTED", bundle);
         }

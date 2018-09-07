@@ -11,19 +11,22 @@ using GabberPCL.Resources;
 using FFImageLoading.Views;
 using FFImageLoading;
 using FFImageLoading.Transformations;
+using Gabber.Helpers;
+using System.Linq;
+using GabberPCL;
 
 namespace Gabber.Adapters
 {
     public class ProjectsAdapter : BaseExpandableListAdapter
     {
         private List<Project> projects;
-        private long randomOffset;
+        private readonly long RandomOffset;
         private Context context;
 
         public ProjectsAdapter(List<Project> projects, Context context)
         {
             this.context = context;
-            this.randomOffset = new Random().Next(100000, 1000000);
+            this.RandomOffset = new Random().Next(100000, 1000000);
             this.projects = projects;
         }
 
@@ -53,7 +56,7 @@ namespace Gabber.Adapters
 
         public override long GetChildId(int groupPosition, int childPosition)
         {
-            return projects[groupPosition].ID + randomOffset;
+            return projects[groupPosition].ID + RandomOffset;
         }
 
         public override int GetChildrenCount(int groupPosition)
@@ -75,16 +78,20 @@ namespace Gabber.Adapters
                 viewHolder.PromptLayout = convertView.FindViewById<LinearLayout>(Resource.Id.project_topics);
                 viewHolder.Button = convertView.FindViewById<Button>(Resource.Id.project_startBtn);
 
-                //TODO non-english translations
                 convertView.FindViewById<TextView>(Resource.Id.topics_tease).Text = StringResources.projects_ui_topics;
 
                 convertView.Tag = viewHolder;
             }
 
-            viewHolder.DescriptionText.Text = projects[groupPosition].Description;
+            var content = Localise.ContentByLanguage(projects[groupPosition]);
+
+            viewHolder.DescriptionText.Text = content.Description;
             viewHolder.PromptLayout.RemoveAllViews();
 
-            foreach (Prompt prompt in projects[groupPosition].Prompts)
+            // Content should be filtered to content.topics
+
+            var activeTopics = content.Topics.Where((p) => p.IsActive).ToList();
+            foreach (var topic in activeTopics)
             {
                 TextView textView = new TextView(context);
 
@@ -96,10 +103,10 @@ namespace Gabber.Adapters
                 textView.LayoutParameters = layoutParams;
                 textView.SetMinHeight(100);
                 textView.SetPadding(15, 15, 15, 15);
-                textView.SetBackgroundColor(Color.WhiteSmoke); ;
+                textView.SetBackgroundColor(Color.WhiteSmoke);
                 textView.Gravity = GravityFlags.Center;
 
-                textView.Text += prompt.Text;
+                textView.Text += topic.Text;
 
                 viewHolder.PromptLayout.AddView(textView);
 
@@ -138,15 +145,15 @@ namespace Gabber.Adapters
                 convertView.Tag = viewHolder;
             }
 
-            Project thisProj = projects[groupPosition];
+            var project = projects[groupPosition];
 
-            viewHolder.Title.Text = thisProj.Title;
+            viewHolder.Title.Text = Localise.ContentByLanguage(project).Title;
 
             ImageService.Instance.LoadCompiledResource("ic_launcher").Transform(new CircleTransformation()).Into(viewHolder.Image);
 
-            if (!string.IsNullOrWhiteSpace(thisProj.image))
+            if (!string.IsNullOrWhiteSpace(project.image))
             {
-                ImageService.Instance.LoadUrl(thisProj.image).Transform(new CircleTransformation()).Into(viewHolder.Image);
+                ImageService.Instance.LoadUrl(project.image).Transform(new CircleTransformation()).Into(viewHolder.Image);
             }
 
             return convertView;
@@ -156,7 +163,6 @@ namespace Gabber.Adapters
         {
             return GetChildType(groupPosition, childPosition) == 2;
         }
-
     }
 
     public class ProjectParentViewHolder : Java.Lang.Object
@@ -182,7 +188,6 @@ namespace Gabber.Adapters
             Button.Click -= Button_Click;
             Button.Click += Button_Click;
 
-            //TODO non-english translations
             Button.Text = StringResources.projects_ui_get_started_button;
         }
 

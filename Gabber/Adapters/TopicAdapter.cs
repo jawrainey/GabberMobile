@@ -11,10 +11,10 @@ namespace Gabber.Adapters
 	public class TopicAdapter : RecyclerView.Adapter
 	{
 		// Each story the user recorded has an associated image and audio.
-		readonly List<Prompt> _prompts;
+        readonly List<Topic> _prompts;
         int lastSelectedPosition = int.MinValue;
 
-        public TopicAdapter(List<Prompt> prompts)
+        public TopicAdapter(List<Topic> prompts)
 		{
 			_prompts = prompts;
 		}
@@ -32,20 +32,20 @@ namespace Gabber.Adapters
 
             if (position == lastSelectedPosition)
             {
-                _prompts[position].SelectionState = Prompt.SelectedState.current;
+                _prompts[position].SelectionState = Topic.SelectedState.current;
                 // CURRENT SELECTED STATE [item that was just selected]
                 vh.Caption.SetBackgroundColor(Color.ParseColor("#26A69A"));
                 vh.Caption.SetTextColor(Color.White);
             }
             else if (_prompts[position].Selected)
             {
-                _prompts[position].SelectionState = Prompt.SelectedState.previous;
+                _prompts[position].SelectionState = Topic.SelectedState.previous;
                 // PREVIOUS SELECTED STATE [item was selected before]
                 vh.Caption.SetBackgroundColor(Color.LightGray);
                 vh.Caption.SetTextColor(Color.Black);
             }
             else {
-                _prompts[position].SelectionState = Prompt.SelectedState.never;
+                _prompts[position].SelectionState = Topic.SelectedState.never;
                 // DEFAULT STATE [the item has never been selected]
                 vh.Caption.SetBackgroundResource(Resource.Drawable.record_topic_border);
                 vh.Caption.SetTextColor(Color.Black);
@@ -55,7 +55,7 @@ namespace Gabber.Adapters
         public void PromptSeleted(int position)
         {
             _prompts[position].Selected = true;
-            _prompts[position].SelectionState = Prompt.SelectedState.current;
+            _prompts[position].SelectionState = Topic.SelectedState.current;
             int previous = lastSelectedPosition;
             lastSelectedPosition = position;
             if(previous != int.MinValue)

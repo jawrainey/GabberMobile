@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using SQLite;
-using SQLiteNetExtensions.Attributes;
 
 namespace GabberPCL.Models
 {
@@ -9,15 +8,16 @@ namespace GabberPCL.Models
     {
         [PrimaryKey]
         public int ID { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+
+        [JsonProperty("content")]
+        public Dictionary<string, Content> Content;
+        public string ContentJson { get; set; }
 
         [JsonProperty("is_public")]
         public bool IsPublic { get; set; }
 
-        [JsonProperty("topics")]
-        public List<Prompt> Prompts;
-        public string PromptsJson { get; set; }
+        [JsonProperty("default_lang")]
+        public int IsDefaultLang { get; set; }
 
         public Creator Creator;
         public string CreatorJson { get; set; }
@@ -40,7 +40,7 @@ namespace GabberPCL.Models
             Creator = JsonConvert.DeserializeObject<Creator>(CreatorJson);
             Members = JsonConvert.DeserializeObject<List<Member>>(MembersJson);
             Organisation = JsonConvert.DeserializeObject<Organisation>(OrganisationJson);
-            Prompts = JsonConvert.DeserializeObject<List<Prompt>>(PromptsJson);
+            Content = JsonConvert.DeserializeObject<Dictionary<string, Content>>(ContentJson);
         }
 
         public void SerializeJson()
@@ -48,7 +48,7 @@ namespace GabberPCL.Models
             CreatorJson = JsonConvert.SerializeObject(Creator);
             MembersJson = JsonConvert.SerializeObject(Members);
             OrganisationJson = JsonConvert.SerializeObject(Organisation);
-            PromptsJson = JsonConvert.SerializeObject(Prompts);
+            ContentJson = JsonConvert.SerializeObject(Content);
         }
     }
 }

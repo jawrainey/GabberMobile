@@ -2,15 +2,37 @@
 using System.Globalization;
 using System.Threading;
 using GabberPCL.Models;
+using GabberPCL.Interfaces;
+using GabberPCL.Resources;
+using System.Linq;
+using GabberPCL;
 
 namespace Gabber.Helpers
 {
-    public class Localise
+    public static class Localise 
     {
         public static void SetLocale(CultureInfo ci)
         {
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
+        }
+
+        public static Content ContentByLanguage(Project project)
+        {
+            var currentCulture = StringResources.Culture ?? GetCurrentCultureInfo();
+            var currentLang = currentCulture.TwoLetterISOLanguageName;
+            var content = project.Content.FirstOrDefault((k) => k.Key == currentLang);
+
+            // Determine if the language above is used
+            if (content.Key == null)
+            {
+                // If the Application Language does not match the project language, then we will use
+                // the default selected when creating a project.
+                var lang = Queries.AllLanguages().FirstOrDefault((l) => l.Id == project.IsDefaultLang);
+                // We should use the default!
+                content = project.Content.FirstOrDefault((k) => k.Key == lang.Code);
+            }
+            return content.Value;
         }
 
         public static CultureInfo GetCurrentCultureInfo()
