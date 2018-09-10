@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Foundation;
+using Gabber.iOS.Helpers;
 using GabberPCL;
 using GabberPCL.Models;
 using UIKit;
@@ -24,7 +25,8 @@ namespace Gabber.iOS
 
         public void UpdateContent(InterviewSession session)
         {
-            SessionProjectTitle.Text = Queries.ProjectById(session.ProjectID).Title;
+            var content = Queries.ContentByLanguage(Queries.ProjectById(session.ProjectID), Localize.GetCurrentCultureInfo());
+            SessionProjectTitle.Text = content.Title;
             SessionLength.Text = Queries.FormatFromSeconds(session.Prompts[session.Prompts.Count - 1].End);
             SessionParticipants.Text = BuildParticipantsNames(session.Participants);
             SessionCreateDate.Text = session.CreatedAt.ToString("MM/dd, HH:mm");

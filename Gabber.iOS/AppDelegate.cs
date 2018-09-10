@@ -32,7 +32,7 @@ namespace Gabber.iOS
             }
 
             // Create here as this method will always get run when opening the app.
-			Firebase.CrashReporting.CrashReporting.Configure();
+            Firebase.Crashlytics.Crashlytics.Configure();
 			Firebase.Core.App.Configure();
 
             // Used by the PCL for database interactions so must be defined early.

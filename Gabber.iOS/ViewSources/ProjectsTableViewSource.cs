@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using CoreGraphics;
 using Foundation;
+using Gabber.iOS.Helpers;
+using GabberPCL;
 using GabberPCL.Models;
 using UIKit;
 
@@ -23,32 +26,34 @@ namespace Gabber.iOS.ViewSources
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            Project thisProj = Rows[indexPath.Section];
+            var project = Rows[indexPath.Section];
+
+            var content = Queries.ContentByLanguage(project, Localize.GetCurrentCultureInfo());
 
             if (indexPath.Row == 0)
             {
                 // Description cell
                 var descCell = (ProjectTableViewDescriptionCell)tableView.DequeueReusableCell(
                     ProjectTableViewDescriptionCell.CellID, indexPath);
-                descCell.UpdateContent(thisProj.Description);
+                descCell.UpdateContent(content.Description);
                 return descCell;
             }
 
             int promptInd = indexPath.Row - 1;
-
-            if (promptInd < thisProj.Prompts.Count)
+            var activeTopics = content.Topics.Where((t) => t.IsActive).ToList();
+            if (promptInd < activeTopics.Count)
             {
                 // A prompt
                 var promptCell = (ProjectTableViewPromptCell)tableView.DequeueReusableCell(
                     ProjectTableViewPromptCell.CellID, indexPath);
-                promptCell.UpdateContent(thisProj.Prompts[promptInd].Text);
+                promptCell.UpdateContent(activeTopics[promptInd].Text);
                 return promptCell;
             }
             else
             {
                 // last cell is the 'Get Started' button
                 var buttonCell = (ProjectTableViewButtonCell)tableView.DequeueReusableCell(ProjectTableViewButtonCell.CellID, indexPath);
-                buttonCell.UpdateContent(thisProj.ID, StartProject);
+                buttonCell.UpdateContent(project.ID, StartProject);
                 return buttonCell;
             }
         }
@@ -93,9 +98,10 @@ namespace Gabber.iOS.ViewSources
 
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            Project project = Rows[(int)section];
-
-            return (project.IsExpanded) ? project.Prompts.Count + 2 : 0;
+            var project = Rows[(int)section];
+            var content = Queries.ContentByLanguage(project, Localize.GetCurrentCultureInfo());
+            var activeTopics = content.Topics.Where((t) => t.IsActive).ToList();
+            return (project.IsExpanded) ? activeTopics.Count + 2 : 0;
         }
     }
 }

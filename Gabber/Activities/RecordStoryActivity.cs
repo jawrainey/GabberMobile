@@ -23,6 +23,7 @@ using Firebase.Analytics;
 using Android.Content.PM;
 using Android.Preferences;
 using Android.Support.V4.View;
+using Gabber.Helpers;
 
 namespace Gabber
 {
@@ -37,7 +38,7 @@ namespace Gabber
         // The path to the experience recorded.
         string _path;
         // Holds the prompts for this project
-        List<Prompt> themes;
+        List<Topic> themes;
         // Exposed as used to identify when a prompt was selected
         TopicAdapter adapter;
         // Exposed as we want to get this once a prompt is selected
@@ -74,7 +75,9 @@ namespace Gabber
             var promptRecyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
             promptRecyclerView.SetLayoutManager(new GridLayoutManager(this, 1));
 
-            themes = selectedProject.Prompts;
+            var project = Localise.ContentByLanguage(selectedProject);
+            var activeTopics = project.Topics.Where((p) => p.IsActive).ToList();
+            themes = activeTopics;
             adapter = new TopicAdapter(themes);
             adapter.ProjectClicked += ProjectSelected;
             promptRecyclerView.SetAdapter(adapter);
@@ -103,7 +106,6 @@ namespace Gabber
 
                     StartRecording();
 
-                    // TODO: do we want users to record for as long as they desire?
                     RunOnUiThread(async () =>
                     {
                         _seconds = 0;
@@ -167,7 +169,7 @@ namespace Gabber
             ItemSelected(position);
             var recordButton = FindViewById<FloatingActionButton>(Resource.Id.start);
             // Has the first topic been selected, i.e. one of the states has changed
-            if (themes.FindAll((p) => p.SelectionState != Prompt.SelectedState.never).Count == 1)
+            if (themes.FindAll((p) => p.SelectionState != Topic.SelectedState.never).Count == 1)
             {
                 var record = FindViewById<FloatingActionButton>(Resource.Id.start);
                 record.SetImageResource(Resource.Drawable.stop_recording);
@@ -180,7 +182,7 @@ namespace Gabber
 
             if (_isrecording)
             {
-                var current = themes.Find((p) => p.SelectionState == Prompt.SelectedState.current);
+                var current = themes.Find((p) => p.SelectionState == Topic.SelectedState.current);
                 Queries.CreateAnnotation(_seconds, InterviewSessionID, current.ID);
                 adapter.PromptSeleted(position);
             }
@@ -189,17 +191,17 @@ namespace Gabber
 
         void ItemSelected(int currentSelected)
         {
-            var previousSelected = themes.FindIndex((Prompt p) => p.SelectionState == Prompt.SelectedState.current);
+            var previousSelected = themes.FindIndex((Topic p) => p.SelectionState == Topic.SelectedState.current);
             var selectedItems = new List<int> { currentSelected };
             if (previousSelected != -1)
             {
                 // The item selected was the same as the last (nothing changed) so do nothing.
                 if (themes[previousSelected].Equals(themes[currentSelected])) return;
-                themes[previousSelected].SelectionState = Prompt.SelectedState.previous;
+                themes[previousSelected].SelectionState = Topic.SelectedState.previous;
                 selectedItems.Add(previousSelected);
             }
             LOG_TOPIC_SELECTED(themes[currentSelected]);
-            themes[currentSelected].SelectionState = Prompt.SelectedState.current;
+            themes[currentSelected].SelectionState = Topic.SelectedState.current;
         }
 
         void ModalToVerifyRecordingEnd()
@@ -303,13 +305,13 @@ namespace Gabber
             firebaseAnalytics.LogEvent(eventName, bundle);
         }
 
-        public void LOG_TOPIC_SELECTED(Prompt topic)
+        public void LOG_TOPIC_SELECTED(Topic topic)
         {
             var bundle = new Bundle();
             bundle.PutString("TEXT", topic.Text);
             bundle.PutInt("ID", topic.ID);
 
-            var previous = themes.Find((obj) => obj.SelectionState == Prompt.SelectedState.previous);
+            var previous = themes.Find((obj) => obj.SelectionState == Topic.SelectedState.previous);
             bundle.PutString("PREVIOUS_TEXT", previous != null ? previous.Text : "");
             bundle.PutInt("PREVIOUS_ID", previous != null ? previous.ID : -1);
 

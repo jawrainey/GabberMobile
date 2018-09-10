@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Gabber.Helpers;
 using GabberPCL;
 using GabberPCL.Models;
 
@@ -32,7 +33,7 @@ namespace Gabber.Adapters
             mholder.Participants.Text = BuildParticipantsNames(session.Participants);
             mholder.DateCreated.Text = session.CreatedAt.ToLocalTime().ToString("MM/dd, HH:mm");
             mholder.Length.Text = Queries.FormatFromSeconds(session.Prompts[session.Prompts.Count - 1].End);
-            mholder.ProjectTitle.Text = Queries.ProjectById(Sessions[position].ProjectID).Title;
+            mholder.ProjectTitle.Text = Localise.ContentByLanguage(Queries.ProjectById(Sessions[position].ProjectID)).Title;
         }
 
         string BuildParticipantsNames(List<InterviewParticipant> participants)

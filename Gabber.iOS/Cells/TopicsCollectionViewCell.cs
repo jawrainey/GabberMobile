@@ -11,7 +11,7 @@ namespace Gabber.iOS
 
         public TopicsCollectionViewCell (IntPtr handle) : base (handle) {}
 
-        public void UpdateContent(Prompt topic)
+        public void UpdateContent(Topic topic)
         {
             var themeColor = UIColor.FromRGB(.43f, .80f, .79f);
             ProjectTopic.Text = topic.Text;
@@ -23,13 +23,13 @@ namespace Gabber.iOS
             ProjectTopic.TextColor = UIColor.Black;
             Layer.BorderColor = themeColor.CGColor;
 
-            if (topic.SelectionState == Prompt.SelectedState.current)
+            if (topic.SelectionState == Topic.SelectedState.current)
             {
                 ProjectTopic.TextColor = UIColor.White;
                 ProjectTopic.BackgroundColor = themeColor;
                 Layer.BorderColor = themeColor.CGColor;
             }
-            else if (topic.SelectionState == Prompt.SelectedState.previous) 
+            else if (topic.SelectionState == Topic.SelectedState.previous) 
             {
                 ProjectTopic.BackgroundColor = UIColor.FromRGB(211, 211, 211);
             }

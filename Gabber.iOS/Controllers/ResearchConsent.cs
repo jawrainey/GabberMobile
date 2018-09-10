@@ -1,4 +1,5 @@
 using Foundation;
+using Gabber.iOS.Helpers;
 using GabberPCL;
 using GabberPCL.Resources;
 using System;
@@ -19,9 +20,11 @@ namespace Gabber.iOS
 
             int SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
             var SelectedProject = Queries.ProjectById(SelectedProjectID);
+            var contentOh = Queries.ContentByLanguage(SelectedProject, Localize.GetCurrentCultureInfo());
+
             var IsOrg = SelectedProject.Organisation.Name.ToLower() == "individual";
             var org = IsOrg ? SelectedProject.Creator.Name : SelectedProject.Organisation.Name;
-            var content = string.Format(StringResources.consent_research_body, org, SelectedProject.Title);
+            var content = string.Format(StringResources.consent_research_body, org, contentOh.Title);
 
             ResearchConsentDesc.Text = content;
             ResearchConsentFormDetails.Text = StringResources.consent_research_form;

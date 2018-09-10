@@ -37,7 +37,7 @@ namespace Gabber.iOS
                 var _tokens = NSUserDefaults.StandardUserDefaults.StringForKey("tokens");
                 var tokens = JsonConvert.DeserializeObject<JWToken>(_tokens);
                 Queries.SetActiveUser(new DataUserTokens { User = user, Tokens = tokens });
-                Firebase.Analytics.Analytics.SetUserID(Session.ActiveUser.Id.ToString());
+                Firebase.Analytics.Analytics.SetUserId(Session.ActiveUser.Id.ToString());
                 // If the user has set the preference or is was determined below, we want to apply it
                 Session.ActiveUser.AppLang = user.AppLang;
             }
@@ -105,6 +105,8 @@ namespace Gabber.iOS
         {
             base.ViewDidAppear(animated);
             SetStringResources();
+            // Required to rebind data, e.g. after a change was made in SettingsViewController
+            TableView.ReloadData();
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -145,7 +147,8 @@ namespace Gabber.iOS
 
         private void LaunchProject(Project chosenProj)
         {
-            Logger.LOG_EVENT_WITH_ACTION("PROJECT_SELECTED", chosenProj.Title, "PROJECT");
+            var content = Queries.ContentByLanguage(chosenProj, Localize.GetCurrentCultureInfo());
+            Logger.LOG_EVENT_WITH_ACTION("PROJECT_SELECTED", content.Title, "PROJECT");
             NSUserDefaults.StandardUserDefaults.SetInt(chosenProj.ID, "SelectedProjectID");
             PerformSegue("OpenProjectSegue", this);
         }

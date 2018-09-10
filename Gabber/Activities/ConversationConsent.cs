@@ -14,6 +14,7 @@ using GabberPCL;
 using System.Linq;
 using Gabber.Adapters;
 using System.Collections.Generic;
+using Gabber.Helpers;
 
 namespace Gabber.Activities
 {
@@ -53,7 +54,8 @@ namespace Gabber.Activities
                 StringResources.consent_gabber_consent_type_public_full;
 
             RadioButton consentTypeMembers = FindViewById<RadioButton>(Resource.Id.GabberConsentTypeMembers);
-            consentTypeMembers.Text = string.Format(StringResources.consent_gabber_consent_type_members_brief, selectedProject.Title);
+            var title = Localise.ContentByLanguage(selectedProject).Title;
+            consentTypeMembers.Text = string.Format(StringResources.consent_gabber_consent_type_members_brief, title);
 
             TextView consentTypeMembersFull = FindViewById<TextView>(Resource.Id.GabberConsentTypeMembersFull);
             consentTypeMembersFull.Text =

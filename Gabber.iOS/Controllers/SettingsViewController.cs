@@ -120,20 +120,16 @@ namespace Gabber.iOS
         {
             // Because the first element is the description
             if (CurrentAppLanguageID == 0) return;
-            InvokeOnMainThread(() =>
-            {
-                var chosen = SupportedLanguages.FirstOrDefault((lang) => lang.Id == CurrentAppLanguageID);
-                StringResources.Culture = new CultureInfo(chosen.Code);
-                new Localize().SetLocale(StringResources.Culture);
-                Session.ActiveUser.AppLang = chosen.Id;
-                Queries.SaveActiveUser();
-
-                SetTabBarTitles();
-                // This is required to update the settings strings to the new language.
-                SettingsTableView.Source = new SettingsTableViewSource(ReCreateSettings(), this, RowSelected);
-                // Required to update settings strings
-                SettingsTableView.ReloadData();
-            });
+            var chosen = SupportedLanguages.FirstOrDefault((lang) => lang.Id == CurrentAppLanguageID);
+            StringResources.Culture = new CultureInfo(chosen.Code);
+            new Localize().SetLocale(StringResources.Culture);
+            Session.ActiveUser.AppLang = chosen.Id;
+            Queries.SaveActiveUser();
+            SetTabBarTitles();
+            // This is required to update the settings strings to the new language.
+            SettingsTableView.Source = new SettingsTableViewSource(ReCreateSettings(), this, RowSelected);
+            // Required to update settings strings
+            SettingsTableView.ReloadData();
         }
 
         string PreferredConversationLanguage()

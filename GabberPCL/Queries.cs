@@ -1,13 +1,30 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using GabberPCL.Models;
+using GabberPCL.Resources;
 using Newtonsoft.Json;
 using SQLiteNetExtensions.Extensions;
+using System.Globalization;
 
 namespace GabberPCL
 {
     public static class Queries
     {
+        public static Content ContentByLanguage(Project project, CultureInfo culture)
+        {
+            var currentCulture = StringResources.Culture ?? culture;
+            var currentLang = currentCulture.TwoLetterISOLanguageName;
+            var content = project.Content.FirstOrDefault((k) => k.Key == currentLang);
+
+            if (content.Key == null)
+            {
+                // If the Application Language does not match the project language, then use project default.
+                var lang = AllLanguages().FirstOrDefault((l) => l.Id == project.IsDefaultLang);
+                content = project.Content.FirstOrDefault((k) => k.Key == lang.Code);
+            }
+            return content.Value;
+        }
+
         public static string FormatFromSeconds(int seconds)
         {
             var timeSpan = System.TimeSpan.FromSeconds(seconds);
@@ -71,12 +88,9 @@ namespace GabberPCL
 
         public static Project ProjectById(int projectID)
         {
-            Project proj = Session.Connection.Get<Project>(projectID);
-            proj.LoadJson();
-
-            // Only show the active topics to the user
-            proj.Prompts = proj.Prompts.Where((p) => p.IsActive).ToList();
-            return proj;
+            var project = Session.Connection.Get<Project>(projectID);
+            project.LoadJson();
+            return project;
         }
 
         public static void SaveActiveUser()

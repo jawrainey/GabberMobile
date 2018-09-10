@@ -9,6 +9,7 @@ using Android.Content;
 using Android.Views;
 using GabberPCL;
 using Android.Text;
+using Gabber.Helpers;
 
 namespace Gabber.Activities
 {
@@ -34,7 +35,8 @@ namespace Gabber.Activities
             var org = IsOrg ? selectedProject.Creator.Name : selectedProject.Organisation.Name;
 
             var researchConsentDesc = FindViewById<TextView>(Resource.Id.researchConsentDesc);
-            researchConsentDesc.Text = string.Format(StringResources.consent_research_body, org, selectedProject.Title);
+            var title = Localise.ContentByLanguage(selectedProject).Title;
+            researchConsentDesc.Text = string.Format(StringResources.consent_research_body, org, title);
 
             var researchConsentForm = FindViewById<TextView>(Resource.Id.researchConsentForm);
             researchConsentForm.Text = StringResources.consent_research_form;

@@ -1,20 +1,17 @@
 ﻿using Newtonsoft.Json;
-using SQLite;
-using SQLiteNetExtensions.Attributes;
 
 namespace GabberPCL.Models
 {
-    public class Prompt
+    public class Topic
     {
-        [PrimaryKey]
         public int ID { get; set; }
-        [JsonProperty("text")]
-        public string Text { get; set; }
-        [JsonProperty("is_active")]
-        public bool IsActive { get; set; }
-        [ForeignKey(typeof(Project))]
+        [JsonProperty("lang_id")]
+        public int LangID { get; set; }
         [JsonProperty("project_id")]
         public int ProjectID { get; set; }
+        [JsonProperty("is_active")]
+        public bool IsActive { get; set; }
+        public string Text { get; set; }
 
         // UI attributes
         public bool Selected { get; set; }
