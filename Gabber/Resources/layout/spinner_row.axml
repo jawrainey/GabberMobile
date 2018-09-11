@@ -8,6 +8,5 @@
     android:textColor="@android:color/black"
     android:textSize="16sp"
     android:paddingLeft="4dp"
-    android:background="@color/material_grey_100"
     android:layout_margin="2dp"
     android:textIsSelectable="false" />

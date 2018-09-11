@@ -121,6 +121,27 @@
     <data name="common.ui.forms.gender.custom.label" xml:space="preserve">
         <value>Please Specify Gender</value>
     </data>
+    <data name="common.ui.forms.role.error" xml:space="preserve">
+        <value>Please select your role within the Red Cross Red Crescent.</value>
+    </data>
+    <data name="common.ui.forms.role.default" xml:space="preserve">
+        <value>Your Role in the Red Cross</value>
+    </data>
+    <data name="common.ui.forms.role.volunteer" xml:space="preserve">
+        <value>Volunteer</value>
+    </data>
+    <data name="common.ui.forms.role.intern" xml:space="preserve">
+        <value>Intern</value>
+    </data>
+    <data name="common.ui.forms.role.staff" xml:space="preserve">
+        <value>Staff</value>
+    </data>
+    <data name="common.ui.forms.role.leadership" xml:space="preserve">
+        <value>Leadership</value>
+    </data>
+    <data name="common.ui.forms.role.external" xml:space="preserve">
+        <value>External</value>
+    </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
         <value>Welcome to Gabber</value>

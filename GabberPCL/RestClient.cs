@@ -134,7 +134,7 @@ namespace GabberPCL
             return _response;
         }
 
-        public static async Task<CustomAuthResponse> Register(string fullname, string email, string password, int lang, int society, Gender gender)
+        public static async Task<CustomAuthResponse> Register(string fullname, string email, string password, int lang, int society, Gender gender, int role, int ageGroup)
         {
             var _response = new CustomAuthResponse
             {
@@ -144,7 +144,7 @@ namespace GabberPCL
 
             try
             {
-                var payload = JsonConvert.SerializeObject(new { fullname, email, password, lang, society, gender });
+                var payload = JsonConvert.SerializeObject(new { fullname, email, password, lang, society, gender, role, ageGroup });
                 var _content = new StringContent(payload, Encoding.UTF8, "application/json");
 
                 var response = await Client.PostAsync("api/auth/register/", _content);

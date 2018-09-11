@@ -257,6 +257,48 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string common_ui_forms_role_error {
+            get {
+                return ResourceManager.GetString("common.ui.forms.role.error", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_role_default {
+            get {
+                return ResourceManager.GetString("common.ui.forms.role.default", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_role_volunteer {
+            get {
+                return ResourceManager.GetString("common.ui.forms.role.volunteer", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_role_intern {
+            get {
+                return ResourceManager.GetString("common.ui.forms.role.intern", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_role_staff {
+            get {
+                return ResourceManager.GetString("common.ui.forms.role.staff", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_role_leadership {
+            get {
+                return ResourceManager.GetString("common.ui.forms.role.leadership", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_role_external {
+            get {
+                return ResourceManager.GetString("common.ui.forms.role.external", resourceCulture);
+            }
+        }
+        
         public static string onboarding_ui_page_zero_title {
             get {
                 return ResourceManager.GetString("onboarding.ui.page.zero.title", resourceCulture);
