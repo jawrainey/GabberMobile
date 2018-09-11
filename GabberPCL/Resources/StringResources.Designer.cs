@@ -287,6 +287,12 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string login_api_error_auth_UNVERIFIED_USER {
+            get {
+                return ResourceManager.GetString("login.api.error.auth.UNVERIFIED_USER", resourceCulture);
+            }
+        }
+        
         public static string login_ui_title {
             get {
                 return ResourceManager.GetString("login.ui.title", resourceCulture);

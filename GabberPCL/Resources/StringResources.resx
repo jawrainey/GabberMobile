@@ -144,6 +144,9 @@
     <data name="login.api.error.auth.USER_404" xml:space="preserve">
         <value>There is no registered user with that email address.</value>
     </data>
+    <data name="login.api.error.auth.UNVERIFIED_USER" xml:space="preserve">
+        <value>This user has not verified their account.</value>
+    </data>
     <!-- USER LOGIN SCREEN: UI -->
     <data name="login.ui.title" xml:space="preserve">
         <value>Login to Gabber</value>
