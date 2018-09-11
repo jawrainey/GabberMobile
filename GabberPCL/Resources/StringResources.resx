@@ -55,7 +55,7 @@
         <value>Conversation Language</value>
     </data>
     <data name="settings.logout" xml:space="preserve">
-        <value>Log Out of Gabber</value>
+        <value>Log Out</value>
     </data>
     <data name="settings.logout.dialog.title" xml:space="preserve">
         <value>Are you sure?</value>
@@ -311,7 +311,7 @@
         <value>Research Consent</value>
     </data>
     <data name="consent.research.submit" xml:space="preserve">
-        <value>Next</value>
+        <value>Continue</value>
     </data>
     <data name="consent.research.title" xml:space="preserve">
         <value>Consent for use in research</value>
@@ -334,18 +334,6 @@
     </data>
     <data name="consent.gabber.title.control" xml:space="preserve">
         <value>How you control the data you capture</value>
-    </data>
-    <data name="consent.gabber.body.control" xml:space="preserve">
-        <value>Gabber provides you with control over how you want your audio conversation to be used and who you want to be able to listen and comment on it. Gabber works best when other people can access, listen and learn from the experiences you record. 
-
-All participants will receive an email with a unique link to the audio recording, where you can view or change your consent on who can access the recording. This email may go to your &lt;b&gt;SPAM / JUNK &lt;/b&gt;. 
-&lt;br&gt;
-&lt;br&gt;
-Your conversation will only be accessible to participants in the conversation for the first 24-hours. After this period the audio conversation will be available based on the consent you agree to below or if you have changed it in the email afterwards.
-&lt;br&gt;
-&lt;br&gt;
-By being part of this conversation you will also become a project member where you can listen to other project conversations and help make sense of them through the website.
-</value>
     </data>
     <data name="consent.gabber.title.decision" xml:space="preserve">
         <value>Who can access your conversation?</value>
@@ -388,43 +376,6 @@ By being part of this conversation you will also become a project member where y
     </data>
     <data name="conversation.language.prompt" xml:space="preserve">
         <value>What language will this conversation be held in?</value>
-    </data>
-    <!-- Consent Summary -->
-    <data name="consent.summary.title" xml:space="preserve">
-        <value>Consent Summary</value>
-    </data>
-    <data name="consent.summary.subtitle" xml:space="preserve">
-        <value>A summary of the consent you have agreed to and the project you are contributing to are listed below:</value>
-    </data>
-    <data name="consent.summary.screen.content.project.title" xml:space="preserve">
-        <value>Project</value>
-    </data>
-    <data name="consent.summary.screen.content.participants.title" xml:space="preserve">
-        <value>Participants</value>
-    </data>
-    <data name="consent.summary.screen.content.participants.desc" xml:space="preserve">
-        <value>{0} are selected to be in your conversation.</value>
-    </data>
-    <data name="consent.summary.screen.content.research.title" xml:space="preserve">
-        <value>Research Consent</value>
-    </data>
-    <data name="consent.summary.screen.content.research.desc" xml:space="preserve">
-        <value>You agreed for this conversation to be used in research.</value>
-    </data>
-    <data name="consent.summary.screen.content.conversation.title" xml:space="preserve">
-        <value>Conversation Consent</value>
-    </data>
-    <data name="consent.summary.screen.content.conversation.desc" xml:space="preserve">
-        <value>You agreed for this conversation to be made available to &lt;b&gt;{0}&lt;/b&gt;.</value>
-    </data>
-    <data name="consent.summary.screen.content.embargo.title" xml:space="preserve">
-        <value>Conversation Embargo</value>
-    </data>
-    <data name="consent.summary.screen.content.embargo.desc" xml:space="preserve">
-        <value>Your conversation will only be accessible to participants in the conversation for the first 24-hours. After this period the audio conversation will be available based on the consent you have agreed to or if you have changed it in the email afterwards.</value>
-    </data>
-    <data name="consent.summary.screen.action" xml:space="preserve">
-        <value>Start Recording</value>
     </data>
     <!-- RECORD SCREEN -->
     <data name="recording.ui.title" xml:space="preserve">

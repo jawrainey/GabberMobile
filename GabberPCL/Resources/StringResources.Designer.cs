@@ -635,12 +635,6 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string consent_gabber_body_control {
-            get {
-                return ResourceManager.GetString("consent.gabber.body.control", resourceCulture);
-            }
-        }
-        
         public static string consent_gabber_title_decision {
             get {
                 return ResourceManager.GetString("consent.gabber.title.decision", resourceCulture);
@@ -716,78 +710,6 @@ namespace GabberPCL.Resources {
         public static string conversation_language_prompt {
             get {
                 return ResourceManager.GetString("conversation.language.prompt", resourceCulture);
-            }
-        }
-        
-        public static string consent_summary_title {
-            get {
-                return ResourceManager.GetString("consent.summary.title", resourceCulture);
-            }
-        }
-        
-        public static string consent_summary_subtitle {
-            get {
-                return ResourceManager.GetString("consent.summary.subtitle", resourceCulture);
-            }
-        }
-        
-        public static string consent_summary_screen_content_project_title {
-            get {
-                return ResourceManager.GetString("consent.summary.screen.content.project.title", resourceCulture);
-            }
-        }
-        
-        public static string consent_summary_screen_content_participants_title {
-            get {
-                return ResourceManager.GetString("consent.summary.screen.content.participants.title", resourceCulture);
-            }
-        }
-        
-        public static string consent_summary_screen_content_participants_desc {
-            get {
-                return ResourceManager.GetString("consent.summary.screen.content.participants.desc", resourceCulture);
-            }
-        }
-        
-        public static string consent_summary_screen_content_research_title {
-            get {
-                return ResourceManager.GetString("consent.summary.screen.content.research.title", resourceCulture);
-            }
-        }
-        
-        public static string consent_summary_screen_content_research_desc {
-            get {
-                return ResourceManager.GetString("consent.summary.screen.content.research.desc", resourceCulture);
-            }
-        }
-        
-        public static string consent_summary_screen_content_conversation_title {
-            get {
-                return ResourceManager.GetString("consent.summary.screen.content.conversation.title", resourceCulture);
-            }
-        }
-        
-        public static string consent_summary_screen_content_conversation_desc {
-            get {
-                return ResourceManager.GetString("consent.summary.screen.content.conversation.desc", resourceCulture);
-            }
-        }
-        
-        public static string consent_summary_screen_content_embargo_title {
-            get {
-                return ResourceManager.GetString("consent.summary.screen.content.embargo.title", resourceCulture);
-            }
-        }
-        
-        public static string consent_summary_screen_content_embargo_desc {
-            get {
-                return ResourceManager.GetString("consent.summary.screen.content.embargo.desc", resourceCulture);
-            }
-        }
-        
-        public static string consent_summary_screen_action {
-            get {
-                return ResourceManager.GetString("consent.summary.screen.action", resourceCulture);
             }
         }
         

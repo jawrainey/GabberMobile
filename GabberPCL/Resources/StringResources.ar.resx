@@ -12,6 +12,25 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <!-- Shared comms -->
+    <data name="common.comms.loading" xml:space="preserve">
+        <value>جاري التحميل الرجاءالانتظار</value>
+    </data>
+    <data name="common.comms.error" xml:space="preserve">
+        <value>هناك خطأ ما</value>
+    </data>
+    <data name="common.comms.error.server" xml:space="preserve">
+        <value>كانت هناك مشكلة في الاتصال بالخادم. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى</value>
+    </data>
+    <data name="common.comms.retry" xml:space="preserve">
+        <value>إعادة المحاولة</value>
+    </data>
+    <data name="common.comms.cancel" xml:space="preserve">
+        <value>إلغاء</value>
+    </data>
+    <data name="common.comms.ok" xml:space="preserve">
+        <value>حسنا</value>
+    </data>
     <!-- MAIN MENU -->
     <data name="common.menu.projects" xml:space="preserve">
         <value>مشاريع</value>
@@ -19,8 +38,33 @@
     <data name="common.menu.gabbers" xml:space="preserve">
         <value>التسجيلات</value>
     </data>
-    <data name="common.menu.about" xml:space="preserve">
+    <data name="common.menu.settings" xml:space="preserve">
+        <value>إعدادات</value>
+    </data>
+    <!-- SETTINGS -->
+    <data name="settings.title" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+    <data name="settings.about" xml:space="preserve">
         <value>حول</value>
+    </data>
+    <data name="settings.chooseAppLanguage" xml:space="preserve">
+        <value>لغة التطبيق</value>
+    </data>
+    <data name="settings.chooseConvoLanguage" xml:space="preserve">
+        <value>لغة المحادثة</value>
+    </data>
+    <data name="settings.logout" xml:space="preserve">
+        <value>الخروج</value>
+    </data>
+    <data name="settings.logout.dialog.title" xml:space="preserve">
+        <value>Are you sure?</value>
+    </data>
+    <data name="settings.logout.dialog.message" xml:space="preserve">
+        <value>Logging out will delete any conversations waiting to upload. Are you sure you want to do this?</value>
+    </data>
+    <data name="settings.logout.dialog.confirm" xml:space="preserve">
+        <value>Logout</value>
     </data>
     <!-- SHARED UI FORMS -->
     <data name="common.ui.forms.email.label" xml:space="preserve">
@@ -28,6 +72,9 @@
     </data>
     <data name="common.ui.forms.password.label" xml:space="preserve">
         <value>كلمه السر</value>
+    </data>
+    <data name="common.ui.forms.password.confirm.label" xml:space="preserve">
+        <value>تأكيد كلمة المرور</value>
     </data>
     <data name="common.ui.forms.email.validate.empty" xml:space="preserve">
         <value>مطلوب عنوان البريد الإلكتروني</value>
@@ -37,6 +84,15 @@
     </data>
     <data name="common.ui.forms.password.validate.empty" xml:space="preserve">
         <value>كلمة المرور مطلوبة</value>
+    </data>
+    <data name="common.ui.forms.password.validate.mismatch" xml:space="preserve">
+        <value>كلمات المرور المدخلة غير متطابقة</value>
+    </data>
+    <data name="common.ui.forms.language.error" xml:space="preserve">
+        <value>الرجاء اختيار اللغة  المفضلة لديك:</value>
+    </data>
+    <data name="common.ui.forms.language.default" xml:space="preserve">
+        <value>الرجاء اختيار اللغة  المفضلة لديك:</value>
     </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
@@ -163,7 +219,7 @@
         <value>مشاريع</value>
     </data>
     <data name="projects.ui.instructions" xml:space="preserve">
-        <value>اختر مشروعًا تريد المساهمة فيه وقم بإجراء محادثة حوله</value>
+        <value>اختر مشروعًا تريد إجراء محادثة حوله</value>
     </data>
     <data name="projects.ui.fetching" xml:space="preserve">
         <value>Fetching projects...</value>
@@ -256,100 +312,65 @@
         <value>كيف سيتم استخدام محادثتك للأبحاث</value>
     </data>
     <data name="consent.research.body" xml:space="preserve">
-        
-        <value>المحادثة التي انت على وشك تسجيلها ستصبح جزءا من مشروع بحثي &lt;b&gt;({0})&lt;/b&gt; تم إنشاؤه بواسطة &lt;b&gt;{1}&lt;/b&gt; . التسجيل الخاص بك والبيانات الوصفية المرتبطة به يمكن الوصول إليها من قبل موظفي البحث وتستخدم للمساعدة في فهم كيف يمكن للأدوات الرقمية أن تدعمك وتدعم مواطنين آخرين للانخراط في ممارسات البحث النوعي وكيف يمكن للتسجيل الصوتي أن يجعل الوصول لذلك أكثر سهولة. أي أعمال منشورة ناتجة عن البيانات التي تم التقاطها من خلال البرنامج (Gabber) لن تشمل أبدا أي تفاصيل يمكن من خلالها التعرف على هويتك أو هوية غيرك من المشاركين.</value>
+        <value>ستصبح المحادثة التي أنت على وشك تسجيلها جزءًا من مشروع البحث {0}. لن يتضمن أي عمل منشور تفاصيل يمكن استخدامها لتعريف نفسك أو غيرك من المشاركين.</value>       
     </data>
     <data name="consent.research.form" xml:space="preserve">
-        <value>يفهم جميع المشاركين ويوافقون  على هذا التسجيل وعلى طمس تفاصيل هويتهم الشخصية للاستخدام في هذا البحث.</value>
+        <value>يوافق  المشاركون  على مشاركة هذا  التسجيل و إستخدام  تفاصيلهم المجهولة المصدر للبحث</value>
     </data>
     <!-- Gabber CONSENT -->
     <data name="consent.gabber.toolbar.title" xml:space="preserve">
-        <value>موافقة المحادثة</value>
+        <value>تكوين المحادثة</value>
     </data>
     <data name="consent.gabber.submit" xml:space="preserve">
-        <value>التالى</value>
+        <value>استمر</value>
     </data>
     <data name="consent.gabber.title.control" xml:space="preserve">
-        <value>كيف يمكنك التحكم في البيانات التي تسجلها</value>
+        <value>من يمكنه الوصول إلى محادثتك؟</value>
     </data>
     <data name="consent.gabber.body.control" xml:space="preserve">
-        <value>Gabber يوفر لك امكانية التحكم من حيث كيف تريد محادثتك الصوتية ان يتم استخدامها، ومن تريد أن يكون قادرا للاستماع اليها  والتعليق عليها. Gabber يعمل بشكل أفضل عندما يمكن للمستخدمين الاخرين الوصول، والاستماع والتعلم من الخبرات التي تقوم انت بتسجيلها.
-
-جميع المشاركين سوف يصلهم رسالة بريد إلكتروني مع رابط فريد من نوعه للتسجيل الصوت، حيث يمكنك عرض أو تغيير موافقتك على من يستطيع الوصول إلى التسجيل. قد تذهب هذه الرسالة الإلكترونية إلى مجلد الرسائل المهملة / JUNK الخاص بك.
-&lt;br&gt;
-&lt;br&gt;
-ستكون محادثتك متاحة فقط للمشاركين في المحادثة لأول 24 ساعة. بعد هذه الفترة ، ستكون المحادثة الصوتية متاحة بناءً على الموافقة التي توافق عليها أدناه أو إذا كنت قد غيرتها في البريد الإلكتروني بعد ذلك.
-&lt;br&gt;
-&lt;br&gt;
-من خلال كونك جزءا من هذا الحوار سوف تصبح أيضا عضوا بالمشروع حيث يمكنك الاستماع الى محادثات المشاريع الأخرى والمساعدة في تشكيل فهم عام عن جميع المحادثات من خلال الموقع.
-</value>
+        <value>عندما تم تحميلها، ستكون محادثتك متوفر في {0}. يمكن لموظفي البحوث والمشاريع الإداريين الوصول دائما التسجيلات</value>
     </data>
     <data name="consent.gabber.title.decision" xml:space="preserve">
-        <value>من من الأشخاص ترغب أن يوت له صلاحية الوصول إلى محادثتك؟</value>
+        <value>من يمكنه الوصول إلى محادثتك؟</value>
     </data>
     <data name="consent.gabber.body.decision" xml:space="preserve">
         <value>يمكن لموظفي البحوث ومشرفي المشروع الوصول إلى التسجيلات بعد فترة الحظر.</value>
     </data>
     <!-- Gabber CONSENT Public -->
     <data name="consent.gabber.consent.type.public.full" xml:space="preserve">
-        <value>التسجيل الخاص بك سيصبح متاحاَ وعام لأي شخص أن يصل وستمع اليه، بما في ذلك انت، وغيرك من المشاركين، وأعضاء المشروع.</value>
+        <value>تسجيلك متوفر لأي شخص يزور الموقع</value>
     </data>
     <data name="consent.gabber.consent.type.public.brief" xml:space="preserve">
-        <value>أي شخص يزور (Gabber)</value>
+        <value>أي واحد</value>
     </data>
     <!-- Gabber CONSENT Members -->
     <data name="consent.gabber.consent.type.members.full" xml:space="preserve">
-        <value>يوجد حاليًا {0} عضوًا و {1} باحثًا في هذا المشروع.</value>
+        <value>{0} {1} access to this project</value>
+    </data>
+    <data name="consent.gabber.consent.type.members.full.plural" xml:space="preserve">
+        <value>people have</value>
+    </data>
+    <data name="consent.gabber.consent.type.members.full.singular" xml:space="preserve">
+        <value>person has</value>
     </data>
     <data name="consent.gabber.consent.type.members.brief" xml:space="preserve">
-        <value>أعضاء المشروع فقط</value>
+        <value>الأشخاص الآخرون الذين ساهموا أو دعوا فقط إلى {0}</value>
     </data>
     <!-- Gabber CONSENT Private -->
     <data name="consent.gabber.consent.type.private.full" xml:space="preserve">
-        <value>&lt;b&gt;{0}&lt;/b&gt; هم المشاركون في هذه المحادثة.</value>
+        <value>الناس مع الوصول: {0}</value>
+    </data>
+    <data name="consent.gabber.consent.type.private.full.you" xml:space="preserve">
+        <value>أنت</value>
     </data>
     <data name="consent.gabber.consent.type.private.brief" xml:space="preserve">
-        <value>المشاركون فقط</value>
+        <value>Only participants</value>
     </data>
     <data name="conversation.consent.gabber.submit" xml:space="preserve">
-        <value>مراجعة الموافقة</value>
+        <value>Review consent</value>
     </data>
-    <!-- Consent Summary -->
-    <data name="consent.summary.title" xml:space="preserve">
-        <value>ملخص الموافقة</value>
-    </data>
-    <data name="consent.summary.subtitle" xml:space="preserve">
-        <value>ملخص الموافقة الذي وافقت عليه كنت و المشروع الذي تساهم فيه مدرجان أدناه:</value>
-    </data>
-    <data name="consent.summary.screen.content.project.title" xml:space="preserve">
-        <value>مشاريع</value>
-    </data>
-    <data name="consent.summary.screen.content.participants.title" xml:space="preserve">
-        <value>المشاركين</value>
-    </data>
-    <data name="consent.summary.screen.content.participants.desc" xml:space="preserve">
-        <value>{0} تم اختيارهم ليكونوا في محادثتك</value>
-    </data>
-    <data name="consent.summary.screen.content.research.title" xml:space="preserve">
-        <value>موافقة الأبحاث</value>
-    </data>
-    <data name="consent.summary.screen.content.research.desc" xml:space="preserve">
-        <value>لقد وافقت على هذه المحادثة أن يتم استخدامها في البحوث</value>
-    </data>
-    <data name="consent.summary.screen.content.conversation.title" xml:space="preserve">
-        <value>حظر المحادثة</value>
-    </data>
-    <data name="consent.summary.screen.content.conversation.desc" xml:space="preserve">
-        <value>لقد وافقت على هذه المحادثة  أن تكون متاحة لـ  {0}</value>
-    </data>
-    <data name="consent.summary.screen.content.embargo.title" xml:space="preserve">
-        <value>حظر المحادثة </value>
-    </data>
-    <data name="consent.summary.screen.content.embargo.desc" xml:space="preserve">
-        <value>ستكون محادثتك متاحة فقط للمشاركين في المحادثة لأول 24 ساعة. بعد هذه الفترة ، ستكون المحادثة الصوتية متاحة بناءً على الموافقة التي توافق عليها أدناه أو إذا كنت قد غيرتها في البريد الإلكتروني بعد ذلك.</value>
-    </data>
-    <data name="consent.summary.screen.action" xml:space="preserve">
-        <value>ابدأ التسجيل</value>
+    <data name="conversation.language.prompt" xml:space="preserve">
+        <value>ما اللغة التي ستعقد بها هذه المحادثة؟</value>
     </data>
     <!-- RECORD SCREEN -->
     <data name="recording.ui.title" xml:space="preserve">
@@ -397,28 +418,65 @@
     <data name="recording.ui.dialog.back.negative" xml:space="preserve">
         <value>مواصلة التسجيل</value>    
     </data>
-    <!-- DEBRIEFING BUTTONS -->
-    <data name="debriefing.ui.button.hide" xml:space="preserve">
-        <value>إخفاء</value>
+    <!-- RECORD SCREEN RECORD PERMISSION -->
+    <data name="recording.ui.permission.title" xml:space="preserve">
+        <value>Permission required</value>
     </data>
-    <data name="debriefing.ui.button.upload" xml:space="preserve">
-        <value>تحميل</value>
+    <data name="recording.ui.permission.body" xml:space="preserve">
+        <value>Microphone access is required to record a Gabber</value>
     </data>
-    <!-- DEBRIEFING PAGE: 1 -->
-    <data name="debriefing.ui.page.first.title" xml:space="preserve">
-        <value>الخطوات التالية</value>
+    <data name="recording.ui.permission.button.negative" xml:space="preserve">
+        <value>Cancel</value>
     </data>
-    <data name="debriefing.ui.page.first.content" xml:space="preserve">
-        <value>&lt;br&gt;نشكرك على مشاركة تجاربك مع &lt;b&gt;{0}&lt;/b&gt; وقد تم حفظ المحادثة وهي الآن جاهزة للتحميل.
-&lt;br&gt;
-&lt;br&gt;
-من خلال كونك جزءا من هذا الحوار سوف تصبح أيضا عضوا بالمشروع حيث يمكنك الاستماع الى محادثات المشاريع الأخرى والمساعدة في تشكيل فهم عام عن جميع المحادثات من خلال الموقع. نأمل أن إعادة النظر في المحتوى لخلق مناقشات مع المشاركين في المحادثة وأعضاء مشروع آخر.
-&lt;br&gt;
-&lt;br&gt;         
-&lt;b&gt;تغيير موافقتك&lt;/b&gt;
-&lt;br&gt;
-&lt;br&gt;
-التسجيل متاح فقط للمشاركين في المحادثة لأول 24 ساعة. عندما يتم تحميل التسجيل جميع المشاركين سيحصلون على رابط خاص لعرض وتعديل الاتفاقية التي وافقت عليها وقدمتها قبل تسجيل ({1}). قد تذهب هذه الرسالة الإلكترونية إلى مجلدات الرسائل المهملة / JUNK الخاصة بك، لذا تأكد من التحقق منها إذا لم تكن قد تلقيتها.
-</value>
+    <data name="recording.ui.permission.button.positive" xml:space="preserve">
+        <value>Configure</value>    
+    </data>
+    <!-- RECORD SCREEN FINISH -->
+    <data name="recording.ui.dialog.finish.title" xml:space="preserve">
+        <value>You have covered {0} of the {1} topics. Are you sure you want to end this recording?</value>
+    </data>
+    <data name="recording.ui.dialog.finish.positive" xml:space="preserve">
+        <value>Yes</value>
+    </data>
+    <data name="recording.ui.dialog.finish.negative" xml:space="preserve">
+        <value>No</value>    
+    </data>
+    <!-- RECORD SCREEN BACK -->
+    <data name="recording.ui.dialog.back.title" xml:space="preserve">
+        <value>You are recording</value>
+    </data>
+    <data name="recording.ui.dialog.back.body" xml:space="preserve">
+        <value>If you go back the recording will not be saved.</value>
+    </data>
+    <data name="recording.ui.dialog.back.positive" xml:space="preserve">
+        <value>Go back</value>
+    </data>
+    <data name="recording.ui.dialog.back.negative" xml:space="preserve">
+        <value>Continue recording</value>    
+    </data>
+    <!-- FIRST UPLOAD DEBRIEFING -->
+    <data name="debriefing.activity.title" xml:space="preserve">
+        <value>تهانينا!</value>
+    </data>
+    <data name="debriefing.congrats.title" xml:space="preserve">
+        <value>لقد حملت محادثة!</value>
+    </data>
+    <data name="debriefing.congrats.body" xml:space="preserve">
+        <value>شكرا لكم لتبادل الخبرات  - تم تحميل التسجيل على  موقع  Gabber في {0}. قم بزيارة الموقع للاستماع إلى محادثات أخرى تم تحميلها من أعضاء اخرين </value>
+    </data>
+    <data name="debriefing.consent.title" xml:space="preserve">
+        <value>تغيير موافقتك</value>
+    </data>
+    <data name="debriefing.consent.body1" xml:space="preserve">
+        <value>لمدة 24 ساعة القادمة، متاح فقط للمشاركين في المحادثة.</value>
+    </data>
+    <data name="debriefing.consent.body2" xml:space="preserve">
+        <value>إذا أراد أي شخص مشارك بالمحادثة تغيير موافقتهم حول من يمكنه الاستماع  إلى التسجيل،  يمكنهم ذلك .</value>
+    </data>
+    <data name="debriefing.consent.body3" xml:space="preserve">
+        <value>سوف يتلق كل من شارك بالتسجيل بريد إلكتروني مع رابط لرؤية أو تغير موافقتكم . إن لم تجد هذا الرابط، ممكن أن البريد قد تم إرساله إلى ملّف ال  junk </value>
+    </data>
+    <data name="debriefing.finish.button" xml:space="preserve">
+        <value>فهمت، لا تظهر هذا مجدداً</value>
     </data>
 </root>
