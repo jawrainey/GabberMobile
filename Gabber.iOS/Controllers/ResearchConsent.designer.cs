@@ -32,10 +32,6 @@ namespace Gabber.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton ResearchConsentSubmit { get; set; }
 
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel ResearchConsentTitle { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
             if (MoreDetailsButton != null) {
@@ -61,11 +57,6 @@ namespace Gabber.iOS
             if (ResearchConsentSubmit != null) {
                 ResearchConsentSubmit.Dispose ();
                 ResearchConsentSubmit = null;
-            }
-
-            if (ResearchConsentTitle != null) {
-                ResearchConsentTitle.Dispose ();
-                ResearchConsentTitle = null;
             }
         }
     }

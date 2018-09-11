@@ -15,9 +15,7 @@ namespace Gabber.iOS
         {
             base.ViewDidLoad();
             Title = StringResources.consent_research_toolbar_title;
-
-            ResearchConsentTitle.Text = StringResources.consent_research_title;
-
+            
             int SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
             var SelectedProject = Queries.ProjectById(SelectedProjectID);
             var contentOh = Queries.ContentByLanguage(SelectedProject, Localize.GetCurrentCultureInfo());

@@ -26,11 +26,7 @@ namespace Gabber.iOS
         [Outlet]
         [GeneratedCode("iOS Designer", "1.0")]
         UIKit.UILabel ConversationDecisionDes { get; set; }
-
-        [Outlet]
-        [GeneratedCode("iOS Designer", "1.0")]
-        UIKit.UILabel ConversationDecisionTitle { get; set; }
-
+        
         [Outlet]
         UIKit.UIPickerView LanguagePicker { get; set; }
 
@@ -76,10 +72,9 @@ namespace Gabber.iOS
                 ConversationDecisionDes = null;
             }
 
-            if (ConversationDecisionTitle != null)
-            {
-                ConversationDecisionTitle.Dispose();
-                ConversationDecisionTitle = null;
+            if (TableViewHeight != null) {
+                TableViewHeight.Dispose ();
+                TableViewHeight = null;
             }
         }
     }

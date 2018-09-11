@@ -35,7 +35,6 @@ namespace Gabber.iOS
             var SelectedProject = Queries.ProjectById(SelectedProjectID);
             var content = Queries.ContentByLanguage(SelectedProject, Localize.GetCurrentCultureInfo());
 
-            ConversationDecisionTitle.Text = StringResources.consent_gabber_title_decision;
             ConversationDecisionDes.Text = string.Format(StringResources.consent_gabber_body_decision, Config.PRINT_URL);
             ChooseLanguageTitle.Text = StringResources.conversation_language_prompt;
 
