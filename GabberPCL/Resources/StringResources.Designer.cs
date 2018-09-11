@@ -653,21 +653,33 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string participants_ui_dialog_add_title {
+        public static string participants_ui_add_title {
             get {
-                return ResourceManager.GetString("participants.ui.dialog.add.title", resourceCulture);
+                return ResourceManager.GetString("participants.ui.add.title", resourceCulture);
             }
         }
         
-        public static string participants_ui_dialog_add_positive {
+        public static string participants_ui_add_positive {
             get {
-                return ResourceManager.GetString("participants.ui.dialog.add.positive", resourceCulture);
+                return ResourceManager.GetString("participants.ui.add.positive", resourceCulture);
             }
         }
         
-        public static string participants_ui_dialog_add_negative {
+        public static string participants_ui_add_society_default {
             get {
-                return ResourceManager.GetString("participants.ui.dialog.add.negative", resourceCulture);
+                return ResourceManager.GetString("participants.ui.add.society.default", resourceCulture);
+            }
+        }
+        
+        public static string participants_ui_add_role_default {
+            get {
+                return ResourceManager.GetString("participants.ui.add.role.default", resourceCulture);
+            }
+        }
+        
+        public static string participants_ui_add_email_error {
+            get {
+                return ResourceManager.GetString("participants.ui.add.email.error", resourceCulture);
             }
         }
         

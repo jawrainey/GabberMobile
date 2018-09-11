@@ -198,7 +198,7 @@
     <Compile Include="Adapters\ProjectsAdapter.cs" />
     <Compile Include="Adapters\TopicAdapter.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
-    <Compile Include="Activities\PreparationActivity.cs" />
+    <Compile Include="Activities\ChooseParticipantsActivity.cs" />
     <Compile Include="Activities\RecordStoryActivity.cs" />
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Helpers\DiskIO.cs" />
@@ -219,6 +219,7 @@
     <Compile Include="Helpers\Localise.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Activities\FirstDebriefActivity.cs" />
+    <Compile Include="Activities\AddParticipantActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
