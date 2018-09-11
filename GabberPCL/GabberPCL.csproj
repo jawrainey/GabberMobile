@@ -55,6 +55,9 @@
     <Compile Include="Models\PlatformCulture.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Models\Content.cs" />
+    <Compile Include="Models\IFRC_Society.cs" />
+    <Compile Include="IFRC_SocietiesManager.cs" />
+    <Compile Include="Models\Gender.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

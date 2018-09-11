@@ -94,6 +94,33 @@
     <data name="common.ui.forms.language.default" xml:space="preserve">
         <value>Spoken language</value>
     </data>
+    <data name="common.ui.forms.society.default" xml:space="preserve">
+        <value>Your national society</value>
+    </data>
+    <data name="common.ui.forms.society.error" xml:space="preserve">
+        <value>Please choose your National Society.</value>
+    </data>
+    <data name="common.ui.forms.gender.error" xml:space="preserve">
+        <value>Please specify a gender.</value>
+    </data>
+    <data name="common.ui.forms.gender.default" xml:space="preserve">
+        <value>Please select a gender</value>
+    </data>
+    <data name="common.ui.forms.gender.male" xml:space="preserve">
+        <value>Male</value>
+    </data>
+    <data name="common.ui.forms.gender.female" xml:space="preserve">
+        <value>Female</value>
+    </data>
+    <data name="common.ui.forms.gender.custom" xml:space="preserve">
+        <value>I'd Rather Specify</value>
+    </data>
+    <data name="common.ui.forms.gender.anon" xml:space="preserve">
+        <value>I'd Rather Not Say</value>
+    </data>
+    <data name="common.ui.forms.gender.custom.label" xml:space="preserve">
+        <value>Please Specify Gender</value>
+    </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
         <value>Welcome to Gabber</value>

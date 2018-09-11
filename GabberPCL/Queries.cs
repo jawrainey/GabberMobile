@@ -56,6 +56,23 @@ namespace GabberPCL
             return res;
         }
 
+        public static void AddSocieties(List<IFRC_Society> socs)
+        {
+            // Resync database when data pulled from the server.
+            Session.Connection.DeleteAll<IFRC_Society>();
+
+            foreach (IFRC_Society soc in socs)
+            {
+                Session.Connection.Insert(soc);
+            }
+        }
+
+        public static List<IFRC_Society> AllSocieties()
+        {
+            return Session.Connection.GetAllWithChildren<IFRC_Society>()
+                          .OrderBy(soc => soc.Name).ToList();
+        }
+
         public static void AddLanguages(List<LanguageChoice> languages)
         {
             // Resync database when data pulled from the server.

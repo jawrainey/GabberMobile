@@ -203,6 +203,60 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string common_ui_forms_society_default {
+            get {
+                return ResourceManager.GetString("common.ui.forms.society.default", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_society_error {
+            get {
+                return ResourceManager.GetString("common.ui.forms.society.error", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_gender_error {
+            get {
+                return ResourceManager.GetString("common.ui.forms.gender.error", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_gender_default {
+            get {
+                return ResourceManager.GetString("common.ui.forms.gender.default", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_gender_male {
+            get {
+                return ResourceManager.GetString("common.ui.forms.gender.male", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_gender_female {
+            get {
+                return ResourceManager.GetString("common.ui.forms.gender.female", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_gender_custom {
+            get {
+                return ResourceManager.GetString("common.ui.forms.gender.custom", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_gender_anon {
+            get {
+                return ResourceManager.GetString("common.ui.forms.gender.anon", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_gender_custom_label {
+            get {
+                return ResourceManager.GetString("common.ui.forms.gender.custom.label", resourceCulture);
+            }
+        }
+        
         public static string onboarding_ui_page_zero_title {
             get {
                 return ResourceManager.GetString("onboarding.ui.page.zero.title", resourceCulture);

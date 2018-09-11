@@ -134,7 +134,7 @@ namespace GabberPCL
             return _response;
         }
 
-        public static async Task<CustomAuthResponse> Register(string fullname, string email, string password, int lang)
+        public static async Task<CustomAuthResponse> Register(string fullname, string email, string password, int lang, int society, Gender gender)
         {
             var _response = new CustomAuthResponse
             {
@@ -144,7 +144,7 @@ namespace GabberPCL
 
             try
             {
-                var payload = JsonConvert.SerializeObject(new { fullname, email, password, lang });
+                var payload = JsonConvert.SerializeObject(new { fullname, email, password, lang, society, gender });
                 var _content = new StringContent(payload, Encoding.UTF8, "application/json");
 
                 var response = await Client.PostAsync("api/auth/register/", _content);
@@ -281,6 +281,23 @@ namespace GabberPCL
             }
 
             return new List<Project>();
+        }
+
+        // TODO
+        public static async Task<List<IFRC_Society>> GetSocieties(Action<string> errorCallback)
+        {
+            return new List<IFRC_Society>()
+            {
+                new IFRC_Society {
+                    Id = 0,
+                    Name = "Self Preservation Society"
+                },
+                new IFRC_Society {
+                    Id = 1,
+                    Name = "Newcastle University Rock Soc"
+                },
+
+            };
         }
 
         public static async Task<List<LanguageChoice>> GetLanguages(Action<string> errorCallback)
