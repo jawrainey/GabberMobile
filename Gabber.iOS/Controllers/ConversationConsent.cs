@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using UIKit;
 using System.Linq;
 using Gabber.iOS.Helpers;
+using GabberPCL.Interfaces;
 
 namespace Gabber.iOS
 {
@@ -22,7 +23,7 @@ namespace Gabber.iOS
     {
         // The type of consent participants have chosen
         private string ConsentType;
-        private LanguagePickerViewModel pickerModel;
+        private ProfileOptionPickerViewModel pickerModel;
 
         public ConversationConsent(IntPtr handle) : base(handle) { }
 
@@ -97,7 +98,7 @@ namespace Gabber.iOS
             ConversationConsentSubmit.TouchUpInside += delegate
             {
                 NSUserDefaults.StandardUserDefaults.SetString(ConsentType, "SESSION_CONSENT");
-                NSUserDefaults.StandardUserDefaults.SetInt(pickerModel.GetChoice(LanguagePicker).Id, "SESSION_LANG");
+                NSUserDefaults.StandardUserDefaults.SetInt(pickerModel.GetChoice(LanguagePicker).GetId(), "SESSION_LANG");
             };
 
             LoadLanguages();
@@ -105,17 +106,19 @@ namespace Gabber.iOS
 
         private async void LoadLanguages()
         {
-            List<LanguageChoice> languages = await LanguagesManager.GetLanguageChoices();
+            IEnumerable<LanguageChoice> languages = await LanguagesManager.GetLanguageChoices();
 
-            if (languages != null && languages.Count > 0)
+            if (languages != null)
             {
-                pickerModel = new LanguagePickerViewModel(languages, PickerSelected);
+                pickerModel = new ProfileOptionPickerViewModel((List<IProfileOption>)languages,
+                                                               StringResources.common_ui_forms_language_default,
+                                                               PickerSelected);
                 LanguagePicker.Model = pickerModel;
                 pickerModel.SelectById(LanguagePicker, Session.ActiveUser.Lang);
             }
         }
 
-        private void PickerSelected(LanguageChoice choice)
+        private void PickerSelected(IProfileOption choice)
         {
             CheckSubmitEnabled();
         }

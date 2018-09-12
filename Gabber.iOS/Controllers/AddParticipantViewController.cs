@@ -14,7 +14,7 @@ namespace Gabber.iOS
         // Only want to create one Dialog to reuse it.
         UIAlertController ErrorDialog;
 
-        public AddParticipantViewController (IntPtr handle) : base (handle) {}
+        public AddParticipantViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {
@@ -23,10 +23,10 @@ namespace Gabber.iOS
             AddNewParticipant.Layer.BorderWidth = 1.0f;
             AddNewParticipant.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
 
-            NavigationItem.Title = StringResources.participants_ui_dialog_add_title;
+            NavigationItem.Title = StringResources.participants_ui_add_title;
             ParticipantName.Placeholder = StringResources.register_ui_fullname_label;
             ParticipantEmail.Placeholder = StringResources.common_ui_forms_email_label;
-            AddNewParticipant.SetTitle(StringResources.participants_ui_dialog_add_positive, UIControlState.Normal);
+            AddNewParticipant.SetTitle(StringResources.participants_ui_add_positive, UIControlState.Normal);
 
             ParticipantName.ShouldReturn += NavigateNext;
             ParticipantEmail.ShouldReturn += NavigateNext;

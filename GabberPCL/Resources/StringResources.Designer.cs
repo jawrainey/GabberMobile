@@ -191,6 +191,18 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string common_ui_forms_age {
+            get {
+                return ResourceManager.GetString("common.ui.forms.age", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_age_error {
+            get {
+                return ResourceManager.GetString("common.ui.forms.age.error", resourceCulture);
+            }
+        }
+        
         public static string common_ui_forms_language_error {
             get {
                 return ResourceManager.GetString("common.ui.forms.language.error", resourceCulture);
@@ -296,6 +308,12 @@ namespace GabberPCL.Resources {
         public static string common_ui_forms_role_external {
             get {
                 return ResourceManager.GetString("common.ui.forms.role.external", resourceCulture);
+            }
+        }
+        
+        public static string common_ui_forms_done {
+            get {
+                return ResourceManager.GetString("common.ui.forms.done", resourceCulture);
             }
         }
         

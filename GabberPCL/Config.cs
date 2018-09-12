@@ -9,7 +9,7 @@
         public static string ABOUT_URL = WEB_URL + "/about/";
         public static string ABOUT_DATA_PAGE = WEB_URL + "/research";
 
-        public static string API_ENDPOINT = "https://df096112.ngrok.io";//"https://api." + BASE_URL;
+        public static string API_ENDPOINT = "https://c47f0a55.ngrok.io/";//"https://api." + BASE_URL;
 
         public static string DATABASE_NAME = "gabber.db3";
     }

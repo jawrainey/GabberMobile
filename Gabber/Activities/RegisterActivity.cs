@@ -107,112 +107,16 @@ namespace Gabber
             RelativeLayout loadingLayout = FindViewById<RelativeLayout>(Resource.Id.loadingLayout);
             loadingLayout.Visibility = ViewStates.Visible;
 
-            if (languageChoices == null || languageChoices.Count == 0)
-            {
-                languageChoices = await LanguagesManager.GetLanguageChoices();
-            }
-
             if (socChoices == null || socChoices.Count == 0)
             {
                 socChoices = await IFRC_SocietiesManager.GetSocieties();
             }
 
-            if (genderChoices == null || genderChoices.Count == 0)
-            {
-                genderChoices = new List<Gender>
-                {
-                    new Gender
-                    {
-                        LocalisedName = StringResources.common_ui_forms_gender_default
-                    },
-                    new Gender
-                    {
-                        Enum = Gender.GenderEnum.Female,
-                        LocalisedName = StringResources.common_ui_forms_gender_female
-                    },
-                    new Gender
-                    {
-                        Enum = Gender.GenderEnum.Male,
-                        LocalisedName = StringResources.common_ui_forms_gender_male
-                    },
-                    new Gender
-                    {
-                        Enum = Gender.GenderEnum.Custom,
-                        LocalisedName = StringResources.common_ui_forms_gender_custom
-                    },
-                    new Gender
-                    {
-                        Enum = Gender.GenderEnum.NotSpecified,
-                        LocalisedName = StringResources.common_ui_forms_gender_anon
-                    }
-                };
-            }
+            genderChoices = Gender.GetOptions();
+            ageChoices = AgeRange.GetOptions();
+            roleChoices = IFRC_Role.GetOptions();
 
-            if (ageChoices == null)
-            {
-                ageChoices = new List<AgeRange>
-                {
-                    new AgeRange
-                    {
-                        Enum = AgeRange.GenderEnum.H21,
-                        DisplayName = "< 21"
-                    },
-                    new AgeRange
-                    {
-                        Enum = AgeRange.GenderEnum.L21H30,
-                        DisplayName = "21 - 30"
-                    },
-                    new AgeRange
-                    {
-                        Enum = AgeRange.GenderEnum.L31H40,
-                        DisplayName = "31 - 40"
-                    },
-                    new AgeRange
-                    {
-                        Enum = AgeRange.GenderEnum.L41,
-                        DisplayName = "41+"
-                    }
-                };
-            }
-
-            if (roleChoices == null)
-            {
-                roleChoices = new List<IFRC_Role>
-                {
-                    new IFRC_Role
-                    {
-                        LocalisedName = StringResources.common_ui_forms_role_default
-                    },
-                    new IFRC_Role
-                    {
-                        LocalisedName = StringResources.common_ui_forms_role_volunteer,
-                        Enum = IFRC_Role.RoleEnum.Volunteer
-                    },
-                    new IFRC_Role
-                    {
-                        LocalisedName = StringResources.common_ui_forms_role_intern,
-                        Enum = IFRC_Role.RoleEnum.Intern
-                    },
-                    new IFRC_Role
-                    {
-                        LocalisedName = StringResources.common_ui_forms_role_staff,
-                        Enum = IFRC_Role.RoleEnum.Staff
-                    },
-                    new IFRC_Role
-                    {
-                        LocalisedName = StringResources.common_ui_forms_role_leadership,
-                        Enum = IFRC_Role.RoleEnum.Leadership
-                    },
-                    new IFRC_Role
-                    {
-                        LocalisedName = StringResources.common_ui_forms_role_external,
-                        Enum = IFRC_Role.RoleEnum.External
-                    },
-                };
-            }
-
-            if (languageChoices == null || languageChoices.Count == 0 ||
-                socChoices == null || socChoices.Count == 0)
+            if (socChoices == null || socChoices.Count == 0)
             {
                 new Android.Support.V7.App.AlertDialog.Builder(this)
                     .SetTitle(StringResources.common_comms_error)
@@ -227,9 +131,6 @@ namespace Gabber
             else
             {
                 loadingLayout.Visibility = ViewStates.Gone;
-
-                List<string> langNames = languageChoices.Select(lang => lang.Endonym).ToList();
-                langNames.Insert(0, StringResources.common_ui_forms_language_default);
 
                 List<string> socNames = socChoices.Select(soc => soc.Name).ToList();
                 socNames.Insert(0, StringResources.common_ui_forms_society_default);

@@ -88,6 +88,12 @@
     <data name="common.ui.forms.password.validate.mismatch" xml:space="preserve">
         <value>Entered passwords don't match</value>
     </data>
+    <data name="common.ui.forms.age" xml:space="preserve">
+        <value>Age group</value>
+    </data>
+    <data name="common.ui.forms.age.error" xml:space="preserve">
+        <value>Please select an age group</value>
+    </data>
     <data name="common.ui.forms.language.error" xml:space="preserve">
         <value>Please choose a preferred spoken language.</value>
     </data>
@@ -95,7 +101,7 @@
         <value>Spoken language</value>
     </data>
     <data name="common.ui.forms.society.default" xml:space="preserve">
-        <value>Your national society</value>
+        <value>National society</value>
     </data>
     <data name="common.ui.forms.society.error" xml:space="preserve">
         <value>Please choose a National Society.</value>
@@ -125,7 +131,7 @@
         <value>Please select a role within the Red Cross Red Crescent.</value>
     </data>
     <data name="common.ui.forms.role.default" xml:space="preserve">
-        <value>Your Role in the Red Cross</value>
+        <value>Role in the Red Cross Red Crescent</value>
     </data>
     <data name="common.ui.forms.role.volunteer" xml:space="preserve">
         <value>Volunteer</value>
@@ -141,6 +147,9 @@
     </data>
     <data name="common.ui.forms.role.external" xml:space="preserve">
         <value>External</value>
+    </data>
+    <data name="common.ui.forms.done" xml:space="preserve">
+        <value>Done</value>
     </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
@@ -221,7 +230,7 @@
     </data>
     <!-- USER REGISTER SCREEN: UI errors -->
     <data name="register.ui.fullname.validate.empty" xml:space="preserve">
-        <value>Your fullname is empty</value>
+        <value>Please enter a name</value>
     </data>
     <!-- REGISTER VERIFICATION PAGE -->
     <data name="register.verify.ui.page.title" xml:space="preserve">
@@ -349,10 +358,10 @@
         <value>Add Participant</value>
     </data>
     <data name="participants.ui.add.society.default" xml:space="preserve">
-        <value>Their national society</value>
+        <value>National society</value>
     </data>
     <data name="participants.ui.add.role.default" xml:space="preserve">
-        <value>Their role in the red cross</value>
+        <value>Role in the red cross</value>
     </data>
     <data name="participants.ui.add.email.error" xml:space="preserve">
         <value>A participant with this email already exists!</value>
