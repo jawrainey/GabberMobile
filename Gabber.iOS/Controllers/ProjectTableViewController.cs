@@ -59,9 +59,8 @@ namespace Gabber.iOS
             Queries.SaveActiveUser();
 
             var languages = SupportedLanguages.FirstOrDefault((lang) => lang.Id == Session.ActiveUser.AppLang);
-
-
             StringResources.Culture = new CultureInfo(languages.Code);
+            Localize.SetLayoutDirectionByPreference();
 
             SetStringResources();
 
