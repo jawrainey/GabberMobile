@@ -56,6 +56,7 @@ namespace Gabber
         {
             firebaseAnalytics = FirebaseAnalytics.GetInstance(ApplicationContext);
             base.OnCreate(savedInstanceState);
+            Localise.SetLayoutDirectionByPreference(this);
             SetContentView(Resource.Layout.record);
 
             SupportActionBar.Title = StringResources.recording_ui_title;

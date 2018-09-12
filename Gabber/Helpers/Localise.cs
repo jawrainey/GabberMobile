@@ -1,11 +1,11 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Threading;
 using GabberPCL.Models;
-using GabberPCL.Interfaces;
 using GabberPCL.Resources;
 using System.Linq;
 using GabberPCL;
+using Android.App;
+using Android.Views;
 
 namespace Gabber.Helpers
 {
@@ -15,6 +15,18 @@ namespace Gabber.Helpers
         {
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
+        }
+
+        public static void SetLayoutDirectionByPreference(Activity activity)
+        {
+            var found = Queries.AllLanguages().Find((lang) => lang.Id == Session.ActiveUser.AppLang);
+            activity.Window.DecorView.LayoutDirection = found.Code == "ar" ? LayoutDirection.Rtl : LayoutDirection.Ltr;
+        }
+
+        public static void SetLayoutDirectionByCulture(Activity activity)
+        {
+            var isArabic = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? LayoutDirection.Rtl : LayoutDirection.Ltr;
+            activity.Window.DecorView.LayoutDirection = isArabic;
         }
 
         public static Content ContentByLanguage(Project project)

@@ -1,6 +1,7 @@
 ﻿using Android.OS;
 using Android.Support.V7.App;
 using Android.Support.V7.Preferences;
+using Android.Views;
 using Gabber.Helpers;
 using GabberPCL;
 using GabberPCL.Models;
@@ -76,6 +77,7 @@ namespace Gabber.Fragments
                 FindPreference("logOutPref").Title = StringResources.settings_logout;
                 ((MainActivity)Activity).RefreshFragments();
                 ((MainActivity)Activity).LoadNavigationTitles();
+                Localise.SetLayoutDirectionByPreference(this.Activity);
             }
         }
 

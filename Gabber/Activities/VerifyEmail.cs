@@ -9,6 +9,7 @@ using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Firebase.Analytics;
+using Gabber.Helpers;
 using GabberPCL;
 using GabberPCL.Resources;
 using Newtonsoft.Json;
@@ -32,6 +33,7 @@ namespace Gabber.Activities
 			firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
 
             base.OnCreate(savedInstanceState);
+            Localise.SetLayoutDirectionByCulture(this);
             SetContentView(Resource.Layout.register_verification_res);
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);

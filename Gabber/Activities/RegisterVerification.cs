@@ -20,6 +20,7 @@ namespace Gabber.Activities
 			firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
 
             base.OnCreate(savedInstanceState);
+            Helpers.Localise.SetLayoutDirectionByCulture(this);
             SetContentView(Resource.Layout.register_verification);
             FindViewById<TextView>(Resource.Id.verifyTitle).Text = StringResources.register_verify_ui_page_title;
             var email = Intent.GetStringExtra("EMAIL_USED_TO_REGISTER");

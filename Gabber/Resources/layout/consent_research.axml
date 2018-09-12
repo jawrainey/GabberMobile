@@ -18,8 +18,8 @@
             <TextView
                 android:id="@+id/researchConsentTitle"
                 android:layout_marginTop="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="12dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -32,8 +32,8 @@
                 android:id="@+id/researchConsentDesc"
                 android:textSize="14dp"
                 android:lineSpacingExtra="3dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
                 android:layout_marginBottom="24dp"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -42,8 +42,8 @@
                 android:id="@+id/consentInfoButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/custom_button"
                 android:text="PLACEHOLDER TEXT" />
@@ -72,7 +72,7 @@
                 android:layout_weight="9" />
             <TextView
                 android:id="@+id/researchConsentForm"
-                android:paddingLeft="12dp"
+                android:paddingStart="12dp"
                 android:textColor="@android:color/black"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -86,8 +86,8 @@
             android:id="@+id/researchConsentSubmit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/custom_button"
             android:text="PLACEHOLDER TEXT" />

@@ -9,6 +9,7 @@ using GabberPCL.Resources;
 using Android.Support.V7.Widget;
 using Android.Content;
 using Android.Preferences;
+using Gabber.Helpers;
 
 namespace Gabber.Activities
 {
@@ -18,6 +19,7 @@ namespace Gabber.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Localise.SetLayoutDirectionByPreference(this);
             SetContentView(Resource.Layout.FirstDebriefActivity);
             SupportActionBar.Title = StringResources.debriefing_activity_title;
 

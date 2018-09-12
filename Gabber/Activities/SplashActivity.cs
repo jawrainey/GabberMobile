@@ -1,6 +1,8 @@
-﻿using Android.App;
+﻿using System.Globalization;
+using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Views;
 using Firebase;
 using Firebase.Analytics;
 using Gabber.Helpers;
@@ -16,6 +18,7 @@ namespace Gabber.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Localise.SetLayoutDirectionByCulture(this);
             Init();
         }
 

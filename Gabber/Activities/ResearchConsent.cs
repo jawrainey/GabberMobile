@@ -19,6 +19,7 @@ namespace Gabber.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Localise.SetLayoutDirectionByPreference(this);
             SetContentView(Resource.Layout.consent_research);
 
             SupportActionBar.Title = StringResources.consent_research_toolbar_title;

@@ -40,8 +40,8 @@
                 android:id="@+id/GabberConsentDecisionTitle"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="12dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -52,14 +52,14 @@
                 android:id="@+id/GabberConsentDecisionDesc"
                 android:textSize="14dp"
                 android:lineSpacingExtra="3dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent" />
             <RadioGroup
                 android:id="@+id/GabberConsentProvided"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="12dp"
                 android:layout_marginTop="12dp"
                 android:layout_width="fill_parent"
@@ -78,11 +78,11 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:textColor="@android:color/black"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
                     android:layout_marginBottom="12dp"
                     android:layout_marginTop="6dp"
-                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
                     android:textSize="14dp" />
                 <RadioButton
                     android:id="@+id/GabberConsentTypeMembers"
@@ -97,11 +97,11 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:textColor="@android:color/black"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
                     android:layout_marginBottom="12dp"
                     android:layout_marginTop="6dp"
-                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
                     android:textSize="14dp" />
                 <RadioButton
                     android:id="@+id/GabberConsentTypePrivate"
@@ -116,11 +116,11 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:textColor="@android:color/black"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
                     android:layout_marginBottom="12dp"
                     android:layout_marginTop="6dp"
-                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
                     android:textSize="14dp" />
             </RadioGroup>
             <View
@@ -131,8 +131,8 @@
                 android:id="@+id/chooseLanguageTitle"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -141,8 +141,8 @@
                 android:layout_width="match_parent" />
             <Spinner
                 android:id="@+id/chooseLanguageSpinner"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:layout_height="45dp"
                 android:layout_width="match_parent" />
             <android.support.v7.widget.AppCompatButton
@@ -152,8 +152,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:background="@drawable/custom_button" />
         </LinearLayout>
     </ScrollView>
