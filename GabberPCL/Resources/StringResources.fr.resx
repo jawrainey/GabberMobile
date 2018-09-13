@@ -153,12 +153,12 @@
     </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
-        <value>Bienvenue à Gabber </value>
+        <value>Bienvenue à TalkFutures</value>
     </data>
     <data name="onboarding.ui.page.zero.content" xml:space="preserve">
-        <value>Gabber utilise des rubriques pour structurer et capturer des conversations audio, qui sont utilisées sur le site Web pour représenter qui était présent et ce qui a été discuté.
+        <value>TalkFutures utilise des rubriques pour structurer et capturer des conversations audio, qui sont utilisées sur le site Web pour représenter qui était présent et ce qui a été discuté.
 
-    Les écrans suivants expliquent chaque étape pour créer une conversation en utilisant Gabber.</value>
+    Les écrans suivants expliquent chaque étape pour créer une conversation en utilisant TalkFutures.</value>
     </data>
     <!-- ONBOARDING PAGE: 1 -->
     <data name="onboarding.ui.page.first.title" xml:space="preserve">
@@ -203,7 +203,7 @@
     </data>
     <!-- USER LOGIN SCREEN: UI -->
     <data name="login.ui.title" xml:space="preserve">
-        <value>Connectez-vous à gabber</value>
+        <value>Connectez-vous à TalkFutures</value>
     </data>
     <data name="login.ui.submit.button" xml:space="preserve">
         <value>Login</value>
@@ -217,13 +217,13 @@
     </data>
     <!-- USER REGISTER SCREEN: UI -->
     <data name="register.ui.title" xml:space="preserve">
-        <value>Créer un compte sur Gabber</value>
+        <value>Créer un compte sur TalkFutures</value>
     </data>
     <data name="register.ui.fullname.label" xml:space="preserve">
         <value>Nom Complet</value>
     </data>
     <data name="register.ui.terms.label" xml:space="preserve">
-        <value>&lt;i&gt;En continuant à utiliser Gabber, vous acceptez nos &lt;a href={0}/terms&gt;conditions d'utilisation&lt;/a&gt; et notre &lt;a href={0}/privacy&gt;politique de confidentialité&lt;/a&gt;&lt;/i&gt;</value>
+        <value>&lt;i&gt;En continuant à utiliser TalkFutures, vous acceptez nos &lt;a href={0}/terms&gt;conditions d'utilisation&lt;/a&gt; et notre &lt;a href={0}/privacy&gt;politique de confidentialité&lt;/a&gt;&lt;/i&gt;</value>
     </data>
     <data name="register.ui.submit.button" xml:space="preserve">
         <value>Enregistrer</value>
@@ -237,7 +237,7 @@
         <value>Vérification de l'adresse email</value>
     </data>
     <data name="register.verify.ui.page.content" xml:space="preserve">
-        <value>Veuillez confirmer votre adresse e-mail ({0}) en appuyant sur le bouton dans l'e-mail de confirmation que nous vous avons envoyé. Cela va ouvrir l'application Gabber et vous connecter automatiquement.</value>
+        <value>Veuillez confirmer votre adresse e-mail ({0}) en appuyant sur le bouton dans l'e-mail de confirmation que nous vous avons envoyé. Cela va ouvrir l'application TalkFutures et vous connecter automatiquement.</value>
     </data>
     <data name="register.verify.ui.page.subcontent" xml:space="preserve">
         <value>Si vous avez vérifié votre adresse e-mail via le site Web, veuillez vous connecter manuellement à l'application.</value>
@@ -247,8 +247,8 @@
     </data>
     <!-- REGISTER VERIFYING EMAIL PAGE -->
     <data name="register.verifying.activity.label" xml:space="preserve">
-        <value>Gabber pour vérifier l'email</value>
-        <comment>Appears in Android application list when a button is clicked for a gabber url, i.e. in an email.</comment>
+        <value>TalkFutures pour vérifier l'email</value>
+        <comment>Appears in Android application list when a button is clicked for a TalkFutures url, i.e. in an email.</comment>
     </data>
     <data name="register.verifying.ui.page.title" xml:space="preserve">
         <value>Vérification de l'adresse email en cours</value>
@@ -313,13 +313,13 @@
     </data>
     <!-- ABOUT FRAGMENT -->
     <data name="about.ui.title" xml:space="preserve">
-        <value>Qu'est-ce que Gabber?</value>
+        <value>Qu'est-ce que TalkFutures?</value>
     </data>
     <data name="about.ui.content" xml:space="preserve">
-        <value>Gabber utilise des rubriques pour structurer et capturer des conversations audio, qui sont utilisées sur le site Web pour représenter qui était présent et ce qui a été discuté.</value>
+        <value>TalkFutures utilise des rubriques pour structurer et capturer des conversations audio, qui sont utilisées sur le site Web pour représenter qui était présent et ce qui a été discuté.</value>
     </data>
     <data name="about.ui.url.description" xml:space="preserve">
-        <value>Ecouter les enregistrements sur Gabber:</value>
+        <value>Ecouter les enregistrements sur TalkFutures:</value>
     </data>
     <!-- PARTICIPANTS SCREEN -->
     <data name="participants.ui.title" xml:space="preserve">
@@ -455,7 +455,7 @@
         <value>Permission Requise</value>
     </data>
     <data name="recording.ui.permission.body" xml:space="preserve">
-        <value>Accés au microphone est requis pour utiliser Gabber</value>
+        <value>Accés au microphone est requis pour utiliser TalkFutures</value>
     </data>
     <data name="recording.ui.permission.button.negative" xml:space="preserve">
         <value>Annuler</value>
@@ -494,7 +494,7 @@
         <value>Vous avez téléchargé une conversation!</value>
     </data>
     <data name="debriefing.congrats.body" xml:space="preserve">
-        <value>Merci d'avoir partagé vos expériences - l'enregistrement a été téléchargé sur le site Web de Gabber à l'adresse {0}. Pourquoi ne pas lui rendre visite et voir ce que les autres ont téléchargé?</value>
+        <value>Merci d'avoir partagé vos expériences - l'enregistrement a été téléchargé sur le site Web de TalkFutures à l'adresse {0}. Pourquoi ne pas lui rendre visite et voir ce que les autres ont téléchargé?</value>
     </data>
     <data name="debriefing.consent.title" xml:space="preserve">
         <value>Changer votre consentement</value>

@@ -106,12 +106,12 @@
     </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
-        <value>Benvenuti su Gabber</value>
+        <value>Benvenuti su TalkFutures</value>
     </data>
     <data name="onboarding.ui.page.zero.content" xml:space="preserve">
-        <value>Gabber utilizza argomenti per strutturare e acquisire conversazioni audio che vengono utilizzate sul sito Web per rappresentare chi era presente e ciò che è stato discusso.
+        <value>TalkFutures utilizza argomenti per strutturare e acquisire conversazioni audio che vengono utilizzate sul sito Web per rappresentare chi era presente e ciò che è stato discusso.
 
-        Le schermate successive spiegano ogni passaggio per creare una conversazione usando Gabber.</value>
+        Le schermate successive spiegano ogni passaggio per creare una conversazione usando TalkFutures.</value>
     </data>
     <!-- ONBOARDING PAGE: 1 -->
     <data name="onboarding.ui.page.first.title" xml:space="preserve">
@@ -156,7 +156,7 @@
     </data>
     <!-- USER LOGIN SCREEN: UI -->
     <data name="login.ui.title" xml:space="preserve">
-        <value>Accedi a Gabber</value>
+        <value>Accedi a TalkFutures</value>
     </data>
     <data name="login.ui.submit.button" xml:space="preserve">
         <value>Accedi</value>
@@ -170,13 +170,13 @@
     </data>
     <!-- USER REGISTER SCREEN: UI -->
     <data name="register.ui.title" xml:space="preserve">
-        <value>Crea un account Gabber</value>
+        <value>Crea un account TalkFutures</value>
     </data>
     <data name="register.ui.fullname.label" xml:space="preserve">
         <value>Nome e cognome</value>
     </data>
     <data name="register.ui.terms.label" xml:space="preserve">
-        <value>&lt;i&gt;Continuando a utilizzare Gabber, accetti i nostri &lt;a href={0}/terms&gt;Termini D'uso&lt;/a&gt; e &lt;a href={0}/privacy&gt;L'Informativa Sulla Privacy&lt;/a&gt;&lt;/i&gt;</value>
+        <value>&lt;i&gt;Continuando a utilizzare TalkFutures, accetti i nostri &lt;a href={0}/terms&gt;Termini D'uso&lt;/a&gt; e &lt;a href={0}/privacy&gt;L'Informativa Sulla Privacy&lt;/a&gt;&lt;/i&gt;</value>
     </data>
     <data name="register.ui.submit.button" xml:space="preserve">
         <value>Registrati</value>
@@ -200,8 +200,8 @@
     </data>
     <!-- REGISTER VERIFYING EMAIL PAGE -->
     <data name="register.verifying.activity.label" xml:space="preserve">
-        <value>Gabber per verificare la email</value>
-        <comment>Appears in Android application list when a button is clicked for a gabber url, i.e. in an email.</comment>
+        <value>TalkFutures per verificare la email</value>
+        <comment>Appears in Android application list when a button is clicked for a TalkFutures url, i.e. in an email.</comment>
     </data>
     <data name="register.verifying.ui.page.title" xml:space="preserve">
         <value>Stiamo verificando la email</value>
@@ -266,13 +266,13 @@
     </data>
     <!-- ABOUT FRAGMENT -->
     <data name="about.ui.title" xml:space="preserve">
-        <value>Che cosa è Gabber?</value>
+        <value>Che cosa è TalkFutures?</value>
     </data>
     <data name="about.ui.content" xml:space="preserve">
-        <value>Gabber utilizza argomenti per strutturare e acquisire conversazioni audio, che vengono utilizzate sul sito Web per rappresentare chi era presente e ciò che è stato discusso</value>
+        <value>TalkFutures utilizza argomenti per strutturare e acquisire conversazioni audio, che vengono utilizzate sul sito Web per rappresentare chi era presente e ciò che è stato discusso</value>
     </data>
     <data name="about.ui.url.description" xml:space="preserve">
-        <value>Ascolta le registrazioni di Gabber:</value>
+        <value>Ascolta le registrazioni di TalkFutures:</value>
     </data>
     <!-- PARTICIPANTS SCREEN -->
     <data name="participants.ui.title" xml:space="preserve">
@@ -349,7 +349,7 @@
         <value>Come puoi controllare i dati che acquisisci</value>
     </data>
     <data name="consent.gabber.body.control" xml:space="preserve">
-        <value>Gabber ti fornisce il controllo su come desideri utilizzare la vostra conversazione audio e su chi vuoi che sia in grado di ascoltare e commentare su di essa. Gabber funziona al meglio quando le altre persone possono accedere, ascoltare e imparare dalle esperienze registrate.
+        <value>TalkFutures ti fornisce il controllo su come desideri utilizzare la vostra conversazione audio e su chi vuoi che sia in grado di ascoltare e commentare su di essa. TalkFutures funziona al meglio quando le altre persone possono accedere, ascoltare e imparare dalle esperienze registrate.
 
 Tutti i partecipanti riceveranno una mail con un link unico alla conversazione audio, in cui è possibile visualizzare o modificare il proprio consenso su chi può accedere alla registrazione. Questa email potrebbe essere nella cartella &lt;b&gt;SPAM/INDESIDERATA &lt;/b&gt;.
 &lt;br&gt;
@@ -371,7 +371,7 @@ Essendo parte di questa conversazione diventerai anche un membro del progetto e 
         <value>La tua registrazione diventerà pubblica e chiunque potrà scoprirla e ascoltarla, compreso te stesso, gli altri partecipanti, e membri del progetto.</value>
     </data>
     <data name="consent.gabber.consent.type.public.brief" xml:space="preserve">
-        <value>Chiunque visiti Gabber</value>
+        <value>Chiunque visiti TalkFutures</value>
     </data>
     <!-- Gabber CONSENT Members -->
     <data name="consent.gabber.consent.type.members.full" xml:space="preserve">
@@ -442,7 +442,7 @@ Essendo parte di questa conversazione diventerai anche un membro del progetto e 
         <value>Autorizzazione richiesta</value>
     </data>
     <data name="recording.ui.permission.body" xml:space="preserve">
-        <value>Per registrare un Gabber è richiesto l'accesso al microfono</value>
+        <value>Per registrare un TalkFutures è richiesto l'accesso al microfono</value>
     </data>
     <data name="recording.ui.permission.button.negative" xml:space="preserve">
         <value>Cancella</value>

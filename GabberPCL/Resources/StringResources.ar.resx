@@ -159,7 +159,7 @@
         <value>مرحبًا بكم في جابر</value>
     </data>
     <data name="onboarding.ui.page.zero.content" xml:space="preserve">
-        <value>تستخدم Gabber موضوعات لتكوين المحادثات الصوتية والتقاطها، والتي يتم استخدامها على الموقع الإلكتروني لتمثيل من كان حاضراً وما تمت مناقشته . توضح الشاشات التالية كل خطوة لإنشاء محادثة باستخدام Gabber.</value>
+        <value>تستخدم TalkFutures موضوعات لتكوين المحادثات الصوتية والتقاطها، والتي يتم استخدامها على الموقع الإلكتروني لتمثيل من كان حاضراً وما تمت مناقشته . توضح الشاشات التالية كل خطوة لإنشاء محادثة باستخدام TalkFutures.</value>
     </data>
     <!-- ONBOARDING PAGE: 1 -->
     <data name="onboarding.ui.page.first.title" xml:space="preserve">
@@ -204,7 +204,7 @@
     </data>
     <!-- USER LOGIN SCREEN: UI -->
     <data name="login.ui.title" xml:space="preserve">
-        <value>تسجيل الدخول إلى Gabber</value>
+        <value>تسجيل الدخول إلى TalkFutures</value>
     </data>
     <data name="login.ui.submit.button" xml:space="preserve">
         <value>تسجيل الدخول</value>
@@ -224,7 +224,7 @@
         <value>الاسم الكامل</value>
     </data>
     <data name="register.ui.terms.label" xml:space="preserve">
-        <value>&lt;i&gt;من خلال الاستمرار في استخدام Gabber ، فإنك توافق على &lt;a href={0}/terms&gt;شروط الاستخدام&lt;/a&gt; &amp; &lt;a href={0}/privacy&gt;وسياسة الخصوصية&lt;/a&gt; الخاصة بنا&lt;/i&gt;</value>
+        <value>&lt;i&gt;من خلال الاستمرار في استخدام TalkFutures ، فإنك توافق على &lt;a href={0}/terms&gt;شروط الاستخدام&lt;/a&gt; &amp; &lt;a href={0}/privacy&gt;وسياسة الخصوصية&lt;/a&gt; الخاصة بنا&lt;/i&gt;</value>
     </data>
     <data name="register.ui.submit.button" xml:space="preserve">
         <value>تسجيل</value>
@@ -238,7 +238,7 @@
         <value>تأكيد بواسطة البريد الالكتروني</value>
     </data>
     <data name="register.verify.ui.page.content" xml:space="preserve">
-        <value>يرجى تأكيد عنوان بريدك الإلكتروني ({0}) بالنقر على الزر الموجود في رسالة التأكيد التي أرسلناها إليك. سيؤدي ذلك إلى فتح تطبيق Gabber وتسجيل دخولك تلقائيًا.</value>
+        <value>يرجى تأكيد عنوان بريدك الإلكتروني ({0}) بالنقر على الزر الموجود في رسالة التأكيد التي أرسلناها إليك. سيؤدي ذلك إلى فتح تطبيق TalkFutures وتسجيل دخولك تلقائيًا.</value>
     </data>
     <data name="register.verify.ui.page.subcontent" xml:space="preserve">
         <value>إذا كنت قد تحققت من عنوان بريدك الإلكتروني من خلال موقع الويب ، فيرجى تسجيل الدخول يدويًا إلى التطبيق.</value>
@@ -249,7 +249,7 @@
     <!-- REGISTER VERIFYING EMAIL PAGE -->
     <data name="register.verifying.activity.label" xml:space="preserve">
         <value>جابر للتحقق من البريد الإلكتروني</value>
-        <comment>Appears in Android application list when a button is clicked for a gabber url, i.e. in an email.</comment>
+        <comment>Appears in Android application list when a button is clicked for a TalkFutures url, i.e. in an email.</comment>
     </data>
     <data name="register.verifying.ui.page.title" xml:space="preserve">
         <value>التحقق من البريد الإلكتروني</value>
@@ -317,10 +317,10 @@
         <value>ما هو جابر؟</value>
     </data>
     <data name="about.ui.content" xml:space="preserve">
-        <value>يستخدم Gabber موضوعات لتكوين المحادثات الصوتية والتقاطها ، والتي يتم استخدامها على الموقع الإلكتروني لتمثيل من كان حاضراً وما تمت مناقشته.</value>
+        <value>يستخدم TalkFutures موضوعات لتكوين المحادثات الصوتية والتقاطها ، والتي يتم استخدامها على الموقع الإلكتروني لتمثيل من كان حاضراً وما تمت مناقشته.</value>
     </data>
     <data name="about.ui.url.description" xml:space="preserve">
-        <value>استمع إلى تسجيلات Gabber:</value>
+        <value>استمع إلى تسجيلات TalkFutures:</value>
     </data>
     <!-- PARTICIPANTS SCREEN -->
     <data name="participants.ui.title" xml:space="preserve">
@@ -492,7 +492,7 @@
         <value>Permission required</value>
     </data>
     <data name="recording.ui.permission.body" xml:space="preserve">
-        <value>Microphone access is required to record a Gabber</value>
+        <value>Microphone access is required to record a TalkFutures</value>
     </data>
     <data name="recording.ui.permission.button.negative" xml:space="preserve">
         <value>Cancel</value>
@@ -531,7 +531,7 @@
         <value>لقد حملت محادثة!</value>
     </data>
     <data name="debriefing.congrats.body" xml:space="preserve">
-        <value>شكرا لكم لتبادل الخبرات  - تم تحميل التسجيل على  موقع  Gabber في {0}. قم بزيارة الموقع للاستماع إلى محادثات أخرى تم تحميلها من أعضاء اخرين </value>
+        <value>شكرا لكم لتبادل الخبرات  - تم تحميل التسجيل على  موقع  TalkFutures في {0}. قم بزيارة الموقع للاستماع إلى محادثات أخرى تم تحميلها من أعضاء اخرين </value>
     </data>
     <data name="debriefing.consent.title" xml:space="preserve">
         <value>تغيير موافقتك</value>

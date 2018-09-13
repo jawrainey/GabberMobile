@@ -21,7 +21,7 @@ namespace Gabber.iOS
             VerifyLoginButton.SetTitle(StringResources.login_ui_submit_button, UIControlState.Normal);
 
             VerifyLoginButton.Layer.BorderWidth = 1.0f;
-            VerifyLoginButton.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+            VerifyLoginButton.Layer.BorderColor = Application.MainColour;
 
             VerifyLoginButton.TouchUpInside += delegate
             {

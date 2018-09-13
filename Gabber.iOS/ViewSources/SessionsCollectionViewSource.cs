@@ -13,7 +13,7 @@ namespace Gabber.iOS.ViewSources
 
         public SessionsCollectionViewSource(List<InterviewSession> _sessions)
         {
-             Sessions = _sessions;
+            Sessions = _sessions;
         }
 
         public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
@@ -29,7 +29,7 @@ namespace Gabber.iOS.ViewSources
         {
             var cell = (SessionsCollectionViewCell)collectionView.DequeueReusableCell(SessionsCollectionViewCell.CellID, indexPath);
             cell.Layer.BorderWidth = 1.0f;
-            cell.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+            cell.Layer.BorderColor = Application.MainColour;
             cell.UpdateContent(Sessions[indexPath.Row]);
             return cell;
         }

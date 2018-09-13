@@ -40,7 +40,7 @@ namespace Gabber.iOS.ViewSources
             if (!isLogoutOrAboutCells)
             {
                 cell.DetailTextLabel.Text = Options[indexPath.Row].Subtitle;
-                cell.DetailTextLabel.TextColor = UIColor.FromRGB(.43f, .80f, .79f);
+                cell.DetailTextLabel.TextColor = UIColor.FromCGColor(Application.MainColour);
             }
 
             return cell;

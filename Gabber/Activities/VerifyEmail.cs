@@ -16,21 +16,21 @@ using Newtonsoft.Json;
 
 namespace Gabber.Activities
 {
-	[Activity(Label = "Gabber to verify email", ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     [IntentFilter(
         new[] { Intent.ActionView },
         Categories = new[] { Intent.CategoryBrowsable, Intent.CategoryDefault },
         DataScheme = "https",
-        DataHost = "*gabber.audio",
+        DataHost = "*future-rcrc.com",
         DataPathPrefix = "/verify/"
     )]
     public class VerifyEmail : AppCompatActivity
     {
-		FirebaseAnalytics firebaseAnalytics;
+        FirebaseAnalytics firebaseAnalytics;
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
-			firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
+            firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
 
             base.OnCreate(savedInstanceState);
             Localise.SetLayoutDirectionByCulture(this);
@@ -64,7 +64,7 @@ namespace Gabber.Activities
 
                 if (response.Meta.Success)
                 {
-					LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "SUCCESS");
+                    LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "SUCCESS");
                     prefs.Edit().PutString("username", response.Data.User.Email).Commit();
                     prefs.Edit().PutString("tokens", JsonConvert.SerializeObject(response.Data.Tokens)).Commit();
                     Queries.SetActiveUser(response.Data);
@@ -76,14 +76,15 @@ namespace Gabber.Activities
                 }
                 else
                 {
-					LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "ERROR");
+                    LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "ERROR");
                     loginButton.Visibility = ViewStates.Visible;
                     FindViewById<TextView>(Resource.Id.registerVerifyContent).Text = StringResources.register_verifying_ui_page_content_error;
                     response.Meta.Messages.ForEach(MakeError);
                 }
             }
 
-            loginButton.Click += delegate {
+            loginButton.Click += delegate
+            {
                 LOG_EVENT_WITH_ACTION("EMAIL_VERIFICATION", "LOGIN_CLICKED");
                 var intent = new Intent(this, typeof(LoginActivity));
                 intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
@@ -99,7 +100,7 @@ namespace Gabber.Activities
             Snackbar.Make(view, message, Snackbar.LengthLong).Show();
         }
 
-		void LOG_EVENT_WITH_ACTION(string eventName, string action)
+        void LOG_EVENT_WITH_ACTION(string eventName, string action)
         {
             var bundle = new Bundle();
             bundle.PutString("ACTION", action);

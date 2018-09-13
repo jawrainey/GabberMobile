@@ -262,9 +262,6 @@
     <AndroidResource Include="Resources\drawable-xhdpi\menu_projects.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\menu_projects.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\menu_projects.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\onboarding_first.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\onboarding_second.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\onboarding_third.png" />
     <AndroidResource Include="Resources\drawable-v21\custom_button.xml" />
     <AndroidResource Include="Resources\drawable\custom_button.xml" />
     <AndroidResource Include="Resources\drawable\slideup.xml" />
@@ -279,7 +276,6 @@
     <AndroidResource Include="Resources\drawable-xhdpi\add_person_white.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\add_person_white.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\add_person_white.png" />
-    <AndroidResource Include="Resources\drawable-nodpi\onboarding_parts.png" />
     <AndroidResource Include="Resources\layout\consent_research.axml" />
     <AndroidResource Include="Resources\layout\consent_conversation.axml" />
     <AndroidResource Include="Resources\layout\consent_summary.axml" />
@@ -304,6 +300,31 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\baseline_cloud_upload_black_36.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_cloud_upload_black_36.png" />
     <AndroidResource Include="Resources\layout\FirstDebriefActivity.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\AppLogo.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\AppLogo.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\AppLogo.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\AppLogo.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\AppLogo.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\onboarding_02.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\onboarding_03.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\onboarding_04.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\onboarding_05.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\onboarding_02.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\onboarding_03.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\onboarding_04.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\onboarding_05.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\onboarding_02.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\onboarding_03.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\onboarding_04.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\onboarding_05.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\onboarding_02.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\onboarding_03.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\onboarding_04.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\onboarding_05.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\onboarding_02.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\onboarding_03.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\onboarding_04.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\onboarding_05.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -317,6 +338,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\xml\" />
+    <Folder Include="Resources\drawable-nodpi\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Basement.targets')" />

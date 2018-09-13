@@ -101,6 +101,8 @@ namespace Gabber.iOS
                 NavigationController.PopViewController(false);
             });
 
+            NavigationItem.LeftBarButtonItem.TintColor = UIColor.FromCGColor(Application.MainColour);
+
             // As we can record, enable it all.
             AudioRecorder = new AudioRecorder();
             InterviewSessionID = Guid.NewGuid().ToString();

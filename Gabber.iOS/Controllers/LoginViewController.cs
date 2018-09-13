@@ -20,7 +20,7 @@ namespace Gabber.iOS
             Title = StringResources.login_ui_title;
 
             LoginUIButton.Layer.BorderWidth = 1.0f;
-            LoginUIButton.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+            LoginUIButton.Layer.BorderColor = Application.MainColour;
 
             LoginUIButton.SetTitle(StringResources.login_ui_submit_button, UIControlState.Normal);
             EmailTextField.Placeholder = StringResources.common_ui_forms_email_label;

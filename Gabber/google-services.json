@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1031868722249:android:43bdfbc168278b2b",
         "android_client_info": {
-          "package_name": "uk.ac.ncl.openlab.gabber"
+          "package_name": "uk.ac.ncl.openlab.talkfutures"
         }
       },
       "oauth_client": [
@@ -41,7 +41,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1031868722249:android:a873c32dc647d734",
         "android_client_info": {
-          "package_name": "uk.ac.ncl.openlab.ifrc.gabber"
+          "package_name": "uk.ac.ncl.openlab.ifrc.talkfutures"
         }
       },
       "oauth_client": [
@@ -49,7 +49,7 @@
           "client_id": "1031868722249-v7rnijeg8k9v5q1fdc5e5nj0unq0e6f3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "uk.ac.ncl.openlab.ifrc.gabber",
+            "package_name": "uk.ac.ncl.openlab.ifrc.talkfutures",
             "certificate_hash": "49776e4a5a580d935782f33dea6107bb40f2b286"
           }
         },

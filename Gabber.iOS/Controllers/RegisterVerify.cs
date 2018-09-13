@@ -8,9 +8,9 @@ namespace Gabber.iOS
 {
     public partial class RegisterVerify : UIViewController
     {
-        public RegisterVerify (IntPtr handle) : base (handle) {}
+        public RegisterVerify(IntPtr handle) : base(handle) { }
 
-		public override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             // The user can navigate back to register (i.e. if they used an incorrect email),
@@ -23,17 +23,19 @@ namespace Gabber.iOS
             RegisterVerifyLogin.SetTitle(StringResources.login_ui_submit_button, UIControlState.Normal);
 
             RegisterVerifyOpenEmail.Layer.BorderWidth = 1.0f;
-            RegisterVerifyOpenEmail.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+            RegisterVerifyOpenEmail.Layer.BorderColor = Application.MainColour;
 
             RegisterVerifyLogin.Layer.BorderWidth = RegisterVerifyOpenEmail.Layer.BorderWidth;
             RegisterVerifyLogin.Layer.BorderColor = RegisterVerifyOpenEmail.Layer.BorderColor;
 
-            RegisterVerifyLogin.TouchUpInside += delegate {
+            RegisterVerifyLogin.TouchUpInside += delegate
+            {
                 Logger.LOG_EVENT_WITH_ACTION("LOGIN_BUTTON", "CLICKED");
             };
 
             RegisterVerifyOpenEmail.SetTitle(StringResources.register_verify_ui_button_openemail, UIControlState.Normal);
-            RegisterVerifyOpenEmail.TouchUpInside += delegate {
+            RegisterVerifyOpenEmail.TouchUpInside += delegate
+            {
                 Logger.LOG_EVENT_WITH_ACTION("EMAIL_CLIENT", "CLICKED");
                 UIApplication.SharedApplication.OpenUrl(new NSUrl("message://"));
             };
@@ -48,5 +50,5 @@ namespace Gabber.iOS
                 NavigationItem.BackBarButtonItem = new UIBarButtonItem() { Title = "" };
             }
         }
-	}
+    }
 }

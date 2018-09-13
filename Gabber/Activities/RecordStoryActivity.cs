@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Android;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -9,7 +10,9 @@ using Android.Graphics;
 using Android.Media;
 using Android.OS;
 using Android.Preferences;
+using Android.Runtime;
 using Android.Support.Design.Widget;
+using Android.Support.V4.Content;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
@@ -28,6 +31,7 @@ namespace Gabber
     [Activity(ScreenOrientation = ScreenOrientation.Portrait, ParentActivity = typeof(ConversationConsent))]
     public class RecordStoryActivity : AppCompatActivity
     {
+        FloatingActionButton record;
         FirebaseAnalytics firebaseAnalytics;
         // TODO: move all recording logic to a seperate class, which is useful when creating a PCL
         MediaRecorder _recorder;
@@ -47,8 +51,13 @@ namespace Gabber
         int SelectedProjectID;
         // The consent chosen by participants about to Gabber
         string ConsentType;
-        private int langId;
 
+        private int langId;
+        TextView timer;
+
+        readonly string[] micPerms = { Manifest.Permission.RecordAudio };
+        const int permsReq = 99;
+        int posWaitingOnPerm;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -70,66 +79,70 @@ namespace Gabber
             langId = _prefs.GetInt("SESSION_LANG", 1);
             var selectedProject = Queries.ProjectById(SelectedProjectID);
 
-            var promptRecyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
+            RecyclerView promptRecyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
             promptRecyclerView.SetLayoutManager(new GridLayoutManager(this, 1));
 
-            var project = Localise.ContentByLanguage(selectedProject);
-            var activeTopics = project.Topics.Where((p) => p.IsActive).ToList();
+            Content project = Localise.ContentByLanguage(selectedProject);
+            List<Topic> activeTopics = project.Topics.Where((p) => p.IsActive).ToList();
             themes = activeTopics;
             adapter = new TopicAdapter(themes);
-            adapter.ProjectClicked += ProjectSelected;
+            adapter.ProjectClicked += CheckRecPerm;
             promptRecyclerView.SetAdapter(adapter);
 
-            var record = FindViewById<FloatingActionButton>(Resource.Id.start);
-            ViewCompat.SetBackgroundTintList(record, Android.Content.Res.ColorStateList.ValueOf(Color.LightGray));
+            record = FindViewById<FloatingActionButton>(Resource.Id.start);
+
+
+            Color highlightColor = new Color(ContextCompat.GetColor(this, Resource.Color.colorControlHighlight));
+
+            ViewCompat.SetBackgroundTintList(record, Android.Content.Res.ColorStateList.ValueOf(highlightColor));
             record.Enabled = false;
-            var timer = FindViewById<TextView>(Resource.Id.timer);
-            timer.SetTextColor(Color.LightGray);
+            timer = FindViewById<TextView>(Resource.Id.timer);
+            timer.SetTextColor(highlightColor);
 
-            // Note: record has two states: start and stop record.
-            record.Click += delegate
-            {
-                LOG_EVENT("RECORD_CLICKED");
-                // Change icon between record to stop.
-                record.Selected = !record.Selected;
-
-                if (record.Selected)
-                {
-                    // Override path for re-use as user may record many audios. Store only once.
-                    if (string.IsNullOrWhiteSpace(_path))
-                    {
-                        var personal = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                        _path = System.IO.Path.Combine(personal, DateTimeOffset.Now.ToUnixTimeSeconds() + ".mp3");
-                    }
-
-                    StartRecording();
-
-                    RunOnUiThread(async () =>
-                    {
-                        _seconds = 0;
-
-                        while (_isrecording)
-                        {
-                            SupportActionBar.Title = StringResources.recording_ui_title_active;
-                            timer.Text = Queries.FormatFromSeconds(_seconds++);
-                            await Task.Delay(1000);
-                        }
-                    });
-                }
-                else
-                {
-                    ModalToVerifyRecordingEnd();
-                    // This ensures that the state of the Play/Stop icon does not change
-                    record.Selected = true;
-                }
-            };
+            record.Click += HandleRecordClick;
         }
+
+        private void HandleRecordClick(object sender, EventArgs e)
+        {
+            // Change icon between record to stop.
+            record.Selected = !record.Selected;
+
+            if (record.Selected)
+            {
+                // Override path for re-use as user may record many audios. Store only once.
+                if (string.IsNullOrWhiteSpace(_path))
+                {
+                    var personal = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                    _path = System.IO.Path.Combine(personal, DateTimeOffset.Now.ToUnixTimeSeconds() + ".mp3");
+                }
+
+                StartRecording();
+
+                RunOnUiThread(async () =>
+                {
+                    _seconds = 0;
+
+                    while (_isrecording)
+                    {
+                        SupportActionBar.Title = StringResources.recording_ui_title_active;
+                        timer.Text = Queries.FormatFromSeconds(_seconds++);
+                        await Task.Delay(1000);
+                    }
+                });
+            }
+            else
+            {
+                ModalToVerifyRecordingEnd();
+                // This ensures that the state of the Play/Stop icon does not change
+                record.Selected = true;
+            }
+        }
+
 
         public override void OnBackPressed()
         {
             if (_isrecording)
             {
-
                 var alert = new Android.Support.V7.App.AlertDialog.Builder(this);
                 alert.SetTitle(StringResources.recording_ui_dialog_back_title);
                 alert.SetMessage(StringResources.recording_ui_dialog_back_body);
@@ -156,7 +169,44 @@ namespace Gabber
             }
         }
 
-        void ProjectSelected(object sender, int position)
+        private void CheckRecPerm(object sender, int position)
+        {
+            LOG_EVENT("RECORD_CLICKED");
+            posWaitingOnPerm = position;
+
+            if ((int)Build.VERSION.SdkInt >= 23 && !record.Selected)
+            {
+                if (CheckSelfPermission(micPerms[0]) == (int)Permission.Granted)
+                {
+                    ProjectSelected(position);
+                    return;
+                }
+
+                // Need permission
+                RequestPermissions(micPerms, permsReq);
+            }
+            else
+            {
+                ProjectSelected(position);
+            }
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        {
+            if (requestCode == permsReq)
+            {
+                if (grantResults[0] == Permission.Granted)
+                {
+                    ProjectSelected(posWaitingOnPerm);
+                }
+                else
+                {
+                    Toast.MakeText(this, StringResources.recording_ui_permission_body, ToastLength.Long).Show();
+                }
+            }
+        }
+
+        private void ProjectSelected(int position)
         {
             ItemSelected(position);
             var recordButton = FindViewById<FloatingActionButton>(Resource.Id.start);

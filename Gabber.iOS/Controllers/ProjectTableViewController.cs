@@ -19,12 +19,12 @@ namespace Gabber.iOS
         private List<Project> projects;
         private UIRefreshControl refreshControl;
 
-        public ProjectTableViewController(IntPtr handle) : base(handle) {}
+        public ProjectTableViewController(IntPtr handle) : base(handle) { }
 
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            var SupportedLanguages = (await LanguagesManager.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
+            var SupportedLanguages = (await Localizer.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
 
             TableView.RegisterNibForCellReuse(ProjectTableViewHeader.Nib, ProjectTableViewHeader.CellID);
             TableView.RowHeight = UITableView.AutomaticDimension;
@@ -69,14 +69,14 @@ namespace Gabber.iOS
             refreshControl = new UIRefreshControl
             {
                 AttributedTitle = new NSAttributedString(StringResources.projects_ui_fetching),
-                TintColor = UIColor.FromRGB(.43f, .80f, .79f)
+                TintColor = UIColor.FromCGColor(Application.MainColour)
             };
 
             refreshControl.AddTarget(delegate
-            {
-                Logger.LOG_EVENT_WITH_ACTION("SWIPE_REFRESH", projects.Count.ToString(), "PROJECT_COUNT");
-                var suppress = RefreshData();
-            }, UIControlEvent.AllEvents);
+                {
+                    Logger.LOG_EVENT_WITH_ACTION("SWIPE_REFRESH", projects.Count.ToString(), "PROJECT_COUNT");
+                    var suppress = RefreshData();
+                }, UIControlEvent.AllEvents);
 
             ProjectsTableViewSource source = new ProjectsTableViewSource(projects, LaunchProject, HandleExpansion);
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#26A69A"
+    android:background="@color/colorPrimary"
     android:weightSum="10"
     android:keepScreenOn="true">
     <LinearLayout
@@ -53,8 +53,9 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_gravity="center"
-                app:backgroundTint="@color/material_grey_300"
+                app:backgroundTint="@android:color/white"
                 android:clickable="true"
+                app:elevation="6dp"
                 android:src="@drawable/stop_recording" />
         </FrameLayout>
         <TextView
@@ -64,6 +65,7 @@
             android:layout_toRightOf="@+id/startFrame"
             android:layout_centerVertical="true"
             android:text="00:00"
+            android:textColor="@android:color/white"
             android:visibility="visible"
             android:textSize="24dip" />
     </RelativeLayout>

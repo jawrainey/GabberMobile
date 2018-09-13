@@ -8,7 +8,7 @@
         android:padding="24dp"
         android:orientation="vertical">
         <ImageView
-            android:src="@drawable/onboarding_first"
+            android:src="@drawable/AppLogo"
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_width="180dp"
             android:layout_height="180dp" />

@@ -18,7 +18,15 @@ namespace Gabber.iOS
             base.ViewDidLoad();
             var options = new List<string> { "Welcome", "Projects", "Parts", "Welcome", "Consent" };
 
-            OBImage.Image = UIImage.FromBundle($"Onboarding{options[Index]}");
+            if (Index == 0)
+            {
+                OBImage.Image = UIImage.FromBundle("Logo");
+            }
+            else
+            {
+                OBImage.Image = UIImage.FromBundle($"Onboarding{options[Index]}");
+            }
+
             OBTitle.Text = OBCTitle;
             OBContent.Text = OBCContent;
             // Only show the view on the final screen otherwise space is taken; similar to .GONE on android.
@@ -28,7 +36,7 @@ namespace Gabber.iOS
 
             OBRegister.SetTitle(StringResources.register_ui_submit_button, UIControlState.Normal);
             OBRegister.Layer.BorderWidth = 1.0f;
-            OBRegister.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+            OBRegister.Layer.BorderColor = Application.MainColour;
 
             OBLogin.SetTitle(StringResources.login_ui_submit_button, UIControlState.Normal);
             OBLogin.Layer.BorderWidth = OBRegister.Layer.BorderWidth;
@@ -46,12 +54,12 @@ namespace Gabber.iOS
             else
             {
                 controller = Storyboard.InstantiateViewController("CreateUserViewController") as CreateUserController;
-                //controller = Storyboard.InstantiateViewController("RegisterViewController") as RegisterViewController;
             }
             controller.NavigationItem.LeftBarButtonItem = new UIBarButtonItem(
                 UIImage.FromBundle("BackButton"),
-                UIBarButtonItemStyle.Plain,
-                delegate { DismissViewController(true, null); });
+            UIBarButtonItemStyle.Plain,
+            delegate { DismissViewController(true, null); });
+            controller.NavigationItem.LeftBarButtonItem.TintColor = UIColor.FromCGColor(Application.MainColour);
             controller.NavigationItem.Title = isLogin ? StringResources.login_ui_title : StringResources.register_ui_title;
             var navBar = new UINavigationController(controller);
             PresentViewController(navBar, true, null);

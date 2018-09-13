@@ -109,10 +109,10 @@
     </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
-        <value>Добро пожаловать в Gabber</value>
+        <value>Добро пожаловать в TalkFutures</value>
     </data>
     <data name="onboarding.ui.page.zero.content" xml:space="preserve">
-        <value>Gabber использует темы для структурирования и записи аудио, которые впоследствии используются на веб-сайте для понимания того кто присутствовал и кто участвовал в  обсуждение.</value>
+        <value>TalkFutures использует темы для структурирования и записи аудио, которые впоследствии используются на веб-сайте для понимания того кто присутствовал и кто участвовал в  обсуждение.</value>
     </data>
     <!-- ONBOARDING PAGE: 1 -->
     <data name="onboarding.ui.page.first.title" xml:space="preserve">
@@ -157,7 +157,7 @@
     </data>
     <!-- USER LOGIN SCREEN: UI -->
     <data name="login.ui.title" xml:space="preserve">
-        <value>Войти в Gabber</value>
+        <value>Войти в TalkFutures</value>
     </data>
     <data name="login.ui.submit.button" xml:space="preserve">
         <value>Логин</value>
@@ -171,13 +171,13 @@
     </data>
     <!-- USER REGISTER SCREEN: UI -->
     <data name="register.ui.title" xml:space="preserve">
-        <value>Создать учетную запись в Gabber</value>
+        <value>Создать учетную запись в TalkFutures</value>
     </data>
     <data name="register.ui.fullname.label" xml:space="preserve">
         <value>ФИО</value>
     </data>
     <data name="register.ui.terms.label" xml:space="preserve">
-        <value>&lt;i&gt;Продолжая использовать Gabber, вы соглашаетесь с нашими &lt;a href={0}/terms&gt;Условиями использования&lt;/a&gt; и &lt;a href={0}/privacy&gt;Политикой конфиденциальности&lt;/a&gt;&lt;/i&gt;</value>
+        <value>&lt;i&gt;Продолжая использовать TalkFutures, вы соглашаетесь с нашими &lt;a href={0}/terms&gt;Условиями использования&lt;/a&gt; и &lt;a href={0}/privacy&gt;Политикой конфиденциальности&lt;/a&gt;&lt;/i&gt;</value>
     </data>
     <data name="register.ui.submit.button" xml:space="preserve">
         <value>Зарегистрироваться</value>
@@ -201,8 +201,8 @@
     </data>
     <!-- REGISTER VERIFYING EMAIL PAGE -->
     <data name="register.verifying.activity.label" xml:space="preserve">
-        <value>Gabber проведет проверку электронной почты</value>
-        <comment>Appears in Android application list when a button is clicked for a gabber url, i.e. in an email.</comment>
+        <value>TalkFutures проведет проверку электронной почты</value>
+        <comment>Appears in Android application list when a button is clicked for a TalkFutures url, i.e. in an email.</comment>
     </data>
     <data name="register.verifying.ui.page.title" xml:space="preserve">
         <value>Проверка электронной почты</value>
@@ -267,13 +267,13 @@
     </data>
     <!-- ABOUT FRAGMENT -->
     <data name="about.ui.title" xml:space="preserve">
-        <value>Что такое Gabber?</value>
+        <value>Что такое TalkFutures?</value>
     </data>
     <data name="about.ui.content" xml:space="preserve">
-        <value>Gabber использует темы для структурирования и записи аудио, которые впоследствии используются на веб-сайте для понимания того кто присутствовал и кто участвовал в обсуждение.</value>
+        <value>TalkFutures использует темы для структурирования и записи аудио, которые впоследствии используются на веб-сайте для понимания того кто присутствовал и кто участвовал в обсуждение.</value>
     </data>
     <data name="about.ui.url.description" xml:space="preserve">
-        <value>Прослушать записи Gabber:</value>
+        <value>Прослушать записи TalkFutures:</value>
     </data>
     <!-- PARTICIPANTS SCREEN -->
     <data name="participants.ui.title" xml:space="preserve">
@@ -350,7 +350,7 @@
         <value>Как вы контролируете собираемые данные</value>
     </data>
     <data name="consent.gabber.body.control" xml:space="preserve">
-        <value>Gabber дает вам контроль над тем, как вы хотите, чтобы аудио запись вашего разговора была использована, и кто имел возможность прослушивать и комментировать ее. Gabber работает лучше всего, когда другие люди имеют доступ и могут прослушать вашу запись чтобы учиться на вашем  опыте.
+        <value>TalkFutures дает вам контроль над тем, как вы хотите, чтобы аудио запись вашего разговора была использована, и кто имел возможность прослушивать и комментировать ее. TalkFutures работает лучше всего, когда другие люди имеют доступ и могут прослушать вашу запись чтобы учиться на вашем  опыте.
 
 Все участники получат электронное письмо с уникальной ссылкой на аудиозапись, где вы сможете просмотреть или изменить тип своего согласие на то, кто получит доступ к аудиозаписи. Будьте внимательны, это электронное письмо может попасть в папку &lt;b&gt;СПАМ &lt;/b&gt;.
 &lt;br&gt;
@@ -372,7 +372,7 @@
         <value>Ваша аудиозапись станет доступна для обнаружения и прослушивания, в том числе для вас, других участников и членов проекта.</value>
     </data>
     <data name="consent.gabber.consent.type.public.brief" xml:space="preserve">
-        <value>Любой посетитель Gabber</value>
+        <value>Любой посетитель TalkFutures</value>
     </data>
     <!-- Gabber CONSENT Members -->
     <data name="consent.gabber.consent.type.members.full" xml:space="preserve">
@@ -443,7 +443,7 @@
         <value>Требуется разрешение</value>
     </data>
     <data name="recording.ui.permission.body" xml:space="preserve">
-        <value>Доступ к микрофону необходим для записи Gabber</value>
+        <value>Доступ к микрофону необходим для записи TalkFutures</value>
     </data>
     <data name="recording.ui.permission.button.negative" xml:space="preserve">
         <value>Отмена</value>

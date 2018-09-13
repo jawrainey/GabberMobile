@@ -5,7 +5,7 @@ using Android.App;
 // Information about this assembly is defined by the following attributes.
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("Gabber")]
+[assembly: AssemblyTitle("TalkFutures")]
 [assembly: AssemblyDescription("Peer-based interviewing to rapidly acquire and share personal experiences.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Open Lab")]
@@ -27,7 +27,7 @@ using Android.App;
 //[assembly: AssemblyKeyFile("")]
 
 #if DEBUG
-[assembly: Application(Debuggable=true)]
+[assembly: Application(Debuggable = true)]
 #else
 [assembly: Application(Debuggable = false)]
 #endif
