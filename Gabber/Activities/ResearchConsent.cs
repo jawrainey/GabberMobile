@@ -22,9 +22,6 @@ namespace Gabber.Activities
 
             SupportActionBar.Title = StringResources.consent_research_toolbar_title;
 
-            var researchConsentTitle = FindViewById<TextView>(Resource.Id.researchConsentTitle);
-            researchConsentTitle.Text = StringResources.consent_research_title;
-
             var _prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
             var SelectedProjectID = _prefs.GetInt("SelectedProjectID", 0);
             var selectedProject = Queries.ProjectById(SelectedProjectID);

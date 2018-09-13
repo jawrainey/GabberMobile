@@ -37,9 +37,6 @@ namespace Gabber.Activities
             ISharedPreferences _prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
             Project selectedProject = Queries.ProjectById(_prefs.GetInt("SelectedProjectID", 0));
 
-            FindViewById<TextView>(Resource.Id.GabberConsentDecisionTitle).Text =
-                StringResources.consent_gabber_title_decision;
-
             FindViewById<TextView>(Resource.Id.GabberConsentDecisionDesc).Text =
                 string.Format(StringResources.consent_gabber_body_decision, Config.PRINT_URL);
 
