@@ -50,8 +50,6 @@ namespace Gabber.Activities
             SupportActionBar.Title = StringResources.participants_ui_add_title;
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            FindViewById<TextView>(Resource.Id.loadingMessage).Text = StringResources.common_comms_loading;
-
             socSpinner = FindViewById<Spinner>(Resource.Id.chooseSocietySpinner);
             socSpinner.ItemSelected += SocSpinner_ItemSelected;
 
@@ -84,144 +82,31 @@ namespace Gabber.Activities
             LoadData();
         }
 
-        private async void LoadData()
+        private void LoadData()
         {
-            RelativeLayout loadingLayout = FindViewById<RelativeLayout>(Resource.Id.loadingLayout);
-            loadingLayout.Visibility = ViewStates.Visible;
+            socChoices = IFRC_Society.GetOptions();
+            genderChoices = Gender.GetOptions();
+            ageChoices = AgeRange.GetOptions();
+            roleChoices = IFRC_Role.GetOptions();
 
-            if (socChoices == null || socChoices.Count == 0)
-            {
-                socChoices = await IFRC_SocietiesManager.GetSocieties();
-            }
+            List<string> socNames = socChoices.Select(soc => soc.Name).ToList();
+            socNames.Insert(0, StringResources.participants_ui_add_society_default);
 
-            if (genderChoices == null || genderChoices.Count == 0)
-            {
-                genderChoices = new List<Gender>
-                {
-                    new Gender
-                    {
-                        LocalisedName = StringResources.common_ui_forms_gender_default
-                    },
-                    new Gender
-                    {
-                        Enum = Gender.GenderEnum.Female,
-                        LocalisedName = StringResources.common_ui_forms_gender_female
-                    },
-                    new Gender
-                    {
-                        Enum = Gender.GenderEnum.Male,
-                        LocalisedName = StringResources.common_ui_forms_gender_male
-                    },
-                    new Gender
-                    {
-                        Enum = Gender.GenderEnum.Custom,
-                        LocalisedName = StringResources.common_ui_forms_gender_custom
-                    },
-                    new Gender
-                    {
-                        Enum = Gender.GenderEnum.NotSpecified,
-                        LocalisedName = StringResources.common_ui_forms_gender_anon
-                    }
-                };
-            }
+            ArrayAdapter socAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, socNames);
+            socSpinner.Adapter = socAdapter;
 
-            if (ageChoices == null)
-            {
-                ageChoices = new List<AgeRange>
-                {
-                    new AgeRange
-                    {
-                        Enum = AgeRange.GenderEnum.H21,
-                        DisplayName = "< 21"
-                    },
-                    new AgeRange
-                    {
-                        Enum = AgeRange.GenderEnum.L21H30,
-                        DisplayName = "21 - 30"
-                    },
-                    new AgeRange
-                    {
-                        Enum = AgeRange.GenderEnum.L31H40,
-                        DisplayName = "31 - 40"
-                    },
-                    new AgeRange
-                    {
-                        Enum = AgeRange.GenderEnum.L41,
-                        DisplayName = "41+"
-                    }
-                };
-            }
+            List<string> genderNames = genderChoices.Select(gender => gender.LocalisedName).ToList();
+            ArrayAdapter genderAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, genderNames);
+            genderSpinner.Adapter = genderAdapter;
 
-            if (roleChoices == null)
-            {
-                roleChoices = new List<IFRC_Role>
-                {
-                    new IFRC_Role
-                    {
-                        LocalisedName = StringResources.participants_ui_add_role_default
-                    },
-                    new IFRC_Role
-                    {
-                        LocalisedName = StringResources.common_ui_forms_role_volunteer,
-                        Enum = IFRC_Role.RoleEnum.Volunteer
-                    },
-                    new IFRC_Role
-                    {
-                        LocalisedName = StringResources.common_ui_forms_role_intern,
-                        Enum = IFRC_Role.RoleEnum.Intern
-                    },
-                    new IFRC_Role
-                    {
-                        LocalisedName = StringResources.common_ui_forms_role_staff,
-                        Enum = IFRC_Role.RoleEnum.Staff
-                    },
-                    new IFRC_Role
-                    {
-                        LocalisedName = StringResources.common_ui_forms_role_leadership,
-                        Enum = IFRC_Role.RoleEnum.Leadership
-                    },
-                    new IFRC_Role
-                    {
-                        LocalisedName = StringResources.common_ui_forms_role_external,
-                        Enum = IFRC_Role.RoleEnum.External
-                    },
-                };
-            }
+            List<string> ageNames = ageChoices.Select(age => age.DisplayName).ToList();
+            ArrayAdapter ageAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, ageNames);
+            ageSpinner.Adapter = ageAdapter;
 
-            if (socChoices == null || socChoices.Count == 0)
-            {
-                new Android.Support.V7.App.AlertDialog.Builder(this)
-                    .SetTitle(StringResources.common_comms_error)
-                    .SetMessage(StringResources.common_comms_error_server)
-                    .SetPositiveButton(StringResources.common_comms_retry, (a, b) =>
-                    {
-                        LoadData();
-                    })
-                    .SetNegativeButton(StringResources.common_comms_cancel, (a, b) => { Finish(); })
-                    .Show();
-            }
-            else
-            {
-                loadingLayout.Visibility = ViewStates.Gone;
+            List<string> roleNames = roleChoices.Select(role => role.LocalisedName).ToList();
+            ArrayAdapter roleAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, roleNames);
+            roleSpinner.Adapter = roleAdapter;
 
-                List<string> socNames = socChoices.Select(soc => soc.Name).ToList();
-                socNames.Insert(0, StringResources.participants_ui_add_society_default);
-
-                ArrayAdapter socAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, socNames);
-                socSpinner.Adapter = socAdapter;
-
-                List<string> genderNames = genderChoices.Select(gender => gender.LocalisedName).ToList();
-                ArrayAdapter genderAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, genderNames);
-                genderSpinner.Adapter = genderAdapter;
-
-                List<string> ageNames = ageChoices.Select(age => age.DisplayName).ToList();
-                ArrayAdapter ageAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, ageNames);
-                ageSpinner.Adapter = ageAdapter;
-
-                List<string> roleNames = roleChoices.Select(role => role.LocalisedName).ToList();
-                ArrayAdapter roleAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, roleNames);
-                roleSpinner.Adapter = roleAdapter;
-            }
         }
 
         private void SocSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)

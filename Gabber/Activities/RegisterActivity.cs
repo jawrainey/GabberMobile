@@ -23,8 +23,6 @@ namespace Gabber
     {
         FirebaseAnalytics firebaseAnalytics;
 
-        private List<LanguageChoice> languageChoices;
-
         private List<IFRC_Society> socChoices;
         private Spinner socSpinner;
         private string selectedSoc;
@@ -102,54 +100,36 @@ namespace Gabber
             LoadData();
         }
 
-        private async void LoadData()
+        private void LoadData()
         {
             RelativeLayout loadingLayout = FindViewById<RelativeLayout>(Resource.Id.loadingLayout);
             loadingLayout.Visibility = ViewStates.Visible;
 
-            if (socChoices == null || socChoices.Count == 0)
-            {
-                socChoices = await IFRC_SocietiesManager.GetSocieties();
-            }
-
+            socChoices = IFRC_Society.GetOptions();
             genderChoices = Gender.GetOptions();
             ageChoices = AgeRange.GetOptions();
             roleChoices = IFRC_Role.GetOptions();
 
-            if (socChoices == null || socChoices.Count == 0)
-            {
-                new Android.Support.V7.App.AlertDialog.Builder(this)
-                    .SetTitle(StringResources.common_comms_error)
-                    .SetMessage(StringResources.common_comms_error_server)
-                    .SetPositiveButton(StringResources.common_comms_retry, (a, b) =>
-                       {
-                           LoadData();
-                       })
-                    .SetNegativeButton(StringResources.common_comms_cancel, (a, b) => { Finish(); })
-                    .Show();
-            }
-            else
-            {
-                loadingLayout.Visibility = ViewStates.Gone;
+            loadingLayout.Visibility = ViewStates.Gone;
 
-                List<string> socNames = socChoices.Select(soc => soc.Name).ToList();
-                socNames.Insert(0, StringResources.common_ui_forms_society_default);
+            List<string> socNames = socChoices.Select(soc => soc.Name).ToList();
+            socNames.Insert(0, StringResources.common_ui_forms_society_default);
 
-                ArrayAdapter socAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, socNames);
-                socSpinner.Adapter = socAdapter;
+            ArrayAdapter socAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, socNames);
+            socSpinner.Adapter = socAdapter;
 
-                List<string> genderNames = genderChoices.Select(gender => gender.LocalisedName).ToList();
-                ArrayAdapter genderAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, genderNames);
-                genderSpinner.Adapter = genderAdapter;
+            List<string> genderNames = genderChoices.Select(gender => gender.LocalisedName).ToList();
+            ArrayAdapter genderAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, genderNames);
+            genderSpinner.Adapter = genderAdapter;
 
-                List<string> ageNames = ageChoices.Select(age => age.DisplayName).ToList();
-                ArrayAdapter ageAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, ageNames);
-                ageSpinner.Adapter = ageAdapter;
+            List<string> ageNames = ageChoices.Select(age => age.DisplayName).ToList();
+            ArrayAdapter ageAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, ageNames);
+            ageSpinner.Adapter = ageAdapter;
 
-                List<string> roleNames = roleChoices.Select(role => role.LocalisedName).ToList();
-                ArrayAdapter roleAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, roleNames);
-                roleSpinner.Adapter = roleAdapter;
-            }
+            List<string> roleNames = roleChoices.Select(role => role.LocalisedName).ToList();
+            ArrayAdapter roleAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, roleNames);
+            roleSpinner.Adapter = roleAdapter;
+
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
