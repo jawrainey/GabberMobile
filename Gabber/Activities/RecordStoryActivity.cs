@@ -84,10 +84,11 @@ namespace Gabber
             promptRecyclerView.SetAdapter(adapter);
 
             var record = FindViewById<FloatingActionButton>(Resource.Id.start);
-            ViewCompat.SetBackgroundTintList(record, Android.Content.Res.ColorStateList.ValueOf(Color.LightGray));
+            ViewCompat.SetBackgroundTintList(record,
+                                             Android.Content.Res.ColorStateList.ValueOf(Resources.GetColor(Resource.Color.colorControlHighlight)));
             record.Enabled = false;
             var timer = FindViewById<TextView>(Resource.Id.timer);
-            timer.SetTextColor(Color.LightGray);
+            timer.SetTextColor(Resources.GetColor(Resource.Color.colorControlHighlight));
 
             // Note: record has two states: start and stop record.
             record.Click += delegate

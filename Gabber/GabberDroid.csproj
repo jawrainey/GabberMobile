@@ -304,6 +304,11 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\baseline_cloud_upload_black_36.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\baseline_cloud_upload_black_36.png" />
     <AndroidResource Include="Resources\layout\FirstDebriefActivity.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\AppLogo.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\AppLogo.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\AppLogo.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\AppLogo.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\AppLogo.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

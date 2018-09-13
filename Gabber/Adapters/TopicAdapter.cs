@@ -8,33 +8,35 @@ using GabberPCL.Models;
 
 namespace Gabber.Adapters
 {
-	public class TopicAdapter : RecyclerView.Adapter
-	{
-		// Each story the user recorded has an associated image and audio.
+    public class TopicAdapter : RecyclerView.Adapter
+    {
+        // Each story the user recorded has an associated image and audio.
         readonly List<Topic> _prompts;
         int lastSelectedPosition = int.MinValue;
+        ViewGroup parent;
 
         public TopicAdapter(List<Topic> prompts)
-		{
-			_prompts = prompts;
-		}
+        {
+            _prompts = prompts;
+        }
 
-		public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
-		{
-			var row = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.prompt, parent, false);
-			return new PhotoViewHolder(row, OnProjectClick);
-		}
-		
-		public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
-		{
-			var vh = holder as PhotoViewHolder;
+        public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
+        {
+            this.parent = parent;
+            var row = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.prompt, parent, false);
+            return new PhotoViewHolder(row, OnProjectClick);
+        }
+
+        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+        {
+            var vh = holder as PhotoViewHolder;
             vh.Caption.Text = _prompts[position].Text;
 
             if (position == lastSelectedPosition)
             {
                 _prompts[position].SelectionState = Topic.SelectedState.current;
                 // CURRENT SELECTED STATE [item that was just selected]
-                vh.Caption.SetBackgroundColor(Color.ParseColor("#26A69A"));
+                vh.Caption.SetBackgroundColor(parent.Resources.GetColor(Resource.Color.colorPrimary));
                 vh.Caption.SetTextColor(Color.White);
             }
             else if (_prompts[position].Selected)
@@ -44,13 +46,14 @@ namespace Gabber.Adapters
                 vh.Caption.SetBackgroundColor(Color.LightGray);
                 vh.Caption.SetTextColor(Color.Black);
             }
-            else {
+            else
+            {
                 _prompts[position].SelectionState = Topic.SelectedState.never;
                 // DEFAULT STATE [the item has never been selected]
                 vh.Caption.SetBackgroundResource(Resource.Drawable.record_topic_border);
                 vh.Caption.SetTextColor(Color.Black);
             }
-		}
+        }
 
         public void PromptSeleted(int position)
         {
@@ -58,29 +61,29 @@ namespace Gabber.Adapters
             _prompts[position].SelectionState = Topic.SelectedState.current;
             int previous = lastSelectedPosition;
             lastSelectedPosition = position;
-            if(previous != int.MinValue)
+            if (previous != int.MinValue)
                 NotifyItemChanged(previous);
             NotifyItemChanged(position);
         }
 
-		public override int ItemCount
-		{
-			get { return _prompts.Count; }
-		}
+        public override int ItemCount
+        {
+            get { return _prompts.Count; }
+        }
 
-		public event EventHandler<int> ProjectClicked;
+        public event EventHandler<int> ProjectClicked;
 
         void OnProjectClick(int position) => ProjectClicked?.Invoke(this, position);
 
         public class PhotoViewHolder : RecyclerView.ViewHolder
-		{
-			public TextView Caption { get; set; }
+        {
+            public TextView Caption { get; set; }
 
-			public PhotoViewHolder(View itemView, Action<int> listener) : base(itemView)
-			{
-				itemView.Click += (sender, e) => listener(LayoutPosition);
-				Caption = itemView.FindViewById<TextView>(Resource.Id.caption);
-			}
-		}
-	}
+            public PhotoViewHolder(View itemView, Action<int> listener) : base(itemView)
+            {
+                itemView.Click += (sender, e) => listener(LayoutPosition);
+                Caption = itemView.FindViewById<TextView>(Resource.Id.caption);
+            }
+        }
+    }
 }

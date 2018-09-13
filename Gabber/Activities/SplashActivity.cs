@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace Gabber.Activities
 {
-    [Activity(Label = "Gabber", Theme = "@style/SplashTheme", MainLauncher = true)]
+    [Activity(Label = "TalkFutures", Theme = "@style/SplashTheme", MainLauncher = true)]
     public class SplashActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)

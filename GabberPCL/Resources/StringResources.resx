@@ -153,12 +153,12 @@
     </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
-        <value>Welcome to Gabber</value>
+        <value>Welcome to TalkFutures</value>
     </data>
     <data name="onboarding.ui.page.zero.content" xml:space="preserve">
-        <value>Gabber uses topics to structure and capture audio conversations, which are used on the website to represent who was present and what was discussed.
+        <value>TalkFutures uses topics to structure and capture audio conversations, which are used on the website to represent who was present and what was discussed.
 
-    The next screens explain each step to create a conversation using Gabber.</value>
+    The next screens explain each step to create a conversation using TalkFutures.</value>
     </data>
     <!-- ONBOARDING PAGE: 1 -->
     <data name="onboarding.ui.page.first.title" xml:space="preserve">
@@ -206,7 +206,7 @@
     </data>
     <!-- USER LOGIN SCREEN: UI -->
     <data name="login.ui.title" xml:space="preserve">
-        <value>Login to Gabber</value>
+        <value>Login to TalkFutures</value>
     </data>
     <data name="login.ui.submit.button" xml:space="preserve">
         <value>Login</value>
@@ -220,13 +220,13 @@
     </data>
     <!-- USER REGISTER SCREEN: UI -->
     <data name="register.ui.title" xml:space="preserve">
-        <value>Create a Gabber account</value>
+        <value>Create a TalkFutures account</value>
     </data>
     <data name="register.ui.fullname.label" xml:space="preserve">
         <value>Full name</value>
     </data>
     <data name="register.ui.terms.label" xml:space="preserve">
-        <value>&lt;i&gt;By continuing to use Gabber, you agree with our &lt;a href={0}/terms&gt;Terms of Use&lt;/a&gt; &amp; &lt;a href={0}/privacy&gt;Privacy Policy&lt;/a&gt;&lt;/i&gt;</value>
+        <value>&lt;i&gt;By continuing to use TalkFutures, you agree with our &lt;a href={0}/terms&gt;Terms of Use&lt;/a&gt; &amp; &lt;a href={0}/privacy&gt;Privacy Policy&lt;/a&gt;&lt;/i&gt;</value>
     </data>
     <data name="register.ui.submit.button" xml:space="preserve">
         <value>Register</value>
@@ -250,8 +250,8 @@
     </data>
     <!-- REGISTER VERIFYING EMAIL PAGE -->
     <data name="register.verifying.activity.label" xml:space="preserve">
-        <value>Gabber to verify email</value>
-        <comment>Appears in Android application list when a button is clicked for a gabber url, i.e. in an email.</comment>
+        <value>TalkFutures to verify email</value>
+        <comment>Appears in Android application list when a button is clicked for a TalkFutures url, i.e. in an email.</comment>
     </data>
     <data name="register.verifying.ui.page.title" xml:space="preserve">
         <value>Verifying Email</value>
@@ -316,13 +316,13 @@
     </data>
     <!-- ABOUT FRAGMENT -->
     <data name="about.ui.title" xml:space="preserve">
-        <value>What is Gabber?</value>
+        <value>What is TalkFutures?</value>
     </data>
     <data name="about.ui.content" xml:space="preserve">
-        <value>Gabber uses topics to structure and capture audio conversations, which are used on the website to represent who was present and what was discussed.</value>
+        <value>TalkFutures uses topics to structure and capture audio conversations, which are used on the website to represent who was present and what was discussed.</value>
     </data>
     <data name="about.ui.url.description" xml:space="preserve">
-        <value>Listen to Gabber recordings:</value>
+        <value>Listen to TalkFutures recordings:</value>
     </data>
     <!-- PARTICIPANTS SCREEN -->
     <data name="participants.ui.title" xml:space="preserve">
@@ -494,7 +494,7 @@
         <value>You've uploaded a conversation!</value>
     </data>
     <data name="debriefing.congrats.body" xml:space="preserve">
-        <value>Thank you for sharing your experiences - the recording has been uploaded to the Gabber website at {0}. Why not give it a visit and see what others have uploaded? </value>
+        <value>Thank you for sharing your experiences - the recording has been uploaded to the TalkFutures website at {0}. Why not give it a visit and see what others have uploaded? </value>
     </data>
     <data name="debriefing.consent.title" xml:space="preserve">
         <value>Changing your consent</value>
