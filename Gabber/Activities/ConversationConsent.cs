@@ -1,24 +1,23 @@
-﻿using Android.App;
-using Android.OS;
-using Android.Support.V7.App;
-using Android.Content.PM;
-using Android.Widget;
-using Android.Support.V7.Widget;
-using Android.Content;
-using Android.Views;
-using GabberPCL.Resources;
-using Android.Text;
-using Android.Preferences;
-using GabberPCL.Models;
-using GabberPCL;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Gabber.Adapters;
-using System.Collections.Generic;
+using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using Android.OS;
+using Android.Preferences;
+using Android.Support.V7.App;
+using Android.Support.V7.Widget;
+using Android.Text;
+using Android.Views;
+using Android.Widget;
 using Gabber.Helpers;
+using GabberPCL;
+using GabberPCL.Models;
+using GabberPCL.Resources;
 
 namespace Gabber.Activities
 {
-    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait, ParentActivity = typeof(ResearchConsent))]
     public class ConversationConsent : AppCompatActivity
     {
         private AppCompatButton submitButton;
@@ -34,7 +33,6 @@ namespace Gabber.Activities
             SetContentView(Resource.Layout.consent_conversation);
 
             SupportActionBar.Title = StringResources.consent_gabber_toolbar_title;
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             ISharedPreferences _prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
             Project selectedProject = Queries.ProjectById(_prefs.GetInt("SelectedProjectID", 0));
@@ -162,12 +160,6 @@ namespace Gabber.Activities
             foreach (var p in participants) PartNames.Add(p.Name.Split(' ')[0].Trim());
 
             return string.Join(", ", PartNames);
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            OnBackPressed();
-            return true;
         }
 
         private void LanguageSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)

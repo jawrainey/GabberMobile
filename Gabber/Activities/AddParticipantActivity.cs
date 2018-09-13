@@ -1,15 +1,11 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
@@ -22,7 +18,7 @@ using GabberPCL.Resources;
 
 namespace Gabber.Activities
 {
-    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait, ParentActivity = typeof(ChooseParticipantsActivity))]
     public class AddParticipantActivity : AppCompatActivity
     {
         private List<IFRC_Society> socChoices;
@@ -49,7 +45,6 @@ namespace Gabber.Activities
             Localise.SetLayoutDirectionByPreference(this);
             SetContentView(Resource.Layout.register);
             SupportActionBar.Title = StringResources.participants_ui_add_title;
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             socSpinner = FindViewById<Spinner>(Resource.Id.chooseSocietySpinner);
             socSpinner.ItemSelected += SocSpinner_ItemSelected;
@@ -81,12 +76,6 @@ namespace Gabber.Activities
             FindViewById<TextView>(Resource.Id.Terms).Visibility = ViewStates.Gone;
 
             LoadData();
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            OnBackPressed();
-            return true;
         }
 
         private void LoadData()
