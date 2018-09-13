@@ -20,7 +20,7 @@ namespace Gabber.iOS
     public partial class CreateUserController : UITableViewController
     {
         private string enteredName;
-        private string enteredEmail;
+        public string enteredEmail;
         private string enteredPassword;
         private AgeRange selectedAgeGroup;
         private Gender selectedGender;
@@ -28,6 +28,8 @@ namespace Gabber.iOS
         private IFRC_Role selectedRole;
         private IProfileOption tempPickerOption;
         private CreateUserTableViewSource source;
+
+        public bool IsAccountRegistration = true;
 
         public CreateUserController(IntPtr handle) : base(handle)
         {
@@ -39,8 +41,10 @@ namespace Gabber.iOS
             TableView.RowHeight = UITableView.AutomaticDimension;
             TableView.EstimatedRowHeight = 190;
 
+            CGColor themeColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+            FinishButton.Layer.BorderWidth = 1.0f;
+            FinishButton.Layer.BorderColor = themeColor;
             FinishButton.SetTitle(StringResources.common_ui_forms_done, UIControlState.Normal);
-
             FinishButton.TouchUpInside += FinishButton_TouchUpInside;
 
             source = new CreateUserTableViewSource(new List<UserOption> { });
@@ -52,7 +56,15 @@ namespace Gabber.iOS
         [Export("tableView:didSelectRowAtIndexPath:")]
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-            switch (indexPath.Row)
+            int row = indexPath.Row;
+
+            if (!IsAccountRegistration && row > 1)
+            {
+                // compensate for password field being missing, creating an offset
+                row++;
+            }
+
+            switch (row)
             {
                 case 0:
                     ShowInputDialog(StringResources.register_ui_fullname_label, "", UIKeyboardType.Default, enteredName, false,
@@ -63,7 +75,7 @@ namespace Gabber.iOS
                                     (entered) => { enteredEmail = entered; });
                     break;
                 case 2:
-                    ShowInputDialog(StringResources.common_ui_forms_password_label, "Enter your password", UIKeyboardType.Default, enteredPassword, true,
+                    ShowInputDialog(StringResources.common_ui_forms_password_label, "", UIKeyboardType.Default, enteredPassword, true,
                                     (entered) => { enteredPassword = entered; });
                     break;
                 case 3:
@@ -189,12 +201,6 @@ namespace Gabber.iOS
 
                 new UserOption
                 {
-                    Title = StringResources.common_ui_forms_password_label,
-                    ShownData = string.IsNullOrWhiteSpace(enteredPassword)? "" : "*********"
-                },
-
-                new UserOption
-                {
                     Title = StringResources.common_ui_forms_age,
                     ShownData = (selectedAgeGroup == null)? "" : selectedAgeGroup.DisplayName
                 },
@@ -218,6 +224,15 @@ namespace Gabber.iOS
                 }
             };
 
+            if (IsAccountRegistration)
+            {
+                options.Insert(2, new UserOption
+                {
+                    Title = StringResources.common_ui_forms_password_label,
+                    ShownData = string.IsNullOrWhiteSpace(enteredPassword) ? "" : "*********"
+                });
+            }
+
             source.Rows = options;
             TableView.ReloadData();
         }
@@ -239,7 +254,7 @@ namespace Gabber.iOS
             {
                 ErrorMessageDialog(StringResources.common_ui_forms_email_validate_empty);
             }
-            else if (string.IsNullOrWhiteSpace(enteredPassword))
+            else if (IsAccountRegistration && string.IsNullOrWhiteSpace(enteredPassword))
             {
                 ErrorMessageDialog(StringResources.common_ui_forms_password_validate_empty);
             }
@@ -263,7 +278,7 @@ namespace Gabber.iOS
             {
                 ErrorMessageDialog(StringResources.common_ui_forms_role_error);
             }
-            else
+            else if (IsAccountRegistration)
             {
                 FinishButton.Enabled = false;
                 Logger.LOG_EVENT_WITH_ACTION("REGISTER", "ATTEMPT");
@@ -293,6 +308,23 @@ namespace Gabber.iOS
                     var err = StringResources.ResourceManager.GetString($"login.api.error.{response.Meta.Messages[0]}");
                     ErrorMessageDialog(err);
                 }
+            }
+            else
+            {
+                // Just creating a participant, this will be sent to the server later.
+                Session.Connection.Insert(new User
+                {
+                    Name = enteredName,
+                    Email = enteredEmail,
+                    Selected = true,
+                    GenderId = selectedGender.GetId(),
+                    GenderTerm = selectedGender.Data,
+                    AgeBracket = selectedAgeGroup.GetId(),
+                    AppLang = 1,
+                    Role = selectedRole.GetId(),
+                    Society = selectedSociety.GetId(),
+                });
+                PerformSegue("UnwindToParticipantsSegue", this);
             }
         }
 

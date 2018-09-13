@@ -106,11 +106,11 @@ namespace Gabber.iOS
 
         private async void LoadLanguages()
         {
-            IEnumerable<LanguageChoice> languages = await LanguagesManager.GetLanguageChoices();
+            List<LanguageChoice> languages = await LanguagesManager.GetLanguageChoices();
 
             if (languages != null)
             {
-                pickerModel = new ProfileOptionPickerViewModel((List<IProfileOption>)languages,
+                pickerModel = new ProfileOptionPickerViewModel(languages.ToList<IProfileOption>(),
                                                                StringResources.common_ui_forms_language_default,
                                                                PickerSelected);
                 LanguagePicker.Model = pickerModel;
