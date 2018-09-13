@@ -24,23 +24,9 @@ namespace Gabber
     {
         FirebaseAnalytics firebaseAnalytics;
 
-        private List<IFRC_Society> socChoices;
-        private Spinner socSpinner;
-        private string selectedSoc;
-
-        private List<Gender> genderChoices;
-        private Spinner genderSpinner;
-        private string selectedGender;
-        private TextInputLayout customGenderLayout;
-        private TextInputEditText customGenderInput;
-
-        private List<IFRC_Role> roleChoices;
-        private Spinner roleSpinner;
-        private string selectedRole;
-
-        private List<AgeRange> ageChoices;
-        private Spinner ageSpinner;
-        private string selectedAge;
+        private List<LanguageChoice> languageChoices;
+        private Spinner languageSpinner;
+        private string selectedLanguage;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -54,21 +40,8 @@ namespace Gabber
 
             FindViewById<TextView>(Resource.Id.loadingMessage).Text = StringResources.common_comms_loading;
 
-            socSpinner = FindViewById<Spinner>(Resource.Id.chooseSocietySpinner);
-            socSpinner.ItemSelected += SocSpinner_ItemSelected;
-
-            genderSpinner = FindViewById<Spinner>(Resource.Id.chooseGenderSpinner);
-            genderSpinner.ItemSelected += GenderSpinner_ItemSelected;
-
-            ageSpinner = FindViewById<Spinner>(Resource.Id.chooseAgeSpinner);
-            ageSpinner.ItemSelected += AgeSpinner_ItemSelected;
-
-            roleSpinner = FindViewById<Spinner>(Resource.Id.chooseRoleSpinner);
-            roleSpinner.ItemSelected += RoleSpinner_ItemSelected;
-
-            customGenderLayout = FindViewById<TextInputLayout>(Resource.Id.customGenderLayout);
-            customGenderInput = FindViewById<TextInputEditText>(Resource.Id.customGender);
-            customGenderLayout.Hint = StringResources.common_ui_forms_gender_custom_label;
+            languageSpinner = FindViewById<Spinner>(Resource.Id.chooseLanguageSpinner);
+            languageSpinner.ItemSelected += LanguageSpinner_ItemSelected;
 
             AppCompatButton submit = FindViewById<AppCompatButton>(Resource.Id.submit);
             submit.Text = StringResources.register_ui_submit_button;
@@ -81,6 +54,9 @@ namespace Gabber
 
             TextInputLayout passwordInput = FindViewById<TextInputLayout>(Resource.Id.passwordLayout);
             passwordInput.Hint = StringResources.common_ui_forms_password_label;
+
+            TextInputLayout confirmPassInput = FindViewById<TextInputLayout>(Resource.Id.passwordConfirmLayout);
+            confirmPassInput.Hint = StringResources.common_ui_forms_password_confirm_label;
 
             var terms = FindViewById<TextView>(Resource.Id.Terms);
             var termsContent = string.Format(StringResources.register_ui_terms_label, Config.WEB_URL);
@@ -99,39 +75,38 @@ namespace Gabber
 
             submit.Click += Submit_Click;
 
-            LoadData();
+            LoadLanguages();
         }
 
-        private void LoadData()
+        private async void LoadLanguages()
         {
             RelativeLayout loadingLayout = FindViewById<RelativeLayout>(Resource.Id.loadingLayout);
             loadingLayout.Visibility = ViewStates.Visible;
 
-            socChoices = IFRC_Society.GetOptions();
-            genderChoices = Gender.GetOptions();
-            ageChoices = AgeRange.GetOptions();
-            roleChoices = IFRC_Role.GetOptions();
+            languageChoices = await LanguagesManager.GetLanguageChoices();
 
-            loadingLayout.Visibility = ViewStates.Gone;
+            if (languageChoices == null || languageChoices.Count == 0)
+            {
+                new Android.Support.V7.App.AlertDialog.Builder(this)
+                    .SetTitle(StringResources.common_comms_error)
+                    .SetMessage(StringResources.common_comms_error_server)
+                    .SetPositiveButton(StringResources.common_comms_retry, (a, b) =>
+                       {
+                           LoadLanguages();
+                       })
+                    .SetNegativeButton(StringResources.common_comms_cancel, (a, b) => { Finish(); })
+                    .Show();
+            }
+            else
+            {
+                loadingLayout.Visibility = ViewStates.Gone;
 
-            List<string> socNames = socChoices.Select(soc => soc.Name).ToList();
-            socNames.Insert(0, StringResources.common_ui_forms_society_default);
+                List<string> langNames = languageChoices.Select(lang => lang.Endonym).ToList();
+                langNames.Insert(0, StringResources.common_ui_forms_language_default);
 
-            ArrayAdapter socAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, socNames);
-            socSpinner.Adapter = socAdapter;
-
-            List<string> genderNames = genderChoices.Select(gender => gender.LocalisedName).ToList();
-            ArrayAdapter genderAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, genderNames);
-            genderSpinner.Adapter = genderAdapter;
-
-            List<string> ageNames = ageChoices.Select(age => age.DisplayName).ToList();
-            ArrayAdapter ageAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, ageNames);
-            ageSpinner.Adapter = ageAdapter;
-
-            List<string> roleNames = roleChoices.Select(role => role.LocalisedName).ToList();
-            ArrayAdapter roleAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, roleNames);
-            roleSpinner.Adapter = roleAdapter;
-
+                ArrayAdapter spinnerAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, langNames);
+                languageSpinner.Adapter = spinnerAdapter;
+            }
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -157,34 +132,9 @@ namespace Gabber
             firebaseAnalytics.LogEvent(eventName, bundle);
         }
 
-        private void SocSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        private void LanguageSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
-            selectedSoc = (string)socSpinner.GetItemAtPosition(e.Position);
-        }
-
-        private void GenderSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            selectedGender = (string)genderSpinner.GetItemAtPosition(e.Position);
-
-            if (selectedGender == StringResources.common_ui_forms_gender_custom)
-            {
-                customGenderLayout.Visibility = ViewStates.Visible;
-            }
-            else
-            {
-                customGenderLayout.Visibility = ViewStates.Gone;
-                customGenderInput.Text = null;
-            }
-        }
-
-        private void RoleSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            selectedRole = (string)roleSpinner.GetItemAtPosition(e.Position);
-        }
-
-        private void AgeSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            selectedAge = (string)ageSpinner.GetItemAtPosition(e.Position);
+            selectedLanguage = (string)languageSpinner.GetItemAtPosition(e.Position);
         }
 
         private async void Submit_Click(object sender, System.EventArgs e)
@@ -192,57 +142,38 @@ namespace Gabber
             AppCompatEditText fname = FindViewById<AppCompatEditText>(Resource.Id.name);
             AppCompatEditText email = FindViewById<AppCompatEditText>(Resource.Id.email);
             AppCompatEditText passw = FindViewById<AppCompatEditText>(Resource.Id.password);
+            AppCompatEditText confPass = FindViewById<AppCompatEditText>(Resource.Id.confirmPassword);
 
             if (string.IsNullOrWhiteSpace(fname.Text))
             {
-                // No name entered
                 fname.Error = StringResources.register_ui_fullname_validate_empty;
                 fname.RequestFocus();
             }
             else if (string.IsNullOrWhiteSpace(email.Text))
             {
-                // No email entered
                 email.Error = StringResources.common_ui_forms_email_validate_empty;
                 email.RequestFocus();
             }
             else if (string.IsNullOrWhiteSpace(passw.Text))
             {
-                // no password entered
                 passw.Error = StringResources.common_ui_forms_password_validate_empty;
                 passw.RequestFocus();
             }
+            else if (passw.Text != confPass.Text)
+            {
+                confPass.Error = StringResources.common_ui_forms_password_validate_mismatch;
+                confPass.RequestFocus();
+            }
             else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
             {
-                // Email not valid
                 email.Error = StringResources.common_ui_forms_email_validate_invalid;
                 email.RequestFocus();
             }
-            else if (string.IsNullOrWhiteSpace(selectedGender) ||
-                     selectedGender == StringResources.common_ui_forms_gender_default ||
-                     (selectedGender == StringResources.common_ui_forms_gender_custom && string.IsNullOrWhiteSpace(customGenderInput.Text)))
+            else if (string.IsNullOrWhiteSpace(selectedLanguage) ||
+                     selectedLanguage == StringResources.common_ui_forms_language_default)
             {
-                // Gender not selected, OR
-                // if custom selected, custom name not entered
                 new Android.Support.V7.App.AlertDialog.Builder(this)
-                           .SetMessage(StringResources.common_ui_forms_gender_error)
-                           .SetPositiveButton(StringResources.common_comms_ok, (a, b) => { })
-                           .Show();
-            }
-            else if (string.IsNullOrWhiteSpace(selectedSoc) ||
-                     selectedSoc == StringResources.common_ui_forms_society_default)
-            {
-                //National society not selected
-                new Android.Support.V7.App.AlertDialog.Builder(this)
-                           .SetMessage(StringResources.common_ui_forms_society_error)
-                           .SetPositiveButton(StringResources.common_comms_ok, (a, b) => { })
-                           .Show();
-            }
-            else if (string.IsNullOrWhiteSpace(selectedRole) ||
-                     selectedRole == StringResources.common_ui_forms_role_default)
-            {
-                //IFRC role not selected
-                new Android.Support.V7.App.AlertDialog.Builder(this)
-                           .SetMessage(StringResources.common_ui_forms_role_error)
+                           .SetMessage(StringResources.common_ui_forms_language_error)
                            .SetPositiveButton(StringResources.common_comms_ok, (a, b) => { })
                            .Show();
             }
@@ -251,20 +182,10 @@ namespace Gabber
                 FindViewById<RelativeLayout>(Resource.Id.loadingLayout).Visibility = ViewStates.Visible;
                 FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 
-                IFRC_Society chosenSoc = socChoices.FirstOrDefault((arg) => arg.Name == selectedSoc);
-                AgeRange chosenAge = ageChoices.FirstOrDefault((arg) => arg.DisplayName == selectedAge);
-                IFRC_Role chosenRole = roleChoices.FirstOrDefault((arg) => arg.LocalisedName == selectedRole);
-                Gender chosenGender = genderChoices.FirstOrDefault((arg) => arg.LocalisedName == selectedGender);
-
-                if (chosenGender.Enum == Gender.GenderEnum.Custom)
-                {
-                    chosenGender.Data = customGenderInput.Text;
-                }
+                LanguageChoice chosenLang = languageChoices.FirstOrDefault((arg) => arg.Endonym == selectedLanguage);
 
                 LOG_EVENT_WITH_ACTION("REGISTER", "ATTEMPT");
-
-                //default to English at registration
-                CustomAuthResponse response = await RestClient.Register(fname.Text, email.Text.ToLower(), passw.Text, 1, chosenSoc.Id, chosenGender, (int)chosenRole.Enum, (int)chosenAge.Enum);
+                CustomAuthResponse response = await RestClient.Register(fname.Text, email.Text.ToLower(), passw.Text, chosenLang.Id);
 
                 if (response.Meta.Success)
                 {

@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using UIKit;
 using System.Linq;
 using Gabber.iOS.Helpers;
-using GabberPCL.Interfaces;
 
 namespace Gabber.iOS
 {
@@ -23,7 +22,7 @@ namespace Gabber.iOS
     {
         // The type of consent participants have chosen
         private string ConsentType;
-        private ProfileOptionPickerViewModel pickerModel;
+        private LanguagePickerViewModel pickerModel;
 
         public ConversationConsent(IntPtr handle) : base(handle) { }
 
@@ -98,7 +97,7 @@ namespace Gabber.iOS
             ConversationConsentSubmit.TouchUpInside += delegate
             {
                 NSUserDefaults.StandardUserDefaults.SetString(ConsentType, "SESSION_CONSENT");
-                NSUserDefaults.StandardUserDefaults.SetInt(pickerModel.GetChoice(LanguagePicker).GetId(), "SESSION_LANG");
+                NSUserDefaults.StandardUserDefaults.SetInt(pickerModel.GetChoice(LanguagePicker).Id, "SESSION_LANG");
             };
 
             LoadLanguages();
@@ -108,17 +107,15 @@ namespace Gabber.iOS
         {
             List<LanguageChoice> languages = await LanguagesManager.GetLanguageChoices();
 
-            if (languages != null)
+            if (languages != null && languages.Count > 0)
             {
-                pickerModel = new ProfileOptionPickerViewModel(languages.ToList<IProfileOption>(),
-                                                               StringResources.common_ui_forms_language_default,
-                                                               PickerSelected);
+                pickerModel = new LanguagePickerViewModel(languages, PickerSelected);
                 LanguagePicker.Model = pickerModel;
                 pickerModel.SelectById(LanguagePicker, Session.ActiveUser.Lang);
             }
         }
 
-        private void PickerSelected(IProfileOption choice)
+        private void PickerSelected(LanguageChoice choice)
         {
             CheckSubmitEnabled();
         }

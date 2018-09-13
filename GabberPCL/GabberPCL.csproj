@@ -55,11 +55,6 @@
     <Compile Include="Models\PlatformCulture.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Models\Content.cs" />
-    <Compile Include="Models\IFRC_Society.cs" />
-    <Compile Include="Models\Gender.cs" />
-    <Compile Include="Models\IFRC_Role.cs" />
-    <Compile Include="Models\AgeRange.cs" />
-    <Compile Include="Interfaces\IProfileOption.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

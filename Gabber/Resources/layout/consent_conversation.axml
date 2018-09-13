@@ -37,13 +37,23 @@
             android:orientation="vertical"
             android:layout_weight="1">
             <TextView
+                android:id="@+id/GabberConsentDecisionTitle"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+            <TextView
                 android:id="@+id/GabberConsentDecisionDesc"
-                style="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="14dp"
+                android:lineSpacingExtra="3dp"
                 android:paddingStart="24dp"
                 android:paddingEnd="24dp"
-                android:layout_marginBottom="6dp"
-                android:layout_marginTop="16dp"
-                android:lineSpacingExtra="6dp"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent" />
             <RadioGroup

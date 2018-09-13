@@ -2,55 +2,49 @@
 using System.Collections.Generic;
 using System.Drawing;
 using Foundation;
-using GabberPCL.Interfaces;
 using GabberPCL.Models;
 using GabberPCL.Resources;
 using UIKit;
 
 namespace Gabber.iOS.ViewSources
 {
-    public class ProfileOptionPickerViewModel : UIPickerViewModel
+    public class LanguagePickerViewModel : UIPickerViewModel
     {
-        private readonly List<IProfileOption> rows;
-        private Action<IProfileOption> selectCallback;
-        private readonly string firstItem;
-        private int offset;
+        private readonly List<LanguageChoice> rows;
+        private Action<LanguageChoice> selectCallback;
 
-        public ProfileOptionPickerViewModel(List<IProfileOption> data, string defaultOption = null, Action<IProfileOption> didSelect = null)
+        public LanguagePickerViewModel(List<LanguageChoice> data, Action<LanguageChoice> didSelect = null)
         {
-            firstItem = defaultOption;
             rows = data;
             selectCallback = didSelect;
-
-            offset = (firstItem == null) ? 0 : 1;
         }
 
         public bool SelectById(UIPickerView pickerView, int id)
         {
-            int index = rows.FindIndex((IProfileOption obj) => obj.GetId() == id);
+            int index = rows.FindIndex((LanguageChoice obj) => obj.Id == id);
 
-            pickerView.Select(index + offset, 0, true);
+            pickerView.Select(index + 1, 0, true);
 
             // found?
             return index != -1;
         }
 
-        public IProfileOption GetChoice(UIPickerView pickerView)
+        public LanguageChoice GetChoice(UIPickerView pickerView)
         {
             int row = (int)pickerView.SelectedRowInComponent(0);
 
-            if (row < offset) return null;
+            if (row == 0) return null;
 
-            return rows[row - offset];
+            return rows[row - 1];
         }
 
         [Export("pickerView:didSelectRow:inComponent:")]
         public override void Selected(UIPickerView pickerView, nint row, nint component)
         {
-            IProfileOption choice = null;
-            if (row >= offset)
+            LanguageChoice choice = null;
+            if ((int)row != 0)
             {
-                choice = rows[(int)row - offset];
+                choice = rows[(int)row - 1];
             }
 
             selectCallback?.Invoke(choice);
@@ -63,10 +57,10 @@ namespace Gabber.iOS.ViewSources
 
         public override nint GetRowsInComponent(UIPickerView pickerView, nint component)
         {
-            return rows.Count + offset;
+            return rows.Count + 1;
         }
 
-        public override nfloat GetRowHeight(UIPickerView pickerView, nint component)
+        public override nfloat GetRowHeight(UIPickerView picker, nint component)
         {
             return 27f;
         }
@@ -77,8 +71,7 @@ namespace Gabber.iOS.ViewSources
             lbl.TextColor = UIColor.Black;
             lbl.Font = UIFont.SystemFontOfSize(16f);
             lbl.TextAlignment = UITextAlignment.Center;
-            lbl.AdjustsFontSizeToFitWidth = true;
-            lbl.Text = (row < offset) ? firstItem : rows[(int)row - offset].GetText();
+            lbl.Text = (row == 0) ? StringResources.common_ui_forms_language_default : rows[(int)row - 1].Endonym;
             return lbl;
         }
     }

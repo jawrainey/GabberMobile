@@ -1,8 +1,6 @@
-﻿using GabberPCL.Interfaces;
-
-namespace GabberPCL.Models
+﻿namespace GabberPCL.Models
 {
-    public class LanguageChoice : IProfileOption
+    public class LanguageChoice
     {
         //{
         //    "code": "ar",
@@ -14,15 +12,5 @@ namespace GabberPCL.Models
         public string Endonym { get; set; }
         public int Id { get; set; }
         public string Iso_name { get; set; }
-
-        public int GetId()
-        {
-            return Id;
-        }
-
-        public string GetText()
-        {
-            return Endonym;
-        }
     }
 }

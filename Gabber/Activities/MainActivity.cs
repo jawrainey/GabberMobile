@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -18,6 +15,9 @@ using GabberPCL;
 using GabberPCL.Models;
 using GabberPCL.Resources;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 
 namespace Gabber
 {

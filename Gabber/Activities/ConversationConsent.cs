@@ -1,23 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Android.App;
-using Android.Content;
-using Android.Content.PM;
+﻿using Android.App;
 using Android.OS;
-using Android.Preferences;
 using Android.Support.V7.App;
-using Android.Support.V7.Widget;
-using Android.Text;
-using Android.Views;
+using Android.Content.PM;
 using Android.Widget;
-using Gabber.Helpers;
-using GabberPCL;
-using GabberPCL.Models;
+using Android.Support.V7.Widget;
+using Android.Content;
+using Android.Views;
 using GabberPCL.Resources;
+using Android.Text;
+using Android.Preferences;
+using GabberPCL.Models;
+using GabberPCL;
+using System.Linq;
+using Gabber.Adapters;
+using System.Collections.Generic;
+using Gabber.Helpers;
 
 namespace Gabber.Activities
 {
-    [Activity(ScreenOrientation = ScreenOrientation.Portrait, ParentActivity = typeof(ResearchConsent))]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class ConversationConsent : AppCompatActivity
     {
         private AppCompatButton submitButton;
@@ -33,9 +34,13 @@ namespace Gabber.Activities
             SetContentView(Resource.Layout.consent_conversation);
 
             SupportActionBar.Title = StringResources.consent_gabber_toolbar_title;
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             ISharedPreferences _prefs = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
             Project selectedProject = Queries.ProjectById(_prefs.GetInt("SelectedProjectID", 0));
+
+            FindViewById<TextView>(Resource.Id.GabberConsentDecisionTitle).Text =
+                StringResources.consent_gabber_title_decision;
 
             FindViewById<TextView>(Resource.Id.GabberConsentDecisionDesc).Text =
                 string.Format(StringResources.consent_gabber_body_decision, Config.PRINT_URL);
@@ -157,6 +162,12 @@ namespace Gabber.Activities
             foreach (var p in participants) PartNames.Add(p.Name.Split(' ')[0].Trim());
 
             return string.Join(", ", PartNames);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            OnBackPressed();
+            return true;
         }
 
         private void LanguageSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
