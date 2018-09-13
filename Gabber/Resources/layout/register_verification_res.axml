@@ -6,7 +6,7 @@
     android:padding="24dp"
     android:orientation="vertical">
     <ImageView
-        android:src="@drawable/onboarding_first"
+        android:src="@drawable/AppLogo"
         android:layout_width="match_parent"
         android:layout_weight="7"
         android:layout_height="0dp" />
