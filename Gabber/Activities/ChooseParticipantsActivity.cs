@@ -1,24 +1,21 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Support.V7.App;
-using Android.Support.Design.Widget;
-using Toolbar = Android.Support.V7.Widget.Toolbar;
-using Android.Widget;
-using GabberPCL.Models;
-using Android.Preferences;
-using Android.Support.V7.Widget;
-using GabberPCL;
-using Android.Util;
-using System;
-using Android.Views;
-using GabberPCL.Resources;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using Firebase.Analytics;
+using Android.App;
+using Android.Content;
 using Android.Content.PM;
-using Gabber.Activities;
+using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
+using Android.Support.V7.App;
+using Android.Support.V7.Widget;
+using Android.Views;
+using Android.Widget;
+using Firebase.Analytics;
+using Gabber.Activities;
+using Gabber.Helpers;
+using GabberPCL;
+using GabberPCL.Models;
+using GabberPCL.Resources;
 
 namespace Gabber
 {
@@ -38,6 +35,7 @@ namespace Gabber
         {
             firebaseAnalytics = FirebaseAnalytics.GetInstance(ApplicationContext);
             base.OnCreate(savedInstanceState);
+            Localise.SetLayoutDirectionByPreference(this);
             SetContentView(Resource.Layout.preparation);
             SupportActionBar.Title = StringResources.participants_ui_title;
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);

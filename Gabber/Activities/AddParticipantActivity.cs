@@ -1,27 +1,24 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Gabber.Helpers;
 using GabberPCL;
 using GabberPCL.Models;
 using GabberPCL.Resources;
 
 namespace Gabber.Activities
 {
-    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait, ParentActivity = typeof(ChooseParticipantsActivity))]
     public class AddParticipantActivity : AppCompatActivity
     {
         private List<IFRC_Society> socChoices;
@@ -45,10 +42,9 @@ namespace Gabber.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            Localise.SetLayoutDirectionByPreference(this);
             SetContentView(Resource.Layout.register);
             SupportActionBar.Title = StringResources.participants_ui_add_title;
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             socSpinner = FindViewById<Spinner>(Resource.Id.chooseSocietySpinner);
             socSpinner.ItemSelected += SocSpinner_ItemSelected;
@@ -67,7 +63,7 @@ namespace Gabber.Activities
             customGenderLayout.Hint = StringResources.common_ui_forms_gender_custom_label;
 
             AppCompatButton submit = FindViewById<AppCompatButton>(Resource.Id.submit);
-            submit.Text = StringResources.register_ui_submit_button;
+            submit.Text = StringResources.participants_ui_add_positive;
             submit.Click += Submit_Click;
 
             TextInputLayout nameInput = FindViewById<TextInputLayout>(Resource.Id.nameLayout);

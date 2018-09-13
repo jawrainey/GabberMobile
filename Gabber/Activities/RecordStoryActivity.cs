@@ -1,36 +1,34 @@
-﻿using Android.App;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Android;
+using Android.App;
+using Android.Content;
+using Android.Content.PM;
+using Android.Graphics;
 using Android.Media;
 using Android.OS;
+using Android.Preferences;
+using Android.Runtime;
+using Android.Support.Design.Widget;
+using Android.Support.V4.Content;
+using Android.Support.V4.View;
 using Android.Support.V7.App;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using System.IO;
-using System.Threading.Tasks;
-using System;
-using Android.Support.Design.Widget;
-using Toolbar = Android.Support.V7.Widget.Toolbar;
-using Android.Content;
-using GabberPCL;
-using System.Collections.Generic;
-using Android.Support.V7.Widget;
-using GabberPCL.Models;
-using Gabber.Adapters;
-using GabberPCL.Resources;
-using Android.Graphics;
-using Android.Views.Animations;
-using System.Linq;
 using Firebase.Analytics;
-using Android.Content.PM;
-using Android.Preferences;
-using Android.Support.V4.View;
+using Gabber.Activities;
+using Gabber.Adapters;
 using Gabber.Helpers;
-using Android;
-using Android.Runtime;
-using Android.Support.V4.Content;
+using GabberPCL;
+using GabberPCL.Models;
+using GabberPCL.Resources;
 
 namespace Gabber
 {
-    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait, ParentActivity = typeof(ConversationConsent))]
     public class RecordStoryActivity : AppCompatActivity
     {
         FloatingActionButton record;
@@ -69,7 +67,6 @@ namespace Gabber
             SetContentView(Resource.Layout.record);
 
             SupportActionBar.Title = StringResources.recording_ui_title;
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             var instructionsHeader = FindViewById<TextView>(Resource.Id.recordInstructionsHeader);
             instructionsHeader.Text = StringResources.recording_ui_instructions_header;
@@ -170,12 +167,6 @@ namespace Gabber
                 LOG_EVENT("BACK_WITHOUT_RECORD");
                 base.OnBackPressed();
             }
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            OnBackPressed();
-            return true;
         }
 
         private void CheckRecPerm(object sender, int position)
