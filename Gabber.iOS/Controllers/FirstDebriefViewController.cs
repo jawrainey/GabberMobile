@@ -10,7 +10,7 @@ namespace Gabber.iOS
 {
     public partial class FirstDebriefViewController : UIViewController
     {
-        public FirstDebriefViewController(IntPtr handle) : base(handle) {}
+        public FirstDebriefViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {
@@ -27,7 +27,7 @@ namespace Gabber.iOS
 
             FinishedButton.SetTitle(StringResources.debriefing_finish_button, UIControlState.Normal);
             FinishedButton.Layer.BorderWidth = 1.0f;
-            FinishedButton.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+            FinishedButton.Layer.BorderColor = Application.MainColour;
 
             FinishedButton.TouchUpInside += FinishedButton_TouchUpInside;
 

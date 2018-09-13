@@ -92,7 +92,7 @@ namespace Gabber.iOS
 
             ConversationConsentSubmit.SetTitle(StringResources.consent_gabber_submit, UIControlState.Normal);
             ConversationConsentSubmit.Layer.BorderWidth = 1.0f;
-            ConversationConsentSubmit.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+            ConversationConsentSubmit.Layer.BorderColor = Application.MainColour;
             ConversationConsentSubmit.Enabled = false;
 
             ConversationConsentSubmit.TouchUpInside += delegate

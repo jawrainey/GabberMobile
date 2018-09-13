@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Jay Rainey (G4QY8CALPA)</CodesignKey>
+    <CodesignKey>iPhone Developer: Dan Richardson (JR3T9MH59D)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchFastDev>true</MtouchFastDev>
@@ -32,7 +32,7 @@
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
     <MtouchVerbosity>
     </MtouchVerbosity>
-    <CodesignProvision>VS: uk.ac.ncl.openlab.gabber Development</CodesignProvision>
+    <CodesignProvision>VS: uk.ac.ncl.openlab.talkfutures Development</CodesignProvision>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
   </PropertyGroup>
@@ -44,7 +44,7 @@
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Jay Rainey (G4QY8CALPA)</CodesignKey>
+    <CodesignKey>iPhone Developer: Dan Richardson (JR3T9MH59D)</CodesignKey>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
@@ -53,7 +53,7 @@
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchVerbosity>
     </MtouchVerbosity>
-    <CodesignProvision>VS: uk.ac.ncl.openlab.gabber Development</CodesignProvision>
+    <CodesignProvision>VS: uk.ac.ncl.openlab.talkfutures Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
@@ -63,14 +63,14 @@
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Jay Rainey (G4QY8CALPA)</CodesignKey>
+    <CodesignKey>iPhone Developer: Dan Richardson (JR3T9MH59D)</CodesignKey>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchVerbosity>
     </MtouchVerbosity>
-    <CodesignProvision>VS: uk.ac.ncl.openlab.gabber Development</CodesignProvision>
+    <CodesignProvision>VS: uk.ac.ncl.openlab.talkfutures Development</CodesignProvision>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
   </PropertyGroup>
@@ -96,7 +96,7 @@
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchVerbosity>
     </MtouchVerbosity>
-    <CodesignProvision>VS: uk.ac.ncl.openlab.gabber Development</CodesignProvision>
+    <CodesignProvision>VS: uk.ac.ncl.openlab.talkfutures Development</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -631,33 +631,6 @@
     <ImageAsset Include="Assets.xcassets\BackButton.imageset\3x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-60.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-87.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-80.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-120.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-180.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Gabber-1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\Logo.imageset\logo.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\cloud_done.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -721,19 +694,7 @@
     <ImageAsset Include="Assets.xcassets\OnboardingConsent.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\OnboardingConsent.imageset\onboarding_third.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\OnboardingParts.imageset\onboarding_parts.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\OnboardingProjects.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\OnboardingProjects.imageset\onboarding_second.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\OnboardingWelcome.imageset\onboarding_first.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\CheckboxChecked.imageset\Contents.json">
@@ -764,6 +725,35 @@
     <ImageAsset Include="Assets.xcassets\Settings.imageset\baseline_settings_black_24pt_1x.png" />
     <ImageAsset Include="Assets.xcassets\Settings.imageset\baseline_settings_black_24pt_2x.png" />
     <ImageAsset Include="Assets.xcassets\Settings.imageset\baseline_settings_black_24pt_3x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-20%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-20%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-29%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-20.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-83.5%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iTunesArtwork%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Logo.imageset\iTunesArtwork.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-40.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingWelcome.imageset\welcome-to-talkfutures-1024px-01.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\OnboardingWelcome.imageset\onboarding_first.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingWelcome.imageset\welcome-to-talkfutures-1024px-01%402x.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingWelcome.imageset\welcome-to-talkfutures-1024px-01%403x.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingProjects.imageset\choose-a-theme-1024px-02.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingProjects.imageset\choose-a-theme-1024px-02%402x.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingProjects.imageset\choose-a-theme-1024px-02%403x.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingParts.imageset\add-participants-1024px-03.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingParts.imageset\add-participants-1024px-03%402x.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingParts.imageset\add-participants-1024px-03%403x.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingConsent.imageset\upload-conv-1024px-05.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingConsent.imageset\upload-conv-1024px-05%402x.png" />
+    <ImageAsset Include="Assets.xcassets\OnboardingConsent.imageset\upload-conv-1024px-05%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

@@ -34,7 +34,7 @@ namespace Gabber.iOS
             (SessionsCollectionView.CollectionViewLayout as UICollectionViewFlowLayout).EstimatedItemSize = es;
 
             SessionsUpload.Layer.BorderWidth = 1.0f;
-            SessionsUpload.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+            SessionsUpload.Layer.BorderColor = Application.MainColour;
             SessionsUpload.SetTitle(StringResources.sessions_ui_submit_button, UIControlState.Normal);
 
 

@@ -41,9 +41,8 @@ namespace Gabber.iOS
             TableView.RowHeight = UITableView.AutomaticDimension;
             TableView.EstimatedRowHeight = 190;
 
-            CGColor themeColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
             FinishButton.Layer.BorderWidth = 1.0f;
-            FinishButton.Layer.BorderColor = themeColor;
+            FinishButton.Layer.BorderColor = Application.MainColour;
             FinishButton.SetTitle(StringResources.common_ui_forms_done, UIControlState.Normal);
             FinishButton.TouchUpInside += FinishButton_TouchUpInside;
 

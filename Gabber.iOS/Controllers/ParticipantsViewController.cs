@@ -29,10 +29,8 @@ namespace Gabber.iOS
                     PerformSegue("CreateParticipantSegue", this);
                 }), true);
 
-            // TODO: can define these in storyboard
-            var themeColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
             RecordGabberButton.Layer.BorderWidth = 1.0f;
-            RecordGabberButton.Layer.BorderColor = themeColor;
+            RecordGabberButton.Layer.BorderColor = Application.MainColour;
 
             Title = StringResources.participants_ui_title;
 

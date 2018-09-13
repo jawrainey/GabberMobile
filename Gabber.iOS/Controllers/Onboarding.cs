@@ -9,11 +9,11 @@ using UIKit;
 
 namespace Gabber.iOS
 {
-    public partial class Onboarding: UIViewController
+    public partial class Onboarding : UIViewController
     {
-        public Onboarding (IntPtr handle) : base (handle) {}
+        public Onboarding(IntPtr handle) : base(handle) { }
 
-		public override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
@@ -59,16 +59,16 @@ namespace Gabber.iOS
             pageViewController.DidMoveToParentViewController(this);
         }
 
-		public override void ViewWillAppear(bool animated)
-		{
+        public override void ViewWillAppear(bool animated)
+        {
             base.ViewWillAppear(animated);
             var pageControl = UIPageControl.Appearance;
             pageControl.PageIndicatorTintColor = UIColor.LightGray;
-            pageControl.CurrentPageIndicatorTintColor = UIColor.FromRGB(.43f, .80f, .79f);
+            pageControl.CurrentPageIndicatorTintColor = UIColor.FromCGColor(Application.MainColour);
             pageControl.BackgroundColor = UIColor.White;
-		}
+        }
 
-		class PageViewControllerDataSource : UIPageViewControllerDataSource
+        class PageViewControllerDataSource : UIPageViewControllerDataSource
         {
             readonly List<OnboardingContent> Pages;
 
