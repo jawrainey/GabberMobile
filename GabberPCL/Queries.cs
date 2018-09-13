@@ -217,7 +217,12 @@ namespace GabberPCL
                     Role = Session.ActiveUser.Id == participant.Id,
                     Name = participant.Name,
                     Email = participant.Email,
-                    UserID = participant.Id
+                    UserID = participant.Id,
+                    Gender = participant.GenderId,
+                    Gender_Term = participant.GenderTerm,
+                    Age = participant.AgeBracket,
+                    Society = participant.Society,
+                    IFRC_Role = participant.Role
                 });
             }
 

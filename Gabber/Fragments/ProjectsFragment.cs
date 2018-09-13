@@ -142,7 +142,7 @@ namespace Gabber.Fragments
         {
             var _prefs = PreferenceManager.GetDefaultSharedPreferences(Activity);
             LOG_SELECTED_PROJECT(position);
-            var intent = new Intent(Activity.ApplicationContext, typeof(PreparationActivity));
+            var intent = new Intent(Activity.ApplicationContext, typeof(ChooseParticipantsActivity));
             // The unique ID used to lookup associated prompts (URLs and text).
             _prefs.Edit().PutInt("SelectedProjectID", _projects[position].ID).Commit();
             StartActivity(intent);

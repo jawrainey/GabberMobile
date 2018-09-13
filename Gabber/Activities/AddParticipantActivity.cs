@@ -1,4 +1,8 @@
-﻿using Android.App;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
@@ -7,23 +11,16 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using Firebase.Analytics;
-using GabberPCL;
-using GabberPCL.Resources;
-using Android.Text.Util;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using GabberPCL.Models;
-using System.Linq;
 using Gabber.Helpers;
+using GabberPCL;
+using GabberPCL.Models;
+using GabberPCL.Resources;
 
-namespace Gabber
+namespace Gabber.Activities
 {
-    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
-    public class RegisterActivity : AppCompatActivity
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait, ParentActivity = typeof(ChooseParticipantsActivity))]
+    public class AddParticipantActivity : AppCompatActivity
     {
-        FirebaseAnalytics firebaseAnalytics;
-
         private List<IFRC_Society> socChoices;
         private Spinner socSpinner;
         private string selectedSoc;
@@ -44,15 +41,10 @@ namespace Gabber
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
             base.OnCreate(savedInstanceState);
-            Localise.SetLayoutDirectionByCulture(this);
+            Localise.SetLayoutDirectionByPreference(this);
             SetContentView(Resource.Layout.register);
-
-            SupportActionBar.Title = StringResources.register_ui_title;
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-
-            FindViewById<TextView>(Resource.Id.loadingMessage).Text = StringResources.common_comms_loading;
+            SupportActionBar.Title = StringResources.participants_ui_add_title;
 
             socSpinner = FindViewById<Spinner>(Resource.Id.chooseSocietySpinner);
             socSpinner.ItemSelected += SocSpinner_ItemSelected;
@@ -71,7 +63,8 @@ namespace Gabber
             customGenderLayout.Hint = StringResources.common_ui_forms_gender_custom_label;
 
             AppCompatButton submit = FindViewById<AppCompatButton>(Resource.Id.submit);
-            submit.Text = StringResources.register_ui_submit_button;
+            submit.Text = StringResources.participants_ui_add_positive;
+            submit.Click += Submit_Click;
 
             TextInputLayout nameInput = FindViewById<TextInputLayout>(Resource.Id.nameLayout);
             nameInput.Hint = StringResources.register_ui_fullname_label;
@@ -79,43 +72,21 @@ namespace Gabber
             TextInputLayout emailInput = FindViewById<TextInputLayout>(Resource.Id.emailLayout);
             emailInput.Hint = StringResources.common_ui_forms_email_label;
 
-            TextInputLayout passwordInput = FindViewById<TextInputLayout>(Resource.Id.passwordLayout);
-            passwordInput.Hint = StringResources.common_ui_forms_password_label;
-
-            var terms = FindViewById<TextView>(Resource.Id.Terms);
-            var termsContent = string.Format(StringResources.register_ui_terms_label, Config.WEB_URL);
-            terms.TextFormatted = Android.Text.Html.FromHtml(termsContent);
-            terms.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
-
-            FindViewById<TextInputEditText>(Resource.Id.password).EditorAction += (_, e) =>
-            {
-                e.Handled = false;
-                if (e.ActionId == Android.Views.InputMethods.ImeAction.Done)
-                {
-                    FindViewById<AppCompatButton>(Resource.Id.submit).PerformClick();
-                    e.Handled = true;
-                }
-            };
-
-            submit.Click += Submit_Click;
+            FindViewById<TextInputLayout>(Resource.Id.passwordLayout).Visibility = ViewStates.Gone;
+            FindViewById<TextView>(Resource.Id.Terms).Visibility = ViewStates.Gone;
 
             LoadData();
         }
 
         private void LoadData()
         {
-            RelativeLayout loadingLayout = FindViewById<RelativeLayout>(Resource.Id.loadingLayout);
-            loadingLayout.Visibility = ViewStates.Visible;
-
             socChoices = IFRC_Society.GetOptions();
             genderChoices = Gender.GetOptions();
             ageChoices = AgeRange.GetOptions();
             roleChoices = IFRC_Role.GetOptions();
 
-            loadingLayout.Visibility = ViewStates.Gone;
-
             List<string> socNames = socChoices.Select(soc => soc.Name).ToList();
-            socNames.Insert(0, StringResources.common_ui_forms_society_default);
+            socNames.Insert(0, StringResources.participants_ui_add_society_default);
 
             ArrayAdapter socAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, socNames);
             socSpinner.Adapter = socAdapter;
@@ -132,29 +103,6 @@ namespace Gabber
             ArrayAdapter roleAdapter = new ArrayAdapter(this, Resource.Layout.spinner_row, roleNames);
             roleSpinner.Adapter = roleAdapter;
 
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            LOG_EVENT_WITH_ACTION("BACK_BUTTON", "PRESSED");
-            OnBackPressed();
-            return true;
-        }
-
-        void MakeError(string errorMessage)
-        {
-            var email = FindViewById<AppCompatEditText>(Resource.Id.email);
-            // Using login string lookup as there are no different error messages between login/register, only general.
-            var message = StringResources.ResourceManager.GetString($"login.api.error.{errorMessage}");
-            Snackbar.Make(email, message, Snackbar.LengthLong).Show();
-        }
-
-        void LOG_EVENT_WITH_ACTION(string eventName, string action)
-        {
-            var bundle = new Bundle();
-            bundle.PutString("ACTION", action);
-            bundle.PutString("TIMESTAMP", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
-            firebaseAnalytics.LogEvent(eventName, bundle);
         }
 
         private void SocSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
@@ -177,21 +125,20 @@ namespace Gabber
             }
         }
 
-        private void RoleSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            selectedRole = (string)roleSpinner.GetItemAtPosition(e.Position);
-        }
-
         private void AgeSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             selectedAge = (string)ageSpinner.GetItemAtPosition(e.Position);
         }
 
-        private async void Submit_Click(object sender, System.EventArgs e)
+        private void RoleSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            selectedRole = (string)roleSpinner.GetItemAtPosition(e.Position);
+        }
+
+        private void Submit_Click(object sender, EventArgs e)
         {
             AppCompatEditText fname = FindViewById<AppCompatEditText>(Resource.Id.name);
             AppCompatEditText email = FindViewById<AppCompatEditText>(Resource.Id.email);
-            AppCompatEditText passw = FindViewById<AppCompatEditText>(Resource.Id.password);
 
             if (string.IsNullOrWhiteSpace(fname.Text))
             {
@@ -204,12 +151,6 @@ namespace Gabber
                 // No email entered
                 email.Error = StringResources.common_ui_forms_email_validate_empty;
                 email.RequestFocus();
-            }
-            else if (string.IsNullOrWhiteSpace(passw.Text))
-            {
-                // no password entered
-                passw.Error = StringResources.common_ui_forms_password_validate_empty;
-                passw.RequestFocus();
             }
             else if (!Android.Util.Patterns.EmailAddress.Matcher(email.Text).Matches())
             {
@@ -229,7 +170,7 @@ namespace Gabber
                            .Show();
             }
             else if (string.IsNullOrWhiteSpace(selectedSoc) ||
-                     selectedSoc == StringResources.common_ui_forms_society_default)
+                     selectedSoc == StringResources.participants_ui_add_society_default)
             {
                 //National society not selected
                 new Android.Support.V7.App.AlertDialog.Builder(this)
@@ -238,7 +179,7 @@ namespace Gabber
                            .Show();
             }
             else if (string.IsNullOrWhiteSpace(selectedRole) ||
-                     selectedRole == StringResources.common_ui_forms_role_default)
+                     selectedRole == StringResources.participants_ui_add_role_default)
             {
                 //IFRC role not selected
                 new Android.Support.V7.App.AlertDialog.Builder(this)
@@ -246,11 +187,16 @@ namespace Gabber
                            .SetPositiveButton(StringResources.common_comms_ok, (a, b) => { })
                            .Show();
             }
+            else if (Queries.UserByEmail(email.Text) != null)
+            {
+                // User with this email already exists
+                new Android.Support.V7.App.AlertDialog.Builder(this)
+                           .SetMessage(StringResources.participants_ui_add_email_error)
+                           .SetPositiveButton(StringResources.common_comms_ok, (a, b) => { })
+                           .Show();
+            }
             else
             {
-                FindViewById<RelativeLayout>(Resource.Id.loadingLayout).Visibility = ViewStates.Visible;
-                FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
-
                 IFRC_Society chosenSoc = socChoices.FirstOrDefault((arg) => arg.Name == selectedSoc);
                 AgeRange chosenAge = ageChoices.FirstOrDefault((arg) => arg.DisplayName == selectedAge);
                 IFRC_Role chosenRole = roleChoices.FirstOrDefault((arg) => arg.LocalisedName == selectedRole);
@@ -261,34 +207,25 @@ namespace Gabber
                     chosenGender.Data = customGenderInput.Text;
                 }
 
-                LOG_EVENT_WITH_ACTION("REGISTER", "ATTEMPT");
-
-                //default to English at registration
-                CustomAuthResponse response = await RestClient.Register(fname.Text, email.Text.ToLower(), passw.Text, 1, chosenSoc.Id, chosenGender, (int)chosenRole.Enum, (int)chosenAge.Enum);
-
-                if (response.Meta.Success)
+                var participant = new User
                 {
-                    LOG_EVENT_WITH_ACTION("REGISTER", "SUCCESS");
-                    var intent = new Intent(this, typeof(Activities.RegisterVerification));
-                    intent.PutExtra("EMAIL_USED_TO_REGISTER", email.Text);
-                    intent.SetFlags(ActivityFlags.ClearTop | ActivityFlags.ClearTask | ActivityFlags.NewTask);
-                    StartActivity(intent);
-                    Finish();
-                }
-                else
-                {
-                    RunOnUiThread(() =>
-                    {
-                        if (response.Meta.Messages.Count > 0)
-                        {
-                            LOG_EVENT_WITH_ACTION("REGISTER", "ERROR");
-                            response.Meta.Messages.ForEach(MakeError);
-                        }
-                        FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = true;
-                        FindViewById<RelativeLayout>(Resource.Id.loadingLayout).Visibility = ViewStates.Gone;
-                        fname.RequestFocus();
-                    });
-                }
+                    Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(fname.Text),
+                    Email = email.Text,
+                    Selected = true,
+                    Society = chosenSoc.Id,
+                    AgeBracket = (int)chosenAge.Enum,
+                    Role = (int)chosenRole.Enum,
+                    GenderId = (int)chosenGender.Enum,
+                    GenderTerm = chosenGender.Data
+                };
+
+                Session.Connection.Insert(participant);
+
+                // Return with the email of the user we just added
+                Intent returnIntent = new Intent();
+                returnIntent.PutExtra("NEW_EMAIL", email.Text);
+                SetResult(Result.Ok, returnIntent);
+                Finish();
             }
         }
 

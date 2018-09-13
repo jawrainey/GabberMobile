@@ -14,7 +14,7 @@ namespace Gabber.iOS
 
         ParticipantsCollectionViewSource participantsViewSource;
 
-        public ParticipantsViewController (IntPtr handle) : base (handle) {}
+        public ParticipantsViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {
@@ -24,13 +24,13 @@ namespace Gabber.iOS
             (ParticipantsCollectionView.CollectionViewLayout as UICollectionViewFlowLayout).EstimatedItemSize = es;
 
             NavigationItem.SetRightBarButtonItem(
-                new UIBarButtonItem(UIBarButtonSystemItem.Add, (s, a) => {
-                PerformSegue("ShowAPVC", this);
-            }), true);
-            
+                new UIBarButtonItem(UIBarButtonSystemItem.Add, (s, a) =>
+                {
+                    PerformSegue("CreateParticipantSegue", this);
+                }), true);
+
             // TODO: can define these in storyboard
             var themeColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
-
             RecordGabberButton.Layer.BorderWidth = 1.0f;
             RecordGabberButton.Layer.BorderColor = themeColor;
 
@@ -39,7 +39,8 @@ namespace Gabber.iOS
             ParticipantsInstructions.Text = StringResources.participants_ui_instructions;
             RecordGabberButton.SetTitle(StringResources.participants_ui_startrecording_button, UIControlState.Normal);
             participantsViewSource = new ParticipantsCollectionViewSource(Queries.AllParticipantsUnSelected());
-            participantsViewSource.AddParticipant += (int num) => {
+            participantsViewSource.AddParticipant += (int num) =>
+            {
 
                 NumSelectedParts.Text = string.Format(StringResources.participants_ui_numselected, num);
             };
@@ -64,9 +65,18 @@ namespace Gabber.iOS
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
             base.PrepareForSegue(segue, sender);
+
             // This removes the default title ("Participants") that appears next 
             // to the text on the back button. Only show button without text.
             NavigationItem.BackBarButtonItem = new UIBarButtonItem { Title = "" };
+
+            if (segue.Identifier == "CreateParticipantSegue")
+            {
+                var viewController = (CreateUserController)segue.DestinationViewController;
+                viewController.IsAccountRegistration = false;
+            }
+
+
 
             if (segue.Identifier == "SegueToRecordGabber" && Queries.SelectedParticipants().Count == 0)
             {
@@ -81,21 +91,22 @@ namespace Gabber.iOS
             {
                 Logger.LOG_EVENT_WITH_ACTION("ONE_PARTICIPANT_MODAL", "DISPLAYED");
                 var finishRecordingAlertController = UIAlertController.Create(
-                    StringResources.participants_ui_validation_oneselected_title, 
-                    StringResources.participants_ui_validation_oneselected_message, 
+                    StringResources.participants_ui_validation_oneselected_title,
+                    StringResources.participants_ui_validation_oneselected_message,
                     UIAlertControllerStyle.Alert);
-                
+
                 finishRecordingAlertController.AddAction(
                     UIAlertAction.Create(
-                        StringResources.participants_ui_validation_oneselected_cancel, 
-                        UIAlertActionStyle.Cancel, (_) => { 
+                        StringResources.participants_ui_validation_oneselected_cancel,
+                        UIAlertActionStyle.Cancel, (_) =>
+                        {
                             Logger.LOG_EVENT_WITH_ACTION("ONE_PARTICIPANT_MODAL", "DISMISSED");
                         }
                     )
                 );
                 finishRecordingAlertController.AddAction(
-                    UIAlertAction.Create(StringResources.participants_ui_validation_oneselected_continue, 
-                                         UIAlertActionStyle.Default, (_) => 
+                    UIAlertAction.Create(StringResources.participants_ui_validation_oneselected_continue,
+                                         UIAlertActionStyle.Default, (_) =>
                 {
                     Logger.LOG_EVENT_WITH_ACTION("ONE_PARTICIPANT_MODAL", "CONTINUE");
                     ConfirmOneParticipant = true;
@@ -104,14 +115,19 @@ namespace Gabber.iOS
 
                 PresentViewController(finishRecordingAlertController, true, null);
             }
-
-            // This removes the default title ("Participants") that appears next 
-            // to the text on the back button. Only show button without text.
-            NavigationItem.BackBarButtonItem = new UIBarButtonItem { Title = "" };
         }
 
         // Revisited this page, i.e. after adding a participant
         [Action("UnwindToParticipantsViewController:")]
-        public void UnwindToParticipantsViewController(UIStoryboardSegue segue) {}
+        public void UnwindToParticipantsViewController(UIStoryboardSegue segue)
+        {
+            // Do stuff with added user if needed
+            //var sourceController = segue.SourceViewController as CreateUserController;
+
+            //if (sourceController != null)
+            //{
+            //    Console.WriteLine(sourceController.enteredEmail);
+            //}
+        }
     }
 }

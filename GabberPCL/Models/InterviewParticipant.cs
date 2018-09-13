@@ -17,5 +17,11 @@ namespace GabberPCL.Models
 
         public int UserID { get; set; }
         public string InterviewID { get; set; }
+
+        public int Society { get; set; }
+        public int Age { get; set; }
+        public int IFRC_Role { get; set; }
+        public int Gender { get; set; }
+        public string Gender_Term { get; set; }
     }
 }

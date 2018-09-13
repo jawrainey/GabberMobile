@@ -40,6 +40,7 @@ namespace GabberPCL
             Connection.DropTable<InterviewSession>();
             Connection.DropTable<InterviewPrompt>();
             Connection.DropTable<LanguageChoice>();
+            Connection.DropTable<IFRC_Society>();
             _connection = null;
         }
     }

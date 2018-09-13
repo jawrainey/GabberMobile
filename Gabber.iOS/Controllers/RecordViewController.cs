@@ -57,6 +57,9 @@ namespace Gabber.iOS
 
         public override void ViewDidLoad()
         {
+            // Stay awake
+            UIApplication.SharedApplication.IdleTimerDisabled = true;
+
             Title = StringResources.recording_ui_title;
             TopicsInstructions.Text = StringResources.recording_ui_instructions_header;
 
@@ -113,6 +116,14 @@ namespace Gabber.iOS
                 Rows = Topics,
                 AddAnnotation = AddAnnotation
             };
+        }
+
+        public override void ViewDidDisappear(bool animated)
+        {
+            base.ViewDidDisappear(animated);
+
+            // disable wake lock
+            UIApplication.SharedApplication.IdleTimerDisabled = false;
         }
 
         void AddAnnotation()

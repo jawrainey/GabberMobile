@@ -88,11 +88,68 @@
     <data name="common.ui.forms.password.validate.mismatch" xml:space="preserve">
         <value>Entered passwords don't match</value>
     </data>
+    <data name="common.ui.forms.age" xml:space="preserve">
+        <value>Age group</value>
+    </data>
+    <data name="common.ui.forms.age.error" xml:space="preserve">
+        <value>Please select an age group</value>
+    </data>
     <data name="common.ui.forms.language.error" xml:space="preserve">
-        <value>Please choose your preferred spoken language.</value>
+        <value>Please choose a preferred spoken language.</value>
     </data>
     <data name="common.ui.forms.language.default" xml:space="preserve">
         <value>Spoken language</value>
+    </data>
+    <data name="common.ui.forms.society.default" xml:space="preserve">
+        <value>National society</value>
+    </data>
+    <data name="common.ui.forms.society.error" xml:space="preserve">
+        <value>Please choose a National Society.</value>
+    </data>
+    <data name="common.ui.forms.gender.error" xml:space="preserve">
+        <value>Please specify a gender.</value>
+    </data>
+    <data name="common.ui.forms.gender.default" xml:space="preserve">
+        <value>Please select a gender</value>
+    </data>
+    <data name="common.ui.forms.gender.male" xml:space="preserve">
+        <value>Male</value>
+    </data>
+    <data name="common.ui.forms.gender.female" xml:space="preserve">
+        <value>Female</value>
+    </data>
+    <data name="common.ui.forms.gender.custom" xml:space="preserve">
+        <value>I'd Rather Specify</value>
+    </data>
+    <data name="common.ui.forms.gender.anon" xml:space="preserve">
+        <value>I'd Rather Not Say</value>
+    </data>
+    <data name="common.ui.forms.gender.custom.label" xml:space="preserve">
+        <value>Please Specify Gender</value>
+    </data>
+    <data name="common.ui.forms.role.error" xml:space="preserve">
+        <value>Please select a role within the Red Cross Red Crescent.</value>
+    </data>
+    <data name="common.ui.forms.role.default" xml:space="preserve">
+        <value>Role in the Red Cross Red Crescent</value>
+    </data>
+    <data name="common.ui.forms.role.volunteer" xml:space="preserve">
+        <value>Volunteer</value>
+    </data>
+    <data name="common.ui.forms.role.intern" xml:space="preserve">
+        <value>Intern</value>
+    </data>
+    <data name="common.ui.forms.role.staff" xml:space="preserve">
+        <value>Staff</value>
+    </data>
+    <data name="common.ui.forms.role.leadership" xml:space="preserve">
+        <value>Leadership</value>
+    </data>
+    <data name="common.ui.forms.role.external" xml:space="preserve">
+        <value>External</value>
+    </data>
+    <data name="common.ui.forms.done" xml:space="preserve">
+        <value>Done</value>
     </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
@@ -166,7 +223,7 @@
         <value>Create a Gabber account</value>
     </data>
     <data name="register.ui.fullname.label" xml:space="preserve">
-        <value>Fullname</value>
+        <value>Full name</value>
     </data>
     <data name="register.ui.terms.label" xml:space="preserve">
         <value>&lt;i&gt;By continuing to use Gabber, you agree with our &lt;a href={0}/terms&gt;Terms of Use&lt;/a&gt; &amp; &lt;a href={0}/privacy&gt;Privacy Policy&lt;/a&gt;&lt;/i&gt;</value>
@@ -176,7 +233,7 @@
     </data>
     <!-- USER REGISTER SCREEN: UI errors -->
     <data name="register.ui.fullname.validate.empty" xml:space="preserve">
-        <value>Your fullname is empty</value>
+        <value>Please enter a name</value>
     </data>
     <!-- REGISTER VERIFICATION PAGE -->
     <data name="register.verify.ui.page.title" xml:space="preserve">
@@ -297,14 +354,20 @@
         <value>Cancel</value>
     </data>
     <!-- ADD PARTICIPANT DIALOG -->
-    <data name="participants.ui.dialog.add.title" xml:space="preserve">
+    <data name="participants.ui.add.title" xml:space="preserve">
         <value>Add a new participant</value>
     </data>
-    <data name="participants.ui.dialog.add.positive" xml:space="preserve">
-        <value>Add</value>
+    <data name="participants.ui.add.positive" xml:space="preserve">
+        <value>Add Participant</value>
     </data>
-    <data name="participants.ui.dialog.add.negative" xml:space="preserve">
-        <value>Cancel</value>
+    <data name="participants.ui.add.society.default" xml:space="preserve">
+        <value>National society</value>
+    </data>
+    <data name="participants.ui.add.role.default" xml:space="preserve">
+        <value>Role in the red cross</value>
+    </data>
+    <data name="participants.ui.add.email.error" xml:space="preserve">
+        <value>A participant with this email already exists!</value>
     </data>
     <!-- RESEARCH CONSENT -->
     <data name="consent.research.toolbar.title" xml:space="preserve">

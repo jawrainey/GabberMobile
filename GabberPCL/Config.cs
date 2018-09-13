@@ -2,7 +2,7 @@
 {
     public static class Config
     {
-        static readonly string BASE_URL = "dev.gabber.audio";
+        static readonly string BASE_URL = "future-rcrc.com";
 
         public static string WEB_URL = "https://" + BASE_URL;
         public static string PRINT_URL = "www." + BASE_URL;
