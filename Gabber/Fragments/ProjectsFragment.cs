@@ -58,15 +58,25 @@ namespace Gabber.Fragments
             Activity.WindowManager.DefaultDisplay.GetMetrics(displaymetrics);
             int screenWidth = displaymetrics.WidthPixels;
 
+            int leftPadding = IsRTL() ? -70 : 70;
+            int rightPadding = IsRTL() ? 30 : -115;
+            var width = DpToPx(302);
+            int leftWidth = width - DpToPx(leftPadding);
+            int rightWidth = width - DpToPx(rightPadding);
+
             if (Build.VERSION.SdkInt < BuildVersionCodes.JellyBeanMr2)
             {
-                listView.SetIndicatorBounds(screenWidth - 120, screenWidth - 30);
+                listView.SetIndicatorBounds(leftWidth, rightWidth);
             }
             else
             {
-                listView.SetIndicatorBoundsRelative(screenWidth - 120, screenWidth - 30);
+                listView.SetIndicatorBoundsRelative(leftWidth, rightWidth);
             }
         }
+
+        public bool IsRTL() => Activity.Window.DecorView.LayoutDirection == Android.Views.LayoutDirection.Rtl;
+
+        public int DpToPx(int dp) => (int)((dp * Context.Resources.DisplayMetrics.Density) + 0.5);
 
         public override void OnAttach(Context context)
         {

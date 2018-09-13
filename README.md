@@ -8,7 +8,7 @@
 | ---- | ---- |
 | `/Gabber.Android`  | The Gabber Android mobile application codebase |
 | `/Gabber.iOS`      | The Gabber iOS mobile application codebase |
-| `/Gabber.PCL`      | Shared codebase between Android/iOS, i.e. [RESTClient](https://github.com/jawrainey/GabberMobile/blob/master/GabberPCL/RestClient.cs), [Database](https://github.com/jawrainey/GabberMobile/blob/master/GabberPCL/Session.cs), [Localisation](??), and [DI](https://github.com/jawrainey/GabberMobile/tree/master/GabberPCL/Interfaces) |
+| `/Gabber.PCL`      | Shared codebase between Android/iOS, i.e. [RESTClient](https://github.com/jawrainey/GabberMobile/blob/master/GabberPCL/RestClient.cs), [Database](https://github.com/jawrainey/GabberMobile/blob/master/GabberPCL/Session.cs), [Localisation](https://github.com/jawrainey/GabberMobile/tree/master/GabberPCL/Resources), and [DI](https://github.com/jawrainey/GabberMobile/tree/master/GabberPCL/Interfaces) |
 
 ### Running locally
 

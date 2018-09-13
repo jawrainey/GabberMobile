@@ -19,8 +19,8 @@
             android:background="#FFFFFF"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:lineSpacingExtra="6dp" />
         <View
@@ -45,8 +45,8 @@
             android:id="@+id/startFrame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
             android:layout_centerInParent="true">
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/start"

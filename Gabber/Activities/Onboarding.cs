@@ -9,6 +9,7 @@ using Android.Support.V7.Widget;
 using Android.Views.Animations;
 using Android.Widget;
 using Firebase.Analytics;
+using Gabber.Helpers;
 using GabberPCL.Models;
 using GabberPCL.Resources;
 
@@ -24,6 +25,7 @@ namespace Gabber.Activities
         {
             firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
             base.OnCreate(savedInstanceState);
+            Localise.SetLayoutDirectionByCulture(this);
             SetContentView(Resource.Layout.onboarding);
 
             pager = FindViewById<ViewPager>(Resource.Id.pager);

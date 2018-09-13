@@ -15,8 +15,8 @@
             android:orientation="vertical"
             android:layout_weight="0.7"
             android:paddingTop="24dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
             android:focusableInTouchMode="true"
             android:keepScreenOn="true">
             <android.support.design.widget.TextInputLayout

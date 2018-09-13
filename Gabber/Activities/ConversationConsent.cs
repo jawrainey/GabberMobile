@@ -30,6 +30,7 @@ namespace Gabber.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Localise.SetLayoutDirectionByPreference(this);
             SetContentView(Resource.Layout.consent_conversation);
 
             SupportActionBar.Title = StringResources.consent_gabber_toolbar_title;

@@ -30,9 +30,9 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
             android:text="PROJECTS"
             android:background="@drawable/custom_button" />
         <android.support.v7.widget.AppCompatButton
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:layout_marginRight="24dp"
+            android:layout_marginEnd="24dp"
             android:text="SESSIONS"
             android:background="@drawable/custom_button" />
     </LinearLayout>

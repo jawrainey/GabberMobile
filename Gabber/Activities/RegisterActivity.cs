@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using GabberPCL.Models;
 using System.Linq;
+using Gabber.Helpers;
 
 namespace Gabber
 {
@@ -45,6 +46,7 @@ namespace Gabber
         {
             firebaseAnalytics = FirebaseAnalytics.GetInstance(this);
             base.OnCreate(savedInstanceState);
+            Localise.SetLayoutDirectionByCulture(this);
             SetContentView(Resource.Layout.register);
 
             SupportActionBar.Title = StringResources.register_ui_title;
