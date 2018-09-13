@@ -1,17 +1,19 @@
 ﻿using Android.App;
-using Android.Content;
-using Android.Content.PM;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Support.V7.Widget;
-using Android.Widget;
-using Gabber.Helpers;
-using GabberPCL;
 using GabberPCL.Resources;
+using Android.Content.PM;
+using Android.Widget;
+using Android.Support.V7.Widget;
+using Android.Content;
+using Android.Views;
+using GabberPCL;
+using Android.Text;
+using Gabber.Helpers;
 
 namespace Gabber.Activities
 {
-    [Activity(ScreenOrientation = ScreenOrientation.Portrait, ParentActivity = typeof(ChooseParticipantsActivity))]
+    [Activity(ScreenOrientation = ScreenOrientation.Portrait)]
     public class ResearchConsent : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -21,6 +23,10 @@ namespace Gabber.Activities
             SetContentView(Resource.Layout.consent_research);
 
             SupportActionBar.Title = StringResources.consent_research_toolbar_title;
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            var researchConsentTitle = FindViewById<TextView>(Resource.Id.researchConsentTitle);
+            researchConsentTitle.Text = StringResources.consent_research_title;
 
             var _prefs = Android.Preferences.PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
             var SelectedProjectID = _prefs.GetInt("SelectedProjectID", 0);
@@ -57,6 +63,12 @@ namespace Gabber.Activities
                 isConsented.Toggle();
                 submit.Enabled = isConsented.Checked;
             };
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            OnBackPressed();
+            return true;
         }
 
         private void ViewConsentDetails(object sender, System.EventArgs e)

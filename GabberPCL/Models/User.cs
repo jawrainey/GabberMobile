@@ -21,11 +21,5 @@ namespace GabberPCL.Models
         public int AppLang { get; set; }
         // This is the view model and not data model
         public bool Selected { get; set; }
-
-        public int Society { get; set; }
-        public int AgeBracket { get; set; }
-        public int Role { get; set; }
-        public int GenderId { get; set; }
-        public string GenderTerm { get; set; }
     }
 }

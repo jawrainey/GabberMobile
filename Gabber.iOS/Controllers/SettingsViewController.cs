@@ -11,11 +11,10 @@ using System.Globalization;
 using Gabber.iOS.Helpers;
 using Foundation;
 using System.IO;
-using GabberPCL.Interfaces;
 
 namespace Gabber.iOS
 {
-    public class SettingsCell
+    public class SettingsCell 
     {
         public string Title { get; set; }
         public string Subtitle { get; set; }
@@ -23,20 +22,15 @@ namespace Gabber.iOS
 
     public partial class SettingsViewController : UIViewController
     {
-        void HandleAction(IProfileOption obj)
-        {
-        }
-
-
         List<LanguageChoice> SupportedLanguages;
 
         int CurrentSelectedPrefLanguageID;
         int CurrentAppLanguageID;
 
-        public SettingsViewController(IntPtr handle) : base(handle) { }
+        public SettingsViewController (IntPtr handle) : base (handle){}
 
-        public async override void ViewDidLoad()
-        {
+		public async override void ViewDidLoad()
+		{
             base.ViewDidLoad();
             SupportedLanguages = (await LanguagesManager.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
             Title = StringResources.common_menu_settings;
@@ -79,8 +73,7 @@ namespace Gabber.iOS
                 UIAlertControllerStyle.Alert);
 
             logoutDialog.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, (_) => { }));
-            logoutDialog.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, (_) =>
-            {
+            logoutDialog.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, (_) => {
                 // Remove local preferences. This is critical as AppDelegate show onboarding if no token preferences exist.
                 NSUserDefaults.StandardUserDefaults.RemovePersistentDomain(NSBundle.MainBundle.BundleIdentifier);
                 Session.NukeItFromOrbit();
@@ -92,7 +85,7 @@ namespace Gabber.iOS
             PresentViewController(logoutDialog, true, null);
         }
 
-        string CurrentLanguage()
+        string CurrentLanguage() 
         {
             var currentCulture = StringResources.Culture ?? Localize.GetCurrentCultureInfo();
             int currentLanguage = SupportedLanguages.FindIndex((lang) => lang.Code == currentCulture.TwoLetterISOLanguageName);
@@ -108,13 +101,9 @@ namespace Gabber.iOS
                 "\n\n\n\n\n\n",
                 UIAlertControllerStyle.Alert);
 
-            var pickerModel = new ProfileOptionPickerViewModel(
-                SupportedLanguages.ToList<IProfileOption>(),
-                StringResources.common_ui_forms_language_default,
-                (lang) =>
-            {
-                if (lang == null || lang.GetId() == 0) return;
-                CurrentAppLanguageID = lang.GetId();
+            var pickerModel = new LanguagePickerViewModel(SupportedLanguages, (lang) => {
+                if (lang == null || lang.Id == 0) return;
+                CurrentAppLanguageID = lang.Id;
             });
 
             var picker = new UIPickerView { Model = pickerModel, Frame = new CoreGraphics.CGRect(0, 20, 250, 140) };
@@ -127,7 +116,7 @@ namespace Gabber.iOS
             PresentViewController(showLanguagePicker, true, null);
         }
 
-        void SaveAppLanguageSelectedFromPicker(UIAlertAction _)
+        void SaveAppLanguageSelectedFromPicker (UIAlertAction _)
         {
             // Because the first element is the description
             if (CurrentAppLanguageID == 0) return;
@@ -156,13 +145,9 @@ namespace Gabber.iOS
                 "\n\n\n\n\n\n",
                 UIAlertControllerStyle.Alert);
 
-            var pickerModel = new ProfileOptionPickerViewModel(
-                SupportedLanguages.ToList<IProfileOption>(),
-                StringResources.common_ui_forms_language_default,
-                (lang) =>
-            {
-                if (lang == null || lang.GetId() == 0) return;
-                CurrentSelectedPrefLanguageID = lang.GetId();
+            var pickerModel = new LanguagePickerViewModel(SupportedLanguages, (lang) => {
+                if (lang == null || lang.Id == 0) return;
+                CurrentSelectedPrefLanguageID = lang.Id;
             });
 
             var picker = new UIPickerView { Model = pickerModel, Frame = new CoreGraphics.CGRect(0, 20, 250, 140) };
@@ -170,7 +155,7 @@ namespace Gabber.iOS
 
             showLanguagePicker.View.AddSubview(picker);
 
-            showLanguagePicker.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, (_) => { }));
+            showLanguagePicker.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, (_) => {} ));
             showLanguagePicker.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, SaveLanguageSelectedFromPicker));
 
             PresentViewController(showLanguagePicker, true, null);

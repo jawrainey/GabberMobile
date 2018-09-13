@@ -82,7 +82,7 @@
     <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Dan Richardson (JR3T9MH59D)</CodesignKey>
+    <CodesignKey>iPhone Developer: Jay Rainey (G4QY8CALPA)</CodesignKey>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
@@ -819,10 +819,18 @@
       <DependentUpon>TopicsCollectionViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\PrivatePath.cs" />
+    <Compile Include="Controllers\AddParticipantViewController.cs" />
+    <Compile Include="Controllers\AddParticipantViewController.designer.cs">
+      <DependentUpon>AddParticipantViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewSources\TopicsCollectionViewSource.cs" />
     <Compile Include="Helpers\AudioRecorder.cs" />
     <Compile Include="Helpers\DiskIO.cs" />
     <Compile Include="Helpers\MessageDialog.cs" />
+    <Compile Include="Controllers\RegisterViewController.cs" />
+    <Compile Include="Controllers\RegisterViewController.designer.cs">
+      <DependentUpon>RegisterViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\SettingsViewController.cs" />
     <Compile Include="Controllers\AboutViewController.designer.cs">
       <DependentUpon>SettingsViewController.cs</DependentUpon>
@@ -891,22 +899,13 @@
     <Compile Include="Cells\ProjectTable\ProjectTableViewButtonCell.designer.cs">
       <DependentUpon>ProjectTableViewButtonCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewSources\ProfileOptionPickerViewModel.cs" />
+    <Compile Include="ViewSources\LanguagePickerViewModel.cs" />
     <Compile Include="Controllers\FirstDebriefViewController.cs" />
     <Compile Include="Controllers\FirstDebriefViewController.designer.cs">
       <DependentUpon>FirstDebriefViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewSources\SettingsTableViewSource.cs" />
     <Compile Include="Helpers\Localise.cs" />
-    <Compile Include="Controllers\CreateUserController.cs" />
-    <Compile Include="Controllers\CreateUserController.designer.cs">
-      <DependentUpon>CreateUserController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Cells\RegisterOptionCell.cs" />
-    <Compile Include="Cells\RegisterOptionCell.designer.cs">
-      <DependentUpon>RegisterOptionCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewSources\CreateUserTableViewSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GabberPCL\GabberPCL.csproj">

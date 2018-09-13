@@ -21,6 +21,7 @@ namespace Gabber.iOS
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
+            UIApplication.SharedApplication.IdleTimerDisabled = true;
             // If the user is not logged in (hence has not created an account), then show the login view.
             // The Root view (i.e. TabBarController) is shown and set once the user login or registers.
             if (string.IsNullOrEmpty(NSUserDefaults.StandardUserDefaults.StringForKey("tokens")))
@@ -32,7 +33,7 @@ namespace Gabber.iOS
 
             // Create here as this method will always get run when opening the app.
             Firebase.Crashlytics.Crashlytics.Configure();
-            Firebase.Core.App.Configure();
+			Firebase.Core.App.Configure();
 
             // Used by the PCL for database interactions so must be defined early.
             Session.PrivatePath = new PrivatePath();
@@ -72,15 +73,15 @@ namespace Gabber.iOS
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
         }
 
-        public override bool ContinueUserActivity(UIApplication a, NSUserActivity ua, UIApplicationRestorationHandler h) => OpenVerify(ua.WebPageUrl);
-        public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options) => OpenVerify(url);
-
-        bool OpenVerify(NSUrl url)
-        {
-            if (!string.IsNullOrEmpty(NSUserDefaults.StandardUserDefaults.StringForKey("tokens"))) return true;
-            NSUserDefaults.StandardUserDefaults.SetURL(url, "VERIFY_URL");
-            Window.RootViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("RegisterVerifying");
-            return true;
-        }
+		public override bool ContinueUserActivity(UIApplication a, NSUserActivity ua, UIApplicationRestorationHandler h) => OpenVerify(ua.WebPageUrl);
+		public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options) => OpenVerify(url);
+        
+		bool OpenVerify(NSUrl url)
+		{
+			if (!string.IsNullOrEmpty(NSUserDefaults.StandardUserDefaults.StringForKey("tokens"))) return true;
+			NSUserDefaults.StandardUserDefaults.SetURL(url, "VERIFY_URL");
+			Window.RootViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("RegisterVerifying");
+			return true;
+		}
     }
 }

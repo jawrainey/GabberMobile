@@ -191,18 +191,6 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string common_ui_forms_age {
-            get {
-                return ResourceManager.GetString("common.ui.forms.age", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_age_error {
-            get {
-                return ResourceManager.GetString("common.ui.forms.age.error", resourceCulture);
-            }
-        }
-        
         public static string common_ui_forms_language_error {
             get {
                 return ResourceManager.GetString("common.ui.forms.language.error", resourceCulture);
@@ -212,108 +200,6 @@ namespace GabberPCL.Resources {
         public static string common_ui_forms_language_default {
             get {
                 return ResourceManager.GetString("common.ui.forms.language.default", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_society_default {
-            get {
-                return ResourceManager.GetString("common.ui.forms.society.default", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_society_error {
-            get {
-                return ResourceManager.GetString("common.ui.forms.society.error", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_gender_error {
-            get {
-                return ResourceManager.GetString("common.ui.forms.gender.error", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_gender_default {
-            get {
-                return ResourceManager.GetString("common.ui.forms.gender.default", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_gender_male {
-            get {
-                return ResourceManager.GetString("common.ui.forms.gender.male", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_gender_female {
-            get {
-                return ResourceManager.GetString("common.ui.forms.gender.female", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_gender_custom {
-            get {
-                return ResourceManager.GetString("common.ui.forms.gender.custom", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_gender_anon {
-            get {
-                return ResourceManager.GetString("common.ui.forms.gender.anon", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_gender_custom_label {
-            get {
-                return ResourceManager.GetString("common.ui.forms.gender.custom.label", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_role_error {
-            get {
-                return ResourceManager.GetString("common.ui.forms.role.error", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_role_default {
-            get {
-                return ResourceManager.GetString("common.ui.forms.role.default", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_role_volunteer {
-            get {
-                return ResourceManager.GetString("common.ui.forms.role.volunteer", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_role_intern {
-            get {
-                return ResourceManager.GetString("common.ui.forms.role.intern", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_role_staff {
-            get {
-                return ResourceManager.GetString("common.ui.forms.role.staff", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_role_leadership {
-            get {
-                return ResourceManager.GetString("common.ui.forms.role.leadership", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_role_external {
-            get {
-                return ResourceManager.GetString("common.ui.forms.role.external", resourceCulture);
-            }
-        }
-        
-        public static string common_ui_forms_done {
-            get {
-                return ResourceManager.GetString("common.ui.forms.done", resourceCulture);
             }
         }
         
@@ -677,33 +563,21 @@ namespace GabberPCL.Resources {
             }
         }
         
-        public static string participants_ui_add_title {
+        public static string participants_ui_dialog_add_title {
             get {
-                return ResourceManager.GetString("participants.ui.add.title", resourceCulture);
+                return ResourceManager.GetString("participants.ui.dialog.add.title", resourceCulture);
             }
         }
         
-        public static string participants_ui_add_positive {
+        public static string participants_ui_dialog_add_positive {
             get {
-                return ResourceManager.GetString("participants.ui.add.positive", resourceCulture);
+                return ResourceManager.GetString("participants.ui.dialog.add.positive", resourceCulture);
             }
         }
         
-        public static string participants_ui_add_society_default {
+        public static string participants_ui_dialog_add_negative {
             get {
-                return ResourceManager.GetString("participants.ui.add.society.default", resourceCulture);
-            }
-        }
-        
-        public static string participants_ui_add_role_default {
-            get {
-                return ResourceManager.GetString("participants.ui.add.role.default", resourceCulture);
-            }
-        }
-        
-        public static string participants_ui_add_email_error {
-            get {
-                return ResourceManager.GetString("participants.ui.add.email.error", resourceCulture);
+                return ResourceManager.GetString("participants.ui.dialog.add.negative", resourceCulture);
             }
         }
         
