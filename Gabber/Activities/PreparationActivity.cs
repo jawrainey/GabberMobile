@@ -17,6 +17,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using Firebase.Analytics;
 using Android.Content.PM;
+using LayoutDirection = Android.Views.LayoutDirection;
+using Gabber.Helpers;
 
 namespace Gabber
 {
@@ -33,6 +35,7 @@ namespace Gabber
         {
             firebaseAnalytics = FirebaseAnalytics.GetInstance(ApplicationContext);
             base.OnCreate(savedInstanceState);
+            Localise.SetLayoutDirectionByPreference(this);
             SetContentView(Resource.Layout.preparation);
             SupportActionBar.Title = StringResources.participants_ui_title;
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);

@@ -1,16 +1,28 @@
 ﻿using System.Globalization;
 using System.Threading;
 using Foundation;
+using GabberPCL;
 using GabberPCL.Models;
+using GabberPCL.Resources;
 
 namespace Gabber.iOS.Helpers
 {
-    public class Localize
+    public static class Localize
     {
-        public void SetLocale (CultureInfo ci)
+        public static void SetLocale (CultureInfo ci)
         {
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
+        }
+
+        public static void SetLayoutDirectionByPreference()
+        {
+            var info = StringResources.Culture;
+            SetLocale(info);
+            NSUserDefaults.StandardUserDefaults.SetValueForKey(
+                NSArray.FromStrings(info.TwoLetterISOLanguageName), 
+                new NSString("AppleLanguages"));
+            NSUserDefaults.StandardUserDefaults.Synchronize();
         }
 
         public static CultureInfo GetCurrentCultureInfo ()

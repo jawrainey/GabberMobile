@@ -15,6 +15,7 @@ using GabberPCL;
 using GabberPCL.Models;
 using GabberPCL.Resources;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
@@ -30,13 +31,15 @@ namespace Gabber
         ProjectsFragment projectsFragment;
         UploadsFragment sessionsFragment;
         Android.Support.V4.App.Fragment activeFragment;
+        List<LanguageChoice> SupportedLanguages;
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
             SetContentView(Resource.Layout.main);
             SupportActionBar.Title = StringResources.projects_ui_title;
-            var SupportedLanguages = (await LanguagesManager.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
+            SupportedLanguages = (await LanguagesManager.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
 
             EmojiCompat.Init(new BundledEmojiCompatConfig(this));
             
@@ -50,7 +53,7 @@ namespace Gabber
                 FireBaseAnalytics.SetUserId(Session.ActiveUser.Id.ToString());
                 Session.ActiveUser.AppLang = user.AppLang;
             }
-            
+
             // First time users logs in, set the language to their culture if we support it, or English.
             if (Session.ActiveUser.AppLang == 0)
             {
@@ -64,6 +67,8 @@ namespace Gabber
             var found = SupportedLanguages.Find((lang) => lang.Id == Session.ActiveUser.AppLang);
             StringResources.Culture = new CultureInfo(found.Code);
             Localise.SetLocale(StringResources.Culture);
+
+            SetLayoutDirection();
 
             nav = FindViewById<BottomNavigationView>(Resource.Id.bottom_navigation);
             LoadNavigationTitles();
@@ -81,6 +86,12 @@ namespace Gabber
             LoadUploadFragmentAfterSession();
             LanguagesManager.RefreshIfNeeded();
             SupportActionBar.Title = StringResources.login_ui_title;
+        }
+
+        public void SetLayoutDirection()
+        {
+            var found = SupportedLanguages.Find((lang) => lang.Id == Session.ActiveUser.AppLang);
+            Window.DecorView.LayoutDirection = found.Code == "ar" ? LayoutDirection.Rtl : LayoutDirection.Ltr;
         }
 
         public void RefreshFragments()

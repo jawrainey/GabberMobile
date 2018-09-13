@@ -37,8 +37,8 @@
             android:orientation="vertical"
             android:layout_weight="0.7"
             android:paddingTop="24dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
             android:focusableInTouchMode="true"
             android:keepScreenOn="true">
             <android.support.design.widget.TextInputLayout
@@ -102,8 +102,8 @@
                 android:id="@+id/Terms"
                 android:textSize="14dp"
                 android:textStyle="italic"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:lineSpacingExtra="3dp"
                 android:layout_marginBottom="12dp"
                 android:layout_height="wrap_content"

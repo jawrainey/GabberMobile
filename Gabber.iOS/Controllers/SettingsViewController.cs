@@ -122,7 +122,7 @@ namespace Gabber.iOS
             if (CurrentAppLanguageID == 0) return;
             var chosen = SupportedLanguages.FirstOrDefault((lang) => lang.Id == CurrentAppLanguageID);
             StringResources.Culture = new CultureInfo(chosen.Code);
-            new Localize().SetLocale(StringResources.Culture);
+            Localize.SetLayoutDirectionByPreference();
             Session.ActiveUser.AppLang = chosen.Id;
             Queries.SaveActiveUser();
             SetTabBarTitles();

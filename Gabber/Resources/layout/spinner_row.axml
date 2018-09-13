@@ -7,5 +7,5 @@
     android:gravity="left|center_vertical"
     android:textColor="@android:color/black"
     android:textSize="16sp"
-    android:paddingLeft="4dp"
+    android:paddingStart="4dp"
     android:textIsSelectable="false" />
