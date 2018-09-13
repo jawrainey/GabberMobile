@@ -286,23 +286,6 @@ namespace GabberPCL
             return new List<Project>();
         }
 
-        // TODO
-        public static async Task<List<IFRC_Society>> GetSocieties(Action<string> errorCallback)
-        {
-            return new List<IFRC_Society>()
-            {
-                new IFRC_Society {
-                    Id = 0,
-                    Name = "Self Preservation Society"
-                },
-                new IFRC_Society {
-                    Id = 1,
-                    Name = "Newcastle University Rock Soc"
-                },
-
-            };
-        }
-
         public static async Task<List<LanguageChoice>> GetLanguages(Action<string> errorCallback)
         {
             try

@@ -88,11 +88,71 @@
     <data name="common.ui.forms.password.validate.mismatch" xml:space="preserve">
         <value>كلمات المرور المدخلة غير متطابقة</value>
     </data>
+    <data name="common.ui.forms.password.validate.mismatch" xml:space="preserve">
+        <value>Entered passwords don't match</value>
+    </data>
+    <data name="common.ui.forms.age" xml:space="preserve">
+        <value>Age group</value>
+    </data>
+    <data name="common.ui.forms.age.error" xml:space="preserve">
+        <value>Please select an age group</value>
+    </data>
     <data name="common.ui.forms.language.error" xml:space="preserve">
         <value>الرجاء اختيار اللغة  المفضلة لديك:</value>
     </data>
     <data name="common.ui.forms.language.default" xml:space="preserve">
         <value>الرجاء اختيار اللغة  المفضلة لديك:</value>
+    </data>
+    <data name="common.ui.forms.society.default" xml:space="preserve">
+        <value>الجمعية الوطنية</value>
+    </data>
+    <data name="common.ui.forms.society.error" xml:space="preserve">
+        <value>Please choose a National Society.</value>
+    </data>
+    <data name="common.ui.forms.gender.error" xml:space="preserve">
+        <value>Please specify a gender.</value>
+    </data>
+    <data name="common.ui.forms.gender.default" xml:space="preserve">
+        <value>Please select a gender</value>
+    </data>
+    <data name="common.ui.forms.gender.male" xml:space="preserve">
+        <value>الذكر</value>
+    </data>
+    <data name="common.ui.forms.gender.female" xml:space="preserve">
+        <value>إناثا</value>
+    </data>
+    <data name="common.ui.forms.gender.custom" xml:space="preserve">
+        <value>يرجى التحديد</value>
+    </data>
+    <data name="common.ui.forms.gender.anon" xml:space="preserve">
+        <value>الأفضل أن لا يقال</value>
+    </data>
+    <data name="common.ui.forms.gender.custom.label" xml:space="preserve">
+        <value>ما هو جنسك؟</value>
+    </data>
+    <data name="common.ui.forms.role.error" xml:space="preserve">
+        <value>دورك في الصليب الاحمر والهلال الاحمر</value>
+    </data>
+    <data name="common.ui.forms.role.default" xml:space="preserve">
+        <value>دورك في الصليب الاحمر والهلال الاحمر</value>
+    </data>
+    <data name="common.ui.forms.role.volunteer" xml:space="preserve">
+        <value>تطوع</value>
+    </data>
+    <data name="common.ui.forms.role.intern" xml:space="preserve">
+        <value>المتدرب</value>
+    </data>
+    <data name="common.ui.forms.role.staff" xml:space="preserve">
+        <value>العاملين</value>
+    </data>
+    <data name="common.ui.forms.role.leadership" xml:space="preserve">
+        <value>قيادة</value>
+    </data>
+    <data name="common.ui.forms.role.external" xml:space="preserve">
+        <value>خارجي</value>
+    </data>
+    <data name="common.ui.forms.done" xml:space="preserve">
+        <value>فعله</value>
     </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
@@ -292,14 +352,23 @@
         <value>إلغاء</value>
     </data>
     <!-- ADD PARTICIPANT DIALOG -->
-    <data name="participants.ui.dialog.add.title" xml:space="preserve">
+    <data name="participants.ui.add.title" xml:space="preserve">
         <value>أضف مشارك جديد</value>
     </data>
-    <data name="participants.ui.dialog.add.positive" xml:space="preserve">
+    <data name="participants.ui.add.positive" xml:space="preserve">
         <value>إضافة</value>
     </data>
-    <data name="participants.ui.dialog.add.negative" xml:space="preserve">
+    <data name="participants.ui.add.negative" xml:space="preserve">
         <value>إلغاء</value>
+    </data>
+    <data name="participants.ui.add.society.default" xml:space="preserve">
+        <value>National society</value>
+    </data>
+    <data name="participants.ui.add.role.default" xml:space="preserve">
+        <value>Role in the red cross</value>
+    </data>
+    <data name="participants.ui.add.email.error" xml:space="preserve">
+        <value>A participant with this email already exists!</value>
     </data>
     <!-- RESEARCH CONSENT -->
     <data name="consent.research.toolbar.title" xml:space="preserve">
