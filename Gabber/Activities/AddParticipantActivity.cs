@@ -54,6 +54,7 @@ namespace Gabber.Activities
 
             ageSpinner = FindViewById<Spinner>(Resource.Id.chooseAgeSpinner);
             ageSpinner.ItemSelected += AgeSpinner_ItemSelected;
+            FindViewById<TextView>(Resource.Id.agePrompt).Text = StringResources.common_ui_forms_age;
 
             roleSpinner = FindViewById<Spinner>(Resource.Id.chooseRoleSpinner);
             roleSpinner.ItemSelected += RoleSpinner_ItemSelected;

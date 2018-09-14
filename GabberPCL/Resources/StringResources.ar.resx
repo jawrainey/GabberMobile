@@ -58,13 +58,13 @@
         <value>الخروج</value>
     </data>
     <data name="settings.logout.dialog.title" xml:space="preserve">
-        <value>Are you sure?</value>
+        <value>هل أنت واثق؟</value>
     </data>
     <data name="settings.logout.dialog.message" xml:space="preserve">
-        <value>Logging out will delete any conversations waiting to upload. Are you sure you want to do this?</value>
+        <value>سيؤدي تسجيل الخروج إلى حذف أي محادثات في انتظار التحميل. هل انت متأكد من أنك تريد أن تفعل هذا؟</value>
     </data>
     <data name="settings.logout.dialog.confirm" xml:space="preserve">
-        <value>Logout</value>
+        <value>الخروج</value>
     </data>
     <!-- SHARED UI FORMS -->
     <data name="common.ui.forms.email.label" xml:space="preserve">
@@ -92,10 +92,10 @@
         <value>Entered passwords don't match</value>
     </data>
     <data name="common.ui.forms.age" xml:space="preserve">
-        <value>Age group</value>
+        <value>عمر</value>
     </data>
     <data name="common.ui.forms.age.error" xml:space="preserve">
-        <value>Please select an age group</value>
+        <value>يرجى اختيار عمر</value>
     </data>
     <data name="common.ui.forms.language.error" xml:space="preserve">
         <value>الرجاء اختيار اللغة  المفضلة لديك:</value>
@@ -252,7 +252,7 @@ Visit {0} to listen to perspectives from members of other National Societies!
         <value>إذا كنت قد تحققت من عنوان بريدك الإلكتروني من خلال موقع الويب ، فيرجى تسجيل الدخول يدويًا إلى التطبيق.</value>
     </data>
     <data name="register.verify.ui.button.openemail" xml:space="preserve">
-        <value>افتح عميل البريد الإلكتروني الافتراضي</value>
+        <value>خذني إلى بريدي الإلكتروني</value>
     </data>
     <!-- REGISTER VERIFYING EMAIL PAGE -->
     <data name="register.verifying.activity.label" xml:space="preserve">
@@ -293,7 +293,7 @@ Visit {0} to listen to perspectives from members of other National Societies!
         <value>Fetching projects...</value>
     </data>
     <data name="projects.ui.topics" xml:space="preserve">
-        <value>المواضيع المطروحة للنقاش:</value>
+        <value>نقاط النقاش</value>
     </data>
     <data name="projects.ui.get.started.button" xml:space="preserve">
         <value>البدء</value>
@@ -391,6 +391,9 @@ Visit {0} to listen to perspectives from members of other National Societies!
     <data name="consent.research.body" xml:space="preserve">
         <value>ستصبح المحادثة التي أنت على وشك تسجيلها جزءًا من مشروع البحث {0}. لن يتضمن أي عمل منشور تفاصيل يمكن استخدامها لتعريف نفسك أو غيرك من المشاركين.</value>       
     </data>
+    <data name="consent.research.details.button" xml:space="preserve">
+        <value>كيف سيتم استخدام بياناتي؟</value>
+    </data>
     <data name="consent.research.form" xml:space="preserve">
         <value>يوافق  المشاركون  على مشاركة هذا  التسجيل و إستخدام  تفاصيلهم المجهولة المصدر للبحث</value>
     </data>
@@ -441,10 +444,10 @@ Visit {0} to listen to perspectives from members of other National Societies!
         <value>أنت</value>
     </data>
     <data name="consent.gabber.consent.type.private.brief" xml:space="preserve">
-        <value>Only participants</value>
+        <value>المشاركين فقط</value>
     </data>
     <data name="conversation.consent.gabber.submit" xml:space="preserve">
-        <value>Review consent</value>
+        <value>مراجعة الموافقة</value>
     </data>
     <data name="conversation.language.prompt" xml:space="preserve">
         <value>ما اللغة التي ستعقد بها هذه المحادثة؟</value>
@@ -472,16 +475,6 @@ Visit {0} to listen to perspectives from members of other National Societies!
     <data name="recording.ui.permission.button.positive" xml:space="preserve">
         <value>تهيئة</value>    
     </data>
-    <!-- RECORD SCREEN FINISH -->
-    <data name="recording.ui.dialog.finish.title" xml:space="preserve">
-        <value>لقد قمت بتغطية {0} من الموضوعات {1}. هل أنت متأكد من أنك تريد إنهاء هذا التسجيل؟</value>
-    </data>
-    <data name="recording.ui.dialog.finish.positive" xml:space="preserve">
-        <value>نعم فعلا</value>
-    </data>
-    <data name="recording.ui.dialog.finish.negative" xml:space="preserve">
-        <value>لا</value>    
-    </data>
     <!-- RECORD SCREEN BACK -->
     <data name="recording.ui.dialog.back.title" xml:space="preserve">
         <value>أنت تسجل</value>
@@ -495,41 +488,15 @@ Visit {0} to listen to perspectives from members of other National Societies!
     <data name="recording.ui.dialog.back.negative" xml:space="preserve">
         <value>مواصلة التسجيل</value>    
     </data>
-    <!-- RECORD SCREEN RECORD PERMISSION -->
-    <data name="recording.ui.permission.title" xml:space="preserve">
-        <value>Permission required</value>
-    </data>
-    <data name="recording.ui.permission.body" xml:space="preserve">
-        <value>Microphone access is required to record a TalkFutures</value>
-    </data>
-    <data name="recording.ui.permission.button.negative" xml:space="preserve">
-        <value>Cancel</value>
-    </data>
-    <data name="recording.ui.permission.button.positive" xml:space="preserve">
-        <value>Configure</value>    
-    </data>
     <!-- RECORD SCREEN FINISH -->
     <data name="recording.ui.dialog.finish.title" xml:space="preserve">
-        <value>You have covered {0} of the {1} topics. Are you sure you want to end this recording?</value>
+        <value>لقد قمت بتغطية {0} من الموضوعات {1}. هل أنت متأكد من أنك تريد إنهاء هذا التسجيل؟</value>
     </data>
     <data name="recording.ui.dialog.finish.positive" xml:space="preserve">
-        <value>Yes</value>
+        <value>نعم فعلا</value>
     </data>
     <data name="recording.ui.dialog.finish.negative" xml:space="preserve">
-        <value>No</value>    
-    </data>
-    <!-- RECORD SCREEN BACK -->
-    <data name="recording.ui.dialog.back.title" xml:space="preserve">
-        <value>You are recording</value>
-    </data>
-    <data name="recording.ui.dialog.back.body" xml:space="preserve">
-        <value>If you go back the recording will not be saved.</value>
-    </data>
-    <data name="recording.ui.dialog.back.positive" xml:space="preserve">
-        <value>Go back</value>
-    </data>
-    <data name="recording.ui.dialog.back.negative" xml:space="preserve">
-        <value>Continue recording</value>    
+        <value>لا</value>    
     </data>
     <!-- FIRST UPLOAD DEBRIEFING -->
     <data name="debriefing.activity.title" xml:space="preserve">

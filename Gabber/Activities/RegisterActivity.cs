@@ -53,6 +53,7 @@ namespace Gabber
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             FindViewById<TextView>(Resource.Id.loadingMessage).Text = StringResources.common_comms_loading;
+            FindViewById<TextView>(Resource.Id.agePrompt).Text = StringResources.common_ui_forms_age;
 
             socSpinner = FindViewById<Spinner>(Resource.Id.chooseSocietySpinner);
             socSpinner.ItemSelected += SocSpinner_ItemSelected;

@@ -19,6 +19,7 @@
         android:background="#CCCCCC" />
     <TextView
         android:id="@+id/participantCount"
+        android:layout_marginStart="16dp"
         android:layout_gravity="right"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"

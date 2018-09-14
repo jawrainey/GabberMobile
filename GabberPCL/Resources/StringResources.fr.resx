@@ -33,10 +33,10 @@
     </data>
     <!-- MAIN MENU -->
     <data name="common.menu.projects" xml:space="preserve">
-        <value>Projets</value>
+        <value>Thèmes</value>
     </data>
     <data name="common.menu.gabbers" xml:space="preserve">
-        <value>Enregistrements audio</value>
+        <value>Audio</value>
     </data>
     <data name="common.menu.settings" xml:space="preserve">
         <value>Paramètres</value>
@@ -249,7 +249,7 @@ Visit {0} to listen to perspectives from members of other National Societies!
         <value>Si vous avez vérifié votre adresse e-mail via le site Web, veuillez vous connecter manuellement à l'application.</value>
     </data>
     <data name="register.verify.ui.button.openemail" xml:space="preserve">
-        <value>Ouvrir le client de messagerie par défaut</value>
+        <value>Emmène-moi à mon email</value>
     </data>
     <!-- REGISTER VERIFYING EMAIL PAGE -->
     <data name="register.verifying.activity.label" xml:space="preserve">
@@ -281,13 +281,13 @@ Visit {0} to listen to perspectives from members of other National Societies!
     </data>
     <!-- PROJECTS FRAGMENT -->
     <data name="projects.ui.title" xml:space="preserve">
-        <value>Projets</value>
+        <value>Thèmes</value>
     </data>
     <data name="projects.ui.instructions" xml:space="preserve">
-        <value>Choisissez un projet dont vous souhaitez discuter.</value>
+        <value>Choisissez un thème dont vous souhaitez discuter.</value>
     </data>
     <data name="projects.ui.fetching" xml:space="preserve">
-        <value>Fetching projects...</value>
+        <value>Fetching thèmes...</value>
     </data>
     <data name="projects.ui.topics" xml:space="preserve">
         <value>Sujets de discussion:</value>
@@ -419,13 +419,13 @@ Visit {0} to listen to perspectives from members of other National Societies!
     </data>
     <!-- Gabber CONSENT Members -->
     <data name="consent.gabber.consent.type.members.full" xml:space="preserve">
-        <value>{0} {1} access to this project</value>
+        <value>{0} {1} accéder à ceux-ci</value>
     </data>
     <data name="consent.gabber.consent.type.members.full.plural" xml:space="preserve">
-        <value>people have</value>
+        <value>les gens ont</value>
     </data>
     <data name="consent.gabber.consent.type.members.full.singular" xml:space="preserve">
-        <value>person has</value>
+        <value>personne a</value>
     </data>
     <data name="consent.gabber.consent.type.members.brief" xml:space="preserve">
         <value>Seuls ceux qui ont contribué ou ont été invités à ‘{0}’</value>
@@ -438,10 +438,10 @@ Visit {0} to listen to perspectives from members of other National Societies!
         <value>Toi</value>
     </data>
     <data name="consent.gabber.consent.type.private.brief" xml:space="preserve">
-        <value>Only participants</value>
+        <value>Seuls les participants</value>
     </data>
     <data name="conversation.consent.gabber.submit" xml:space="preserve">
-        <value>Review consent</value>
+        <value>Examiner le consentement</value>
     </data>
     <data name="conversation.language.prompt" xml:space="preserve">
         <value>Dans quelle langue cette conversation aura-t-elle lieu?</value>

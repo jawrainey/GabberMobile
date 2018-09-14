@@ -89,7 +89,7 @@
         <value>Entered passwords don't match</value>
     </data>
     <data name="common.ui.forms.age" xml:space="preserve">
-        <value>Age group</value>
+        <value>Age</value>
     </data>
     <data name="common.ui.forms.age.error" xml:space="preserve">
         <value>Please select an age group</value>
@@ -252,7 +252,7 @@ Visit {0} to listen to perspectives from members of other National Societies!
         <value>If you have verified your email address through the website, then please manually login to the application.</value>
     </data>
     <data name="register.verify.ui.button.openemail" xml:space="preserve">
-        <value>Open default email client</value>
+        <value>Take me to my email</value>
     </data>
     <!-- REGISTER VERIFYING EMAIL PAGE -->
     <data name="register.verifying.activity.label" xml:space="preserve">
@@ -293,7 +293,7 @@ Visit {0} to listen to perspectives from members of other National Societies!
         <value>Fetching projects...</value>
     </data>
     <data name="projects.ui.topics" xml:space="preserve">
-        <value>Topics for discussion:</value>
+        <value>Discussion points</value>
     </data>
     <data name="projects.ui.get.started.button" xml:space="preserve">
         <value>Get Started</value>
