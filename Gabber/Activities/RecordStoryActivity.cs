@@ -91,6 +91,7 @@ namespace Gabber
 
             record = FindViewById<FloatingActionButton>(Resource.Id.start);
 
+            FindViewById<TextView>(Resource.Id.themeTitle).Text = project.Title;
 
             Color highlightColor = new Color(ContextCompat.GetColor(this, Resource.Color.colorControlHighlight));
 
