@@ -13,15 +13,28 @@
         android:orientation="vertical"
         android:background="#FFFFFF">
         <TextView
-            android:id="@+id/recordInstructionsHeader"
-            style="@style/TextAppearance.AppCompat.Body2"
+            android:id="@+id/themeTitle"
             android:background="#FFFFFF"
+            android:text="PLACEHOLDER TITLE TEXT"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="20sp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:lineSpacingExtra="6dp" />
+        <TextView
+            android:id="@+id/recordInstructionsHeader"
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:background="#FFFFFF"
+            android:text="Placeholder instruction text blah blah blah"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp" />
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"

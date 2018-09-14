@@ -33,7 +33,7 @@
     </data>
     <!-- MAIN MENU -->
     <data name="common.menu.projects" xml:space="preserve">
-        <value>Projects</value>
+        <value>Themes</value>
     </data>
     <data name="common.menu.gabbers" xml:space="preserve">
         <value>Uploads</value>
@@ -284,13 +284,13 @@ Visit {0} to listen to perspectives from members of other National Societies!
     </data>
     <!-- PROJECTS FRAGMENT -->
     <data name="projects.ui.title" xml:space="preserve">
-        <value>Projects</value>
+        <value>Themes</value>
     </data>
     <data name="projects.ui.instructions" xml:space="preserve">
         <value>Choose a project that you want to have a conversation about</value>
     </data>
     <data name="projects.ui.fetching" xml:space="preserve">
-        <value>Fetching projects...</value>
+        <value>Fetching themes...</value>
     </data>
     <data name="projects.ui.topics" xml:space="preserve">
         <value>Discussion points</value>
@@ -353,7 +353,7 @@ Visit {0} to listen to perspectives from members of other National Societies!
         <value>{0} participants selected</value>
     </data>
     <data name="participants.ui.startrecording.button" xml:space="preserve">
-        <value>Choose Consent</value>
+        <value>Continue</value>
     </data>
     <!-- PARTICIPANTS SCREEN VALIDATION -->
     <data name="participants.ui.validation.noneselected" xml:space="preserve">
@@ -466,7 +466,7 @@ Visit {0} to listen to perspectives from members of other National Societies!
         <value>Recording Conversation</value>
     </data>
     <data name="recording.ui.instructions.header" xml:space="preserve">
-        <value>Select a topic to begin recording and select topics as the conversation changes to tag the recording</value>
+        <value>Select a topic to begin recording, and then tap topics as the conversation changes.</value>
     </data>
     <!-- RECORD SCREEN RECORD PERMISSION -->
     <data name="recording.ui.permission.title" xml:space="preserve">

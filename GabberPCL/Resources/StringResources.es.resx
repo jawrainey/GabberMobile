@@ -33,7 +33,7 @@
     </data>
     <!-- MAIN MENU -->
     <data name="common.menu.projects" xml:space="preserve">
-        <value>Proyectos</value>
+        <value>Temas</value>
     </data>
     <data name="common.menu.gabbers" xml:space="preserve">
         <value>Grabaciones</value>
@@ -284,7 +284,7 @@ Visita {0} para escuchar las perspectivas de otros voluntarios, miembros y exper
     </data>
     <!-- PROJECTS FRAGMENT -->
     <data name="projects.ui.title" xml:space="preserve">
-        <value>Proyectos</value>
+        <value>Temas</value>
     </data>
     <data name="projects.ui.instructions" xml:space="preserve">
         <value>Elige un tema sobre el que quieras tener una conversación</value>
