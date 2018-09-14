@@ -278,7 +278,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\add_person_white.png" />
     <AndroidResource Include="Resources\layout\consent_research.axml" />
     <AndroidResource Include="Resources\layout\consent_conversation.axml" />
-    <AndroidResource Include="Resources\layout\consent_summary.axml" />
     <AndroidResource Include="Resources\layout\spinner_row.axml" />
     <AndroidResource Include="Resources\layout\project_headercell.axml" />
     <AndroidResource Include="Resources\layout\project_descriptionCell.axml" />

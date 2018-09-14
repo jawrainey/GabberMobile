@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10"
-    android:keepScreenOn="true">
+    android:weightSum="10">
     <TextView
         android:id="@+id/participantsInstructions"
         style="@style/TextAppearance.AppCompat.Body2"

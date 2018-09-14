@@ -11,8 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#FFFFFF"
-        android:keepScreenOn="true">
+        android:background="#FFFFFF">
         <TextView
             android:id="@+id/recordInstructionsHeader"
             style="@style/TextAppearance.AppCompat.Body2"

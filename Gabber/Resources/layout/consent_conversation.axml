@@ -4,8 +4,7 @@
     android:id="@+id/projectsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:keepScreenOn="true">
+    android:orientation="vertical">
 <!-- Loading Layout -->
     <RelativeLayout
         android:id="@+id/loadingLayout"
