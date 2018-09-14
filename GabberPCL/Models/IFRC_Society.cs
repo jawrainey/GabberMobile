@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using GabberPCL.Interfaces;
 using Newtonsoft.Json;
 
@@ -462,99 +463,99 @@ namespace GabberPCL.Models
                 },
                 new IFRC_Society {
                     Id= 109,
-                    Name= "Red Crescent Society of Azerbaijan"
+                    Name= "Azerbaijan Red Crescent Society"
                 },
                 new IFRC_Society {
                     Id= 110,
-                    Name= "Red Crescent Society of Djibouti"
+                    Name= "Djibouti Red Crescent Society"
                 },
                 new IFRC_Society {
                     Id= 111,
-                    Name= "Red Crescent Society of Kyrgyzstan"
+                    Name= "Kyrgyzstan Red Crescent Society"
                 },
                 new IFRC_Society {
                     Id= 112,
-                    Name= "Red Crescent Society of Tajikistan"
+                    Name= "Tajikistan Red Crescent Society"
                 },
                 new IFRC_Society {
                     Id= 113,
-                    Name= "Red Crescent Society of the Islamic Republic of Iran"
+                    Name= "Islamic Republic of Iran Red Crescent Society"
                 },
                 new IFRC_Society {
                     Id= 114,
-                    Name= "Red Crescent Society of the United Arab Emirates"
+                    Name= "United Arab Emirates Red Crescent Society"
                 },
                 new IFRC_Society {
                     Id= 115,
-                    Name= "Red Crescent Society of Turkmenistan"
+                    Name= "Turkmenistan Red Crescent Society"
                 },
                 new IFRC_Society {
                     Id= 116,
-                    Name= "Red Crescent Society of Uzbekistan"
+                    Name= "Uzbekistan Red Crescent Society"
                 },
                 new IFRC_Society {
                     Id= 117,
-                    Name= "Red Cross of Benin"
+                    Name= "Benin Red Cross"
                 },
                 new IFRC_Society {
                     Id= 118,
-                    Name= "Red Cross of Cape Verde"
+                    Name= "Cape Verde Red Cross"
                 },
                 new IFRC_Society {
                     Id= 119,
-                    Name= "Red Cross of Chad"
+                    Name= "Chad Red Cross"
                 },
                 new IFRC_Society {
                     Id= 120,
-                    Name= "Red Cross of Monaco"
+                    Name= "Monaco Red Cross"
                 },
                 new IFRC_Society {
                     Id= 121,
-                    Name= "Red Cross of Montenegro"
+                    Name= "Montenegro Red Cross"
                 },
                 new IFRC_Society {
                     Id= 122,
-                    Name= "Red Cross of the Democratic Republic of the Congo"
+                    Name= "Democratic Republic of the Congo Red Cross"
                 },
                 new IFRC_Society {
                     Id= 123,
-                    Name= "Red Cross of the Republic of San Marino"
+                    Name= "Republic of San Marino Red Cross"
                 },
                 new IFRC_Society {
                     Id= 124,
-                    Name= "Red Cross Society of China"
+                    Name= "China Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 125,
-                    Name= "Red Cross Society of Côte d'Ivoire"
+                    Name= "Côte d'Ivoire Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 126,
-                    Name= "Red Cross Society of Georgia"
+                    Name= "Georgia Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 127,
-                    Name= "Red Cross Society of Guinea"
+                    Name= "Guinea Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 128,
-                    Name= "Red Cross Society of Guinea-Bissau"
+                    Name= "Guinea-Bissau Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 129,
-                    Name= "Red Cross Society of Niger"
+                    Name= "Niger Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 130,
-                    Name= "Red Cross Society of Panama"
+                    Name= "Panama Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 131,
-                    Name= "Red Cross Society of the Democratic People's Republic of Korea"
+                    Name= "Democratic People's Republic of Korea Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 132,
-                    Name= "Red Cross Society of the Republic of Moldova"
+                    Name= "Republic of Moldova Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 133,
@@ -654,79 +655,79 @@ namespace GabberPCL.Models
                 },
                 new IFRC_Society {
                     Id= 157,
-                    Name= "The Bahamas Red Cross Society"
+                    Name= "Bahamas Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 158,
-                    Name= "The Barbados Red Cross Society"
+                    Name= "Barbados Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 159,
-                    Name= "The Canadian Red Cross Society"
+                    Name= "Canadian Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 160,
-                    Name= "The Comoros Red Crescent"
+                    Name= "Comoros Red Crescent"
                 },
                 new IFRC_Society {
                     Id= 161,
-                    Name= "The Gambia Red Cross Society"
+                    Name= "Gambia Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 162,
-                    Name= "The Guyana Red Cross Society"
+                    Name= "Guyana Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 163,
-                    Name= "The Netherlands Red Cross"
+                    Name= "Netherlands Red Cross"
                 },
                 new IFRC_Society {
                     Id= 164,
-                    Name= "The Palestine Red Crescent Society"
+                    Name= "Palestine Red Crescent Society"
                 },
                 new IFRC_Society {
                     Id= 165,
-                    Name= "The Red Cross of Serbia"
+                    Name= "Serbia Red Cross"
                 },
                 new IFRC_Society {
                     Id= 166,
-                    Name= "The Red Cross of The Former Yugoslav Republic of Macedonia"
+                    Name= "Former Yugoslav Republic of Macedonia Red Cross"
                 },
                 new IFRC_Society {
                     Id= 167,
-                    Name= "The Red Cross Society of Bosnia and Herzegovina"
+                    Name= "Bosnia and Herzegovina Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 168,
-                    Name= "The Republic of Korea National Red Cross"
+                    Name= "Republic of Korea National Red Cross"
                 },
                 new IFRC_Society {
                     Id= 169,
-                    Name= "The Russian Red Cross Society"
+                    Name= "Russian Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 170,
-                    Name= "The Solomon Islands Red Cross"
+                    Name= "Solomon Islands Red Cross"
                 },
                 new IFRC_Society {
                     Id= 171,
-                    Name= "The South African Red Cross Society"
+                    Name= "South African Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 172,
-                    Name= "The Sudanese Red Crescent"
+                    Name= "Sudanese Red Crescent"
                 },
                 new IFRC_Society {
                     Id= 173,
-                    Name= "The Thai Red Cross Society"
+                    Name= "Thai Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 174,
-                    Name= "The Trinidad and Tobago Red Cross Society"
+                    Name= "Trinidad and Tobago Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 175,
-                    Name= "The Uganda Red Cross Society"
+                    Name= "Uganda Red Cross Society"
                 },
                 new IFRC_Society {
                     Id= 176,
@@ -783,12 +784,16 @@ namespace GabberPCL.Models
                 new IFRC_Society {
                     Id= 189,
                     Name= "Zimbabwe Red Cross Society"
-                },
-                new IFRC_Society {
-                    Id= 190,
-                    Name= "Was your society not listed? Select this and we will be in touch."
                 }
             };
+
+            loaded = loaded.OrderBy((IFRC_Society arg) => arg.Name).ToList();
+
+            loaded.Add(new IFRC_Society
+            {
+                Id = 190,
+                Name = "Was your society not listed? Select this and we will be in touch."
+            });
 
             return loaded;
         }
