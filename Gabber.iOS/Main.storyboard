@@ -469,14 +469,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6PY-NP-R21">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="585.66666666666663"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2V-td-ewG">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2V-td-ewG">
                                                 <rect key="frame" x="16" y="446.33333333333331" width="382" height="57.333333333333314"/>
                                                 <string key="text">Each of you will have received an email with a link to view and/or modify your given consent. If you can't see it, be sure to check your spam folder!</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For the next 24 hours, the recording is only available to the conversation's participants." textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUu-cy-55M">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For the next 24 hours, the recording is only available to the conversation's participants." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUu-cy-55M">
                                                 <rect key="frame" x="16" y="315.33333333333331" width="382" height="38.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
@@ -497,7 +497,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AY5-pZ-yyo">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AY5-pZ-yyo">
                                                 <rect key="frame" x="16" y="193.66666666666666" width="382" height="76.666666666666657"/>
                                                 <string key="text">Thank you for sharing your experiences - the recording has been uploaded to the Gabber website at {0}. Why not give it a visit and see what others have uploaded? </string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -510,7 +510,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2q8-Ls-xub">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2q8-Ls-xub">
                                                 <rect key="frame" x="16" y="361.66666666666669" width="382" height="76.666666666666686"/>
                                                 <string key="text">If at any time someone in the conversation has changed their mind about who they want to be able to access the recording, they can still change their consent.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -607,15 +607,8 @@
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Ajz-vX-o4t" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="458"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="440"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vzh-Ib-2vY" userLabel="breakline">
-                                                <rect key="frame" x="0.0" y="238" width="414" height="2"/>
-                                                <color key="backgroundColor" red="0.68877509719999996" green="0.68877509719999996" blue="0.68877509719999996" alpha="0.57149537849999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="1.5" id="is9-sx-Qod"/>
-                                                </constraints>
-                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About your data placeholder" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7O3-GK-Wj7" userLabel="Your data desc">
                                                 <rect key="frame" x="16" y="16" width="382" height="40"/>
                                                 <constraints>
@@ -674,7 +667,7 @@
                                                 </prototypes>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oK-He-g2U">
-                                                <rect key="frame" x="16" y="388" width="382" height="50"/>
+                                                <rect key="frame" x="16" y="370" width="382" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="tQV-IG-cZe"/>
                                                 </constraints>
@@ -690,13 +683,13 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose language placeholder" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgx-lX-0Ii">
-                                                <rect key="frame" x="16" y="256" width="382" height="18"/>
+                                                <rect key="frame" x="16" y="238" width="382" height="18"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yCL-lo-bIA">
-                                                <rect key="frame" x="16" y="286" width="382" height="90"/>
+                                                <rect key="frame" x="16" y="268" width="382" height="90"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="90" id="iXh-OW-7b6"/>
                                                 </constraints>
@@ -707,10 +700,8 @@
                                             <constraint firstAttribute="bottom" secondItem="4oK-He-g2U" secondAttribute="bottom" constant="20" id="0Er-Sw-vGt"/>
                                             <constraint firstAttribute="trailing" secondItem="Tgx-lX-0Ii" secondAttribute="trailing" constant="16" id="5GQ-MB-3YC"/>
                                             <constraint firstItem="6UI-0u-fFg" firstAttribute="leading" secondItem="Ajz-vX-o4t" secondAttribute="leading" constant="16" id="7Wf-Gd-sdQ"/>
-                                            <constraint firstItem="vzh-Ib-2vY" firstAttribute="leading" secondItem="Ajz-vX-o4t" secondAttribute="leading" id="Ao1-37-dTf"/>
+                                            <constraint firstItem="Tgx-lX-0Ii" firstAttribute="top" secondItem="6UI-0u-fFg" secondAttribute="bottom" constant="16" id="7v2-8n-nib"/>
                                             <constraint firstItem="6UI-0u-fFg" firstAttribute="top" secondItem="7O3-GK-Wj7" secondAttribute="bottom" constant="16" id="EAK-Pl-h5L"/>
-                                            <constraint firstAttribute="trailing" secondItem="vzh-Ib-2vY" secondAttribute="trailing" id="KFc-Vk-QhS"/>
-                                            <constraint firstItem="Tgx-lX-0Ii" firstAttribute="top" secondItem="vzh-Ib-2vY" secondAttribute="bottom" constant="16" id="LLF-ga-f6V"/>
                                             <constraint firstAttribute="trailing" secondItem="6UI-0u-fFg" secondAttribute="trailing" constant="16" id="Zdw-Ue-rNE"/>
                                             <constraint firstItem="yCL-lo-bIA" firstAttribute="top" secondItem="Tgx-lX-0Ii" secondAttribute="bottom" constant="12" id="eFf-4t-e4g"/>
                                             <constraint firstItem="4oK-He-g2U" firstAttribute="top" secondItem="yCL-lo-bIA" secondAttribute="bottom" constant="12" id="hYg-QX-nFn"/>
@@ -718,7 +709,6 @@
                                             <constraint firstItem="yCL-lo-bIA" firstAttribute="leading" secondItem="Ajz-vX-o4t" secondAttribute="leading" constant="16" id="k59-IQ-k6T"/>
                                             <constraint firstItem="7O3-GK-Wj7" firstAttribute="leading" secondItem="Ajz-vX-o4t" secondAttribute="leading" constant="16" id="n64-QF-CtP"/>
                                             <constraint firstItem="7O3-GK-Wj7" firstAttribute="top" secondItem="Ajz-vX-o4t" secondAttribute="top" constant="16" id="pcm-5c-LqG"/>
-                                            <constraint firstItem="vzh-Ib-2vY" firstAttribute="top" secondItem="6UI-0u-fFg" secondAttribute="bottom" constant="16" id="psd-lD-Nrg"/>
                                             <constraint firstItem="Tgx-lX-0Ii" firstAttribute="leading" secondItem="Ajz-vX-o4t" secondAttribute="leading" constant="16" id="xLu-7Q-bBN"/>
                                             <constraint firstAttribute="trailing" secondItem="4oK-He-g2U" secondAttribute="trailing" constant="16" id="yF1-rf-Lfc"/>
                                             <constraint firstItem="4oK-He-g2U" firstAttribute="leading" secondItem="Ajz-vX-o4t" secondAttribute="leading" constant="16" id="zrE-ua-XqA"/>
