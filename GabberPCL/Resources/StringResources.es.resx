@@ -243,7 +243,7 @@
         <value>Si ha verificado su dirección de correo electrónico a través del sitio web, inicie sesión manualmente en la aplicación.</value>
     </data>
     <data name="register.verify.ui.button.openemail" xml:space="preserve">
-        <value>Abrir cliente de correo electrónico predeterminado</value>
+        <value>Llévame a mi correo electrónico</value>
     </data>
     <!-- REGISTER VERIFYING EMAIL PAGE -->
     <data name="register.verifying.activity.label" xml:space="preserve">
@@ -284,7 +284,7 @@
         <value>Fetching projects...</value>
     </data>
     <data name="projects.ui.topics" xml:space="preserve">
-        <value>Temas de discusion:</value>
+        <value>Puntos de discusión</value>
     </data>
     <data name="projects.ui.get.started.button" xml:space="preserve">
         <value>Empezar</value>
