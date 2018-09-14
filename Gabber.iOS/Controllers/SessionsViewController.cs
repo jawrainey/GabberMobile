@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Foundation;
 using Gabber.iOS.Helpers;
 using Gabber.iOS.ViewSources;
 using GabberPCL;
 using GabberPCL.Models;
 using GabberPCL.Resources;
+using Plugin.Connectivity;
 using UIKit;
 
 namespace Gabber.iOS
@@ -47,10 +49,37 @@ namespace Gabber.iOS
             TabBarController.Title = StringResources.sessions_ui_title;
             SessionsInstructions.Text = StringResources.sessions_ui_header_instructions;
             SessionsInstructionsBody.Text = StringResources.sessions_ui_body_instructions;
+
+            NSUserDefaults prefs = NSUserDefaults.StandardUserDefaults;
+            if (prefs.BoolForKey("SESSION_RECORDED"))
+            {
+                prefs.SetBool(false, "SESSION_RECORDED");
+
+                var currentConnections = CrossConnectivity.Current.ConnectionTypes;
+                if (!currentConnections.Contains(Plugin.Connectivity.Abstractions.ConnectionType.WiFi))
+                {
+                    var alertController = UIAlertController.Create(StringResources.sessions_ui_wifiwarning_title,
+                                                                   StringResources.sessions_ui_wifiwarning_message,
+                                                                   UIAlertControllerStyle.Alert);
+                    alertController.AddAction(UIAlertAction.Create(StringResources.sessions_ui_wifiwarning_cancel,
+                                                                   UIAlertActionStyle.Cancel, (obj) => { }));
+                    alertController.AddAction(UIAlertAction.Create(StringResources.sessions_ui_wifiwarning_confirm,
+                                                                   UIAlertActionStyle.Default, (obj) =>
+                                                                   {
+                                                                       var suppressAsync = UploadSessions(0, true);
+                                                                   }));
+
+                    PresentViewController(alertController, true, null);
+                }
+                else
+                {
+                    var suppressAsync = UploadSessions(0, true);
+                }
+            }
         }
 
         // Index is optional such that the method could be used onSelected(item)
-        public async void UploadSessions(int index, bool recursive)
+        public async Task UploadSessions(int index, bool recursive)
         {
             var sessions = SessionsViewSource.Sessions;
             // Out of bounds validation
