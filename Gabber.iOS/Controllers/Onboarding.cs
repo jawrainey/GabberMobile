@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CoreGraphics;
 using Foundation;
 using Gabber.iOS.Helpers;
+using GabberPCL;
 using GabberPCL.Models;
 using GabberPCL.Resources;
 using UIKit;
@@ -36,7 +37,7 @@ namespace Gabber.iOS
                 },
                 new OnboardingPageContent {
                     Title=StringResources.onboarding_ui_page_fourth_title,
-                    Content=StringResources.onboarding_ui_page_fourth_content
+                    Content=string.Format(StringResources.onboarding_ui_page_fourth_content, Config.PRINT_URL)
                 }
             };
 
