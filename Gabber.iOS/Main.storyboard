@@ -1486,14 +1486,17 @@
                                     <view contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="bmP-Ab-cgD">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="408"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="U68-s0-2mN">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="0.0"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="752" text="THIS IS A PLACEHOLDER TITLE" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="U68-s0-2mN">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="5cC-In-XKw"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cBg-Np-ZtA">
-                                                <rect key="frame" x="0.0" y="10" width="374" height="0.0"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="This is a placeholder blurb blah blah blah" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cBg-Np-ZtA">
+                                                <rect key="frame" x="0.0" y="44" width="374" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1501,12 +1504,12 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="cBg-Np-ZtA" firstAttribute="leading" secondItem="bmP-Ab-cgD" secondAttribute="leading" id="203-A0-RYu"/>
-                                            <constraint firstItem="cBg-Np-ZtA" firstAttribute="top" secondItem="U68-s0-2mN" secondAttribute="bottom" constant="10" id="86v-jt-br3"/>
                                             <constraint firstAttribute="trailing" secondItem="U68-s0-2mN" secondAttribute="trailing" id="L23-Tm-VJx"/>
                                             <constraint firstItem="U68-s0-2mN" firstAttribute="top" secondItem="bmP-Ab-cgD" secondAttribute="top" id="Nt8-jm-Dbf"/>
                                             <constraint firstItem="U68-s0-2mN" firstAttribute="leading" secondItem="bmP-Ab-cgD" secondAttribute="leading" id="dnt-jd-PTK"/>
                                             <constraint firstAttribute="trailing" secondItem="cBg-Np-ZtA" secondAttribute="trailing" id="hrm-yd-L3U"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cBg-Np-ZtA" secondAttribute="bottom" constant="20" symbolic="YES" id="yLr-Vd-bSF"/>
+                                            <constraint firstItem="cBg-Np-ZtA" firstAttribute="top" secondItem="U68-s0-2mN" secondAttribute="bottom" constant="12" id="iWV-jW-rkm"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cBg-Np-ZtA" secondAttribute="bottom" constant="16" id="yLr-Vd-bSF"/>
                                         </constraints>
                                     </view>
                                 </subviews>
