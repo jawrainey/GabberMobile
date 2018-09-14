@@ -587,6 +587,30 @@ namespace GabberPCL.Resources {
             }
         }
         
+        public static string sessions_ui_wifiwarning_title {
+            get {
+                return ResourceManager.GetString("sessions.ui.wifiwarning.title", resourceCulture);
+            }
+        }
+        
+        public static string sessions_ui_wifiwarning_message {
+            get {
+                return ResourceManager.GetString("sessions.ui.wifiwarning.message", resourceCulture);
+            }
+        }
+        
+        public static string sessions_ui_wifiwarning_confirm {
+            get {
+                return ResourceManager.GetString("sessions.ui.wifiwarning.confirm", resourceCulture);
+            }
+        }
+        
+        public static string sessions_ui_wifiwarning_cancel {
+            get {
+                return ResourceManager.GetString("sessions.ui.wifiwarning.cancel", resourceCulture);
+            }
+        }
+        
         public static string sessions_ui_message_upload_success {
             get {
                 return ResourceManager.GetString("sessions.ui.message.upload.success", resourceCulture);
