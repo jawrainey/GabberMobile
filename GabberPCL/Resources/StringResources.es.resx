@@ -153,40 +153,49 @@
     </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
-        <value>Bienvenido a TalkFutures</value>
+        <value>Bienvenido/a a TalkFutures</value>
     </data>
     <data name="onboarding.ui.page.zero.content" xml:space="preserve">
-        <value>TalkFutures usa temas para estructurar y capturar conversaciones de audio, estos temas sirven para identifican en la pagina web el tema sobre el que se discutió y quien participio. 
+        <value>TalkFutures usa temas para estructurar y grabar conversaciones sobre cómo la Cruz Roja y la Media Luna Roja pueden adaptarse a los desafíos del futuro.
 
-    Las siguientes pantallas explican cada paso para crear una conversación usando TalkFutures.</value>
+Las conversaciones grabadas aparecen en un sitio web donde personas de todo el mundo pueden comentar, resaltar y compartir partes de tu discusión. 
+
+¡Utilizar TalkFutures es muy sencillo!</value>
     </data>
     <!-- ONBOARDING PAGE: 1 -->
     <data name="onboarding.ui.page.first.title" xml:space="preserve">
-        <value>Elige un proyecto</value>
+        <value>Paso 1: Elige un tema</value>
     </data>
     <data name="onboarding.ui.page.first.content" xml:space="preserve">
-        <value>Toca el proyecto al que deseas contribuir. Los proyectos contienen temas para ayudar a estructurar su conversación.</value>
+        <value>Hay nueve temas que reflejan desafíos y oportunidades que la Cruz Roja y la Media Luna Roja podrían enfrentar en el futuro.
+Cada tema tiene una descripción corta y puntos para cubrir en tu discusión.
+
+Elige un tema que te gustaría discutir.</value>
     </data>
     <!-- ONBOARDING PAGE: 2 -->
     <data name="onboarding.ui.page.second.title" xml:space="preserve">
-        <value>Agregar participantes</value>
+        <value>Paso 2: Añadir participantes</value>
     </data>
     <data name="onboarding.ui.page.second.content" xml:space="preserve">
-        <value>Todo lo que necesita es el nombre y el correo electrónico de las personas que participan en la conversación.</value>
+        <value>Necesitamos infromación básica sobre las personas en la conversación, esto nos ayudará a comprender sus perspectivas y detectar tendencias en todos los miembros de la Cruz Roja y la Media Luna Roja.</value>
     </data>
     <!-- ONBOARDING PAGE: 3 -->
     <data name="onboarding.ui.page.third.title" xml:space="preserve">
-        <value>Empezar a grabar</value>
+        <value>Paso 3: Empezar grabación</value>
     </data>
     <data name="onboarding.ui.page.third.content" xml:space="preserve">
-        <value>Mientras graba, seleccione un tema para estructurar la conversación.</value>
+        <value>Selecciona un punto de discusión para iniciar la grabación.
+
+Estos puntos ayudan a otros a entender lo que se está discutiendo, así que asegúrate de tocarlos mientras tu conversación cambia de tema.</value>
     </data>
     <!-- ONBOARDING PAGE: 4 -->
     <data name="onboarding.ui.page.fourth.title" xml:space="preserve">
-        <value>Carga y consentimiento</value>
+        <value>Paso 4: Subir y Consentimiento</value>
     </data>
     <data name="onboarding.ui.page.fourth.content" xml:space="preserve">
-        <value>Cuando termine la conversación, cargue la grabación. Todos los participantes serán notificados y podrán elegir cómo se usa su grabación</value>
+        <value>Una vez que termine la conversación, puede subirla al sitio web para que otros la escuchen. Todos los participantes recibirán una notificación para revisar el consentimiento.
+
+Visita {0} para escuchar las perspectivas de otros voluntarios, miembros y expertos de la Cruz Roja y la Media Luna Roja.</value>
     </data>
     <!-- USER LOGIN SCREEN: API errors -->
     <data name="login.api.error.GENERAL" xml:space="preserve">

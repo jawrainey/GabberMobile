@@ -153,40 +153,46 @@
     </data>
     <!-- ONBOARDING PAGE: 0 -->
     <data name="onboarding.ui.page.zero.title" xml:space="preserve">
-        <value>Bienvenue à TalkFutures</value>
+        <value>Welcome to TalkFutures</value>
     </data>
     <data name="onboarding.ui.page.zero.content" xml:space="preserve">
-        <value>TalkFutures utilise des rubriques pour structurer et capturer des conversations audio, qui sont utilisées sur le site Web pour représenter qui était présent et ce qui a été discuté.
+        <value>TalkFutures helps structure and record conversations about how the Red Cross and Red Crescent can adapt to the challenges of the future. Recorded conversations appear on the website where people can comment on, highlight and share your discussions. 
 
-    Les écrans suivants expliquent chaque étape pour créer une conversation en utilisant TalkFutures.</value>
+Using TalkFutures is simple!
+</value>
     </data>
     <!-- ONBOARDING PAGE: 1 -->
     <data name="onboarding.ui.page.first.title" xml:space="preserve">
-        <value>Selectionner un projet</value>
+        <value>Step 1: Choose a Theme</value>
     </data>
     <data name="onboarding.ui.page.first.content" xml:space="preserve">
-        <value>Appuyez sur le projet auquel vous voulez contribuer. Les projets contiennent des rubriques pour vous aider à structurer votre conversation.</value>
+        <value>There are nine themes that have been identified by Red Cross Red Crescent members as challenges and opportunities for us to deal with in the near future. Each theme has some suggested conversation topics.
+
+Choose a theme you’d like to discuss.</value>
     </data>
     <!-- ONBOARDING PAGE: 2 -->
     <data name="onboarding.ui.page.second.title" xml:space="preserve">
-        <value>Ajouter des participants</value>
+        <value>Step 2: Add Participants</value>
     </data>
     <data name="onboarding.ui.page.second.content" xml:space="preserve">
-        <value>Tout ce dont vous avez besoin est le nom et l'adresse e-mail des personnes dans la conversation.</value>
+        <value>We need some basic details about the people in the conversation - this will help us understand their perspectives and spot trends across all members of the Red Cross Red Crescent.</value>
     </data>
     <!-- ONBOARDING PAGE: 3 -->
     <data name="onboarding.ui.page.third.title" xml:space="preserve">
-        <value>Commencer l'enregistrement audio</value>
+        <value>Step 3: Start Recording</value>
     </data>
     <data name="onboarding.ui.page.third.content" xml:space="preserve">
-        <value>Pendant que vous enregistrez, appuyez sur une rubrique pour structurer la conversation</value>
+        <value>Click on a discussion point to start recording. These points help others understand what you’re talking about, so be sure to tap them as your conversation changes topics. </value>
     </data>
     <!-- ONBOARDING PAGE: 4 -->
     <data name="onboarding.ui.page.fourth.title" xml:space="preserve">
-        <value>Téléchargement et consentement</value>
+        <value>Step 4: Upload and Consent</value>
     </data>
     <data name="onboarding.ui.page.fourth.content" xml:space="preserve">
-        <value>Lorsque la conversation est terminée, téléchargez l'enregistrement. Tous les participants seront notifiés et peuvent choisir comment leur enregistrement est utilisé</value>
+        <value>When the conversation ends, you can upload the recording to the website for others to listen to. All participants are notified and can review their consent. 
+
+Visit {0} to listen to perspectives from members of other National Societies!
+</value>
     </data>
     <!-- USER LOGIN SCREEN: API errors -->
     <data name="login.api.error.GENERAL" xml:space="preserve">

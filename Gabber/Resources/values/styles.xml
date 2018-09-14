@@ -9,7 +9,8 @@
     </style>
     <style name="MyTheme.NoActionBar" parent="MyTheme">
         <item name="windowActionBar">false</item>
-        <item name="colorPrimaryDark">@android:color/black</item>
+        <item name="colorPrimaryDark">@color/dim_foreground_disabled_material_dark</item>
+        <item name="android:navigationBarColor">@color/dim_foreground_disabled_material_dark</item>
         <item name="windowNoTitle">true</item>
     </style>
     <style name="settingsTheme" parent="PreferenceThemeOverlay">

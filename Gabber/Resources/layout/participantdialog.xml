@@ -15,8 +15,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:focusableInTouchMode="true"
-            android:keepScreenOn="true">
+            android:focusableInTouchMode="true">
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/participantNameLayout"
                 android:layout_width="match_parent"
