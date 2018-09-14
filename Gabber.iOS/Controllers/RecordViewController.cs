@@ -112,6 +112,8 @@ namespace Gabber.iOS
 
             var activeTopics = SelectedProject.Topics.Where((t) => t.IsActive).ToList();
 
+            ThemeTitleLabel.Text = SelectedProject.Title;
+
             Topics = activeTopics;
             TopicsCollectionView.Source = new TopicsCollectionViewSource
             {
