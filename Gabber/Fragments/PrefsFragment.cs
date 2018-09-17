@@ -27,7 +27,7 @@ namespace Gabber.Fragments
         {
             AddPreferencesFromResource(Resource.Xml.preferences);
 
-            allLangs = (await Localizer.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
+            allLangs = (await LanguageChoiceManager.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
 
             string[] langIds = allLangs.Select((lang) => lang.Id.ToString()).ToArray();
             string[] langNames = allLangs.Select((lang) => lang.Endonym).ToArray();
@@ -37,7 +37,7 @@ namespace Gabber.Fragments
             int appCurrentLangVal = allLangs.FindIndex((obj) => obj.Code == currentCulture.TwoLetterISOLanguageName);
             if (appCurrentLangVal == -1) appCurrentLangVal = 1;
 
-            var appLangPref = (Android.Support.V7.Preferences.ListPreference)FindPreference("appLanguagePref");
+            ListPreference appLangPref = (ListPreference)FindPreference("appLanguagePref");
             appLangPref.Title = StringResources.settings_chooseAppLanguage;
             appLangPref.SetEntries(langNames);
             appLangPref.SetEntryValues(langIds);
@@ -46,19 +46,19 @@ namespace Gabber.Fragments
 
             int convoDefaultVal = allLangs.FindIndex((obj) => obj.Id == Session.ActiveUser.Lang);
 
-            var convoLangPref = (Android.Support.V7.Preferences.ListPreference)FindPreference("convoLanguagePref");
+            ListPreference convoLangPref = (ListPreference)FindPreference("convoLanguagePref");
             convoLangPref.Title = StringResources.settings_chooseConvoLanguage;
             convoLangPref.SetEntries(langNames);
             convoLangPref.SetEntryValues(langIds);
             convoLangPref.SetValueIndex(convoDefaultVal);
             convoLangPref.PreferenceChange += ConvoLangPrefChanged;
 
-            var logOutPref = FindPreference("logOutPref");
+            Preference logOutPref = FindPreference("logOutPref");
             logOutPref.Title = StringResources.settings_logout;
             logOutPref.PreferenceClick += LogOutPref_PreferenceClick;
         }
 
-        private void AppLangPrefChanged(object sender, Android.Support.V7.Preferences.Preference.PreferenceChangeEventArgs e)
+        private void AppLangPrefChanged(object sender, Preference.PreferenceChangeEventArgs e)
         {
             int newLangVal = -1;
 

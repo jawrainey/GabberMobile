@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -39,8 +40,6 @@ namespace Gabber
 
             SetContentView(Resource.Layout.main);
             SupportActionBar.Title = StringResources.projects_ui_title;
-            SupportedLanguages = (await Localizer.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
-
             EmojiCompat.Init(new BundledEmojiCompatConfig(this));
             
             // Create the active user anytime they reopen app
@@ -53,6 +52,28 @@ namespace Gabber
                 FireBaseAnalytics.SetUserId(Session.ActiveUser.Id.ToString());
                 Session.ActiveUser.AppLang = user.AppLang;
             }
+
+            prefsFragment = new PrefsFragment();
+            sessionsFragment = new UploadsFragment();
+            projectsFragment = new ProjectsFragment();
+            activeFragment = projectsFragment;
+
+            SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, prefsFragment, "settings").Hide(prefsFragment).Commit();
+            SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, sessionsFragment, "sessions").Hide(sessionsFragment).Commit();
+            SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, projectsFragment, "projects").Commit();
+
+            var suppressAsync = GetLangData();
+            LoadUploadFragmentAfterSession();
+            SupportActionBar.Title = StringResources.login_ui_title;
+        }
+
+        private async Task GetLangData()
+        {
+#pragma warning disable CS0618 // Type or member is obsolete
+            ProgressDialog progress = ProgressDialog.Show(this, null, StringResources.common_comms_loading);
+#pragma warning restore CS0618 // Type or member is obsolete
+
+            SupportedLanguages = (await LanguageChoiceManager.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
 
             // First time users logs in, set the language to their culture if we support it, or English.
             if (Session.ActiveUser.AppLang == 0)
@@ -74,18 +95,9 @@ namespace Gabber
             LoadNavigationTitles();
             nav.NavigationItemSelected += NavigationItemSelected;
 
-            prefsFragment = new PrefsFragment();
-            sessionsFragment = new UploadsFragment();
-            projectsFragment = new ProjectsFragment();
-            activeFragment = projectsFragment;
+            LanguageChoiceManager.RefreshIfNeeded();
 
-            SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, prefsFragment, "settings").Hide(prefsFragment).Commit();
-            SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, sessionsFragment, "sessions").Hide(sessionsFragment).Commit();
-            SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, projectsFragment, "projects").Commit();
-            
-            LoadUploadFragmentAfterSession();
-            Localizer.RefreshIfNeeded();
-            SupportActionBar.Title = StringResources.login_ui_title;
+            progress.Dismiss();
         }
 
         public void SetLayoutDirection()

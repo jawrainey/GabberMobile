@@ -24,7 +24,7 @@ namespace Gabber.Adapters
             return new SessionViewHolder(session, OnSessionClicked);
         }
 
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+        public override async void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
             var mholder = holder as SessionViewHolder;
             var session = Sessions[position];
