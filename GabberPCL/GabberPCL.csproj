@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -51,7 +51,7 @@
     <Compile Include="Models\Creator.cs" />
     <Compile Include="Models\Organsation.cs" />
     <Compile Include="Models\LanguageChoice.cs" />
-    <Compile Include="Localizer.cs" />
+    <Compile Include="LanguageChoiceManager.cs" />
     <Compile Include="Models\PlatformCulture.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Models\Content.cs" />
@@ -93,10 +93,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Resources\StringResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

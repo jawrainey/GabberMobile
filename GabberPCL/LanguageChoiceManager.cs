@@ -5,9 +5,21 @@ using GabberPCL.Models;
 
 namespace GabberPCL
 {
-    public static class Localizer
+    public static class LanguageChoiceManager
     {
         private static bool refreshed;
+
+        public static async Task<LanguageChoice> GetUserLanguage()
+        {
+            List<LanguageChoice> allLangs = await GetLanguageChoices();
+            return allLangs.Find((lang) => lang.Id == Session.ActiveUser.Lang);
+        }
+
+        public static async Task<LanguageChoice> GetLanguageFromCode(string code)
+        {
+            List<LanguageChoice> allLangs = await GetLanguageChoices();
+            return allLangs.Find((lang) => lang.Code == code );
+        }
 
         public static async Task<List<LanguageChoice>> GetLanguageChoices()
         {

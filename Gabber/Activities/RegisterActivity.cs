@@ -16,6 +16,8 @@ using System.Collections.Generic;
 using GabberPCL.Models;
 using System.Linq;
 using Gabber.Helpers;
+using System.Globalization;
+using Android.Preferences;
 
 namespace Gabber
 {
@@ -264,9 +266,16 @@ namespace Gabber
 
                 LOG_EVENT_WITH_ACTION("REGISTER", "ATTEMPT");
 
-                //default to English at registration
-                CustomAuthResponse response = await RestClient.Register(fname.Text, email.Text.ToLower(), passw.Text, 1, chosenSoc.Id, chosenGender, (int)chosenRole.Enum, (int)chosenAge.Enum);
+                CultureInfo currentCulture = StringResources.Culture ?? Localise.GetCurrentCultureInfo();
+                string currentLang = currentCulture.TwoLetterISOLanguageName;
 
+                LanguageChoice matchingLanguage = await LanguageChoiceManager.GetLanguageFromCode(currentLang);
+
+                //default to English at registration if no matching language
+                int langId = (matchingLanguage != null)? matchingLanguage.Id : 1;
+
+                CustomAuthResponse response = await RestClient.Register(fname.Text, email.Text.ToLower(), passw.Text, langId, chosenSoc.Id, chosenGender, (int)chosenRole.Enum, (int)chosenAge.Enum);
+                
                 if (response.Meta.Success)
                 {
                     LOG_EVENT_WITH_ACTION("REGISTER", "SUCCESS");

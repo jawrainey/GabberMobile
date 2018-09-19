@@ -6,6 +6,7 @@ using System.Linq;
 using GabberPCL;
 using Android.App;
 using Android.Views;
+using System.Threading.Tasks;
 
 namespace Gabber.Helpers
 {
@@ -29,11 +30,20 @@ namespace Gabber.Helpers
             activity.Window.DecorView.LayoutDirection = isArabic;
         }
 
-        public static Content ContentByLanguage(Project project)
+        public static Content ContentByLanguage(Project project, int requestedId = -1)
         {
-            var currentCulture = StringResources.Culture ?? GetCurrentCultureInfo();
-            var currentLang = currentCulture.TwoLetterISOLanguageName;
-            var content = project.Content.FirstOrDefault((k) => k.Key == currentLang);
+            LanguageChoice thisLang;
+
+            if (requestedId != -1)
+            {
+                thisLang = (LanguageChoiceManager.GetLanguageChoices().Result).Find(lang => lang.Id == requestedId);
+            }
+            else
+            {
+                thisLang = LanguageChoiceManager.GetUserLanguage().Result;
+            }
+
+            var content = project.Content.FirstOrDefault((k) => k.Key == thisLang.Code);
 
             // Determine if the language above is used
             if (content.Key == null)
