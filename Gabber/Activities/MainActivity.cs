@@ -34,14 +34,14 @@ namespace Gabber
         Android.Support.V4.App.Fragment activeFragment;
         List<LanguageChoice> SupportedLanguages;
 
-        protected override async void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.main);
             SupportActionBar.Title = StringResources.projects_ui_title;
             EmojiCompat.Init(new BundledEmojiCompatConfig(this));
-            
+
             // Create the active user anytime they reopen app
             if (Session.ActiveUser == null)
             {
@@ -69,10 +69,6 @@ namespace Gabber
 
         private async Task GetLangData()
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            ProgressDialog progress = ProgressDialog.Show(this, null, StringResources.common_comms_loading);
-#pragma warning restore CS0618 // Type or member is obsolete
-
             SupportedLanguages = (await LanguageChoiceManager.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
 
             // First time users logs in, set the language to their culture if we support it, or English.
@@ -96,8 +92,6 @@ namespace Gabber
             nav.NavigationItemSelected += NavigationItemSelected;
 
             LanguageChoiceManager.RefreshIfNeeded();
-
-            progress.Dismiss();
         }
 
         public void SetLayoutDirection()

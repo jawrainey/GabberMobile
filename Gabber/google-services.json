@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "1031868722249",
-    "firebase_url": "https://gabber-f5cd4.firebaseio.com",
-    "project_id": "gabber-f5cd4",
-    "storage_bucket": "gabber-f5cd4.appspot.com"
+    "project_number": "969065414758",
+    "firebase_url": "https://talkfutures-db619.firebaseio.com",
+    "project_id": "talkfutures-db619",
+    "storage_bucket": "talkfutures-db619.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1031868722249:android:43bdfbc168278b2b",
+        "mobilesdk_app_id": "1:969065414758:android:b1ee55164baefd9c",
         "android_client_info": {
           "package_name": "uk.ac.ncl.openlab.talkfutures"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1031868722249-5fb0gj0nsscq93e7ip54inj753sfa2gd.apps.googleusercontent.com",
+          "client_id": "969065414758-c3pl03p7o9r461onchkag2vhp4d682b2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDC3OUq34NCA4z2OjMpSe7YxxWl1lVXbxE"
+          "current_key": "AIzaSyCQ7mnb5NyYehr79AqrzFJTxvCktxxkszM"
         }
       ],
       "services": {
@@ -31,50 +31,6 @@
         "appinvite_service": {
           "status": 1,
           "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1031868722249:android:a873c32dc647d734",
-        "android_client_info": {
-          "package_name": "uk.ac.ncl.openlab.ifrc.talkfutures"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1031868722249-v7rnijeg8k9v5q1fdc5e5nj0unq0e6f3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "uk.ac.ncl.openlab.ifrc.talkfutures",
-            "certificate_hash": "49776e4a5a580d935782f33dea6107bb40f2b286"
-          }
-        },
-        {
-          "client_id": "1031868722249-5fb0gj0nsscq93e7ip54inj753sfa2gd.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDC3OUq34NCA4z2OjMpSe7YxxWl1lVXbxE"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1031868722249-5fb0gj0nsscq93e7ip54inj753sfa2gd.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
         },
         "ads_service": {
           "status": 2
