@@ -65,6 +65,7 @@ namespace Gabber
             adapter.ParticipantClicked += ParticipantSelected;
             participantsView.SetAdapter(adapter);
             UpdateParticipantsSelectedLabel();
+            UpdateAnalytics();
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
@@ -76,7 +77,15 @@ namespace Gabber
                 participants.Add(thisUser);
                 adapter.NotifyItemInserted(participants.Count);
                 LOG_ADD_PARTICIPANT(thisUser.Name, thisUser.Email);
+                UpdateAnalytics();
             }
+        }
+
+        private void UpdateAnalytics()
+        {
+            FirebaseAnalytics.GetInstance(this).SetUserProperty(
+                "numParticipants",
+                participants.Count.ToString());
         }
 
         void UpdateParticipantsSelectedLabel()
