@@ -4,8 +4,8 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:gabber.audio</string>
-		<string>applinks:*.gabber.audio</string>
+		<string>applinks:future-rcrc.com</string>
+		<string>applinks:*.future-rcrc.com</string>
 	</array>
 </dict>
 </plist>
