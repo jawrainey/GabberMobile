@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Gabber.Helpers
 {
-    public static class Localise 
+    public static class Localise
     {
         public static void SetLocale(CultureInfo ci)
         {
@@ -28,33 +28,6 @@ namespace Gabber.Helpers
         {
             var isArabic = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? LayoutDirection.Rtl : LayoutDirection.Ltr;
             activity.Window.DecorView.LayoutDirection = isArabic;
-        }
-
-        public static Content ContentByLanguage(Project project, int requestedId = -1)
-        {
-            LanguageChoice thisLang;
-
-            if (requestedId != -1)
-            {
-                thisLang = (LanguageChoiceManager.GetLanguageChoices().Result).Find(lang => lang.Id == requestedId);
-            }
-            else
-            {
-                thisLang = LanguageChoiceManager.GetUserLanguage().Result;
-            }
-
-            var content = project.Content.FirstOrDefault((k) => k.Key == thisLang.Code);
-
-            // Determine if the language above is used
-            if (content.Key == null)
-            {
-                // If the Application Language does not match the project language, then we will use
-                // the default selected when creating a project.
-                var lang = Queries.AllLanguages().FirstOrDefault((l) => l.Id == project.IsDefaultLang);
-                // We should use the default!
-                content = project.Content.FirstOrDefault((k) => k.Key == lang.Code);
-            }
-            return content.Value;
         }
 
         public static CultureInfo GetCurrentCultureInfo()

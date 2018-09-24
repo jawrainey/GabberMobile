@@ -9,11 +9,11 @@ using UIKit;
 
 namespace Gabber.iOS
 {
-	public partial class SessionsCollectionViewCell : UICollectionViewCell
-	{
+    public partial class SessionsCollectionViewCell : UICollectionViewCell
+    {
         public static NSString CellID = new NSString("SessionCollectionCell");
 
-		public SessionsCollectionViewCell (IntPtr handle) : base (handle){}
+        public SessionsCollectionViewCell(IntPtr handle) : base(handle) { }
 
         string BuildParticipantsNames(List<InterviewParticipant> participants)
         {
@@ -25,7 +25,7 @@ namespace Gabber.iOS
 
         public void UpdateContent(InterviewSession session)
         {
-            var content = Queries.ContentByLanguage(Queries.ProjectById(session.ProjectID), Localize.GetCurrentCultureInfo());
+            var content = LanguageChoiceManager.ContentByLanguage(Queries.ProjectById(session.ProjectID));
             SessionProjectTitle.Text = content.Title;
             SessionLength.Text = Queries.FormatFromSeconds(session.Prompts[session.Prompts.Count - 1].End);
             SessionParticipants.Text = BuildParticipantsNames(session.Participants);
@@ -44,5 +44,5 @@ namespace Gabber.iOS
             autoLayoutAttributes.Frame = autoLayoutFrame;
             return autoLayoutAttributes;
         }
-	}
+    }
 }

@@ -10,6 +10,8 @@ using GabberPCL.Models;
 using GabberPCL.Resources;
 using Plugin.Connectivity;
 using UIKit;
+using Firebase.Analytics;
+using Firebase.InstanceID;
 
 namespace Gabber.iOS
 {
@@ -39,7 +41,6 @@ namespace Gabber.iOS
             SessionsUpload.Layer.BorderColor = Application.MainColour;
             SessionsUpload.SetTitle(StringResources.sessions_ui_submit_button, UIControlState.Normal);
 
-
         }
 
         public override void ViewDidAppear(bool animated)
@@ -54,6 +55,14 @@ namespace Gabber.iOS
             if (prefs.BoolForKey("SESSION_RECORDED"))
             {
                 prefs.SetBool(false, "SESSION_RECORDED");
+
+                // Get epoch time
+                TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
+                int secondsSinceEpoch = (int)t.TotalSeconds;
+
+                Analytics.SetUserProperty(
+                        "lastUploadAdded",
+                    secondsSinceEpoch.ToString());
 
                 var currentConnections = CrossConnectivity.Current.ConnectionTypes;
                 if (!currentConnections.Contains(Plugin.Connectivity.Abstractions.ConnectionType.WiFi))
@@ -102,6 +111,13 @@ namespace Gabber.iOS
                 sessions.Remove(sessions[index]);
                 SessionsCollectionView.ReloadData();
 
+                TrackWaitingUploads();
+
+                Session.ActiveUser.NumUploaded++;
+                Queries.SaveActiveUser();
+
+                Analytics.SetUserProperty("numUploaded", Session.ActiveUser.NumUploaded.ToString());
+
                 var prefs = NSUserDefaults.StandardUserDefaults;
                 if (!prefs.BoolForKey("SHOWN_FIRSTUPLOAD"))
                 {
@@ -144,9 +160,10 @@ namespace Gabber.iOS
             SessionsViewSource.SelectSession += (int s) => UploadSessions(s, false);
             SessionsCollectionView.Source = SessionsViewSource;
             ShowHideInstructions();
+            TrackWaitingUploads();
         }
 
-        void ShowHideInstructions()
+        private void ShowHideInstructions()
         {
             if (Sessions.Count > 0)
             {
@@ -160,6 +177,12 @@ namespace Gabber.iOS
                 SessionsUpload.Hidden = true;
                 SessionsInstructionsBody.Hidden = false;
             }
+        }
+
+        private void TrackWaitingUploads()
+        {
+            Analytics.SetUserProperty("uploadQueueCount",
+                SessionsViewSource.Sessions?.Count().ToString());
         }
     }
 }

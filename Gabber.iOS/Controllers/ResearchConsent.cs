@@ -18,7 +18,7 @@ namespace Gabber.iOS
 
             int SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
             var SelectedProject = Queries.ProjectById(SelectedProjectID);
-            var contentOh = Queries.ContentByLanguage(SelectedProject, Localize.GetCurrentCultureInfo());
+            var contentOh = LanguageChoiceManager.ContentByLanguage(SelectedProject);
 
             var IsOrg = SelectedProject.Organisation.Name.ToLower() == "individual";
             var org = IsOrg ? SelectedProject.Creator.Name : SelectedProject.Organisation.Name;

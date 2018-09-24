@@ -38,7 +38,7 @@ namespace Gabber.iOS
 
         public void UpdateContent(Project project, Action<nint> tappedCallback, nint index)
         {
-            TitleLabel.Text = Queries.ContentByLanguage(project, Localize.GetCurrentCultureInfo()).Title;
+            TitleLabel.Text = LanguageChoiceManager.ContentByLanguage(project).Title;
             TappedCallback = tappedCallback;
             thisIndex = index;
 

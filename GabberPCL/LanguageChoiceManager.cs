@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using GabberPCL.Models;
 
@@ -18,7 +19,7 @@ namespace GabberPCL
         public static async Task<LanguageChoice> GetLanguageFromCode(string code)
         {
             List<LanguageChoice> allLangs = await GetLanguageChoices();
-            return allLangs.Find((lang) => lang.Code == code );
+            return allLangs.Find((lang) => lang.Code == code);
         }
 
         public static async Task<List<LanguageChoice>> GetLanguageChoices()
@@ -47,6 +48,33 @@ namespace GabberPCL
             }
 
             return null;
+        }
+
+        public static Content ContentByLanguage(Project project, int requestedId = -1)
+        {
+            LanguageChoice thisLang;
+
+            if (requestedId != -1)
+            {
+                thisLang = (GetLanguageChoices().Result).Find(lang => lang.Id == requestedId);
+            }
+            else
+            {
+                thisLang = GetUserLanguage().Result;
+            }
+
+            var content = project.Content.FirstOrDefault((k) => k.Key == thisLang.Code);
+
+            // Determine if the language above is used
+            if (content.Key == null)
+            {
+                // If the Application Language does not match the project language, then we will use
+                // the default selected when creating a project.
+                var lang = Queries.AllLanguages().FirstOrDefault((l) => l.Id == project.IsDefaultLang);
+                // We should use the default!
+                content = project.Content.FirstOrDefault((k) => k.Key == lang.Code);
+            }
+            return content.Value;
         }
     }
 }
