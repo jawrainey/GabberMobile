@@ -6,6 +6,7 @@ using UIKit;
 using UserNotifications;
 using Firebase.CloudMessaging;
 using System;
+using SafariServices;
 
 namespace Gabber.iOS
 {
@@ -52,9 +53,11 @@ namespace Gabber.iOS
                 Window.RootViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("Onboarding");
             }
 
+            Firebase.Crashlytics.Crashlytics.Configure();
+            Firebase.Core.App.Configure();
+
             // Used by the PCL for database interactions so must be defined early.
             Session.PrivatePath = new PrivatePath();
-
             // Register the implementation to the global interface within the PCL.
             RestClient.GlobalIO = new DiskIO();
 
@@ -77,50 +80,51 @@ namespace Gabber.iOS
             Messaging.SharedInstance.Delegate = this;
             Messaging.SharedInstance.ShouldEstablishDirectChannel = true;
 
-            Firebase.Crashlytics.Crashlytics.Configure();
-            Firebase.Core.App.Configure();
-
             return true;
         }
 
         [Export("messaging:didReceiveRegistrationToken:")]
-        public void DidReceiveRegistrationToken(Messaging messaging, string fcmToken)
+        public void DidReceiveRegistrationToken(Messaging messaging, string FCMToken)
         {
-            Console.WriteLine("Got token");
-
-            // TODO: If necessary send token to application server.
             // Note: This callback is fired at each app startup and whenever a new token is generated.
+            // The FCMToken uniquely identifies a specific user; TODO: store this token on the server.
         }
 
-        public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
+        public override void ReceivedRemoteNotification(UIApplication application, NSDictionary userInfo)
         {
-            // Handle Notification messages in the background and foreground.
-            // Handle Data messages for iOS 9 and below.
-
             // If you are receiving a notification message while your app is in the background,
             // this callback will not be fired till the user taps on the notification launching the application.
-            // TODO: Handle data of notification
+        }
 
-            // With swizzling disabled you must let Messaging know about the message, for Analytics
-            //Messaging.SharedInstance.AppDidReceiveMessage (userInfo);
-
+        public override void DidReceiveRemoteNotification(
+            UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
+        {
+            // Handle Notification messages in the background AND foreground. Handles Data messages for iOS 9 and below.
             HandleMessage(userInfo);
-
             completionHandler(UIBackgroundFetchResult.NewData);
+        }
+
+        [Export("userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:")]
+        public void DidReceiveNotificationResponse(UNUserNotificationCenter c, UNNotificationResponse r, Action handler)
+        {
+            // Handle notification messages after display notification is tapped by the user.
+            OpenURLFromNotificationIfExists(r.Notification.Request.Content.UserInfo);
+            handler();
+        }
+
+        [Export("userNotificationCenter:willPresentNotification:withCompletionHandler:")]
+        public void WillPresentNotification(
+            UNUserNotificationCenter c, UNNotification n, Action<UNNotificationPresentationOptions> handler)
+        {
+            // Receive displayed notifications for iOS 10 devices. Handle incoming notification messages while app is in the foreground.
+            handler(UNNotificationPresentationOptions.Alert);
         }
 
         public void HandleMessage(NSDictionary message)
         {
             if (MessageReceived == null) return;
-
-            MessageType messageType;
-            if (message.ContainsKey(new NSString("aps")))
-                messageType = MessageType.Notification;
-            else
-                messageType = MessageType.Data;
-
-            var e = new UserInfoEventArgs(message, messageType);
-            MessageReceived(this, e);
+            var messageType = message.ContainsKey(new NSString("aps")) ? MessageType.Notification : MessageType.Data;
+            MessageReceived(this, new UserInfoEventArgs(message, messageType));
         }
 
         public static void ShowMessage(string title, string message, UIViewController fromViewController, Action actionForOk = null)
@@ -170,6 +174,19 @@ namespace Gabber.iOS
             NSUserDefaults.StandardUserDefaults.SetURL(url, "VERIFY_URL");
             Window.RootViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("RegisterVerifying");
             return true;
+        }
+
+        void OpenURLFromNotificationIfExists(NSDictionary messageFromNotif)
+        {
+            if (messageFromNotif.ContainsKey(new NSString("url")))
+            {
+                var url = messageFromNotif.ValueForKey(new NSString("url")).ToString();
+                if (!string.IsNullOrWhiteSpace(url))
+                {
+                    var root = UIApplication.SharedApplication.KeyWindow.RootViewController;
+                    root.PresentViewControllerAsync(new SFSafariViewController(new NSUrl(url)), true);
+                }
+            }
         }
     }
 #pragma warning restore XI0003 // Notifies you when using a deprecated, obsolete or unavailable Apple API
