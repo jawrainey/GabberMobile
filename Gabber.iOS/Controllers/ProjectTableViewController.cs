@@ -85,6 +85,30 @@ namespace Gabber.iOS
             TableView.ReloadData();
 
             var suppressAsync = RefreshData();
+
+            SendFCMToken();
+        }
+
+        async void SendFCMToken()
+        {
+            var token = NSUserDefaults.StandardUserDefaults.StringForKey("FCM_TOKEN");
+
+            var currentFCMToken = Firebase.CloudMessaging.Messaging.SharedInstance.FcmToken;
+            if (string.IsNullOrWhiteSpace(currentFCMToken)) return;
+
+            var FCMTokenChanged = token != null && currentFCMToken != token;
+            var FCMTokenSent = NSUserDefaults.StandardUserDefaults.BoolForKey("FCM_TOKEN_SENT");
+
+            if (!FCMTokenSent || FCMTokenChanged)
+            {
+                if (await RestClient.UploadFCMToken(currentFCMToken))
+                {
+                    if (FCMTokenChanged) Logger.LOG_EVENT_WITH_ACTION("FCM_TOKEN_CHANGED", currentFCMToken, "PROJECT");
+                    Logger.LOG_EVENT_WITH_ACTION("FCM_TOKEN_SET", currentFCMToken, "PROJECT");
+                    NSUserDefaults.StandardUserDefaults.SetString(currentFCMToken, "FCM_TOKEN");
+                    NSUserDefaults.StandardUserDefaults.SetBool(true, "FCM_TOKEN_SENT");
+                }
+            }
         }
 
         void SetStringResources()
