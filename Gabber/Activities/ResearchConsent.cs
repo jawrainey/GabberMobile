@@ -30,7 +30,7 @@ namespace Gabber.Activities
             var org = IsOrg ? selectedProject.Creator.Name : selectedProject.Organisation.Name;
 
             var researchConsentDesc = FindViewById<TextView>(Resource.Id.researchConsentDesc);
-            var title = Localise.ContentByLanguage(selectedProject).Title;
+            var title = LanguageChoiceManager.ContentByLanguage(selectedProject).Title;
             researchConsentDesc.Text = string.Format(StringResources.consent_research_body, org, title);
 
             var researchConsentForm = FindViewById<TextView>(Resource.Id.researchConsentForm);

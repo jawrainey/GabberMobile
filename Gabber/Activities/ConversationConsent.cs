@@ -50,7 +50,7 @@ namespace Gabber.Activities
                 StringResources.consent_gabber_consent_type_public_full;
 
             RadioButton consentTypeMembers = FindViewById<RadioButton>(Resource.Id.GabberConsentTypeMembers);
-            var title = Localise.ContentByLanguage(selectedProject).Title;
+            var title = LanguageChoiceManager.ContentByLanguage(selectedProject).Title;
             consentTypeMembers.Text = string.Format(StringResources.consent_gabber_consent_type_members_brief, title);
 
             TextView consentTypeMembersFull = FindViewById<TextView>(Resource.Id.GabberConsentTypeMembersFull);
