@@ -5,6 +5,7 @@ using GabberPCL;
 using Foundation;
 using GabberPCL.Resources;
 using Gabber.iOS.Helpers;
+using Firebase.Analytics;
 
 namespace Gabber.iOS
 {
@@ -53,6 +54,7 @@ namespace Gabber.iOS
             participantsViewSource.Rows = Queries.AllParticipants();
             UpdateNumSelectedPartsLabel();
             ParticipantsCollectionView.ReloadData();
+            UpdateAnalytics();
         }
 
         void UpdateNumSelectedPartsLabel()
@@ -115,17 +117,18 @@ namespace Gabber.iOS
             }
         }
 
-        // Revisited this page, i.e. after adding a participant
         [Action("UnwindToParticipantsViewController:")]
         public void UnwindToParticipantsViewController(UIStoryboardSegue segue)
         {
-            // Do stuff with added user if needed
-            //var sourceController = segue.SourceViewController as CreateUserController;
+            // Do stuff with new participant if needed
+            // (currently just handled in ViewWillAppear)
+        }
 
-            //if (sourceController != null)
-            //{
-            //    Console.WriteLine(sourceController.enteredEmail);
-            //}
+        private void UpdateAnalytics()
+        {
+            Analytics.SetUserProperty(
+                "numParticipants",
+                participantsViewSource.Rows.Count.ToString());
         }
     }
 }

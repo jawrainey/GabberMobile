@@ -3,15 +3,38 @@ using Gabber.iOS.Helpers;
 using GabberPCL;
 using GabberPCL.Resources;
 using UIKit;
+using UserNotifications;
+using Firebase.CloudMessaging;
+using System;
+using SafariServices;
 
 namespace Gabber.iOS
 {
+#pragma warning disable XI0003 // Notifies you when using a deprecated, obsolete or unavailable Apple API
     // The UIApplicationDelegate for the application. This class is responsible for launching the
     // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
     [Register("AppDelegate")]
-    public class AppDelegate : UIApplicationDelegate
+    public class AppDelegate : UIApplicationDelegate, IUNUserNotificationCenterDelegate, IMessagingDelegate
     {
-        // class-level declarations
+        public class UserInfoEventArgs : EventArgs
+        {
+            public NSDictionary UserInfo { get; private set; }
+            public MessageType MessageType { get; private set; }
+
+            public UserInfoEventArgs(NSDictionary userInfo, MessageType messageType)
+            {
+                UserInfo = userInfo;
+                MessageType = messageType;
+            }
+        }
+
+        public enum MessageType
+        {
+            Notification,
+            Data
+        }
+
+        public event EventHandler<UserInfoEventArgs> MessageReceived;
 
         public override UIWindow Window
         {
@@ -30,16 +53,72 @@ namespace Gabber.iOS
                 Window.RootViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("Onboarding");
             }
 
-            // Create here as this method will always get run when opening the app.
             Firebase.Crashlytics.Crashlytics.Configure();
             Firebase.Core.App.Configure();
 
             // Used by the PCL for database interactions so must be defined early.
             Session.PrivatePath = new PrivatePath();
-
             // Register the implementation to the global interface within the PCL.
             RestClient.GlobalIO = new DiskIO();
+
+            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+            {
+                UNUserNotificationCenter.Current.Delegate = this;
+
+                // Request notification permissions from the user
+                UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert, (approved, err) => { });
+            }
+            else
+            {
+                var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(UIUserNotificationType.Sound |
+                               UIUserNotificationType.Alert | UIUserNotificationType.Badge, null);
+                UIApplication.SharedApplication.RegisterUserNotificationSettings(notificationSettings);
+            }
+
+            UIApplication.SharedApplication.RegisterForRemoteNotifications();
+            
+            Messaging.SharedInstance.Delegate = this;
+            Messaging.SharedInstance.ShouldEstablishDirectChannel = true;
+
             return true;
+        }
+
+        public override void DidReceiveRemoteNotification(
+            UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
+        {
+            // Handle Notification messages in the background AND foreground. Handles Data messages for iOS 9 and below.
+            HandleMessage(userInfo);
+            completionHandler(UIBackgroundFetchResult.NewData);
+        }
+
+        [Export("userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:")]
+        public void DidReceiveNotificationResponse(UNUserNotificationCenter c, UNNotificationResponse r, Action handler)
+        {
+            // Handle notification messages after display notification is tapped by the user.
+            OpenURLFromNotificationIfExists(r.Notification.Request.Content.UserInfo);
+            handler();
+        }
+
+        [Export("userNotificationCenter:willPresentNotification:withCompletionHandler:")]
+        public void WillPresentNotification(
+            UNUserNotificationCenter c, UNNotification n, Action<UNNotificationPresentationOptions> handler)
+        {
+            // Receive displayed notifications for iOS 10 devices. Handle incoming notification messages while app is in the foreground.
+            handler(UNNotificationPresentationOptions.Alert);
+        }
+
+        public void HandleMessage(NSDictionary message)
+        {
+            if (MessageReceived == null) return;
+            var messageType = message.ContainsKey(new NSString("aps")) ? MessageType.Notification : MessageType.Data;
+            MessageReceived(this, new UserInfoEventArgs(message, messageType));
+        }
+
+        public static void ShowMessage(string title, string message, UIViewController fromViewController, Action actionForOk = null)
+        {
+            var alert = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+            alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, (obj) => actionForOk?.Invoke()));
+            fromViewController.PresentViewController(alert, true, null);
         }
 
         public override void OnResignActivation(UIApplication application)
@@ -83,5 +162,19 @@ namespace Gabber.iOS
             Window.RootViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("RegisterVerifying");
             return true;
         }
+
+        void OpenURLFromNotificationIfExists(NSDictionary messageFromNotif)
+        {
+            if (messageFromNotif.ContainsKey(new NSString("url")))
+            {
+                var url = messageFromNotif.ValueForKey(new NSString("url")).ToString();
+                if (!string.IsNullOrWhiteSpace(url))
+                {
+                    var root = UIApplication.SharedApplication.KeyWindow.RootViewController;
+                    root.PresentViewControllerAsync(new SFSafariViewController(new NSUrl(url)), true);
+                }
+            }
+        }
     }
+#pragma warning restore XI0003 // Notifies you when using a deprecated, obsolete or unavailable Apple API
 }

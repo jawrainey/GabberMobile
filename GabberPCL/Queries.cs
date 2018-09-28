@@ -10,21 +10,6 @@ namespace GabberPCL
 {
     public static class Queries
     {
-        public static Content ContentByLanguage(Project project, CultureInfo culture)
-        {
-            var currentCulture = StringResources.Culture ?? culture;
-            var currentLang = currentCulture.TwoLetterISOLanguageName;
-            var content = project.Content.FirstOrDefault((k) => k.Key == currentLang);
-
-            if (content.Key == null)
-            {
-                // If the Application Language does not match the project language, then use project default.
-                var lang = AllLanguages().FirstOrDefault((l) => l.Id == project.IsDefaultLang);
-                content = project.Content.FirstOrDefault((k) => k.Key == lang.Code);
-            }
-            return content.Value;
-        }
-
         public static string FormatFromSeconds(int seconds)
         {
             var timeSpan = System.TimeSpan.FromSeconds(seconds);

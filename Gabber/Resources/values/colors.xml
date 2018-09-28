@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <resources>
+    <color name="notification">#E21E26</color>
     <color name="colorPrimary">#E21E26</color>
     <color name="colorAccent">#E21E26</color>
     <color name="colorControlHighlight">#ed4e56</color>

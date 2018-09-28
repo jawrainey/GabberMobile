@@ -53,6 +53,8 @@ namespace Gabber
                 Session.ActiveUser.AppLang = user.AppLang;
             }
 
+            SendFCMToken();
+
             prefsFragment = new PrefsFragment();
             sessionsFragment = new UploadsFragment();
             projectsFragment = new ProjectsFragment();
@@ -65,6 +67,26 @@ namespace Gabber
             var suppressAsync = GetLangData();
             LoadUploadFragmentAfterSession();
             SupportActionBar.Title = StringResources.login_ui_title;
+        }
+
+        async void SendFCMToken()
+        {
+            // When the user opens the app the FCM token is set
+            var preferences = PreferenceManager.GetDefaultSharedPreferences(ApplicationContext);
+            var currentFCMToken = Firebase.Iid.FirebaseInstanceId.Instance.Token;
+            if (string.IsNullOrWhiteSpace(currentFCMToken)) return;
+
+            var FCMTokenChanged = currentFCMToken != preferences.GetString("FCM_TOKEN", "");
+            var FCMTokenSent = preferences.GetBoolean("FCM_TOKEN_SENT", false);
+
+            if (!FCMTokenSent || FCMTokenChanged)
+            {
+                if (await RestClient.UploadFCMToken(currentFCMToken))
+                {
+                    preferences.Edit().PutString("FCM_TOKEN", currentFCMToken);
+                    preferences.Edit().PutBoolean("FCM_TOKEN_SENT", true);
+                }
+            }
         }
 
         private async Task GetLangData()

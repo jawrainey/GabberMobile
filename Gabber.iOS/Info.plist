@@ -30,12 +30,13 @@
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Microphone access is required to record a Gabber</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.0.2</string>
+	<string>0.0.4</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.2</string>
+	<string>0.0.4</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UIFileSharingEnabled</key>
 	<false/>
