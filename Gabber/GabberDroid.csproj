@@ -18,7 +18,7 @@
     <AssemblyName>Gabber</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidTlsProvider>btls</AndroidTlsProvider>
     <AndroidLinkMode>None</AndroidLinkMode>
@@ -240,7 +240,7 @@
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Activities\FirstDebriefActivity.cs" />
     <Compile Include="Activities\AddParticipantActivity.cs" />
-    <Compile Include="Services\FirebaseIIDService.cs" />
+    <Compile Include="Services\MyFirebaseMessagingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -346,6 +346,11 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\onboarding_04.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\onboarding_05.png" />
     <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\talkfutures_notif.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\talkfutures_notif.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\talkfutures_notif.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\talkfutures_notif.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\talkfutures_notif.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
