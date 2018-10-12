@@ -31,8 +31,16 @@ namespace Gabber.iOS
             SessionParticipants.Text = BuildParticipantsNames(session.Participants);
             SessionCreateDate.Text = session.CreatedAt.ToString("MM/dd, HH:mm");
 
-            if (session.IsUploading) SessionIsUploadedIndicator.StartAnimating();
-            else SessionIsUploadedIndicator.StopAnimating();
+            if (session.IsUploading)
+            {
+                SessionContainerView.BackgroundColor = UIColor.LightGray;
+                SessionIsUploadedIndicator.StartAnimating();
+            }
+            else
+            {
+                SessionContainerView.BackgroundColor = UIColor.White;
+                SessionIsUploadedIndicator.StopAnimating();
+            }
         }
 
         public override UICollectionViewLayoutAttributes PreferredLayoutAttributesFittingAttributes(UICollectionViewLayoutAttributes layoutAttributes)
