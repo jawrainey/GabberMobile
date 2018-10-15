@@ -77,7 +77,6 @@ namespace Gabber.iOS
             }
 
 
-
             if (segue.Identifier == "SegueToRecordGabber" && Queries.SelectedParticipants().Count == 0)
             {
                 Logger.LOG_EVENT_WITH_ACTION("NO_PARTICIPANTS_SELECTED", "TOAST");
