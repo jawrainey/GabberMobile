@@ -99,16 +99,18 @@ namespace Gabber.iOS
                     PresentViewController(doDeleteRecording, true, null);
                 }
                 NavigationController.PopViewController(false);
-            });
-
-            NavigationItem.LeftBarButtonItem.TintColor = UIColor.FromCGColor(Application.MainColour);
+            })
+            {
+                TintColor = UIColor.FromCGColor(Application.MainColour)
+            };
 
             // As we can record, enable it all.
             AudioRecorder = new AudioRecorder();
             InterviewSessionID = Guid.NewGuid().ToString();
 
             SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
-            var SelectedProject = LanguageChoiceManager.ContentByLanguage(Queries.ProjectById(SelectedProjectID));
+            var lang = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SESSION_LANG"));
+            var SelectedProject = LanguageChoiceManager.ContentByLanguage(Queries.ProjectById(SelectedProjectID), lang);
 
             var activeTopics = SelectedProject.Topics.Where((t) => t.IsActive).ToList();
 
