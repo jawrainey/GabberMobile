@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Globalization;
 using Foundation;
-using Gabber.iOS.Helpers;
 using GabberPCL;
 using GabberPCL.Models;
 using UIKit;
@@ -29,7 +28,7 @@ namespace Gabber.iOS
             SessionProjectTitle.Text = content.Title;
             SessionLength.Text = Queries.FormatFromSeconds(session.Prompts[session.Prompts.Count - 1].End);
             SessionParticipants.Text = BuildParticipantsNames(session.Participants);
-            SessionCreateDate.Text = session.CreatedAt.ToString("MM/dd, HH:mm");
+            SessionCreateDate.Text = session.CreatedAt.ToString("MM/dd, HH:mm", CultureInfo.InvariantCulture);
 
             if (session.IsUploading)
             {
