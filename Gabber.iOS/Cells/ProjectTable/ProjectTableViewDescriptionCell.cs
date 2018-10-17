@@ -4,6 +4,7 @@ using System;
 
 using Foundation;
 using UIKit;
+using GabberPCL.Resources;
 
 namespace Gabber.iOS
 {
@@ -11,12 +12,11 @@ namespace Gabber.iOS
     {
         public static NSString CellID = new NSString("ProjectTableViewDescriptionCell");
 
-        public ProjectTableViewDescriptionCell(IntPtr handle) : base(handle)
-        {
-        }
+        public ProjectTableViewDescriptionCell(IntPtr handle) : base(handle) {}
 
         public void UpdateContent(string desc)
         {
+            TeaseLabel.Text = StringResources.projects_ui_topics;
             ProjectDescription.Text = desc;
         }
     }
