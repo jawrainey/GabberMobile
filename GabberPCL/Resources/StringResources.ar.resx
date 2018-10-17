@@ -107,19 +107,19 @@
         <value>الجمعية الوطنية</value>
     </data>
     <data name="common.ui.forms.society.error" xml:space="preserve">
-        <value>Please choose a National Society.</value>
+        <value>يرجى اختيار الجمعية الوطنية</value>
     </data>
     <data name="common.ui.forms.gender.error" xml:space="preserve">
-        <value>Please specify a gender.</value>
+        <value>يرجى تحديد نوع الجنس</value>
     </data>
     <data name="common.ui.forms.gender.default" xml:space="preserve">
-        <value>Please select a gender</value>
+        <value>يرجى تحديد الجنس</value>
     </data>
     <data name="common.ui.forms.gender.male" xml:space="preserve">
-        <value>الذكر</value>
+        <value>ذكر</value>
     </data>
     <data name="common.ui.forms.gender.female" xml:space="preserve">
-        <value>إناثا</value>
+        <value>إناث</value>
     </data>
     <data name="common.ui.forms.gender.custom" xml:space="preserve">
         <value>يرجى التحديد</value>
@@ -137,19 +137,19 @@
         <value>دورك في الصليب الاحمر والهلال الاحمر</value>
     </data>
     <data name="common.ui.forms.role.volunteer" xml:space="preserve">
-        <value>تطوع</value>
+        <value>متطوع</value>
     </data>
     <data name="common.ui.forms.role.intern" xml:space="preserve">
-        <value>المتدرب</value>
+        <value>متدرب</value>
     </data>
     <data name="common.ui.forms.role.staff" xml:space="preserve">
-        <value>العاملين</value>
+        <value>عاملين</value>
     </data>
     <data name="common.ui.forms.role.leadership" xml:space="preserve">
         <value>قيادة</value>
     </data>
     <data name="common.ui.forms.role.external" xml:space="preserve">
-        <value>خارجي</value>
+        <value> شخص خارجي</value>
     </data>
     <data name="common.ui.forms.done" xml:space="preserve">
         <value>فعله</value>
@@ -185,7 +185,7 @@
         <value>الخطوة 3: بدء التسجيل</value>
     </data>
     <data name="onboarding.ui.page.third.content" xml:space="preserve">
-        <value>انقر فوق نقطة مناقشة لبدء التسجيل.</value>
+        <value>انقر فوق نقطة مناقشة لبدء التسجيل. تساعد هذه النقاط الآخرين على فهم ما تتحدث عنه ، لذا تأكد من النقر عليه كمواضيع تغير في المحادثة.</value>
     </data>
     <!-- ONBOARDING PAGE: 4 -->
     <data name="onboarding.ui.page.fourth.title" xml:space="preserve">
@@ -193,9 +193,9 @@
     </data>
     <data name="onboarding.ui.page.fourth.content" xml:space="preserve">
         <value>عندما تنتهي المحادثة ، يمكنك تحميل التسجيل للآخرين للاستماع إليه على {0}.
-يتم إخطار جميع المشاركين ويمكنهم مراجعة موافقتهم.
-            
-تحقق من الموقع للاستماع إلى وجهات نظر أعضاء الجمعيات الوطنية الأخرى!
+يتم إبلاغ جميع المشاركين ويمكنهم مراجعة موافقتهم.
+
+            تحقق من الموقع للاستماع إلى وجهات نظر أعضاء الجمعيات الوطنية الأخرى!
 </value>
     </data>
     <!-- USER LOGIN SCREEN: API errors -->

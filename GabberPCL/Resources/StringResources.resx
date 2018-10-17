@@ -279,7 +279,7 @@ Choose a theme you’d like to discuss.</value>
     <value>Step 3: Start Recording</value>
   </data>
   <data name="onboarding.ui.page.third.content" xml:space="preserve">
-    <value>Click on a discussion point to start recording. These points help others understand what you’re talking about, so be sure to tap them as your conversation changes topics. </value>
+    <value>Click on a discussion point to start recording. These points help others understand what you’re talking about, so be sure to tap them as your conversation changes topics.</value>
   </data>
   <data name="onboarding.ui.page.fourth.title" xml:space="preserve">
     <value>Step 4: Upload and Consent</value>

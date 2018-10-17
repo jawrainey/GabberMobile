@@ -77,9 +77,9 @@ namespace Gabber.iOS
                 StringResources.settings_logout_dialog_title,
                 StringResources.settings_logout_dialog_message,
                 UIAlertControllerStyle.Alert);
-
-            logoutDialog.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, (_) => { }));
-            logoutDialog.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, (_) =>
+                
+            logoutDialog.AddAction(UIAlertAction.Create(StringResources.common_comms_cancel, UIAlertActionStyle.Cancel, (_) => { }));
+            logoutDialog.AddAction(UIAlertAction.Create(StringResources.common_comms_ok, UIAlertActionStyle.Default, (_) =>
             {
                 // Remove local preferences. This is critical as AppDelegate show onboarding if no token preferences exist.
                 NSUserDefaults.StandardUserDefaults.RemovePersistentDomain(NSBundle.MainBundle.BundleIdentifier);
@@ -122,8 +122,8 @@ namespace Gabber.iOS
 
             showLanguagePicker.View.AddSubview(picker);
 
-            showLanguagePicker.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, (_) => { }));
-            showLanguagePicker.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, SaveAppLanguageSelectedFromPicker));
+            showLanguagePicker.AddAction(UIAlertAction.Create(StringResources.common_comms_cancel, UIAlertActionStyle.Cancel, (_) => { }));
+            showLanguagePicker.AddAction(UIAlertAction.Create(StringResources.common_comms_ok, UIAlertActionStyle.Default, SaveAppLanguageSelectedFromPicker));
             PresentViewController(showLanguagePicker, true, null);
         }
 
@@ -170,8 +170,8 @@ namespace Gabber.iOS
 
             showLanguagePicker.View.AddSubview(picker);
 
-            showLanguagePicker.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, (_) => { }));
-            showLanguagePicker.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, SaveLanguageSelectedFromPicker));
+            showLanguagePicker.AddAction(UIAlertAction.Create(StringResources.common_comms_cancel, UIAlertActionStyle.Cancel, (_) => { }));
+            showLanguagePicker.AddAction(UIAlertAction.Create(StringResources.common_comms_ok, UIAlertActionStyle.Default, SaveLanguageSelectedFromPicker));
 
             PresentViewController(showLanguagePicker, true, null);
         }
