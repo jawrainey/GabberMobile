@@ -388,7 +388,7 @@ Visita {0} para escuchar las perspectivas de otros voluntarios, miembros y exper
         <value>Role in the red cross</value>
     </data>
     <data name="participants.ui.add.email.error" xml:space="preserve">
-        <value>A participant with this email already exists!</value>
+        <value>¡Ya existe un participante con este correo!</value>
     </data>
     <!-- RESEARCH CONSENT -->
     <data name="consent.research.toolbar.title" xml:space="preserve">
@@ -450,13 +450,13 @@ Visita {0} para escuchar las perspectivas de otros voluntarios, miembros y exper
         <value>Personas con acceso: {0}</value>
     </data>
     <data name="consent.gabber.consent.type.private.full.you" xml:space="preserve">
-        <value>You</value>
+        <value>tú</value>
     </data>
     <data name="consent.gabber.consent.type.private.brief" xml:space="preserve">
         <value>Solo participantes</value>
     </data>
     <data name="conversation.consent.gabber.submit" xml:space="preserve">
-        <value>Review Consent</value>
+        <value>Revisar el consentimiento</value>
     </data>
     <!-- Consent Summary -->
     <data name="consent.summary.title" xml:space="preserve">
