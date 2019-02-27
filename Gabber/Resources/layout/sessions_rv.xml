@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <FrameLayout
-            android:background="#26A69A"
+            android:background="@color/colorPrimaryDark"
             android:elevation="4dp"
             android:layout_width="4dp"
             android:layout_height="match_parent" />

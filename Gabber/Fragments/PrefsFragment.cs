@@ -27,7 +27,7 @@ namespace Gabber.Fragments
         {
             AddPreferencesFromResource(Resource.Xml.preferences);
 
-            allLangs = (await LanguagesManager.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
+            allLangs = (await Localizer.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
 
             string[] langIds = allLangs.Select((lang) => lang.Id.ToString()).ToArray();
             string[] langNames = allLangs.Select((lang) => lang.Endonym).ToArray();

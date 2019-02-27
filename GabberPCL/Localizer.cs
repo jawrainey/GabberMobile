@@ -5,7 +5,7 @@ using GabberPCL.Models;
 
 namespace GabberPCL
 {
-    public static class LanguagesManager
+    public static class Localizer
     {
         private static bool refreshed;
 

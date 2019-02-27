@@ -32,7 +32,7 @@ namespace Gabber.iOS
 		public async override void ViewDidLoad()
 		{
             base.ViewDidLoad();
-            SupportedLanguages = (await LanguagesManager.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
+            SupportedLanguages = (await Localizer.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
             Title = StringResources.common_menu_settings;
             TabBarController.Title = StringResources.common_menu_settings;
             SettingsTableView.Source = new SettingsTableViewSource(ReCreateSettings(), this, RowSelected);

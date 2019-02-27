@@ -8,7 +8,9 @@
         <item name="preferenceTheme">@style/settingsTheme</item>
     </style>
     <style name="MyTheme.NoActionBar" parent="MyTheme">
-        <item name="windowActionBar">false</item>
+      <item name="windowActionBar">false</item>
+        <item name="colorPrimaryDark">@android:color/white</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
         <item name="windowNoTitle">true</item>
     </style>
     <style name="settingsTheme" parent="PreferenceThemeOverlay">

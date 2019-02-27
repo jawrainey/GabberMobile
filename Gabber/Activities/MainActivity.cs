@@ -39,7 +39,7 @@ namespace Gabber
 
             SetContentView(Resource.Layout.main);
             SupportActionBar.Title = StringResources.projects_ui_title;
-            SupportedLanguages = (await LanguagesManager.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
+            SupportedLanguages = (await Localizer.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
 
             EmojiCompat.Init(new BundledEmojiCompatConfig(this));
             
@@ -84,7 +84,7 @@ namespace Gabber
             SupportFragmentManager.BeginTransaction().Add(Resource.Id.content_frame, projectsFragment, "projects").Commit();
             
             LoadUploadFragmentAfterSession();
-            LanguagesManager.RefreshIfNeeded();
+            Localizer.RefreshIfNeeded();
             SupportActionBar.Title = StringResources.login_ui_title;
         }
 
