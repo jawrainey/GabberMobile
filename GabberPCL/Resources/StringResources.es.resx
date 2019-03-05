@@ -375,13 +375,13 @@
         <value>Personas con acceso: {0}</value>
     </data>
     <data name="consent.gabber.consent.type.private.full.you" xml:space="preserve">
-        <value>You</value>
+        <value>tú</value>
     </data>
     <data name="consent.gabber.consent.type.private.brief" xml:space="preserve">
         <value>Solo participantes</value>
     </data>
     <data name="conversation.consent.gabber.submit" xml:space="preserve">
-        <value>Review Consent</value>
+        <value>Revisar el consentimiento</value>
     </data>
     <!-- Consent Summary -->
     <data name="consent.summary.title" xml:space="preserve">

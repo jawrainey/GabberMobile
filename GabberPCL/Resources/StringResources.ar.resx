@@ -253,16 +253,16 @@
         <value>يجري حاليًا تحميل محادثة.</value>
     </data>
     <data name="sessions.ui.wifiwarning.title" xml:space="preserve">
-        <value>Not Connected to WiFi!</value>
+        <value>غير متصل بشبكة WiFi!</value>
     </data>
     <data name="sessions.ui.wifiwarning.message" xml:space="preserve">
-        <value>Do you want to upload without connecting to WiFi? If not, you can always upload your conversations later.</value>
+        <value>هل تريد التحميل بدون الاتصال بشبكة WiFi؟ إذا لم يكن الأمر كذلك، فيمكنك دائمًا تحميل محادثاتك لاحقًا.</value>
     </data>
     <data name="sessions.ui.wifiwarning.confirm" xml:space="preserve">
-        <value>Upload now</value>
+        <value>تحميل الآن</value>
     </data>
     <data name="sessions.ui.wifiwarning.cancel" xml:space="preserve">
-        <value>Upload later</value>
+        <value>تحميل لاحقا</value>
     </data>
     <!-- ABOUT FRAGMENT -->
     <data name="about.ui.title" xml:space="preserve">
