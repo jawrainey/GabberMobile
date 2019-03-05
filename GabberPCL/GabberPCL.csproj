@@ -97,9 +97,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\StringResources.it.resx" />
     <EmbeddedResource Include="Resources\StringResources.es.resx" />
-    <EmbeddedResource Include="Resources\StringResources.ru.resx" />
     <EmbeddedResource Include="Resources\StringResources.fr.resx" />
     <EmbeddedResource Include="Resources\StringResources.ar.resx" />
   </ItemGroup>

@@ -27,7 +27,6 @@
         android:id="@+id/onboardingContent"
         android:text=""
         android:textSize="18dp"
-        android:textStyle="italic"
         android:gravity="center_horizontal"
         android:layout_weight="4"
         android:layout_height="0dp"

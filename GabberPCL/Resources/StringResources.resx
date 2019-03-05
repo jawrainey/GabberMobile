@@ -105,31 +105,34 @@
     </data>
     <!-- ONBOARDING PAGE: 1 -->
     <data name="onboarding.ui.page.first.title" xml:space="preserve">
-        <value>Choose a project</value>
+        <value>Step 1: Choose a Theme</value>
     </data>
     <data name="onboarding.ui.page.first.content" xml:space="preserve">
         <value>Tap on the project you want to contribute to. Projects contain topics to help structure your conversation.</value>
     </data>
     <!-- ONBOARDING PAGE: 2 -->
     <data name="onboarding.ui.page.second.title" xml:space="preserve">
-        <value>Add participants</value>
+        <value>Step 2: Add Participants</value>
     </data>
     <data name="onboarding.ui.page.second.content" xml:space="preserve">
-        <value>All you need is the name and email of people in the conversation.</value>
+        <value>We need some basic details about the people in the conversation - this will help us understand their perspectives and spot trends across all members of the Red Cross Red Crescent.</value>
     </data>
     <!-- ONBOARDING PAGE: 3 -->
     <data name="onboarding.ui.page.third.title" xml:space="preserve">
-        <value>Start recording</value>
+        <value>Step 3: Start Recording</value>
     </data>
     <data name="onboarding.ui.page.third.content" xml:space="preserve">
-        <value>As you are recording, tap on a topic to structure the conversation.</value>
+        <value>Click on a discussion point to start recording. These points help others understand what you’re talking about, so be sure to tap them as your conversation changes topics. </value>
     </data>
     <!-- ONBOARDING PAGE: 4 -->
     <data name="onboarding.ui.page.fourth.title" xml:space="preserve">
-        <value>Upload and Consent</value>
+        <value>Step 4: Upload and Consent</value>
     </data>
     <data name="onboarding.ui.page.fourth.content" xml:space="preserve">
-        <value>When the conversation is finished, upload the recording. All participants are then notified and can review their consent for the recording</value>
+        <value>When the conversation ends, you can upload the recording to the website for others to listen to. All participants are notified and can review their consent.
+
+Visit {0} to listen to perspectives from members of other National Societies!
+</value>
     </data>
     <!-- USER LOGIN SCREEN: API errors -->
     <data name="login.api.error.GENERAL" xml:space="preserve">

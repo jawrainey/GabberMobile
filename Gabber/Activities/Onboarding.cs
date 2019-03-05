@@ -54,7 +54,7 @@ namespace Gabber.Activities
                 new OnboardingPageContent {
                     Image=Resource.Drawable.onboarding_05,
                     Title=StringResources.onboarding_ui_page_fourth_title,
-                    Content=StringResources.onboarding_ui_page_fourth_content
+                    Content= string.Format(StringResources.onboarding_ui_page_fourth_content, GabberPCL.Config.PRINT_URL)
                 }
             };
             pager.Adapter = new Adapters.SharedPager(this, pages);
