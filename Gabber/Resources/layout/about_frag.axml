@@ -18,7 +18,7 @@
             android:orientation="vertical"
             android:layout_weight="1">
             <ImageView
-                android:src="@drawable/onboarding_first"
+                android:src="@drawable/AppLogo"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_marginTop="12dp"
                 android:layout_width="180dp"
