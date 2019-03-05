@@ -105,31 +105,31 @@
     </data>
     <!-- ONBOARDING PAGE: 1 -->
     <data name="onboarding.ui.page.first.title" xml:space="preserve">
-        <value>Selectionner un thème</value>
+        <value>Étape 1: Choisissez un thème</value>
     </data>
     <data name="onboarding.ui.page.first.content" xml:space="preserve">
         <value>Appuyez sur le thème auquel vous voulez contribuer. Les thèmes contiennent des rubriques pour vous aider à structurer votre conversation.</value>
     </data>
     <!-- ONBOARDING PAGE: 2 -->
     <data name="onboarding.ui.page.second.title" xml:space="preserve">
-        <value>Ajouter des participants</value>
+        <value>Étape 2: Ajouter des participants</value>
     </data>
     <data name="onboarding.ui.page.second.content" xml:space="preserve">
         <value>Tout ce dont vous avez besoin est le nom et l'adresse e-mail des personnes dans la conversation.</value>
     </data>
     <!-- ONBOARDING PAGE: 3 -->
     <data name="onboarding.ui.page.third.title" xml:space="preserve">
-        <value>Commencer l'enregistrement audio</value>
+        <value>Étape 3: Commencez l'enregistrement</value>
     </data>
     <data name="onboarding.ui.page.third.content" xml:space="preserve">
-        <value>Pendant que vous enregistrez, appuyez sur une rubrique pour structurer la conversation</value>
+        <value>Cliquez sur un point de discussion pour commencer l'enregistrement. Ces points aident  à comprendre ce dont vous parlez, alors assurez-vous de les utiliser lorsque votre conversation change de sujet.</value>
     </data>
     <!-- ONBOARDING PAGE: 4 -->
     <data name="onboarding.ui.page.fourth.title" xml:space="preserve">
-        <value>Téléchargement et consentement</value>
+        <value>Étape 4: téléchargement et consentement</value>
     </data>
     <data name="onboarding.ui.page.fourth.content" xml:space="preserve">
-        <value>Lorsque la conversation est terminée, téléchargez l'enregistrement. Tous les participants seront notifiés et peuvent choisir comment leur enregistrement est utilisé</value>
+      <value>Une fois la conversation terminée, vous pouvez télécharger l'enregistrement pour que les partager sur le site Web. Tous les participants sont informés et peuvent reconsidérer leur consentement.</value>
     </data>
     <!-- USER LOGIN SCREEN: API errors -->
     <data name="login.api.error.GENERAL" xml:space="preserve">
