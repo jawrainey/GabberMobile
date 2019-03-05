@@ -308,5 +308,21 @@ namespace GabberPCL
             return new List<LanguageChoice>();
         }
 
+        public static async Task<bool> UploadFCMToken(string token)
+        {
+            try
+            {
+                Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session.Token.Access);
+                var _content = new StringContent(JsonConvert.SerializeObject(new { token }), Encoding.UTF8, "application/json");
+                var response = await Client.PostAsync("api/fcm/", _content);
+                var content = await response.Content.ReadAsStringAsync();
+
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

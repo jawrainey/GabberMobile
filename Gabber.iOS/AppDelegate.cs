@@ -85,19 +85,6 @@ namespace Gabber.iOS
             return true;
         }
 
-        [Export("messaging:didReceiveRegistrationToken:")]
-        public void DidReceiveRegistrationToken(Messaging messaging, string FCMToken)
-        {
-            // Note: This callback is fired at each app startup and whenever a new token is generated.
-            // The FCMToken uniquely identifies a specific user; TODO: store this token on the server.
-        }
-
-        public override void ReceivedRemoteNotification(UIApplication application, NSDictionary userInfo)
-        {
-            // If you are receiving a notification message while your app is in the background,
-            // this callback will not be fired till the user taps on the notification launching the application.
-        }
-
         public override void DidReceiveRemoteNotification(
             UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
         {
