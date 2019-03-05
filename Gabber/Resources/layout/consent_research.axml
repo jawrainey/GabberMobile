@@ -7,8 +7,7 @@
     android:orientation="vertical">
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,7 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_weight="3">
+        android:layout_weight="1"
+        android:gravity="center|bottom" >
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
@@ -81,14 +81,14 @@
                 android:lineSpacingExtra="6dp"
                 android:text="PLACEHOLDER TEXT PLACEHOLDER TEXT" />
         </LinearLayout>
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/researchConsentSubmit"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/custom_button"
-            android:text="PLACEHOLDER TEXT" />
     </LinearLayout>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/researchConsentSubmit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/custom_button"
+        android:text="PLACEHOLDER TEXT" />
 </LinearLayout>
