@@ -7,5 +7,7 @@
 		<string>applinks:gabber.audio</string>
 		<string>applinks:*.gabber.audio</string>
 	</array>
+	<key>aps-environment</key>
+	<string>development</string>
 </dict>
 </plist>
