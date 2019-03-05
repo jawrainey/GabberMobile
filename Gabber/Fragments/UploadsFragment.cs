@@ -13,6 +13,7 @@ using GabberPCL.Models;
 using GabberPCL.Resources;
 using Android.Content;
 using Gabber.Activities;
+using Android.Net.Wifi;
 
 namespace Gabber.Fragments
 {
@@ -74,8 +75,37 @@ namespace Gabber.Fragments
             // Ensures that the dialog only shows after completing a recording.
             if (prefs.GetBoolean("SESSION_RECORDED", false))
             {
+                if (IsConnectedToWifi())
+                {
+                    var suppressAsync = UploadSessions(0, true);
+                }
+                else
+                {
+                    new AlertDialog.Builder(Activity)
+                        .SetTitle(StringResources.sessions_ui_wifiwarning_title)
+                        .SetMessage(StringResources.sessions_ui_wifiwarning_message)
+                        .SetNegativeButton(StringResources.sessions_ui_wifiwarning_cancel, (a, b) => { })
+                        .SetPositiveButton(StringResources.sessions_ui_wifiwarning_confirm, (a, b) =>
+                        {
+                            var suppressAsync = UploadSessions(0, true);
+                        })
+                        .Show();
+                }
+
                 prefs.Edit().PutBoolean("SESSION_RECORDED", false).Commit();
             }
+        }
+
+        private bool IsConnectedToWifi()
+        {
+            WifiManager wifiManager = (WifiManager)Activity.GetSystemService(Context.WifiService);
+
+            if (wifiManager.IsWifiEnabled && wifiManager.ConnectionInfo?.NetworkId != -1)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         // Prevents multiple clicks to the same session, which will spawn threads

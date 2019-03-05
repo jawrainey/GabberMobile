@@ -252,6 +252,18 @@
     <data name="sessions.ui.message.upload.inprogress" xml:space="preserve">
         <value>يجري حاليًا تحميل محادثة.</value>
     </data>
+    <data name="sessions.ui.wifiwarning.title" xml:space="preserve">
+        <value>Not Connected to WiFi!</value>
+    </data>
+    <data name="sessions.ui.wifiwarning.message" xml:space="preserve">
+        <value>Do you want to upload without connecting to WiFi? If not, you can always upload your conversations later.</value>
+    </data>
+    <data name="sessions.ui.wifiwarning.confirm" xml:space="preserve">
+        <value>Upload now</value>
+    </data>
+    <data name="sessions.ui.wifiwarning.cancel" xml:space="preserve">
+        <value>Upload later</value>
+    </data>
     <!-- ABOUT FRAGMENT -->
     <data name="about.ui.title" xml:space="preserve">
         <value>ما هو جابر؟</value>
