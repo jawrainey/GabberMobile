@@ -119,7 +119,7 @@ namespace Gabber.iOS
         public static void ShowMessage(string title, string message, UIViewController fromViewController, Action actionForOk = null)
         {
             var alert = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
-            alert.AddAction(UIAlertAction.Create(StringResources.common_comms_ok, UIAlertActionStyle.Default, (obj) => actionForOk?.Invoke()))
+            alert.AddAction(UIAlertAction.Create(StringResources.common_comms_ok, UIAlertActionStyle.Default, (obj) => actionForOk?.Invoke()));
             fromViewController.PresentViewController(alert, true, null);
         }
 

@@ -73,7 +73,7 @@ namespace Gabber.iOS
                 UIAlertControllerStyle.Alert);
 
             logoutDialog.AddAction(UIAlertAction.Create(StringResources.common_comms_cancel, UIAlertActionStyle.Cancel, (_) => { }));
-            logoutDialog.AddAction(UIAlertAction.Create(StringResources.common_comms_ok, UIAlertActionStyle.Default, (_) =>
+            logoutDialog.AddAction(UIAlertAction.Create(StringResources.common_comms_ok, UIAlertActionStyle.Default, (_) => {
                 // Remove local preferences. This is critical as AppDelegate show onboarding if no token preferences exist.
                 NSUserDefaults.StandardUserDefaults.RemovePersistentDomain(NSBundle.MainBundle.BundleIdentifier);
                 Session.NukeItFromOrbit();
