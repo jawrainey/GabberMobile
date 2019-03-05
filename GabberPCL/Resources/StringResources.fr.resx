@@ -255,16 +255,16 @@
         <value>Une conversation est en cours de téléchargement</value>
     </data>
     <data name="sessions.ui.wifiwarning.title" xml:space="preserve">
-        <value>Not Connected to WiFi!</value>
+        <value>Non connecté au WiFi!</value>
     </data>
     <data name="sessions.ui.wifiwarning.message" xml:space="preserve">
-        <value>Do you want to upload without connecting to WiFi? If not, you can always upload your conversations later.</value>
+        <value>Voulez-vous télécharger sans vous connecter au WiFi? Sinon, vous pouvez toujours télécharger vos conversations plus tard.</value>
     </data>
     <data name="sessions.ui.wifiwarning.confirm" xml:space="preserve">
-        <value>Upload now</value>
+        <value>Télécharger maintenant</value>
     </data>
     <data name="sessions.ui.wifiwarning.cancel" xml:space="preserve">
-        <value>Upload later</value>
+        <value>Télécharger plus tard</value>
     </data>
     <!-- ABOUT FRAGMENT -->
     <data name="about.ui.title" xml:space="preserve">
@@ -407,7 +407,7 @@
         <value>Annuler</value>
     </data>
     <data name="recording.ui.permission.button.positive" xml:space="preserve">
-        <value>Configurer</value>    
+        <value>Configurer</value>
     </data>
     <!-- RECORD SCREEN FINISH -->
     <data name="recording.ui.dialog.finish.title" xml:space="preserve">
@@ -417,7 +417,7 @@
         <value>Oui</value>
     </data>
     <data name="recording.ui.dialog.finish.negative" xml:space="preserve">
-        <value>Non</value>    
+        <value>Non</value>
     </data>
     <!-- RECORD SCREEN BACK -->
     <data name="recording.ui.dialog.back.title" xml:space="preserve">
@@ -430,7 +430,7 @@
         <value>Retourner</value>
     </data>
     <data name="recording.ui.dialog.back.negative" xml:space="preserve">
-        <value>Continuer l'enregistrement</value>    
+        <value>Continuer l'enregistrement</value>
     </data>
     <!-- FIRST UPLOAD DEBRIEFING -->
     <data name="debriefing.activity.title" xml:space="preserve">

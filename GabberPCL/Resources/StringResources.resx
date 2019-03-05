@@ -227,7 +227,7 @@
         <value>Step 3: Start Recording</value>
     </data>
     <data name="onboarding.ui.page.third.content" xml:space="preserve">
-        <value>Click on a discussion point to start recording. These points help others understand what you’re talking about, so be sure to tap them as your conversation changes topics. </value>
+        <value>Click on a discussion point to start recording. These points help others understand what you’re talking about, so be sure to tap them as your conversation changes topics.</value>
     </data>
     <!-- ONBOARDING PAGE: 4 -->
     <data name="onboarding.ui.page.fourth.title" xml:space="preserve">
