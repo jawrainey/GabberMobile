@@ -15,6 +15,10 @@ namespace Gabber.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView SessionContainerView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel SessionCreateDate { get; set; }
 
         [Outlet]
@@ -39,6 +43,11 @@ namespace Gabber.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (SessionContainerView != null) {
+                SessionContainerView.Dispose ();
+                SessionContainerView = null;
+            }
+
             if (SessionCreateDate != null) {
                 SessionCreateDate.Dispose ();
                 SessionCreateDate = null;

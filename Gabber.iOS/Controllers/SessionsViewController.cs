@@ -18,8 +18,9 @@ namespace Gabber.iOS
     public partial class SessionsViewController : UIViewController
     {
         List<InterviewSession> Sessions;
-
         SessionsCollectionViewSource SessionsViewSource;
+        // Used to prevent multiple sessions being simultaneously uploaded. 
+        Task IsUploading;
 
         public SessionsViewController(IntPtr handle) : base(handle) { }
 
@@ -45,8 +46,8 @@ namespace Gabber.iOS
 
         public override void ViewDidAppear(bool animated)
         {
-            UpdateSessionsSource();
             base.ViewDidAppear(animated);
+            UpdateSessionsSource();
             TabBarController.Title = StringResources.sessions_ui_title;
             SessionsInstructions.Text = StringResources.sessions_ui_header_instructions;
             SessionsInstructionsBody.Text = StringResources.sessions_ui_body_instructions;
@@ -75,15 +76,24 @@ namespace Gabber.iOS
                     alertController.AddAction(UIAlertAction.Create(StringResources.sessions_ui_wifiwarning_confirm,
                                                                    UIAlertActionStyle.Default, (obj) =>
                                                                    {
-                                                                       var suppressAsync = UploadSessions(0, true);
+                                                                       UploadIfNot(0, true);
                                                                    }));
 
                     PresentViewController(alertController, true, null);
                 }
                 else
                 {
-                    var suppressAsync = UploadSessions(0, true);
+                    UploadIfNot(0, true);
                 }
+            }
+        }
+
+        void UploadIfNot(int position, bool recursive)
+        {
+            if (IsUploading == null || IsUploading.IsCompleted) {
+                SessionsUpload.Enabled = false;
+                SessionsUpload.BackgroundColor = UIColor.LightGray;
+                IsUploading = UploadSessions(position, recursive);
             }
         }
 
@@ -94,21 +104,15 @@ namespace Gabber.iOS
             // Out of bounds validation
             if (sessions.ElementAtOrDefault(index) == null) return;
 
-            // Update attribute so when item is reloaded the indicator will animate.
-            sessions[index].IsUploading = true;
-            var item = NSIndexPath.FromIndex((uint)Sessions.IndexOf(sessions[index]));
-            SessionsCollectionView.ReloadItems(new NSIndexPath[] { item });
+            SessionsViewSource.SessionIsUploading(index);
+            SessionsCollectionView.ReloadData();
             Logger.LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "ATTEMPT");
 
             var didUpload = await RestClient.Upload(sessions[index]);
-
             if (didUpload)
             {
                 Logger.LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "SUCCESS");
-                sessions[index].IsUploaded = true;
-                // Update state so the session isnt shown on reload etc.
-                Session.Connection.Update(sessions[index]);
-                sessions.Remove(sessions[index]);
+                SessionsViewSource.SessionIsUploaded(index);
                 SessionsCollectionView.ReloadData();
 
                 TrackWaitingUploads();
@@ -135,29 +139,27 @@ namespace Gabber.iOS
             else
             {
                 Logger.LOG_EVENT_WITH_ACTION("UPLOAD_SESSION", "ERROR");
-                // Stop spining
-                sessions[index].IsUploading = false;
-                SessionsCollectionView.ReloadItems(new NSIndexPath[] { item });
+                SessionsViewSource.SessionUploadFail(index);
+                SessionsCollectionView.ReloadData();
+
                 PresentViewController(
                     new MessageDialog().BuildErrorMessageDialog(
                         StringResources.sessions_ui_message_upload_fail, ""), true, null);
             }
+            // TODO: this should be done on UI; modify enabled color, obviously.
+            SessionsUpload.Enabled = true;
+            SessionsUpload.BackgroundColor = UIColor.White;
             if (Sessions.Count <= 0) ShowHideInstructions();
         }
 
-        partial void UploadAll(UIButton sender)
-        {
-            SessionsUpload.Enabled = false;
-            UploadSessions(0, true);
-            SessionsUpload.Enabled = true;
-        }
+        partial void UploadAll(UIButton sender) => UploadIfNot(0, true);
 
         void UpdateSessionsSource()
         {
             Sessions = Queries.AllNotUploadedInterviewSessionsForActiveUser();
             // Must set this locally to access RemoveSession ...
             SessionsViewSource = new SessionsCollectionViewSource(Sessions);
-            SessionsViewSource.SelectSession += (int s) => UploadSessions(s, false);
+            SessionsViewSource.SelectSession += (int s) => UploadIfNot(s, false);
             SessionsCollectionView.Source = SessionsViewSource;
             ShowHideInstructions();
             TrackWaitingUploads();

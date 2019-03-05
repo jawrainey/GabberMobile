@@ -11,15 +11,26 @@ namespace Gabber.iOS.ViewSources
         public Action<int> SelectSession;
         public List<InterviewSession> Sessions { get; set; }
 
-        public SessionsCollectionViewSource(List<InterviewSession> _sessions)
+        public void SessionIsUploading(int position) => Sessions[position].IsUploading = true;
+
+        public void SessionUploadFail(int position)
         {
-            Sessions = _sessions;
+            Sessions[position].IsUploaded = false;
+            Sessions[position].IsUploading = false;
         }
 
-        public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath)
+        public void SessionIsUploaded(int position)
         {
-            SelectSession(indexPath.Row);
+            Sessions[position].IsUploaded = true;
+            Sessions[position].IsUploading = false;
+            // Update state so the session isnt shown on reload etc.
+            GabberPCL.Session.Connection.Update(Sessions[position]);
+            Sessions.Remove(Sessions[position]);
         }
+
+        public SessionsCollectionViewSource(List<InterviewSession> _sessions) => Sessions = _sessions;
+
+        public override void ItemSelected(UICollectionView collectionView, NSIndexPath indexPath) => SelectSession(indexPath.Row);
 
         public override nint NumberOfSections(UICollectionView collectionView) => 1;
 
