@@ -85,7 +85,7 @@ namespace Gabber
             RecyclerView promptRecyclerView = FindViewById<RecyclerView>(Resource.Id.prompts);
             promptRecyclerView.SetLayoutManager(new GridLayoutManager(this, 1));
 
-            Content project = Localise.ContentByLanguage(selectedProject, langId);
+            Content project = LanguageChoiceManager.ContentByLanguage(selectedProject, langId);
             List<Topic> activeTopics = project.Topics.Where((p) => p.IsActive).ToList();
             themes = activeTopics;
             adapter = new TopicAdapter(themes);

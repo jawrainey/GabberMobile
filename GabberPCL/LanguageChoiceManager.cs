@@ -52,17 +52,7 @@ namespace GabberPCL
 
         public static Content ContentByLanguage(Project project, int requestedId = -1)
         {
-            LanguageChoice thisLang;
-
-            if (requestedId != -1)
-            {
-                thisLang = (GetLanguageChoices().Result).Find(lang => lang.Id == requestedId);
-            }
-            else
-            {
-                thisLang = GetUserLanguage().Result;
-            }
-
+            var thisLang = requestedId != -1 ? (GetLanguageChoices().Result).Find(lang => lang.Id == requestedId) : GetUserLanguage().Result;
             var content = project.Content.FirstOrDefault((k) => k.Key == thisLang.Code);
 
             // Determine if the language above is used
