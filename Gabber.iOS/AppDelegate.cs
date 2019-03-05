@@ -3,15 +3,37 @@ using Gabber.iOS.Helpers;
 using GabberPCL;
 using GabberPCL.Resources;
 using UIKit;
+using UserNotifications;
+using Firebase.CloudMessaging;
+using System;
 
 namespace Gabber.iOS
 {
+#pragma warning disable XI0003 // Notifies you when using a deprecated, obsolete or unavailable Apple API
     // The UIApplicationDelegate for the application. This class is responsible for launching the
     // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
     [Register("AppDelegate")]
-    public class AppDelegate : UIApplicationDelegate
+    public class AppDelegate : UIApplicationDelegate, IUNUserNotificationCenterDelegate, IMessagingDelegate
     {
-        // class-level declarations
+        public class UserInfoEventArgs : EventArgs
+        {
+            public NSDictionary UserInfo { get; private set; }
+            public MessageType MessageType { get; private set; }
+
+            public UserInfoEventArgs(NSDictionary userInfo, MessageType messageType)
+            {
+                UserInfo = userInfo;
+                MessageType = messageType;
+            }
+        }
+
+        public enum MessageType
+        {
+            Notification,
+            Data
+        }
+
+        public event EventHandler<UserInfoEventArgs> MessageReceived;
 
         public override UIWindow Window
         {
@@ -31,22 +53,89 @@ namespace Gabber.iOS
                 Window.RootViewController = UIStoryboard.FromName("Main", null).InstantiateViewController("Onboarding");
             }
 
-            // Create here as this method will always get run when opening the app.
-            Firebase.Crashlytics.Crashlytics.Configure();
-			Firebase.Core.App.Configure();
-
             // Used by the PCL for database interactions so must be defined early.
             Session.PrivatePath = new PrivatePath();
 
             // Register the implementation to the global interface within the PCL.
             RestClient.GlobalIO = new DiskIO();
+
+            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+            {
+                UNUserNotificationCenter.Current.Delegate = this;
+
+                // Request notification permissions from the user
+                UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert, (approved, err) => { });
+            }
+            else
+            {
+                var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(UIUserNotificationType.Sound |
+                               UIUserNotificationType.Alert | UIUserNotificationType.Badge, null);
+                UIApplication.SharedApplication.RegisterUserNotificationSettings(notificationSettings);
+            }
+
+            UIApplication.SharedApplication.RegisterForRemoteNotifications();
+
+            Messaging.SharedInstance.Delegate = this;
+            Messaging.SharedInstance.ShouldEstablishDirectChannel = true;
+
+            // Create here as this method will always get run when opening the app.
+            Firebase.Crashlytics.Crashlytics.Configure();
+            Firebase.Core.App.Configure();
+
             return true;
+        }
+
+        [Export("messaging:didReceiveRegistrationToken:")]
+        public void DidReceiveRegistrationToken(Messaging messaging, string fcmToken)
+        {
+            Console.WriteLine("Got token");
+
+            // TODO: If necessary send token to application server.
+            // Note: This callback is fired at each app startup and whenever a new token is generated.
+        }
+
+        public override void DidReceiveRemoteNotification(UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
+        {
+            // Handle Notification messages in the background and foreground.
+            // Handle Data messages for iOS 9 and below.
+
+            // If you are receiving a notification message while your app is in the background,
+            // this callback will not be fired till the user taps on the notification launching the application.
+            // TODO: Handle data of notification
+
+            // With swizzling disabled you must let Messaging know about the message, for Analytics
+            //Messaging.SharedInstance.AppDidReceiveMessage (userInfo);
+
+            HandleMessage(userInfo);
+
+            completionHandler(UIBackgroundFetchResult.NewData);
+        }
+
+        public void HandleMessage(NSDictionary message)
+        {
+            if (MessageReceived == null) return;
+
+            MessageType messageType;
+            if (message.ContainsKey(new NSString("aps")))
+                messageType = MessageType.Notification;
+            else
+                messageType = MessageType.Data;
+
+            var e = new UserInfoEventArgs(message, messageType);
+            MessageReceived(this, e);
+        }
+
+        public static void ShowMessage(string title, string message, UIViewController fromViewController, Action actionForOk = null)
+        {
+            var alert = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+            alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, (obj) => actionForOk?.Invoke()));
+            fromViewController.PresentViewController(alert, true, null);
         }
 
         public override void OnResignActivation(UIApplication application)
         {
             // Invoked when the application is about to move from active to inactive state.
-            // This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) 
+            // This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message)
             // or when the user quits the application and it begins the transition to the background state.
             // Games should use this method to pause the game.
         }
@@ -65,7 +154,7 @@ namespace Gabber.iOS
 
         public override void OnActivated(UIApplication application)
         {
-            // Restart any tasks that were paused (or not yet started) while the application was inactive. 
+            // Restart any tasks that were paused (or not yet started) while the application was inactive.
             // If the application was previously in the background, optionally refresh the user interface.
         }
 
@@ -76,7 +165,7 @@ namespace Gabber.iOS
 
 		public override bool ContinueUserActivity(UIApplication a, NSUserActivity ua, UIApplicationRestorationHandler h) => OpenVerify(ua.WebPageUrl);
 		public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options) => OpenVerify(url);
-        
+
 		bool OpenVerify(NSUrl url)
 		{
 			if (!string.IsNullOrEmpty(NSUserDefaults.StandardUserDefaults.StringForKey("tokens"))) return true;
@@ -85,4 +174,5 @@ namespace Gabber.iOS
 			return true;
 		}
     }
+#pragma warning restore XI0003 // Notifies you when using a deprecated, obsolete or unavailable Apple API
 }

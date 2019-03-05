@@ -28,7 +28,7 @@ namespace Gabber.iOS.ViewSources
         {
             var project = Rows[indexPath.Section];
 
-            var content = Queries.ContentByLanguage(project, Localize.GetCurrentCultureInfo());
+            var content = LanguageChoiceManager.ContentByLanguage(project);
 
             if (indexPath.Row == 0)
             {
@@ -99,7 +99,7 @@ namespace Gabber.iOS.ViewSources
         public override nint RowsInSection(UITableView tableview, nint section)
         {
             var project = Rows[(int)section];
-            var content = Queries.ContentByLanguage(project, Localize.GetCurrentCultureInfo());
+            var content = LanguageChoiceManager.ContentByLanguage(project);
             var activeTopics = content.Topics.Where((t) => t.IsActive).ToList();
             return (project.IsExpanded) ? activeTopics.Count + 2 : 0;
         }

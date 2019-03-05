@@ -33,7 +33,7 @@ namespace Gabber.iOS
 
             int SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
             var SelectedProject = Queries.ProjectById(SelectedProjectID);
-            var content = Queries.ContentByLanguage(SelectedProject, Localize.GetCurrentCultureInfo());
+            var content = LanguageChoiceManager.ContentByLanguage(SelectedProject);
 
             ConversationDecisionDes.Text = string.Format(StringResources.consent_gabber_body_decision, Config.PRINT_URL);
             ChooseLanguageTitle.Text = StringResources.conversation_language_prompt;

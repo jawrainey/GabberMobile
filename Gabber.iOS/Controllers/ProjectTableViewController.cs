@@ -146,7 +146,7 @@ namespace Gabber.iOS
 
         private void LaunchProject(Project chosenProj)
         {
-            var content = Queries.ContentByLanguage(chosenProj, Localize.GetCurrentCultureInfo());
+            var content = LanguageChoiceManager.ContentByLanguage(chosenProj);
             Logger.LOG_EVENT_WITH_ACTION("PROJECT_SELECTED", content.Title, "PROJECT");
             NSUserDefaults.StandardUserDefaults.SetInt(chosenProj.ID, "SelectedProjectID");
             PerformSegue("OpenProjectSegue", this);

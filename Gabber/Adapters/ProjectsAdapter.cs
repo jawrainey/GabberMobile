@@ -83,7 +83,7 @@ namespace Gabber.Adapters
                 convertView.Tag = viewHolder;
             }
 
-            var content = Localise.ContentByLanguage(projects[groupPosition]);
+            var content = LanguageChoiceManager.ContentByLanguage(projects[groupPosition]);
 
             viewHolder.DescriptionText.Text = content.Description;
             viewHolder.PromptLayout.RemoveAllViews();
@@ -147,7 +147,7 @@ namespace Gabber.Adapters
 
             var project = projects[groupPosition];
 
-            viewHolder.Title.Text = Localise.ContentByLanguage(project).Title;
+            viewHolder.Title.Text = LanguageChoiceManager.ContentByLanguage(project).Title;
 
             ImageService.Instance.LoadCompiledResource("ic_launcher").Transform(new CircleTransformation()).Into(viewHolder.Image);
 

@@ -5,6 +5,7 @@ using GabberPCL;
 using Foundation;
 using GabberPCL.Resources;
 using Gabber.iOS.Helpers;
+using Firebase.Analytics;
 
 namespace Gabber.iOS
 {
@@ -51,6 +52,7 @@ namespace Gabber.iOS
             participantsViewSource.Rows = Queries.AllParticipants();
             UpdateNumSelectedPartsLabel();
             ParticipantsCollectionView.ReloadData();
+            UpdateAnalytics();
         }
 
         void UpdateNumSelectedPartsLabel()
@@ -107,8 +109,12 @@ namespace Gabber.iOS
             NavigationItem.BackBarButtonItem = new UIBarButtonItem { Title = "" };
         }
 
-        // Revisited this page, i.e. after adding a participant
         [Action("UnwindToParticipantsViewController:")]
         public void UnwindToParticipantsViewController(UIStoryboardSegue segue) {}
+
+        private void UpdateAnalytics()
+        {
+            Analytics.SetUserProperty("numParticipants", participantsViewSource.Rows.Count.ToString());
+        }
     }
 }
