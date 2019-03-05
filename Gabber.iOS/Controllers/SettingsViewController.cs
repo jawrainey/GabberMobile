@@ -163,6 +163,7 @@ namespace Gabber.iOS
 
         void SaveLanguageSelectedFromPicker(UIAlertAction _)
         {
+            if (CurrentSelectedPrefLanguageID == 0) return;
             Session.ActiveUser.Lang = CurrentSelectedPrefLanguageID;
             Queries.SaveActiveUser();
             SettingsTableView.Source = new SettingsTableViewSource(ReCreateSettings(), this, RowSelected);
