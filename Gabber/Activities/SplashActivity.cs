@@ -19,10 +19,14 @@ namespace Gabber.Activities
         {
             base.OnCreate(savedInstanceState);
             Localise.SetLayoutDirectionByCulture(this);
+
+            Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
+            Crashlytics.Crashlytics.HandleManagedExceptions();
+
             Init();
         }
 
-        async void Init()
+        private void Init()
         {
             FirebaseApp.InitializeApp(ApplicationContext);
             MainActivity.FireBaseAnalytics = FirebaseAnalytics.GetInstance(this);
