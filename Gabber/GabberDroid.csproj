@@ -207,6 +207,9 @@
     <Reference Include="Xamarin.Android.Crashlytics.Core">
       <HintPath>..\packages\Xamarin.Android.Crashlytics.Core.2.6.3\lib\monoandroid60\Xamarin.Android.Crashlytics.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Firebase.Messaging">
+      <HintPath>..\packages\Xamarin.Firebase.Messaging.60.1142.1\lib\MonoAndroid80\Xamarin.Firebase.Messaging.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -235,6 +238,7 @@
     <Compile Include="Helpers\Localise.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Activities\FirstDebriefActivity.cs" />
+    <Compile Include="Services\FirebaseIIDService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -354,6 +358,7 @@
   <ItemGroup>
     <Folder Include="Resources\xml\" />
     <Folder Include="Resources\drawable-nodpi\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.60.1142.1\build\MonoAndroid80\Xamarin.GooglePlayServices.Basement.targets')" />
@@ -392,4 +397,5 @@
   <Import Project="..\packages\Xamarin.Android.Fabric.1.4.3\build\Xamarin.Android.Fabric.targets" Condition="Exists('..\packages\Xamarin.Android.Fabric.1.4.3\build\Xamarin.Android.Fabric.targets')" />
   <Import Project="..\packages\Xamarin.Android.Crashlytics.2.9.4.1\build\Xamarin.Android.Crashlytics.targets" Condition="Exists('..\packages\Xamarin.Android.Crashlytics.2.9.4.1\build\Xamarin.Android.Crashlytics.targets')" />
   <Import Project="..\packages\Xamarin.Android.Crashlytics.Core.2.6.3\build\Xamarin.Android.Crashlytics.Core.targets" Condition="Exists('..\packages\Xamarin.Android.Crashlytics.Core.2.6.3\build\Xamarin.Android.Crashlytics.Core.targets')" />
+  <Import Project="..\packages\Xamarin.Firebase.Messaging.60.1142.1\build\MonoAndroid80\Xamarin.Firebase.Messaging.targets" Condition="Exists('..\packages\Xamarin.Firebase.Messaging.60.1142.1\build\MonoAndroid80\Xamarin.Firebase.Messaging.targets')" />
 </Project>

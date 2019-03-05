@@ -14,6 +14,7 @@ using GabberPCL.Resources;
 using Android.Content;
 using Gabber.Activities;
 using Android.Net.Wifi;
+using System;
 
 namespace Gabber.Fragments
 {
@@ -64,6 +65,10 @@ namespace Gabber.Fragments
             adapter = new SessionAdapter(sessions);
             Activity.FindViewById<RecyclerView>(Resource.Id.sessions).SetAdapter(adapter);
 
+            FirebaseAnalytics.GetInstance(Activity).SetUserProperty(
+                        "uploadQueueCount",
+                        sessions.Count().ToString());
+
             var sessionsUploadButton = Activity.FindViewById<AppCompatButton>(Resource.Id.upload_sessions);
 
             ShowHideInstructions();
@@ -75,6 +80,14 @@ namespace Gabber.Fragments
             // Ensures that the dialog only shows after completing a recording.
             if (prefs.GetBoolean("SESSION_RECORDED", false))
             {
+                // Get epoch time
+                TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
+                int secondsSinceEpoch = (int)t.TotalSeconds;
+
+                FirebaseAnalytics.GetInstance(Activity).SetUserProperty(
+                        "lastUploadAdded",
+                    secondsSinceEpoch.ToString());
+
                 if (IsConnectedToWifi())
                 {
                     var suppressAsync = UploadSessions(0, true);
@@ -181,6 +194,17 @@ namespace Gabber.Fragments
             bundle.PutString("ID", session.SessionID);
             bundle.PutInt("NUM_TOPICS", session.Prompts.Count);
             firebaseAnalytics.LogEvent("UPLOAD_SESSION", bundle);
+
+            Session.ActiveUser.NumUploaded++;
+            Queries.SaveActiveUser();
+
+            FirebaseAnalytics.GetInstance(Activity).SetUserProperty(
+            "numUploaded",
+            Session.ActiveUser.NumUploaded.ToString());
+
+            FirebaseAnalytics.GetInstance(Activity).SetUserProperty(
+                "uploadQueueCount",
+                adapter.Sessions.Count().ToString());
         }
     }
 }

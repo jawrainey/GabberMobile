@@ -37,6 +37,7 @@ namespace Gabber.iOS
 
             // Used by the PCL for database interactions so must be defined early.
             Session.PrivatePath = new PrivatePath();
+
             // Register the implementation to the global interface within the PCL.
             RestClient.GlobalIO = new DiskIO();
             return true;
