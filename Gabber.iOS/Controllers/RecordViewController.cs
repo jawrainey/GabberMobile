@@ -106,7 +106,8 @@ namespace Gabber.iOS
             InterviewSessionID = Guid.NewGuid().ToString();
 
             SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
-            var SelectedProject = LanguageChoiceManager.ContentByLanguage(Queries.ProjectById(SelectedProjectID));
+            var lang = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SESSION_LANG"));
+            var SelectedProject = LanguageChoiceManager.ContentByLanguage(Queries.ProjectById(SelectedProjectID), lang);
 
             var activeTopics = SelectedProject.Topics.Where((t) => t.IsActive).ToList();
 
