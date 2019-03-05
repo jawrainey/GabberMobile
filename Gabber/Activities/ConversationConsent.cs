@@ -118,7 +118,7 @@ namespace Gabber.Activities
             RelativeLayout loadingLayout = FindViewById<RelativeLayout>(Resource.Id.loadingLayout);
             loadingLayout.Visibility = ViewStates.Visible;
 
-            languageChoices = await Localizer.GetLanguageChoices();
+            languageChoices = await LanguageChoiceManager.GetLanguageChoices();
 
             if (languageChoices == null || languageChoices.Count == 0)
             {

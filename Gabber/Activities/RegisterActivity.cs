@@ -16,6 +16,8 @@ using System.Collections.Generic;
 using GabberPCL.Models;
 using System.Linq;
 using Gabber.Helpers;
+using System.Globalization;
+using Android.Preferences;
 
 namespace Gabber
 {
@@ -83,7 +85,7 @@ namespace Gabber
             RelativeLayout loadingLayout = FindViewById<RelativeLayout>(Resource.Id.loadingLayout);
             loadingLayout.Visibility = ViewStates.Visible;
 
-            languageChoices = await Localizer.GetLanguageChoices();
+            languageChoices = await LanguageChoiceManager.GetLanguageChoices();
 
             if (languageChoices == null || languageChoices.Count == 0)
             {
@@ -185,7 +187,16 @@ namespace Gabber
                 LanguageChoice chosenLang = languageChoices.FirstOrDefault((arg) => arg.Endonym == selectedLanguage);
 
                 LOG_EVENT_WITH_ACTION("REGISTER", "ATTEMPT");
-                CustomAuthResponse response = await RestClient.Register(fname.Text, email.Text.ToLower(), passw.Text, chosenLang.Id);
+
+                CultureInfo currentCulture = StringResources.Culture ?? Localise.GetCurrentCultureInfo();
+                string currentLang = currentCulture.TwoLetterISOLanguageName;
+
+                LanguageChoice matchingLanguage = await LanguageChoiceManager.GetLanguageFromCode(currentLang);
+
+                //default to English at registration if no matching language
+                int langId = (matchingLanguage != null)? matchingLanguage.Id : 1;
+
+                CustomAuthResponse response = await RestClient.Register(fname.Text, email.Text.ToLower(), passw.Text, langId);
 
                 if (response.Meta.Success)
                 {

@@ -24,7 +24,7 @@ namespace Gabber.iOS
         public async override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            var SupportedLanguages = (await Localizer.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
+            var SupportedLanguages = (await LanguageChoiceManager.GetLanguageChoices()).OrderBy((lang) => lang.Code).ToList();
 
             TableView.RegisterNibForCellReuse(ProjectTableViewHeader.Nib, ProjectTableViewHeader.CellID);
             TableView.RowHeight = UITableView.AutomaticDimension;
