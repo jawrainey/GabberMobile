@@ -65,7 +65,7 @@ namespace Gabber.iOS
 
         private async void LoadLanguages()
         {
-            List<LanguageChoice> languages = await LanguagesManager.GetLanguageChoices();
+            List<LanguageChoice> languages = await Localizer.GetLanguageChoices();
 
             if (languages != null && languages.Count > 0)
             {

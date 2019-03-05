@@ -12,7 +12,7 @@ namespace Gabber.iOS.ViewSources
         public Action AddAnnotation;
         public List<Topic> Rows { get; set; }
 
-        public override nint NumberOfSections(UICollectionView collectionView) 
+        public override nint NumberOfSections(UICollectionView collectionView)
         {
             return 1;
         }
@@ -46,7 +46,7 @@ namespace Gabber.iOS.ViewSources
         {
             var cell = (TopicsCollectionViewCell)collectionView.DequeueReusableCell(TopicsCollectionViewCell.CellID, indexPath);
             cell.Layer.BorderWidth = 1.0f;
-            cell.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+            cell.Layer.BorderColor = Application.MainColour;
             cell.UpdateContent(Rows[indexPath.Row]);
             return cell;
         }

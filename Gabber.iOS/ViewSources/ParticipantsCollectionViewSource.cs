@@ -18,7 +18,7 @@ namespace Gabber.iOS.ViewSources
             Rows = _rows;
         }
 
-        public override nint NumberOfSections(UICollectionView collectionView) 
+        public override nint NumberOfSections(UICollectionView collectionView)
         {
             // There does not seem to be a way to enable this within storyboard.
             collectionView.AllowsMultipleSelection = true;
@@ -42,9 +42,9 @@ namespace Gabber.iOS.ViewSources
 
         public override UICollectionViewCell GetCell(UICollectionView collectionView, NSIndexPath indexPath)
         {
-            var cell = (ParticipantsCollectionViewCell)collectionView.DequeueReusableCell(ParticipantsCollectionViewCell.CellID, indexPath);                
+            var cell = (ParticipantsCollectionViewCell)collectionView.DequeueReusableCell(ParticipantsCollectionViewCell.CellID, indexPath);
             cell.Layer.BorderWidth = 1.0f;
-            cell.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+            cell.Layer.BorderColor = Application.MainColour;
             cell.UpdateContent(Rows[indexPath.Row]);
             return cell;
         }

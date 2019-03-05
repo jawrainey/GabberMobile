@@ -15,7 +15,7 @@ namespace Gabber.iOS
         {
             base.ViewDidLoad();
             Title = StringResources.consent_research_toolbar_title;
-            
+
             int SelectedProjectID = Convert.ToInt32(NSUserDefaults.StandardUserDefaults.IntForKey("SelectedProjectID"));
             var SelectedProject = Queries.ProjectById(SelectedProjectID);
             var contentOh = Queries.ContentByLanguage(SelectedProject, Localize.GetCurrentCultureInfo());
@@ -30,7 +30,7 @@ namespace Gabber.iOS
 
             ResearchConsentSubmit.SetTitle(StringResources.consent_research_submit, UIControlState.Normal);
             ResearchConsentSubmit.Layer.BorderWidth = 1.0f;
-            ResearchConsentSubmit.Layer.BorderColor = UIColor.FromRGB(.43f, .80f, .79f).CGColor;
+            ResearchConsentSubmit.Layer.BorderColor = Application.MainColour;
             ResearchConsentSubmit.Enabled = false;
 
             MoreDetailsButton.Layer.BorderWidth = ResearchConsentSubmit.Layer.BorderWidth;

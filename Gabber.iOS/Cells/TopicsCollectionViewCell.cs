@@ -9,11 +9,10 @@ namespace Gabber.iOS
     {
         public static NSString CellID = new NSString("TopicCollectionCell");
 
-        public TopicsCollectionViewCell (IntPtr handle) : base (handle) {}
+        public TopicsCollectionViewCell(IntPtr handle) : base(handle) { }
 
         public void UpdateContent(Topic topic)
         {
-            var themeColor = UIColor.FromRGB(.43f, .80f, .79f);
             ProjectTopic.Text = topic.Text;
 
             var topCorrect = (ProjectTopic.Bounds.Size.Height - ProjectTopic.ContentSize.Height * ProjectTopic.ZoomScale) / 2.0;
@@ -21,19 +20,19 @@ namespace Gabber.iOS
             ProjectTopic.ContentInset = new UIEdgeInsets((nfloat)topCorrect, 0, 0, 0);
 
             ProjectTopic.TextColor = UIColor.Black;
-            Layer.BorderColor = themeColor.CGColor;
+            Layer.BorderColor = Application.MainColour;
 
             if (topic.SelectionState == Topic.SelectedState.current)
             {
                 ProjectTopic.TextColor = UIColor.White;
-                ProjectTopic.BackgroundColor = themeColor;
-                Layer.BorderColor = themeColor.CGColor;
+                ProjectTopic.BackgroundColor = UIColor.FromCGColor(Application.MainColour);
+                Layer.BorderColor = Application.MainColour;
             }
-            else if (topic.SelectionState == Topic.SelectedState.previous) 
+            else if (topic.SelectionState == Topic.SelectedState.previous)
             {
-                ProjectTopic.BackgroundColor = UIColor.FromRGB(211, 211, 211);
+                ProjectTopic.BackgroundColor = UIColor.FromRGB(232, 206, 206);
             }
-            else 
+            else
             {
                 ProjectTopic.BackgroundColor = UIColor.White;
             }

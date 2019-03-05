@@ -96,7 +96,10 @@ namespace Gabber.iOS
                     PresentViewController(doDeleteRecording, true, null);
                 }
                 NavigationController.PopViewController(false);
-            });
+            })
+            {
+                TintColor = UIColor.FromCGColor(Application.MainColour)
+            };
 
             // As we can record, enable it all.
             AudioRecorder = new AudioRecorder();
