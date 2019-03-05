@@ -17,7 +17,7 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AssemblyName>Gabber</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidTlsProvider>btls</AndroidTlsProvider>
     <AndroidLinkMode>None</AndroidLinkMode>
@@ -238,7 +238,7 @@
     <Compile Include="Helpers\Localise.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Activities\FirstDebriefActivity.cs" />
-    <Compile Include="Services\FirebaseIIDService.cs" />
+    <Compile Include="Services\MyFirebaseMessagingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -344,6 +344,11 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\onboarding_04.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\onboarding_05.png" />
     <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\gabber_notif.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\gabber_notif.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\gabber_notif.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\gabber_notif.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\gabber_notif.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

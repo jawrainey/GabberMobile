@@ -88,7 +88,7 @@ namespace Gabber.Activities
 
             notificationManager = (NotificationManager)GetSystemService(NotificationService);
 
-            notificationManager.CreateNotificationChannel(new NotificationChannel("TalkFutures_UploadReminder",
+            notificationManager.CreateNotificationChannel(new NotificationChannel("UploadReminder",
                                                   "Upload Queue Reminders",
                                                    NotificationImportance.Low)
             {
@@ -96,15 +96,23 @@ namespace Gabber.Activities
                 Description = "Reminds you to upload forgotten items in your uploads queue."
             });
 
-            notificationManager.CreateNotificationChannel(new NotificationChannel("TalkFutures_NoActivity",
+            notificationManager.CreateNotificationChannel(new NotificationChannel("NoActivity",
                                                   "Reminders to Contribute",
                                                   NotificationImportance.Low)
             {
 
-                Description = "Reminds you to contribute to the TalkFutures project."
+                Description = "Reminds you to contribute to a Gabber project."
             });
 
-            notificationManager.CreateNotificationChannel(new NotificationChannel("TalkFutures_NewContent",
+            notificationManager.CreateNotificationChannel(new NotificationChannel("NewComment",
+                                                  "New Comments Received",
+                                                  NotificationImportance.High)
+            {
+
+                Description = "Notifies when a new comment on your conversation conversation is created."
+            });
+
+            notificationManager.CreateNotificationChannel(new NotificationChannel("NewContent",
                                                   "New Discussion Topics",
                                                   NotificationImportance.Default)
             {
@@ -131,6 +139,16 @@ namespace Gabber.Activities
 
         public void OnActivityResumed(Activity activity)
         {
+            // Android directs notification messages to the system tray when an app is in the background.
+            // Therfore, if there is a URL in the message, we must open it in the browser from here.
+            if (Intent.HasExtra("url"))
+            {
+                var intent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(Intent.GetStringExtra("url")));
+                // Required to prevent reopening the browser when resuming the app, e.g. going back from browser
+                Intent.RemoveExtra("url");
+                StartActivity(intent);
+            }
+
             EnsureSessionIsValid();
         }
 

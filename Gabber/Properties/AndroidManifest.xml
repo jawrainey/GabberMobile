@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="uk.ac.ncl.openlab.gabber" android:versionName="0.0.15" android:versionCode="15">
 	<application android:theme="@style/MyTheme" android:label="Gabber" android:icon="@mipmap/ic_launcher" android:supportsRtl="true">
+		<meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/gabber_notif" />
+		<!-- Set color used with incoming notification messages. This is used when no color is set for the incoming notification message. -->
+		<meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/notification" />
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
 			<intent-filter>
