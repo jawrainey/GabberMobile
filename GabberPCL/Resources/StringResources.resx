@@ -220,7 +220,7 @@
         <value>Step 2: Add Participants</value>
     </data>
     <data name="onboarding.ui.page.second.content" xml:space="preserve">
-        <value>We need some basic details about the people in the conversation - this will help us understand their perspectives and spot trends across all members of the Red Cross Red Crescent.</value>
+        <value>All you need is the name and email of the people involved in the conversation</value>
     </data>
     <!-- ONBOARDING PAGE: 3 -->
     <data name="onboarding.ui.page.third.title" xml:space="preserve">
@@ -235,8 +235,6 @@
     </data>
     <data name="onboarding.ui.page.fourth.content" xml:space="preserve">
         <value>When the conversation ends, you can upload the recording to the website for others to listen to. All participants are notified and can review their consent.
-
-Visit {0} to listen to perspectives from members of other National Societies!
 </value>
     </data>
     <!-- USER LOGIN SCREEN: API errors -->
