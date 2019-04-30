@@ -38,7 +38,7 @@ namespace GabberPCL
 
         private static async Task<List<LanguageChoice>> RefreshLanguages()
         {
-            List<LanguageChoice> res = await RestClient.GetLanguages((err) => { });
+            List<LanguageChoice> res = await RestClient.GetLanguages();
 
             if (res != null && res.Count > 0)
             {

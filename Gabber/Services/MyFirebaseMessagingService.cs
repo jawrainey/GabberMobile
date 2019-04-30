@@ -3,12 +3,9 @@ using Android.App;
 using Android.Content;
 using Android.Net;
 using Android.Support.V4.App;
-using Android.Util;
-
+using Android.Support.V4.Content;
 using Firebase.Messaging;
 using Gabber.Activities;
-using System.Drawing;
-using Android.Support.V4.Content;
 
 namespace Gabber.Services
 {

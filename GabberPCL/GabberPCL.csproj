@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RestClient.cs" />
+    <Compile Include="RESTClient.cs" />
     <Compile Include="Interfaces\IDiskIO.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Interfaces\IPrivatePath.cs" />
@@ -55,6 +55,8 @@
     <Compile Include="Models\PlatformCulture.cs" />
     <Compile Include="Models\Topic.cs" />
     <Compile Include="Models\Content.cs" />
+    <Compile Include="Models\REST.cs" />
+    <Compile Include="RESTUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

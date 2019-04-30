@@ -5,323 +5,87 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.IO;
 using GabberPCL.Models;
-using System.Text;
 using System.Net.Http.Headers;
 
 namespace GabberPCL
 {
-    // The Upload method does not return a custom response.
-    class Error
-    {
-        [JsonProperty("message")]
-        public string Message { get; set; }
-    }
-    // The Data attribute of a response can be of any topic
-    public class Entity<T>
-    {
-        [JsonProperty("data")]
-        public T Data { get; set; }
-    }
-
-    public class DataUserTokens
-    {
-        [JsonProperty("user")]
-        public User User { get; set; }
-        [JsonProperty("tokens")]
-        public JWToken Tokens { get; set; }
-    }
-
-    public class CustomAuthResponse : Entity<DataUserTokens>
-    {
-        [JsonProperty("meta")]
-        public Meta Meta { get; set; }
-    }
-
-    public class RegisterAuthResponse
-    {
-        [JsonProperty("data")]
-        public bool? Data;
-        [JsonProperty("meta")]
-        public Meta Meta { get; set; }
-    }
-
-    public class RegisterVerifyAuthResponse<T>
-    {
-        [JsonProperty("data")]
-        public T Data;
-        [JsonProperty("meta")]
-        public Meta Meta { get; set; }
-    }
-
-    public class CustomProjectsResponse : Entity<List<Project>>
-    {
-        [JsonProperty("meta")]
-        public Meta Meta { get; set; }
-    }
-
-    public class CustomLanguagesResponse
-    {
-        public Meta Meta { get; set; }
-        public List<LanguageChoice> Data { get; set; }
-    }
-
-    public class CustomErrorResponse : Entity<List<string>>
-    {
-        [JsonProperty("meta")]
-        public Meta Meta { get; set; }
-    }
-
-    public class Meta
-    {
-        [JsonProperty("success")]
-        public bool Success { get; set; }
-        [JsonProperty("messages")]
-        public List<string> Messages { get; set; }
-    }
-
     public static class RestClient
     {
         // Used to access platform specific implementations
         public static Interfaces.IDiskIO GlobalIO;
 
-        private static HttpClient _client;
-
-        private static HttpClient Client
+        public static async Task<ServerResponse<DataUserTokens>> Login(string email, string password)
         {
-            get
-            {
-                if (_client == null)
-                {
-                    _client = new HttpClient
-                    {
-                        BaseAddress = new Uri(Config.API_ENDPOINT)
-                    };
-                }
-
-                return _client;
-            }
+            var LOGIN_ROUTE = "api/auth/login/";
+            return (await RESTInterface.POST<DataUserTokens>(LOGIN_ROUTE, new { email, password }, false));
         }
 
-        public static async Task<CustomAuthResponse> Login(string email, string password)
+        public static async Task<ServerResponse<DataUserTokens>> Register(string fullname, string email, string password, int lang)
         {
-            var _response = new CustomAuthResponse
-            {
-                Data = null,
-                Meta = new Meta { Messages = new List<string>(), Success = false }
-            };
-
-            try
-            {
-                var payload = new { email, password };
-                var _content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
-                var response = await Client.PostAsync("api/auth/login/", _content);
-                var content = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return JsonConvert.DeserializeObject<CustomAuthResponse>(content);
-                }
-                _response.Meta = JsonConvert.DeserializeObject<CustomErrorResponse>(content).Meta;
-            }
-            catch (HttpRequestException)
-            {
-                _response.Meta.Messages.Add("NO_INTERNET");
-            }
-            catch (Exception)
-            {
-                _response.Meta.Messages.Add("GENERAL");
-            }
-            return _response;
+            var REGISTER_ROUTE = "api/auth/register/";
+            var payload = new { fullname, email, password, lang };
+            return (await RESTInterface.POST<DataUserTokens>(REGISTER_ROUTE, payload, false));
         }
 
-        public static async Task<CustomAuthResponse> Register(string fullname, string email, string password, int lang)
+        public static async Task<ServerResponse<DataUserTokens>> PushUpdateForCurrentUser()
         {
-            var _response = new CustomAuthResponse
-            {
-                Data = null,
-                Meta = new Meta { Messages = new List<string>(), Success = false }
-            };
-
-            try
-            {
-                var payload = JsonConvert.SerializeObject(new { fullname, email, password, lang });
-                var _content = new StringContent(payload, Encoding.UTF8, "application/json");
-
-                var response = await Client.PostAsync("api/auth/register/", _content);
-                var content = await response.Content.ReadAsStringAsync();
-
-                _response.Meta = JsonConvert.DeserializeObject<RegisterAuthResponse>(content).Meta;
-                return _response;
-            }
-            catch (HttpRequestException)
-            {
-                _response.Meta.Messages.Add("NO_INTERNET");
-            }
-            catch (Exception)
-            {
-                _response.Meta.Messages.Add("GENERAL");
-            }
-            return _response;
+            var ME_ROUTE = "api/auth/me/";
+            return (await RESTInterface.POST<DataUserTokens>(ME_ROUTE, Session.ActiveUser));
         }
 
-        public static async Task<CustomAuthResponse> PushUpdateForCurrentUser()
+        public static async Task<ServerResponse<DataUserTokens>> RegisterVerify(string token)
         {
-            var _response = new CustomAuthResponse
-            {
-                Data = null,
-                Meta = new Meta { Messages = new List<string>(), Success = false }
-            };
-
-            try
-            {
-                var payload = JsonConvert.SerializeObject(Session.ActiveUser);
-                var _content = new StringContent(payload, Encoding.UTF8, "application/json");
-
-                var response = await Client.PutAsync("api/auth/me/", _content);
-                var content = await response.Content.ReadAsStringAsync();
-
-                _response.Meta = JsonConvert.DeserializeObject<RegisterAuthResponse>(content).Meta;
-                return _response;
-            }
-            catch (HttpRequestException)
-            {
-                _response.Meta.Messages.Add("NO_INTERNET");
-            }
-            catch (Exception)
-            {
-                _response.Meta.Messages.Add("GENERAL");
-            }
-            return _response;
+            var REGISTER_VERIFY = $"api/auth/verify/{token}/";
+            return (await RESTInterface.POST<DataUserTokens>(REGISTER_VERIFY, Session.ActiveUser, false));
         }
 
-        public static async Task<RegisterVerifyAuthResponse<DataUserTokens>> RegisterVerify(string token)
+        public static async Task<List<Project>> GetProjects(Action<string> errorCallback)
         {
-            var _response = new RegisterVerifyAuthResponse<DataUserTokens>
-            {
-                Data = null,
-                Meta = new Meta { Messages = new List<string>(), Success = false }
-            };
-
-            try
-            {
-                var _content = new StringContent("", Encoding.UTF8, "application/json");
-                var response = await Client.PostAsync($"api/auth/verify/{token}/", _content);
-                var content = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return JsonConvert.DeserializeObject<RegisterVerifyAuthResponse<DataUserTokens>>(content);
-                }
-
-                // If the request cannot be made, this will try to be serialzied and throw an error too.
-                _response.Meta = JsonConvert.DeserializeObject<CustomErrorResponse>(content).Meta;
-            }
-            catch (HttpRequestException)
-            {
-                _response.Meta.Messages.Add("NO_INTERNET");
-            }
-            catch (Exception)
-            {
-                _response.Meta.Messages.Add("GENERAL");
-            }
-            return _response;
+            var PROJECTS_ROUTE = "api/projects/";
+            var response = (await RESTInterface.GET<List<Project>>(PROJECTS_ROUTE));
+            if (response.Meta.Messages.Count > 0) errorCallback("PROJECTS ERROR");
+            return response.Data;
         }
 
-        // As this deals with reading files from platform specific paths, 
-        // then we must implement this on each specific platform.
+        public static async Task<List<LanguageChoice>> GetLanguages()
+        {
+            var LANGUAGES_ROUTE = "api/help/languages/";
+            var response = (await RESTInterface.GET<List<LanguageChoice>> (LANGUAGES_ROUTE, false));
+            return response.Data;
+        }
+
+        public static async Task<bool> UploadFCMToken(string token)
+        {
+            var response = (await RESTInterface.POST<string>("api/fcm/", new { token }, true));
+            return response.Meta.Messages.Count > 0;
+        }
+
         public static async Task<bool> Upload(InterviewSession interviewSession)
         {
             using (var formData = new MultipartFormDataContent())
             {
                 formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Participants)), "participants");
                 formData.Add(new StringContent(JsonConvert.SerializeObject(interviewSession.Prompts)), "prompts");
-                formData.Add(new StringContent(interviewSession.ConsentType.ToString()), "consent");
+                formData.Add(new StringContent(interviewSession.ConsentType), "consent");
                 formData.Add(new StringContent(interviewSession.Lang.ToString()), "lang");
                 formData.Add(new StringContent(interviewSession.CreatedAt.ToString(System.Globalization.CultureInfo.InvariantCulture)), "created_on");
 
                 // Access the OS specific implementation to load data from a file.
                 formData.Add(new ByteArrayContent(GlobalIO.Load(interviewSession.RecordingURL)), "recording",
                              Path.GetFileName(interviewSession.RecordingURL));
+
                 try
                 {
+                    // We must use the 'old' POST approach as our util sends JSON. To access the client we must expose it.
                     var endpoint = $"api/projects/{interviewSession.ProjectID.ToString()}/sessions/";
-                    Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session.Token.Access);
-                    var response = await Client.PostAsync(endpoint, formData);
+                    RESTInterface.Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session.Token.Access);
+                    var response = await RESTInterface.Client.PostAsync(endpoint, formData);
                     return response.IsSuccessStatusCode;
                 }
-                catch (Exception e)
+                catch
                 {
                     return false;
                 }
-            }
-        }
-
-        public static async Task<List<Project>> GetProjects(Action<string> errorCallback)
-        {
-            Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session.Token.Access);
-
-            try
-            {
-                var response = await Client.GetAsync("api/projects/");
-                var content = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return JsonConvert.DeserializeObject<CustomProjectsResponse>(content).Data;
-                }
-                errorCallback(JsonConvert.DeserializeObject<Error>(content).Message);
-            }
-            catch (HttpRequestException)
-            {
-                errorCallback("You are not connected to the Internet");
-            }
-            catch (Exception e)
-            {
-                errorCallback("An unknown error occurred:" + e.Message);
-            }
-
-            return new List<Project>();
-        }
-
-        public static async Task<List<LanguageChoice>> GetLanguages(Action<string> errorCallback)
-        {
-            try
-            {
-                HttpResponseMessage response = await Client.GetAsync("api/help/languages/");
-                string content = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return JsonConvert.DeserializeObject<CustomLanguagesResponse>(content).Data;
-                }
-                errorCallback(JsonConvert.DeserializeObject<Error>(content).Message);
-            }
-            catch (HttpRequestException)
-            {
-                errorCallback("You are not connected to the Internet");
-            }
-            catch (Exception e)
-            {
-                errorCallback("An unknown error occurred:" + e.Message);
-            }
-
-            return new List<LanguageChoice>();
-        }
-
-        public static async Task<bool> UploadFCMToken(string token)
-        {
-            try
-            {
-                Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Session.Token.Access);
-                var _content = new StringContent(JsonConvert.SerializeObject(new { token }), Encoding.UTF8, "application/json");
-                var response = await Client.PostAsync("api/fcm/", _content);
-                var content = await response.Content.ReadAsStringAsync();
-
-                return response.IsSuccessStatusCode;
-            }
-            catch (Exception)
-            {
-                return false;
             }
         }
     }

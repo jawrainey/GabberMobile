@@ -79,7 +79,7 @@ namespace Gabber
                     FindViewById<AppCompatButton>(Resource.Id.submit).Enabled = false;
 
                     LOG_EVENT_WITH_ACTION("LOGIN", "ATTEMPT");
-                    CustomAuthResponse response = await RestClient.Login(email.Text.ToLower(), passw.Text);
+                    var response = await RestClient.Login(email.Text.ToLower(), passw.Text);
 
                     if (response.Meta.Messages.Count > 0)
                     {

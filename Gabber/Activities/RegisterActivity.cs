@@ -10,14 +10,11 @@ using Android.Widget;
 using Firebase.Analytics;
 using GabberPCL;
 using GabberPCL.Resources;
-using Android.Text.Util;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using GabberPCL.Models;
 using System.Linq;
 using Gabber.Helpers;
 using System.Globalization;
-using Android.Preferences;
 
 namespace Gabber
 {
@@ -196,7 +193,7 @@ namespace Gabber
                 //default to English at registration if no matching language
                 int langId = (matchingLanguage != null)? matchingLanguage.Id : 1;
 
-                CustomAuthResponse response = await RestClient.Register(fname.Text, email.Text.ToLower(), passw.Text, langId);
+                var response = await RestClient.Register(fname.Text, email.Text.ToLower(), passw.Text, langId);
 
                 if (response.Meta.Success)
                 {
