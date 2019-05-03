@@ -68,7 +68,7 @@ namespace Gabber.iOS.ViewSources
 
                 return cell;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }

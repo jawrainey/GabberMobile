@@ -47,7 +47,6 @@
     <CodesignKey>iPhone Developer: Jay Rainey (G4QY8CALPA)</CodesignKey>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
@@ -89,7 +88,6 @@
     <MtouchFastDev>true</MtouchFastDev>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchExtraArgs>--registrar:static</MtouchExtraArgs>
     <IOSDebuggerPort>19346</IOSDebuggerPort>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARM64</MtouchArch>
@@ -567,7 +565,7 @@
       <HintPath>..\packages\Xamarin.FFImageLoading.Transformations.2.4.3.840\lib\Xamarin.iOS10\FFImageLoading.Transformations.dll</HintPath>
     </Reference>
     <Reference Include="Firebase.Crashlytics">
-      <HintPath>..\packages\Xamarin.Firebase.iOS.Crashlytics.3.10.3\lib\Xamarin.iOS10\Firebase.Crashlytics.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Firebase.iOS.Crashlytics.3.10.9\lib\Xamarin.iOS10\Firebase.Crashlytics.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
@@ -920,8 +918,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.11\build\Xamarin.Build.Download.targets')" />
-  <Import Project="..\packages\Xamarin.Firebase.iOS.Crashlytics.3.10.3\build\Xamarin.Firebase.iOS.Crashlytics.targets" Condition="Exists('..\packages\Xamarin.Firebase.iOS.Crashlytics.3.10.3\build\Xamarin.Firebase.iOS.Crashlytics.targets')" />
   <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
   <Import Project="..\packages\Xamarin.Firebase.iOS.InstanceID.3.1.1\build\Xamarin.Firebase.iOS.InstanceID.targets" Condition="Exists('..\packages\Xamarin.Firebase.iOS.InstanceID.3.1.1\build\Xamarin.Firebase.iOS.InstanceID.targets')" />
   <Import Project="..\packages\Xamarin.Firebase.iOS.Analytics.5.0.1\build\Xamarin.Firebase.iOS.Analytics.targets" Condition="Exists('..\packages\Xamarin.Firebase.iOS.Analytics.5.0.1\build\Xamarin.Firebase.iOS.Analytics.targets')" />
+  <Import Project="..\packages\Xamarin.Firebase.iOS.Crashlytics.3.10.9\build\Xamarin.Firebase.iOS.Crashlytics.targets" Condition="Exists('..\packages\Xamarin.Firebase.iOS.Crashlytics.3.10.9\build\Xamarin.Firebase.iOS.Crashlytics.targets')" />
 </Project>

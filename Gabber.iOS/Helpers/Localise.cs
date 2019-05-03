@@ -39,7 +39,7 @@ namespace Gabber.iOS.Helpers
             {
                 ci = new System.Globalization.CultureInfo(netLanguage);
             }
-            catch (CultureNotFoundException e1)
+            catch (CultureNotFoundException)
             {
                 // iOS locale not valid .NET culture (eg. "en-ES" : English in Spain)
                 // fallback to first characters, in this case "en"
@@ -48,7 +48,7 @@ namespace Gabber.iOS.Helpers
                     var fallback = ToDotnetFallbackLanguage(new PlatformCulture(netLanguage));
                     ci = new System.Globalization.CultureInfo(fallback);
                 }
-                catch (CultureNotFoundException e2)
+                catch (CultureNotFoundException)
                 {
                     ci = new System.Globalization.CultureInfo("en");
                 }
